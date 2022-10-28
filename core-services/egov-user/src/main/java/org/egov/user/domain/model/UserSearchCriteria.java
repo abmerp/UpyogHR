@@ -10,6 +10,7 @@ import java.util.List;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Builder
@@ -26,6 +27,7 @@ public class UserSearchCriteria {
     private Boolean active;
     private Integer offset;
     private Integer limit;
+    private Long parentid;
     private List<String> sort;
     private UserType type;
     private String tenantId;

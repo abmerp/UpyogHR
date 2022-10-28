@@ -73,6 +73,10 @@ public class UserRepository {
             userIds = findUsersWithRole(userSearch);
             RoleSearchHappend = true;
         }
+        if ( userSearch.getParentid() >0 && userSearch.getTenantId() != null) {
+            userIds = findUsersWithParentId(userSearch);
+            RoleSearchHappend = true;
+        }
         List<User> users = new ArrayList<>();
         if (RoleSearchHappend) {
             if (!CollectionUtils.isEmpty(userIds)) {
@@ -115,7 +119,22 @@ public class UserRepository {
 
         return usersIds;
     }
+    /**
+     * get list of all userids with role in given tenant
+     *
+     * @param userSearch
+     * @return
+     */
+    public List<Long> findUsersWithParentId(UserSearchCriteria userSearch) {
+        final List<Object> preparedStatementValues = new ArrayList<>();
+        List<Long> usersIds = new ArrayList<>();
+        String queryStr = userTypeQueryBuilder.getQueryUserParentSearch(userSearch, preparedStatementValues);
+        log.debug(queryStr);
 
+        usersIds = jdbcTemplate.queryForList(queryStr, preparedStatementValues.toArray(), Long.class);
+
+        return usersIds;
+    }
 
     /**
      * Api will check user is present or not with userName And tenantId
@@ -475,6 +494,7 @@ public class UserRepository {
         userInputs.put("emailid", entityUser.getEmailId());
         userInputs.put("active", entityUser.getActive());
         userInputs.put("name", entityUser.getName());
+        userInputs.put("parentid", entityUser.getParentid());
 
         if (Gender.FEMALE.equals(entityUser.getGender())) {
             userInputs.put("gender", 1);

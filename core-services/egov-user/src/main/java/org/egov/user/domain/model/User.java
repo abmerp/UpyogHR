@@ -31,6 +31,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @Setter
 @ToString
 @Builder(toBuilder = true)
+@NoArgsConstructor
 public class User {
 
     private Long id;
@@ -84,6 +85,7 @@ public class User {
     private boolean otpValidationMandatory;
     private boolean mobileValidationMandatory = true;
     private String alternateMobileNumber;
+    private Long parentid;
 
     public User addAddressItem(Address addressItem) {
         if (this.addresses == null) {
