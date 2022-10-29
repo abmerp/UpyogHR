@@ -13,7 +13,7 @@ public class DevDetail {
 
 	  private AddInfo addInfo;
 	  private UploadDocument uploadDocument;
-	  private List<UserRequest> addRemoveAuthoizedUsers; 
+	  private List<Long> addRemoveAuthoizedUsers; 
 	  private CapcityDevelopAColony capcityDevelopAColony;
 	 
 
