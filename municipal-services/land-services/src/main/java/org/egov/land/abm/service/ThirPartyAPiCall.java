@@ -31,6 +31,9 @@ public class ThirPartyAPiCall {
 	public String tcptpUserId;
 	@Value("${tcp.emailId}")
 	public String tcpEmailId;
+	@Value("tcp.genrate.tokennumber")
+	public String tcpgenrateTokenNumber;
+
 	@Autowired
 	public RestTemplate restTemplate;
 
@@ -48,8 +51,34 @@ public class ThirPartyAPiCall {
 		// set `accept` header
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
-		
-		ResponseEntity<String> response = restTemplate.getForEntity(tcpurl + tcpAuthToken,  String.class,entity);
+
+		ResponseEntity<String> response = restTemplate.getForEntity(tcpurl + tcpAuthToken, String.class, entity);
+		if (response.getStatusCode() == HttpStatus.CREATED) {
+			System.out.println("Request Successful");
+			System.out.println(response.getBody());
+		} else {
+			System.out.println("Request Failed");
+			System.out.println(response.getStatusCode());
+		}
+		return response;
+	}
+
+	public ResponseEntity<Map> generateTransactionNo(Map<String, Object> request) {
+
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.set("access_key", tcpAccessKey);
+		headers.set("secret_key", tcpSecretKey);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		// set `accept` header
+		request.put("userId", tpUserId);
+		request.put(tpUserId, tcptpUserId);
+		request.put("emailid", tcpEmailId);
+		request.put("TokenId", getAuthToken());
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
+
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpgenrateTokenNumber, entity, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
 			System.out.println("Request Successful");
 			System.out.println(response.getBody());
