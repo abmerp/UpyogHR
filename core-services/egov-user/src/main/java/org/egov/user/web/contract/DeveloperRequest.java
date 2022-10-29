@@ -1,28 +1,17 @@
 package org.egov.user.web.contract;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.*;
+import java.util.Date;
 
 import org.egov.common.contract.request.RequestInfo;
-import org.egov.user.config.*;
-import org.egov.user.domain.model.Address;
-import org.egov.user.domain.model.Role;
-import org.egov.user.domain.model.User;
-import org.egov.user.domain.model.enums.*;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.SafeHtml;
-import org.springframework.beans.factory.annotation.Value;
+import org.egov.user.abm.developer.contract.DevDetail;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;	
 
 @Setter
 @Getter
@@ -31,8 +20,14 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class DeveloperRequest {
 
-	//@JsonProperty("RequestInfo")
-	//private RequestInfo requestInfo;
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty("RequestInfo")
+	private RequestInfo requestInfo;
+	private Long id;
+	private float currentVersion;
+	private String createdBy;
+	private Date createdDate;
+	private String updateddBy;
+	private Date updatedDate;
+	@JsonProperty("devDetail")
+	private DevDetail devDetail;
 }

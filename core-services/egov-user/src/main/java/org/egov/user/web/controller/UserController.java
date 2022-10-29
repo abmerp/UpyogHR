@@ -5,6 +5,7 @@ import org.apache.commons.lang.time.DateFormatUtils;
 import org.egov.common.contract.response.ResponseInfo;
 import org.egov.user.abm.developer.contract.DevDetail;
 import org.egov.user.abm.developer.contract.DeveloperRegistration;
+import org.egov.user.abm.developer.contract.Developerdetail;
 import org.egov.user.abm.developer.services.DeveloperRegistrationService;
 import org.egov.user.domain.model.*;
 
@@ -212,25 +213,21 @@ public class UserController {
 		return new UserSearchResponse(responseInfo, userContracts);
 	}
 
-	@PostMapping("/_registration")
-	public DeveloperRegistration createDeveloperRegistraion(@RequestBody final @Valid DeveloperRequest detail)
+	@PostMapping("/developer/registration")
+	public DeveloperResponse createDeveloperRegistraion(@RequestBody final @Valid DeveloperRequest detail)
 			throws JsonProcessingException {
-		DevDetail detail2 = new DevDetail();
-		detail2.setName(detail.getName());
-		DeveloperRegistration developerRegistration1 = developerRegistrationService.addDeveloperRegistraion(0L, detail2);
-		return developerRegistration1;
+
+		DeveloperRegistration developerRegistration1 = developerRegistrationService.addDeveloperRegistraion(detail);
+		ResponseInfo responseInfo = ResponseInfo.builder().status(String.valueOf(HttpStatus.OK.value())).build();
+		List<Developerdetail> listDevelopers = developerRegistration1.getDeveloperDetail();
+
+		return new DeveloperResponse(responseInfo, developerRegistration1.getId(),
+				developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy(),
+				developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy(),
+				developerRegistration1.getUpdatedDate(), listDevelopers.get(listDevelopers.size() - 1).getDevDetail());
 
 	}
-	@PostMapping("/createDeveloper")
-	public DeveloperRegistration createDeveloper(@RequestBody final @Valid  UserSearchRequest request)
-			throws JsonProcessingException {
-		DevDetail detail2 = new DevDetail();
-		log.info(request.getName());
-		detail2.setName(request.getName());
-		DeveloperRegistration developerRegistration1 = developerRegistrationService.addDeveloperRegistraion(0L, detail2);
-		return developerRegistration1;
 
-	}
 	private boolean isMobileValidationRequired(HttpHeaders headers) {
 		boolean x_pass_through_gateway = !isInterServiceCall(headers);
 		if (mobileValidationWorkaroundEnabled != null && Boolean.valueOf(mobileValidationWorkaroundEnabled)

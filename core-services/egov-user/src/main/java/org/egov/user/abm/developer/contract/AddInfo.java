@@ -16,10 +16,8 @@ public class AddInfo {
 	private String email;
 	private String mobileNumber;
 	private String GST_Number;
-	
-	private FinancialCapacity financialCapacity;
-	
+	private List<FinancialCapacity> financialCapacity;
 	private List<ShareholdingPattens> shareHoldingPatterens;
 	private List<DirectorsInformation> directorsInformation;
-	
+
 }

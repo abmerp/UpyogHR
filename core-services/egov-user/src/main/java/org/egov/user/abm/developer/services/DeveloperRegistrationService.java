@@ -23,6 +23,7 @@ import org.egov.user.domain.model.User;
 import org.egov.user.domain.model.enums.AddressType;
 import org.egov.user.domain.model.enums.UserType;
 import org.egov.user.domain.service.UserService;
+import org.egov.user.web.contract.DeveloperRequest;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -38,29 +39,34 @@ public class DeveloperRegistrationService {
 	UserService userService;
 
 	@Transactional
-	public DeveloperRegistration addDeveloperRegistraion(Long id, DevDetail detail) throws JsonProcessingException {
+	public DeveloperRegistration addDeveloperRegistraion(DeveloperRequest detail) throws JsonProcessingException {
 		List<Developerdetail> listDevDetails;
 		Developerdetail objDeveloperdetail = new Developerdetail();
 		DeveloperRegistration devRegistration;
-		if (id != null && id > 0) {
-			devRegistration = em.find(DeveloperRegistration.class, id, LockModeType.PESSIMISTIC_WRITE);
+		if (detail.getId() != null && detail.getId() > 0) {
+			devRegistration = em.find(DeveloperRegistration.class, detail.getId(), LockModeType.PESSIMISTIC_WRITE);
 
 			devRegistration.setCurrentVersion(devRegistration.getCurrentVersion() + 0.1f);
-			objDeveloperdetail.setVersion(devRegistration.getCurrentVersion() );
-			objDeveloperdetail.setDevDetail(detail);
+			devRegistration.setUpdateddBy(detail.getUpdateddBy());
+			devRegistration.setUpdatedDate(new Date());
+			objDeveloperdetail.setVersion(devRegistration.getCurrentVersion());
+			objDeveloperdetail.setDevDetail(detail.getDevDetail());
 			listDevDetails = devRegistration.getDeveloperDetail();
 			listDevDetails.add(objDeveloperdetail);
-			
+
 			devRegistration.setUpdatedDate(new Date());
 		} else {
 			listDevDetails = new ArrayList<Developerdetail>();
 
 			objDeveloperdetail.setVersion(0.1f);
-			objDeveloperdetail.setDevDetail(detail);
+			objDeveloperdetail.setDevDetail(detail.getDevDetail());
 			listDevDetails.add(objDeveloperdetail);
 			devRegistration = new DeveloperRegistration();
+			devRegistration.setCreatedBy(detail.getCreatedBy());
 			devRegistration.setCreatedDate(new java.util.Date());
 			devRegistration.setCurrentVersion(0.1f);
+			devRegistration.setUpdateddBy(detail.getUpdateddBy());
+			devRegistration.setUpdatedDate(new Date());
 			devRegistration.setDeveloperDetail(listDevDetails);
 			// devRegistration.setUpdatedDate(null);
 

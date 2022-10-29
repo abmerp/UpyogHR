@@ -11,11 +11,10 @@ import lombok.Setter;
 @Setter
 public class DevDetail {
 
-	private String name;
-	/*
-	 * private AddInfo addInfo; private UploadDocument uploadDocument; private
-	 * List<UserRequest> addRemoveAuthoizedUsers; private CapcityDevelopAColony
-	 * capcityDevelopAColony;
-	 */
+	  private AddInfo addInfo;
+	  private UploadDocument uploadDocument;
+	  private List<UserRequest> addRemoveAuthoizedUsers; 
+	  private CapcityDevelopAColony capcityDevelopAColony;
+	 
 
 }

@@ -30,15 +30,6 @@ public class DeveloperRegistrationController {
 	@Autowired
 	UserService userService;
 
-	@PostMapping("/_registration")
-	public DeveloperRegistration createDeveloperRegistraion(@RequestBody final @Valid  DevDetail detail)
-			throws JsonProcessingException {
-
-		DeveloperRegistration developerRegistration1 = developerRegistrationService.addDeveloperRegistraion(0L, detail);
-		return developerRegistration1;
-
-	}
-
 	@GetMapping("/_searchall")
 	public List<DeveloperRegistration> searchDeveloperRegistraion() {
 
