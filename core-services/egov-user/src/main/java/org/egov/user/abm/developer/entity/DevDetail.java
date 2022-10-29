@@ -1,4 +1,4 @@
-package org.egov.user.avm.developer.entity;
+package org.egov.user.abm.developer.entity;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class DevDetail {
 
-
+    
 	private AddInfo addInfo;
 	private UploadDocument uploadDocument;
 	private List<UserRequest> addRemoveAuthoizedUsers;	

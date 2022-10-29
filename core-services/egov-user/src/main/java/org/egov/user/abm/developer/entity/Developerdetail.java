@@ -1,14 +1,16 @@
-package org.egov.user.avm.developer.entity;
+package org.egov.user.abm.developer.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Developerdetail {
 	
 	private float version;

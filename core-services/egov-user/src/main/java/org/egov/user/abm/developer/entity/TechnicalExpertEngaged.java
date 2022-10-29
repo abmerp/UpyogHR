@@ -1,4 +1,4 @@
-package org.egov.user.avm.developer.entity;
+package org.egov.user.abm.developer.entity;
 
 import lombok.Getter;
 import lombok.Setter;
