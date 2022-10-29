@@ -1,4 +1,4 @@
-package org.egov.land.repository;
+package org.egov.land.abm.repo;
 
 import org.egov.land.abm.newservices.entity.EgLiecnseUiField;
 import org.springframework.data.jpa.repository.JpaRepository;
