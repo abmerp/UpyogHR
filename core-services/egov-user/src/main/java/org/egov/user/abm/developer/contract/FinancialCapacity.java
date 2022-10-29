@@ -1,6 +1,4 @@
-package org.egov.user.abm.developer.entity;
-
-import java.util.List;
+package org.egov.user.abm.developer.contract;
 
 import lombok.Getter;
 import lombok.Setter;

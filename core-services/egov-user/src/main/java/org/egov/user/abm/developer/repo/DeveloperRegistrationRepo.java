@@ -1,9 +1,9 @@
 package org.egov.user.abm.developer.repo;
 
 
-import org.egov.user.abm.developer.entity.DevDetail;
-import org.egov.user.abm.developer.entity.DeveloperRegistration;
-import org.egov.user.abm.developer.entity.Developerdetail;
+
+import org.egov.user.abm.developer.contract.DeveloperRegistration;
+import org.egov.user.abm.developer.contract.Developerdetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

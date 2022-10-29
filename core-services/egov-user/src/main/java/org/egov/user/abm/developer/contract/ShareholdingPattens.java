@@ -1,16 +1,16 @@
-package org.egov.user.abm.developer.entity;
+package org.egov.user.abm.developer.contract;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class DirectorsInformation {
+public class ShareholdingPattens {
 	
 	private int serialNumber;
-	private String DIN_Number;
 	private String name;
-	private String PAN_Number;
+	private String designition;
+	private String percentage;
 	private String uploadPdf;
 
 }

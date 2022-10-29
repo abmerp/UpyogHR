@@ -13,9 +13,9 @@ import javax.transaction.Transactional;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.egov.user.abm.developer.entity.DevDetail;
-import org.egov.user.abm.developer.entity.DeveloperRegistration;
-import org.egov.user.abm.developer.entity.Developerdetail;
+import org.egov.user.abm.developer.contract.DevDetail;
+import org.egov.user.abm.developer.contract.DeveloperRegistration;
+import org.egov.user.abm.developer.contract.Developerdetail;
 import org.egov.user.abm.developer.repo.DeveloperRegistrationRepo;
 import org.egov.user.domain.model.Address;
 import org.egov.user.domain.model.Role;
@@ -46,10 +46,11 @@ public class DeveloperRegistrationService {
 			devRegistration = em.find(DeveloperRegistration.class, id, LockModeType.PESSIMISTIC_WRITE);
 
 			devRegistration.setCurrentVersion(devRegistration.getCurrentVersion() + 0.1f);
-			objDeveloperdetail.setVersion(devRegistration.getCurrentVersion() + 0.1f);
+			objDeveloperdetail.setVersion(devRegistration.getCurrentVersion() );
 			objDeveloperdetail.setDevDetail(detail);
 			listDevDetails = devRegistration.getDeveloperDetail();
 			listDevDetails.add(objDeveloperdetail);
+			
 			devRegistration.setUpdatedDate(new Date());
 		} else {
 			listDevDetails = new ArrayList<Developerdetail>();

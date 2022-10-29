@@ -1,10 +1,6 @@
-package org.egov.user.abm.developer.entity;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+package org.egov.user.abm.developer.contract;
 
 import org.egov.common.contract.request.RequestInfo;
-import org.egov.user.web.contract.UserRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

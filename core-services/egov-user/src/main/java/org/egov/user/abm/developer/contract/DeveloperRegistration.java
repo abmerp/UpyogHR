@@ -1,4 +1,4 @@
-package org.egov.user.abm.developer.entity;
+package org.egov.user.abm.developer.contract;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import lombok.Getter;

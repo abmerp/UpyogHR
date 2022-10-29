@@ -2,17 +2,13 @@ package org.egov.user.abm.developer.controller;
 
 import java.util.List;
 
-import org.egov.common.contract.request.RequestInfo;
-import org.egov.user.abm.developer.entity.DevDetail;
-import org.egov.user.abm.developer.entity.DeveloperInfo;
-import org.egov.user.abm.developer.entity.DeveloperRegistration;
-import org.egov.user.abm.developer.entity.Developerdetail;
+import javax.validation.Valid;
+
+import org.egov.user.abm.developer.contract.DevDetail;
+import org.egov.user.abm.developer.contract.DeveloperRegistration;
 import org.egov.user.abm.developer.repo.DeveloperRegistrationRepo;
 import org.egov.user.abm.developer.services.DeveloperRegistrationService;
-import org.egov.user.domain.model.User;
 import org.egov.user.domain.service.UserService;
-import org.egov.user.web.contract.CreateUserRequest;
-import org.egov.user.web.contract.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,10 +31,10 @@ public class DeveloperRegistrationController {
 	UserService userService;
 
 	@PostMapping("/_registration")
-	public DeveloperRegistration createDeveloperRegistraion(@RequestBody Long id, DevDetail detail)
+	public DeveloperRegistration createDeveloperRegistraion(@RequestBody final @Valid  DevDetail detail)
 			throws JsonProcessingException {
 
-		DeveloperRegistration developerRegistration1 = developerRegistrationService.addDeveloperRegistraion(id, detail);
+		DeveloperRegistration developerRegistration1 = developerRegistrationService.addDeveloperRegistraion(0L, detail);
 		return developerRegistration1;
 
 	}

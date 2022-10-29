@@ -1,4 +1,4 @@
-package org.egov.user.abm.developer.entity;
+package org.egov.user.abm.developer.contract;
 
 import java.util.List;
 
