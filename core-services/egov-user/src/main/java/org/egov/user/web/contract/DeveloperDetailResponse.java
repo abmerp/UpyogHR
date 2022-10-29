@@ -1,6 +1,7 @@
 package org.egov.user.web.contract;
 
 import java.util.Date;
+import java.util.List;
 
 import org.egov.common.contract.response.ResponseInfo;
 import org.egov.user.abm.developer.contract.Developerdetail;
@@ -12,7 +13,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class DeveloperResponse {
+public class DeveloperDetailResponse {
 	@JsonProperty("responseInfo")
 	ResponseInfo responseInfo;
 
@@ -23,5 +24,5 @@ public class DeveloperResponse {
 	private String updateddBy;
 	private Date updatedDate;
 	@JsonProperty("devDetail")
-	Developerdetail devDetail;	
+	List<Developerdetail> devDetail;	
 }

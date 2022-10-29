@@ -224,7 +224,7 @@ public class UserController {
 		return new DeveloperResponse(responseInfo, developerRegistration1.getId(),
 				developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy(),
 				developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy(),
-				developerRegistration1.getUpdatedDate(), listDevelopers.get(listDevelopers.size() - 1).getDevDetail());
+				developerRegistration1.getUpdatedDate(), listDevelopers.get(listDevelopers.size() - 1));
 
 	}
 

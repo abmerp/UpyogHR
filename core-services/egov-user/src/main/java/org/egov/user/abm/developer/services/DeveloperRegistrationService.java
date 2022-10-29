@@ -24,6 +24,7 @@ import org.egov.user.domain.model.enums.AddressType;
 import org.egov.user.domain.model.enums.UserType;
 import org.egov.user.domain.service.UserService;
 import org.egov.user.web.contract.DeveloperRequest;
+import org.egov.user.web.contract.DeveloperResponse;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -76,19 +77,15 @@ public class DeveloperRegistrationService {
 
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param isAllData
+	 * @return
+	 */
 	public DeveloperRegistration getById(Long id, boolean isAllData) {
-		// TO DO TO BE TESTED and FIXED
-		DeveloperRegistration developerRegistration = develloperRegistrationRepo.findById(id);
-		if (!isAllData) {
-			for (int i = 0; i < developerRegistration.getDeveloperDetail().size(); i++) {
-				if (developerRegistration.getCurrentVersion() == developerRegistration.getDeveloperDetail().get(i)
-						.getVersion()) {
 
-					developerRegistration
-							.setDeveloperDetail(Arrays.asList(developerRegistration.getDeveloperDetail().get(i)));
-				}
-			}
-		}
+		DeveloperRegistration developerRegistration = develloperRegistrationRepo.findById(id);
 		return developerRegistration;
 	}
 
