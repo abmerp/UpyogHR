@@ -1,17 +1,18 @@
 package org.egov.land.abm.newservices.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import org.egov.common.contract.request.RequestInfo;
+
+import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 import lombok.Getter;
@@ -31,13 +32,13 @@ public class NewServiceInfo {
 	@Column(name="current_version")
 	private float currentVersion;
 	
-	@Column(name="created_by")
+	@Column(name="created_by",length = 100)
 	private String createdBy;
 	
 	@Column(name="created_date")
 	private Date createdDate;
 	
-	@Column(name="updated_by")
+	@Column(name="updated_by",length = 100)
 	private String updateddBy;
 	
 	@Column(name="updated_date")
@@ -46,5 +47,5 @@ public class NewServiceInfo {
 	
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
-	private NewServiceInfoData newServiceInfoData;
+	private List<NewServiceInfoData> newServiceInfoData;
 }
