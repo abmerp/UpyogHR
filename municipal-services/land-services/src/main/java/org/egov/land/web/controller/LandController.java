@@ -35,6 +35,8 @@ public class LandController {
 	@Autowired
 	private LandUtil landUtil;
 	
+	
+	
 	@PostMapping(value = "/land/_create")
 	public ResponseEntity<LandInfoResponse> create(@Valid @RequestBody LandInfoRequest landRequest) {
 		landUtil.defaultJsonPathConfig();

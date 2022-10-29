@@ -18,21 +18,21 @@ import org.springframework.web.client.RestTemplate;
 public class ThirPartyAPiCall {
 
 	@Value("${tcp.url}")
-	private String tcpurl;
+	public String tcpurl;
 	@Value("${tcp.auth.token}")
-	private String tcpAuthToken;
+	public String tcpAuthToken;
 	@Value("${tcp.access.key}")
-	private String tcpAccessKey;
+	public String tcpAccessKey;
 	@Value("${tcp.secret.key}")
-	private String tcpSecretKey;
-	@Value("${tcp.UserId}")
-	private String tpUserId;
+	public String tcpSecretKey;
+	@Value("${tcp.userId}")
+	public String tpUserId;
 	@Value("${tcp.tpUserId}")
-	private String tcptpUserId;
+	public String tcptpUserId;
 	@Value("${tcp.emailId}")
-	private String tcpEmailId;
+	public String tcpEmailId;
 	@Autowired
-	private RestTemplate restTemplate;
+	public RestTemplate restTemplate;
 
 	public ResponseEntity<String> getAuthToken() {
 
@@ -48,7 +48,8 @@ public class ThirPartyAPiCall {
 		// set `accept` header
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
-		ResponseEntity<String> response = restTemplate.postForEntity(tcpurl + tcpAuthToken, entity, String.class);
+		
+		ResponseEntity<String> response = restTemplate.getForEntity(tcpurl + tcpAuthToken,  String.class,entity);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
 			System.out.println("Request Successful");
 			System.out.println(response.getBody());
