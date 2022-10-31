@@ -56,7 +56,7 @@ public class ThirPartyAPiCall {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("userId", tpUserId);
-		map.put(tpUserId, tcptpUserId);
+		map.put("tpUserId", tcptpUserId);
 		map.put("emailid", tcpEmailId);
 		headers.set("access_key", tcpAccessKey);
 		headers.set("secret_key", tcpSecretKey);
@@ -75,7 +75,7 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> generateTransactionNumber(Map<String, Object> request) {
 
 		request.put("userId", tpUserId);
-		request.put(tpUserId, tcptpUserId);
+		request.put("tpUserId", tcptpUserId);
 		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 
@@ -90,7 +90,7 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> saveTransactionData(Map<String, Object> request) {
 
 		request.put("userId", tpUserId);
-		request.put(tpUserId, tcptpUserId);
+		request.put("tpUserId", tcptpUserId);
 		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 		request.put("TxnNo",generateTransactionNumber(request).getBody().get("Value"));
@@ -106,7 +106,7 @@ public class ThirPartyAPiCall {
 
 		
 		request.put("userId", tpUserId);
-		request.put(tpUserId, tcptpUserId);
+		request.put("tpUserId", tcptpUserId);
 		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 		
@@ -120,7 +120,7 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> generateCaseNumber(Map<String, Object> request) {
 
 		request.put("userId", tpUserId);
-		request.put(tpUserId, tcptpUserId);
+		request.put("tpUserId", tcptpUserId);
 		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
@@ -135,7 +135,7 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request) {
 
 		request.put("userId", tpUserId);
-		request.put(tpUserId, tcptpUserId);
+		request.put("tpUserId", tcptpUserId);
 		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
@@ -152,7 +152,7 @@ public class ThirPartyAPiCall {
 
 	
 		request.put("userId", tpUserId);
-		request.put(tpUserId, tcptpUserId);
+		request.put("tpUserId", tcptpUserId);
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
