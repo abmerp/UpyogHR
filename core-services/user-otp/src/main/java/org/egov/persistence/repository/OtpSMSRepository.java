@@ -62,7 +62,7 @@ public class OtpSMSRepository {
         if (localisedMsgs.isEmpty()) {
             log.info("Localization Service didn't return any msgs so using default...");
             localisedMsgs.put(LOCALIZATION_KEY_REGISTER_SMS, "Dear Citizen, Your OTP to complete your mSeva Registration is %s.");
-            localisedMsgs.put(LOCALIZATION_KEY_LOGIN_SMS, "Dear Citizen, Your Login OTP is %s.");
+            localisedMsgs.put(LOCALIZATION_KEY_LOGIN_SMS, "Your confidential login OTP is %s.");
             localisedMsgs.put(LOCALIZATION_KEY_PWD_RESET_SMS, "Dear Citizen, Your OTP for recovering password is %s.");
         }
         String message = null;
