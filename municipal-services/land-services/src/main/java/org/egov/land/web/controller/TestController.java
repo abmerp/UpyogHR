@@ -22,7 +22,7 @@ public class TestController {
 	private org.egov.land.abm.service.ThirPartyAPiCall partyAPiCall;
 
 	@PostMapping(value = "/getToken")
-	public ResponseEntity<String> token(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
+	public ResponseEntity<Map> token(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 
 			return partyAPiCall.getAuthToken();
 	}

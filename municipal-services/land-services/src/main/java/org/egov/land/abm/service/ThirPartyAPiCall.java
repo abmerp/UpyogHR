@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.egov.land.service.LandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -14,7 +15,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ThirPartyAPiCall {
 
 	@Value("${tcp.url}")
@@ -31,22 +35,22 @@ public class ThirPartyAPiCall {
 	public String tcptpUserId;
 	@Value("${tcp.emailId}")
 	public String tcpEmailId;
-	@Value("tcp.genrate.tokennumber")
-	public String tcpgenrateTokenNumber;
-	@Value("tcp.save.transactiondata")
+	@Value("${tcp.genrate.transactionnumber}")
+	public String tcpgenratetransactionnumber;
+	@Value("${tcp.save.transactiondata}")
 	public String tcpSaveTransactionData;
-	@Value("tcp.generate.dairynumber")
+	@Value("${tcp.generate.dairynumber}")
 	public String tcpGenerateDairyNumber;
-	@Value("tcp.generate.casenumber")
+	@Value("${tcp.generate.casenumber}")
 	public String tcpGenerateCaseNumber;
-	@Value("tcp.generate.applicationnumber")
+	@Value("${tcp.generate.applicationnumber}")
 	public String tcpGenerateApplicationNumber;
-	@Value("tcp.is.existSSO.Token")
+	@Value("${tcp.is.existSSO.Token}")
 	public String tcpExistSSoNumber;
 	@Autowired
 	public RestTemplate restTemplate;
 
-	public ResponseEntity<String> getAuthToken() {
+	public ResponseEntity<Map> getAuthToken() {
 
 		HttpHeaders headers = new HttpHeaders();
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -57,176 +61,102 @@ public class ThirPartyAPiCall {
 		headers.set("access_key", tcpAccessKey);
 		headers.set("secret_key", tcpSecretKey);
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
+		
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 
-		ResponseEntity<String> response = restTemplate.postForEntity(tcpurl + tcpAuthToken, entity,String.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpAuthToken, entity, Map.class);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("Token No\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
 	public ResponseEntity<Map> generateTransactionNumber(Map<String, Object> request) {
 
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
 		request.put("userId", tpUserId);
 		request.put(tpUserId, tcptpUserId);
 		request.put("emailid", tcpEmailId);
-		System.out.println(getAuthToken().getBody());
-		request.put("TokenId", "");
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
+		request.put("TokenId", getAuthToken().getBody().get("Value"));
 
-		ResponseEntity<Map> response = restTemplate.getForEntity(tcpurl + tcpgenrateTokenNumber,  Map.class,entity);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
-		}
+		log.info("request info\n" + request);
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpgenratetransactionnumber, request, Map.class);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("transaction Number\n" + response.getBody().get("Value"));
+		} 
 		return response;
 	}
 
 	public ResponseEntity<Map> saveTransactionData(Map<String, Object> request) {
 
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
 		request.put("userId", tpUserId);
 		request.put(tpUserId, tcptpUserId);
 		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken());
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
+		request.put("TokenId", getAuthToken().getBody().get("Value"));
+		request.put("TxnNo",generateTransactionNumber(request).getBody().get("Value"));
 
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpSaveTransactionData, entity, Map.class);
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpSaveTransactionData, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
+			log.info("save transaction Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
 	public ResponseEntity<Map> generateDiaryNumber(Map<String, Object> request) {
 
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
+		
 		request.put("userId", tpUserId);
 		request.put(tpUserId, tcptpUserId);
 		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken());
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
-
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, entity, Map.class);
+		request.put("TokenId", getAuthToken().getBody().get("Value"));
+		
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
+			log.info("Dairy Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
 	public ResponseEntity<Map> generateCaseNumber(Map<String, Object> request) {
 
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
 		request.put("userId", tpUserId);
 		request.put(tpUserId, tcptpUserId);
 		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken());
-		request.put("DiaryNo",generateDiaryNumber(request));
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
-
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateCaseNumber, entity, Map.class);
+		request.put("TokenId", getAuthToken().getBody().get("Value"));
+		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
+		
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateCaseNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
+			log.info("Case Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
 	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request) {
 
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
 		request.put("userId", tpUserId);
 		request.put(tpUserId, tcptpUserId);
 		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken());
-		request.put("DiaryNo",generateDiaryNumber(request));
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
-
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, entity,
-				Map.class);
+		request.put("TokenId", getAuthToken().getBody().get("Value"));
+		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
+		request.put("CaseId",generateCaseNumber(request).getBody().get("Value"));    
+		 
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
+			log.info("application Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
 	public ResponseEntity<Map> isExistSSOToken(Map<String, Object> request) {
 
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		// set `accept` header
+	
 		request.put("userId", tpUserId);
 		request.put(tpUserId, tcptpUserId);
-		
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
 
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, entity, Map.class);
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
-			System.out.println("Request Successful");
-			System.out.println(response.getBody());
-		} else {
-			System.out.println("Request Failed");
-			System.out.println(response.getStatusCode());
+			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
