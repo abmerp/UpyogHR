@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.user.abm.developer.contract.DevDetail;
+import org.egov.user.abm.developer.contract.LicenceDetails;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,4 +31,5 @@ public class DeveloperRequest {
 	private Date updatedDate;
 	@JsonProperty("devDetail")
 	private DevDetail devDetail;
+	
 }

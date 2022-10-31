@@ -5,10 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DesignationDirector {
-
-	  private String agreementDoc;
-      private String boardDoc;
+public class Gender {
 	
-	
+	 private String i18nKey;
+     private String code;
+     private String value;
 }

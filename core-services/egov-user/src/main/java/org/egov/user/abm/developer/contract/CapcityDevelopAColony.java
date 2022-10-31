@@ -8,11 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CapcityDevelopAColony {
-
-	private List<CapacityDevelopAColonyHdruAct> capacityDevelopColonyHdruAct;	
-	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;	
-	private TechnicalExpertEngaged technicalExpertEngaged;
-	private DesignationDirector designationDirector;
-	private ObtainedLicense obtainedLicense;
 	
+	private String individualCertificateCA;
+	private String companyBalanceSheet;
+	private String paidUpCapital;
+	private String networthPartners;
+	private String networthFirm;
+	private List<CapacityDevelopAColonyHdruAct> capacityDevelopColonyHdruAct;
+	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
+	private List<TechnicalExpertEngaged> technicalExpertEngaged;
+	private List<DesignationDirector> designationDirector;
+	private List<ObtainedLicense> obtainedLicense;
+
 }
