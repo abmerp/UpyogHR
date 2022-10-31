@@ -2,21 +2,18 @@ package org.egov.web.notification.sms.consumer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.*;
+
 import org.egov.tracer.kafka.*;
 import org.egov.web.notification.sms.consumer.contract.SMSRequest;
 import org.egov.web.notification.sms.models.Category;
 import org.egov.web.notification.sms.models.RequestContext;
 import org.egov.web.notification.sms.service.SMSService;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.boot.autoconfigure.kafka.*;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.*;
+
+
+
 import org.springframework.kafka.annotation.*;
-import org.springframework.kafka.config.*;
-import org.springframework.kafka.core.*;
-import org.springframework.kafka.listener.*;
-import org.springframework.kafka.listener.ErrorHandler;
+
 import org.springframework.stereotype.Service;
 import org.springframework.util.*;
 import org.springframework.web.client.RestClientException;
@@ -28,7 +25,6 @@ import java.util.UUID;
 @Service
 public class SmsNotificationListener {
 
-    private final ApplicationContext context;
     private SMSService smsService;
     private CustomKafkaTemplate<String, SMSRequest> kafkaTemplate;
 
@@ -47,11 +43,10 @@ public class SmsNotificationListener {
 
     @Autowired
     public SmsNotificationListener(
-            ApplicationContext context,
+         
             SMSService smsService,
             CustomKafkaTemplate<String, SMSRequest> kafkaTemplate) {
         this.smsService = smsService;
-        this.context = context;
         this.kafkaTemplate = kafkaTemplate;
     }
 

@@ -18,7 +18,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.commons.codec.binary.Hex;
+
 import org.egov.web.notification.sms.config.SMSProperties;
 import org.egov.web.notification.sms.models.Sms;
 import org.egov.web.notification.sms.service.BaseSMSService;
@@ -43,7 +43,8 @@ public class NICSMSServiceImpl extends BaseSMSService {
     private SSLContext sslContext;
 
     @PostConstruct
-    private void postConstruct() {
+
+    public void postConstruct() {
         log.info("postConstruct() start");
         try
         {
@@ -156,7 +157,7 @@ public class NICSMSServiceImpl extends BaseSMSService {
         }
     }
 
-    private boolean textIsInEnglish(String text) {
+    public boolean textIsInEnglish(String text) {
         ArrayList<Character.UnicodeBlock> english = new ArrayList<>();
         english.add(Character.UnicodeBlock.BASIC_LATIN);
         english.add(Character.UnicodeBlock.LATIN_1_SUPPLEMENT);

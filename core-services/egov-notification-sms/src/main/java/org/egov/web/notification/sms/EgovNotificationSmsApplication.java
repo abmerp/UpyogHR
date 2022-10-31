@@ -4,22 +4,23 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.*;
+
+import javax.annotation.PostConstruct;
+
 import org.egov.tracer.config.TracerConfiguration;
-import org.egov.web.notification.sms.config.*;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.*;
+
 import org.springframework.context.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.*;
-import org.springframework.kafka.annotation.*;
-import org.springframework.util.*;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
-
-import javax.annotation.*;
 
 @SpringBootApplication
 @Import(TracerConfiguration.class)
@@ -38,7 +39,7 @@ public class EgovNotificationSmsApplication {
     }
 
     @PostConstruct
-    private void init() {
+    public void init() {
         if (StringUtils.isEmpty(environment.getProperty("sms.provider.class"))) {
             log.error("The provider gateway has not been configured. Please configure sms.provider.class");
             int exitCode = SpringApplication.exit(context, (ExitCodeGenerator) () -> 1);
