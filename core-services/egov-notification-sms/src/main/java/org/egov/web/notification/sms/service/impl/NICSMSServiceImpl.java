@@ -102,11 +102,11 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		sendSMS(map);
 	}
 
-	public ResponseEntity<Map> getAuthToken() {
+	public String getAuthToken() {
 
 		HttpHeaders headers = new HttpHeaders();
 		Map<String, Object> map = new HashMap<String, Object>();
-
+		String tokenn="";
 		map.put("userId", smsProperties.tpUserId);
 		map.put("tpUserId", smsProperties.tcptpUserId);
 		map.put("emailid", smsProperties.tcpEmailId);
@@ -120,17 +120,19 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		ResponseEntity<Map> response = restTemplate.postForEntity(smsProperties.tcpurl + smsProperties.tcpAuthToken,
 				entity, Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
-			log.info("Token No\n" + response.getBody().get("Value"));
+			
+			log.info("Token No\n" +response );
+			tokenn=(String)response.getBody().get("Value");
 
 		}
-		return response;
+		return tokenn;
 	}
 
 	public ResponseEntity<Map> sendSMS(Map<String, Object> request) {
 
-		request.put("userId", smsProperties.tpUserId);
+		request.put("UserloginId", smsProperties.tpUserId);
 		request.put("ModuleId", smsProperties.moduleId);
-		request.put("TokenId", getAuthToken().getBody().get("Value"));
+		request.put("TokenId", getAuthToken());
 
 		log.info("request info\n" + request);
 		ResponseEntity<Map> response = restTemplate.postForEntity(smsProperties.tcpurl + smsProperties.smsurl, request,
