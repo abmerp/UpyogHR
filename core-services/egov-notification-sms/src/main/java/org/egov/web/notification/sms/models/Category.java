@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Category {
-    OTP("OTP"), TRANSACTION("TRANSACTION"), PROMOTION("PROMOTION"),
+    OTP("Login OOTP"), TRANSACTION("TRANSACTION"), PROMOTION("PROMOTION"),
     NOTIFICATION("NOTIFICATION"), OTHERS("OTHERS");
 
     private String value;

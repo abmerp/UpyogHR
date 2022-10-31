@@ -11,128 +11,141 @@ import java.util.regex.*;
 @Data
 public class SMSProperties {
 
-    @Value("${sms.provider.class}")
-    public String gatewayToUse;
+	@Value("${sms.provider.class}")
+	public String gatewayToUse;
+	@Value("${tcp.url}")
+	public String tcpurl;
+	@Value("${tcp.auth.token}")
+	public String tcpAuthToken;
+	@Value("${tcp.access.key}")
+	public String tcpAccessKey;
+	@Value("${tcp.secret.key}")
+	public String tcpSecretKey;
+	@Value("${tcp.userId}")
+	public String tpUserId;
+	@Value("${tcp.genrate.moduleId}")
+	public String moduleId;
+	@Value("${tcp.tpUserId}")
+	public String tcptpUserId;
+	@Value("${tcp.emailId}")
+	public String tcpEmailId;
+	@Value("${tcp.genrate.smsurl}")
+	public String smsurl;
+	@Value("${sms.provider.requestType}")
+	public String requestType;
 
-    @Value("${sms.provider.requestType}")
-    public String requestType;
+	@Value("${sms.provider.contentType:application/x-www-form-urlencoded}")
+	public String contentType;
 
-    @Value("${sms.provider.contentType:application/x-www-form-urlencoded}")
-    public String contentType;
+	@Value("${sms.mobile.prefix:}")
+	private String mobileNumberPrefix;
 
-    @Value("${sms.mobile.prefix:}")
-    private String mobileNumberPrefix;
+	@Value("${sms.provider.url}")
+	public String url;
 
-    @Value("${sms.provider.url}")
-    public String url;
+	@Value("${sms.provider.username}")
+	public String username;
 
-    @Value("${sms.provider.username}")
-    public String username;
+	@Value("${sms.provider.password}")
+	public String password;
 
-    @Value("${sms.provider.password}")
-    public String password;
+	@Value("${sms.senderid}")
+	public String senderid;
 
-    @Value("${sms.senderid}")
-    public String senderid;
+	@Value("${sms.sender.secure.key}")
+	public String secureKey;
 
-    @Value("${sms.sender.secure.key}")
-    public String secureKey;
+	@Value("#{${sms.config.map}}")
+	Map<String, String> configMap;
 
-    @Value("#{${sms.config.map}}")
-    Map<String, String> configMap;
+	@Value("#{${sms.extra.config.map}}")
+	Map<String, String> extraConfigMap;
 
-    @Value("#{${sms.extra.config.map}}")
-    Map<String, String> extraConfigMap;
+	@Value("#{${sms.category.map}}")
+	Map<String, Map<String, String>> categoryMap;
 
-    @Value("#{${sms.category.map}}")
-    Map<String, Map<String, String>> categoryMap;
+	@Value("#{'${sms.error.codes}'.split(',')}")
+	protected List<String> smsErrorCodes;
 
-    @Value("#{'${sms.error.codes}'.split(',')}")
-    protected List<String> smsErrorCodes;
+	@Value("#{'${sms.success.codes}'.split(',')}")
+	protected List<String> smsSuccessCodes;
 
-    @Value("#{'${sms.success.codes}'.split(',')}")
-    protected List<String> smsSuccessCodes;
+	@Value("${sms.verify.response:false}")
+	private boolean verifyResponse;
 
-    @Value("${sms.verify.response:false}")
-    private boolean verifyResponse;
+	@Value("${sms.verify.responseContains:}")
+	private String verifyResponseContains;
 
-    @Value("${sms.verify.responseContains:}")
-    private String verifyResponseContains;
+	@Value("${sms.verify.ssl:true}")
+	private boolean verifySSL;
 
+	@Value("${sms.blacklist.numbers}")
+	private List<String> blacklistNumbers;
 
-    @Value("${sms.verify.ssl:true}")
-    private boolean verifySSL;
+	@Value("${sms.whitelist.numbers}")
+	private List<String> whitelistNumbers;
 
-    @Value("${sms.blacklist.numbers}")
-    private List<String> blacklistNumbers;
+	@Value("${sms.verify.certificate:false}")
+	private boolean verifyCertificate;
 
-    @Value("${sms.whitelist.numbers}")
-    private List<String> whitelistNumbers;
+	@Value("${sms.msg.append}")
+	private String smsMsgAppend;
 
-    @Value("${sms.verify.certificate:false}")
-    private boolean verifyCertificate;
+	@Value("${sms.provider.entityid}")
+	public String smsEntityId;
 
-    @Value("${sms.msg.append}")
-    private String smsMsgAppend;
+	@Value("${sms.default.tmplid:1}")
+	public String smsDefaultTmplid;
 
-    @Value("${sms.provider.entityid}")
-    public String smsEntityId;
+	@Value("${sms.debug.msggateway:false}")
+	private boolean debugMsggateway;
 
-    @Value("${sms.default.tmplid:1}")
-    public String smsDefaultTmplid;
+	@Value("${sms.enabled:false}")
+	private boolean smsEnabled;
 
-    @Value("${sms.debug.msggateway:false}")
-    private boolean debugMsggateway;
+	@Setter(AccessLevel.PROTECTED)
+	private List<Pattern> whitelistPatterns;
+	@Setter(AccessLevel.PROTECTED)
+	private List<Pattern> blacklistPatterns;
 
-    @Value("${sms.enabled:false}")
-    private boolean smsEnabled;
+	private List<Pattern> convertToPattern(List<String> data) {
+		List<Pattern> patterns = new ArrayList<>(data.size());
 
-    @Setter(AccessLevel.PROTECTED) private List<Pattern> whitelistPatterns;
-    @Setter(AccessLevel.PROTECTED) private List<Pattern> blacklistPatterns;
+		for (int i = 0; i < data.size(); i++) {
+			patterns.add(Pattern.compile("^" + data.get(i).replace("X", "[0-9]").replace("*", "[0-9]+") + "$"));
+		}
+		return patterns;
+	}
 
-    private List<Pattern> convertToPattern(List<String> data) {
-        List<Pattern> patterns = new ArrayList<>(data.size());
+	public boolean isNumberBlacklisted(String number) {
+		if (this.blacklistPatterns == null) {
+			this.blacklistPatterns = convertToPattern(blacklistNumbers);
+		}
 
-        for (int i = 0; i < data.size(); i++) {
-            patterns.add(
-                    Pattern.compile(
-                            "^" +
-                                    data.get(i)
-                                            .replace("X", "[0-9]")
-                                            .replace("*","[0-9]+") + "$"));
-        }
-        return patterns;
-    }
+		if (blacklistPatterns.size() > 0) {
+			for (Pattern p : blacklistPatterns) {
+				if (p.matcher(number).find())
+					return true;
+			}
+		}
 
-    public boolean isNumberBlacklisted(String number) {
-        if (this.blacklistPatterns == null) {
-            this.blacklistPatterns = convertToPattern(blacklistNumbers);
-        }
+		return false;
+	}
 
-        if (blacklistPatterns.size() > 0) {
-            for (Pattern p: blacklistPatterns) {
-                if (p.matcher(number).find())
-                    return true;
-            }
-        }
+	public boolean isNumberWhitelisted(String number) {
+		if (this.whitelistPatterns == null) {
+			this.whitelistPatterns = convertToPattern(whitelistNumbers);
+		}
 
-        return false;
-    }
-
-    public boolean isNumberWhitelisted(String number) {
-        if (this.whitelistPatterns == null) {
-            this.whitelistPatterns = convertToPattern(whitelistNumbers);
-        }
-
-        if (whitelistPatterns.size() > 0) {
-            for (Pattern p: whitelistPatterns) {
-                if (p.matcher(number).find())
-                    return true;
-            }
-            return false;
-        } else {
-            return true;
-        }
-    }
+		if (whitelistPatterns.size() > 0) {
+			for (Pattern p : whitelistPatterns) {
+				if (p.matcher(number).find())
+					return true;
+			}
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 }
