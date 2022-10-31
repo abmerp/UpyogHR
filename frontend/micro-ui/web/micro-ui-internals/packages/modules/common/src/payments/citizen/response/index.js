@@ -264,7 +264,7 @@ export const SuccessfulPayment = (props)=>{
     }
   }
 
-  // https://dev.digit.org/collection-services/payments/FSM.TRIP_CHARGES/_search?tenantId=pb.amritsar&consumerCodes=107-FSM-2021-02-18-063433
+  // http://10.1.1.18:8443/collection-services/payments/FSM.TRIP_CHARGES/_search?tenantId=pb.amritsar&consumerCodes=107-FSM-2021-02-18-063433
 
   // if (billDataLoading) return <Loader />;
 

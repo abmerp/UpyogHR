@@ -104,7 +104,7 @@ android {
 			resValue "string", "launcher_icon", "@mipmap/ic_launcher_citizen"
 			signingConfig signingConfigs.Citizen
 
-			buildConfigField 'String', 'url', '"https://dev.digit.org/citizen/user/register"'
+			buildConfigField 'String', 'url', '"http://10.1.1.18:8443/citizen/user/register"'
 			buildConfigField 'String', 'gatewayHost', '"migs.mastercard.co.in"'
 		}
 		EmployeeDEV {
@@ -118,7 +118,7 @@ android {
 			resValue "string", "launcher_icon", "@mipmap/ic_launcher_employee"
 			signingConfig signingConfigs.Employee
 
-			buildConfigField 'String', 'url', '"https://dev.digit.org/employee/user/login"'
+			buildConfigField 'String', 'url', '"http://10.1.1.18:8443/employee/user/login"'
 			buildConfigField 'String', 'gatewayHost', '"migs.mastercard.co.in"'
 		}
 		CitizenQA{

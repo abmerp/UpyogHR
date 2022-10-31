@@ -33,7 +33,7 @@ const envVariables = {
     process.env.TRACER_ENABLE_REQUEST_LOGGING || false,
 
   //default host configurations
-  HOST_URL: process.env.HOST_URL || "https://dev.digit.org",
+  HOST_URL: process.env.HOST_URL || "http://10.1.1.18:8443/",
 
   //logger configurations
   HTTP_CLIENT_DETAILED_LOGGING_ENABLED:
@@ -41,7 +41,7 @@ const envVariables = {
 
   //workflow service configurations
   EGOV_WORKFLOW_HOST: process.env.EGOV_WORKFLOW_HOST || "http://localhost:8089",
-  // "https://dev.digit.org",
+  // "http://10.1.1.18:8443/",
   EGOV_WORKFLOW_TRANSITION_ENDPOINT:
     process.env.EGOV_WORKFLOW_TRANSITION_PATH ||
     "/egov-workflow-v2/egov-wf/process/_transition",
@@ -58,7 +58,7 @@ const envVariables = {
 
   //user service configurations
   EGOV_USER_HOST: process.env.EGOV_USER_HOST || "http://localhost:8088",
-  //"https://dev.digit.org",
+  //"http://10.1.1.18:8443/",
   EGOV_USER_CONTEXT_PATH: process.env.EGOV_USER_CONTEXT_PATH || "/user",
   EGOV_USER_CREATE_ENDPOINT:
     process.env.EGOV_USER_CREATE_ENDPOINT || "/users/_createnovalidate",
@@ -85,14 +85,14 @@ const envVariables = {
 
   //mdms service configurations
   EGOV_MDMS_HOST:
-    process.env.EGOV_MDMS_HOST || "https://dev.digit.org",
+    process.env.EGOV_MDMS_HOST || "http://10.1.1.18:8443/",
   EGOV_MDMS_CONTEXT_PATH:
     process.env.EGOV_MDMS_CONTEXT_PATH || "/egov-mdms-service/v1",
   EGOV_MDMS_SEARCH_ENPOINT: process.env.EGOV_MDMS_SEARCH_ENPOINT || "/_search",
 
   //event service configurations
   EGOV_EVENT_HOST:
-    process.env.EGOV_EVENT_HOST || "https://dev.digit.org",
+    process.env.EGOV_EVENT_HOST || "http://10.1.1.18:8443/",
   EGOV_EVENT_CONTEXT_PATH:
     process.env.EGOV_EVENT_CONTEXT_PATH || "/egov-user-event/v1/events",
   EGOV_EVENT_CREATE_ENPOINT:
@@ -110,7 +110,7 @@ const envVariables = {
 
   //property service configurations
   EGOV_PROPERTY_HOST:
-    process.env.EGOV_PROPERTY_HOST || "https://dev.digit.org",
+    process.env.EGOV_PROPERTY_HOST || "http://10.1.1.18:8443/",
   EGOV_PROPERTY_CONTEXT_PATH:
     process.env.EGOV_PROPERTY_CONTEXT_PATH || "/pt-services-v2/property",
   EGOV_PROPERTY_SEARCH_ENPOINT:
@@ -119,7 +119,7 @@ const envVariables = {
   //localization service configurations
   EGOV_LOCALIZATION_HOST:
     process.env.EGOV_LOCALIZATION_HOST ||
-    "https://dev.digit.org",
+    "http://10.1.1.18:8443/",
   EGOV_LOCALIZATION_CONTEXT_PATH:
     process.env.EGOV_LOCALIZATION_CONTEXT_PATH || "/localization/messages/v1",
   EGOV_LOCALIZATION_SEARCH_ENPOINT:
@@ -134,7 +134,7 @@ const envVariables = {
   EGOV_FN_DEFAULT_OFFSET: process.env.EGOV_FN_DEFAULT_OFFSET || 0,
   EGOV_FN_DEFAULT_LIMIT: process.env.EGOV_FN_DEFAULT_OFFSET || 10,
   EGOV_FN_MAX_OFFSET: process.env.EGOV_FN_DEFAULT_OFFSET || 100,
-  EGOV_HOST_BASE_URL:process.env.EGOV_HOST_BASE_URL|| "https://dev.digit.org/",
+  EGOV_HOST_BASE_URL:process.env.EGOV_HOST_BASE_URL|| "http://10.1.1.18:8443/",
   EGOV_RECEIPT_URL:process.EGOV_RECEIPT_URL||"citizen/fire-noc/search-preview",
   ACTION_PAY: "PAY",
   SENDBACK:"SENDBACK",

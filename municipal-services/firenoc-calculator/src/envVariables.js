@@ -17,7 +17,7 @@ const envVariables = {
 
   //mdms urls
   EGOV_MDMS_HOST:
-    process.env.EGOV_MDMS_HOST || "https://dev.digit.org",
+    process.env.EGOV_MDMS_HOST || "http://10.1.1.18:8443/",
   EGOV_MDMS_SEARCH_ENDPOINT:
     process.env.EGOV_MDMS_SEARCH_ENDPOINT || "/egov-mdms-service/v1/_search",
 
@@ -26,7 +26,7 @@ const envVariables = {
   //firenoc service
   EGOV_FIRENOC_SERVICE_HOST:
     process.env.EGOV_FIRENOC_SERVICE_HOST ||
-    "https://dev.digit.org",
+    "http://10.1.1.18:8443/",
   EGOV_FIRENOC_SEARCH_ENDPOINT:
     process.env.EGOV_FIRENOC_SEARCH_ENDPOINT || "firenoc-services/v1/_search",
 

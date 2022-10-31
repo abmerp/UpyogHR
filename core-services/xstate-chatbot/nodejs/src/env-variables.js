@@ -71,11 +71,11 @@ const envVariables = {
     },
 
     egovServices: {
-        egovServicesHost: process.env.EGOV_SERVICES_HOST || 'https://dev.digit.org/',
-        externalHost: process.env.EXTERNAL_HOST || 'https://dev.digit.org/',
+        egovServicesHost: process.env.EGOV_SERVICES_HOST || 'http://10.1.1.18:8443/',
+        externalHost: process.env.EXTERNAL_HOST || 'http://10.1.1.18:8443/',
         searcherHost: process.env.EGOV_SEARCHER_HOST || "http://egov-searcher.egov:8080/",
 
-        userServiceHost: process.env.USER_SERVICE_HOST || 'https://dev.digit.org/',
+        userServiceHost: process.env.USER_SERVICE_HOST || 'http://10.1.1.18:8443/',
         userServiceOAuthPath: process.env.USER_SERVICE_OAUTH_PATH || 'user/oauth/token',
         userServiceCreateCitizenPath: process.env.USER_SERVICE_CREATE_CITIZEN_PATH || 'user/citizen/_create',
         userServiceUpdateProfilePath: process.env.USER_SERVICE_UPDATE_PROFILE_PATH || 'user/profile/_update',
