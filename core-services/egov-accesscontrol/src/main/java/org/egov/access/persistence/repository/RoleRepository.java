@@ -30,8 +30,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.jayway.jsonpath.JsonPath;
 
-
-
 @Repository
 public class RoleRepository {
 
@@ -39,7 +37,7 @@ public class RoleRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
+
 	@Value("${mdms.roles.filter}")
 	private String roleFilter;
 	@Value("${egov.mdms.host}${egov.mdms.path}")
@@ -47,13 +45,13 @@ public class RoleRepository {
 	@Value("${mdms.role.path}")
 	private String rolePath;
 	@Value("${mdms.rolemodule.name}")
-    private String moduleName;
+	private String moduleName;
 	@Value("${mdms.rolemaster.name}")
 	private String rolesMaster;
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	public List<Role> createRole(final RoleRequest roleRequest) {
 
 		LOGGER.info("Create Role Repository::" + roleRequest);
@@ -115,114 +113,116 @@ public class RoleRepository {
 
 		return false;
 	}
-public List<Role> getAllMDMSRoles(RoleSearchCriteria roleSearchCriteria) throws JSONException, UnsupportedEncodingException {
+
+	public List<Role> getAllMDMSRoles(RoleSearchCriteria roleSearchCriteria)
+			throws JSONException, UnsupportedEncodingException {
 		String res = "";
 		String rFilter = roleFilter;
 		List<Role> roleList = new ArrayList<Role>();
 		List<String> rolecodes = roleSearchCriteria.getCodes();
 		StringBuffer rolecodelist = new StringBuffer();
-		
-		for(int i=0;i<rolecodes.size();i++) {
+
+		for (int i = 0; i < rolecodes.size(); i++) {
 			rolecodelist.append("'");
 			rolecodelist.append(rolecodes.get(i));
 			rolecodelist.append("'");
-			if(i != rolecodes.size()-1)
+			if (i != rolecodes.size() - 1)
 				rolecodelist.append(",");
 		}
 		rFilter = rFilter.replaceAll("\\$code", rolecodelist.toString());
 		MdmsCriteriaReq mcq = getRoleMDMSCriteria(roleSearchCriteria, rFilter);
-		LOGGER.info("Role Filter: "+rFilter.toString());
-		LOGGER.info("The URL is: "+ url);
-		
+		LOGGER.info("Role Filter: " + rFilter.toString());
+		LOGGER.info("The URL is: " + url);
+
 		try {
-		res = restTemplate.postForObject(url, mcq, String.class);
-		} catch(Exception e){
+			res = restTemplate.postForObject(url, mcq, String.class);
+		} catch (Exception e) {
 			LOGGER.error("Error while fetching roles from MDMS: " + e.getMessage());
 		}
 
-		Object jsonObject = JsonPath.read(res,rolePath);
+		Object jsonObject = JsonPath.read(res, rolePath);
 		JSONArray mdmsArray = new JSONArray(jsonObject.toString());
-		LOGGER.info("Role  from MDMS: "+jsonObject.toString());
-		
-		
+		LOGGER.info("Role  from MDMS: " + jsonObject.toString());
+
 		roleList = convertToRole(mdmsArray);
 		return roleList;
 	}
 
-private MdmsCriteriaReq getRoleMDMSCriteria(RoleSearchCriteria roleSearchCriteria,String roleFilter) {
-	String mName = "";
-	
-	mName = moduleName;
-	String tenantId = "";
-	tenantId = roleSearchCriteria.getTenantId();
-	LOGGER.info("Tenant id from repository: "+tenantId);
-	MdmsCriteriaReq mcq = new MdmsCriteriaReq();
-	List<MasterDetail> masterDetails = new ArrayList<MasterDetail>();
-	List<ModuleDetail> moduleDetail = new ArrayList<ModuleDetail>();
-	mcq.setRequestInfo(getRInfo());
-	MdmsCriteria mc = new MdmsCriteria();
-	if(tenantId.contains(".")){
-		 String[] stateid = tenantId.split("\\.");
-		 LOGGER.info("State IDs are :"+stateid);
-		 mc.setTenantId(stateid[0]);
-		 
-	 } else {
-		 mc.setTenantId(tenantId);
-		 
-	 }
-	ModuleDetail md = new ModuleDetail();
-	md.setModuleName(mName);
-	MasterDetail masterDetail = new MasterDetail();
-	masterDetail.setName(rolesMaster);
-	if(roleSearchCriteria.getCodes().size() > 0){
-	masterDetail.setFilter(roleFilter);
+	private MdmsCriteriaReq getRoleMDMSCriteria(RoleSearchCriteria roleSearchCriteria, String roleFilter) {
+		String mName = "";
+
+		mName = moduleName;
+		String tenantId = "";
+		tenantId = roleSearchCriteria.getTenantId();
+		LOGGER.info("Tenant id from repository: " + tenantId);
+		MdmsCriteriaReq mcq = new MdmsCriteriaReq();
+		List<MasterDetail> masterDetails = new ArrayList<MasterDetail>();
+		List<ModuleDetail> moduleDetail = new ArrayList<ModuleDetail>();
+		mcq.setRequestInfo(getRInfo());
+		MdmsCriteria mc = new MdmsCriteria();
+		if (tenantId.contains(".")) {
+			String[] stateid = tenantId.split("\\.");
+			LOGGER.info("State IDs are :" + stateid);
+			mc.setTenantId(stateid[0]);
+
+		} else {
+			mc.setTenantId(tenantId);
+
+		}
+		ModuleDetail md = new ModuleDetail();
+		md.setModuleName(mName);
+		MasterDetail masterDetail = new MasterDetail();
+		masterDetail.setName(rolesMaster);
+		if (roleSearchCriteria.getCodes().size() > 0) {
+			masterDetail.setFilter(roleFilter);
+		}
+		masterDetails.add(masterDetail);
+		md.setMasterDetails(masterDetails);
+		moduleDetail.add(md);
+		mc.setModuleDetails(moduleDetail);
+		mcq.setMdmsCriteria(mc);
+		return mcq;
 	}
-	masterDetails.add(masterDetail);
-	md.setMasterDetails(masterDetails);
-	moduleDetail.add(md);
-	mc.setModuleDetails(moduleDetail);
-	mcq.setMdmsCriteria(mc);
-	return mcq;
-}
 
+	private List<Role> convertToRole(JSONArray roleArray) throws JSONException {
+		List<Role> roleList = new ArrayList<Role>();
+		for (int i = 0; i < roleArray.length(); i++) {
+			Role role = new Role();
+			if (roleArray.getJSONObject(i).has("code")) {
+				role.setCode(roleArray.getJSONObject(i).getString("code"));
+			} else {
+				role.setCode("");
+			}
+			if (roleArray.getJSONObject(i).has("name")) {
+				role.setName(roleArray.getJSONObject(i).getString("name"));
+			} else {
+				role.setName("");
+			}
+			if (roleArray.getJSONObject(i).has("description")) {
+				role.setDescription(roleArray.getJSONObject(i).getString("description"));
+			} else {
+				role.setDescription("");
+			}
+			roleList.add(role);
+		}
 
-
-private List<Role> convertToRole(JSONArray roleArray)
-		throws JSONException {
-	List<Role> roleList = new ArrayList<Role>();
-	for (int i = 0; i < roleArray.length(); i++) {
-		Role role = new Role();
-		if(roleArray.getJSONObject(i).has("code")){
-			role.setCode(roleArray.getJSONObject(i).getString("code"));
-		} else {role.setCode("");}
-		if(roleArray.getJSONObject(i).has("name")){
-		role.setName(roleArray.getJSONObject(i).getString("name"));
-		} else {role.setName("");}
-		if(roleArray.getJSONObject(i).has("description")){
-		role.setDescription(roleArray.getJSONObject(i).getString("description"));
-		} else {role.setDescription("");}
-		roleList.add(role);
+		return roleList;
 	}
- 
-	 return roleList;
-}
-    
-	public static RequestInfo getRInfo()
-	{
+
+	public static RequestInfo getRInfo() {
 		// TODO Auto-generated method stub
-				RequestInfo ri = new RequestInfo();
-				ri.setAction("action");
-				ri.setAuthToken("a487e887-cafd-41cf-bb8a-2245acbb6c01");
-				/*ri.setTs(new Date());*/
-				ri.setApiId("apiId");
-				ri.setVer("version");
-				ri.setDid("did");
-				ri.setKey("key");
-				ri.setMsgId("msgId");
-				ri.setRequesterId("requestId");
+		RequestInfo ri = new RequestInfo();
+		ri.setAction("action");
+		ri.setAuthToken("a487e887-cafd-41cf-bb8a-2245acbb6c01");
+		/* ri.setTs(new Date()); */
+		ri.setApiId("apiId");
+		ri.setVer("version");
+		ri.setDid("did");
+		ri.setKey("key");
+		ri.setMsgId("msgId");
+	//	ri.setRequesterId("requestId");
+
 		return ri;
 	}
-
-	
 
 }

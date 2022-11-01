@@ -63,7 +63,7 @@ public class ResponseInfoFactory {
 		}
 		String responseStatus = success ? "successful" : "failed";
 
-		return new ResponseInfo(apiId, ver, ts, resMsgId, msgId, responseStatus);
+		return new ResponseInfo(apiId, ver, Long.getLong(ts), resMsgId, msgId, responseStatus);
 	}
 
 }

@@ -55,7 +55,7 @@ public class ResponseInfoFactory {
 		final String resMsgId = "uief87324"; // FIXME : Hard-coded
 		final String msgId = requestInfo != null ? requestInfo.getMsgId() : "";
 		final String responseStatus = success ? "successful" : "failed";
-		return new ResponseInfo(apiId, ver, ts, resMsgId, msgId, responseStatus);
+		return new ResponseInfo(apiId, ver, Long.getLong(ts), resMsgId, msgId, responseStatus);
 	}
 
     public static ResponseInfo createResponseFromRequest(final RequestInfo requestInfo, final Boolean success) {
@@ -65,7 +65,7 @@ public class ResponseInfoFactory {
         final String resMsgId = "uief87324"; // FIXME : Hard-coded
         final String msgId = requestInfo != null ? requestInfo.getMsgId() : "";
         final String responseStatus = success ? "successful" : "failed";
-        return new ResponseInfo(apiId, ver, ts, resMsgId, msgId, responseStatus);
+        return new ResponseInfo(apiId, ver, Long.getLong(ts), resMsgId, msgId, responseStatus);
     }
 
 }
