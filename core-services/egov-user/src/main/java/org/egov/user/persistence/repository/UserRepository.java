@@ -73,7 +73,7 @@ public class UserRepository {
             userIds = findUsersWithRole(userSearch);
             RoleSearchHappend = true;
         }
-        if ( userSearch.getParentid() >0 && userSearch.getTenantId() != null) {
+        if ( userSearch.getParentid() !=null && userSearch.getParentid() > 0 &&userSearch.getTenantId() != null) {
             userIds = findUsersWithParentId(userSearch);
             RoleSearchHappend = true;
         }
