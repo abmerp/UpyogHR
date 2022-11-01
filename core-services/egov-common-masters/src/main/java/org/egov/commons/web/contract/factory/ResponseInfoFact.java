@@ -26,7 +26,7 @@ public class ResponseInfoFact {
 		}
 		String responseStatus = success ? "successful" : "failed";
 
-		return new org.egov.common.contract.response.ResponseInfo(apiId, ver, ts, resMsgId, msgId, responseStatus);
+		return new org.egov.common.contract.response.ResponseInfo(apiId, ver, Long.getLong(ts), resMsgId, msgId, responseStatus);
 	}
 }
 

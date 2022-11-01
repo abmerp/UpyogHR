@@ -1,5 +1,7 @@
 package org.egov.common.contract.request;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

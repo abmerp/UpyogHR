@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.egov.access.Resources;
@@ -216,7 +217,7 @@ public class ActionControllerTest {
 				.thenReturn(responseInfo);
 
 		responseInfo.setApiId("org.egov.accesscontrol");
-		responseInfo.setTs("Thu Mar 09 18:30:00 UTC 2017");
+		responseInfo.setTs(new Date().getTime());
 		responseInfo.setResMsgId("uief87324");
 
 		mockMvc.perform(post("/v1/actions/_update").contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -253,7 +254,7 @@ public class ActionControllerTest {
 		ResponseInfo responseInfo = ResponseInfo.builder().build();
 
 		responseInfo.setApiId("org.egov.accesscontrol");
-		responseInfo.setTs("Thu Mar 09 18:30:00 UTC 2017");
+		responseInfo.setTs(new Date("Thu Mar 09 18:30:00 UTC 2017").getTime());
 		responseInfo.setMsgId("20170310130900");
 		responseInfo.setResMsgId("uief87324");
 		responseInfo.setVer("1.0");
