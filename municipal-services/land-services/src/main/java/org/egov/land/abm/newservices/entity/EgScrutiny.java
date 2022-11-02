@@ -5,9 +5,12 @@ import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 
 /**
@@ -17,9 +20,10 @@ import java.sql.Time;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="eg_scrutiny")
-@NamedQuery(name="EgScrutiny.findAll", query="SELECT e FROM EgScrutiny e")
+//@NamedQuery(name="EgScrutiny.findAll", query="SELECT e FROM EgScrutiny e")
 public class EgScrutiny implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -38,80 +42,24 @@ public class EgScrutiny implements Serializable {
 
 	@Column(name="field_value")
 	private String fieldValue;
+	
+	@Column(name="name")
+	private String name;
 
-	@Column(name="\"field-d\"")
-	private Integer field_d;
+	@Column(name="\"field-d\"",length=250)
+	private String fieldIdL;
 
 	@Column(name="is_approved")
 	private Boolean isApproved;
 
 	private Integer userid;
-
-	public EgScrutiny() {
-	}
-
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Integer getApplicationId() {
-		return this.applicationId;
-	}
-
-	public void setApplicationId(Integer applicationId) {
-		this.applicationId = applicationId;
-	}
-
-	public String getComment() {
-		return this.comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Time getCreatedOn() {
-		return this.createdOn;
-	}
-
-	public void setCreatedOn(Time createdOn) {
-		this.createdOn = createdOn;
-	}
-
-	public String getFieldValue() {
-		return this.fieldValue;
-	}
-
-	public void setFieldValue(String fieldValue) {
-		this.fieldValue = fieldValue;
-	}
-
-	public Integer getField_d() {
-		return this.field_d;
-	}
-
-	public void setField_d(Integer field_d) {
-		this.field_d = field_d;
-	}
-
-	public Boolean getIsApproved() {
-		return this.isApproved;
-	}
-
-	public void setIsApproved(Boolean isApproved) {
-		this.isApproved = isApproved;
-	}
-
-	public Integer getUserid() {
-		return this.userid;
-	}
-
-	public void setUserid(Integer userid) {
-		this.userid = userid;
-	}
+	
+	private Integer serviceId;
+	
+	@Column(name="document_id")
+	private String documentId;
+	
+	@Column(name="ts")
+	private Date ts;
 
 }
