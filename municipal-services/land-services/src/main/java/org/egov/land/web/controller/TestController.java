@@ -29,6 +29,10 @@ public class TestController {
 	@PostMapping(value = "/_TransactionNumber")
 	public ResponseEntity<Map> generateTransactionNo(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("MobNo", "7589489623");
+		map.put("CaseTypeId", "1");
+		map.put("AppTypeId", "1");
+		map.put("ChargesTypeId", "34");
 		return partyAPiCall.generateTransactionNumber(map);
 	}
 		@PostMapping(value = "/_SaveTransactionNumber")
