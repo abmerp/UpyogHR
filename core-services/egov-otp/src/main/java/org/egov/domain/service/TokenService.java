@@ -11,16 +11,17 @@ import org.egov.domain.model.TokenSearchCriteria;
 import org.egov.domain.model.Tokens;
 import org.egov.domain.model.ValidateRequest;
 import org.egov.persistence.repository.TokenRepository;
-import org.egov.web.util.*;
+import org.egov.web.util.OtpConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.crypto.password.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+	
 
 
 @Service
-
+@Slf4j
 public class TokenService {
 
     private TokenRepository tokenRepository;
@@ -41,7 +42,7 @@ public class TokenService {
 
         String originalOtp = randomNumeric(otpConfiguration.getOtpLength());
         String encryptedOtp = originalOtp;
-
+        log.info("OTP NUMBER"+originalOtp);
         if (otpConfiguration.isEncryptOTP()){
             encryptedOtp = passwordEncoder.encode(originalOtp);
         }
