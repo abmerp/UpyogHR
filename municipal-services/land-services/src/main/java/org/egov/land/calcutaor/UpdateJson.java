@@ -23,8 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 public class UpdateJson {
-	@Value("${tcp.calculator.path}")
-	public String path;
+	
 
 	public FeesType readPurposeJson(String feeType, String potenialZone, String purposename, String colonyType)
 			throws FileNotFoundException, IOException, ParseException {
@@ -33,8 +32,9 @@ public class UpdateJson {
 		
 		JSONParser parser = new JSONParser();
 	
-	//	Object obj = parser.parse(new FileReader("D:\\dummy\\hr\\common-masters\\Purpose.json"));
+		//Object obj = parser.parse(new FileReader("D:\\dummy\\hr\\common-masters\\Purpose.json"));
 		//Object obj = parser.parse(new FileReader(path));
+		
 	Object obj = parser.parse(new FileReader("/opt/hr/common-masters/Purpose.json"));
 		
 		JSONObject jsonObject = (JSONObject) obj;
