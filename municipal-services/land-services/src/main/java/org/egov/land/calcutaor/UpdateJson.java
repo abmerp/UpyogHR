@@ -8,23 +8,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.egov.land.abm.service.ThirPartyAPiCall;
 import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 @Component
 public class UpdateJson {
+	@Value("${tcp.calculator.path}")
+	public String path;
 
 	public FeesType readPurposeJson(String feeType, String potenialZone, String purposename, String colonyType)
 			throws FileNotFoundException, IOException, ParseException {
 
+	
+		
 		JSONParser parser = new JSONParser();
 	
-		Object obj = parser.parse(new FileReader("D:\\dummy\\hr\\common-masters\\Purpose.json"));
-		
+	//	Object obj = parser.parse(new FileReader("D:\\dummy\\hr\\common-masters\\Purpose.json"));
+		//Object obj = parser.parse(new FileReader(path));
+	Object obj = parser.parse(new FileReader("/opt/hr/common-masters/Purpose.json"));
 		
 		JSONObject jsonObject = (JSONObject) obj;
 		JSONArray purposeMainFile = (JSONArray) jsonObject.get("Purpose");
