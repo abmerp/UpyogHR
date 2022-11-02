@@ -105,7 +105,7 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> generateDiaryNumber(Map<String, Object> request) {
 
 		
-		request.put("userId", tpUserId);
+		request.put("UserLoginId", tpUserId);
 		request.put("tpUserId", tcptpUserId);
 		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
@@ -134,9 +134,9 @@ public class ThirPartyAPiCall {
 
 	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request) {
 
-		request.put("userId", tpUserId);
-		request.put("tpUserId", tcptpUserId);
-		request.put("emailid", tcpEmailId);
+		request.put("UserLoginId", tpUserId);
+//		request.put("tpUserId", tcptpUserId);
+//		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
 		request.put("CaseId",generateCaseNumber(request).getBody().get("Value"));    
@@ -150,11 +150,9 @@ public class ThirPartyAPiCall {
 
 	public ResponseEntity<Map> isExistSSOToken(Map<String, Object> request) {
 
-	
-		request.put("userId", tpUserId);
-		request.put("tpUserId", tcptpUserId);
+		request.put("TokenId", tcptpUserId);
 
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber,request,  Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
 			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
 		}
