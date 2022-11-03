@@ -1,13 +1,16 @@
 package org.egov.land.abm.service;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 
+import org.egov.land.abm.models.NewServiceInfoModel;
 import org.egov.land.abm.newservices.entity.NewServiceInfo;
+import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
 import org.egov.land.abm.repo.NewServiceInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,43 +20,78 @@ public class NewServiceInfoService {
 
 	@Autowired
 	NewServiceInfoRepo newServiceInfoRepo;
-	@Autowired EntityManager em;
+	@Autowired
+	EntityManager em;
 	private long id = 1;
 
 	@Transactional
-	public NewServiceInfo createNewServic(NewServiceInfo newServiceInfo) {
-		
-		if(newServiceInfo.getId()!=null) {
-			NewServiceInfo newServiceIn = em.find(NewServiceInfo.class, newServiceInfo.getId(),LockModeType.PESSIMISTIC_WRITE);
-			for(int i =0;i<newServiceInfo.getNewServiceInfoData().size();i++) {
-				//if()
-				newServiceInfo.getNewServiceInfoData().get(i).setVer(newServiceIn.getCurrentVersion()+0.1f);
+	public NewServiceInfo createNewServic(NewServiceInfoModel newServiceInfo) {
+
+		List<NewServiceInfoData> newServiceInfoData;
+		NewServiceInfo newServiceIn;
+		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
+
+			newServiceIn = em.find(NewServiceInfo.class, newServiceInfo.getId(), LockModeType.PESSIMISTIC_WRITE);
+			newServiceIn.setCurrentVersion(newServiceIn.getCurrentVersion() + 0.1f);
+			newServiceInfoData = newServiceIn.getNewServiceInfoData();
+			float cv = newServiceIn.getCurrentVersion() + 0.1f;
+			for (NewServiceInfoData newobj : newServiceInfoData) {
+				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
+					if (newServiceInfo.getPageName() == "ApplicantInfo") {
+						newobj.setApplicantInfo(newServiceInfo.getNewServiceInfoData().getApplicantInfo());
+
+					}
+					if (newServiceInfo.getPageName() == "ApplicantPurpose") {
+						newobj.setApplicantPurpose(newServiceInfo.getNewServiceInfoData().getApplicantPurpose());
+					}
+					if (newServiceInfo.getPageName() == "LandSchedule") {
+						newobj.setLandSchedule(newServiceInfo.getNewServiceInfoData().getLandSchedule());
+					}
+					if (newServiceInfo.getPageName() == "DetailsofAppliedLand") {
+						newobj.setDetailsofAppliedLand(
+								newServiceInfo.getNewServiceInfoData().getDetailsofAppliedLand());
+					}
+					if (newServiceInfo.getPageName() == "FeesAndCharges") {
+						newobj.setFeesAndCharges(newServiceInfo.getNewServiceInfoData().getFeesAndCharges());
+					}
+					newobj.setVer(cv);
+					newServiceIn.getNewServiceInfoData().add(newobj);
+					break;
+				}
 			}
-			newServiceIn.setCurrentVersion(newServiceIn.getCurrentVersion()+0.1f);
-			newServiceIn.getNewServiceInfoData().addAll(newServiceInfo.getNewServiceInfoData());
-			return newServiceIn;
+
+			newServiceIn.setUpdatedDate(new Date());
+			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
+			newServiceIn.setCurrentVersion(cv);
+
+		} else {
+			newServiceIn = new NewServiceInfo();
+			newServiceIn.setCreatedBy(newServiceInfo.getCreatedBy());
+			newServiceIn.setCreatedDate(new Date());
+			newServiceIn.setUpdatedDate(new Date());
+			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
+			newServiceIn.setCurrentVersion(0.0f);
 		}
-		newServiceInfo.setCurrentVersion(0.0f);
-		return newServiceInfoRepo.save(newServiceInfo);
+		return newServiceInfoRepo.save(newServiceIn);
 	}
 
 	public NewServiceInfo getNewServicesInfoById(Long id) {
 
 		NewServiceInfo newServiceInfo = newServiceInfoRepo.getOne(id);
-		System.out.println("new service info size : "+ newServiceInfo.getNewServiceInfoData().size());
-		for(int i =0;i<newServiceInfo.getNewServiceInfoData().size();i++) {
-			if(newServiceInfo.getCurrentVersion()==newServiceInfo.getNewServiceInfoData().get(i).getVer()){
+		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
+		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
+			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
 				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
 			}
 		}
 		return newServiceInfo;
 	}
 
-	public List<NewServiceInfo> getNewServicesInfoAll() {	
+	public List<NewServiceInfo> getNewServicesInfoAll() {
 		return newServiceInfoRepo.findAll();
 	}
 
-	public List<String> getApplicantsNumber() {	
+	public List<String> getApplicantsNumber() {
 		return this.newServiceInfoRepo.getApplicantsNumber();
 	}
 }

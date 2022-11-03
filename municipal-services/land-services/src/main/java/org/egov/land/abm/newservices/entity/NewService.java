@@ -2,6 +2,7 @@ package org.egov.land.abm.newservices.entity;
 
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.land.abm.models.NewServiceInfoModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +23,6 @@ public class NewService {
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
 	
-	@JsonProperty("NewServiceInfo")
-	private NewServiceInfo newServiceInfo = null;
+	@JsonProperty("NewServiceInfo	")
+	private NewServiceInfoModel newServiceInfo = null;
 }
