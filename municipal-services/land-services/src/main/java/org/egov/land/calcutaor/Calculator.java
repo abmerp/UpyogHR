@@ -22,7 +22,7 @@ public class Calculator implements CalculatorFees {
 		UpdateJson updateJosn = new UpdateJson();
 
 		FeesType feesType = updateJosn.readPurposeJson(feeType, potenialZone, purposepurposename, colonyType);
-		System.out.println("far value size : " + feesType.getFarValue().size());
+		
 		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
 		feesTypeCalculationDto.setFarValue(feesType.getFarValue());
 

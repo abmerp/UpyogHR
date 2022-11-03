@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
+import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
 
 @Service

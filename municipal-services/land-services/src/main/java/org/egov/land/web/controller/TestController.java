@@ -30,10 +30,7 @@ public class TestController {
 	@PostMapping(value = "/_TransactionNumber")
 	public ResponseEntity<Map> generateTransactionNo(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("MobNo", "7589489623");
-		map.put("CaseTypeId", "1");
-		map.put("AppTypeId", "1");
-		map.put("ChargesTypeId", "34");
+
 
 		return partyAPiCall.generateTransactionNumber(map);
 	}
@@ -41,20 +38,7 @@ public class TestController {
 	@PostMapping(value = "/_SaveTransactionNumber")
 	public ResponseEntity<Map> TransactionData(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("UserName", "manoj");
-		map.put("MobNo", "7589489623");
-		map.put("CaseTypeId", "1");
-		map.put("AppTypeId", "1");
-		map.put("ChargesTypeId", "34");
-		map.put("TxnAmount", "200.23");
-		map.put("LicenceFeeNla", "150.1");
-		map.put("ScrutinyFeeNla", "50.2");
-		map.put("PaymentMode", "101");
-		map.put("PayAgreegator", "0300997");
-		map.put("LcApplicantName", "DLF Ltd");
-		map.put("LcPurpose", "TestPurpose");
-		map.put("LcDevelopmentPlan", "GN");
-		map.put("LcDistrict", "Gurugram");
+	
 
 		return partyAPiCall.saveTransactionData(map);
 

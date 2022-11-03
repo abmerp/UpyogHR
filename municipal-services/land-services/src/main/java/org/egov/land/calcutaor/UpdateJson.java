@@ -32,10 +32,10 @@ public class UpdateJson {
 		
 		JSONParser parser = new JSONParser();
 	
-		//Object obj = parser.parse(new FileReader("D:\\dummy\\hr\\common-masters\\Purpose.json"));
+		Object obj = parser.parse(new FileReader("D:\\dummy\\hr\\common-masters\\Purpose.json"));
 		//Object obj = parser.parse(new FileReader(path));
 		
-	Object obj = parser.parse(new FileReader("/opt/hr/common-masters/Purpose.json"));
+	//Object obj = parser.parse(new FileReader("/opt/hr/common-masters/Purpose.json"));
 		
 		JSONObject jsonObject = (JSONObject) obj;
 		JSONArray purposeMainFile = (JSONArray) jsonObject.get("Purpose");
