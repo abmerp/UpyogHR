@@ -90,16 +90,15 @@ public class EgScrutinyController {
 
 	@GetMapping("/_searchbyfield")
 	public ResponseEntity<EgScrutinyInfoResponse> findByApplicationIdAndFieldId(
-			@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicatinNumber") Integer applicatinNumber, @RequestParam("fieldId") String fieldId) {
+			@RequestBody EgScrutinyInfoRequest egScrutinyInfoRequest) {
 		System.out.println("search by id ");
-		EgScrutiny egScrutiny = this.egScrutinyService.findByApplicationIdAndField_d(applicatinNumber, fieldId);
+		EgScrutiny egScrutiny = this.egScrutinyService.findByApplicationIdAndField_d(egScrutinyInfoRequest);
 		List<EgScrutiny> egScrutinyList = new ArrayList<>();
 		egScrutinyList.add(egScrutiny);
 
 		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutinyList)
-				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
-						true))
+				.responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(egScrutinyInfoRequest.getRequestInfo(), true))
 				.build();
 
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);

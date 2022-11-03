@@ -1,0 +1,16 @@
+{
+	"tenantId": "hr",
+	"moduleName": "BillingService",
+	"GLCode": [
+	{
+		"code": "BIRTH_CERT",
+		"glcode": null,
+		"cb": "hr.amritsar"
+	},
+	{
+		"code": "DEATH_CERT",
+		"glcode": null,
+		"cb": "hr.amritsar"
+	}
+	]
+}

@@ -1,0 +1,262 @@
+{
+	"tenantId": "hr",
+	"moduleName": "common-masters",
+	"bdTemplate": [
+		{
+			"template": "bd-bihar",
+			"code": "hr.danapur"
+		},
+		{
+			"template": "bd-delhi",
+			"code": "hr.delhi"
+		},
+		{
+			"template": "bd-gujarat",
+			"code": "hr.ahmedabad"
+		},
+		{
+			"template": "bd-haryana",
+			"code": "hr.ambala"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.bakloh"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.dagshai"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.dalhousie"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.jutogh"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.kasauli"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.khasyol"
+		},
+		{
+			"template": "bd-himachalpradesh",
+			"code": "hr.subathu"
+		},
+		{
+			"template": "bd-badamibagh",
+			"code": "hr.badamibagh"
+		},
+		{
+			"template": "bd-jammu",
+			"code": "hr.jammu"
+		},
+		{
+			"template": "bd-jharkhand",
+			"code": "hr.ramgarh"
+		},
+		{
+			"template": "bd-karnataka",
+			"code": "hr.belgaum"
+		},
+		{
+			"template": "bd-kerala",
+			"code": "hr.cannanore"
+		},
+		{
+			"template": "bd-madhyapradesh",
+			"code": "hr.jabalpur"
+		},
+		{
+			"template": "bd-madhyapradesh",
+			"code": "hr.mhow"
+		},
+		{
+			"template": "bd-madhyapradesh",
+			"code": "hr.pachmarhi"
+		},
+		{
+			"template": "bd-madhyapradesh",
+			"code": "hr.morar"
+		},
+		{
+			"template": "bd-madhyapradesh",
+			"code": "hr.saugor"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.ahmednagar"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.aurangabad"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.dehuroad"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.deolali"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.kamptee"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.kirkee"
+		},
+		{
+			"template": "bd-maharashtra",
+			"code": "hr.pune"
+		},
+		{
+			"template": "bd-meghalaya",
+			"code": "hr.shillong"
+		},
+		{
+			"template": "bd-Haryana",
+			"code": "hr.amritsar"
+		},
+		{
+			"template": "bd-Haryana",
+			"code": "hr.ferozepur"
+		},
+		{
+			"template": "bd-Haryana",
+			"code": "hr.jalandhar"
+		},
+		{
+			"template": "bd-rajasthan",
+			"code": "hr.ajmer"
+		},
+		{
+			"template": "bd-rajasthan",
+			"code": "hr.nasirabad"
+		},
+		{
+			"template": "bd-tamilnadu",
+			"code": "hr.stm"
+		},
+		{
+			"template": "bd-tamilnadu",
+			"code": "hr.wellington"
+		},
+		{
+			"template": "bd-telangana",
+			"code": "hr.secunderabad"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.agra"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.allahabad"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.babina"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.bareilly"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.jhansi"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.kanpur"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.lucknow"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.faizabad"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.fatehgarh"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.mathura"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.meerut"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.shahjahanpur"
+		},
+		{
+			"template": "bd-uttarpradesh",
+			"code": "hr.varanasi"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.almora"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.chakrata"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.clementtown"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.dehradun"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.landour"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.lansdowne"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.nainital"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.ranikhet"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.roorkee"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.almora"
+		},
+		{
+			"template": "bd-uttarakhand",
+			"code": "hr.testing"
+		},
+		{
+			"template": "bd-westbengal",
+			"code": "hr.barrackpore"
+		},
+		{
+			"template": "bd-jalapahar",
+			"code": "hr.jalapahar"
+		},
+		{
+			"template": "bd-lebong",
+			"code": "hr.lebong"
+		}
+	]
+}
