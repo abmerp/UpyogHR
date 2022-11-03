@@ -45,7 +45,7 @@ public class EgScrutinyController {
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
 	}
 
-	@PostMapping("/_update")
+	//@PostMapping("/_update")
 	public ResponseEntity<EgScrutinyInfoResponse> updateEgScrutiny(
 			@RequestBody EgScrutinyInfoRequest egScrutinyInfoRequest) {
 
@@ -90,15 +90,19 @@ public class EgScrutinyController {
 
 	@GetMapping("/_searchbyfield")
 	public ResponseEntity<EgScrutinyInfoResponse> findByApplicationIdAndFieldId(
-			@RequestBody EgScrutinyInfoRequest egScrutinyInfoRequest) {
-		System.out.println("search by id ");
-		EgScrutiny egScrutiny = this.egScrutinyService.findByApplicationIdAndField_d(egScrutinyInfoRequest);
+			@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationId") Integer applicationId,
+			@RequestParam("fieldId") String fieldId,
+			@RequestParam("userId") Integer userId,
+			@RequestParam("serviceId") Integer serviceId) {
+		
+		EgScrutiny egScrutiny = this.egScrutinyService.findByApplicationIdAndField_d(applicationId, fieldId, userId, serviceId);
 		List<EgScrutiny> egScrutinyList = new ArrayList<>();
 		egScrutinyList.add(egScrutiny);
 
 		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutinyList)
 				.responseInfo(responseInfoFactory
-						.createResponseInfoFromRequestInfo(egScrutinyInfoRequest.getRequestInfo(), true))
+						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
 				.build();
 
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);

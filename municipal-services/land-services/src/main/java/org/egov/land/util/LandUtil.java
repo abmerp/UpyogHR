@@ -106,14 +106,14 @@ public class LandUtil {
 
 	}
 
-	private MdmsCriteriaReq getMDMSRequest(RequestInfo requestInfo, String tenantId) {
+	public MdmsCriteriaReq getMDMSRequest(RequestInfo requestInfo, String tenantId) {
 		List<ModuleDetail> moduleRequest = getBPAModuleRequest();
 
 		List<ModuleDetail> moduleDetails = new LinkedList<>();
 		moduleDetails.addAll(moduleRequest);
 
 		MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(moduleDetails).tenantId(tenantId).build();
-
+		
 		MdmsCriteriaReq mdmsCriteriaReq = MdmsCriteriaReq.builder().mdmsCriteria(mdmsCriteria).requestInfo(requestInfo)
 				.build();
 		return mdmsCriteriaReq;

@@ -51,12 +51,10 @@ public class EgScrutinyService {
 		return this.egScrutinyRepo.findById(id);
 	}
 
-	public EgScrutiny findByApplicationIdAndField_d(EgScrutinyInfoRequest egScrutinyInfoRequest) {
-		return this.egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
-				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(),
-				egScrutinyInfoRequest.getEgScrutiny().getUserid(),
-				egScrutinyInfoRequest.getEgScrutiny().getServiceId());
+	public EgScrutiny findByApplicationIdAndField_d(Integer applicationId,String fieldId,Integer userId,Integer serviceId) {
+		
+		return this.egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(applicationId,
+				fieldId,userId,serviceId);
 	
 	}
 
