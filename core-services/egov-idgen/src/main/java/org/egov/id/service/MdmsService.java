@@ -20,9 +20,10 @@ import com.jayway.jsonpath.JsonPath;
 
 import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 
 @Service
-@Log4j
+@Log4j2
 public class MdmsService {
 
     @Autowired
