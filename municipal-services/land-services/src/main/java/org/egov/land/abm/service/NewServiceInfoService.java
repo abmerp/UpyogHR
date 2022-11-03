@@ -1,5 +1,6 @@
 package org.egov.land.abm.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -29,29 +30,30 @@ public class NewServiceInfoService {
 
 		List<NewServiceInfoData> newServiceInfoData;
 		NewServiceInfo newServiceIn;
+		List<NewServiceInfoData> newServiceInfoDatas;
 		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 
 			newServiceIn = em.find(NewServiceInfo.class, newServiceInfo.getId(), LockModeType.PESSIMISTIC_WRITE);
-			newServiceIn.setCurrentVersion(newServiceIn.getCurrentVersion() + 0.1f);
+
 			newServiceInfoData = newServiceIn.getNewServiceInfoData();
 			float cv = newServiceIn.getCurrentVersion() + 0.1f;
 			for (NewServiceInfoData newobj : newServiceInfoData) {
 				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
-					if (newServiceInfo.getPageName() == "ApplicantInfo") {
+					if (newServiceInfo.getPageName().equalsIgnoreCase("ApplicantInfo")) {
 						newobj.setApplicantInfo(newServiceInfo.getNewServiceInfoData().getApplicantInfo());
 
 					}
-					if (newServiceInfo.getPageName() == "ApplicantPurpose") {
+					if (newServiceInfo.getPageName().equalsIgnoreCase("ApplicantPurpose")) {
 						newobj.setApplicantPurpose(newServiceInfo.getNewServiceInfoData().getApplicantPurpose());
 					}
-					if (newServiceInfo.getPageName() == "LandSchedule") {
+					if (newServiceInfo.getPageName().equalsIgnoreCase("LandSchedule")) {
 						newobj.setLandSchedule(newServiceInfo.getNewServiceInfoData().getLandSchedule());
 					}
-					if (newServiceInfo.getPageName() == "DetailsofAppliedLand") {
+					if (newServiceInfo.getPageName().equalsIgnoreCase("DetailsofAppliedLand")) {
 						newobj.setDetailsofAppliedLand(
 								newServiceInfo.getNewServiceInfoData().getDetailsofAppliedLand());
 					}
-					if (newServiceInfo.getPageName() == "FeesAndCharges") {
+					if (newServiceInfo.getPageName().equalsIgnoreCase("FeesAndCharges")) {
 						newobj.setFeesAndCharges(newServiceInfo.getNewServiceInfoData().getFeesAndCharges());
 					}
 					newobj.setVer(cv);
@@ -65,12 +67,16 @@ public class NewServiceInfoService {
 			newServiceIn.setCurrentVersion(cv);
 
 		} else {
+			newServiceInfoDatas = new ArrayList<>();
 			newServiceIn = new NewServiceInfo();
 			newServiceIn.setCreatedBy(newServiceInfo.getCreatedBy());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
+			newServiceInfo.getNewServiceInfoData().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
-			newServiceIn.setCurrentVersion(0.0f);
+			newServiceInfoDatas.add(newServiceInfo.getNewServiceInfoData());
+			newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
+			newServiceIn.setCurrentVersion(0.1f);
 		}
 		return newServiceInfoRepo.save(newServiceIn);
 	}

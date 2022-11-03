@@ -23,6 +23,6 @@ public class NewService {
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
 	
-	@JsonProperty("NewServiceInfo	")
+	@JsonProperty("NewServiceInfo")
 	private NewServiceInfoModel newServiceInfo = null;
 }
