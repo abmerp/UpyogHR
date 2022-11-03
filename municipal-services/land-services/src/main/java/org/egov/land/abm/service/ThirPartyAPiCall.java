@@ -106,8 +106,8 @@ public class ThirPartyAPiCall {
 
 		
 		request.put("UserLoginId", tpUserId);
-		request.put("tpUserId", tcptpUserId);
-		request.put("emailid", tcpEmailId);
+//		request.put("tpUserId", tcptpUserId);
+//		request.put("emailid", tcpEmailId);
 		request.put("TokenId", getAuthToken().getBody().get("Value"));
 		
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, request, Map.class);
