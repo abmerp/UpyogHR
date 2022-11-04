@@ -37,25 +37,35 @@ public class NewServiceInfoService {
 
 			newServiceInfoData = newServiceIn.getNewServiceInfoData();
 			float cv = newServiceIn.getCurrentVersion() + 0.1f;
-			for (NewServiceInfoData newobj : newServiceInfoData) {
-				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
-					if (newServiceInfo.getPageName().equalsIgnoreCase("ApplicantInfo")) {
-						newobj.setApplicantInfo(newServiceInfo.getNewServiceInfoData().getApplicantInfo());
 
+			for (NewServiceInfoData newobj : newServiceInfoData) {
+
+				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
+
+					switch (newServiceInfo.getPageName()) {
+					case "ApplicantInfo": {
+						newobj.setApplicantInfo(newServiceInfo.getNewServiceInfoData().getApplicantInfo());
+						break;
 					}
-					if (newServiceInfo.getPageName().equalsIgnoreCase("ApplicantPurpose")) {
+					case "ApplicantPurpose": {
 						newobj.setApplicantPurpose(newServiceInfo.getNewServiceInfoData().getApplicantPurpose());
+						break;
 					}
-					if (newServiceInfo.getPageName().equalsIgnoreCase("LandSchedule")) {
+					case "LandSchedule": {
 						newobj.setLandSchedule(newServiceInfo.getNewServiceInfoData().getLandSchedule());
+						break;
 					}
-					if (newServiceInfo.getPageName().equalsIgnoreCase("DetailsofAppliedLand")) {
+					case "DetailsofAppliedLand": {
 						newobj.setDetailsofAppliedLand(
 								newServiceInfo.getNewServiceInfoData().getDetailsofAppliedLand());
+						break;
 					}
-					if (newServiceInfo.getPageName().equalsIgnoreCase("FeesAndCharges")) {
+					case "FeesAndCharges": {
 						newobj.setFeesAndCharges(newServiceInfo.getNewServiceInfoData().getFeesAndCharges());
+						break;
 					}
+					}
+
 					newobj.setVer(cv);
 					newServiceIn.getNewServiceInfoData().add(newobj);
 					break;
