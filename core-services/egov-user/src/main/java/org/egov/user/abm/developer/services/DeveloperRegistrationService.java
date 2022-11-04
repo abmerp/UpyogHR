@@ -42,26 +42,49 @@ public class DeveloperRegistrationService {
 	@Transactional
 	public DeveloperRegistration addDeveloperRegistraion(DeveloperRequest detail) throws JsonProcessingException {
 		List<Developerdetail> listDevDetails;
-		Developerdetail objDeveloperdetail = new Developerdetail();
+		// Developerdetail objDeveloperdetail = new Developerdetail();
 		DeveloperRegistration devRegistration;
 		if (detail.getId() != null && detail.getId() > 0) {
 			devRegistration = em.find(DeveloperRegistration.class, detail.getId(), LockModeType.PESSIMISTIC_WRITE);
+			listDevDetails = devRegistration.getDeveloperDetail();
+			float cv = devRegistration.getCurrentVersion() + 0.1f;
 
-			devRegistration.setCurrentVersion(devRegistration.getCurrentVersion() + 0.1f);
+			for (Developerdetail listDevDetail : listDevDetails) {
+
+				if (listDevDetail.getVersion() == devRegistration.getCurrentVersion()) {
+					switch (detail.getPageName()) {
+					case "addInfo": {
+						listDevDetail.setAddInfo(detail.getDevDetail().getAddInfo());
+						break;
+					}
+					case "licenceDetails": {
+						listDevDetail.setLicenceDetails(detail.getDevDetail().getLicenceDetails());
+						break;
+					}
+					case "aurthorizedUserInfoArray": {
+						listDevDetail.setAurthorizedUserInfoArray(detail.getDevDetail().getAurthorizedUserInfoArray());
+						break;
+					}
+					case "capacityDevelopAColony": {
+						listDevDetail.setCapacityDevelopAColony(detail.getDevDetail().getCapacityDevelopAColony());
+						break;
+					}
+					}
+					listDevDetail.setVersion(cv);
+					devRegistration.getDeveloperDetail().add(listDevDetail);
+					break;
+				}
+			}
+			devRegistration.setCurrentVersion(cv);
 			devRegistration.setUpdateddBy(detail.getUpdateddBy());
 			devRegistration.setUpdatedDate(new Date());
-			objDeveloperdetail.setVersion(devRegistration.getCurrentVersion());
-			objDeveloperdetail.setDevDetail(detail.getDevDetail());
-			listDevDetails = devRegistration.getDeveloperDetail();
-			listDevDetails.add(objDeveloperdetail);
 
-			devRegistration.setUpdatedDate(new Date());
 		} else {
 			listDevDetails = new ArrayList<Developerdetail>();
 
-			objDeveloperdetail.setVersion(0.1f);
-			objDeveloperdetail.setDevDetail(detail.getDevDetail());
-			listDevDetails.add(objDeveloperdetail);
+			detail.getDevDetail().setVersion(0.1f);
+
+			listDevDetails.add(detail.getDevDetail());
 			devRegistration = new DeveloperRegistration();
 			devRegistration.setCreatedBy(detail.getCreatedBy());
 			devRegistration.setCreatedDate(new java.util.Date());
