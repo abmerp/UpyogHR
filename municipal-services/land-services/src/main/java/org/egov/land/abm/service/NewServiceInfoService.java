@@ -29,6 +29,7 @@ public class NewServiceInfoService {
 	public NewServiceInfo createNewServic(NewServiceInfoModel newServiceInfo) {
 
 		List<NewServiceInfoData> newServiceInfoData;
+		
 		NewServiceInfo newServiceIn;
 		List<NewServiceInfoData> newServiceInfoDatas;
 		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
@@ -73,6 +74,9 @@ public class NewServiceInfoService {
 			}
 
 			newServiceIn.setUpdatedDate(new Date());
+
+			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
+		
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
 			newServiceIn.setCurrentVersion(cv);
 
@@ -82,6 +86,8 @@ public class NewServiceInfoService {
 			newServiceIn.setCreatedBy(newServiceInfo.getCreatedBy());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
+			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
+			
 			newServiceInfo.getNewServiceInfoData().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
 			newServiceInfoDatas.add(newServiceInfo.getNewServiceInfoData());
