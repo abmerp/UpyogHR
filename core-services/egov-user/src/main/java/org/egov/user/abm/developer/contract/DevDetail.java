@@ -14,12 +14,7 @@ import lombok.Setter;
 public class DevDetail {
 	
 
-	private LicenceDetails licenceDetails;
 	
-	  private AddInfo addInfo;
-	 // private UploadDocument uploadDocument;
-	  private List<AddRemoveAuthoizedUsers> aurthorizedUserInfoArray; 
-	  private CapcityDevelopAColony capacityDevelopAColony;
 	 
 
 }
