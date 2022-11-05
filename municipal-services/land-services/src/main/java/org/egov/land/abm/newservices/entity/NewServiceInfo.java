@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
@@ -24,6 +25,8 @@ import lombok.Setter;
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class NewServiceInfo {
 
+
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -54,8 +57,15 @@ public class NewServiceInfo {
 	
 	@Column(name = "caseNumber")
 	private String caseNumber;
-
+	
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	private List<NewServiceInfoData> newServiceInfoData;
+	
+//	@Column(name = "epayment")
+//	private List<Epayment> epayment;
+//	 
+//	@Column(name = "ManualPayment")
+//	private List<ManualPayment> manualPayment;
+	
 }
