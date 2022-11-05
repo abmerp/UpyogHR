@@ -1,8 +1,14 @@
 {
     "tenantId": "hr",
     "moduleName": "DIGIT-UI",
-    "PaymentGateway": [{
-        "gateway": "AXIS",
-        "active": true
-    }]
+  "PaymentGateway": [
+    {
+      "gateway": "NIC",
+      "active": true
+    },
+    {
+      "gateway": "HDFC",
+      "active": true
+    }
+  ]
 }
