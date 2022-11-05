@@ -87,7 +87,18 @@ public class UserTypeQueryBuilder {
 			+ "'false' WHERE user_uuid = :user_uuid";
 
 	private static final String SELECT_USER_ROLE_QUERY = "SELECT distinct(user_id) from eg_userrole_v1 ur";
-	private static final String SELECT_USER_PARENT_QUERY = "SELECT distinct(user_id) from eg_user userdata";
+	
+	private static final String SELECT_USER_PARENT_QUERY = "SELECT userdata.title, userdata.salutation, userdata.dob, userdata.locale, userdata.username, userdata"
+			+ ".password, userdata.pwdexpirydate,  userdata.mobilenumber, userdata.altcontactnumber, userdata.emailid, userdata.createddate, userdata"
+			+ ".lastmodifieddate,  userdata.createdby, userdata.lastmodifiedby, userdata.active, userdata.name, userdata.gender, userdata.pan, userdata.aadhaarnumber, userdata"
+			+ ".type,  userdata.version, userdata.guardian, userdata.guardianrelation, userdata.signature, userdata.accountlocked, userdata.accountlockeddate, userdata"
+			+ ".bloodgroup, userdata.photo, userdata.identificationmark,  userdata.tenantid, userdata.id, userdata.uuid, userdata.alternatemobilenumber, addr.id as addr_id, addr.type as "
+			+ "addr_type, addr .address as addr_address,  addr.city as addr_city, addr.pincode as addr_pincode, addr"
+			+ ".tenantid as "
+			+ "addr_tenantid, addr.userid as addr_userid, ur.role_code as role_code, ur.role_tenantid as role_tenantid \n"
+			+ "\tFROM eg_user userdata LEFT OUTER JOIN eg_user_address addr ON userdata.id = addr.userid AND userdata.tenantid = addr"
+			+ ".tenantid LEFT OUTER JOIN eg_userrole_v1 ur ON userdata.id = ur.user_id AND userdata.tenantid = ur.user_tenantid  ";
+	//private static final String SELECT_USER_PARENT_QUERY = "SELECT distinct(userdata) from eg_user userdata";
 
 	@SuppressWarnings("rawtypes")
 	public String getQuery(final UserSearchCriteria userSearchCriteria, final List preparedStatementValues) {
@@ -272,11 +283,11 @@ public class UserTypeQueryBuilder {
 
 		if (userSearchCriteria.getTenantId() != null) {
 			isAppendAndClause = addAndClauseIfRequired(false, selectQuery);
-			selectQuery.append(" userdata.parentid = ?");
+			selectQuery.append(" ur.role_tenantid = ?");
 			preparedStatementValues.add(userSearchCriteria.getTenantId().trim());
 		}
 
-		if (!isEmpty(userSearchCriteria.getRoleCodes())) {
+		if (!(userSearchCriteria.getParentid()==null && userSearchCriteria.getParentid()==0)) {
 			isAppendAndClause = addAndClauseIfRequired(isAppendAndClause, selectQuery);
 			selectQuery.append(" userdata.parentId = ?");
 			preparedStatementValues.add(userSearchCriteria.getParentid());;
