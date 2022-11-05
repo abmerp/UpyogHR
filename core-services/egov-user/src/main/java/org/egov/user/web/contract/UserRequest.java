@@ -148,8 +148,10 @@ public class UserRequest {
     private Date createdDate;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date lastModifiedDate;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date dob;
+    
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date pwdExpiryDate;
 
