@@ -200,7 +200,7 @@ public class UserController {
 		UserSearchCriteria searchCriteria = request.toDomain();
 
 		if (!isInterServiceCall(headers)) {
-			if ((isEmpty(searchCriteria.getId()) && isEmpty(searchCriteria.getUuid()))
+			if ((isEmpty(searchCriteria.getId()) && isEmpty(searchCriteria.getUuid()) )
 					&& (searchCriteria.getLimit() > defaultSearchSize || searchCriteria.getLimit() == 0))
 				searchCriteria.setLimit(defaultSearchSize);
 		}
