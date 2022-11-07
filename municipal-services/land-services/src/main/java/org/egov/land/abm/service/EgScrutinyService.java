@@ -21,8 +21,7 @@ public class EgScrutinyService {
 				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
 				egScrutinyInfoRequest.getEgScrutiny().getServiceId());
-		
-		
+
 		if (isExist) {
 			EgScrutiny egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
 					egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
@@ -42,20 +41,26 @@ public class EgScrutinyService {
 
 	}
 
-	public List<EgScrutiny> search(Integer applicationNumber) {
+	public List<EgScrutiny> search(Integer applicationNumber, Integer userId) {
 
-		return this.egScrutinyRepo.findByApplicationId(applicationNumber);
+		if (userId != null && userId > 0) {
+			return this.egScrutinyRepo.findByApplicationIdAndUserid(applicationNumber, userId);
+
+		} else {
+			return this.egScrutinyRepo.findByApplicationId(applicationNumber);
+		}
 	}
 
 	public EgScrutiny findById(Integer id) {
 		return this.egScrutinyRepo.findById(id);
 	}
 
-	public EgScrutiny findByApplicationIdAndField_d(Integer applicationId,String fieldId,Integer userId,Integer serviceId) {
-		
-		return this.egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(applicationId,
-				fieldId,userId,serviceId);
-	
+	public EgScrutiny findByApplicationIdAndField_d(Integer applicationId, String fieldId, Integer userId,
+			Integer serviceId) {
+
+		return this.egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(applicationId, fieldId,
+				userId, serviceId);
+
 	}
 
 	public List<EgScrutiny> findByApplicationIdAndUserId(Integer applicantId, Integer fieldId) {
