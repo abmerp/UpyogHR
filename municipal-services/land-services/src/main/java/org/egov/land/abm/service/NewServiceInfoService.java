@@ -167,9 +167,9 @@ public class NewServiceInfoService {
 				Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 				mapDNo.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				//mapDNo.put("DiaryDate",date);
+				mapDNo.put("DiaryDate",date);
 				mapDNo.put("ReceivedFrom", user.getUserName());
-				mapDNo.put("UserId", user.getId());
+				mapDNo.put("UserId", "1234");
 				mapDNo.put("DistrictCode",
 						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
 				mapDNo.put("UserLoginId", user.getId());
@@ -185,14 +185,15 @@ public class NewServiceInfoService {
 				mapCNO.put("DiaryDate", date);
 				mapCNO.put("DeveloperId", user.getId());
 				mapCNO.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
-				mapCNO.put("StartDate", new Date());
+				mapCNO.put("StartDate", date);
 				mapCNO.put("DistrictCode",
 						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
 				mapCNO.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				mapCNO.put("ChallanAmount",
-						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getPayableNow());
-				mapCNO.put("UserId", user.getId());
-				mapCNO.put("UserLoginId", user.getId());
+//				mapCNO.put("ChallanAmount",
+//						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getPayableNow());
+				mapCNO.put("ChallanAmount","12.5");
+				mapCNO.put("UserId", "2");
+				mapCNO.put("UserLoginId","39");
 				caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value").toString();
 				System.out.println("caseNumber"+caseNumber);
 				/************************************************
@@ -238,6 +239,7 @@ public class NewServiceInfoService {
 				map3.put("TpUserId", user.getId());
 				//TODO Renu to Add these two vaues
 				map3.put("PaymentMode", "online");
+			
 				map3.put("PayAgreegator", "PNB");
 				map3.put("LcApplicantName", user.getUserName());
 				map3.put("LcPurpose", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());

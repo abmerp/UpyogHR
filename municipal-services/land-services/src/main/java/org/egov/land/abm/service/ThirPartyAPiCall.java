@@ -149,7 +149,7 @@ public class ThirPartyAPiCall {
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, request, Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("Dairy Number\n" + response.getBody().get("Value"));
 		}
 		return response;
@@ -165,7 +165,7 @@ public class ThirPartyAPiCall {
 		
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateCaseNumber, request, Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("Case Number\n" + response.getBody().get("Value"));
 		}
 		return response;
@@ -188,7 +188,7 @@ public class ThirPartyAPiCall {
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,
 				Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("application Number\n" + response.getBody().get("Value"));
 		}
 		return response;
@@ -197,7 +197,7 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> isExistSSOToken(Map<String, Object> request) {
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
 		}
 		return response;
