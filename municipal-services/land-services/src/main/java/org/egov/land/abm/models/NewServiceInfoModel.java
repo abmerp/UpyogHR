@@ -3,6 +3,7 @@ package org.egov.land.abm.models;
 import java.util.Date;
 
 import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
+import org.egov.land.web.models.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,5 @@ public class NewServiceInfoModel {
 
 	private String pageName;
 	private String applicationStatus;
-
 	private NewServiceInfoData newServiceInfoData;
 }
