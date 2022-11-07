@@ -142,10 +142,10 @@ public class ThirPartyAPiCall {
 		request.put("ApplicationDocId", applicationDocId);
 		request.put("ApplicationId", applicationId);
 		request.put("Flag", flag);
-		request.put("DevelopmentPlanCode", developmentPlanCode);
-		request.put("Remarks", remarks);
-		request.put("FileId", fileId);
-		request.put("ColonyName", colonyName);
+		//request.put("DevelopmentPlanCode", developmentPlanCode);
+	//	request.put("Remarks", remarks);
+	//	request.put("FileId", fileId);
+	//	request.put("ColonyName", colonyName);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, request, Map.class);

@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.egov.common.contract.request.User;
+import org.egov.land.abm.service.NewServiceInfoService;
 import org.egov.land.web.models.RequestInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class TestController {
 
 	@Autowired
 	private org.egov.land.abm.service.ThirPartyAPiCall partyAPiCall;
+	
+	@Autowired
+	NewServiceInfoService newServiceInfoService;
 
 	@PostMapping(value = "/getToken")
 	public ResponseEntity<Map> token(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
@@ -70,4 +75,16 @@ public class TestController {
 		
 		return partyAPiCall.isExistSSOToken(map);
 	}
+	
+	
+	
+	
+
+	@PostMapping(value = "/_generate")
+	public  Object generate(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
+		
+		 newServiceInfoService.postTransactionDeatil(requestInfoWrapper.getApplicationid(), requestInfoWrapper.getRequestInfo().getUserInfo());
+		 return null;	
+	}
+	
 }

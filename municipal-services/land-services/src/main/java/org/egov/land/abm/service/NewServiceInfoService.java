@@ -1,10 +1,13 @@
 package org.egov.land.abm.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
@@ -40,7 +43,7 @@ public class NewServiceInfoService {
 		List<NewServiceInfoData> newServiceInfoDatas;
 		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 
-			newServiceIn = em.find(NewServiceInfo.class, newServiceInfo.getId(), LockModeType.PESSIMISTIC_WRITE);
+			newServiceIn = em.find(NewServiceInfo.class, newServiceInfo.getId());
 
 			newServiceInfoData = newServiceIn.getNewServiceInfoData();
 			float cv = newServiceIn.getCurrentVersion() + 0.1f;
@@ -137,74 +140,81 @@ public class NewServiceInfoService {
 		return this.newServiceInfoRepo.getApplicantsNumber();
 	}
 
-	private void method(Long applicationNumber, User user) {
+	public void postTransactionDeatil(Long applicationNumber, User user) {
 
 		String dairyNumber;
 		String caseNumber;
 		String applicationNmber;
 		String saveTransaction;
+        DateTimeFormatter formatter = 
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String date=formatter.format(localDateTime);
 		Map<String, Object> authtoken = new HashMap<String, Object>();
 		authtoken.put("UserId", user.getId());
 		authtoken.put("UserLoginId", user.getId());
-		authtoken.put("Email", user.getEmailId());
+		authtoken.put("EmailId", user.getEmailId());
 
 		if (applicationNumber != null && applicationNumber > 0) {
 
-			NewServiceInfo newServiceIn = em.find(NewServiceInfo.class, applicationNumber,
-					LockModeType.PESSIMISTIC_WRITE);
+			NewServiceInfo newServiceIn = em.find(NewServiceInfo.class, applicationNumber);
 
 			for (int i = 0; i < newServiceIn.getNewServiceInfoData().size(); i++) {
 
 				/************************************************
 				 * Dairy Number End Here
 				 *****************************/
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				map.put("DiaryDate", new Date());
-				map.put("ReceivedFrom", user.getUserName());
-				map.put("UserId", user.getId());
-				map.put("DistrictCode",
+				mapDNo.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				//mapDNo.put("DiaryDate",date);
+				mapDNo.put("ReceivedFrom", user.getUserName());
+				mapDNo.put("UserId", user.getId());
+				mapDNo.put("DistrictCode",
 						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
-				map.put("UserLoginId", user.getId());
-				dairyNumber = thirPartyAPiCall.generateDiaryNumber(map, authtoken).getBody().get("Value").toString();
+				mapDNo.put("UserLoginId", user.getId());
+				dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value").toString();
+				System.out.println("dairyNumber"+dairyNumber);
 
 				/************************************************
 				 * End Here
 				 *****************************/
 				// case number
-				Map<String, Object> map1 = new HashMap<String, Object>();
-				map1.put("DiaryNo", dairyNumber);
-				map1.put("DiaryDate", new Date());
-				map1.put("DeveloperId", user.getId());
-				map1.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
-				map1.put("StartDate", new Date());
-				map.put("DistrictCode",
+				Map<String, Object> mapCNO = new HashMap<String, Object>();
+				mapCNO.put("DiaryNo", dairyNumber);
+				mapCNO.put("DiaryDate", date);
+				mapCNO.put("DeveloperId", user.getId());
+				mapCNO.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				mapCNO.put("StartDate", new Date());
+				mapCNO.put("DistrictCode",
 						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
-				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				map1.put("ChallanAmount",
+				mapCNO.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				mapCNO.put("ChallanAmount",
 						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getPayableNow());
-				map1.put("UserId", user.getId());
-				map1.put("UserLoginId", user.getId());
-				caseNumber = thirPartyAPiCall.generateCaseNumber(map, authtoken).getBody().get("Value").toString();
+				mapCNO.put("UserId", user.getId());
+				mapCNO.put("UserLoginId", user.getId());
+				caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value").toString();
+				System.out.println("caseNumber"+caseNumber);
 				/************************************************
 				 * End Here
 				 *****************************/
 				// application number
-				Map<String, Object> map2 = new HashMap<String, Object>();
-				map1.put("DiaryNo", dairyNumber);
-				map1.put("DiaryDate", new Date());
-				map1.put("TotalArea", newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getTotalArea());
-				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				map1.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
-				map1.put("NameofOwner", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose()
+				Map<String, Object> mapANo = new HashMap<String, Object>();
+				mapANo.put("DiaryNo", dairyNumber);
+				mapANo.put("DiaryDate", date);
+				mapANo.put("TotalArea", newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getTotalArea());
+				mapANo.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				mapANo.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				mapANo.put("NameofOwner", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose()
 						.getApplicationPurposeData1().getLandOwner());
-				map1.put("DateOfHearing", new Date());
-				map1.put("DateForFilingOfReply", new Date());
-				map1.put("UserId", user.getId());
-				map1.put("UserLoginId", user.getId());
-				applicationNmber = thirPartyAPiCall.generateCaseNumber(map, authtoken).getBody().get("Value")
+				mapANo.put("DateOfHearing", date);
+				mapANo.put("DateForFilingOfReply", date);
+				mapANo.put("UserId", user.getId());
+				mapANo.put("UserLoginId", user.getId());
+				applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody().get("Value")
 						.toString();
+				System.out.println("applicationNmber"+applicationNmber);
+
 				/************************************************
 				 * End Here
 				 *****************************/
@@ -227,22 +237,27 @@ public class NewServiceInfoService {
 				map3.put("UserLoginId", user.getId());
 				map3.put("TpUserId", user.getId());
 				//TODO Renu to Add these two vaues
-				map3.put("PaymentMode", "");
-				map3.put("PayAgreegator", "");
+				map3.put("PaymentMode", "online");
+				map3.put("PayAgreegator", "PNB");
 				map3.put("LcApplicantName", user.getUserName());
 				map3.put("LcPurpose", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
 				map3.put("LcDevelopmentPlan", newServiceIn.getNewServiceInfoData().get(i).getDetailsofAppliedLand()
 						.getDetailsAppliedLand6().getDevelopmentPlan());
 				map3.put("LcDistrict", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
-				saveTransaction = thirPartyAPiCall.saveTransactionData(map, authtoken).getBody().get("Value")
+				saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 						.toString();
+				System.out.println("saveTransaction"+saveTransaction);
 
 				/************************************************
 				 * End Here
 				 *****************************/
 
 			}
+			
 
 		}
+		
+		
+		
 	}
 }
