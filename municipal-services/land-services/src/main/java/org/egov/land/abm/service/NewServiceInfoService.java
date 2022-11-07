@@ -3,7 +3,9 @@ package org.egov.land.abm.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
@@ -14,11 +16,14 @@ import org.egov.land.abm.newservices.entity.NewServiceInfo;
 import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
 import org.egov.land.abm.repo.NewServiceInfoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NewServiceInfoService {
 
+	@Autowired
+	private ThirPartyAPiCall thirPartyAPiCall;
 	@Autowired
 	NewServiceInfoRepo newServiceInfoRepo;
 	@Autowired
@@ -29,7 +34,7 @@ public class NewServiceInfoService {
 	public NewServiceInfo createNewServic(NewServiceInfoModel newServiceInfo) {
 
 		List<NewServiceInfoData> newServiceInfoData;
-		
+
 		NewServiceInfo newServiceIn;
 		List<NewServiceInfoData> newServiceInfoDatas;
 		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
@@ -75,8 +80,6 @@ public class NewServiceInfoService {
 
 			newServiceIn.setUpdatedDate(new Date());
 
-			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
-		
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
 			newServiceIn.setCurrentVersion(cv);
 
@@ -87,7 +90,7 @@ public class NewServiceInfoService {
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
 			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
-			
+
 			newServiceInfo.getNewServiceInfoData().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
 			newServiceInfoDatas.add(newServiceInfo.getNewServiceInfoData());
@@ -115,5 +118,24 @@ public class NewServiceInfoService {
 
 	public List<String> getApplicantsNumber() {
 		return this.newServiceInfoRepo.getApplicantsNumber();
+	}
+
+	private void postTransactionCall(Long applicationNumber) {
+
+		if (applicationNumber != null && applicationNumber > 0) {
+
+			NewServiceInfo newServiceIn = em.find(NewServiceInfo.class, applicationNumber,
+					LockModeType.PESSIMISTIC_WRITE);
+
+			for (int i = 0; i < newServiceIn.getNewServiceInfoData().size(); i++) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				
+			}
+			
+
+			thirPartyAPiCall.generateDiaryNumber(null);
+
+		}
 	}
 }

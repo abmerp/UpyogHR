@@ -28,7 +28,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paytm.pg.merchant.CheckSumServiceHelper;
+//import com.paytm.pg.merchant.CheckSumServiceHelper;
+import com.paytm.pg.merchant.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -100,7 +101,7 @@ public class NicGateway implements Gateway {
 	  
 	  		   try {
 
-	            String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, paramMap);
+            String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, paramMap);
 	            paramMap.put("CHECKSUMHASH", checkSum);
 
 	            MultiValueMap<String, String> params = new LinkedMultiValueMap<>();

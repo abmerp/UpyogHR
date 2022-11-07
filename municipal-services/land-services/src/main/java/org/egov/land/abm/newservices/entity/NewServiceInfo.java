@@ -25,8 +25,6 @@ import lombok.Setter;
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class NewServiceInfo {
 
-
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -45,27 +43,21 @@ public class NewServiceInfo {
 
 	@Column(name = "updated_date")
 	private Date updatedDate;
-	
+
 	@Column(name = "application_Status")
 	private String application_Status;
-	
+
 	@Column(name = "applicationNumber")
 	private String applicationNumber;
-	
+
 	@Column(name = "dairyNumber")
 	private String dairyNumber;
-	
+
 	@Column(name = "caseNumber")
 	private String caseNumber;
-	
+
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	private List<NewServiceInfoData> newServiceInfoData;
-	
-//	@Column(name = "epayment")
-//	private List<Epayment> epayment;
-//	 
-//	@Column(name = "ManualPayment")
-//	private List<ManualPayment> manualPayment;
-	
+
 }
