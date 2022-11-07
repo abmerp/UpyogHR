@@ -120,7 +120,7 @@ public class NewServiceInfoService {
 		return this.newServiceInfoRepo.getApplicantsNumber();
 	}
 
-	private void postTransactionCall(Long applicationNumber) {
+	private void postTransactionCall(Long applicationNumber, Map<String, Object> authtoken) {
 
 		if (applicationNumber != null && applicationNumber > 0) {
 
@@ -130,11 +130,10 @@ public class NewServiceInfoService {
 			for (int i = 0; i < newServiceIn.getNewServiceInfoData().size(); i++) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				
-			}
-			
 
-			thirPartyAPiCall.generateDiaryNumber(null);
+			}
+
+			thirPartyAPiCall.generateDiaryNumber(null, authtoken);
 
 		}
 	}
