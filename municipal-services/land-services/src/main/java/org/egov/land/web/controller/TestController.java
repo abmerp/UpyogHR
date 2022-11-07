@@ -23,49 +23,51 @@ public class TestController {
 
 	@PostMapping(value = "/getToken")
 	public ResponseEntity<Map> token(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
-
-		return partyAPiCall.getAuthToken();
+		Map<String, Object> map = new HashMap<String, Object>();
+		return partyAPiCall.getAuthToken(map);
 	}
 
 	@PostMapping(value = "/_TransactionNumber")
 	public ResponseEntity<Map> generateTransactionNo(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
-
-
-		return partyAPiCall.generateTransactionNumber(map);
+		Map<String, Object> authtoken  = new HashMap<String, Object>();
+		return partyAPiCall.generateTransactionNumber(map,authtoken);
 	}
 
 	@PostMapping(value = "/_SaveTransactionNumber")
 	public ResponseEntity<Map> TransactionData(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
-	
-
-		return partyAPiCall.saveTransactionData(map);
+		Map<String, Object> authtoken  = new HashMap<String, Object>();
+		return partyAPiCall.saveTransactionData(map,authtoken);
 
 	}
 
 	@PostMapping(value = "/_Dairynumber")
 	public ResponseEntity<Map> DiaryNumber(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, Object> authtoken  = new HashMap<String, Object>();
 
-		return partyAPiCall.generateDiaryNumber(map);
+		return partyAPiCall.generateDiaryNumber(map,authtoken);
 	}
 
 	@PostMapping(value = "/_CaseNumber")
 	public ResponseEntity<Map> generateCaseNumber(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		return partyAPiCall.generateCaseNumber(map);
+		Map<String, Object> authtoken  = new HashMap<String, Object>();
+		return partyAPiCall.generateCaseNumber(map,authtoken);
 	}
 
 	@PostMapping(value = "/_ApplicationNumber")
 	public ResponseEntity<Map> generateApplicationNumber(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		return partyAPiCall.generateApplicationNumber(map);
+		Map<String, Object> authtoken  = new HashMap<String, Object>();
+		return partyAPiCall.generateApplicationNumber(map,authtoken);
 	}
 
 	@PostMapping(value = "/_SSOToken")
 	public ResponseEntity<Map> isExistSSOToken(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		return partyAPiCall.isExistSSOToken(map);
 	}
 }

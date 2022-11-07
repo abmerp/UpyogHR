@@ -62,7 +62,7 @@ public class ThirPartyAPiCall {
 	public String remarks;
 	@Value("${tcp.fileid}")
 	public String fileId;
-	@Value("${tcp.caseId}")
+	@Value("${tcp.caseid}")
 	public String caseId;
 	@Value("${tcp.casenumber}")
 	public String caseNumber;

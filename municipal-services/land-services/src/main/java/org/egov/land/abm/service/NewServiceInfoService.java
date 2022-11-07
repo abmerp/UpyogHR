@@ -120,7 +120,11 @@ public class NewServiceInfoService {
 		return this.newServiceInfoRepo.getApplicantsNumber();
 	}
 
-	private void postTransactionCall(Long applicationNumber, Map<String, Object> authtoken) {
+	private void method(Long applicationNumber, Map<String, Object> authtoken) {
+		
+		String dairyNumber;
+		String caseNumber;
+		String applicationNmber;
 
 		if (applicationNumber != null && applicationNumber > 0) {
 
@@ -130,10 +134,49 @@ public class NewServiceInfoService {
 			for (int i = 0; i < newServiceIn.getNewServiceInfoData().size(); i++) {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				map.put("DiaryDate",newServiceIn.getCreatedDate());
+				map.put("ReceivedFrom", "");
+				map.put("UserId", newServiceIn.getNewServiceInfoData().get(i));
+				map.put("DistrictCode",
+						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
+				map.put("UserLoginId", newServiceIn.getNewServiceInfoData().get(i));
+				dairyNumber = thirPartyAPiCall.generateDiaryNumber(map, authtoken).getBody().get("Value")
+						.toString();
+
+				// case number
+				Map<String, Object> map1 = new HashMap<String, Object>();
+				map1.put("DiaryNo", dairyNumber);
+				map1.put("DiaryDate", newServiceIn.getCreatedDate());
+				map1.put("DeveloperId", "");
+				map1.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				map1.put("StartDate", newServiceIn.getCreatedDate());
+				map.put("DistrictCode",
+						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
+				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				map1.put("ChallanAmount",
+						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getPayableNow());
+				map1.put("UserId", "");
+				map1.put("UserLoginId", "");
+				caseNumber = thirPartyAPiCall.generateCaseNumber(map, authtoken).getBody().get("Value")
+						.toString();
+
+				// application number
+				Map<String, Object> map2 = new HashMap<String, Object>();
+				map1.put("DiaryNo", dairyNumber);
+				map1.put("DiaryDate", newServiceIn.getCreatedDate());
+				map1.put("TotalArea", newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getTotalArea());
+				map.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				map1.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				map1.put("NameofOwner", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose()
+						.getApplicationPurposeData1().getLandOwner());
+				map1.put("DateOfHearing", newServiceIn.getCreatedDate());
+				map1.put("DateForFilingOfReply", newServiceIn.getCreatedDate());
+				map1.put("UserId", "");
+				map1.put("UserLoginId", "");
+				applicationNmber = thirPartyAPiCall.generateCaseNumber(map, authtoken).getBody().get("Value")
+						.toString();
 
 			}
-
-			thirPartyAPiCall.generateDiaryNumber(null, authtoken);
 
 		}
 	}
