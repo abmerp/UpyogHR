@@ -99,6 +99,7 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		map.put("Content", sms.getMessage());
 		map.put("TemplateId", sms.getTemplateId());
 		map.put("Purpose", sms.getCategory());
+		log.info("OPT DAta "+map);
 		sendSMS(map);
 	}
 
