@@ -154,24 +154,29 @@ public class NewServiceInfoService {
 		authtoken.put("UserId", user.getId());
 		authtoken.put("UserLoginId", user.getId());
 		authtoken.put("EmailId", user.getEmailId());
-
+		List<NewServiceInfoData> newServiceInfoData;
 		if (applicationNumber != null && applicationNumber > 0) {
 
 			NewServiceInfo newServiceIn = em.find(NewServiceInfo.class, applicationNumber);
 
-			for (int i = 0; i < newServiceIn.getNewServiceInfoData().size(); i++) {
+			newServiceInfoData = newServiceIn.getNewServiceInfoData();
+		
+
+			for (NewServiceInfoData newobj : newServiceInfoData) {
+
+				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
 
 				/************************************************
 				 * Dairy Number End Here
 				 *****************************/
 				Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-				mapDNo.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+				mapDNo.put("Village", newobj.getApplicantInfo().getVillage());
 				mapDNo.put("DiaryDate",date);
 				mapDNo.put("ReceivedFrom", user.getUserName());
 				mapDNo.put("UserId", "1234");
 				mapDNo.put("DistrictCode",
-						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
+						newobj.getApplicantPurpose().getDistrict());
 				mapDNo.put("UserLoginId", user.getId());
 				dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value").toString();
 				System.out.println("dairyNumber"+dairyNumber);
@@ -183,17 +188,17 @@ public class NewServiceInfoService {
 				Map<String, Object> mapCNO = new HashMap<String, Object>();
 				mapCNO.put("DiaryNo", dairyNumber);
 				mapCNO.put("DiaryDate", date);
-				mapCNO.put("DeveloperId", user.getId());
-				mapCNO.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				mapCNO.put("DeveloperId", 2);
+				mapCNO.put("PurposeId", 2);
 				mapCNO.put("StartDate", date);
 				mapCNO.put("DistrictCode",
-						newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
-				mapCNO.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
+						"0618");
+			//	mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
 //				mapCNO.put("ChallanAmount",
-//						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getPayableNow());
+//						newobj.getFeesAndCharges().getPayableNow());
 				mapCNO.put("ChallanAmount","12.5");
 				mapCNO.put("UserId", "2");
-				mapCNO.put("UserLoginId","39");
+				mapCNO.put("UserLoginId",user.getId());
 				caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value").toString();
 				System.out.println("caseNumber"+caseNumber);
 				/************************************************
@@ -203,15 +208,15 @@ public class NewServiceInfoService {
 				Map<String, Object> mapANo = new HashMap<String, Object>();
 				mapANo.put("DiaryNo", dairyNumber);
 				mapANo.put("DiaryDate", date);
-				mapANo.put("TotalArea", newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getTotalArea());
-				mapANo.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				mapANo.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
-				mapANo.put("NameofOwner", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose()
-						.getApplicationPurposeData1().getLandOwner());
+				mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
+				mapANo.put("Village", "0618");
+				//mapANo.put("PurposeId", newobj.getApplicantPurpose().getPurposeDd());
+				mapANo.put("PurposeId", "2");
+				mapANo.put("NameofOwner", 12.5);
 				mapANo.put("DateOfHearing", date);
 				mapANo.put("DateForFilingOfReply", date);
-				mapANo.put("UserId", user.getId());
-				mapANo.put("UserLoginId", user.getId());
+				mapANo.put("UserId", "2");
+				mapANo.put("UserLoginId",user.getId());
 				applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody().get("Value")
 						.toString();
 				System.out.println("applicationNmber"+applicationNmber);
@@ -227,13 +232,13 @@ public class NewServiceInfoService {
 				map3.put("EmailId", user.getEmailId());
 				map3.put("MobNo", user.getMobileNumber());
 				map3.put("TxnNo", "");
-				map3.put("TxnAmount", newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getPayableNow());
-				map3.put("NameofOwner", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose()
+				map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
+				map3.put("NameofOwner", newobj.getApplicantPurpose()
 						.getApplicationPurposeData1().getLandOwner());
 				map3.put("LicenceFeeNla",
-						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getLicenseFee());
+						newobj.getFeesAndCharges().getLicenseFee());
 				map3.put("ScrutinyFeeNla",
-						newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getScrutinyFee());
+						newobj.getFeesAndCharges().getScrutinyFee());
 				map3.put("UserId", user.getId());
 				map3.put("UserLoginId", user.getId());
 				map3.put("TpUserId", user.getId());
@@ -242,10 +247,10 @@ public class NewServiceInfoService {
 			
 				map3.put("PayAgreegator", "PNB");
 				map3.put("LcApplicantName", user.getUserName());
-				map3.put("LcPurpose", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
-				map3.put("LcDevelopmentPlan", newServiceIn.getNewServiceInfoData().get(i).getDetailsofAppliedLand()
+				map3.put("LcPurpose", newobj.getApplicantPurpose().getPurposeDd());
+				map3.put("LcDevelopmentPlan", newobj.getDetailsofAppliedLand()
 						.getDetailsAppliedLand6().getDevelopmentPlan());
-				map3.put("LcDistrict", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getDistrict());
+				map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
 				saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 						.toString();
 				System.out.println("saveTransaction"+saveTransaction);
@@ -253,9 +258,10 @@ public class NewServiceInfoService {
 				/************************************************
 				 * End Here
 				 *****************************/
-
+			break;
+				}
+				
 			}
-			
 
 		}
 		

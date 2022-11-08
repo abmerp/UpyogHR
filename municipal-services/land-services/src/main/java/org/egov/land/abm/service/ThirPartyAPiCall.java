@@ -159,8 +159,8 @@ public class ThirPartyAPiCall {
 		request.put("CaseId", caseId);
 		request.put("CaseTypeId", caseTypeId);
 		request.put("CaseNo", caseNumber);
-		request.put("DevelopmentPlanCode", developmentPlanCode);
-		request.put("ColonyName", colonyName);
+//		request.put("DevelopmentPlanCode", developmentPlanCode);
+//		request.put("ColonyName", colonyName);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 		
 
@@ -174,20 +174,22 @@ public class ThirPartyAPiCall {
 	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request,Map<String, Object> authtoken) {
 
 		request.put("CaseId", caseId);
-		request.put("ApplicationTypeId", applicationTypeId);
-		request.put("ApplicationNo", applicationNumber);
-		request.put("PlotNo", plotNumber);
+	    request.put("ApplicationTypeId", applicationTypeId);
+	  //  request.put("ApplicationId", applicationId);
+		//request.put("ApplicationNo", applicationNumber);
+     	request.put("PlotNo", plotNumber);
 		request.put("RelatedApplicationId", relatedApplicationId);
 		request.put("IsBpocForResiPlotted", isBpocForResiPlotted);
-		request.put("DetailsOfApplication", detailsOfApplication);
+	//	request.put("DetailsOfApplication", detailsOfApplication);
 		request.put("PlotId", plotId);
 		request.put("CreatedByRoleId", createdByRoleId);
 		request.put("IsConfirmed", isConfirmed);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
-		
+		System.out.println("request-------"+request);
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,
 				Map.class);
+		System.out.println("response"+response);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("application Number\n" + response.getBody().get("Value"));
 		}
