@@ -175,12 +175,12 @@ public class ThirPartyAPiCall {
 
 		request.put("CaseId", caseId);
 	    request.put("ApplicationTypeId", applicationTypeId);
-	    request.put("ApplicationId", applicationId);
-		request.put("ApplicationNo", applicationNumber);
+	  //  request.put("ApplicationId", applicationId);
+		//request.put("ApplicationNo", applicationNumber);
      	request.put("PlotNo", plotNumber);
 		request.put("RelatedApplicationId", relatedApplicationId);
 		request.put("IsBpocForResiPlotted", isBpocForResiPlotted);
-		request.put("DetailsOfApplication", detailsOfApplication);
+	//	request.put("DetailsOfApplication", detailsOfApplication);
 		request.put("PlotId", plotId);
 		request.put("CreatedByRoleId", createdByRoleId);
 		request.put("IsConfirmed", isConfirmed);
