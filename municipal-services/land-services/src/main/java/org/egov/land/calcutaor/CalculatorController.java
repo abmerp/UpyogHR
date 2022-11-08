@@ -2,11 +2,13 @@ package org.egov.land.calcutaor;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import javax.validation.Valid;
+
 import org.json.simple.parser.ParseException;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -14,15 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CalculatorController {
 
-
+	@Autowired
+	CalculatorImpl calcuImpl;
 
 	@GetMapping("/_calculate")
-	public FeeTypeCalculationDtoInfo get(@RequestParam("arce") float arce, @RequestParam("feeType") String feeType,
-			@RequestParam("potenialZone") String potenialZone, @RequestParam("purposename") String purposename,
-			@RequestParam("colonyType") String colonyType) throws FileNotFoundException, IOException, ParseException {
-		
+	public FeeTypeCalculationDtoInfo get(@Valid @RequestBody CalculatorRequest calculatorRequest)
+			throws FileNotFoundException, IOException, ParseException {
+
 		FeeTypeCalculationDtoInfo info = new FeeTypeCalculationDtoInfo();
-		FeesTypeCalculationDto calculator = Calculator.feesTypeCalculation(arce, feeType, potenialZone, purposename, colonyType);
+		FeesTypeCalculationDto calculator = calcuImpl.feesTypeCalculation(calculatorRequest);
 		info.setFeeTypeCalculationDto(calculator);
 		return info;
 	}

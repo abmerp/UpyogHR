@@ -255,7 +255,7 @@
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
-        "$.purposeId",
+        "$.purposeCode",
         "$.tenantId"
       ]
     },

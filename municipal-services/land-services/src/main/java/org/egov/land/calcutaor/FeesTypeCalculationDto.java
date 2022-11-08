@@ -9,11 +9,11 @@ import lombok.Setter;
 @Setter
 class FeesTypeCalculationDto {
 
-	private float scrutinyFeeChargesCal;
-	private float licenseFeeChargesCal;
-	private float conversionChargesCal;
-	private float externalDevelopmentChargesCal;
-	private float stateInfrastructureDevelopmentChargesCal;
-	private List<Float> farValue;
+	private double scrutinyFeeChargesCal;
+	private double licenseFeeChargesCal;
+	private double conversionChargesCal;
+	private double externalDevelopmentChargesCal;
+	private double stateInfrastructureDevelopmentChargesCal;
+	
 
 }
