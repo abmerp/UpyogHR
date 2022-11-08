@@ -205,13 +205,14 @@ public class NewServiceInfoService {
 				mapANo.put("DiaryDate", date);
 				mapANo.put("TotalArea", newServiceIn.getNewServiceInfoData().get(i).getFeesAndCharges().getTotalArea());
 				mapANo.put("Village", newServiceIn.getNewServiceInfoData().get(i).getApplicantInfo().getVillage());
-				mapANo.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				//mapANo.put("PurposeId", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose().getPurposeDd());
+				mapANo.put("PurposeId", "2");
 				mapANo.put("NameofOwner", newServiceIn.getNewServiceInfoData().get(i).getApplicantPurpose()
 						.getApplicationPurposeData1().getLandOwner());
 				mapANo.put("DateOfHearing", date);
 				mapANo.put("DateForFilingOfReply", date);
-				mapANo.put("UserId", user.getId());
-				mapANo.put("UserLoginId", user.getId());
+				mapANo.put("UserId", "12");
+				mapANo.put("UserLoginId","39");
 				applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody().get("Value")
 						.toString();
 				System.out.println("applicationNmber"+applicationNmber);
