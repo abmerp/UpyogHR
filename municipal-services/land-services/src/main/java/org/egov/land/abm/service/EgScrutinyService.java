@@ -44,7 +44,7 @@ public class EgScrutinyService {
 
 	public List<EgScrutiny> search(Integer applicationNumber) {
 
-		return this.egScrutinyRepo.findByApplicationId(applicationNumber);
+		return this.egScrutinyRepo.findByApplicationIdOrderByUseridDescTsDesc(applicationNumber);
 	}
 
 	public EgScrutiny findById(Integer id) {
@@ -56,7 +56,7 @@ public class EgScrutinyService {
 	}
 
 	public List<EgScrutiny> findByApplicationIdAndUserId(Integer applicantId, Integer fieldId) {
-		return this.egScrutinyRepo.findByApplicationIdAndUserid(applicantId, fieldId);
+		return this.egScrutinyRepo.findByApplicationIdAndUseridOrderByUseridDesc(applicantId, fieldId);
 	}
 
 }

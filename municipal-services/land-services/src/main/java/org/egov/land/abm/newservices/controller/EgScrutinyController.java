@@ -1,12 +1,15 @@
 package org.egov.land.abm.newservices.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EgScrutinyInfoResponse;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
 import org.egov.land.abm.service.EgScrutinyService;
+import org.egov.land.abm.service.ThirPartyAPiCall;
 import org.egov.land.util.ResponseInfoFactory;
 import org.egov.land.web.models.LandInfoResponse;
 import org.egov.land.web.models.RequestInfoWrapper;
@@ -28,11 +31,12 @@ public class EgScrutinyController {
 	EgScrutinyService egScrutinyService;
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
+	@Autowired ThirPartyAPiCall thirPartyAPiCall;
 
 	@PostMapping("/_create")
 	public ResponseEntity<EgScrutinyInfoResponse> createEgScrutiny(
-			@RequestBody EgScrutinyInfoRequest egScrutinyInfoRequest) {
-
+			@RequestBody EgScrutinyInfoRequest egScrutinyInfoRequest,@RequestParam("status")String status) {
+	
 		EgScrutiny egScrutiny = egScrutinyService.createAndUpdateEgScrutiny(egScrutinyInfoRequest);
 
 		List<EgScrutiny> egScrutinyList = new ArrayList<>();
@@ -111,6 +115,7 @@ public class EgScrutinyController {
 		System.out.println("search by id ");
 		List<EgScrutiny> egScrutiny = this.egScrutinyService.findByApplicationIdAndUserId(applicatinNumber, fieldId);
 
+		System.out.println("egScrutiny date : " + egScrutiny.get(0).getTs());
 		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutiny)
 				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
 						true))

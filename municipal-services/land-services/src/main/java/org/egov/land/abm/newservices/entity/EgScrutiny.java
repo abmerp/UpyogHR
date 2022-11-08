@@ -61,5 +61,6 @@ public class EgScrutiny implements Serializable {
 	
 	@Column(name="ts")
 	private Date ts;
+	
 
 }

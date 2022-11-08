@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long>{
 
-	public List<EgScrutiny> findByApplicationId(Integer applicationNumber);
+	public List<EgScrutiny> findByApplicationIdOrderByUseridDescTsDesc(Integer applicationNumber);
 	public EgScrutiny findById(Integer id);
 	public EgScrutiny findByApplicationIdAndFieldIdL(Integer applicantId,String fieldId);//applicationId field_d
 	
-	public List<EgScrutiny> findByApplicationIdAndUserid(Integer applicantId,Integer userId);
+	public List<EgScrutiny> findByApplicationIdAndUseridOrderByUseridDesc(Integer applicantId,Integer userId);
 	
 	public boolean existsByApplicationIdAndFieldIdLAndUseridAndServiceId(Integer applicationId,String fieldId,Integer userID,Integer serviceId);
 
