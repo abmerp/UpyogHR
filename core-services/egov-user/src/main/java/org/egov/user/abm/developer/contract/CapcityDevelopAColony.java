@@ -14,6 +14,11 @@ public class CapcityDevelopAColony {
 	private String paidUpCapital;
 	private String networthPartners;
 	private String networthFirm;
+    private String permissionGrantedHRDU;
+	private String permissionGrantedLawAct;
+	private String technicalExpert;
+	private String designatedDirectors;
+	private String alreadtObtainedLic;
 	private List<CapacityDevelopAColonyHdruAct> capacityDevelopColonyHdruAct;
 	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
 	private List<TechnicalExpertEngaged> technicalExpertEngaged;

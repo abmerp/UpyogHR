@@ -73,10 +73,11 @@ public class UserRepository {
             userIds = findUsersWithRole(userSearch);
             RoleSearchHappend = true;
         }
-        if ( userSearch.getParentid() !=null && userSearch.getParentid() > 0 &&userSearch.getTenantId() != null) {
-            userIds = findUsersWithParentId(userSearch);
-            RoleSearchHappend = true;
-        }
+		/*
+		 * if ( userSearch.getParentid() !=null && userSearch.getParentid() > 0
+		 * &&userSearch.getTenantId() != null) { userIds =
+		 * findUsersWithParentId(userSearch); RoleSearchHappend = true; }
+		 */
         List<User> users = new ArrayList<>();
         if (RoleSearchHappend) {
             if (!CollectionUtils.isEmpty(userIds)) {

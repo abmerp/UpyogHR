@@ -1,0 +1,18 @@
+{
+    "tenantId": "hr.amritsar",
+    "moduleName": "TradeLicense",
+    "ReminderPeriods": [
+      {
+        "tenantId": "hr.amritsar",
+        "reminderInterval": 12345
+      },
+      {
+        "tenantId": "hr.jalandhar",
+        "reminderInterval": 12345
+      },
+      {
+        "tenantId": "hr.mohali",
+        "reminderInterval": 12345  
+      }
+    ]
+  }

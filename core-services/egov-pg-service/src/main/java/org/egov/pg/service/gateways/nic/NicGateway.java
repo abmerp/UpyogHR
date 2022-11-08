@@ -28,7 +28,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.paytm.pg.merchant.CheckSumServiceHelper;
+//import com.paytm.pg.merchant.CheckSumServiceHelper;
+import com.paytm.pg.merchant.*;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,15 +41,11 @@ public class NicGateway implements Gateway {
 	private String STO;
 	private String DDO;
 	private String DeptCode;
-	
 
 	private String Bank;
 
-	
 	private String UUrl_Debit;
 	private String UUrl_Status;
-
-	//private String UUrl;
 
 	private final RestTemplate restTemplate;
 	private ObjectMapper objectMapper;
@@ -64,11 +61,10 @@ public class NicGateway implements Gateway {
 		STO = environment.getRequiredProperty("nic.STO");
 		DDO = environment.getRequiredProperty("nic.DDO");
 		DeptCode = environment.getRequiredProperty("nic.DeptCode");
-		//ApplicationNumber = environment.getRequiredProperty("nic.ApplicationNumber");
+		// ApplicationNumber = environment.getRequiredProperty("nic.ApplicationNumber");
 		Bank = environment.getRequiredProperty("nic.Bank");
-		
+
 		UUrl_Debit = environment.getRequiredProperty("nic.UUrl_Debit");
-		
 
 	}
 
@@ -85,65 +81,66 @@ public class NicGateway implements Gateway {
 		paramMap.put("CityName", transaction.getCityName());
 		paramMap.put("Address", transaction.getAddress());
 		paramMap.put("pinCode", transaction.getPinCode());
-		paramMap.put("OfficeName",transaction.getOfficeName());
+		paramMap.put("OfficeName", transaction.getOfficeName());
 		paramMap.put("emailId", transaction.getUser().getEmailId());
 		paramMap.put("TXN_AMOUNT", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
 		paramMap.put("challanYear", transaction.getChallanYear());
-	    paramMap.put("CALLBACK_URL", transaction.getCallbackUrl());
-	    paramMap.put("gatewayPaymentMode", transaction.getGatewayPaymentMode());
-	    paramMap.put("bankname", Bank);
-	    paramMap.put("remarks", transaction.getRemarks());
-	    paramMap.put("securityEmail", transaction.getSecurityEmail());
-	    paramMap.put("securityPhone", transaction.getSecurityPhone());
-	    paramMap.put("validUpto", transaction.getValidUpto());
-	    paramMap.put("schemeCount", transaction.getSchemeCount());
-	  
-	  		   try {
+		paramMap.put("CALLBACK_URL", transaction.getCallbackUrl());
+		paramMap.put("gatewayPaymentMode", transaction.getGatewayPaymentMode());
+		paramMap.put("bankname", Bank);
+		paramMap.put("remarks", transaction.getRemarks());
+		paramMap.put("securityEmail", transaction.getSecurityEmail());
+		paramMap.put("securityPhone", transaction.getSecurityPhone());
+		paramMap.put("validUpto", transaction.getValidUpto());
+		paramMap.put("schemeCount", transaction.getSchemeCount());
 
-	            String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, paramMap);
-	            paramMap.put("CHECKSUMHASH", checkSum);
+		try {
 
-	            MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-	            paramMap.forEach((key, value) -> params.put(key, Collections.singletonList(value)));
+			String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, paramMap);
+			paramMap.put("CHECKSUMHASH", checkSum);
 
+			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+			paramMap.forEach((key, value) -> params.put(key, Collections.singletonList(value)));
 
-	            UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(UUrl_Debit).queryParams
-	                    (params).build().encode();
+			UriComponents uriComponents = UriComponentsBuilder.fromHttpUrl(UUrl_Debit).queryParams(params).build()
+					.encode();
 
-	            return uriComponents.toUri();
-	        } catch (Exception e) {
-	          //  log.error("Paytm Checksum generation failed", e);
-	            throw new CustomException("CHECKSUM_GEN_FAILED", "Hash generation failed, gateway redirect URI cannot be generated");
-	        }
+			return uriComponents.toUri();
+		} catch (Exception e) {
+			// log.error("Paytm Checksum generation failed", e);
+			throw new CustomException("CHECKSUM_GEN_FAILED",
+					"Hash generation failed, gateway redirect URI cannot be generated");
+		}
 	}
 
 	@Override
 	public Transaction fetchStatus(Transaction currentStatus, Map<String, String> params) {
-		  TreeMap<String, String> treeMap = new TreeMap<String, String>();
-	       // treeMap.put("ApplicationNumber", ApplicationNumber);
-	        treeMap.put("ApplicationNumber", currentStatus.getApplicationNumber());
+		TreeMap<String, String> treeMap = new TreeMap<String, String>();
+		// treeMap.put("ApplicationNumber", ApplicationNumber);
+		treeMap.put("ApplicationNumber", currentStatus.getApplicationNumber());
 
-	        try {
-	            String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, treeMap);
-	            treeMap.put("CHECKSUMHASH", checkSum);
+		try {
+			String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, treeMap);
+			treeMap.put("CHECKSUMHASH", checkSum);
 
-	            HttpHeaders httpHeaders = new HttpHeaders();
-	            httpHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString());
+			HttpHeaders httpHeaders = new HttpHeaders();
+			httpHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString());
 
-	            HttpEntity<Map<String, String>> httpEntity = new HttpEntity<>(treeMap, httpHeaders);
+			HttpEntity<Map<String, String>> httpEntity = new HttpEntity<>(treeMap, httpHeaders);
 
-	            ResponseEntity<NicResponse> response = restTemplate.postForEntity(UUrl_Status, httpEntity,
-	            		NicResponse.class);
+			ResponseEntity<NicResponse> response = restTemplate.postForEntity(UUrl_Status, httpEntity,
+					NicResponse.class);
 
-	            return transformRawResponse(response.getBody(), currentStatus);
+			return transformRawResponse(response.getBody(), currentStatus);
 
-	        } catch (RestClientException e) {
-	            //log.error("Unable to fetch status from Paytm gateway", e);
-	            throw new CustomException("UNABLE_TO_FETCH_STATUS", "Unable to fetch status from Paytm gateway");
-	        } catch (Exception e) {
-	            //log.error("Paytm Checksum generation failed", e);
-	            throw new CustomException("CHECKSUM_GEN_FAILED", "Hash generation failed, gateway redirect URI cannot be generated");
-	        }
+		} catch (RestClientException e) {
+			// log.error("Unable to fetch status from Paytm gateway", e);
+			throw new CustomException("UNABLE_TO_FETCH_STATUS", "Unable to fetch status from Paytm gateway");
+		} catch (Exception e) {
+			// log.error("Paytm Checksum generation failed", e);
+			throw new CustomException("CHECKSUM_GEN_FAILED",
+					"Hash generation failed, gateway redirect URI cannot be generated");
+		}
 	}
 
 	@Override
@@ -163,28 +160,22 @@ public class NicGateway implements Gateway {
 		// TODO Auto-generated method stub
 		return "ApplicationNumber";
 	}
-	 private Transaction transformRawResponse(NicResponse resp, Transaction currentStatus) {
 
+	private Transaction transformRawResponse(NicResponse resp, Transaction currentStatus) {
 
-	        Transaction.TxnStatusEnum status = Transaction.TxnStatusEnum.PENDING;
+		Transaction.TxnStatusEnum status = Transaction.TxnStatusEnum.PENDING;
 
-	        if (resp.getStatus().equalsIgnoreCase("TXN_SUCCESS"))
-	            status = Transaction.TxnStatusEnum.SUCCESS;
-	        else if (resp.getStatus().equalsIgnoreCase("TXN_FAILURE"))
-	            status = Transaction.TxnStatusEnum.FAILURE;
+		if (resp.getStatus().equalsIgnoreCase("TXN_SUCCESS"))
+			status = Transaction.TxnStatusEnum.SUCCESS;
+		else if (resp.getStatus().equalsIgnoreCase("TXN_FAILURE"))
+			status = Transaction.TxnStatusEnum.FAILURE;
 
-	        return Transaction.builder()
-	                .txnId(currentStatus.getTxnId())
-	                .txnAmount(Utils.formatAmtAsRupee(resp.getTxnAmount()))
-	                .txnStatus(status)
-	                .gatewayPaymentMode(resp.getPaymentMode())
-	                .gatewayStatusCode(resp.getRespCode())
-	                .gatewayStatusMsg(resp.getRespMsg())
-	                .responseJson(resp)
-	                .build();
+		return Transaction.builder().txnId(currentStatus.getTxnId())
+				.txnAmount(Utils.formatAmtAsRupee(resp.getTxnAmount())).txnStatus(status)
+				.gatewayPaymentMode(resp.getPaymentMode()).gatewayStatusCode(resp.getRespCode())
+				.gatewayStatusMsg(resp.getRespMsg()).responseJson(resp).build();
 
-
-	    }
+	}
 
 	@Override
 	public String generateRedirectFormData(Transaction transaction) {

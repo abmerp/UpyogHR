@@ -3,8 +3,7 @@ package org.egov.user.web.contract;
 import java.util.Date;
 
 import org.egov.common.contract.request.RequestInfo;
-import org.egov.user.abm.developer.contract.DevDetail;
-import org.egov.user.abm.developer.contract.LicenceDetails;
+import org.egov.user.abm.developer.contract.Developerdetail;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,7 +15,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Builder
+@Builder	
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeveloperRequest {
@@ -29,7 +28,8 @@ public class DeveloperRequest {
 	private Date createdDate;
 	private String updateddBy;
 	private Date updatedDate;
+	private String pageName;
 	@JsonProperty("devDetail")
-	private DevDetail devDetail;
+	private Developerdetail devDetail;
 	
 }

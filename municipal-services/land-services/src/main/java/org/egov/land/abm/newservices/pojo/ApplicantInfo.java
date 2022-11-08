@@ -19,8 +19,7 @@ public class ApplicantInfo {
 	private String tehsil;
 	private String district;
 	private String state;
-	private String status;
-	
+	private String status;	
 	private String LC;
 	private String address;
 	private String permanentAddress;

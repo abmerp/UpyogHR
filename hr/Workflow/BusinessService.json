@@ -1,0 +1,958 @@
+{
+    "tenantId": "hr",
+    "moduleName": "Workflow",
+    "BusinessService": [
+      {
+        "tenantId": "hr",
+        "uuid": "2b75575a-f84d-11e8-8eb2-f2801f1b9fd1",
+        "businessService": "land-service",
+        "getUri": "",
+        "postUri": "",
+        "states": [
+            {
+                "businessServiceId": "land-service",
+                "state": "submit",
+                "applicableNextStates": "PAID,CANCEL",
+                "applicableActions": "PAY,CANCEL",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1a",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                
+                    {
+                    "stateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1a",
+                    "action": "pay",
+                    "nextStateId": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1b",     
+                    "roles": "citizen",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1a"
+                    },
+
+                    {
+                    "stateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1a",
+                    "action": "cancel",
+                    "nextStateId": "",     
+                    "roles": "citizen",
+                    "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1b"
+                        }
+                    
+                ]
+            
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "submitted",
+                "applicableNextStates": "Review",
+                "applicableActions": "forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1b",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1b",
+                    "action": "forward",
+                    "nextStateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1c",     
+                    "roles": "CTP(HR)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1c"
+                }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Review",
+                "applicableNextStates": "Role1,Role2,Role3,Role4",
+                "applicableActions": "forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1c",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                "stateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1c",
+                "action": "forward",
+                "nextStateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",     
+                "roles": "DTP(HR)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1d"
+                }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                "state": "Review",
+                "applicableNextStates": "",
+                "applicableActions": "view",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1c",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                "stateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
+                "action": "view",
+                "nextStateId": "",     
+                "roles": "PA CTP(HR)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1e"
+                }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role1",
+                "applicableNextStates": "Forward",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                "stateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",
+                "action": "remark",
+                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1e",     
+                "roles": "Patwari(HQ)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1f"
+                }
+                    ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role2",
+                "applicableNextStates": "Forward",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",                                                                                                       
+                "tenantId": "hr",
+                "actions": [{
+                "stateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",
+                "action": "remark",
+                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1e",     
+                "roles": "AO(HQ)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1g"
+                }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role3",
+                "applicableNextStates": "Forward",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1e",     
+                    "roles": "DA/ADA/DDA(HQ)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1h"
+                    }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                "state": "Role4",
+                "applicableNextStates": "Forward",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid":"bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+
+                            {
+                    "stateId":"bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1d",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1e",     
+                    "roles": "AD/JD/SD(HQ)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1i"
+                    }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Forward",
+                "applicableNextStates": "Role6",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1e",                                                                                                       
+                "tenantId": "hr",
+                "actions": 
+                    [
+                        
+                        {
+                "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1e",
+                "action": "forward",
+                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1f",     
+                "roles": "DTP(HQ)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1j"
+                }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role6",
+                "applicableNextStates": "Role7",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1f",                                                                                                       
+                "tenantId": "hr",
+                "actions": 
+                    [      
+                        {
+                "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1f",
+                "action": "remark",
+                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1g",     
+                "roles": "JE(HQ)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1k"
+                }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                "state": "Role7",
+                "applicableNextStates": "Forward",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1g",                                                                                                       
+                "tenantId": "hr",
+                 "actions":
+                        [           
+                            {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1g",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1h",     
+                    "roles": "ATP(HQ)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1l"
+                    }
+                    ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Forward",
+                "applicableNextStates": "Role7",
+                "applicableActions": "forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1h",                                                                                                       
+                "tenantId": "hr",
+                "actions": 
+                    [                       
+                        {
+                "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1h",
+                "action": "forward",
+                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1i",     
+                "roles": "DTP(HQ)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1m"
+                }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role7",
+                "applicableNextStates": "Role8",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1i",                                                                                                       
+                "tenantId": "hr",
+                "actions": [                               
+                        {
+                "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1i",
+                "action": "Remark",
+                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1j",     
+                "roles": "STP(HQ)",
+                "tenantId": "hr",
+                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1n"
+                }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role8",
+                "applicableNextStates": "Forward DTCP",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1j",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1j",
+                    "action": "Remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1k",     
+                    "roles": "CTP(HQ)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1o"
+                    }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Forward DTCP",
+                "applicableNextStates": "approve,sendback,cancel",
+                "applicableActions": "forward,cancel,sendback",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1k",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1k",
+                    "action": "forward",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1l",     
+                    "roles": "DCTP(HQ)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1p"
+                    },
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1k",
+                        "action": "reject",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1l",     
+                        "roles": "DCTP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1q"
+                        },
+            
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1k",
+                        "action": "sendback",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1l",     
+                        "roles": "DCTP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1r"
+                        }
+                    ]
+                },
+
+                {
+                "businessServiceId": "land-service",
+                "state": "Forward",
+                "applicableNextStates": "Review",
+                "applicableActions": "forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1l",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1l",
+                    "action": "forward",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1m",     
+                    "roles": "DTP(HQ)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1s"
+                    }
+                ]
+                },
+
+               {
+                    "businessServiceId": "land-service",
+                    "state": "Review",
+                    "applicableNextStates": "",
+                    "applicableActions": "resubmit,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1aa",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1aa",
+                        "action": "resubmit",
+                        "nextStateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1b",     
+                        "roles": "citizen",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ss"
+                        }
+                    ]
+                    },
+                {
+                "businessServiceId": "land-service",
+                "state": "Review",
+                "applicableNextStates": "Role A, Role B, Role C",
+                "applicableActions": "forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1m",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1m",
+                    "action": "forward",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1n",     
+                    "roles": "DTP(Field)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1t"
+                    }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Review",
+                "applicableNextStates": "Forward",
+                "applicableActions": "check,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1m",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1m",
+                    "action": "check",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1r",   
+                    "roles": "LAO",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1u"
+                    }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role A",
+                "applicableNextStates": "Role D",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1n",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1n",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1o",     
+                    "roles": "Patwari(field)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1v"
+                    }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role B",
+                "applicableNextStates": "Role D",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1n",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1n",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1o",     
+                    "roles": "JD/SD(field)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1w"
+                    }
+                ]
+                },
+                {
+                "businessServiceId": "land-service",
+                "state": "Role C",
+                "applicableNextStates": "Role D",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1n",                                                                                                       
+                "tenantId": "hr",
+                "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1n",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1o",     
+                    "roles": "JE(field)",
+                    "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1x"
+                    }
+                ]
+                },
+
+                {
+                "businessServiceId": "land-service",
+                "state": "Role D",
+                "applicableNextStates": "Forward DTP(FIELD)",
+                "applicableActions": "remark,forward",
+                "docUpLAOdRequired": "false",
+                "UpdateAllowed": "false",
+                "isTerminateState": "false",
+                "isStartState": "false",
+                "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1no",                                                                                                       
+                "tenantId": "hr",
+            "actions": [
+                {
+                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1o",
+                    "action": "remark",
+                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1p",     
+                    "roles":"ATP(field)",
+                        "tenantId": "hr",
+                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1y"
+                    }
+                ]
+                },
+
+                    {
+                    "businessServiceId": "land-service",
+                    "state": "Forward DTP(FIELD)",
+                    "applicableNextStates": "Role E",
+                    "applicableActions": "forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1p",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1p",
+                        "action": "forward",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1q",     
+                        "roles": "DTP(field)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1z"
+                        }
+                ]
+                },     
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role E",
+                    "applicableNextStates": "Forward",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1q",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1q",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1r",     
+                        "roles": "STP Circle",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1aa"
+                        }
+                ]
+                },  
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Forward",
+                    "applicableNextStates": "Role1,Role2,Role3,Role4",
+                    "applicableActions": "forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1r",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1r",
+                        "action": "forward",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1s",     
+                        "roles": "DTP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1bb"
+                        }
+                ]
+                },   
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role1",
+                    "applicableNextStates": "RoleJE",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1s",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1s",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1t",     
+                        "roles": "Patwari(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1cc"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role2",
+                    "applicableNextStates": "RoleJE",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1s",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1s",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1t",     
+                        "roles": "AO(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1dd"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role3",
+                    "applicableNextStates": "RoleJE",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1s",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1s",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1t",     
+                        "roles": "JD?SD(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ee"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role4",
+                    "applicableNextStates": "RoleJE",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1s",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1s",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1t",     
+                        "roles": "DA/DDA(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ff"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "RoleJE",
+                    "applicableNextStates": "RoleATP",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1t",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1t",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1u",     
+                        "roles": "JE(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1gg"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "RoleATP",
+                    "applicableNextStates": "Forward",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1u",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1u",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1v",     
+                        "roles": "ATP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1hh"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Forward",
+                    "applicableNextStates": "RoleSTP",
+                    "applicableActions": "forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1v",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1v",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1w",     
+                        "roles": "DTP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ii"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "RoleSTP",
+                    "applicableNextStates": "RoleCTP",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1w",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1w",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1x",     
+                        "roles": "STP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1jj"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "RoleCTP",
+                    "applicableNextStates": "ForwardDtcp",
+                    "applicableActions": "remark,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1x",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1x",
+                        "action": "remark",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1y",     
+                        "roles": "CTP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1kk"
+                        }
+                ]
+                },
+
+                {
+                    "businessServiceId": "land-service",
+                    "state": "ForwardDtcp",
+                    "applicableNextStates": "approved,cancel,sendback,mark,reject",
+                    "applicableActions": "mark,cancel,sendback,reject",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1y",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1y",
+                        "action": "cancel",
+                        "nextStateId": "",     
+                        "roles": "DTCP",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ll"
+                        },
+                        {
+                            "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1y",
+                            "action": "mark",
+                            "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1z",     
+                            "roles": "DTCP",
+                            "tenantId": "hr",
+                            "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1mm"
+                            },
+                            {
+                                "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1y",
+                                "action": "Approve",
+                                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1z",     
+                                "roles": "DTCP",
+                                "tenantId": "hr",
+                                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1nn"
+                                },
+                                {
+                                    "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1y",
+                                    "action": "Sendback",
+                                    "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1z",     
+                                    "roles": "DTCP",
+                                    "tenantId": "hr",
+                                    "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1oo"
+                                    },
+                                    {
+                                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1y",
+                                        "action": "reject",
+                                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1z",     
+                                        "roles": "DTCP",
+                                        "tenantId": "hr",
+                                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1pp"
+                                        }
+                                                
+                            ]
+                            },  
+                                    
+                
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Forward",
+                    "applicableNextStates": "Role",
+                    "applicableActions": "forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1z",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1z",
+                        "action": "forward",
+                        "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1aa",     
+                        "roles": "DTP(HQ)",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1qq"
+                        }
+                ]
+                },   
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role",
+                    "applicableNextStates": "",
+                    "applicableActions": "",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1aa",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1aa",
+                        "action": "",
+                        "nextStateId": "",     
+                        "roles": "DC and DFO",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1rr"
+                        }
+                ]
+                },
+                {
+                    "businessServiceId": "land-service",
+                    "state": "Role",
+                    "applicableNextStates": "",
+                    "applicableActions": "resubmit,forward",
+                    "docUpLAOdRequired": "false",
+                    "UpdateAllowed": "false",
+                    "isTerminateState": "false",
+                    "isStartState": "false",
+                    "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1aa",                                                                                                       
+                    "tenantId": "hr",
+                "actions": [
+                    {
+                        "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1aa",
+                        "action": "resubmit",
+                        "nextStateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1b",     
+                        "roles": "citizen",
+                        "tenantId": "hr",
+                        "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ss"
+                        },
+                        {
+                            "stateId":"bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1aa",
+                            "action": "forward",
+                            "nextStateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1c",     
+                            "roles": "citizen",
+                            "tenantId": "hr",
+                            "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1ss"
+                            }
+
+                    ]
+                     }
+                
+              
+            ]       
+        }
+    ]
+}

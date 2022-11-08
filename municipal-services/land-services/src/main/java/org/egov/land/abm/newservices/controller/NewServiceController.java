@@ -34,7 +34,7 @@ public class NewServiceController {
 	@PostMapping(value = "_create")
 	public  ResponseEntity<NewServiceResponseInfo> createNewService(@RequestBody NewService newService) throws JsonProcessingException {
 
-		NewServiceInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getNewServiceInfo());
+		NewServiceInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getNewServiceInfo(),newService.getRequestInfo().getUserInfo());
 
 		List<NewServiceInfo> newServiceInfoList = new ArrayList<>();
 		newServiceInfoList.add(newServiceInfo);

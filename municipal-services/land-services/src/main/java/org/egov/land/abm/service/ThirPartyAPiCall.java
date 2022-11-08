@@ -29,12 +29,6 @@ public class ThirPartyAPiCall {
 	public String tcpAccessKey;
 	@Value("${tcp.secret.key}")
 	public String tcpSecretKey;
-	@Value("${tcp.userId}")
-	public String tpUserId;
-	@Value("${tcp.tpUserId}")
-	public String tcptpUserId;
-	@Value("${tcp.emailId}")
-	public String tcpEmailId;
 	@Value("${tcp.genrate.transactionnumber}")
 	public String tcpgenratetransactionnumber;
 	@Value("${tcp.save.transactiondata}")
@@ -47,21 +41,61 @@ public class ThirPartyAPiCall {
 	public String tcpGenerateApplicationNumber;
 	@Value("${tcp.is.existSSO.Token}")
 	public String tcpExistSSoNumber;
+
+	@Value("${tcp.casetypeid}")
+	public String caseTypeId;
+	@Value("${tcp.apptypeid}")
+	public String appTypeId;
+	@Value("${tcp.chargestypeid}")
+	public String chargesTypeId;
+	@Value("${tcp.colonyname}")
+	public String colonyName;
+	@Value("${tcp.applicationdocid}")
+	public String applicationDocId;
+	@Value("${tcp.applicationid}")
+	public String applicationId;
+	@Value("${tcp.flag}")
+	public String flag;
+	@Value("${tcp.developmentplancode}")
+	public String developmentPlanCode;
+	@Value("${tcp.remarks}")
+	public String remarks;
+	@Value("${tcp.fileid}")
+	public String fileId;
+	@Value("${tcp.caseid}")
+	public String caseId;
+	@Value("${tcp.casenumber}")
+	public String caseNumber;
+	@Value("${tcp.applicationtypeid}")
+	public String applicationTypeId;
+	@Value("${tcp.applicationnumber}")
+	public String applicationNumber;
+	@Value("${tcp.plotno}")
+	public String plotNumber;
+	@Value("${tcp.createdbyroleid}")
+	public String createdByRoleId;
+	@Value("${tcp.relatedapplicationid}")
+	public String relatedApplicationId;
+	@Value("${tcp.IsBpocForResiPlotted}")
+	public String isBpocForResiPlotted;
+	@Value("${tcp.detailsofapplication}")
+	public String detailsOfApplication;
+	@Value("${tcp.plotid}")
+	public String plotId;
+	@Value("${tcp.isconfirmed}")
+	public String isConfirmed;
+
 	@Autowired
 	public RestTemplate restTemplate;
 
-	public ResponseEntity<Map> getAuthToken() {
+	public ResponseEntity<Map> getAuthToken(Map<String, Object> map) {
 
 		HttpHeaders headers = new HttpHeaders();
-		Map<String, Object> map = new HashMap<String, Object>();
 
-		map.put("UserId", tpUserId);
-		map.put("TpUserId", tcptpUserId);
-		map.put("EmailId", tcpEmailId);
 		headers.set("access_key", tcpAccessKey);
 		headers.set("secret_key", tcpSecretKey);
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		
+
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 
@@ -72,28 +106,29 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> generateTransactionNumber(Map<String, Object> request) {
-
-		request.put("UserloginId", tpUserId);
-		request.put("TpUserId", tcptpUserId);
-		request.put("EmailId", tcpEmailId);
-		request.put("TokenId", getAuthToken().getBody().get("Value"));
+	public ResponseEntity<Map> generateTransactionNumber(Map<String, Object> request,Map<String, Object> authtoken) {
+		request.put("CaseTypeId", caseTypeId);
+		request.put("AppTypeId", appTypeId);
+		request.put("ChargesTypeId", chargesTypeId);
+		
+		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 
 		log.info("request info\n" + request);
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpgenratetransactionnumber, request, Map.class);
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpgenratetransactionnumber, request,
+				Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("transaction Number\n" + response.getBody().get("Value"));
-		} 
+		}
 		return response;
 	}
 
-	public ResponseEntity<Map> saveTransactionData(Map<String, Object> request) {
+	public ResponseEntity<Map> saveTransactionData(Map<String, Object> request,Map<String, Object> authtoken) {
 
-		request.put("UserLoginId", tpUserId);
-		request.put("TpUserId", tcptpUserId);
-		request.put("EmailId", tcpEmailId);
-		request.put("TokenId", getAuthToken().getBody().get("Value"));
-		request.put("TxnNo",generateTransactionNumber(request).getBody().get("Value"));
+		request.put("CaseTypeId", caseTypeId);
+		request.put("AppTypeId", appTypeId);
+		request.put("ChargesTypeId", chargesTypeId);
+		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
+		
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpSaveTransactionData, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
@@ -102,47 +137,60 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> generateDiaryNumber(Map<String, Object> request) {
+	public ResponseEntity<Map> generateDiaryNumber(Map<String, Object> request,Map<String, Object> authtoken) {
 
-		
-		request.put("userId", tpUserId);
-		request.put("tpUserId", tcptpUserId);
-		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken().getBody().get("Value"));
-		
+		request.put("ApplicationDocId", applicationDocId);
+		request.put("ApplicationId", applicationId);
+		request.put("Flag", flag);
+		//request.put("DevelopmentPlanCode", developmentPlanCode);
+	//	request.put("Remarks", remarks);
+	//	request.put("FileId", fileId);
+	//	request.put("ColonyName", colonyName);
+		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
+
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, request, Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("Dairy Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
-	public ResponseEntity<Map> generateCaseNumber(Map<String, Object> request) {
-
-		request.put("UserLoginId", tpUserId);
-//		request.put("tpUserId", tcptpUserId);
-//		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken().getBody().get("Value"));
-		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
+	public ResponseEntity<Map> generateCaseNumber(Map<String, Object> request,Map<String, Object> authtoken) {
+		request.put("CaseId", caseId);
+		request.put("CaseTypeId", caseTypeId);
+		request.put("CaseNo", caseNumber);
+//		request.put("DevelopmentPlanCode", developmentPlanCode);
+//		request.put("ColonyName", colonyName);
+		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 		
+
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateCaseNumber, request, Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("Case Number\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}
 
-	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request) {
+	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request,Map<String, Object> authtoken) {
 
-		request.put("userId", tpUserId);
-		request.put("tpUserId", tcptpUserId);
-		request.put("emailid", tcpEmailId);
-		request.put("TokenId", getAuthToken().getBody().get("Value"));
-		request.put("DiaryNo", generateDiaryNumber(request).getBody().get("Value"));
-		request.put("CaseId",generateCaseNumber(request).getBody().get("Value"));    
-		 
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		request.put("CaseId", caseId);
+	    request.put("ApplicationTypeId", applicationTypeId);
+	  //  request.put("ApplicationId", applicationId);
+		//request.put("ApplicationNo", applicationNumber);
+     	request.put("PlotNo", plotNumber);
+		request.put("RelatedApplicationId", relatedApplicationId);
+		request.put("IsBpocForResiPlotted", isBpocForResiPlotted);
+	//	request.put("DetailsOfApplication", detailsOfApplication);
+		request.put("PlotId", plotId);
+		request.put("CreatedByRoleId", createdByRoleId);
+		request.put("IsConfirmed", isConfirmed);
+		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
+		System.out.println("request-------"+request);
+
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,
+				Map.class);
+		System.out.println("response"+response);
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("application Number\n" + response.getBody().get("Value"));
 		}
 		return response;
@@ -150,12 +198,8 @@ public class ThirPartyAPiCall {
 
 	public ResponseEntity<Map> isExistSSOToken(Map<String, Object> request) {
 
-	
-		request.put("userId", tpUserId);
-		request.put("tpUserId", tcptpUserId);
-
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
-		if (response.getStatusCode() == HttpStatus.CREATED) {
+		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
 		}
 		return response;
