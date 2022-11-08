@@ -93,8 +93,8 @@ public class OwnerInfo extends User  {
                          String lastModifiedBy, Long lastModifiedDate, String otpReference, String tenantId,
                          Boolean isPrimaryOwner, Double ownerShipPercentage, String ownerType,
                          String institutionId,List<Document> documents,RelationshipEnum relationship,
-                         Boolean userActive) {
-                super(id,uuid, userName, password, salutation, name, gender, mobileNumber, emailId, altContactNumber, pan, aadhaarNumber, permanentAddress, permanentCity, permanentPincode, correspondenceCity, correspondencePincode, correspondenceAddress, active, dob, pwdExpiryDate, locale, type, signature, accountLocked, roles, fatherOrHusbandName, bloodGroup, identificationMark, photo, createdBy, createdDate, lastModifiedBy, lastModifiedDate, otpReference, tenantId);
+                         Boolean userActive,Long parentid) {
+                super(id,parentid, uuid, userName, password, salutation, name, gender, mobileNumber, emailId, altContactNumber, pan, aadhaarNumber, permanentAddress, permanentCity, permanentPincode, correspondenceCity, correspondencePincode, correspondenceAddress, active, dob, pwdExpiryDate, locale, type, signature, accountLocked, roles, fatherOrHusbandName, bloodGroup, identificationMark, photo, createdBy, createdDate, lastModifiedBy, lastModifiedDate, otpReference, tenantId);
                 this.isPrimaryOwner = isPrimaryOwner;
                 this.ownerShipPercentage = ownerShipPercentage;
                 this.ownerType = ownerType;
@@ -119,6 +119,7 @@ public class OwnerInfo extends User  {
          */
         public void addUserDetail(User user){
                 this.setId(user.getId());
+                this.setParentid(user.getId());
                 this.setLastModifiedDate(user.getLastModifiedDate());
                 this.setLastModifiedBy(user.getLastModifiedBy());
                 this.setCreatedBy(user.getCreatedBy());
