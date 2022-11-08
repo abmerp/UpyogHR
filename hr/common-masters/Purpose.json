@@ -14,31 +14,14 @@
       "plotTypeId": 1,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "Plotted Commercial": {
-          "far": 1.75
-        }
-      },
-      "licenseFeeCharges": {
-        "Plotted Commercial": {
-          "far": 1.75
-        }
-      },
-      "conversionCharges": {
-        "Plotted Commercial": {
-          "far": 1.75
-        }
-      },
-      "externalDevelopmentCharges": {
-        "Plotted Commercial": {
-          "far": 1.75
-        }
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Plotted Commercial": {
-          "far": 1.75
-        }
-      }
+      "scrutinyFeeCharges":1.75,
+      "licenseFeeCharges":1.75,
+      "conversionCharges": 1.75,
+      
+      "externalDevelopmentCharges": 1.75,
+        
+      
+      "stateInfrastructureDevelopmentCharges":1.75
     },
     {
       "purposeId": 2,
@@ -70,31 +53,16 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "licenseFeeCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "externalDevelopmentCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "conversionCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      }
+      "scrutinyFeeCharges": 150,
+      
+      "licenseFeeCharges": 150,
+      
+      "externalDevelopmentCharges": 150,
+      
+      "conversionCharges": 150,
+      
+      "stateInfrastructureDevelopmentCharges": 150
+      
     },
     {
       "purposeId": 6,
@@ -108,31 +76,15 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "licenseFeeCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "externalDevelopmentCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "conversionCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      }
+      "scrutinyFeeCharges": 150,
+      
+      "licenseFeeCharges": 150,
+      
+      "externalDevelopmentCharges":150,
+      
+      "conversionCharges": 150,
+      
+      "stateInfrastructureDevelopmentCharges": 150
     },
     {
       "purposeId": 7,
@@ -146,28 +98,15 @@
       "plotTypeId": 1,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }
-      },
-      "licenseFeeCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }
-      },
-      "externalDevelopmentCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      },
-      "conversionCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      }
+      "scrutinyFeeCharges": 1.50,
+      
+      "licenseFeeCharges": 1.50,
+      
+      "externalDevelopmentCharges": 1.50,
+          
+      "conversionCharges": 1.50,
+             
+      "stateInfrastructureDevelopmentCharges": 1.50
     },
     {
       "purposeId": 63,
@@ -175,7 +114,7 @@
       "purposeCode": "CIR",
       "caseType_id": 1,
       "description": "Commercial",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -199,31 +138,15 @@
       "plotTypeId": 1,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      
-      },
-      "licenseFeeCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      
-      },
-      "externalDevelopmentCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      
-      },
-      "conversionCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Industrial Colony Commercial":{
-          "far": 1.50
-        }      
-      }
+      "scrutinyFeeCharges": 1.50,
+      
+      "licenseFeeCharges": 1.50,
+      
+      "externalDevelopmentCharges": 1.50,
+      
+      "conversionCharges": 1.50,
+      
+      "stateInfrastructureDevelopmentCharges": 1.50
     },
     {
       "purposeId": 73,
@@ -237,31 +160,15 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "Group Housing Commercial":{
-          "far": 1.75
-        }      
-      },
-      "licenseFeeCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      },
-      "externalDevelopmentCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      },
-      "conversionCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      }
+      "scrutinyFeeCharges":1.75,
+      
+      "licenseFeeCharges": 1.50,
+      
+      "externalDevelopmentCharges": 1.50,
+      
+      "conversionCharges": 1.50,
+      
+      "stateInfrastructureDevelopmentCharges": 1.50
     },
     {
       "purposeId": 74,
@@ -269,7 +176,7 @@
       "purposeCode": "AHP",
       "caseType_id": 1,
       "description": "AFFORDABLE HOUSING PROJECT",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -293,31 +200,15 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges":  {
-        "Group Housing Commercial":{
-          "far": 1.75
-        }      
-      },
-      "licenseFeeCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      },
-      "externalDevelopmentCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      },
-      "conversionCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Group Housing Commercial":{
-          "far": 1.50
-        }      
-      }
+      "scrutinyFeeCharges":  1.75,
+      
+      "licenseFeeCharges": 1.50,
+      
+      "externalDevelopmentCharges": 1.50,
+      
+      "conversionCharges": 1.50,
+      
+      "stateInfrastructureDevelopmentCharges": 1.50
     },
     {
       "purposeId": 78,
@@ -325,7 +216,7 @@
       "purposeCode": "CIS",
       "caseType_id": 1,
       "description": "Commercial in Special Zone",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -340,7 +231,7 @@
     {
       "purposeId": 83,
       "name": "Deen Dayal Jan Awas Yojna-Affordable Plotted 2016",
-      "purposeCode": "DDJAY-APHP",
+      "purposeCode": "DDJAY_APHP",
       "caseType_id": 1,
       "description": "Deen Dayal Jan Awas Yojna-Affordable Plotted 2016",
       "isActive": 1,
@@ -349,31 +240,15 @@
       "plotTypeId": 1,
       "isDisableForNewEntry": 0,
       "disableRemarks": "",
-      "scrutinyFeeCharges": {
-        "DDJAY": {
-          "far": 1.75
-        }
-      },
-      "licenseFeeCharges": {
-        "DDJAY": {
-          "far": 1.75
-        }
-      },
-      "externalDevelopmentCharges": {
-        "DDJAY": {
-          "far": 1.75
-        }
-      },
-      "conversionCharges": {
-        "DDJAY": {
-          "far": 1.75
-        }
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "DDJAY": {
-          "far": 1.75
-        }
-      }
+      "scrutinyFeeCharges": 1.75,
+      
+      "licenseFeeCharges": 1.75,
+      
+      "externalDevelopmentCharges": 1.75,
+      
+      "conversionCharges": 1.75,
+      
+      "stateInfrastructureDevelopmentCharges":1.75
     },
     {
       "purposeId": 84,
@@ -381,7 +256,7 @@
       "purposeCode": "MLU-CZ",
       "caseType_id": 1,
       "description": "Mixed Land use in Comm Zone with Minority Resi Use",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -399,7 +274,7 @@
       "purposeCode": "MLU-RZ",
       "caseType_id": 1,
       "description": "Mixed Land use in Resi Zone with Minority Comm Use",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -417,7 +292,7 @@
       "purposeCode": "NILP",
       "caseType_id": 1,
       "description": "New Integrated Licencing Policy (NILP) for Residential",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -435,37 +310,22 @@
       "purposeCode": "LDEF",
       "caseType_id": 1,
       "description": "Low Density Eco-Friendly Colony(LDEF)",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-          "Low density Eco friendly": {
-              "far": ""
-          }
-      },
-      "licenseFeeCharges": {
-        "Low density Eco friendly": {
-            "far": ""
-        }
-    },
-      "externalDevelopmentCharges": {
-        "Low density Eco friendly": {
-            "far": ""
-        }
-    },
-      "conversionCharges": {
-        "Low density Eco friendly": {
-            "far": ""
-        }
-    },
-      "stateInfrastructureDevelopmentCharges": {
-        "Low density Eco friendly": {
-            "far": ""
-        }
-    }
+      "scrutinyFeeCharges": "",
+      
+      "licenseFeeCharges": "",
+    
+      "externalDevelopmentCharges": "",
+    
+      "conversionCharges": "",
+    
+      "stateInfrastructureDevelopmentCharges":""
+    
     },
     {
       "purposeId": 89,
@@ -479,27 +339,16 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "NILP":{
-          "far": 1.75
-        }
-      },
-      "licenseFeeCharges": {
-        "NILP":{
-          "far": 1.75
-        }      },
-      "externalDevelopmentCharges": {
-        "NILP":{
-          "far": 1.75
-        }      },
-      "conversionCharges": {
-        "NILP":{
-          "far": 1.75
-        }      },
-      "stateInfrastructureDevelopmentCharges": {
-        "NILP":{
-          "far": 1.75
-        }      }
+      "scrutinyFeeCharges": 1.75,
+      
+      "licenseFeeCharges": 1.75,
+            
+      "externalDevelopmentCharges": 1.75,
+           
+      "conversionCharges": 1.75,
+           
+      "stateInfrastructureDevelopmentCharges":1.75
+            
     },
     {
       "purposeId": 90,
@@ -513,36 +362,20 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "Tod Group Housing":{
-          "far": 3.5
-        }
-      },
-      "licenseFeeCharges": {
-        "Tod Group Housing":{
-          "far": 3.5
-        }
-      },
-      "externalDevelopmentCharges": {
-        "Tod Group Housing":{
-          "far": 3.5
-        }
-      },
-      "conversionCharges": {
-        "Tod Group Housing":{
-          "far": 3.5
-        }
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Tod Group Housing":{
-          "far": 3.5
-        }
-      }
+      "scrutinyFeeCharges": 3.5,
+      
+      "licenseFeeCharges": 3.5,
+      
+      "externalDevelopmentCharges": 3.5,
+      
+      "conversionCharges": 3.5,
+      
+      "stateInfrastructureDevelopmentCharges": 3.5
     },
     {
       "purposeId": 91,
       "name": "Transit Oriented Development (TOD)-Comm",
-      "purposeCode": "TOD(COMM)",
+      "purposeCode": "TODCOMM",
       "caseType_id": 1,
       "description": "Transit Oriented Development (TOD)-Comm",
       "isActive": 1,
@@ -551,28 +384,17 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": 0,
       "disableRemarks": "",
-      "scrutinyFeeCharges": {
-        "Tod Commercial":{
-          "far": 3.5
-        }
-      },
-      "licenseFeeCharges": {
-        "Tod Commercial":{
-          "far": 3.5
-        }      },
-      "externalDevelopmentCharges": {
-        "Tod Commercial":{
-          "far": 3.5
-        }      },
-      "conversionCharges": {
-        "Tod Commercial":{
-          "far": 3.5
-        }      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Tod Commercial":{
-          "far": 3.5
-        }      }
-    },
+      "scrutinyFeeCharges": 3.5,
+      
+      "licenseFeeCharges": 3.5,
+           
+      "externalDevelopmentCharges": 3.5,
+           
+      "conversionCharges": 3.5,
+          
+      "stateInfrastructureDevelopmentCharges":3.5
+             
+            },
     {
       "purposeId": 92,
       "name": "Transit Oriented Development (TOD)-IT",
@@ -585,31 +407,15 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }
-      },
-      "licenseFeeCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }      
-      },
-      "externalDevelopmentCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }      
-      },
-      "conversionCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }      
-      },
-      "stateInfrastructureDevelopmentCharges": {
-        "IT Colony Commercial":{
-          "far": 150
-        }      
-      }
+      "scrutinyFeeCharges": 150,
+      
+      "licenseFeeCharges": 150,
+      
+      "externalDevelopmentCharges":150,
+      
+      "conversionCharges": 150,
+      
+      "stateInfrastructureDevelopmentCharges": 150
     },
     {
       "purposeId": 93,
@@ -641,32 +447,21 @@
       "plotTypeId": 1,
       "isDisableForNewEntry": 0,
       "disableRemarks": "",
-      "scrutinyFeeCharges": {
-        "Commercial Plotted": {
-          "far": 1.50
-        }
-      },
-      "licenseFeeCharges": {
-        "Commercial Plotted": {
-          "far": 1.50
-        }      },
-      "externalDevelopmentCharges": {
-        "Commercial Plotted": {
-          "far": 1.50
-        }      },
-      "conversionCharges": {
-        "Commercial Plotted": {
-          "far": 1.50
-        }      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Commercial Plotted": {
-          "far": 1.50
-        }      }
+      "scrutinyFeeCharges": 1.50,
+      
+      "licenseFeeCharges": 1.50,
+             
+      "externalDevelopmentCharges": 1.50,
+            
+      "conversionCharges": 1.50,
+             
+      "stateInfrastructureDevelopmentCharges":1.50
+            
     },
     {
       "purposeId": 111,
       "name": "Sectoral Plan Pockets (SPRP)-GH",
-      "purposeCode": "SPRP(RGH)",
+      "purposeCode": "SPRPRGH",
       "caseType_id": 1,
       "description": "Sectoral Plan Pockets (SPRP)-GH",
       "isActive": 1,
@@ -675,27 +470,16 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": 0,
       "disableRemarks": "",
-      "scrutinyFeeCharges": {
-        "Group Housing Commercial": {
-          "far": 1.75
-        }
-      },
-      "licenseFeeCharges": {
-        "Group Housing Commercial": {
-          "far": 1.50
-        }      },
-      "externalDevelopmentCharges": {
-        "Group Housing Commercial": {
-          "far": 1.50
-        }      },
-      "conversionCharges": {
-        "Group Housing Commercial": {
-          "far": 1.50
-        }      },
-      "stateInfrastructureDevelopmentCharges": {
-        "Group Housing Commercial": {
-          "far": 1.50
-        }      }
+      "scrutinyFeeCharges":1.75,
+      
+      "licenseFeeCharges": 1.50,
+            
+      "externalDevelopmentCharges": 1.50,
+           
+      "conversionCharges": 1.50,
+        
+      "stateInfrastructureDevelopmentCharges": 1.50
+           
     },
     {
       "purposeId": 112,
@@ -703,7 +487,7 @@
       "purposeCode": "DRH",
       "caseType_id": 1,
       "description": "Development of Retirement Housing",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": null,
       "idwPercentage": null,
       "plotTypeId": 1,
@@ -721,7 +505,7 @@
       "purposeCode": "RHP",
       "caseType_id": 1,
       "description": "Retirement Housing Project",
-      "isActive": 1,
+      "isActive": false,
       "edcPercentage": null,
       "idwPercentage": null,
       "plotTypeId": 2,

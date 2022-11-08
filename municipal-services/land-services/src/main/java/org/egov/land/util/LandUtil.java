@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.egov.common.contract.request.RequestInfo;
+
 import org.egov.land.config.LandConfiguration;
 import org.egov.land.repository.ServiceRequestRepository;
 import org.egov.land.web.models.AuditDetails;
@@ -67,10 +68,8 @@ public class LandUtil {
 	/**
 	 * Creates request to search ApplicationType and etc from MDMS
 	 * 
-	 * @param requestInfo
-	 *            The requestInfo of the request
-	 * @param tenantId
-	 *            The tenantId of the BPA
+	 * @param requestInfo The requestInfo of the request
+	 * @param tenantId    The tenantId of the BPA
 	 * @return request to search ApplicationType and etc from MDMS
 	 */
 	public List<ModuleDetail> getBPAModuleRequest() {
@@ -113,7 +112,7 @@ public class LandUtil {
 		moduleDetails.addAll(moduleRequest);
 
 		MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(moduleDetails).tenantId(tenantId).build();
-		
+
 		MdmsCriteriaReq mdmsCriteriaReq = MdmsCriteriaReq.builder().mdmsCriteria(mdmsCriteria).requestInfo(requestInfo)
 				.build();
 		return mdmsCriteriaReq;
@@ -124,8 +123,38 @@ public class LandUtil {
 		Object result = serviceRequestRepository.fetchResult(getMdmsSearchUrl(), mdmsCriteriaReq);
 		return result;
 	}
-	
-	
+
+	public List<ModuleDetail> getPurposeCodeRequest(String purposeCode) {
+
+		final String filterCode = "$.[?(@.purposeCode=='" + purposeCode + "')].code";
+		List<MasterDetail> commonMaster = new ArrayList<>();
+		commonMaster.add(MasterDetail.builder().name("Purpose").filter(filterCode).build());
+		ModuleDetail commonMasterMDtl = ModuleDetail.builder().masterDetails(commonMaster).moduleName("Purpose")
+				.build();
+
+		return Arrays.asList(commonMasterMDtl);
+
+	}
+
+	public MdmsCriteriaReq getMDMSRequestPurposeCode(RequestInfo requestInfo, String tenantId, String purposeCode) {
+
+		List<ModuleDetail> moduleRequest = getPurposeCodeRequest(purposeCode);
+		List<ModuleDetail> moduleDetails = new LinkedList<>();
+		moduleDetails.addAll(moduleRequest);
+
+		MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(moduleDetails).tenantId(tenantId).build();
+
+		MdmsCriteriaReq mdmsCriteriaReq = MdmsCriteriaReq.builder().mdmsCriteria(mdmsCriteria).requestInfo(requestInfo)
+				.build();
+		return mdmsCriteriaReq;
+	}
+
+	public Object mDMSCallPurposeCode(RequestInfo requestInfo, String tenantId, String purposeCode) {
+		MdmsCriteriaReq mdmsCriteriaReq = getMDMSRequestPurposeCode(requestInfo, tenantId, purposeCode);
+		Object result = serviceRequestRepository.fetchResult(getMdmsSearchUrl(), mdmsCriteriaReq);
+		return result;
+	}
+
 	public void defaultJsonPathConfig() {
 		Configuration.setDefaults(new Configuration.Defaults() {
 
@@ -147,5 +176,6 @@ public class LandUtil {
 				return EnumSet.noneOf(Option.class);
 			}
 		});
+
 	}
 }
