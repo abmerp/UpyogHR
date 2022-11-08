@@ -129,8 +129,9 @@ public class LandUtil {
 		final String filterCode = "$.[?(@.purposeCode=='" + purposeCode + "')].code";
 		List<MasterDetail> commonMaster = new ArrayList<>();
 		commonMaster.add(MasterDetail.builder().name("Purpose").filter(filterCode).build());
-		ModuleDetail commonMasterMDtl = ModuleDetail.builder().masterDetails(commonMaster).moduleName("Purpose")
-				.build();
+		
+		ModuleDetail commonMasterMDtl = ModuleDetail.builder().masterDetails(commonMaster)
+				.moduleName(LandConstants.COMMON_MASTERS_MODULE).build();
 
 		return Arrays.asList(commonMasterMDtl);
 
