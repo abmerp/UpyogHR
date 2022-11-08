@@ -1,0 +1,93 @@
+{
+"tenantId": "hr",
+  "moduleName": "common-masters",
+  "Purpose": "Potential Zone",
+
+
+
+{
+      "zone":"Hyper",
+      "code": "HYP",
+      "Active": "True"
+	  
+},
+	  
+	  
+	  
+  {
+"tenantId": "hr",
+  "moduleName": "common-masters",
+  "Purpose": "Potential Zone"
+
+
+
+{
+      "zone":"High1"
+      "code": "HIG1",
+      "Active": "True",
+	  },
+	  
+	  
+	  
+	  {  
+	  "tenantId": "hr",
+  "moduleName": "common-masters",
+  "Purpose": "Potential Zone"
+
+
+
+{
+      "zone":"High2"
+      "code": "HIG2",
+      "Active": "True",
+	  },
+	  
+	  
+	  {  
+	  "tenantId": "hr",
+  "moduleName": "common-masters",
+  "Purpose": "Potential Zone"
+
+
+
+{
+      "zone":"Medium"
+      "code": "MEDIUM",
+      "Active": "True",
+	  },
+	  
+	  
+	  
+	    {  
+	  "tenantId": "hr",
+  "moduleName": "common-masters",
+  "Purpose": "Potential Zone"
+
+
+
+{
+      "zone":"Low"
+      "code": "LOW",
+      "Active": "True",
+	  },
+	  
+	  
+	  
+	  
+	   {  
+	  "tenantId": "hr",
+  "moduleName": "common-masters",
+  "Purpose": "Potential Zone"
+
+
+
+{
+      "zone":"Low2"
+      "code": "LOW2",
+      "Active": "True",
+	  },
+	  
+	  }
+	  
+	  
+	  
