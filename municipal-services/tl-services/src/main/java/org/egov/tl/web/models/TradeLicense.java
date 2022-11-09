@@ -131,16 +131,19 @@ public class  TradeLicense   {
         @JsonProperty("oldLicenseNumber")
         private String oldLicenseNumber = null;
 
-
-        @Size(max=256)
-        @SafeHtml
-        @JsonProperty("propertyId")
-        private String propertyId = null;
-
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("oldPropertyId")
-        private String oldPropertyId = null;
+		/*
+		 * @Size(max=256)
+		 * 
+		 * @SafeHtml
+		 * 
+		 * @JsonProperty("propertyId") private String propertyId = null;
+		 * 
+		 * @Size(max=64)
+		 * 
+		 * @SafeHtml
+		 * 
+		 * @JsonProperty("oldPropertyId") private String oldPropertyId = null;
+		 */
 
         @Size(max=64)
         @SafeHtml
