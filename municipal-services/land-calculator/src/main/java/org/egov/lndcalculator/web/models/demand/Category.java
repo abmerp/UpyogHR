@@ -6,8 +6,13 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum Category {
 
     TAX("TAX"),
-
     FEE("FEE"),
+    SCRUITNYFEE("scrutinyFeeCharges"),
+    LICENSEFEE("licenseFeeCharges"),
+    EXTERNALDEVELOPMENTCHARGES("externalDevelopmentCharges"),
+    CONVERSIONCHARGES("conversionCharges"),
+    STATEINFRASTRUCTURECHARGES("stateInfrastructureDevelopmentCharges"),
+    
 
     REBATE("REBATE"),
 

@@ -8,9 +8,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.egov.lndcalculator.service.BPACalculationService;
+
 import org.egov.lndcalculator.service.CalculationService;
+import org.egov.lndcalculator.service.CalculatorImpl;
 import org.egov.lndcalculator.service.DemandService;
+import org.egov.lndcalculator.service.FeeTypeCalculationDtoInfo;
+import org.egov.lndcalculator.service.FeesTypeCalculationDto;
 import org.egov.lndcalculator.web.models.*;
 import org.egov.lndcalculator.web.models.demand.BillResponse;
 import org.egov.lndcalculator.web.models.demand.GenerateBillCriteria;
@@ -28,7 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 @RequestMapping("/v1")
 public class CalculatorController {
-
+	
 	private ObjectMapper objectMapper;
 
 	private HttpServletRequest request;
@@ -37,16 +40,23 @@ public class CalculatorController {
 
 	private DemandService demandService;
 
-	private BPACalculationService bpaCalculationService;
+	//private BPACalculationService bpaCalculationService;
+
 
 	@Autowired
+	CalculatorImpl calcuImpl;
+
+
+
+	
+	@Autowired
 	public CalculatorController(ObjectMapper objectMapper, HttpServletRequest request,
-								CalculationService calculationService, DemandService demandService, BPACalculationService bpaCalculationService) {
+								CalculationService calculationService, DemandService demandService) {
 		this.objectMapper = objectMapper;
 		this.request = request;
 		this.calculationService = calculationService;
 		this.demandService = demandService;
-		this.bpaCalculationService = bpaCalculationService;
+	//	this.bpaCalculationService = bpaCalculationService;
 	}
 
 	/**
@@ -63,12 +73,12 @@ public class CalculatorController {
 		switch(servicename)
 		{
 			case businessService_TL:
-				calculations = calculationService.calculate(calculationReq, false);
+				calculations = calculationService.calculator(calculationReq, false);
 				break;
 
-			case businessService_BPA:
-				calculations = bpaCalculationService.calculate(calculationReq);
-				break;
+//			case businessService_BPA:
+//				calculations = bpaCalculationService.calculate(calculationReq);
+//				break;
 			default:
 				throw new CustomException("UNKNOWN_BUSINESSSERVICE", " Business Service not supported");
 		}
@@ -76,6 +86,7 @@ public class CalculatorController {
 		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
 		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
 	}
+	
 
 
 	/**

@@ -1,4 +1,4 @@
-package org.egov.land.calcutaor;
+package org.egov.lndcalculator.service;
 
 public interface Calculator {
 

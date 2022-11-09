@@ -10,6 +10,7 @@ import org.egov.lndcalculator.repository.BillingslabRepository;
 import org.egov.lndcalculator.repository.ServiceRequestRepository;
 import org.egov.lndcalculator.repository.builder.BillingslabQueryBuilder;
 import org.egov.lndcalculator.utils.CalculationUtils;
+import org.egov.lndcalculator.utils.LandUtil;
 import org.egov.lndcalculator.utils.TLCalculatorConstants;
 import org.egov.lndcalculator.web.models.*;
 import org.egov.lndcalculator.web.models.demand.Category;
@@ -60,6 +61,12 @@ public class CalculationService {
 
     @Autowired
     private TLRenewalCalculation tlRenewal;
+    
+    @Autowired
+    LandUtil util;
+    
+    @Autowired
+    CalculatorImpl calculatorImpl;
 
     /**
      * Calculates tax estimates and creates demand
@@ -80,6 +87,51 @@ public class CalculationService {
    }
 
 
+   public List<Calculation> calculator(CalculationReq calculationReq, Boolean isEstimate){
+       String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
+     // Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
+      Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(),tenantId,calculationReq.getCalulationCriteria().get(0).getTradelicense().getPurposeCode());
+       FeesTypeCalculationDto result =  calculatorImpl.feesTypeCalculation(calculationReq);
+//     
+//       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
+//               calculationReq.getCalulationCriteria(),mdmsData);
+//     
+       List<Calculation> calculations = new ArrayList<>();
+       Calculation calculation = new Calculation();
+       calculation.setApplicationNumber(tenantId);
+       calculation.setAccessoryBillingIds(getAccessoryFeeAndBillingSlabIds(null, null));
+       calculation.setTenantId(tenantId);
+       calculation.setTradeTypeBillingIds(getAccessoryFeeAndBillingSlabIds(null, null));
+       calculation.setTaxHeadEstimates(null);
+       
+       calculation.getAccessoryBillingIds().getLicenseFeeCharges();
+       calculation.getAccessoryBillingIds().getScrutinyFeeCharges();
+       calculation.getAccessoryBillingIds().getConversionCharges();
+       calculation.getAccessoryBillingIds().getExternalDevelopmentCharges();
+       calculation.getAccessoryBillingIds().getStateInfrastructureDevelopmentCharges();
+       calculation.getApplicationNumber();
+       calculation.getTenantId();
+       calculation.getAccessoryBillingIds().getFee();
+       calculation.getTaxHeadEstimates().get(0).getTaxHeadCode();
+       calculation.getTaxHeadEstimates().get(0).getCategory();
+       calculation.getTaxHeadEstimates().get(0).getEstimateAmount();
+
+       CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();  
+            
+              if(!isEstimate){
+           demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
+           producer.push(config.getSaveTopic(),calculationRes);
+       }
+       return calculations;
+   }
+
+   
+   
+   
+   
+   
+   
+   
     /***
      * Calculates tax estimates
      * @param requestInfo The requestInfo of the calculation request
@@ -101,7 +153,7 @@ public class CalculationService {
           if(estimatesAndSlabs.getAccessoryFeeAndBillingSlabIds()!=null)
               accessoryFeeAndBillingSlabIds = estimatesAndSlabs.getAccessoryFeeAndBillingSlabIds();
           Calculation calculation = new Calculation();
-          calculation.setTradeLicense(criteria.getTradelicense());
+         // calculation.setTradeLicense(criteria.getTradelicense());
           calculation.setTenantId(criteria.getTenantId());
           calculation.setTaxHeadEstimates(taxHeadEstimates);
           calculation.setTradeTypeBillingIds(tradeTypeFeeAndBillingSlabIds);

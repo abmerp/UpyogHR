@@ -26,7 +26,7 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class  TradeLicense   {
+public class TradeLicense   {
     @JsonProperty("id")
     private String id = null;
 
@@ -38,11 +38,7 @@ public class  TradeLicense   {
      */
     public enum LicenseTypeEnum {
         TEMPORARY("TEMPORARY"),
-
         PERMANENT("PERMANENT");
-
-
-
         private String value;
 
         LicenseTypeEnum(String value) {
@@ -117,11 +113,11 @@ public class  TradeLicense   {
     @JsonProperty("oldLicenseNumber")
     private String oldLicenseNumber = null;
 
-    @JsonProperty("propertyId")
-    private String propertyId = null;
-
-    @JsonProperty("oldPropertyId")
-    private String oldPropertyId = null;
+//    @JsonProperty("propertyId")
+//    private String propertyId = null;
+//
+//    @JsonProperty("oldPropertyId")
+//    private String oldPropertyId = null;
 
     @JsonProperty("accountId")
     private String accountId = null;
@@ -237,6 +233,15 @@ public class  TradeLicense   {
 
     @JsonProperty("auditDetails")
     private AuditDetails auditDetails = null;
+
+	@JsonProperty("totalLandSize")
+	private String totalLandSize;
+
+	@JsonProperty("potenialZone")
+	private String potenialZone;
+
+	@JsonProperty("purposeCode")
+	private String purposeCode;
 
 
 }

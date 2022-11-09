@@ -37,8 +37,8 @@ public class Calculation {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber = null;
 
-	@JsonProperty("tradeLicense")
-	private TradeLicense tradeLicense = null;
+//	@JsonProperty("tradeLicense")
+//	private TradeLicense tradeLicense = null;
 
 	@NotNull
 	@JsonProperty("tenantId")

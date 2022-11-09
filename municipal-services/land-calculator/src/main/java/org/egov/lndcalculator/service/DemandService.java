@@ -78,7 +78,7 @@ public class DemandService {
 
             //Collect required parameters for demand search
             String tenantId = calculations.get(0).getTenantId();
-            Set<String> applicationNumbers = calculations.stream().map(calculation -> calculation.getTradeLicense().getApplicationNumber()).collect(Collectors.toSet());
+            Set<String> applicationNumbers = calculations.stream().map(calculation -> calculation.getApplicationNumber()).collect(Collectors.toSet());
             List<Demand> demands = searchDemand(tenantId,applicationNumbers,requestInfo,businessService);
             Set<String> applicationNumbersFromDemands = new HashSet<>();
             if(!CollectionUtils.isEmpty(demands))
@@ -86,7 +86,7 @@ public class DemandService {
 
             //If demand already exists add it updateCalculations else createCalculations
             for(Calculation calculation : calculations)
-            {      if(!applicationNumbersFromDemands.contains(calculation.getTradeLicense().getApplicationNumber()))
+            {      if(!applicationNumbersFromDemands.contains(calculation.getApplicationNumber()))
                         createCalculations.add(calculation);
                     else
                         updateCalculations.add(calculation);
@@ -144,10 +144,10 @@ public class DemandService {
         for(Calculation calculation : calculations) {
             TradeLicense license = null;
 
-            if(calculation.getTradeLicense()!=null)
-                license = calculation.getTradeLicense();
+//            if(calculation.getTradeLicense()!=null)
+//                license = calculation.getTradeLicense();
 
-            else if(calculation.getApplicationNumber()!=null)
+           if(calculation.getApplicationNumber()!=null)
                 license = utils.getTradeLicense(requestInfo, calculation.getApplicationNumber()
                         , calculation.getTenantId());
 
@@ -157,7 +157,7 @@ public class DemandService {
                         calculation.getApplicationNumber() + " TradeLicense with this number does not exist ");
 
             String tenantId = calculation.getTenantId();
-            String consumerCode = calculation.getTradeLicense().getApplicationNumber();
+            String consumerCode = calculation.getApplicationNumber();
 
             User owner = license.getTradeLicenseDetail().getOwners().get(0).toCommonUser();
 
@@ -231,11 +231,11 @@ public class DemandService {
         List<Demand> demands = new LinkedList<>();
         for(Calculation calculation : calculations) {
 
-            List<Demand> searchResult = searchDemand(calculation.getTenantId(),Collections.singleton(calculation.getTradeLicense().getApplicationNumber())
+            List<Demand> searchResult = searchDemand(calculation.getTenantId(),Collections.singleton(calculation.getApplicationNumber())
                     , requestInfo,businessService);
 
             if(CollectionUtils.isEmpty(searchResult))
-                throw new CustomException("INVALID UPDATE","No demand exists for applicationNumber: "+calculation.getTradeLicense().getApplicationNumber());
+                throw new CustomException("INVALID UPDATE","No demand exists for applicationNumber: "+calculation.getApplicationNumber());
 
             Demand demand = searchResult.get(0);
             List<DemandDetail> demandDetails = demand.getDemandDetails();
