@@ -3,14 +3,16 @@ package org.egov.land.calcutaor;
 public interface Calculator {
 
 	
-	public static int AREA = 4047;
-	public static float PERCENTAGE1 = 0.96f;
-	public static float PERCENTAGE2 = 0.04f;
-	public static int RATE = 1250000;
-	public static int RATE1 = 34000000;
-	public static float PART1 = 0.8f;
-	public static float PART2 = 0.15f;
-	public static float PART3 = 0.05f;
+	public  double AREA = 4047;
+	public  double PERCENTAGE1 = 0.96;
+	public  double PERCENTAGE2 = 0.04;
+	public  double RATE = 1250000;
+	public  double RATE1 = 34000000;
+	public double PART1 = 0.8;
+	public double PART2 = 0.15;
+	public double PART3 = 0.05;
+	
+	
 	String PURPOSE_RPL = "RPL";
 
 	String PURPOSE_ITP = "ITP";
