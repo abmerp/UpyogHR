@@ -26,6 +26,7 @@ import org.springframework.util.CollectionUtils;
 
 import static org.egov.lndcalculator.utils.TLCalculatorConstants.businessService_TL;
 
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -111,6 +112,10 @@ public class CalculationService {
            demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
            producer.push(config.getSaveTopic(),calculationRes);
        }
+              if(!isEstimate){
+                  demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
+                  producer.push(config.getSaveTopic(),calculationRes);
+              }
        return calculations;
    }
 
@@ -152,6 +157,7 @@ public class CalculationService {
           calculations.add(calculation);
 
       }
+      
       return calculations;
   }
 
