@@ -51,7 +51,6 @@ public class Calculation {
 	@JsonProperty("tradeTypeBillingIds")
 	FeeAndBillingSlabIds tradeTypeBillingIds;
 
-	@JsonProperty("accessoryBillingIds")
-	FeeAndBillingSlabIds accessoryBillingIds;
+	
 
 }

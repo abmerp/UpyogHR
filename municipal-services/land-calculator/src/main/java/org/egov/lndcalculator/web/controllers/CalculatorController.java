@@ -10,12 +10,12 @@ import javax.validation.Valid;
 
 import org.egov.lndcalculator.service.CalculationService;
 import org.egov.lndcalculator.service.CalculatorImpl;
-import org.egov.lndcalculator.service.CalculatorRequest;
 import org.egov.lndcalculator.service.DemandService;
 import org.egov.lndcalculator.web.models.BillAndCalculations;
 import org.egov.lndcalculator.web.models.Calculation;
 import org.egov.lndcalculator.web.models.CalculationReq;
 import org.egov.lndcalculator.web.models.CalculationRes;
+import org.egov.lndcalculator.web.models.CalculatorRequest;
 import org.egov.lndcalculator.web.models.RequestInfoWrapper;
 import org.egov.lndcalculator.web.models.demand.GenerateBillCriteria;
 import org.egov.tracer.model.CustomException;

@@ -88,30 +88,26 @@ public class CalculationService {
 //     
        List<Calculation> calculations = new ArrayList<>();
        Calculation calculation = new Calculation();
-       calculation.setApplicationNumber(tenantId);
-       calculation.setAccessoryBillingIds(getAccessoryFeeAndBillingSlabIds(null, null));
+       TaxHeadEstimate taxHeadEstimate= new TaxHeadEstimate();
+       calculation.setApplicationNumber(calculationReq.getApplicationNumber());
+      
        calculation.setTenantId(tenantId);
-       calculation.setTradeTypeBillingIds(getAccessoryFeeAndBillingSlabIds(null, null));
-       calculation.setTaxHeadEstimates(null);
+       calculation.setTradeTypeBillingIds(new FeeAndBillingSlabIds("",new BigDecimal(1000),result.getConversionChargesCal(),
+    		   result.getExternalDevelopmentChargesCal(),
+    		   result.getScrutinyFeeChargesCal(),
+    		   result.getLicenseFeeChargesCal(),
+    		   result.getStateInfrastructureDevelopmentChargesCal()) );
+       taxHeadEstimate.setTaxHeadCode("Gst");
        
-       calculation.getAccessoryBillingIds().getLicenseFeeCharges();
-       calculation.getAccessoryBillingIds().getScrutinyFeeCharges();
-       calculation.getAccessoryBillingIds().getConversionCharges();
-       calculation.getAccessoryBillingIds().getExternalDevelopmentCharges();
-       calculation.getAccessoryBillingIds().getStateInfrastructureDevelopmentCharges();
-       calculation.getApplicationNumber();
-       calculation.getTenantId();
-       calculation.getAccessoryBillingIds().getFee();
-       calculation.getTaxHeadEstimates().get(0).getTaxHeadCode();
-       calculation.getTaxHeadEstimates().get(0).getCategory();
-       calculation.getTaxHeadEstimates().get(0).getEstimateAmount();
-
+      //TODO Add TAX when required
+       //calculation.getTaxHeadEstimates().add(taxHeadEstimate);
+       
+       
+       
+       calculations.add(calculation);
        CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();  
             
-              if(!isEstimate){
-           demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
-           producer.push(config.getSaveTopic(),calculationRes);
-       }
+       
               if(!isEstimate){
                   demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
                   producer.push(config.getSaveTopic(),calculationRes);
@@ -151,8 +147,7 @@ public class CalculationService {
           calculation.setTenantId(criteria.getTenantId());
           calculation.setTaxHeadEstimates(taxHeadEstimates);
           calculation.setTradeTypeBillingIds(tradeTypeFeeAndBillingSlabIds);
-          if(accessoryFeeAndBillingSlabIds!=null)
-              calculation.setAccessoryBillingIds(accessoryFeeAndBillingSlabIds);
+         
 
           calculations.add(calculation);
 
@@ -330,7 +325,7 @@ public class CalculationService {
 
       FeeAndBillingSlabIds feeAndBillingSlabIds = new FeeAndBillingSlabIds();
       feeAndBillingSlabIds.setFee(tradeUnitTotalFee);
-      feeAndBillingSlabIds.setBillingSlabIds(billingSlabIds);
+   //   feeAndBillingSlabIds.setBillingSlabIds(billingSlabIds);
       feeAndBillingSlabIds.setId(UUID.randomUUID().toString());
 
       return feeAndBillingSlabIds;
@@ -390,7 +385,7 @@ public class CalculationService {
       BigDecimal accessoryTotalFee = getTotalFee(accessoryFees,calculationType);
       FeeAndBillingSlabIds feeAndBillingSlabIds = new FeeAndBillingSlabIds();
       feeAndBillingSlabIds.setFee(accessoryTotalFee);
-      feeAndBillingSlabIds.setBillingSlabIds(billingSlabIds);
+    //  feeAndBillingSlabIds.setBillingSlabIds(billingSlabIds);
       feeAndBillingSlabIds.setId(UUID.randomUUID().toString());
 
 

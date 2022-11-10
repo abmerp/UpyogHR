@@ -27,6 +27,7 @@ import com.jayway.jsonpath.spi.mapper.MappingProvider;
 @Component
 public class LandUtil {
 
+	@Autowired
 	private TLCalculatorConfigs config;
 
 	@Autowired

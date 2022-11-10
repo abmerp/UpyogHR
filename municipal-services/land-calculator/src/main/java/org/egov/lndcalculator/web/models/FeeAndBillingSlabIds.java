@@ -1,12 +1,20 @@
 package org.egov.lndcalculator.web.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-
 import java.math.BigDecimal;
-import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+	
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class FeeAndBillingSlabIds {
 
     @JsonProperty("id")
@@ -31,7 +39,5 @@ public class FeeAndBillingSlabIds {
     @JsonProperty("stateInfrastructureDevelopmentCharges")
 	private double stateInfrastructureDevelopmentCharges;
 
-    @JsonProperty("billingSlabIds")
-    private List<String> billingSlabIds;
 
 }

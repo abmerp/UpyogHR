@@ -43,9 +43,9 @@ import java.sql.SQLException;
                     if (pgObjAccessory != null)
                         accessoryBillingSlabIds = mapper.readValue(pgObjAccessory.getValue(), FeeAndBillingSlabIds.class);
                     billingSlabIds.setConsumerCode(consumerCode);
-                    billingSlabIds.setTradeTypeBillingSlabIds(tradeTypeBillingSlabIds.getBillingSlabIds());
-                    if(accessoryBillingSlabIds!=null)
-                        billingSlabIds.setAccesssoryBillingSlabIds(accessoryBillingSlabIds.getBillingSlabIds());
+                   // billingSlabIds.setTradeTypeBillingSlabIds(tradeTypeBillingSlabIds.getBillingSlabIds());
+                    //if(accessoryBillingSlabIds!=null)
+                      //  billingSlabIds.setAccesssoryBillingSlabIds(accessoryBillingSlabIds.getBillingSlabIds());
                 }
                 catch (IOException e){
                     throw new CustomException("PARSING ERROR","Failed to parse json object");

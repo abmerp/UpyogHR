@@ -88,6 +88,13 @@ public class LandConfiguration {
 	@Value("${persister.update.landinfo.topic}")
 	private String updateLandInfoTopic;
 	
+	@Value("${workflow.context.path}")
+    private String wfHost;
+	 @Value("${workflow.transition.path}")
+	    private String wfTransitionPath;
+
+	    @Value("${workflow.businessservice.search.path}")
+	    private String wfBusinessServiceSearchPath;
 //	@Value("#{${appSrvTypeBussSrvCode}}")
 //	private Map<String,Map<String,String>> appSrvTypeBussSrvCode;
 	

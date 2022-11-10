@@ -73,13 +73,14 @@ public class DemandService {
 
         //List that will contain Calculation for old demands
         List<Calculation> updateCalculations = new LinkedList<>();
-
+        String tenantId = calculations.get(0).getTenantId();
+        Set<String> applicationNumbers = calculations.stream().map(calculation -> calculation.getApplicationNumber()).collect(Collectors.toSet());
+        List<Demand> demands = searchDemand(tenantId,applicationNumbers,requestInfo,businessService);
         if(!CollectionUtils.isEmpty(calculations)){
 
             //Collect required parameters for demand search
-            String tenantId = calculations.get(0).getTenantId();
-            Set<String> applicationNumbers = calculations.stream().map(calculation -> calculation.getApplicationNumber()).collect(Collectors.toSet());
-            List<Demand> demands = searchDemand(tenantId,applicationNumbers,requestInfo,businessService);
+           
+           
             Set<String> applicationNumbersFromDemands = new HashSet<>();
             if(!CollectionUtils.isEmpty(demands))
                 applicationNumbersFromDemands = demands.stream().map(Demand::getConsumerCode).collect(Collectors.toSet());
@@ -191,11 +192,7 @@ public class DemandService {
                     }
             }
             addRoundOffTaxHead(calculation.getTenantId(), demandDetails);
-            List<String> combinedBillingSlabs = new LinkedList<>();
-            if (calculation.getTradeTypeBillingIds() != null && !CollectionUtils.isEmpty(calculation.getTradeTypeBillingIds().getBillingSlabIds()))
-                combinedBillingSlabs.addAll(calculation.getTradeTypeBillingIds().getBillingSlabIds());
-            if (calculation.getAccessoryBillingIds() != null && !CollectionUtils.isEmpty(calculation.getAccessoryBillingIds().getBillingSlabIds()))
-                combinedBillingSlabs.addAll(calculation.getAccessoryBillingIds().getBillingSlabIds());
+          
             Demand singleDemand = Demand.builder()
                     .consumerCode(consumerCode)
                     .demandDetails(demandDetails)
@@ -206,7 +203,7 @@ public class DemandService {
                     .taxPeriodTo(taxPeriodTo)
                     .consumerType("tradelicense")
                     .businessService(config.getBusinessServiceTL())
-                    .additionalDetails(Collections.singletonMap(BILLINGSLAB_KEY, combinedBillingSlabs))
+                  //  .additionalDetails(Collections.singletonMap(BILLINGSLAB_KEY, combinedBillingSlabs))
                     .build();
             switch (businessService) {
                 case businessService_BPA:
