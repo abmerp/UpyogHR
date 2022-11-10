@@ -1,6 +1,9 @@
-package org.egov.lndcalculator.web.models;
+package org.egov.tlcalculator.web.models;
+
+import javax.validation.Valid;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.tlcalculator.web.models.tradelicense.TradeLicense;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -16,7 +19,7 @@ import lombok.Setter;
 public class CalculatorRequest {
 
 	@JsonProperty("requestInfo")
-	private RequestInfo requestInfo = null;
+	private RequestInfo requestInfo;
 
 	@JsonProperty("totalLandSize")
 	private String totalLandSize;
@@ -28,5 +31,6 @@ public class CalculatorRequest {
 	private String purposeCode;
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;	
-
+	
+	
 }

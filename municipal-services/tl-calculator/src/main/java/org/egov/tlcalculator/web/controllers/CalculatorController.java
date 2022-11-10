@@ -119,5 +119,28 @@ public class CalculatorController {
 		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
 		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
 	}
+	@RequestMapping(value = {"/{servicename}/_calculate","/_calculator"}, method = RequestMethod.POST)
+	public ResponseEntity<CalculationRes> calculator(@Valid @RequestBody CalculatorRequest calculationReq,@PathVariable(required = false) String servicename) {
+
+		if(servicename==null)
+			servicename = businessService_TL;
+		List<Calculation> calculations = null;
+		switch(servicename)
+		{
+			case businessService_TL:
+				calculations = calculationService.calculator(calculationReq, false);
+				break;
+
+//			case businessService_BPA:
+//				calculations = bpaCalculationService.calculate(calculationReq);
+//				break;
+//			default:
+			//	throw new CustomException("UNKNOWN_BUSINESSSERVICE", " Business Service not supported");
+		}
+
+		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
+		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
+	}
+
 
 }

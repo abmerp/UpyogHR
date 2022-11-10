@@ -1,13 +1,13 @@
-package org.egov.lndcalculator.service;
+package org.egov.tlcalculator.service;
 
 		
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.egov.lndcalculator.utils.LandUtil;
-import org.egov.lndcalculator.validator.LandMDMSValidator;
-import org.egov.lndcalculator.web.models.CalculatorRequest;
+import org.egov.tlcalculator.utils.LandUtil;
+import org.egov.tlcalculator.validator.LandMDMSValidator;
+import org.egov.tlcalculator.web.models.CalculatorRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package org.egov.lndcalculator.web.models;
+package org.egov.tl.web.models;
 
 import org.egov.common.contract.request.RequestInfo;
 
@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CalculatorRequest {
 
-	@JsonProperty("requestInfo")
+	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
 
 	@JsonProperty("totalLandSize")
@@ -26,6 +26,7 @@ public class CalculatorRequest {
 
 	@JsonProperty("purposeCode")
 	private String purposeCode;
+
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;	
 

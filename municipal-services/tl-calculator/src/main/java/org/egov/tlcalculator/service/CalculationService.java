@@ -1,15 +1,16 @@
 package org.egov.tlcalculator.service;
 
 import lombok.extern.slf4j.Slf4j;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
+
 import org.egov.common.contract.request.RequestInfo;
+
 import org.egov.tlcalculator.config.TLCalculatorConfigs;
 import org.egov.tlcalculator.kafka.broker.TLCalculatorProducer;
 import org.egov.tlcalculator.repository.builder.BillingslabQueryBuilder;
 import org.egov.tlcalculator.repository.BillingslabRepository;
 import org.egov.tlcalculator.repository.ServiceRequestRepository;
 import org.egov.tlcalculator.utils.CalculationUtils;
+import org.egov.tlcalculator.utils.LandUtil;
 import org.egov.tlcalculator.utils.TLCalculatorConstants;
 import org.egov.tlcalculator.web.models.*;
 import org.egov.tlcalculator.web.models.enums.CalculationType;
@@ -26,6 +27,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
+
 
 import static org.egov.tlcalculator.utils.TLCalculatorConstants.businessService_TL;
 
@@ -61,7 +63,12 @@ public class CalculationService {
 
     @Autowired
     private TLRenewalCalculation tlRenewal;
-
+    
+    @Autowired
+    LandUtil util;
+    
+    @Autowired
+    CalculatorImpl calculatorImpl;
     /**
      * Calculates tax estimates and creates demand
      * @param calculationReq The calculationCriteria request
@@ -77,6 +84,46 @@ public class CalculationService {
            demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
            producer.push(config.getSaveTopic(),calculationRes);
        }
+       return calculations;
+   }
+   public List<Calculation> calculator(CalculatorRequest calculationReq, Boolean isEstimate){
+       String tenantId = calculationReq.getRequestInfo().getUserInfo().getTenantId();
+     // Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
+      Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(),tenantId,calculationReq.getPurposeCode());
+       FeesTypeCalculationDto result =  calculatorImpl.feesTypeCalculation(calculationReq);
+//     
+//       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
+//               calculationReq.getCalulationCriteria(),mdmsData);
+//     
+       List<Calculation> calculations = new ArrayList<>();
+       Calculation calculation = new Calculation();
+       TaxHeadEstimate taxHeadEstimate= new TaxHeadEstimate();
+       calculation.setApplicationNumber(calculationReq.getApplicationNumber());
+       List<String> bilingSlabId = new ArrayList<String>();
+      
+       calculation.setTenantId(tenantId);
+       calculation.setTradeTypeBillingIds(new FeeAndBillingSlabIds("",new BigDecimal(1000),result.getConversionChargesCal(),
+    		   result.getExternalDevelopmentChargesCal(),
+    		   result.getScrutinyFeeChargesCal(),
+    		   result.getLicenseFeeChargesCal(),
+    		   result.getStateInfrastructureDevelopmentChargesCal(),bilingSlabId) );
+       
+       
+       taxHeadEstimate.setTaxHeadCode("Gst");
+       
+      //TODO Add TAX when required
+       //calculation.getTaxHeadEstimates().add(taxHeadEstimate);
+       
+       
+       
+       calculations.add(calculation);
+       CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();  
+            
+       
+              if(!isEstimate){
+                  demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
+                  producer.push(config.getSaveTopic(),calculationRes);
+              }
        return calculations;
    }
 

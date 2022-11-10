@@ -33,7 +33,7 @@ public class CalculationReq {
 	@Valid
 	private RequestInfo requestInfo = null;
 
-	CalculatorRequest calculatorRequest;
+	private CalculatorRequest calculatorRequest;
 	
 //	@JsonProperty("CalulationCriteria")
 //	@Valid
