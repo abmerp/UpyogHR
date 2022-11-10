@@ -1,16 +1,19 @@
 package org.egov.lndcalculator.service;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class FeesTypeCalculationDto {
+class FeesTypeCalculationDto {
 
 	private double scrutinyFeeChargesCal;
 	private double licenseFeeChargesCal;
 	private double conversionChargesCal;
 	private double externalDevelopmentChargesCal;
 	private double stateInfrastructureDevelopmentChargesCal;
+	
 
 }

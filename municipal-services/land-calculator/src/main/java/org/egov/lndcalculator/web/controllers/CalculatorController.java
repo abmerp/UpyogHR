@@ -1,28 +1,34 @@
 package org.egov.lndcalculator.web.controllers;
 
 
-import static org.egov.lndcalculator.utils.TLCalculatorConstants.businessService_BPA;
 import static org.egov.lndcalculator.utils.TLCalculatorConstants.businessService_TL;
 
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-
 import org.egov.lndcalculator.service.CalculationService;
 import org.egov.lndcalculator.service.CalculatorImpl;
+import org.egov.lndcalculator.service.CalculatorRequest;
 import org.egov.lndcalculator.service.DemandService;
-import org.egov.lndcalculator.service.FeeTypeCalculationDtoInfo;
-import org.egov.lndcalculator.service.FeesTypeCalculationDto;
-import org.egov.lndcalculator.web.models.*;
-import org.egov.lndcalculator.web.models.demand.BillResponse;
+import org.egov.lndcalculator.web.models.BillAndCalculations;
+import org.egov.lndcalculator.web.models.Calculation;
+import org.egov.lndcalculator.web.models.CalculationReq;
+import org.egov.lndcalculator.web.models.CalculationRes;
+import org.egov.lndcalculator.web.models.RequestInfoWrapper;
 import org.egov.lndcalculator.web.models.demand.GenerateBillCriteria;
 import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -65,7 +71,7 @@ public class CalculatorController {
 	 * @return Calculation Response
 	 */
 	@RequestMapping(value = {"/{servicename}/_calculate","/_calculate"}, method = RequestMethod.POST)
-	public ResponseEntity<CalculationRes> calculate(@Valid @RequestBody CalculationReq calculationReq,@PathVariable(required = false) String servicename) {
+	public ResponseEntity<CalculationRes> calculate(@Valid @RequestBody CalculatorRequest calculationReq,@PathVariable(required = false) String servicename) {
 
 		if(servicename==null)
 			servicename = businessService_TL;
@@ -73,7 +79,7 @@ public class CalculatorController {
 		switch(servicename)
 		{
 			case businessService_TL:
-				calculations = calculationService.calculator(calculationReq, false);
+				calculations = calculationService.calculate(calculationReq, false);
 				break;
 
 //			case businessService_BPA:
@@ -113,7 +119,7 @@ public class CalculatorController {
 	 * @return Calculation Response
 	 */
 	@RequestMapping(value = {"/{servicename}/_estimate","/_estimate"}, method = RequestMethod.POST)
-	public ResponseEntity<CalculationRes> estimate(@Valid @RequestBody CalculationReq calculationReq,@PathVariable(required = false) String servicename) {
+	public ResponseEntity<CalculationRes> estimate(@Valid @RequestBody CalculatorRequest calculationReq,@PathVariable(required = false) String servicename) {
 
 		if(servicename==null)
 			servicename = businessService_TL;

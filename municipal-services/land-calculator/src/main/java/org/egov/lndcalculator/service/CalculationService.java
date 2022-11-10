@@ -73,24 +73,13 @@ public class CalculationService {
      * @param calculationReq The calculationCriteria request
      * @return List of calculations for all applicationNumbers or tradeLicenses in calculationReq
      */
-   public List<Calculation> calculate(CalculationReq calculationReq, Boolean isEstimate){
-       String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
-       Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
-       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
-               calculationReq.getCalulationCriteria(),mdmsData);
-       CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
-       if(!isEstimate){
-           demandService.generateDemand(calculationReq.getRequestInfo(),calculations,mdmsData,businessService_TL);
-           producer.push(config.getSaveTopic(),calculationRes);
-       }
-       return calculations;
-   }
+   
 
 
-   public List<Calculation> calculator(CalculationReq calculationReq, Boolean isEstimate){
-       String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
+   public List<Calculation> calculate(CalculatorRequest calculationReq, Boolean isEstimate){
+       String tenantId = calculationReq.getRequestInfo().getUserInfo().getTenantId();
      // Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
-      Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(),tenantId,calculationReq.getCalulationCriteria().get(0).getTradelicense().getPurposeCode());
+      Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(),tenantId,calculationReq.getPurposeCode());
        FeesTypeCalculationDto result =  calculatorImpl.feesTypeCalculation(calculationReq);
 //     
 //       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
