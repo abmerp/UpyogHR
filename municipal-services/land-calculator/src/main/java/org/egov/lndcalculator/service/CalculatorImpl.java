@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.egov.lndcalculator.utils.LandUtil;
+import org.egov.lndcalculator.validator.LandMDMSValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +14,9 @@ import org.springframework.stereotype.Component;
 public class CalculatorImpl implements Calculator {
 
 	@Autowired
-	LandUtil landUtil;
-
+	LandUtil landUtil;	
+	@Autowired
+	LandMDMSValidator valid;
 
 	private double areaInSqmtr(String arce) {
 		return (AREA * Double.valueOf(arce));
@@ -22,8 +24,8 @@ public class CalculatorImpl implements Calculator {
 
 	public FeesTypeCalculationDto feesTypeCalculation(CalculatorRequest calculatorRequest) {
 
-		double area1 = (PERCENTAGE1 * Double.valueOf(calculatorRequest.getTotalLandSize()));
-		double area2 = PERCENTAGE2 * Double.valueOf(calculatorRequest.getTotalLandSize());
+		double area1 = (PERCENTAGE1 * Double.valueOf(calculatorRequest.getTotalLandSize().trim()));
+		double area2 = PERCENTAGE2 * Double.valueOf(calculatorRequest.getTotalLandSize().trim());
 
 		Map<String, List<String>> mdmsData;
 		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
@@ -32,8 +34,8 @@ public class CalculatorImpl implements Calculator {
 						calculatorRequest.getRequestInfo().getUserInfo().getTenantId(),
 						calculatorRequest.getPurposeCode());
 
-		
-		List<Map<String, Object>> msp = (List) mDMSCallPurposeCode	.get("Purpose");
+		mdmsData = valid.getAttributeValues(mDMSCallPurposeCode);
+		List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
 		Double externalDevelopmentCharges = null;
 		Double scrutinyFeeCharges = null;
 		Double conversionCharges = null;
