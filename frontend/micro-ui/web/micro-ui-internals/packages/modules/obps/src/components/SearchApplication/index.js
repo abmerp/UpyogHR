@@ -10,15 +10,14 @@ import {
   DetailsCard,
   Loader,
   Toast,
-  Header
 } from "@egovernments/digit-ui-react-components";
 import { convertEpochToDateDMY } from "../../utils";
 import SearchFormFieldsComponent from "./SearchFormFieldsComponent";
 import useSearchApplicationTableConfig from "./useTableConfig";
 
-const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData, isLoading, Count, setparamerror }) => {
+const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData, isLoading, Count }) => {
   const [showToast, setShowToast] = useState(null);
-  // const currentUserPhoneNumber = Digit.UserService.getUser()?.info?.mobileNumber;
+  // const currentUserPhoneNumber = Digit.UserService.getUser().info.mobileNumber;
   // const userInformation = Digit.UserService.getUser()?.info;
 
   const userInfos = sessionStorage.getItem("Digit.citizen.userRequestObject");
@@ -51,12 +50,12 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
         applicationType: ["BUILDING_PLAN_SCRUTINY", "BUILDING_OC_PLAN_SCRUTINY"],
         code: "NEW_CONSTRUCTION",
         i18nKey: "BPA_SERVICETYPE_NEW_CONSTRUCTION",
-      } : userInformation?.roles?.filter((ob) => ob.code.includes("BPAREG_"))?.length > 0 && userInformation?.roles?.filter((ob) =>(ob.code.includes("BPA_"))).length <= 0 ? /* {
+      } : userInformation?.roles?.filter((ob) => ob.code.includes("BPAREG_"))?.length > 0 && userInformation?.roles?.filter((ob) =>(ob.code.includes("BPA_"))).length <= 0 ? {
         code: "BPA_STAKEHOLDER_REGISTRATION",
         applicationType:["BPA_STAKEHOLDER_REGISTRATION"],
         roles: ["BPAREG_APPROVER","BPAREG_DOC_VERIFIER"],
         i18nKey: "BPA_SERVICETYPE_BPA_STAKEHOLDER_REGISTRATION"
-      } */ "": {
+      } : {
         applicationType: ["BUILDING_PLAN_SCRUTINY", "BUILDING_OC_PLAN_SCRUTINY"],
         code: "NEW_CONSTRUCTION",
         i18nKey: "BPA_SERVICETYPE_NEW_CONSTRUCTION",
@@ -77,7 +76,7 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
       //reset({ ...searchData, isSubmitSuccessful: false });
       reset({
         applicationNo: "",
-       mobileNumber: window.location.href.includes("/digit-ui/citizen") ? Digit.UserService.getUser()?.info?.mobileNumber : "",
+       mobileNumber: window.location.href.includes("/digit-ui/citizen") ? Digit.UserService.getUser().info.mobileNumber : "",
         fromDate: "",
         toDate: "",
         status: "",
@@ -99,12 +98,12 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
           applicationType: ["BUILDING_PLAN_SCRUTINY", "BUILDING_OC_PLAN_SCRUTINY"],
           code: "NEW_CONSTRUCTION",
           i18nKey: "BPA_SERVICETYPE_NEW_CONSTRUCTION",
-        } : userInformation?.roles?.filter((ob) => ob.code.includes("BPAREG_"))?.length > 0 && userInformation?.roles?.filter((ob) =>(ob.code.includes("BPA_"))).length <= 0 ? /* {
+        } : userInformation?.roles?.filter((ob) => ob.code.includes("BPAREG_"))?.length > 0 && userInformation?.roles?.filter((ob) =>(ob.code.includes("BPA_"))).length <= 0 ? {
           code: "BPA_STAKEHOLDER_REGISTRATION",
           applicationType:["BPA_STAKEHOLDER_REGISTRATION"],
           roles: ["BPAREG_APPROVER","BPAREG_DOC_VERIFIER"],
           i18nKey: "BPA_SERVICETYPE_BPA_STAKEHOLDER_REGISTRATION"
-        } */ "" : {
+        } : {
           applicationType: ["BUILDING_PLAN_SCRUTINY", "BUILDING_OC_PLAN_SCRUTINY"],
           code: "NEW_CONSTRUCTION",
           i18nKey: "BPA_SERVICETYPE_NEW_CONSTRUCTION",
@@ -120,7 +119,6 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
 
   useEffect(() => {
     if (error !== "") {
-      setparamerror("")
       setShowToast({ key: true, label: error });
     }
   }, [error]);
@@ -218,7 +216,7 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
             <SearchForm {...props}>
               <MobilePopUpCloseButton />
               <div className="MobilePopupHeadingWrapper">
-                <h2>{t("ES_COMMON_SEARCH_APPLICATION")}:</h2>
+                <h2>{t("ES_COMMON_SEARCH")}:</h2>
               </div>
               <SearchFormFieldsComponent {...searchFormFieldsComponentProps} {...{ closeMobilePopupModal }} />
               {/* <SearchField className="submit">
@@ -245,7 +243,7 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
       <React.Fragment>
         <div className="searchBox">
           <SearchAction
-            text={t("ES_COMMON_SEARCH_APPLICATION")}
+            text={t("ES_COMMON_SEARCH")}
             handleActionClick={() => setActiveMobileModal({ type: "set", payload: "SearchFormComponent" })}
           />
           {/* {isInboxLoading ? <Loader /> : <FilterAction text={t("ES_COMMON_FILTER")} handleActionClick={() => setActiveMobileModal({type:"set", payload:"FilterFormComponent"})}/>} */}
@@ -292,7 +290,6 @@ const OBPSSearchApplication = ({ tenantId, t, onSubmit, data, error, searchData,
 
   return (
     <React.Fragment>
-      <Header>{t("ES_COMMON_SEARCH_APPLICATION")}</Header>
       <SearchForm onSubmit={onSubmit} handleSubmit={handleSubmit}>
         <SearchFormFieldsComponent {...searchFormFieldsComponentProps} />
       </SearchForm>

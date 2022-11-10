@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRouteMatch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
 import { Loader, CitizenHomeCard, OBPSIcon, CitizenInfoLabel } from "@egovernments/digit-ui-react-components";
 import CitizenApp from "./pages/citizen";
 import Inbox from "./pages/employee/Inbox";
@@ -16,7 +17,7 @@ import OwnerDetails from "./pageComponents/OwnerDetails";
 import DocumentDetails from "./pageComponents/DocumentDetails";
 import NOCDetails from "./pageComponents/NOCDetails";
 import LocationDetails from "./pageComponents/LocationDetails";
-import StakeholderDocsRequired  from "./pageComponents/StakeholderDocsRequired";
+import StakeholderDocsRequired from "./pageComponents/StakeholderDocsRequired";
 import GIS from "./pageComponents/GIS";
 import OCEDCRDocsRequired from "./pageComponents/OCEDCRDocsRequired";
 import OCeDCRScrutiny from "./pageComponents/OCeDCRScrutiny";
@@ -26,6 +27,7 @@ import CreateEDCR from "./pages/citizen/EDCR";
 import CreateOCEDCR from "./pages/citizen/OCEDCR";
 import NewBuildingPermit from "./pages/citizen/NewBuildingPermit";
 import OCBuildingPermit from "./pages/citizen/OCBuildingPermit";
+import AddInfoForm from "./pages/citizen/DeveloperRegistration/AddInfoForm/addInfo";
 import StakeholderRegistration from "./pages/citizen/StakeholderRegistration";
 import CitizenBpaApplicationDetail from "./pages/citizen/BpaApplicationDetail";
 import BPASendToArchitect from "./pages/citizen/BPASendToArchitect";
@@ -36,6 +38,9 @@ import EdcrInbox from "./pages/citizen/EdcrInbox";
 
 import LicenseType from "./pageComponents/LicenseType";
 import LicenseDetails from "./pageComponents/LicenseDetails";
+import LicenseAddInfo from "./pageComponents/LicenseAddInfo";
+import AddAuthorizedUser from "./pageComponents/AddAuthorizedUser";
+import DeveloperCapacity from "./pageComponents/DeveloperCapacity";
 import CorrospondenceAddress from "./pageComponents/CorrospondenceAddress";
 import PermanentAddress from "./pageComponents/PermanentAddress";
 import StakeholderDocuments from "./pageComponents/StakeholderDocuments";
@@ -56,7 +61,7 @@ import BPAAcknowledgement from "./pages/citizen/NewBuildingPermit/OBPSAcknowledg
 import OCBPAAcknowledgement from "./pages/citizen/OCBuildingPermit/OBPSAcknowledgement";
 import OCSendBackAcknowledgement from "./pages/citizen/OCSendBackToCitizen/Acknowledgement";
 import StakeholderAcknowledgement from "./pages/citizen/StakeholderRegistration/StakeholderAcknowledgement";
- 
+import '~antd/dist/antd.min.css';
 
 const OBPSModule = ({ stateCode, userType, tenants }) => {
   const moduleCode = ["bpa", "bpareg", "common"]; //"bpa";
@@ -74,8 +79,8 @@ const OBPSModule = ({ stateCode, userType, tenants }) => {
     return <CitizenApp path={path} stateCode={stateCode} />;
   }
 
-  return <EmployeeApp path={path} stateCode={stateCode} />
-}
+  return <EmployeeApp path={path} stateCode={stateCode} />;
+};
 
 const OBPSLinks = ({ matchPath, userType }) => {
   const { t } = useTranslation();
@@ -93,19 +98,37 @@ const OBPSLinks = ({ matchPath, userType }) => {
       link: `${matchPath}/home`,
       i18nKey: t("BPA_CITIZEN_HOME_ARCHITECT_LOGIN_LABEL"),
     },
+    // {
+    //   link: `${matchPath}/step-two`,
+    //   i18nKey: "Developer Registration",
+    // },
+    // {
+    //   link: `${matchPath}/step-two`,
+    //   i18nKey: "Developer Registration",
+    // },
   ];
 
   return (
-    <CitizenHomeCard header={t("ACTION_TEST_BUILDING_PLAN_APPROVAL")} links={links} Icon={() => <OBPSIcon />}
-      Info={() => <CitizenInfoLabel style={{margin: "0px", padding: "10px"}} info={t("CS_FILE_APPLICATION_INFO_LABEL")} text={t(`BPA_CITIZEN_HOME_STAKEHOLDER_INCLUDES_INFO_LABEL`)} />} isInfo={true}
+    <CitizenHomeCard
+      header={t("ACTION_TEST_BUILDING_PLAN_APPROVAL")}
+      links={links}
+      Icon={() => <OBPSIcon />}
+      Info={() => (
+        <CitizenInfoLabel
+          style={{ margin: "0px", padding: "10px" }}
+          info={t("CS_FILE_APPLICATION_INFO_LABEL")}
+          text={t(`BPA_CITIZEN_HOME_STAKEHOLDER_INCLUDES_INFO_LABEL`)}
+        />
+      )}
+      isInfo={true}
     />
   );
-} 
+};
 
 const componentsToRegister = {
   OBPSModule,
   OBPSLinks,
-  OBPSCard:OBPSEmployeeHomeCard,
+  OBPSCard: OBPSEmployeeHomeCard,
   BPACitizenHomeScreen,
   EDCRForm,
   BasicDetails,
@@ -122,7 +145,11 @@ const componentsToRegister = {
   OCUploadPlanDiagram,
   StakeholderDocsRequired,
   LicenseType,
+  AddInfoForm,
   LicenseDetails,
+  LicenseAddInfo,
+  AddAuthorizedUser,
+  DeveloperCapacity,
   CorrospondenceAddress,
   PermanentAddress,
   StakeholderDocuments,
@@ -141,20 +168,20 @@ const componentsToRegister = {
   OCBPAAcknowledgement,
   OCSendBackAcknowledgement,
   StakeholderAcknowledgement,
-  ObpsCreateEDCR : CreateEDCR,
-  ObpsCreateOCEDCR : CreateOCEDCR,
-  ObpsNewBuildingPermit : NewBuildingPermit,
-  ObpsOCBuildingPermit : OCBuildingPermit,
-  ObpsStakeholderRegistration : StakeholderRegistration,
-  ObpsCitizenBpaApplicationDetail : CitizenBpaApplicationDetail,
-  ObpsBPASendToArchitect : BPASendToArchitect,
-  ObpsOCSendToArchitect : OCSendToArchitect,
-  ObpsBPASendBackToCitizen : BPASendBackToCitizen,
-  ObpsOCSendBackToCitizen : OCSendBackToCitizen,
-  ObpsEdcrInbox : EdcrInbox,
-  ObpsEmpApplicationDetail : EmpApplicationDetail,
-  ObpsEmployeeBpaApplicationDetail : EmployeeBpaApplicationDetail
-}
+  ObpsCreateEDCR: CreateEDCR,
+  ObpsCreateOCEDCR: CreateOCEDCR,
+  ObpsNewBuildingPermit: NewBuildingPermit,
+  ObpsOCBuildingPermit: OCBuildingPermit,
+  ObpsStakeholderRegistration: StakeholderRegistration,
+  ObpsCitizenBpaApplicationDetail: CitizenBpaApplicationDetail,
+  ObpsBPASendToArchitect: BPASendToArchitect,
+  ObpsOCSendToArchitect: OCSendToArchitect,
+  ObpsBPASendBackToCitizen: BPASendBackToCitizen,
+  ObpsOCSendBackToCitizen: OCSendBackToCitizen,
+  ObpsEdcrInbox: EdcrInbox,
+  ObpsEmpApplicationDetail: EmpApplicationDetail,
+  ObpsEmployeeBpaApplicationDetail: EmployeeBpaApplicationDetail,
+};
 
 export const initOBPSComponents = () => {
   Object.entries(componentsToRegister).forEach(([key, value]) => {

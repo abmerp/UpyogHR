@@ -113,21 +113,19 @@ const Inbox = ({ parentRoute }) => {
     }]
   }
 
-  const SearchFormFields = useCallback(({ registerRef, searchFormState, searchFieldComponents }) => <SearchFormFieldsComponents {...{ registerRef, searchFormState, searchFieldComponents }} />, [])
+  const SearchFormFields = useCallback(({ registerRef, searchFormState }) => <SearchFormFieldsComponents {...{ registerRef, searchFormState }} />, [])
 
   const FilterFormFields = useCallback(
     ({ registerRef, controlFilterForm, setFilterFormValue, getFilterFormValue }) => <FilterFormFieldsComponent {...{ statuses, isInboxLoading, registerRef, controlFilterForm, setFilterFormValue, filterFormState: formState?.filterForm, getFilterFormValue, localitiesForEmployeesCurrentTenant, loadingLocalitiesForEmployeesCurrentTenant }} />
     , [statuses, isInboxLoading, localitiesForEmployeesCurrentTenant, loadingLocalitiesForEmployeesCurrentTenant])
 
   const onSearchFormSubmit = (data) => {
-    data.hasOwnProperty("") && delete data?.[""];
-    dispatch({ action: "mutateTableForm", data: { ...tableOrderFormDefaultValues } });
+    data.hasOwnProperty("") ? delete data?.[""] : null
     dispatch({ action: "mutateSearchForm", data })
   }
 
   const onFilterFormSubmit = (data) => {
-    data.hasOwnProperty("") && delete data?.[""] ;
-    dispatch({ action: "mutateTableForm", data: { ...tableOrderFormDefaultValues } });
+    data.hasOwnProperty("") ? delete data?.[""] : null
     dispatch({ action: "mutateFilterForm", data })
   }
 
