@@ -3,6 +3,10 @@ package org.egov.tl.web.models;
 import java.util.Date;
 import java.util.List;
 
+import org.egov.common.contract.response.ResponseInfo;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +14,9 @@ import lombok.Setter;
 @Setter
 
 public class LicenseServiceResponseInfo {
+	
+    @JsonProperty("ResponseInfo")
+    private ResponseInfo responseInfo = null;
 
 	private Long id;
 

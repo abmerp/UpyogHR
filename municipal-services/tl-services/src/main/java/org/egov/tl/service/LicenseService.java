@@ -25,6 +25,7 @@ import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -139,16 +140,25 @@ public class LicenseService {
 		return objLicenseServiceRequestInfo;
 	}
 
-	public LicenseServiceDao getNewServicesInfoById(Long id) {
-
+	public LicenseServiceResponseInfo getNewServicesInfoById(Long id) {
+		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
-		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
+		
 		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
 			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
 				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
 			}
 		}
-		return newServiceInfo;
+		try {
+			BeanUtils.copyProperties(licenseServiceResponseInfo, newServiceInfo);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return licenseServiceResponseInfo;
 	}
 
 	public List<LicenseServiceDao> getNewServicesInfoAll() {

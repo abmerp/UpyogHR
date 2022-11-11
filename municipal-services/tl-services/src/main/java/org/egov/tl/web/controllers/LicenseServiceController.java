@@ -46,8 +46,8 @@ public class LicenseServiceController {
 	}
 
 	@GetMapping("/licenses/_get")
-	public LicenseServiceDao getNewServicesDetailById(@RequestParam("id") Long id) {
-		return newServiceInfoService.getNewServicesInfoById(id);
+	public ResponseEntity<LicenseServiceResponseInfo> getNewServicesDetailById(@RequestParam("id") Long id) {
+		return new ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(id),HttpStatus.OK);
 	}
 	
 	@GetMapping("/licenses/_getall")
