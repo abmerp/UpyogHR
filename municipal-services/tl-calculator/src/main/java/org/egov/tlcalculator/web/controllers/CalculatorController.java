@@ -120,7 +120,7 @@ public class CalculatorController {
 		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
 	}
 	@RequestMapping(value = {"/{servicename}/_calculate","/_calculator"}, method = RequestMethod.POST)
-	public ResponseEntity<CalculationRes> calculator(@Valid @RequestBody CalculatorRequest calculationReq,@PathVariable(required = false) String servicename) {
+	public ResponseEntity<CalculationRes> calculator(@Valid @RequestBody CalculationReq calculationReq,@PathVariable(required = false) String servicename) {
 
 		if(servicename==null)
 			servicename = businessService_TL;
@@ -128,7 +128,7 @@ public class CalculatorController {
 		switch(servicename)
 		{
 			case businessService_TL:
-				calculations = calculationService.calculator(calculationReq, false);
+				calculations = calculationService.calculator(calculationReq);
 				break;
 
 //			case businessService_BPA:
