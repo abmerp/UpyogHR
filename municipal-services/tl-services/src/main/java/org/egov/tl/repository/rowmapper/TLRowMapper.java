@@ -57,12 +57,12 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .licenseType(TradeLicense.LicenseTypeEnum.fromValue(rs.getString("licensetype")))
                         .applicationType(TradeLicense.ApplicationTypeEnum.fromValue(rs.getString( "applicationType")))
                         .workflowCode(rs.getString("workflowCode"))
-                        .oldLicenseNumber(rs.getString("oldlicensenumber"))
+                       // .oldLicenseNumber(rs.getString("oldlicensenumber"))
                         .applicationDate(applicationDate)
                         .applicationNumber(rs.getString("applicationnumber"))
-                        .commencementDate(commencementDate)
+                     //   .commencementDate(commencementDate)
                         .issuedDate(issuedDate)
-                        .accountId(rs.getString("accountId"))
+                     //   .accountId(rs.getString("accountId"))
                         .financialYear(rs.getString("financialyear"))
                         .validFrom(validFrom)
                         .validTo(validTo)
@@ -149,20 +149,20 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
             PGobject pgObj = (PGobject) rs.getObject("additionaldetail");
             try {
                 TradeLicenseDetail tradeLicenseDetail = TradeLicenseDetail.builder()
-                        .surveyNo(rs.getString("surveyno"))
+                      //  .surveyNo(rs.getString("surveyno"))
                         .channel(TradeLicenseDetail.ChannelEnum.fromValue(rs.getString("channel")))
-                        .subOwnerShipCategory(rs.getString("subownershipcategory"))
+                      //  .subOwnerShipCategory(rs.getString("subownershipcategory"))
                         .id(tradeLicenseDetailId)
                         .address(address)
                         .auditDetails(auditdetails)
-                        .structureType(rs.getString("structureType"))
-                        .operationalArea(operationalArea)
-                        .noOfEmployees(noOfEmployees)
-                        .adhocExemption(rs.getBigDecimal("adhocExemption"))
-                        .adhocPenalty(rs.getBigDecimal("adhocPenalty"))
-                        .adhocExemptionReason(rs.getString("adhocExemptionReason"))
-                        .adhocPenaltyReason(rs.getString("adhocPenaltyReason"))
-                        .institution(institution)
+                       // .structureType(rs.getString("structureType"))
+                      //  .operationalArea(operationalArea)
+                      //  .noOfEmployees(noOfEmployees)
+                      //  .adhocExemption(rs.getBigDecimal("adhocExemption"))
+                     //   .adhocPenalty(rs.getBigDecimal("adhocPenalty"))
+                   //     .adhocExemptionReason(rs.getString("adhocExemptionReason"))
+                   //     .adhocPenaltyReason(rs.getString("adhocPenaltyReason"))
+                    //    .institution(institution)
                         .build();
 
                 if(pgObj!=null){
@@ -186,7 +186,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                     .tenantId(tenantId)
                     .active(rs.getBoolean("tl_un_active"))
                     .build();
-            tradeLicense.getTradeLicenseDetail().addTradeUnitsItem(tradeUnit);
+            //tradeLicense.getTradeLicenseDetail().addTradeUnitsItem(tradeUnit);
         }
 
         if(rs.getString("tl_acc_id")!=null && rs.getBoolean("tl_acc_active")) {
@@ -201,7 +201,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                     .active(rs.getBoolean("tl_acc_active"))
                     .count(count)
                     .build();
-            tradeLicense.getTradeLicenseDetail().addAccessoriesItem(accessory);
+           // tradeLicense.getTradeLicenseDetail().addAccessoriesItem(accessory);
         }
 
 

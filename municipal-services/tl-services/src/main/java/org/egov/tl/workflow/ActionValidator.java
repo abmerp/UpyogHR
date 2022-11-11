@@ -280,16 +280,8 @@ public class ActionValidator {
                             });
                           }
                         });
-                    license.getTradeLicenseDetail().getTradeUnits().forEach(tradeUnit -> {
-                        if(tradeUnit.getId()==null)
-                            errorMap.put("INVALID UPDATE", "Id of tradeUnit cannot be null");
-                    });
-                    if(!CollectionUtils.isEmpty(license.getTradeLicenseDetail().getAccessories())){
-                        license.getTradeLicenseDetail().getAccessories().forEach(accessory -> {
-                            if(accessory.getId()==null)
-                                errorMap.put("INVALID UPDATE", "Id of accessory cannot be null");
-                        });
-                    }
+                  
+                  
                     if(!CollectionUtils.isEmpty(license.getTradeLicenseDetail().getApplicationDocuments())){
                         license.getTradeLicenseDetail().getApplicationDocuments().forEach(document -> {
                             if(document.getId()==null)

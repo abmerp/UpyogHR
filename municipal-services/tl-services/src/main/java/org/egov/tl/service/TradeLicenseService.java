@@ -113,7 +113,7 @@ public class TradeLicenseService {
        switch(businessServicefromPath)
        {
            case businessService_BPA:
-               validateMobileNumberUniqueness(tradeLicenseRequest);
+              // validateMobileNumberUniqueness(tradeLicenseRequest);
                calculationService.addCalculation(tradeLicenseRequest);
                break;
                
@@ -138,27 +138,7 @@ public class TradeLicenseService {
         return tradeLicenseRequest.getLicenses();
 	}
 
-    public void validateMobileNumberUniqueness(TradeLicenseRequest request) {
-        for (TradeLicense license : request.getLicenses()) {
-            for (TradeUnit tradeUnit : license.getTradeLicenseDetail().getTradeUnits()) {
-                String tradetypeOfNewLicense = tradeUnit.getTradeType().split("\\.")[0];
-                List<String> mobileNumbers = license.getTradeLicenseDetail().getOwners().stream().map(OwnerInfo::getMobileNumber).collect(Collectors.toList());
-                for (String mobno : mobileNumbers) {
-                    TradeLicenseSearchCriteria tradeLicenseSearchCriteria = TradeLicenseSearchCriteria.builder().tenantId(license.getTenantId()).businessService(license.getBusinessService()).mobileNumber(mobno).build();
-                    List<TradeLicense> licensesFromSearch = getLicensesFromMobileNumber(tradeLicenseSearchCriteria, request.getRequestInfo());
-                    List<String> tradeTypeResultforSameMobNo = new ArrayList<>();
-                    for (TradeLicense result : licensesFromSearch) {
-                        if (!StringUtils.equals(result.getApplicationNumber(), license.getApplicationNumber()) && !StringUtils.equals(result.getStatus(),STATUS_REJECTED)) {
-                            tradeTypeResultforSameMobNo.add(result.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType().split("\\.")[0]);
-                        }
-                    }
-                    if (tradeTypeResultforSameMobNo.contains(tradetypeOfNewLicense)) {
-                        throw new CustomException("DUPLICATE_TRADETYPEONMOBNO", " Same mobile number can not be used for more than one applications on same license type: "+tradetypeOfNewLicense);
-                    }
-                }
-            }
-        }
-    }
+  
     /**
      *  Searches the tradeLicense for the given criteria if search is on owner paramter then first user service
      *  is called followed by query to db
@@ -407,7 +387,7 @@ public class TradeLicenseService {
                     break;
 
                 case businessService_BPA:
-                    String tradeType = tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeUnits().get(0).getTradeType();
+                    String tradeType = tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeType();
                     if (pickWFServiceNameFromTradeTypeOnly)
                         tradeType = tradeType.split("\\.")[0];
                     businessServiceName = tradeType;
@@ -423,7 +403,7 @@ public class TradeLicenseService {
             switch(businessServicefromPath)
             {
                 case businessService_BPA:
-                    validateMobileNumberUniqueness(tradeLicenseRequest);
+                  //  validateMobileNumberUniqueness(tradeLicenseRequest);
                     break;
             }
             Map<String, Difference> diffMap = diffService.getDifference(tradeLicenseRequest, searchResult);

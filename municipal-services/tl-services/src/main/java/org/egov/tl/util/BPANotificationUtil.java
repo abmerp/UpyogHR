@@ -227,10 +227,10 @@ public class BPANotificationUtil {
             message = message.replace("{ULB}", capitalize(license.getTenantId().split("\\.")[1]));
         message = message.replace("{PORTAL_LINK}",egovhost+citizenHomeEndpoint);
 
-        if(license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType().split("\\.").length!=1)
-            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType().split("\\.")[0]);
+        if(license.getTradeLicenseDetail().getTradeType().split("\\.").length!=1)
+            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeType().split("\\.")[0]);
         else
-            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType());
+            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeType());
 
         //CCC - Designaion configurable according to ULB
         // message = message.replace("CCC","");
@@ -280,10 +280,10 @@ public class BPANotificationUtil {
     public String getReplacedMessage(TradeLicense license, String messageTemplate) {
         String message = messageTemplate.replace("{APPLICATION_NUMBER}",license.getApplicationNumber());
 
-        if(license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType().split("\\.").length!=1)
-            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType().split("\\.")[0]);
+        if(license.getTradeLicenseDetail().getTradeType().split("\\.").length!=1)
+            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeType().split("\\.")[0]);
         else
-            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType());
+            message = message.replace("{TRADE_TYPE}",license.getTradeLicenseDetail().getTradeType());
 
         for(OwnerInfo owner :license.getTradeLicenseDetail().getOwners())
         {

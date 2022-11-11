@@ -116,7 +116,7 @@ public class WorkflowIntegrator {
 						break;
 
 					case businessService_BPA:
-						String tradeType = tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeUnits().get(0).getTradeType();
+						String tradeType = tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeType();
 						if(pickWFServiceNameFromTradeTypeOnly)
 						{
 							tradeType=tradeType.split("\\.")[0];

@@ -106,7 +106,7 @@ public class PaymentUpdateService {
 							break;
 
 						case businessService_BPA:
-							String tradeType = licenses.get(0).getTradeLicenseDetail().getTradeUnits().get(0).getTradeType();
+							String tradeType = licenses.get(0).getTradeLicenseDetail().getTradeType();
 							if (pickWFServiceNameFromTradeTypeOnly)
 								tradeType = tradeType.split("\\.")[0];
 							wfbusinessServiceName = tradeType;
