@@ -67,6 +67,6 @@ public class AppliedLandDetails {
 	private String registeringAuthority;
 
 	@JsonProperty("registeringAuthorityDoc")
-	private String registeringAuthorityDoc;
+	private Document registeringAuthorityDoc;
 
 }
