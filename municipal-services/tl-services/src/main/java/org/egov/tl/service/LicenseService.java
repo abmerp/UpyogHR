@@ -19,7 +19,7 @@ import org.egov.common.contract.request.User;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.web.models.LicenseDetails;
-import org.egov.tl.web.models.LicenseServiceRequestInfo;
+import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class LicenseService {	
+public class LicenseService {
 
 	@Autowired
 	private ThirPartyAPiCall thirPartyAPiCall;
@@ -40,13 +40,14 @@ public class LicenseService {
 	private long id = 1;
 
 	@Transactional
-	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequestInfo newServiceInfo, User user) {
+	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo) {
 
 		List<LicenseDetails> newServiceInfoData;
-		LicenseServiceResponseInfo objLicenseServiceRequestInfo= new LicenseServiceResponseInfo();
+		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceIn;
 		List<LicenseDetails> newServiceInfoDatas;
-		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {	
+		User user = newServiceInfo.getRequestInfo().getUserInfo();
+		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 
 			newServiceIn = em.find(LicenseServiceDao.class, newServiceInfo.getId());
 
@@ -71,8 +72,7 @@ public class LicenseService {
 						break;
 					}
 					case "DetailsofAppliedLand": {
-						newobj.setDetailsofAppliedLand(
-								newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
+						newobj.setDetailsofAppliedLand(newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
 						break;
 					}
 					case "FeesAndCharges": {
@@ -109,8 +109,8 @@ public class LicenseService {
 
 		// ********************transaction number***************.//
 		String transactionNumber;
-		if (!StringUtil.isBlank(newServiceIn.getApplication_Status())&&
-				newServiceIn.getApplication_Status().equalsIgnoreCase("SUBBMIT")) {
+		if (!StringUtil.isBlank(newServiceIn.getApplication_Status())
+				&& newServiceIn.getApplication_Status().equalsIgnoreCase("SUBBMIT")) {
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 			authtoken.put("UserId", user.getId());
@@ -122,13 +122,12 @@ public class LicenseService {
 			mapTNum.put("MobNo", user.getMobileNumber());
 			transactionNumber = thirPartyAPiCall.generateTransactionNumber(mapTNum, authtoken).getBody().get("Value")
 					.toString();
-			log.info("TransactionNumber\t" +transactionNumber);
-			
+			log.info("TransactionNumber\t" + transactionNumber);
+
 		}
-		newServiceIn=newServiceInfoRepo.save(newServiceIn);
+		newServiceIn = newServiceInfoRepo.save(newServiceIn);
 		try {
-			BeanUtils.copyProperties(objLicenseServiceRequestInfo, 
-					newServiceIn);
+			BeanUtils.copyProperties(objLicenseServiceRequestInfo, newServiceIn);
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -136,8 +135,7 @@ public class LicenseService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return objLicenseServiceRequestInfo;
 	}
 
@@ -167,10 +165,9 @@ public class LicenseService {
 		String caseNumber;
 		String applicationNmber;
 		String saveTransaction;
-        DateTimeFormatter formatter = 
-                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-        LocalDateTime localDateTime = LocalDateTime.now();
-        String date=formatter.format(localDateTime);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+		LocalDateTime localDateTime = LocalDateTime.now();
+		String date = formatter.format(localDateTime);
 		Map<String, Object> authtoken = new HashMap<String, Object>();
 		authtoken.put("UserId", user.getId());
 		authtoken.put("UserLoginId", user.getId());
@@ -181,112 +178,106 @@ public class LicenseService {
 			LicenseServiceDao newServiceIn = em.find(LicenseServiceDao.class, applicationNumber);
 
 			newServiceInfoData = newServiceIn.getNewServiceInfoData();
-		
 
 			for (LicenseDetails newobj : newServiceInfoData) {
 
 				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
 
-				/************************************************
-				 * Dairy Number End Here
-				 *****************************/
-				Map<String, Object> mapDNo = new HashMap<String, Object>();
+					/************************************************
+					 * Dairy Number End Here
+					 *****************************/
+					Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-				mapDNo.put("Village", newobj.getApplicantInfo().getVillage());
-				mapDNo.put("DiaryDate",date);
-				mapDNo.put("ReceivedFrom", user.getUserName());
-				mapDNo.put("UserId", "1234");
-				mapDNo.put("DistrictCode",
-						newobj.getApplicantPurpose().getDistrict());
-				mapDNo.put("UserLoginId", user.getId());
-				dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value").toString();
-				System.out.println("dairyNumber"+dairyNumber);
+					mapDNo.put("Village", newobj.getApplicantInfo().getVillage());
+					mapDNo.put("DiaryDate", date);
+					mapDNo.put("ReceivedFrom", user.getUserName());
+					mapDNo.put("UserId", "1234");
+					mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
+					mapDNo.put("UserLoginId", user.getId());
+					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
+							.toString();
+					System.out.println("dairyNumber" + dairyNumber);
 
-				/************************************************
-				 * End Here
-				 *****************************/
-				// case number
-				Map<String, Object> mapCNO = new HashMap<String, Object>();
-				mapCNO.put("DiaryNo", dairyNumber);
-				mapCNO.put("DiaryDate", date);
-				mapCNO.put("DeveloperId", 2);
-				mapCNO.put("PurposeId", 2);
-				mapCNO.put("StartDate", date);
-				mapCNO.put("DistrictCode",
-						"0618");
-			//	mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
+					/************************************************
+					 * End Here
+					 *****************************/
+					// case number
+					Map<String, Object> mapCNO = new HashMap<String, Object>();
+					mapCNO.put("DiaryNo", dairyNumber);
+					mapCNO.put("DiaryDate", date);
+					mapCNO.put("DeveloperId", 2);
+					mapCNO.put("PurposeId", 2);
+					mapCNO.put("StartDate", date);
+					mapCNO.put("DistrictCode", "0618");
+					// mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
 //				mapCNO.put("ChallanAmount",
 //						newobj.getFeesAndCharges().getPayableNow());
-				mapCNO.put("ChallanAmount","12.5");
-				mapCNO.put("UserId", "2");
-				mapCNO.put("UserLoginId",user.getId());
-				caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value").toString();
-				System.out.println("caseNumber"+caseNumber);
-				/************************************************
-				 * End Here
-				 *****************************/
-				// application number
-				Map<String, Object> mapANo = new HashMap<String, Object>();
-				mapANo.put("DiaryNo", dairyNumber);
-				mapANo.put("DiaryDate", date);
-				mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
-				mapANo.put("Village", "0618");
-				//mapANo.put("PurposeId", newobj.getApplicantPurpose().getPurposeDd());
-				mapANo.put("PurposeId", "2");
-				mapANo.put("NameofOwner", 12.5);
-				mapANo.put("DateOfHearing", date);
-				mapANo.put("DateForFilingOfReply", date);
-				mapANo.put("UserId", "2");
-				mapANo.put("UserLoginId",user.getId());
-				applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody().get("Value")
-						.toString();
-				System.out.println("applicationNmber"+applicationNmber);
+					mapCNO.put("ChallanAmount", "12.5");
+					mapCNO.put("UserId", "2");
+					mapCNO.put("UserLoginId", user.getId());
+					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
+							.toString();
+					System.out.println("caseNumber" + caseNumber);
+					/************************************************
+					 * End Here
+					 *****************************/
+					// application number
+					Map<String, Object> mapANo = new HashMap<String, Object>();
+					mapANo.put("DiaryNo", dairyNumber);
+					mapANo.put("DiaryDate", date);
+					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
+					mapANo.put("Village", "0618");
+					// mapANo.put("PurposeId", newobj.getApplicantPurpose().getPurposeDd());
+					mapANo.put("PurposeId", "2");
+					mapANo.put("NameofOwner", 12.5);
+					mapANo.put("DateOfHearing", date);
+					mapANo.put("DateForFilingOfReply", date);
+					mapANo.put("UserId", "2");
+					mapANo.put("UserLoginId", user.getId());
+					applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
+							.get("Value").toString();
+					System.out.println("applicationNmber" + applicationNmber);
 
-				/************************************************
-				 * End Here
-				 *****************************/
-				/************************************************
-				 * satrt transaction save
-				 *****************************/
-				Map<String, Object> map3 = new HashMap<String, Object>();
-				map3.put("UserName", user.getUserName());
-				map3.put("EmailId", user.getEmailId());
-				map3.put("MobNo", user.getMobileNumber());
-				map3.put("TxnNo", "");
-				map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-				map3.put("NameofOwner", newobj.getApplicantPurpose()
-						.getAppliedLandDetails().get(0).getLandOwner());
-				map3.put("LicenceFeeNla",
-						newobj.getFeesAndCharges().getLicenseFee());
-				map3.put("ScrutinyFeeNla",
-						newobj.getFeesAndCharges().getScrutinyFee());
-				map3.put("UserId", user.getId());
-				map3.put("UserLoginId", user.getId());
-				map3.put("TpUserId", user.getId());
-				//TODO Renu to Add these two vaues
-				map3.put("PaymentMode", "online");
-			
-				map3.put("PayAgreegator", "PNB");
-				map3.put("LcApplicantName", user.getUserName());
-				map3.put("LcPurpose", newobj.getApplicantPurpose().getPurposeDd());
-				map3.put("LcDevelopmentPlan", newobj.getDetailsofAppliedLand()
-						.getDetailsAppliedLand6().getDevelopmentPlan());
-				map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
-				saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
-						.toString();
-				System.out.println("saveTransaction"+saveTransaction);
+					/************************************************
+					 * End Here
+					 *****************************/
+					/************************************************
+					 * satrt transaction save
+					 *****************************/
+					Map<String, Object> map3 = new HashMap<String, Object>();
+					map3.put("UserName", user.getUserName());
+					map3.put("EmailId", user.getEmailId());
+					map3.put("MobNo", user.getMobileNumber());
+					map3.put("TxnNo", "");
+					map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
+					map3.put("NameofOwner", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+					map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
+					map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
+					map3.put("UserId", user.getId());
+					map3.put("UserLoginId", user.getId());
+					map3.put("TpUserId", user.getId());
+					// TODO Renu to Add these two vaues
+					map3.put("PaymentMode", "online");
 
-				/************************************************
-				 * End Here
-				 *****************************/
-			break;
+					map3.put("PayAgreegator", "PNB");
+					map3.put("LcApplicantName", user.getUserName());
+					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurposeDd());
+					map3.put("LcDevelopmentPlan",
+							newobj.getDetailsofAppliedLand().getDetailsAppliedLand6().getDevelopmentPlan());
+					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
+					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
+							.toString();
+					System.out.println("saveTransaction" + saveTransaction);
+
+					/************************************************
+					 * End Here
+					 *****************************/
+					break;
 				}
-				
+
 			}
 
 		}
-		
-		
-		
+
 	}
 }

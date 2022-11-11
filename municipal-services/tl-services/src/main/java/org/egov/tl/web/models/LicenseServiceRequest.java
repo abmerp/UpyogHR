@@ -1,5 +1,6 @@
 package org.egov.tl.web.models;
 
+import java.util.Date;
 
 import org.egov.common.contract.request.RequestInfo;
 
@@ -11,7 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +21,21 @@ public class LicenseServiceRequest {
 
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
-	
-	@JsonProperty("LicenseServiceRequestInfo")
-	private LicenseServiceRequestInfo licenseServiceRequestInfo = null;
+
+	private Long id;
+
+	private float currentVersion;
+
+	private String createdBy;
+
+	private Date createdDate;
+
+	private String updateddBy;
+
+	private Date updatedDate;
+
+	private String pageName;
+	private String applicationStatus;
+	@JsonProperty("LicenseDetails")
+	private LicenseDetails licenseDetails;
 }

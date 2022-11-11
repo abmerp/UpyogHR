@@ -114,10 +114,12 @@ public class TradeLicenseService {
        {
            case businessService_BPA:
                validateMobileNumberUniqueness(tradeLicenseRequest);
+               calculationService.addCalculation(tradeLicenseRequest);
                break;
+               
        }
        userService.createUser(tradeLicenseRequest, false);
-       calculationService.addCalculation(tradeLicenseRequest);
+      
 
         /*
          * call workflow service if it's enable else uses internal workflow process
@@ -127,6 +129,7 @@ public class TradeLicenseService {
            case businessService_TL:
                if (config.getIsExternalWorkFlowEnabled())
                    wfIntegrator.callWorkFlow(tradeLicenseRequest);
+               
                break;
        }
         repository.save(tradeLicenseRequest);

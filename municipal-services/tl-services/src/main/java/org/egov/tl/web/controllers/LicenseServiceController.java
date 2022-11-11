@@ -7,7 +7,7 @@ import org.egov.tl.service.LicenseService;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.LicenseServiceRequest;
-import org.egov.tl.web.models.LicenseServiceRequestInfo;
+
 import org.egov.tl.web.models.LicenseServiceResponse;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class LicenseServiceController {
 	@PostMapping(value = "_create")
 	public  ResponseEntity<LicenseServiceResponse> createNewService(@RequestBody LicenseServiceRequest newService) throws JsonProcessingException {
 
-		LicenseServiceResponseInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getLicenseServiceRequestInfo(),newService.getRequestInfo().getUserInfo());
+		LicenseServiceResponseInfo newServiceInfo = newServiceInfoService.createNewServic(newService);
 
 		List<LicenseServiceResponseInfo> newServiceInfoList = new ArrayList<>();
 		newServiceInfoList.add(newServiceInfo);
