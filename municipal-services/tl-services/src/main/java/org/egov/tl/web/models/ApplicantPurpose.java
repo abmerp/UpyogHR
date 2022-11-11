@@ -19,7 +19,7 @@ public class ApplicantPurpose {
 	private String district;
 	@JsonProperty("state")
 	private String state;
-	@JsonProperty("detailsOfAppliedland")
-	List<AppliedLandDetails> detailsOfAppliedland;
+	@JsonProperty("AppliedLandDetails")
+	List<AppliedLandDetails> appliedLandDetails;
 
 }

@@ -250,7 +250,7 @@ public class LicenseService {
 					map3.put("MobNo", user.getMobileNumber());
 					map3.put("TxnNo", "");
 					map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-					map3.put("NameofOwner", newobj.getApplicantPurpose().getDetailsOfAppliedland().get(0).getLandOwner());
+					map3.put("NameofOwner", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 					map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 					map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
 					map3.put("UserId", user.getId());
