@@ -18,14 +18,17 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.egov.common.contract.request.User;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
+import org.egov.tl.util.TLConstants;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseDetail;
+import org.egov.tl.web.models.TradeLicenseRequest;
 import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -39,6 +42,8 @@ public class LicenseService {
 	@Autowired
 	EntityManager em;
 	private long id = 1;
+	@Autowired
+	TradeLicenseService tradeLicenseService;
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo) {
@@ -112,6 +117,16 @@ public class LicenseService {
 		String transactionNumber;
 		if (!StringUtil.isBlank(newServiceIn.getApplication_Status())
 				&& newServiceIn.getApplication_Status().equalsIgnoreCase("SUBBMIT")) {
+			TradeLicenseRequest request = new TradeLicenseRequest();
+			request.setRequestInfo(newServiceInfo.getRequestInfo());
+
+			TradeLicense tradeLicense = new TradeLicense();
+
+			TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+
+			tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
+			request.addLicensesItem(tradeLicense);
+			tradeLicenseService.create(request, TLConstants.businessService_TL);
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 			authtoken.put("UserId", user.getId());
@@ -143,7 +158,7 @@ public class LicenseService {
 	public LicenseServiceResponseInfo getNewServicesInfoById(Long id) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
-		
+		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
 		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
 			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
 				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
@@ -260,7 +275,8 @@ public class LicenseService {
 					map3.put("MobNo", user.getMobileNumber());
 					map3.put("TxnNo", "");
 					map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-					map3.put("NameofOwner", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+					map3.put("NameofOwner",
+							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 					map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 					map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
 					map3.put("UserId", user.getId());
