@@ -9,10 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
+import org.egov.land.abm.newservices.pojo.LicenseDetails;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
@@ -23,7 +22,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-public class NewServiceInfo {
+public class LicenseServiceDao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +57,6 @@ public class NewServiceInfo {
 
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
-	private List<NewServiceInfoData> newServiceInfoData;
+	private List<LicenseDetails> newServiceInfoData;
 
 }

@@ -1,10 +1,11 @@
-package org.egov.land.abm.newservices.entity;
+package org.egov.land.abm.models;
 
 
 import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.response.ResponseInfo;
+import org.egov.land.abm.newservices.entity.LicenseServiceDao;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,11 +21,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class NewServiceResponseInfo {
+public class LicenseServiceResponse {
 
 	@JsonProperty("RequestInfo")
 	private ResponseInfo responseInfo = null;
 	
-	@JsonProperty("NewServiceInfo")
-	private List<NewServiceInfo> newServiceInfo = null;
+	@JsonProperty("LicenseServiceDao")
+	private List<LicenseServiceDao> newServiceInfo = null;
 }

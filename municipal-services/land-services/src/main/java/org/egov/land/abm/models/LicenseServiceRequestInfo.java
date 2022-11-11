@@ -2,7 +2,7 @@ package org.egov.land.abm.models;
 
 import java.util.Date;
 
-import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
+import org.egov.land.abm.newservices.pojo.LicenseDetails;
 import org.egov.land.web.models.User;
 
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class NewServiceInfoModel {
+public class LicenseServiceRequestInfo {
 
 	private Long id;
 
@@ -27,5 +27,5 @@ public class NewServiceInfoModel {
 
 	private String pageName;
 	private String applicationStatus;
-	private NewServiceInfoData newServiceInfoData;
+	private LicenseDetails newServiceInfoData;
 }

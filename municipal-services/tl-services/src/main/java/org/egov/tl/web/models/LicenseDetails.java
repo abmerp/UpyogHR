@@ -1,4 +1,4 @@
-package org.egov.land.abm.newservices.pojo;
+package org.egov.tl.web.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Builder
-public class NewServiceInfoData {
+public class LicenseDetails {
 
 	@JsonProperty("ver")
 	private float ver;

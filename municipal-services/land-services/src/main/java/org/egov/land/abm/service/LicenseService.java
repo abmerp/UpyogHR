@@ -15,40 +15,40 @@ import javax.persistence.LockModeType;
 import javax.transaction.Transactional;
 
 import org.egov.common.contract.request.User;
-import org.egov.land.abm.models.NewServiceInfoModel;
-import org.egov.land.abm.newservices.entity.NewServiceInfo;
-import org.egov.land.abm.newservices.pojo.NewServiceInfoData;
-import org.egov.land.abm.repo.NewServiceInfoRepo;
+import org.egov.land.abm.models.LicenseServiceRequestInfo;
+import org.egov.land.abm.newservices.entity.LicenseServiceDao;
+import org.egov.land.abm.newservices.pojo.LicenseDetails;
+import org.egov.land.abm.repo.LicenseServiceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NewServiceInfoService {
+public class LicenseService {
 
 	@Autowired
 	private ThirPartyAPiCall thirPartyAPiCall;
 	@Autowired
-	NewServiceInfoRepo newServiceInfoRepo;
+	LicenseServiceRepo newServiceInfoRepo;
 	@Autowired
 	EntityManager em;
 	private long id = 1;
 
 	@Transactional
-	public NewServiceInfo createNewServic(NewServiceInfoModel newServiceInfo, User user) {
+	public LicenseServiceDao createNewServic(LicenseServiceRequestInfo newServiceInfo, User user) {
 
-		List<NewServiceInfoData> newServiceInfoData;
+		List<LicenseDetails> newServiceInfoData;
 
-		NewServiceInfo newServiceIn;
-		List<NewServiceInfoData> newServiceInfoDatas;
+		LicenseServiceDao newServiceIn;
+		List<LicenseDetails> newServiceInfoDatas;
 		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 
-			newServiceIn = em.find(NewServiceInfo.class, newServiceInfo.getId());
+			newServiceIn = em.find(LicenseServiceDao.class, newServiceInfo.getId());
 
 			newServiceInfoData = newServiceIn.getNewServiceInfoData();
 			float cv = newServiceIn.getCurrentVersion() + 0.1f;
 
-			for (NewServiceInfoData newobj : newServiceInfoData) {
+			for (LicenseDetails newobj : newServiceInfoData) {
 
 				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
 
@@ -89,7 +89,7 @@ public class NewServiceInfoService {
 
 		} else {
 			newServiceInfoDatas = new ArrayList<>();
-			newServiceIn = new NewServiceInfo();
+			newServiceIn = new LicenseServiceDao();
 			newServiceIn.setCreatedBy(newServiceInfo.getCreatedBy());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
@@ -120,9 +120,9 @@ public class NewServiceInfoService {
 		return newServiceInfoRepo.save(newServiceIn);
 	}
 
-	public NewServiceInfo getNewServicesInfoById(Long id) {
+	public LicenseServiceDao getNewServicesInfoById(Long id) {
 
-		NewServiceInfo newServiceInfo = newServiceInfoRepo.getOne(id);
+		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
 		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
 		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
 			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
@@ -132,7 +132,7 @@ public class NewServiceInfoService {
 		return newServiceInfo;
 	}
 
-	public List<NewServiceInfo> getNewServicesInfoAll() {
+	public List<LicenseServiceDao> getNewServicesInfoAll() {
 		return newServiceInfoRepo.findAll();
 	}
 
@@ -154,15 +154,15 @@ public class NewServiceInfoService {
 		authtoken.put("UserId", user.getId());
 		authtoken.put("UserLoginId", user.getId());
 		authtoken.put("EmailId", user.getEmailId());
-		List<NewServiceInfoData> newServiceInfoData;
+		List<LicenseDetails> newServiceInfoData;
 		if (applicationNumber != null && applicationNumber > 0) {
 
-			NewServiceInfo newServiceIn = em.find(NewServiceInfo.class, applicationNumber);
+			LicenseServiceDao newServiceIn = em.find(LicenseServiceDao.class, applicationNumber);
 
 			newServiceInfoData = newServiceIn.getNewServiceInfoData();
 		
 
-			for (NewServiceInfoData newobj : newServiceInfoData) {
+			for (LicenseDetails newobj : newServiceInfoData) {
 
 				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
 

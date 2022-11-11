@@ -1,18 +1,19 @@
-package org.egov.land.abm.newservices.controller;
+package org.egov.tl.web.controllers;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.egov.land.abm.models.EgScrutinyInfoResponse;
-import org.egov.land.abm.newservices.entity.*;
-import org.egov.land.abm.service.NewServiceInfoService;
-import org.egov.land.util.ResponseInfoFactory;
+import org.egov.tl.service.LicenseService;
+import org.egov.tl.service.dao.LicenseServiceDao;
+import org.egov.tl.util.ResponseInfoFactory;
+import org.egov.tl.web.models.LicenseServiceRequest;
+import org.egov.tl.web.models.LicenseServiceRequestInfo;
+import org.egov.tl.web.models.LicenseServiceResponse;
+import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,25 +21,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("new")
-public class NewServiceController {
+public class LicenseServiceController {
 
 	@Autowired
-	NewServiceInfoService newServiceInfoService;
+	LicenseService newServiceInfoService;
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
-
+	
 	@PostMapping(value = "_create")
-	public  ResponseEntity<NewServiceResponseInfo> createNewService(@RequestBody NewService newService) throws JsonProcessingException {
+	public  ResponseEntity<LicenseServiceResponse> createNewService(@RequestBody LicenseServiceRequest newService) throws JsonProcessingException {
 
-		NewServiceInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getNewServiceInfo(),newService.getRequestInfo().getUserInfo());
+		LicenseServiceResponseInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getNewServiceInfo(),newService.getRequestInfo().getUserInfo());
 
-		List<NewServiceInfo> newServiceInfoList = new ArrayList<>();
+		List<LicenseServiceResponseInfo> newServiceInfoList = new ArrayList<>();
 		newServiceInfoList.add(newServiceInfo);
-		NewServiceResponseInfo newServiceResponseInfo = NewServiceResponseInfo.builder().newServiceInfo(newServiceInfoList).
+		LicenseServiceResponse newServiceResponseInfo = LicenseServiceResponse.builder().newServiceInfo(newServiceInfoList).
 																								responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(newService.getRequestInfo(), true)).
 																								build();
 		
@@ -46,12 +46,12 @@ public class NewServiceController {
 	}
 
 	@GetMapping("/licenses/_get")
-	public NewServiceInfo getNewServicesDetailById(@RequestParam("id") Long id) {
+	public LicenseServiceDao getNewServicesDetailById(@RequestParam("id") Long id) {
 		return newServiceInfoService.getNewServicesInfoById(id);
 	}
 	
 	@GetMapping("/licenses/_getall")
-	public List<NewServiceInfo> getNewServicesDetailAll() {
+	public List<LicenseServiceDao> getNewServicesDetailAll() {
 
 		return newServiceInfoService.getNewServicesInfoAll();
 	}
