@@ -82,7 +82,7 @@ const StakeholderDocuments = ({ t, config, onSelect, userType, formData, setErro
         <div>
             <div className={isopenlink? "OpenlinkContainer":""}>
             {isopenlink && <BackButton style={{ border: "none" }}>{t("CS_COMMON_BACK")}</BackButton>}
-            <Timeline currentStep={3} flow="STAKEHOLDER" />
+            <Timeline currentStep={5} flow="STAKEHOLDER" />
             {!isLoading ?
                 <FormStep
                     t={t}

@@ -49,7 +49,7 @@ const CheckPage = ({ onSubmit, value }) => {
         {/* <div style={isopenlink?{ width:isCitizenUrl?"100%":"70%", marginLeft:"auto",marginRight:"auto"}:{}}> */}
         <div>
           {isopenlink && <BackButton style={{ border: "none" }}>{t("CS_COMMON_BACK")}</BackButton>}
-          <Timeline currentStep={4} flow="STAKEHOLDER" />
+          <Timeline currentStep={6} flow="STAKEHOLDER" />
           <Header styles={{ fontSize: "32px" }}>{t("BPA_STEPPER_SUMMARY_HEADER")}</Header>
           <Card style={{ paddingRight: "16px" }}>
             <StatusTable>
@@ -81,11 +81,13 @@ const CheckPage = ({ onSubmit, value }) => {
               <Row className="border-none" label={t(`BPA_OWNER_MOBILE_NO_LABEL`)} text={formData?.LicneseDetails?.mobileNumber} />
               <Row className="border-none" label={t(`BPA_APPLICANT_EMAIL_LABEL`)} text={formData?.LicneseDetails?.email || t("CS_NA")} />
               <Row className="border-none" label={t(`BPA_APPLICANT_PAN_NO`)} text={formData?.LicneseDetails?.PanNumber || t("CS_NA")} />
+              <Row className="border-none" label={`Pin Code`} text={formData?.LicneseDetails?.pincode || t("CS_NA")} />
+              <Row className="border-none" label={`Date of Birth`} text={formData?.LicneseDetails?.dob || t("CS_NA")} />
             </StatusTable>
           </Card>
           <Card style={{ paddingRight: "16px" }}>
             <div style={{ marginRight: "24px" }}>
-              <CardHeader styles={{ fontSize: "24px" }}>{t(`BPA_LICENSEE_PERMANENT_LABEL`)}</CardHeader>
+              <CardHeader styles={{ fontSize: "24px" }}>{`Add Info`}</CardHeader>
             </div>
             <LinkButton
               label={<EditIcon style={{ marginTop: "-15px", float: "right", position: "relative", bottom: "32px" }} />}
@@ -93,6 +95,7 @@ const CheckPage = ({ onSubmit, value }) => {
               onClick={() => routeTo(`${routeLink}/Permanent-address`)}
             />
             <Row className="border-none" text={t(formData?.LicneseDetails?.PermanentAddress)} />
+            {/* <Row className="border-none" text={t(formData?.LicneseDetails?.cin_Number)} /> */}
           </Card>
           <Card style={{ paddingRight: "16px" }}>
             <div style={{ marginRight: "24px" }}>
