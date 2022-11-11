@@ -37,16 +37,17 @@ public class MDMSService {
     }
 
 
-    public Map<String, Boolean> getStateLevelMapping() {
-        return this.stateLevelMapping;
+    public Map<String, Boolean> getStateLevelMapping(RequestInfo requestinfo) {
+    	stateLevelMapping(requestinfo);
+    	return this.stateLevelMapping;
     }
 
 
    
-    public void stateLevelMapping(){
+    public void stateLevelMapping(RequestInfo requestinfo){
         Map<String, Boolean> stateLevelMapping = new HashMap<>();
 
-        Object mdmsData = getBusinessServiceMDMS();
+        Object mdmsData = getBusinessServiceMDMS(requestinfo);
         List<HashMap<String, Object>> configs = JsonPath.read(mdmsData,JSONPATH_BUSINESSSERVICE_STATELEVEL);
 
 
@@ -77,8 +78,8 @@ public class MDMSService {
      * Calls MDMS service to fetch master data
      * @return
      */
-    public Object getBusinessServiceMDMS(){
-        MdmsCriteriaReq mdmsCriteriaReq = getBusinessServiceMDMSRequest(new RequestInfo(), workflowConfig.getStateLevelTenantId());
+    public Object getBusinessServiceMDMS(RequestInfo requestinfo){
+        MdmsCriteriaReq mdmsCriteriaReq = getBusinessServiceMDMSRequest(requestinfo, workflowConfig.getStateLevelTenantId());
         Object result = serviceRequestRepository.fetchResult(getMdmsSearchUrl(), mdmsCriteriaReq);
         return result;
     }

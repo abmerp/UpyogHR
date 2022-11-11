@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: user-save-topic
    isTransaction : true
    queryMaps: 
-    - query: INSERT INTO eg_user(id, salutation, locale, username, pwdexpirytime, mobilenumber,emailid, name, gender, aadhaarnumber, type, active, accountlocked,tenantid,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?);
+    - query: INSERT INTO eg_user(id, salutation, locale, username, pwdexpirytime, mobilenumber,emailid, name, gender, aadhaarnumber, type, active, accountlocked,tenantid,createdby,lastmodifiedby,createdtime,lastmodifiedtime,parentId) VALUES (?,?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?,?,?,?,?,?);
       basePath: $.users.*
       jsonMaps:
        - jsonPath: $.users.*.id
@@ -38,6 +38,8 @@ serviceMaps:
 
        - jsonPath: $.users.*.tenantId
        
+       - jsonPath: $.users.*.parentId
+        
        - jsonPath: $.users.*.auditDetails.createdBy
        
        - jsonPath: $.users.*.auditDetails.lastModifiedBy
