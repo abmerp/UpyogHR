@@ -21,10 +21,14 @@ import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceRequestInfo;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class LicenseService {	
 
 	@Autowired
@@ -55,24 +59,24 @@ public class LicenseService {
 
 					switch (newServiceInfo.getPageName()) {
 					case "ApplicantInfo": {
-						newobj.setApplicantInfo(newServiceInfo.getNewServiceInfoData().getApplicantInfo());
+						newobj.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
 						break;
 					}
 					case "ApplicantPurpose": {
-						newobj.setApplicantPurpose(newServiceInfo.getNewServiceInfoData().getApplicantPurpose());
+						newobj.setApplicantPurpose(newServiceInfo.getLicenseDetails().getApplicantPurpose());
 						break;
 					}
 					case "LandSchedule": {
-						newobj.setLandSchedule(newServiceInfo.getNewServiceInfoData().getLandSchedule());
+						newobj.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
 						break;
 					}
 					case "DetailsofAppliedLand": {
 						newobj.setDetailsofAppliedLand(
-								newServiceInfo.getNewServiceInfoData().getDetailsofAppliedLand());
+								newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
 						break;
 					}
 					case "FeesAndCharges": {
-						newobj.setFeesAndCharges(newServiceInfo.getNewServiceInfoData().getFeesAndCharges());
+						newobj.setFeesAndCharges(newServiceInfo.getLicenseDetails().getFeesAndCharges());
 						break;
 					}
 					}
@@ -96,16 +100,17 @@ public class LicenseService {
 			newServiceIn.setUpdatedDate(new Date());
 			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
 
-			newServiceInfo.getNewServiceInfoData().setVer(0.1f);
+			newServiceInfo.getLicenseDetails().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
-			newServiceInfoDatas.add(newServiceInfo.getNewServiceInfoData());
+			newServiceInfoDatas.add(newServiceInfo.getLicenseDetails());
 			newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
 			newServiceIn.setCurrentVersion(0.1f);
 		}
 
 		// ********************transaction number***************.//
 		String transactionNumber;
-		if (newServiceIn.getApplication_Status().equalsIgnoreCase("SUBBMIT")) {
+		if (!StringUtil.isBlank(newServiceIn.getApplication_Status())&&
+				newServiceIn.getApplication_Status().equalsIgnoreCase("SUBBMIT")) {
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 			authtoken.put("UserId", user.getId());
@@ -117,6 +122,8 @@ public class LicenseService {
 			mapTNum.put("MobNo", user.getMobileNumber());
 			transactionNumber = thirPartyAPiCall.generateTransactionNumber(mapTNum, authtoken).getBody().get("Value")
 					.toString();
+			log.info("TransactionNumber\t" +transactionNumber);
+			
 		}
 		newServiceIn=newServiceInfoRepo.save(newServiceIn);
 		try {

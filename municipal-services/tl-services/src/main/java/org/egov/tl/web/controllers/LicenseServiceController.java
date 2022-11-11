@@ -34,7 +34,7 @@ public class LicenseServiceController {
 	@PostMapping(value = "_create")
 	public  ResponseEntity<LicenseServiceResponse> createNewService(@RequestBody LicenseServiceRequest newService) throws JsonProcessingException {
 
-		LicenseServiceResponseInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getNewServiceInfo(),newService.getRequestInfo().getUserInfo());
+		LicenseServiceResponseInfo newServiceInfo = newServiceInfoService.createNewServic(newService.getLicenseServiceRequestInfo(),newService.getRequestInfo().getUserInfo());
 
 		List<LicenseServiceResponseInfo> newServiceInfoList = new ArrayList<>();
 		newServiceInfoList.add(newServiceInfo);

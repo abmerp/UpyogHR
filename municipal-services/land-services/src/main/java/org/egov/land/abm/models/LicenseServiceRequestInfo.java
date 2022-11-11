@@ -27,5 +27,6 @@ public class LicenseServiceRequestInfo {
 
 	private String pageName;
 	private String applicationStatus;
+	
 	private LicenseDetails newServiceInfoData;
 }

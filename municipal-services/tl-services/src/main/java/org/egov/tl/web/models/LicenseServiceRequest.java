@@ -23,5 +23,5 @@ public class LicenseServiceRequest {
 	private RequestInfo requestInfo = null;
 	
 	@JsonProperty("LicenseServiceRequestInfo")
-	private LicenseServiceRequestInfo newServiceInfo = null;
+	private LicenseServiceRequestInfo licenseServiceRequestInfo = null;
 }

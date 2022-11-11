@@ -2,7 +2,7 @@ package org.egov.tl.web.models;
 
 import java.util.Date;
 
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,5 +26,6 @@ public class LicenseServiceRequestInfo {
 
 	private String pageName;
 	private String applicationStatus;
-	private LicenseDetails newServiceInfoData;
+	@JsonProperty("LicenseDetails")
+	private LicenseDetails licenseDetails;
 }

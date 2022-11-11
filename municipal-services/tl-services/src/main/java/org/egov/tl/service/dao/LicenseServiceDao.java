@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.egov.tl.web.models.LicenseDetails;
 import org.hibernate.annotations.Type;
@@ -22,6 +23,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@Table(name = "eg_license") 
 public class LicenseServiceDao {
 
 	@Id
