@@ -11,11 +11,15 @@ import lombok.Setter;
 @Setter	
 public class ApplicantPurpose {
 
-	private String purposeDd;
+	@JsonProperty("purpose")
+	private String purpose;
+	@JsonProperty("potential")
 	private String potential;
+	@JsonProperty("district")
 	private String district;
+	@JsonProperty("state")
 	private String state;
-	@JsonProperty("AppliedLandDetails")
-	List<AppliedLandDetails> appliedLandDetails;
+	@JsonProperty("detailsOfAppliedland")
+	List<AppliedLandDetails> detailsOfAppliedland;
 
 }

@@ -250,7 +250,7 @@ public class LicenseService {
 					map3.put("MobNo", user.getMobileNumber());
 					map3.put("TxnNo", "");
 					map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-					map3.put("NameofOwner", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+					map3.put("NameofOwner", newobj.getApplicantPurpose().getDetailsOfAppliedland().get(0).getLandOwner());
 					map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 					map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
 					map3.put("UserId", user.getId());
@@ -261,7 +261,7 @@ public class LicenseService {
 
 					map3.put("PayAgreegator", "PNB");
 					map3.put("LcApplicantName", user.getUserName());
-					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurposeDd());
+					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
 					map3.put("LcDevelopmentPlan",
 							newobj.getDetailsofAppliedLand().getDetailsAppliedLand6().getDevelopmentPlan());
 					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
