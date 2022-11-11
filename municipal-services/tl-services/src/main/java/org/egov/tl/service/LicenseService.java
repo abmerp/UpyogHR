@@ -255,7 +255,7 @@ public class LicenseService {
 				map3.put("TxnNo", "");
 				map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
 				map3.put("NameofOwner", newobj.getApplicantPurpose()
-						.getApplicationPurposeData1().getLandOwner());
+						.getAppliedLandDetails().get(0).getLandOwner());
 				map3.put("LicenceFeeNla",
 						newobj.getFeesAndCharges().getLicenseFee());
 				map3.put("ScrutinyFeeNla",

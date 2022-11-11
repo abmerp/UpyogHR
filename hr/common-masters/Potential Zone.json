@@ -1,14 +1,13 @@
 {
 "tenantId": "hr",
   "moduleName": "common-masters",
-  "potentialZone": [
+  "PotentialZone": [
 {
       "zone":"Hyper",
       "code": "HYP",
       "Active": "True"
 	  
 },
-
 
 {
       "zone":"High1",

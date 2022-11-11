@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ApplicationPurposeData1 {
+public class AppliedLandDetails {
 
 	private String tehsil;
 	private String revenueEstate;

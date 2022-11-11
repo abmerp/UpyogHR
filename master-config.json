@@ -76,7 +76,7 @@
     }
   },
   "commonMasters": {
-    
+
     "bdTemplate": {
       "masterName": "bdTemplate",
       "moduleDefinition": null,
@@ -99,30 +99,30 @@
       "isStateLevel": true,
       "uniqueKeys": [
         "$.code"
-    ]
-  },
+      ]
+    },
     "CommonInboxConfig": {
       "masterName": "CommonInboxConfig",
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
         "$.BusinessService"
-    ]
-  },
+      ]
+    },
     "CronJobAPIConfig": {
       "masterName": "CronJobAPIConfig",
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
         "$.url"
-  ]
-},
+      ]
+    },
     "faqs": {
       "masterName": "faqs",
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
-        
+
       ]
     },
     "Feedback": {
@@ -138,18 +138,18 @@
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
-        
+
       ]
     },
-    "GenderType" : {
+    "GenderType": {
       "masterName": "GenderType",
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
         "$.code"
       ]
-    }, 
-    "HierarchyType" : {
+    },
+    "HierarchyType": {
       "masterName": "HierarchyType",
       "moduleDefinition": null,
       "isStateLevel": true,
@@ -157,7 +157,7 @@
         "$.code"
       ]
     },
-    "howItWorks" : {
+    "howItWorks": {
       "masterName": "howItWorks",
       "moduleDefinition": null,
       "isStateLevel": true,
@@ -165,7 +165,7 @@
         "$.code"
       ]
     },
-    "IdFormat" : {
+    "IdFormat": {
       "masterName": "IdFormat",
       "moduleDefinition": null,
       "isStateLevel": true,
@@ -173,7 +173,7 @@
         "$.Idname"
       ]
     },
-    "ReceiptStatus" : {
+    "ReceiptStatus": {
       "masterName": "ReceiptStatus",
       "moduleDefinition": null,
       "isStateLevel": true,
@@ -194,7 +194,7 @@
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
-        
+
       ]
     },
     "TablePaginationOptions": {
@@ -230,7 +230,7 @@
       "moduleDefinition": null,
       "isStateLevel": true,
       "uniqueKeys": [
-        
+
       ]
     },
     "wfSlaConfig": {
@@ -258,6 +258,14 @@
         "$.purposeCode",
         "$.tenantId"
       ]
+    },
+    "PotentialZone": {
+      "masterName": "PotentialZone",
+      "isStateLevel": true,
+      "uniqueKeys": [
+        "$.code"
+      ]
+
     },
     "CensusYear": {
       "masterName": "CensusYear",
