@@ -35,6 +35,7 @@ public class LicenseServiceRequest {
 	private Date updatedDate;
 
 	private String pageName;
+	@JsonProperty("ApplicationStatus")
 	private String applicationStatus;
 	@JsonProperty("LicenseDetails")
 	private LicenseDetails licenseDetails;

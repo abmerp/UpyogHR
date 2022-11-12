@@ -46,7 +46,7 @@ public class LicenseServiceDao {
 	private Date updatedDate;
 
 	@Column(name = "application_Status")
-	private String application_Status;
+	private String applicationStatus;
 
 	@Column(name = "applicationNumber")
 	private String applicationNumber;

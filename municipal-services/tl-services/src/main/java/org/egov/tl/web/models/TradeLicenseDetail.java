@@ -47,13 +47,6 @@ public class TradeLicenseDetail   {
         private String id;
 
      
-
-
-
-
-
-
-
         @NotNull
         @JsonProperty("owners")
         @Valid
@@ -95,10 +88,7 @@ public class TradeLicenseDetail   {
         @JsonProperty("channel")
         private ChannelEnum channel = null;
 
-        @NotNull
-        @Valid
-        @JsonProperty("address")
-        private Address address = null;
+        
 
         @Size(max=64)
         @SafeHtml

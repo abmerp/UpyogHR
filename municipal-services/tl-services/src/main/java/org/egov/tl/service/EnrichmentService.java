@@ -67,21 +67,25 @@ public class EnrichmentService {
 				if (tradeLicense.getApplicationType() != null
 						&& tradeLicense.getApplicationType().toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)) {
 					tradeLicense.setLicenseNumber(tradeLicenseRequest.getLicenses().get(0).getLicenseNumber());
-					Map<String, Long> taxPeriods = tradeUtil.getTaxPeriods(tradeLicense, mdmsData);
-					tradeLicense.setValidTo(taxPeriods.get(TLConstants.MDMS_ENDDATE));
-					tradeLicense.setValidFrom(taxPeriods.get(TLConstants.MDMS_STARTDATE));
+					//Map<String, Long> taxPeriods = tradeUtil.getTaxPeriods(tradeLicense, mdmsData);
+				//	tradeLicense.setValidTo(taxPeriods.get(TLConstants.MDMS_ENDDATE));
+					//tradeLicense.setValidFrom(taxPeriods.get(TLConstants.MDMS_STARTDATE));
 				} else {
-					Map<String, Long> taxPeriods = tradeUtil.getTaxPeriods(tradeLicense, mdmsData);
-					if (tradeLicense.getLicenseType().equals(TradeLicense.LicenseTypeEnum.PERMANENT)
-							|| tradeLicense.getValidTo() == null)
-						tradeLicense.setValidTo(taxPeriods.get(TLConstants.MDMS_ENDDATE));
-					tradeLicense.setValidFrom(taxPeriods.get(TLConstants.MDMS_STARTDATE));
+					//Map<String, Long> taxPeriods = tradeUtil.getTaxPeriods(tradeLicense, mdmsData);
+					//if (tradeLicense.getLicenseType().equals(TradeLicense.LicenseTypeEnum.PERMANENT)
+					//		|| tradeLicense.getValidTo() == null)
+					//	tradeLicense.setValidTo(taxPeriods.get(TLConstants.MDMS_ENDDATE));
+				//	tradeLicense.setValidFrom(taxPeriods.get(TLConstants.MDMS_STARTDATE));
 				}
 
 				break;
 			}
-			tradeLicense.getTradeLicenseDetail().getAddress().setTenantId(tradeLicense.getTenantId());
-			tradeLicense.getTradeLicenseDetail().getAddress().setId(UUID.randomUUID().toString());
+			/*
+			 * tradeLicense.getTradeLicenseDetail().getAddress().setTenantId(tradeLicense.
+			 * getTenantId());
+			 * tradeLicense.getTradeLicenseDetail().getAddress().setId(UUID.randomUUID().
+			 * toString());
+			 */
 
 			if (tradeLicense.getAction().equalsIgnoreCase(ACTION_APPLY)) {
 				tradeLicense.getTradeLicenseDetail().getApplicationDocuments().forEach(document -> {

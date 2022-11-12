@@ -107,9 +107,11 @@ public class TLValidator {
             if (license.getFinancialYear() == null)
                 errorMap.put("NULL_FINANCIALYEAR", " Financial Year cannot be null");
            
-            if ((license.getTradeLicenseDetail().getAddress().getLocality() == null)||(license.getTradeLicenseDetail().getAddress().getLocality().getCode() == null))
-                errorMap.put("NULL_LOCALITY", " Locality cannot be null");
-
+			/*
+			 * if ((license.getTradeLicenseDetail().getAddress().getLocality() ==
+			 * null)||(license.getTradeLicenseDetail().getAddress().getLocality().getCode()
+			 * == null)) errorMap.put("NULL_LOCALITY", " Locality cannot be null");
+			 */
             if (!errorMap.isEmpty())
                 throw new CustomException(errorMap);
         });
@@ -150,11 +152,11 @@ public class TLValidator {
 //            }else{
 //                taxPeriods = tradeUtil.getTaxPeriods(license,mdmsData);
 //            }
-            taxPeriods = tradeUtil.getTaxPeriods(license,mdmsData);                
-            if(license.getValidTo()!=null && license.getValidTo()>taxPeriods.get(TLConstants.MDMS_ENDDATE)){
-                Date expiry = new Date(license.getValidTo());
-                throw new CustomException("INVALID TO DATE"," Validto cannot be greater than: "+expiry);
-            }            
+         //   taxPeriods = tradeUtil.getTaxPeriods(license,mdmsData);                
+//            if(license.getValidTo()!=null && license.getValidTo()>taxPeriods.get(TLConstants.MDMS_ENDDATE)){
+//                Date expiry = new Date(license.getValidTo());
+//                throw new CustomException("INVALID TO DATE"," Validto cannot be greater than: "+expiry);
+//            }            
             if(license.getLicenseType().toString().equalsIgnoreCase(TradeLicense.LicenseTypeEnum.TEMPORARY.toString())) {
                 Long startOfDay = getStartOfDay();
                 if (!config.getIsPreviousTLAllowed() && license.getValidFrom() != null
@@ -397,8 +399,8 @@ public class TLValidator {
                 case businessService_TL:
                     if (!idToTradeLicenseFromSearch.get(license.getId()).getFinancialYear().equalsIgnoreCase(license.getFinancialYear())
                             && license.getLicenseType().equals(TradeLicense.LicenseTypeEnum.PERMANENT)) {
-                        Map<String, Long> taxPeriods = tradeUtil.getTaxPeriods(license, mdmsData);
-                        license.setValidTo(taxPeriods.get(TLConstants.MDMS_ENDDATE));
+                       // Map<String, Long> taxPeriods = tradeUtil.getTaxPeriods(license, mdmsData);
+                        //license.setValidTo(taxPeriods.get(TLConstants.MDMS_ENDDATE));
                     }
                     break;
             }
@@ -429,10 +431,12 @@ public class TLValidator {
                     equalsIgnoreCase(license.getTradeLicenseDetail().getId()))
                 errorMap.put("INVALID UPDATE","The id "+license.getTradeLicenseDetail().getId()+" does not exist");
 
-            if(!searchedLicense.getTradeLicenseDetail().getAddress().getId().
-                    equalsIgnoreCase(license.getTradeLicenseDetail().getAddress().getId()))
-                errorMap.put("INVALID UPDATE","The id "+license.getTradeLicenseDetail().getAddress().getId()+" does not exist");
-
+			/*
+			 * // if(!searchedLicense.getTradeLicenseDetail().getAddress().getId(). //
+			 * equalsIgnoreCase(license.getTradeLicenseDetail().getAddress().getId())) //
+			 * errorMap.put("INVALID UPDATE","The id "+license.getTradeLicenseDetail().
+			 * getAddress().getId()+" does not exist");
+			 */
            // compareIdList(getTradeUnitIds(searchedLicense),getTradeUnitIds(license),errorMap);
          //   compareIdList(getAccessoryIds(searchedLicense),getAccessoryIds(license),errorMap);
             compareIdList(getOwnerIds(searchedLicense),getOwnerIds(license),errorMap);

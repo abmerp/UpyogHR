@@ -153,7 +153,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .channel(TradeLicenseDetail.ChannelEnum.fromValue(rs.getString("channel")))
                       //  .subOwnerShipCategory(rs.getString("subownershipcategory"))
                         .id(tradeLicenseDetailId)
-                        .address(address)
+                      //  .address(address)
                         .auditDetails(auditdetails)
                        // .structureType(rs.getString("structureType"))
                       //  .operationalArea(operationalArea)

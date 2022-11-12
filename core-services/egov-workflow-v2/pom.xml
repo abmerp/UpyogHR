@@ -96,18 +96,19 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
-        <!-- Egov dependencies -->
-        <dependency>
-            <groupId>org.egov</groupId>
-            <artifactId>mdms-client</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
+          <dependency>
             <groupId>org.egov.services</groupId>
             <artifactId>services-common</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
+        
+        <!-- Egov dependencies -->
+        <dependency>
+            <groupId>org.egov</groupId>
+            <artifactId>mdms-client</artifactId>
+            <version>0.0.3-SNAPSHOT</version>
+        </dependency>
+      
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

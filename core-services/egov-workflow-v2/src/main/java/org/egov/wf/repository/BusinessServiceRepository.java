@@ -54,7 +54,7 @@ public class BusinessServiceRepository {
 
         List<String> stateLevelBusinessServices = new LinkedList<>();
         List<String> tenantBusinessServices = new LinkedList<>();
-
+        criteria.setRequestInfo(requestinfo);
         Map<String, Boolean> stateLevelMapping = mdmsService.getStateLevelMapping(requestinfo);
 
         if(!CollectionUtils.isEmpty(criteria.getBusinessServices())){
