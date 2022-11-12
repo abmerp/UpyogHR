@@ -49,12 +49,14 @@ public class BoundaryService {
         String tenantId = request.getLicenses().get(0).getTenantId();
 
         LinkedList<String> localities = new LinkedList<>();
-        request.getLicenses().forEach(license -> {
-            if(license.getTradeLicenseDetail().getAddress()==null ||
-                    license.getTradeLicenseDetail().getAddress().getLocality()==null)
-                throw new CustomException("INVALID ADDRESS","The address or locality cannot be null");
-            localities.add(license.getTradeLicenseDetail().getAddress().getLocality().getCode());
-        });
+		/*
+		 * request.getLicenses().forEach(license -> {
+		 * if(license.getTradeLicenseDetail().getAddress()==null ||
+		 * license.getTradeLicenseDetail().getAddress().getLocality()==null) throw new
+		 * CustomException("INVALID ADDRESS","The address or locality cannot be null");
+		 * localities.add(license.getTradeLicenseDetail().getAddress().getLocality().
+		 * getCode()); });
+		 */
 
         StringBuilder uri = new StringBuilder(config.getLocationHost());
         uri.append(config.getLocationContextPath()).append(config.getLocationEndpoint());
@@ -77,22 +79,29 @@ public class BoundaryService {
             throw new CustomException("BOUNDARY ERROR","The response from location service is empty or null");
         String jsonString = new JSONObject(responseMap).toString();
 
-        Map<String,String> propertyIdToJsonPath = getJsonpath(request);
+     //   Map<String,String> propertyIdToJsonPath = getJsonpath(request);
 
         DocumentContext context = JsonPath.parse(jsonString);
 
-        request.getLicenses().forEach(license -> {
-            Object boundaryObject = context.read(propertyIdToJsonPath.get(license.getId()));
-            if(!(boundaryObject instanceof ArrayList) || CollectionUtils.isEmpty((ArrayList)boundaryObject))
-                throw new CustomException("BOUNDARY MDMS DATA ERROR","The boundary data was not found");
-
-            ArrayList boundaryResponse = context.read(propertyIdToJsonPath.get(license.getId()));
-            Boundary boundary = mapper.convertValue(boundaryResponse.get(0),Boundary.class);
-            if(boundary.getName()==null)
-                throw new CustomException("INVALID BOUNDARY DATA","The boundary data for the code "+license.getTradeLicenseDetail().getAddress().getLocality().getCode()+ " is not available");
-            license.getTradeLicenseDetail().getAddress().setLocality(boundary);
-
-        });
+		/*
+		 * request.getLicenses().forEach(license -> { Object boundaryObject =
+		 * context.read(propertyIdToJsonPath.get(license.getId())); if(!(boundaryObject
+		 * instanceof ArrayList) || CollectionUtils.isEmpty((ArrayList)boundaryObject))
+		 * throw new
+		 * CustomException("BOUNDARY MDMS DATA ERROR","The boundary data was not found"
+		 * );
+		 * 
+		 * ArrayList boundaryResponse =
+		 * context.read(propertyIdToJsonPath.get(license.getId())); Boundary boundary =
+		 * mapper.convertValue(boundaryResponse.get(0),Boundary.class);
+		 * if(boundary.getName()==null) throw new
+		 * CustomException("INVALID BOUNDARY DATA","The boundary data for the code "
+		 * +license.getTradeLicenseDetail().getAddress().getLocality().getCode()+
+		 * " is not available");
+		 * license.getTradeLicenseDetail().getAddress().setLocality(boundary);
+		 * 
+		 * });
+		 */
     }
 
 
@@ -101,16 +110,15 @@ public class BoundaryService {
      * @param request TradeLicenseRequest for create
      * @return Map of tradeLcienseId to jsonPath with tradeLcienses locality code
      */
-    private Map<String,String> getJsonpath(TradeLicenseRequest request){
-        Map<String,String> idToJsonPath = new LinkedHashMap<>();
-        String jsonpath = "$..boundary[?(@.code==\"{}\")]";
-        request.getLicenses().forEach(license -> {
-            idToJsonPath.put(license.getId(),jsonpath.replace("{}",license.getTradeLicenseDetail().getAddress().getLocality().getCode()
-            ));
-        });
-
-        return  idToJsonPath;
-    }
+	/*
+	 * private Map<String,String> getJsonpath(TradeLicenseRequest request){
+	 * Map<String,String> idToJsonPath = new LinkedHashMap<>(); String jsonpath =
+	 * "$..boundary[?(@.code==\"{}\")]"; request.getLicenses().forEach(license -> {
+	 * idToJsonPath.put(license.getId(),jsonpath.replace("{}",license.
+	 * getTradeLicenseDetail().getAddress().getLocality().getCode() )); });
+	 * 
+	 * return idToJsonPath; }
+	 */
 
 
 

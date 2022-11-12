@@ -15,6 +15,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.thrift.transport.TTransport;
 import org.egov.common.contract.request.User;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
@@ -94,7 +95,7 @@ public class LicenseService {
 			}
 
 			newServiceIn.setUpdatedDate(new Date());
-
+			newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
 			newServiceIn.setCurrentVersion(cv);
 
@@ -104,6 +105,7 @@ public class LicenseService {
 			newServiceIn.setCreatedBy(newServiceInfo.getCreatedBy());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
+			newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
 			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
 
 			newServiceInfo.getLicenseDetails().setVer(0.1f);
@@ -115,16 +117,52 @@ public class LicenseService {
 
 		// ********************transaction number***************.//
 		String transactionNumber;
-		if (!StringUtil.isBlank(newServiceIn.getApplication_Status())
-				&& newServiceIn.getApplication_Status().equalsIgnoreCase("SUBBMIT")) {
+	
+		if (!StringUtil.isBlank(newServiceIn.getApplicationStatus())
+				&& newServiceIn.getApplicationStatus().equalsIgnoreCase("Submit")) {
 			TradeLicenseRequest request = new TradeLicenseRequest();
 			request.setRequestInfo(newServiceInfo.getRequestInfo());
 
+			
 			TradeLicense tradeLicense = new TradeLicense();
 
 			TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-
+			tradeLicense.setId(String.valueOf(newServiceInfo.getId()));
+			tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
+			tradeLicense.setAction("INITIATE");
+			tradeLicense.setApplicationDate(new Date().getTime());
+		//	tradeLicense.getApplicationNumber();
+			tradeLicense.setApplicationType(TradeLicense.ApplicationTypeEnum.NEW);
+			//tradeLicense.getAssignee();
+		//	tradeLicense.getAuditDetails();
+			tradeLicense.setBusinessService("TL");
+		//	tradeLicense.getCalculation();
+		//	tradeLicense.getComment();
+			//tradeLicense.getFileStoreId();
+			tradeLicense.setFinancialYear("2022-23");	
+			tradeLicense.setIssuedDate(new Date().getTime());
+			//tradeLicense.getLicenseNumber();
+			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
+			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
+			tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
+//			tradeLicense.setValidFrom();
+//			tradeLicense.setValidTo();
+//			tradeLicense.setWfDocuments();
+			tradeLicense.setWorkflowCode("NewTL");
+			
+			
 			tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
+			tradeLicenseDetail.setId(String.valueOf(newServiceInfo.getId()));			
+			tradeLicenseDetail.getAdditionalDetail();
+			tradeLicenseDetail.getApplicationDocuments();
+			tradeLicenseDetail.getChannel();
+			tradeLicenseDetail.getOwners();
+			tradeLicenseDetail.getVerificationDocuments();
+			tradeLicenseDetail.setTradeType("NewTL");
+			
+			
+			
+			
 			request.addLicensesItem(tradeLicense);
 			tradeLicenseService.create(request, TLConstants.businessService_TL);
 			Map<String, Object> authtoken = new HashMap<String, Object>();

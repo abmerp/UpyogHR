@@ -268,8 +268,8 @@ public class ActionValidator {
                         errorMap.put("INVALID UPDATE", "Id of tradeLicense cannot be null");
                     if(license.getTradeLicenseDetail().getId()==null)
                         errorMap.put("INVALID UPDATE", "Id of tradeLicenseDetail cannot be null");
-                    if(license.getTradeLicenseDetail().getAddress()==null)
-                        errorMap.put("INVALID UPDATE", "Id of address cannot be null");
+//                    if(license.getTradeLicenseDetail().getAddress()==null)
+//                        errorMap.put("INVALID UPDATE", "Id of address cannot be null");
                     license.getTradeLicenseDetail().getOwners().forEach(owner -> {
                         if(owner.getUuid()==null)
                             errorMap.put("INVALID UPDATE", "Id of owner cannot be null");
