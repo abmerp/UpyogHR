@@ -188,7 +188,7 @@ public class UserRequest {
         this.relationship = user.getGuardianRelation();
         this.uuid = user.getUuid();
         this.alternatemobilenumber=user.getAlternateMobileNumber();
-        this.parentid = user.getParentid();
+        this.parentid = user.getParentId();
         mapPermanentAddress(user);
         mapCorrespondenceAddress(user);
     }
@@ -226,7 +226,7 @@ public class UserRequest {
         return User.builder()
                 .uuid(this.uuid)
                 .id(this.id)
-                .parentid(this.parentid)
+                .parentId(this.parentid)
                 .name(this.name)
                 .username(this.userName)
                 .salutation(this.salutation)
