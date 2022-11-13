@@ -92,7 +92,8 @@ public class EncryptionDecryptionUtil {
             log.error("Error occurred while decrypting", e);
             throw new CustomException("DECRYPTION_SERVICE_ERROR", "Error occurred in decryption process");
         } catch (Exception e) {
-            log.error("Unknown Error occurred while decrypting", e);
+        	e.printStackTrace();
+            log.error("Unknown Error occurred while decrypting", e.getMessage());
             throw new CustomException("UNKNOWN_ERROR", "Unknown error occurred in decryption process");
         }
     }
