@@ -21,4 +21,7 @@ public interface DeveloperRegistrationRepo extends JpaRepository<DeveloperRegist
 	
 	@Query(value = "SELECT lt FROM DeveloperRegistration lt WHERE CAST(lt.developerDetail.devDetail.addRemoveAuthoizedUsers.mobileNumber->>'mobileNumber' as STRING) = ?1", nativeQuery = true)
 	public Developerdetail findAuthorizedUser(String mobileNumber);
+
+	@Query(value = "SELECT lt FROM DeveloperRegistration lt WHERE userid = ?1", nativeQuery = true)
+	public DeveloperRegistration findByUser(Long userId);
 }

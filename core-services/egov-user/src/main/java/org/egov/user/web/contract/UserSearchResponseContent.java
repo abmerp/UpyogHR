@@ -58,7 +58,7 @@ public class UserSearchResponseContent {
     private String tenantId;
     private Set<RoleRequest> roles;
     private String uuid;
-
+    private Long parentId;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date createdDate;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
@@ -102,6 +102,7 @@ public class UserSearchResponseContent {
         this.uuid = user.getUuid();
         this.addresses = user.getAddresses();
         this.alternatemobilenumber=user.getAlternateMobileNumber();
+        this.parentId=user.getParentId();
         mapPermanentAddress(user);
         mapCorrespondenceAddress(user);
     }

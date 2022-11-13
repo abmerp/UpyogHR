@@ -76,7 +76,7 @@ public class DeveloperRegistrationService {
 				}
 			}
 			devRegistration.setCurrentVersion(cv);
-			devRegistration.setUpdateddBy(detail.getUpdateddBy());
+			devRegistration.setUpdateddBy(Long.valueOf(detail.getUpdateddBy()));
 			devRegistration.setUpdatedDate(new Date());
 
 		} else {
@@ -86,14 +86,13 @@ public class DeveloperRegistrationService {
 
 			listDevDetails.add(detail.getDevDetail());
 			devRegistration = new DeveloperRegistration();
-			devRegistration.setCreatedBy(detail.getCreatedBy());
+			devRegistration.setCreatedBy(Long.valueOf(detail.getCreatedBy()));
 			devRegistration.setCreatedDate(new java.util.Date());
 			devRegistration.setCurrentVersion(0.1f);
-			devRegistration.setUpdateddBy(detail.getUpdateddBy());
+			devRegistration.setUpdateddBy(Long.valueOf(detail.getUpdateddBy()));
 			devRegistration.setUpdatedDate(new Date());
 			devRegistration.setDeveloperDetail(listDevDetails);
-			// devRegistration.setUpdatedDate(null);
-
+			devRegistration.setUserId(Long.valueOf(detail.getCreatedBy()));
 		}
 
 		return develloperRegistrationRepo.save(devRegistration);
@@ -108,7 +107,7 @@ public class DeveloperRegistrationService {
 	 */
 	public DeveloperRegistration getById(Long id, boolean isAllData) {
 
-		DeveloperRegistration developerRegistration = develloperRegistrationRepo.findById(id);
+		DeveloperRegistration developerRegistration = develloperRegistrationRepo.findByUser(id);
 		return developerRegistration;
 	}
 

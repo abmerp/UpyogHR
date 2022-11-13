@@ -29,6 +29,7 @@ public class DeveloperRequest {
 	private String updateddBy;
 	private Date updatedDate;
 	private String pageName;
+	
 	@JsonProperty("devDetail")
 	private Developerdetail devDetail;
 	

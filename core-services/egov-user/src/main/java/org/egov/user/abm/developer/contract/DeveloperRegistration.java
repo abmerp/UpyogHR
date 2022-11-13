@@ -34,18 +34,19 @@ public class DeveloperRegistration {
 	private float currentVersion;
 	
 	@Column(name="created_by")
-	private String createdBy;
+	private Long createdBy;
 	
 	@Column(name="created_date")
 	private Date createdDate;
 	
 	@Column(name="updated_by")
-	private String updateddBy;
+	private Long updateddBy;
 	
 	@Column(name="updated_date")
 	private Date updatedDate;
 
-	
+	@Column(name="userId")
+	private  Long userId;
 	 //@JsonProperty("developerDetail")
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")

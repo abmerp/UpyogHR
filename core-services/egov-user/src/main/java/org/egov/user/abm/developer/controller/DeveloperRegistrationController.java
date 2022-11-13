@@ -51,16 +51,16 @@ public class DeveloperRegistrationController {
 		DeveloperDetailResponse response;
 		if (isAllData) {
 			response = new DeveloperDetailResponse(responseInfo, developerRegistration1.getId(),
-					developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy(),
-					developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy(),
+					developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy().toString(),
+					developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy().toString(),
 					developerRegistration1.getUpdatedDate(), listDevelopers);
 		} else {
 			List<Developerdetail> listDevelopers1 = new ArrayList<Developerdetail>();
 
 			listDevelopers1.add(listDevelopers.get(listDevelopers.size() - 1));
 			response = new DeveloperDetailResponse(responseInfo, developerRegistration1.getId(),
-					developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy(),
-					developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy(),
+					developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy().toString(),
+					developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy().toString(),
 					developerRegistration1.getUpdatedDate(), listDevelopers1);
 		}
 		return response;
