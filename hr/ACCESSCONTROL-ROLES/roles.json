@@ -561,7 +561,7 @@
       "name": "Basic employee roles",
       "code": "COMMON_EMPLOYEE",
       "description": "Basic employee roles"
-    }
+    },
     {
       "name": "National Dashboard Systeme user",
       "code": "NDA_SYSTEM",
