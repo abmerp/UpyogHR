@@ -28,6 +28,7 @@ public class DeveloperRegistration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 	
 	@Column(name="current_version")

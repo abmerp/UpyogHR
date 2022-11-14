@@ -43,9 +43,11 @@ public class DeveloperRegistrationService {
 	public DeveloperRegistration addDeveloperRegistraion(DeveloperRequest detail) throws JsonProcessingException {
 		List<Developerdetail> listDevDetails;
 		// Developerdetail objDeveloperdetail = new Developerdetail();
-		DeveloperRegistration devRegistration;
+		DeveloperRegistration devRegistration=null;
 		if (detail.getId() != null && detail.getId() > 0) {
-			devRegistration = em.find(DeveloperRegistration.class, detail.getId(), LockModeType.PESSIMISTIC_WRITE);
+			devRegistration = develloperRegistrationRepo.findByUser(detail.getId());
+		}
+			if (devRegistration != null && devRegistration.getDeveloperDetail()!=null) {
 			listDevDetails = devRegistration.getDeveloperDetail();
 			float cv = devRegistration.getCurrentVersion() + 0.1f;
 
@@ -78,7 +80,7 @@ public class DeveloperRegistrationService {
 			devRegistration.setCurrentVersion(cv);
 			devRegistration.setUpdateddBy(Long.valueOf(detail.getUpdatedBy()));
 			devRegistration.setUpdatedDate(new Date());
-
+			
 		} else {
 			listDevDetails = new ArrayList<Developerdetail>();
 
@@ -107,8 +109,8 @@ public class DeveloperRegistrationService {
 	 */
 	public DeveloperRegistration getById(Long id, boolean isAllData) {
 
-		DeveloperRegistration developerRegistration = develloperRegistrationRepo.findByUser(id);
-		return developerRegistration;
+		return develloperRegistrationRepo.findByUser(id);
+		
 	}
 
 	public List<DeveloperRegistration> findAllDeveloperDetail() {

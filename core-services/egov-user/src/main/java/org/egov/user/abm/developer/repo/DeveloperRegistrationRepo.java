@@ -2,6 +2,8 @@ package org.egov.user.abm.developer.repo;
 
 
 
+import java.util.List;
+
 import org.egov.user.abm.developer.contract.DeveloperRegistration;
 import org.egov.user.abm.developer.contract.Developerdetail;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,6 +24,6 @@ public interface DeveloperRegistrationRepo extends JpaRepository<DeveloperRegist
 	@Query(value = "SELECT lt FROM developer_registration lt WHERE CAST(lt.developerDetail.devDetail.addRemoveAuthoizedUsers.mobileNumber->>'mobileNumber' as STRING) = ?1", nativeQuery = true)
 	public Developerdetail findAuthorizedUser(String mobileNumber);
 
-	@Query(value = "SELECT lt FROM developer_registration lt WHERE lt.user_id = ?1", nativeQuery = true)
+	@Query(value = "SELECT s FROM DeveloperRegistration s WHERE s.userId = ?1", nativeQuery = false)
 	public DeveloperRegistration findByUser(Long userId);
 }
