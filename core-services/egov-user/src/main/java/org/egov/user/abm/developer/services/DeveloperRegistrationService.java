@@ -107,8 +107,8 @@ public class DeveloperRegistrationService {
 	 */
 	public DeveloperRegistration getById(Long id, boolean isAllData) {
 
-		DeveloperRegistration developerRegistration = develloperRegistrationRepo.findByUser(id);
-		return developerRegistration;
+		return develloperRegistrationRepo.findByUser(id);
+		
 	}
 
 	public List<DeveloperRegistration> findAllDeveloperDetail() {
