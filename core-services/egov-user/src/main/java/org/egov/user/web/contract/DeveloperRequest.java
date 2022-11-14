@@ -11,11 +11,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;	
+import lombok.Setter;
 
 @Setter
 @Getter
-@Builder	
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeveloperRequest {
@@ -24,13 +24,17 @@ public class DeveloperRequest {
 	private RequestInfo requestInfo;
 	private Long id;
 	private float currentVersion;
+	@JsonProperty("createdBy")
 	private String createdBy;
 	private Date createdDate;
-	private String updateddBy;
+	@JsonProperty("updatedBy")
+	private String updatedBy;
+
 	private Date updatedDate;
+	@JsonProperty("pageName")
 	private String pageName;
-	
+
 	@JsonProperty("devDetail")
 	private Developerdetail devDetail;
-	
+
 }

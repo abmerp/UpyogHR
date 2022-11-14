@@ -57,7 +57,8 @@ public class DeveloperRegistrationController {
 		} else {
 			List<Developerdetail> listDevelopers1 = new ArrayList<Developerdetail>();
 
-			listDevelopers1.add(listDevelopers.get(listDevelopers.size() - 1));
+			listDevelopers1.addAll(listDevelopers);
+			
 			response = new DeveloperDetailResponse(responseInfo, developerRegistration1.getId(),
 					developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy().toString(),
 					developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy().toString(),

@@ -1121,7 +1121,7 @@ public class Far_Client extends Far {
 			BigDecimal roadWidth, String expectedResult, boolean isAccepted) {
 		ScrutinyDetail scrutinyDetail = new ScrutinyDetail();
 		scrutinyDetail.addColumnHeading(1, RULE_NO);
-		scrutinyDetail.addColumnHeading(2, OCCUPANCY);
+	//	scrutinyDetail.addColumnHeading(2, OCCUPANCY);
 		scrutinyDetail.addColumnHeading(3, AREA_TYPE);
 		scrutinyDetail.addColumnHeading(4, ROAD_WIDTH);
 		scrutinyDetail.addColumnHeading(5, PERMISSIBLE);
@@ -1138,7 +1138,7 @@ public class Far_Client extends Far {
 
 		Map<String, String> details = new HashMap<>();
 		details.put(RULE_NO, RULE_38);
-		details.put(OCCUPANCY, occupancyName);
+	//	details.put(OCCUPANCY, occupancyName);
 		details.put(AREA_TYPE, typeOfArea);
 		details.put(ROAD_WIDTH, roadWidth.toString());
 		details.put(PERMISSIBLE, expectedResult);

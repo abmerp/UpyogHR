@@ -71,7 +71,8 @@ public class Balcony extends FeatureProcess {
     private static final String FLOOR = "Floor";
     private static final String RULE45_IV = "45-iv";
     private static final String WIDTH_BALCONY_DESCRIPTION = "Minimum width for balcony %s";
-    private static final BigDecimal ONE_POINTTWO = BigDecimal.valueOf(1.2);
+    private static final BigDecimal ONE_POINTTWO = BigDecimal.valueOf(1.8);
+   // private static final BigDecimal ONE_POINTEIGHT_MAX = BigDecimal.valueOf(1.8);
 
     @Override
     public Plan validate(Plan plan) {
@@ -108,7 +109,7 @@ public class Balcony extends FeatureProcess {
                             minWidth = minWidth.setScale(DcrConstants.DECIMALDIGITS_MEASUREMENTS,
                                     DcrConstants.ROUNDMODE_MEASUREMENTS);
                             if (minWidth.compareTo(ONE_POINTTWO.setScale(DcrConstants.DECIMALDIGITS_MEASUREMENTS,
-                                    DcrConstants.ROUNDMODE_MEASUREMENTS)) >= 0) {
+                                    DcrConstants.ROUNDMODE_MEASUREMENTS)) <= 0)  {
                                 isAccepted = true;
                             }
 
