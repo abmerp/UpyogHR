@@ -17,7 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="eg_liecnse_ui_fields_role")
-@NamedQuery(name="EgLiecnseUiFieldsRole.findAll", query="SELECT e FROM EgLiecnseUiFieldsRole e")
+//@NamedQuery(name="EgLiecnseUiFieldsRole.findAll", query="SELECT e FROM EgLiecnseUiFieldsRole e")
 public class EgLiecnseUiFieldsRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 

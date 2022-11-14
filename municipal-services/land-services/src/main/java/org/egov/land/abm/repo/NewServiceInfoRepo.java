@@ -16,4 +16,9 @@ public interface NewServiceInfoRepo extends JpaRepository<NewServiceInfo, Long> 
 	
 	@Query(value="select n.id from NewServiceInfo n")
 	public List<String> getApplicantsNumber();
+	
+	@Query(value="select n from NewServiceInfo n where n.loiNumber=?1")
+	public NewServiceInfo findByLoiNumber(String loiNumber);
+	
+	public boolean existsByLoiNumber(String loiNumber);
 }

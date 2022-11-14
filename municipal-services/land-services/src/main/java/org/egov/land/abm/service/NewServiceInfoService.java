@@ -94,7 +94,7 @@ public class NewServiceInfoService {
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
 			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
-
+			
 			newServiceInfo.getNewServiceInfoData().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
 			newServiceInfoDatas.add(newServiceInfo.getNewServiceInfoData());
@@ -267,5 +267,13 @@ public class NewServiceInfoService {
 		
 		
 		
+	}
+	
+	
+	public NewServiceInfo findByLoiNumber(String loiNumber) {
+		return this.newServiceInfoRepo.findByLoiNumber(loiNumber);
+	}
+	public boolean existsByLoiNumber(String loiNumber) {
+		return this.newServiceInfoRepo.existsByLoiNumber(loiNumber);
 	}
 }

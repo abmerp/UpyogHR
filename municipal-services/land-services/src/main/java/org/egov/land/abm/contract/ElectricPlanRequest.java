@@ -1,5 +1,9 @@
 package org.egov.land.abm.contract;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.egov.land.abm.newservices.entity.ElectricPlan;
 
 import lombok.AllArgsConstructor;
@@ -15,6 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ElectricPlanRequest {
 
+	
 	private Long id;
 	private boolean electricalInfra;
 	private boolean elecricDistribution;
