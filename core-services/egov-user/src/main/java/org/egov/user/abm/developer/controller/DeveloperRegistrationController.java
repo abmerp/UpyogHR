@@ -61,7 +61,13 @@ public class DeveloperRegistrationController {
 			} else {
 				List<Developerdetail> listDevelopers1 = new ArrayList<Developerdetail>();
 				if (listDevelopers != null) {
-					listDevelopers1.addAll(listDevelopers);
+					for (Developerdetail developerdetail : listDevelopers) {
+						if (developerdetail.getVersion() == developerRegistration1.getCurrentVersion()) {
+							listDevelopers1.add(developerdetail);
+							break;
+						}
+
+					}
 					response = new DeveloperDetailResponse(responseInfo, developerRegistration1.getId(),
 							developerRegistration1.getCurrentVersion(),
 							developerRegistration1.getCreatedBy().toString(), developerRegistration1.getCreatedDate(),
@@ -70,14 +76,14 @@ public class DeveloperRegistrationController {
 				}
 
 			}
-			
+
 		} else {
 			ResponseInfo responseInfo = ResponseInfo.builder().status(String.valueOf(HttpStatus.OK.value())).build();
 			response = new DeveloperDetailResponse();
 
 			responseInfo.setResMsgId("No Record found");
 			response.setResponseInfo(responseInfo);
-			
+
 		}
 		return response;
 	}
