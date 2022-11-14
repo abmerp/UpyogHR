@@ -67,7 +67,7 @@ public class BPACalculationService {
      * @return List of calculations for all applicationNumbers or tradeLicenses in calculationReq
      */
     public List<Calculation> calculate(CalculationReq calculationReq) {
-        String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
+        String tenantId = calculationReq.getRequestInfo().getUserInfo().getTenantId();
         Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(), tenantId);
         List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
                 calculationReq.getCalulationCriteria(), mdmsData);
@@ -134,7 +134,7 @@ public class BPACalculationService {
         TradeLicense license = calulationCriteria.getTradelicense();
         EstimatesAndSlabs estimatesAndSlabs = new EstimatesAndSlabs();
 
-        String tradetype = license.getTradeLicenseDetail().getTradeUnits().get(0).getTradeType();
+        String tradetype = license.getTradeLicenseDetail().getTradeType();
         BillingSlabSearchCriteria searchCriteria = new BillingSlabSearchCriteria();
         searchCriteria.setTenantId(license.getTenantId());
         searchCriteria.setTradeType(tradetype);

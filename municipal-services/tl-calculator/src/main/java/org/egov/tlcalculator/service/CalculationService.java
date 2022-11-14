@@ -200,11 +200,11 @@ public class CalculationService {
 
 		estimates.addAll(estimatesAndSlabs.getEstimates());
 
-		if (calulationCriteria.getTradelicense().getTradeLicenseDetail().getAdhocPenalty() != null)
-			estimates.add(getAdhocPenalty(calulationCriteria));
-
-		if (calulationCriteria.getTradelicense().getTradeLicenseDetail().getAdhocExemption() != null)
-			estimates.add(getAdhocExemption(calulationCriteria));
+//		if (calulationCriteria.getTradelicense().getTradeLicenseDetail().getAdhocPenalty() != null)
+//			estimates.add(getAdhocPenalty(calulationCriteria));
+//
+//		if (calulationCriteria.getTradelicense().getTradeLicenseDetail().getAdhocExemption() != null)
+//			estimates.add(getAdhocExemption(calulationCriteria));
 
 		estimatesAndSlabs.setEstimates(estimates);
 
@@ -225,7 +225,7 @@ public class CalculationService {
 		EstimatesAndSlabs estimatesAndSlabs = new EstimatesAndSlabs();
 		BillingSlabSearchCriteria searchCriteria = new BillingSlabSearchCriteria();
 		searchCriteria.setTenantId(license.getTenantId());
-		searchCriteria.setStructureType(license.getTradeLicenseDetail().getStructureType());
+		//searchCriteria.setStructureType(license.getTradeLicenseDetail().getStructureType());
 		searchCriteria.setLicenseType(license.getLicenseType().toString());
 
 		Map calculationTypeMap = mdmsService.getCalculationType(requestInfo, license, mdmsData);
@@ -241,12 +241,12 @@ public class CalculationService {
 		estimatesAndSlabs.setTradeTypeFeeAndBillingSlabIds(tradeTypeFeeAndBillingSlabIds);
 		BigDecimal accessoryFee = new BigDecimal(0);
 
-		if (!CollectionUtils.isEmpty(license.getTradeLicenseDetail().getAccessories())) {
-			FeeAndBillingSlabIds accessoryFeeAndBillingSlabIds = getAccessoryFeeAndBillingSlabIds(license,
-					CalculationType.fromValue(accessoryCalculationType));
-			accessoryFee = accessoryFeeAndBillingSlabIds.getFee();
-			estimatesAndSlabs.setAccessoryFeeAndBillingSlabIds(accessoryFeeAndBillingSlabIds);
-		}
+//		if (!CollectionUtils.isEmpty(license.getTradeLicenseDetail().getAccessories())) {
+//			FeeAndBillingSlabIds accessoryFeeAndBillingSlabIds = getAccessoryFeeAndBillingSlabIds(license,
+//					CalculationType.fromValue(accessoryCalculationType));
+//			accessoryFee = accessoryFeeAndBillingSlabIds.getFee();
+//			estimatesAndSlabs.setAccessoryFeeAndBillingSlabIds(accessoryFeeAndBillingSlabIds);
+//		}
 
 		TaxHeadEstimate estimate = new TaxHeadEstimate();
 		List<TaxHeadEstimate> estimateList = new ArrayList<>();
@@ -282,7 +282,7 @@ public class CalculationService {
 	private TaxHeadEstimate getAdhocPenalty(CalulationCriteria calulationCriteria) {
 		TradeLicense license = calulationCriteria.getTradelicense();
 		TaxHeadEstimate estimate = new TaxHeadEstimate();
-		estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocPenalty());
+	//	estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocPenalty());
 		estimate.setTaxHeadCode(config.getAdhocPenaltyTaxHead());
 		estimate.setCategory(Category.PENALTY);
 		return estimate;
@@ -298,7 +298,7 @@ public class CalculationService {
 	private TaxHeadEstimate getAdhocExemption(CalulationCriteria calulationCriteria) {
 		TradeLicense license = calulationCriteria.getTradelicense();
 		TaxHeadEstimate estimate = new TaxHeadEstimate();
-		estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocExemption());
+		//estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocExemption());
 		estimate.setTaxHeadCode(config.getAdhocExemptionTaxHead());
 		estimate.setCategory(Category.EXEMPTION);
 		return estimate;
@@ -313,51 +313,49 @@ public class CalculationService {
 			CalculationType calculationType) {
 
 		List<BigDecimal> tradeUnitFees = new LinkedList<>();
-		List<TradeUnit> tradeUnits = license.getTradeLicenseDetail().getTradeUnits();
+		//List<TradeUnit> tradeUnits = license.getTradeLicenseDetail().getTradeUnits();
 		List<String> billingSlabIds = new LinkedList<>();
 		int i = 0;
-		for (TradeUnit tradeUnit : tradeUnits) {
-			if (tradeUnit.getActive()) {
-				List<Object> preparedStmtList = new ArrayList<>();
-				BillingSlabSearchCriteria searchCriteria = new BillingSlabSearchCriteria();
-				searchCriteria.setTenantId(license.getTenantId());
-				searchCriteria.setStructureType(license.getTradeLicenseDetail().getStructureType());
-				searchCriteria.setApplicationType(license.getApplicationType().toString());
-				searchCriteria.setLicenseType(license.getLicenseType().toString());
-				searchCriteria.setTradeType(tradeUnit.getTradeType());
-				if (tradeUnit.getUomValue() != null) {
-					searchCriteria.setUomValue(Double.parseDouble(tradeUnit.getUomValue()));
-					searchCriteria.setUom(tradeUnit.getUom());
-				}
-				// Call the Search
-				String query = queryBuilder.getSearchQuery(searchCriteria, preparedStmtList);
-				log.info("query " + query);
-				log.info("preparedStmtList " + preparedStmtList.toString());
-				List<BillingSlab> billingSlabs = repository.getDataFromDB(query, preparedStmtList);
-
-				if (billingSlabs.size() > 1)
-					throw new CustomException("BILLINGSLAB ERROR",
-							"Found multiple BillingSlabs for the given TradeType");
-				if (CollectionUtils.isEmpty(billingSlabs))
-					throw new CustomException("BILLINGSLAB ERROR", "No BillingSlab Found for the given tradeType");
-				System.out
-						.println("TradeUnit: " + tradeUnit.getTradeType() + " rate: " + billingSlabs.get(0).getRate());
-
-				billingSlabIds.add(billingSlabs.get(0).getId() + "|" + i + "|" + tradeUnit.getId());
-
-				if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.FLAT))
-					tradeUnitFees.add(billingSlabs.get(0).getRate());
-				// tradeUnitTotalFee = tradeUnitTotalFee.add(billingSlabs.get(0).getRate());
-
-				if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.RATE)) {
-					BigDecimal uomVal = new BigDecimal(tradeUnit.getUomValue());
-					tradeUnitFees.add(billingSlabs.get(0).getRate().multiply(uomVal));
-					// tradeUnitTotalFee =
-					// tradeUnitTotalFee.add(billingSlabs.get(0).getRate().multiply(uomVal));
-				}
-				i++;
-			}
-		}
+		/*
+		 * for (TradeUnit tradeUnit : tradeUnits) { if (tradeUnit.getActive()) {
+		 * List<Object> preparedStmtList = new ArrayList<>(); BillingSlabSearchCriteria
+		 * searchCriteria = new BillingSlabSearchCriteria();
+		 * searchCriteria.setTenantId(license.getTenantId());
+		 * searchCriteria.setStructureType(license.getTradeLicenseDetail().
+		 * getStructureType());
+		 * searchCriteria.setApplicationType(license.getApplicationType().toString());
+		 * searchCriteria.setLicenseType(license.getLicenseType().toString());
+		 * searchCriteria.setTradeType(tradeUnit.getTradeType()); if
+		 * (tradeUnit.getUomValue() != null) {
+		 * searchCriteria.setUomValue(Double.parseDouble(tradeUnit.getUomValue()));
+		 * searchCriteria.setUom(tradeUnit.getUom()); } // Call the Search String query
+		 * = queryBuilder.getSearchQuery(searchCriteria, preparedStmtList);
+		 * log.info("query " + query); log.info("preparedStmtList " +
+		 * preparedStmtList.toString()); List<BillingSlab> billingSlabs =
+		 * repository.getDataFromDB(query, preparedStmtList);
+		 * 
+		 * if (billingSlabs.size() > 1) throw new CustomException("BILLINGSLAB ERROR",
+		 * "Found multiple BillingSlabs for the given TradeType"); if
+		 * (CollectionUtils.isEmpty(billingSlabs)) throw new
+		 * CustomException("BILLINGSLAB ERROR",
+		 * "No BillingSlab Found for the given tradeType"); System.out
+		 * .println("TradeUnit: " + tradeUnit.getTradeType() + " rate: " +
+		 * billingSlabs.get(0).getRate());
+		 * 
+		 * billingSlabIds.add(billingSlabs.get(0).getId() + "|" + i + "|" +
+		 * tradeUnit.getId());
+		 * 
+		 * if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.FLAT))
+		 * tradeUnitFees.add(billingSlabs.get(0).getRate()); // tradeUnitTotalFee =
+		 * tradeUnitTotalFee.add(billingSlabs.get(0).getRate());
+		 * 
+		 * if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.RATE)) {
+		 * BigDecimal uomVal = new BigDecimal(tradeUnit.getUomValue());
+		 * tradeUnitFees.add(billingSlabs.get(0).getRate().multiply(uomVal)); //
+		 * tradeUnitTotalFee = //
+		 * tradeUnitTotalFee.add(billingSlabs.get(0).getRate().multiply(uomVal)); } i++;
+		 * } }
+		 */
 
 		BigDecimal tradeUnitTotalFee = getTotalFee(tradeUnitFees, calculationType);
 
@@ -380,47 +378,44 @@ public class CalculationService {
 		List<BigDecimal> accessoryFees = new LinkedList<>();
 		List<String> billingSlabIds = new LinkedList<>();
 
-		List<Accessory> accessories = license.getTradeLicenseDetail().getAccessories();
-		int i = 0;
-		for (Accessory accessory : accessories) {
-			if (accessory.getActive()) {
-				List<Object> preparedStmtList = new ArrayList<>();
-				BillingSlabSearchCriteria searchCriteria = new BillingSlabSearchCriteria();
-				searchCriteria.setTenantId(license.getTenantId());
-				searchCriteria.setAccessoryCategory(accessory.getAccessoryCategory());
-				searchCriteria.setApplicationType(license.getApplicationType().toString());
-				if (accessory.getUomValue() != null) {
-					searchCriteria.setUomValue(Double.parseDouble(accessory.getUomValue()));
-					searchCriteria.setUom(accessory.getUom());
-				}
-				// Call the Search
-				String query = queryBuilder.getSearchQuery(searchCriteria, preparedStmtList);
-				List<BillingSlab> billingSlabs = repository.getDataFromDB(query, preparedStmtList);
-
-				if (billingSlabs.size() > 1)
-					throw new CustomException("BILLINGSLAB ERROR",
-							"Found multiple BillingSlabs for the given accessories ");
-				if (CollectionUtils.isEmpty(billingSlabs))
-					throw new CustomException("BILLINGSLAB ERROR", "No BillingSlab Found for the given accessory");
-				System.out.println(
-						"Accessory: " + accessory.getAccessoryCategory() + " rate: " + billingSlabs.get(0).getRate());
-				billingSlabIds.add(billingSlabs.get(0).getId() + "|" + i + "|" + accessory.getId());
-				if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.FLAT)) {
-					BigDecimal count = accessory.getCount() == null ? BigDecimal.ONE
-							: new BigDecimal(accessory.getCount());
-					accessoryFees.add(billingSlabs.get(0).getRate().multiply(count));
-				}
-				// accessoryTotalFee = accessoryTotalFee.add(billingSlabs.get(0).getRate());
-
-				if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.RATE)) {
-					BigDecimal uomVal = new BigDecimal(accessory.getUomValue());
-					accessoryFees.add(billingSlabs.get(0).getRate().multiply(uomVal));
-					// accessoryTotalFee =
-					// accessoryTotalFee.add(billingSlabs.get(0).getRate().multiply(uomVal));
-				}
-				i++;
-			}
-		}
+		/*
+		 * List<Accessory> accessories =
+		 * license.getTradeLicenseDetail().getAccessories(); int i = 0; for (Accessory
+		 * accessory : accessories) { if (accessory.getActive()) { List<Object>
+		 * preparedStmtList = new ArrayList<>(); BillingSlabSearchCriteria
+		 * searchCriteria = new BillingSlabSearchCriteria();
+		 * searchCriteria.setTenantId(license.getTenantId());
+		 * searchCriteria.setAccessoryCategory(accessory.getAccessoryCategory());
+		 * searchCriteria.setApplicationType(license.getApplicationType().toString());
+		 * if (accessory.getUomValue() != null) {
+		 * searchCriteria.setUomValue(Double.parseDouble(accessory.getUomValue()));
+		 * searchCriteria.setUom(accessory.getUom()); } // Call the Search String query
+		 * = queryBuilder.getSearchQuery(searchCriteria, preparedStmtList);
+		 * List<BillingSlab> billingSlabs = repository.getDataFromDB(query,
+		 * preparedStmtList);
+		 * 
+		 * if (billingSlabs.size() > 1) throw new CustomException("BILLINGSLAB ERROR",
+		 * "Found multiple BillingSlabs for the given accessories "); if
+		 * (CollectionUtils.isEmpty(billingSlabs)) throw new
+		 * CustomException("BILLINGSLAB ERROR",
+		 * "No BillingSlab Found for the given accessory"); System.out.println(
+		 * "Accessory: " + accessory.getAccessoryCategory() + " rate: " +
+		 * billingSlabs.get(0).getRate());
+		 * billingSlabIds.add(billingSlabs.get(0).getId() + "|" + i + "|" +
+		 * accessory.getId()); if
+		 * (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.FLAT)) {
+		 * BigDecimal count = accessory.getCount() == null ? BigDecimal.ONE : new
+		 * BigDecimal(accessory.getCount());
+		 * accessoryFees.add(billingSlabs.get(0).getRate().multiply(count)); } //
+		 * accessoryTotalFee = accessoryTotalFee.add(billingSlabs.get(0).getRate());
+		 * 
+		 * if (billingSlabs.get(0).getType().equals(BillingSlab.TypeEnum.RATE)) {
+		 * BigDecimal uomVal = new BigDecimal(accessory.getUomValue());
+		 * accessoryFees.add(billingSlabs.get(0).getRate().multiply(uomVal)); //
+		 * accessoryTotalFee = //
+		 * accessoryTotalFee.add(billingSlabs.get(0).getRate().multiply(uomVal)); } i++;
+		 * } }
+		 */
 
 		BigDecimal accessoryTotalFee = getTotalFee(accessoryFees, calculationType);
 		FeeAndBillingSlabIds feeAndBillingSlabIds = new FeeAndBillingSlabIds();
