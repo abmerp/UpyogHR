@@ -80,7 +80,7 @@ public class TLValidator {
                 break;
 
             case businessService_BPA:
-                validateBPASpecificValidations(request);
+               // validateBPASpecificValidations(request);
                 break;
         }
         mdmsValidator.validateMdmsData(request, mdmsData);
@@ -291,7 +291,7 @@ public class TLValidator {
                 break;
 
             case businessService_BPA:
-                validateBPASpecificValidations(request);
+            //    validateBPASpecificValidations(request);
                 break;
         }
         mdmsValidator.validateMdmsData(request, mdmsData);
