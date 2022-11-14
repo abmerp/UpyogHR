@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "DeveloperRegistration")
+@Table(name = "developer_registration")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class DeveloperRegistration {
 
@@ -45,7 +45,7 @@ public class DeveloperRegistration {
 	@Column(name="updated_date")
 	private Date updatedDate;
 
-	@Column(name="userId")
+	@Column(name="user_id")
 	private  Long userId;
 	 //@JsonProperty("developerDetail")
 	@Type(type = "jsonb")

@@ -19,9 +19,9 @@ public interface DeveloperRegistrationRepo extends JpaRepository<DeveloperRegist
     //+ "WHERE CAST(a.book ->> 'price' AS INTEGER) = ?1",
     // nativeQuery = true)
 	
-	@Query(value = "SELECT lt FROM DeveloperRegistration lt WHERE CAST(lt.developerDetail.devDetail.addRemoveAuthoizedUsers.mobileNumber->>'mobileNumber' as STRING) = ?1", nativeQuery = true)
+	@Query(value = "SELECT lt FROM developer_registration lt WHERE CAST(lt.developerDetail.devDetail.addRemoveAuthoizedUsers.mobileNumber->>'mobileNumber' as STRING) = ?1", nativeQuery = true)
 	public Developerdetail findAuthorizedUser(String mobileNumber);
 
-	@Query(value = "SELECT lt FROM DeveloperRegistration lt WHERE userid = ?1", nativeQuery = true)
+	@Query(value = "SELECT lt FROM developer_registration lt WHERE lt.user_id = ?1", nativeQuery = true)
 	public DeveloperRegistration findByUser(Long userId);
 }
