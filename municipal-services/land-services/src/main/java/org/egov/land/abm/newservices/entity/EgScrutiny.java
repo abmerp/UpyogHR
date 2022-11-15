@@ -62,5 +62,9 @@ public class EgScrutiny implements Serializable {
 	@Column(name="ts")
 	private Date ts;
 	
+	@Column(name="is_final_approval")
+	private boolean isFinalApproval = false;
+	
+	
 
 }

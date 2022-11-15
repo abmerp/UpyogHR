@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EgScrutinyInfoResponse;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
@@ -126,4 +129,5 @@ public class EgScrutinyController {
 
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
 	}
+	
 }

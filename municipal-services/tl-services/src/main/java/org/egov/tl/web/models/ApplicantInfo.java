@@ -8,7 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ApplicantInfo {
-	@JsonProperty("")
+	
+	@JsonProperty("devDetail")
+	private Developerdetail devDetail;
+	@JsonProperty("authorizedDeveloper")
 	private String authorizedDeveloper;
 	@JsonProperty("authorizedPerson")
 	private String authorizedPerson;

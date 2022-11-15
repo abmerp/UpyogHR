@@ -8,6 +8,9 @@ import org.egov.land.abm.models.EgScrutinyInfoResponse;
 import org.egov.land.abm.models.LicenseServiceRequest;
 import org.egov.land.abm.models.LicenseServiceResponse;
 import org.egov.land.abm.newservices.entity.*;
+
+import org.egov.land.abm.report.LoiApprovalReport;
+
 import org.egov.land.abm.service.LicenseService;
 import org.egov.land.util.ResponseInfoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,7 @@ public class LicenseServiceController {
 	LicenseService newServiceInfoService;
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
+	@Autowired LoiApprovalReport loiApprovalreport;
 
 	@PostMapping(value = "_create")
 	public  ResponseEntity<LicenseServiceResponse> createNewService(@RequestBody LicenseServiceRequest newService) throws JsonProcessingException {
@@ -63,5 +67,6 @@ public class LicenseServiceController {
 	public List<String> getApplicantsNumber(){
 		return newServiceInfoService.getApplicantsNumber();
 	}
+
 
 }
