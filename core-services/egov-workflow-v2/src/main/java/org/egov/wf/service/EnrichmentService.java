@@ -205,7 +205,7 @@ public class EnrichmentService {
 
         for(Map.Entry<String, List<ProcessInstance>> entry : businessServiceToProcessInstance.entrySet()){
             try{
-             processStateAndActions.addAll(transitionService.getProcessStateAndActions(entry.getValue(),false));}
+             processStateAndActions.addAll(transitionService.getProcessStateAndActions(new ProcessInstanceRequest(requestInfo,entry.getValue()),false));}
             catch (Exception e){
                 log.error("Error while creating processStateAndActions",e);
             }

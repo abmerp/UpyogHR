@@ -1,17 +1,25 @@
 package org.egov.tlcalculator.web.models.tradelicense;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.swagger.annotations.ApiModel;
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import lombok.*;
+
 import org.egov.tlcalculator.utils.TLCalculatorConstants;
 import org.egov.tlcalculator.web.models.AuditDetails;
+import org.egov.tlcalculator.web.models.Calculation;
+import org.egov.tlcalculator.web.models.Document;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.validation.annotation.Validated;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.Builder;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.swagger.annotations.ApiModel;
 
 /**
  * A Object holds the basic data for a Trade License
@@ -26,51 +34,53 @@ import lombok.Builder;
 @NoArgsConstructor
 @Builder
 public class  TradeLicense   {
-    @JsonProperty("id")
-    private String id = null;
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("id")
+        private String id = null;
 
-    @JsonProperty("tenantId")
-    private String tenantId = null;
+        @NotNull
+        @SafeHtml
+        @Size(max=64)
+        @JsonProperty("tenantId")
+        private String tenantId = null;
 
-    /**
-     * Unique Identifier of the Trade License (UUID)
-     */
-    public enum LicenseTypeEnum {
-        TEMPORARY("TEMPORARY"),
+              /**
+   * Unique Identifier of the Trade License (UUID)
+   */
+  public enum LicenseTypeEnum {
+    TEMPORARY("TEMPORARY"),
+    
+    PERMANENT("PERMANENT");
 
-        PERMANENT("PERMANENT");
+    private String value;
 
-
-
-        private String value;
-
-        LicenseTypeEnum(String value) {
-            this.value = value;
-        }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static LicenseTypeEnum fromValue(String text) {
-            for (LicenseTypeEnum b : LicenseTypeEnum.values()) {
-                if (String.valueOf(b.value).equals(text)) {
-                    return b;
-                }
-            }
-            return null;
-        }
+    LicenseTypeEnum(String value) {
+      this.value = value;
     }
 
-    //TLR Changes
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static LicenseTypeEnum fromValue(String text) {
+      for (LicenseTypeEnum b : LicenseTypeEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
 
     public enum ApplicationTypeEnum {
-        TEMPORARY(TLCalculatorConstants.APPLICATION_TYPE_NEW),
+        NEW(TLCalculatorConstants.APPLICATION_TYPE_NEW),
 
-        PERMANENT(TLCalculatorConstants.APPLICATION_TYPE_RENEWAL);
+        RENEWAL(TLCalculatorConstants.APPLICATION_TYPE_RENEWAL);
 
         private String value;
 
@@ -95,148 +105,112 @@ public class  TradeLicense   {
         }
     }
 
-    @JsonProperty("licenseType")
-    private LicenseTypeEnum licenseType = null;
+        @SafeHtml
+        @JsonProperty("businessService")
+        private String businessService = "TL";
 
-    @JsonProperty("licenseNumber")
-    private String licenseNumber = null;
+        @JsonProperty("licenseType")
+        private LicenseTypeEnum licenseType = null;
 
-    @JsonProperty("applicationType")
-    private ApplicationTypeEnum applicationType = null;
+        @JsonProperty("applicationType")
+        private ApplicationTypeEnum applicationType = null;
 
-    @JsonProperty("workflowCode")
-    private String workflowCode = null;
+        @SafeHtml
+        @JsonProperty("workflowCode")
+        private String workflowCode = null;
 
-    @JsonProperty("applicationNumber")
-    private String applicationNumber;
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("licenseNumber")
+        private String licenseNumber = null;
 
-    @JsonProperty("businessService")
-    private String businessService = "TL";
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("applicationNumber")
+        private String applicationNumber;
 
-    @JsonProperty("oldLicenseNumber")
-    private String oldLicenseNumber = null;
+    
 
-    @JsonProperty("propertyId")
-    private String propertyId = null;
+		/*
+		 * @Size(max=256)
+		 * 
+		 * @SafeHtml
+		 * 
+		 * @JsonProperty("propertyId") private String propertyId = null;
+		 * 
+		 * @Size(max=64)
+		 * 
+		 * @SafeHtml
+		 * 
+		 * @JsonProperty("oldPropertyId") private String oldPropertyId = null;
+		 */
 
-    @JsonProperty("oldPropertyId")
-    private String oldPropertyId = null;
+     
 
-    @JsonProperty("accountId")
-    private String accountId = null;
+        @Size(max=256)
+        @SafeHtml
+        @JsonProperty("tradeName")
+        private String tradeName = null;
 
-    @JsonProperty("tradeName")
-    private String tradeName = null;
+        @JsonProperty("applicationDate")
+        private Long applicationDate = null;
 
-    @JsonProperty("applicationDate")
-    private Long applicationDate = null;
+    
 
-    @JsonProperty("commencementDate")
-    private Long commencementDate = null;
+        @JsonProperty("issuedDate")
+        private Long issuedDate = null;
 
-    @JsonProperty("issuedDate")
-    private Long issuedDate = null;
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("financialYear")
+        private String financialYear = null;
 
-    @JsonProperty("financialYear")
-    private String financialYear = null;
+        @JsonProperty("validFrom")
+        private Long validFrom = null;
 
-    @JsonProperty("validFrom")
-    private Long validFrom = null;
+        @JsonProperty("validTo")
+        private Long validTo = null;
 
-    @JsonProperty("validTo")
-    private Long validTo = null;
+              /**
+   * 1. Perform action to change the state of the trade license. 2. INITIATE, if application is getting submitted without required document. 3. APPLY, if application is getting submitted with application documents, in that case api will validate all the required application document. 4. APPROVE action is only applicable for specific role, that role has to be configurable at service level. Employee can approve a application only if application is in APPLIED state and Licesance fees is paid.
+   */
 
-    /**
-     * 1. Perform action to change the state of the trade license. 2. INITIATE, if application is getting submitted without required document. 3. APPLY, if application is getting submitted with application documents, in that case api will validate all the required application document. 4. APPROVE action is only applicable for specific role, that role has to be configurable at service level. Employee can approve a application only if application is in APPLIED state and Licesance fees is paid.
-     */
-    public enum ActionEnum {
-        INITIATE("INITIATE"),
+        @NotNull
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("action")
+        private String action = null;
 
-        APPLY("APPLY"),
+        @JsonProperty("assignee")
+        private List<String> assignee = null;
 
-        APPROVE("APPROVE"),
+        @Valid
+        @JsonProperty("wfDocuments")
+        private List<Document> wfDocuments;
 
-        REJECT("REJECT"),
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("status")
+        private String status = null;
 
-        CANCEL("CANCEL");
+        @Valid
+        @NotNull
+        @JsonProperty("tradeLicenseDetail")
+        private TradeLicenseDetail tradeLicenseDetail = null;
 
-        private String value;
+        @JsonProperty("calculation")
+        private Calculation calculation;
 
-        ActionEnum(String value) {
-            this.value = value;
-        }
+        @JsonProperty("auditDetails")
+        private AuditDetails auditDetails = null;
 
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }
+        @Size(max=128)
+        @SafeHtml
+        private String comment;
 
-        @JsonCreator
-        public static ActionEnum fromValue(String text) {
-            for (ActionEnum b : ActionEnum.values()) {
-                if (String.valueOf(b.value).equals(text)) {
-                    return b;
-                }
-            }
-            return null;
-        }
-    }
-
-    @JsonProperty("action")
-    private ActionEnum action = null;
-
-    /**
-     * Unique identifier (code) of the Trade license Status
-     */
-    public enum StatusEnum {
-        INITIATED("INITIATED"),
-
-        APPLIED("APPLIED"),
-
-        PAID("PAID"),
-
-        APPROVED("APPROVED"),
-
-        REJECTED("REJECTED"),
-
-        CANCELED("CANCELED");
-
-        private String value;
-
-        StatusEnum(String value) {
-            this.value = value;
-        }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static StatusEnum fromValue(String text) {
-            for (StatusEnum b : StatusEnum.values()) {
-                if (String.valueOf(b.value).equals(text)) {
-                    return b;
-                }
-            }
-            return null;
-        }
-    }
-
-    @JsonProperty("status")
-    private StatusEnum status = null;
-
-    @JsonProperty("tradeLicenseDetail")
-    private TradeLicenseDetail tradeLicenseDetail = null;
-
-       /* @JsonProperty("citizenInfo")
-        private OwnerInfo citizenInfo;*/
-
-    @JsonProperty("auditDetails")
-    private AuditDetails auditDetails = null;
-
+        @SafeHtml
+        @JsonProperty("fileStoreId")
+        private String fileStoreId = null;
 
 }
 

@@ -68,17 +68,22 @@ public class UserRepository {
     public List<User> findAll(UserSearchCriteria userSearch) {
         final List<Object> preparedStatementValues = new ArrayList<>();
         boolean RoleSearchHappend = false;
+        List<User> users = new ArrayList<>();
         List<Long> userIds = new ArrayList<>();
         if (!isEmpty(userSearch.getRoleCodes()) && userSearch.getTenantId() != null) {
             userIds = findUsersWithRole(userSearch);
             RoleSearchHappend = true;
         }
-		/*
-		 * if ( userSearch.getParentid() !=null && userSearch.getParentid() > 0
-		 * &&userSearch.getTenantId() != null) { userIds =
-		 * findUsersWithParentId(userSearch); RoleSearchHappend = true; }
-		 */
-        List<User> users = new ArrayList<>();
+		
+		  if ( userSearch.getParentid() !=null && userSearch.getParentid() > 0
+		  &&userSearch.getTenantId() != null) { 
+				  
+				  return findUsersWithParentId(userSearch);
+
+	         
+		  }
+		 
+       
         if (RoleSearchHappend) {
             if (!CollectionUtils.isEmpty(userIds)) {
                 if (CollectionUtils.isEmpty(userSearch.getId()))
@@ -126,15 +131,16 @@ public class UserRepository {
      * @param userSearch
      * @return
      */
-    public List<Long> findUsersWithParentId(UserSearchCriteria userSearch) {
+    private List<User> findUsersWithParentId(UserSearchCriteria userSearch) {
         final List<Object> preparedStatementValues = new ArrayList<>();
-        List<Long> usersIds = new ArrayList<>();
+       
         String queryStr = userTypeQueryBuilder.getQueryUserParentSearch(userSearch, preparedStatementValues);
         log.debug(queryStr);
-
-        usersIds = jdbcTemplate.queryForList(queryStr, preparedStatementValues.toArray(), Long.class);
-
-        return usersIds;
+        List<User> users = new ArrayList<>();
+     //   usersIds = jdbcTemplate.queryForList(queryStr, preparedStatementValues.toArray(), Long.class);
+        users = jdbcTemplate.query(queryStr, preparedStatementValues.toArray(), userResultSetExtractor);
+        enrichRoles(users);
+        return users;
     }
 
     /**
@@ -495,7 +501,7 @@ public class UserRepository {
         userInputs.put("emailid", entityUser.getEmailId());
         userInputs.put("active", entityUser.getActive());
         userInputs.put("name", entityUser.getName());
-        userInputs.put("parentid", entityUser.getParentid());
+        userInputs.put("parentid", entityUser.getParentId());
 
         if (Gender.FEMALE.equals(entityUser.getGender())) {
             userInputs.put("gender", 1);

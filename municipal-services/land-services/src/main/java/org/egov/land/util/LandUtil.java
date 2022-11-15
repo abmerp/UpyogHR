@@ -126,7 +126,7 @@ public class LandUtil {
 
 	public List<ModuleDetail> getPurposeCodeRequest(String purposeCode) {
 
-		final String filterCode = "$.[?(@.purposeCode=='" + purposeCode + "')].code";
+		final String filterCode = "$.[?(@.purposeCode=='" + purposeCode + "')]";
 		List<MasterDetail> commonMaster = new ArrayList<>();
 		commonMaster.add(MasterDetail.builder().name("Purpose").filter(filterCode).build());
 		

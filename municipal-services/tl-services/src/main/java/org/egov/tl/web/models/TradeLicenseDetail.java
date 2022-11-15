@@ -46,43 +46,7 @@ public class TradeLicenseDetail   {
         @Size(max=64)
         private String id;
 
-        @JsonProperty("surveyNo")
-        @SafeHtml
-        @Size(max=64)
-        private String surveyNo = null;
-
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("subOwnerShipCategory")
-        private String subOwnerShipCategory = null;
-
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("structureType")
-        private String structureType;
-
-        @JsonProperty("operationalArea")
-        private Double operationalArea;
-
-        @JsonProperty("noOfEmployees")
-        private Integer noOfEmployees;
-
-        @JsonProperty("adhocExemption")
-        private BigDecimal adhocExemption;
-
-        @JsonProperty("adhocPenalty")
-        private BigDecimal adhocPenalty;
-
-        @Size(max=1024)
-        @SafeHtml
-        @JsonProperty("adhocExemptionReason")
-        private String adhocExemptionReason;
-
-        @Size(max=1024)
-        @SafeHtml
-        @JsonProperty("adhocPenaltyReason")
-        private String adhocPenaltyReason;
-
+     
         @NotNull
         @JsonProperty("owners")
         @Valid
@@ -124,19 +88,13 @@ public class TradeLicenseDetail   {
         @JsonProperty("channel")
         private ChannelEnum channel = null;
 
-        @NotNull
-        @Valid
-        @JsonProperty("address")
-        private Address address = null;
+        
 
-        @NotNull
-        @JsonProperty("tradeUnits")
-        @Valid
-        private List<TradeUnit> tradeUnits = new ArrayList<>();
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("tradeType")
+        private String tradeType = null;
 
-        @JsonProperty("accessories")
-        @Valid
-        private List<Accessory> accessories = null;
 
         @JsonProperty("applicationDocuments")
         @Valid
@@ -149,9 +107,7 @@ public class TradeLicenseDetail   {
         @JsonProperty("additionalDetail")
         private JsonNode additionalDetail = null;
 
-        @Valid
-        @JsonProperty("institution")
-        private Institution institution = null;
+    
 
         @JsonProperty("auditDetails")
         private AuditDetails auditDetails = null;
@@ -165,22 +121,8 @@ public class TradeLicenseDetail   {
             return this;
         }
 
-        public TradeLicenseDetail addTradeUnitsItem(TradeUnit tradeUnitsItem) {
-            if(this.tradeUnits==null)
-                this.tradeUnits = new ArrayList<>();
-            if(!this.tradeUnits.contains(tradeUnitsItem))
-                this.tradeUnits.add(tradeUnitsItem);
-            return this;
-        }
+   
 
-        public TradeLicenseDetail addAccessoriesItem(Accessory accessoriesItem) {
-            if (this.accessories == null) {
-            this.accessories = new ArrayList<>();
-            }
-            if(!this.accessories.contains(accessoriesItem))
-                this.accessories.add(accessoriesItem);
-            return this;
-        }
 
         public TradeLicenseDetail addApplicationDocumentsItem(Document applicationDocumentsItem) {
             if (this.applicationDocuments == null) {

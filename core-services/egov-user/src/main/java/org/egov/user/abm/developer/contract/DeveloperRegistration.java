@@ -22,30 +22,32 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "DeveloperRegistration")
+@Table(name = "developer_registration")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class DeveloperRegistration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
 	
 	@Column(name="current_version")
 	private float currentVersion;
 	
 	@Column(name="created_by")
-	private String createdBy;
+	private Long createdBy;
 	
 	@Column(name="created_date")
 	private Date createdDate;
 	
 	@Column(name="updated_by")
-	private String updateddBy;
+	private Long updateddBy;
 	
 	@Column(name="updated_date")
 	private Date updatedDate;
 
-	
+	@Column(name="user_id")
+	private  Long userId;
 	 //@JsonProperty("developerDetail")
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")

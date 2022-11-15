@@ -1,92 +1,50 @@
 {
 "tenantId": "hr",
   "moduleName": "common-masters",
-  "Purpose": "Potential Zone",
-
-
-
+  "PotentialZone": [
 {
       "zone":"Hyper",
       "code": "HYP",
       "Active": "True"
 	  
 },
-	  
-	  
-	  
-  {
-"tenantId": "hr",
-  "moduleName": "common-masters",
-  "Purpose": "Potential Zone"
-
-
 
 {
-      "zone":"High1"
+      "zone":"High1",
       "code": "HIG1",
-      "Active": "True",
+      "Active": "True"
 	  },
-	  
-	  
-	  
-	  {  
-	  "tenantId": "hr",
-  "moduleName": "common-masters",
-  "Purpose": "Potential Zone"
-
-
+	 
 
 {
-      "zone":"High2"
+      "zone":"High2",
       "code": "HIG2",
-      "Active": "True",
+      "Active": "True"
 	  },
 	  
 	  
-	  {  
-	  "tenantId": "hr",
-  "moduleName": "common-masters",
-  "Purpose": "Potential Zone"
-
-
 
 {
-      "zone":"Medium"
-      "code": "MEDIUM",
-      "Active": "True",
+      "zone":"Medium",
+      "code": "MDM",
+      "Active": "True"
 	  },
 	  
-	  
-	  
-	    {  
-	  "tenantId": "hr",
-  "moduleName": "common-masters",
-  "Purpose": "Potential Zone"
-
-
-
+	   
 {
-      "zone":"Low"
+      "zone":"Low",
       "code": "LOW",
-      "Active": "True",
+      "Active": "True"
 	  },
 	  
 	  
-	  
-	  
-	   {  
-	  "tenantId": "hr",
-  "moduleName": "common-masters",
-  "Purpose": "Potential Zone"
-
-
 
 {
-      "zone":"Low2"
+      "zone":"Low2",
       "code": "LOW2",
-      "Active": "True",
-	  },
-	  
+      "Active": "True"
+	  }
+  ]
 	  }
 	  
 	  

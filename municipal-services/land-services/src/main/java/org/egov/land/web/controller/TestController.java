@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.egov.common.contract.request.User;
-import org.egov.land.abm.service.NewServiceInfoService;
+import org.egov.land.abm.service.LicenseService;
 import org.egov.land.web.models.RequestInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ public class TestController {
 	private org.egov.land.abm.service.ThirPartyAPiCall partyAPiCall;
 	
 	@Autowired
-	NewServiceInfoService newServiceInfoService;
+	LicenseService newServiceInfoService;
 
 	@PostMapping(value = "/getToken")
 	public ResponseEntity<Map> token(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {

@@ -126,26 +126,23 @@ public class  TradeLicense   {
         @JsonProperty("applicationNumber")
         private String applicationNumber;
 
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("oldLicenseNumber")
-        private String oldLicenseNumber = null;
+    
 
+		/*
+		 * @Size(max=256)
+		 * 
+		 * @SafeHtml
+		 * 
+		 * @JsonProperty("propertyId") private String propertyId = null;
+		 * 
+		 * @Size(max=64)
+		 * 
+		 * @SafeHtml
+		 * 
+		 * @JsonProperty("oldPropertyId") private String oldPropertyId = null;
+		 */
 
-        @Size(max=256)
-        @SafeHtml
-        @JsonProperty("propertyId")
-        private String propertyId = null;
-
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("oldPropertyId")
-        private String oldPropertyId = null;
-
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("accountId")
-        private String accountId = null;
+     
 
         @Size(max=256)
         @SafeHtml
@@ -155,8 +152,7 @@ public class  TradeLicense   {
         @JsonProperty("applicationDate")
         private Long applicationDate = null;
 
-        @JsonProperty("commencementDate")
-        private Long commencementDate = null;
+    
 
         @JsonProperty("issuedDate")
         private Long issuedDate = null;

@@ -41,7 +41,7 @@ public class UserResultSetExtractor implements ResultSetExtractor<List<User>> {
             if (!usersMap.containsKey(userId)) {
 
                 user = User.builder().id(rs.getLong("id")).tenantId(rs.getString("tenantid")).title(rs.getString("title"))
-                        .salutation(rs.getString("salutation"))
+                        .salutation(rs.getString("salutation")).parentId(rs.getLong("parentid"))
                         .dob(rs.getDate("dob")).locale(rs.getString("locale")).username(rs.getString("username"))
                         .password(rs.getString("password")).passwordExpiryDate(rs.getTimestamp("pwdexpirydate"))
                         .mobileNumber(rs.getString("mobilenumber")).altContactNumber(rs.getString("altcontactnumber"))

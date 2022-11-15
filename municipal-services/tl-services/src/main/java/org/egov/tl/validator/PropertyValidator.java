@@ -40,8 +40,9 @@ public class PropertyValidator {
     public void validateProperty(TradeLicenseRequest request){
         RequestInfo requestInfo = request.getRequestInfo();
 
-        request.getLicenses().forEach(license -> {
-            if(!StringUtils.isEmpty(license.getPropertyId())) {
+        /*request.getLicenses().forEach(license -> {
+         if(!StringUtils.isEmpty(license.getPropertyId())) {
+           
                 String url = util.getPropertySearchURL();
                 url = url.replace("{1}", license.getTenantId());
                 url = url.replace("{2}", license.getPropertyId());
@@ -59,7 +60,7 @@ public class PropertyValidator {
                     throw new CustomException("INVALID PROPERTY", " Failed to parse the response from property search on id " + license.getPropertyId());
                 }
             }
-        });
+        });*/
     }
 
 

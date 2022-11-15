@@ -268,8 +268,8 @@ public class ActionValidator {
                         errorMap.put("INVALID UPDATE", "Id of tradeLicense cannot be null");
                     if(license.getTradeLicenseDetail().getId()==null)
                         errorMap.put("INVALID UPDATE", "Id of tradeLicenseDetail cannot be null");
-                    if(license.getTradeLicenseDetail().getAddress()==null)
-                        errorMap.put("INVALID UPDATE", "Id of address cannot be null");
+//                    if(license.getTradeLicenseDetail().getAddress()==null)
+//                        errorMap.put("INVALID UPDATE", "Id of address cannot be null");
                     license.getTradeLicenseDetail().getOwners().forEach(owner -> {
                         if(owner.getUuid()==null)
                             errorMap.put("INVALID UPDATE", "Id of owner cannot be null");
@@ -280,16 +280,8 @@ public class ActionValidator {
                             });
                           }
                         });
-                    license.getTradeLicenseDetail().getTradeUnits().forEach(tradeUnit -> {
-                        if(tradeUnit.getId()==null)
-                            errorMap.put("INVALID UPDATE", "Id of tradeUnit cannot be null");
-                    });
-                    if(!CollectionUtils.isEmpty(license.getTradeLicenseDetail().getAccessories())){
-                        license.getTradeLicenseDetail().getAccessories().forEach(accessory -> {
-                            if(accessory.getId()==null)
-                                errorMap.put("INVALID UPDATE", "Id of accessory cannot be null");
-                        });
-                    }
+                  
+                  
                     if(!CollectionUtils.isEmpty(license.getTradeLicenseDetail().getApplicationDocuments())){
                         license.getTradeLicenseDetail().getApplicationDocuments().forEach(document -> {
                             if(document.getId()==null)

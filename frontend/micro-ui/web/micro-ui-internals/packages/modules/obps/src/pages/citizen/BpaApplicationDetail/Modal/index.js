@@ -38,13 +38,13 @@ const ActionModal = ({ t, closeModal, submitAction, actionData, action, applicat
     switch (action) {
       case "APPROVE": {
         setConfig(
-          configAcceptApplication({ t, action, selectFile, uploadedFile, error, isCommentRequired: false, setUploadedFile,file, error })
+          configAcceptApplication({ t, action, selectFile, uploadedFile, error, isCommentRequired: false, setUploadedFile,file })
         )
         break;
       }
       case "SEND_TO_ARCHITECT":
         setConfig(
-          configAcceptApplication({ t, action, selectFile, uploadedFile, error, setUploadedFile,file, error })
+          configAcceptApplication({ t, action, selectFile, uploadedFile, error, setUploadedFile,file })
         );
         break;
       case "TERMS_AND_CONDITIONS":
@@ -53,21 +53,18 @@ const ActionModal = ({ t, closeModal, submitAction, actionData, action, applicat
         break;  
       default:
         setConfig(
-          configAcceptApplication({ t, action, selectFile, uploadedFile, error, isCommentRequired: false , setUploadedFile,file, error})
+          configAcceptApplication({ t, action, selectFile, uploadedFile, error, isCommentRequired: false , setUploadedFile,file})
         )
     }
-  }, [action, uploadedFile, error]);
+  }, [action, uploadedFile]);
 
   useEffect(() => {
     (async () => {
         setError(null);
         if (file) {
-              const allowedFileTypesRegex = /(.*?)(jpg|jpeg|png|image|pdf)$/i
-              if (file.size >= 5242880) {
+            if (file.size >= 5242880) {
                 setError(t("CS_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));
-              } else if (file?.type && !allowedFileTypesRegex.test(file?.type)) {
-                setError(t(`NOT_SUPPORTED_FILE_TYPE`))
-              } else {
+            } else {
                 try {
                     setUploadedFile(null);
                     const response = await Digit.UploadServices.Filestorage("BPA", file, Digit.ULBService.getStateId());

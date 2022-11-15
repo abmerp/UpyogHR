@@ -50,7 +50,7 @@ const StakeholderRegistration = () => {
 
   // const state = tenantId.split(".")[0];
   let config = [];
-  newConfig = newConfig?.StakeholderConfig ? newConfig?.StakeholderConfig : newConfigBPAREG;
+  newConfig = newConfigBPAREG;
   newConfig.forEach((obj) => {
     config = config.concat(obj.body.filter((a) => !a.hideInCitizen));
   });

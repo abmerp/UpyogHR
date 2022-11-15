@@ -96,18 +96,34 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("MobileNo", sms.getMobileNumber());
-		map.put("Content", sms.getMessage());
-		map.put("TemplateId", sms.getTemplateId());
+
+		String smsBody = sms.getMessage();
+		if (smsBody.split("#").length > 1) {
+			String templateId = smsBody.split("#")[1];
+
+			sms.setTemplateId(templateId);
+			smsBody = smsBody.split("#")[0];
+
+		} else if (StringUtils.isEmpty(sms.getTemplateId())) {
+			log.info("No template Id, Message Not sent" + smsBody);
+			return;
+		} else {
+			map.put("TemplateId", sms.getTemplateId());
+		}
+		map.put("Content", smsBody);
+
 		map.put("Purpose", sms.getCategory());
-		log.info("OPT DAta "+map);
-		sendSMS(map);
+		log.info("OPT DAta " + map);
+		if (smsProperties.isSmsEnabled()) {
+			sendSMS(map);
+		}
 	}
 
 	public String getAuthToken() {
 
 		HttpHeaders headers = new HttpHeaders();
 		Map<String, Object> map = new HashMap<String, Object>();
-		String tokenn="";
+		String tokenn = "";
 		map.put("userId", smsProperties.tpUserId);
 		map.put("tpUserId", smsProperties.tcptpUserId);
 		map.put("emailid", smsProperties.tcpEmailId);
@@ -121,9 +137,9 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		ResponseEntity<Map> response = restTemplate.postForEntity(smsProperties.tcpurl + smsProperties.tcpAuthToken,
 				entity, Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
-			
-			log.info("Token No\n" +response );
-			tokenn=(String)response.getBody().get("Value");
+
+			log.info("Token No\n" + response);
+			tokenn = (String) response.getBody().get("Value");
 
 		}
 		return tokenn;

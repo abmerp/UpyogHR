@@ -59,7 +59,7 @@ public class UserTypeQueryBuilder {
 	@Autowired
 	private RoleRepository roleRepository;
 
-	private static final String SELECT_USER_QUERY = "SELECT userdata.title, userdata.salutation, userdata.dob, userdata.locale, userdata.username, userdata"
+	private static final String SELECT_USER_QUERY = "SELECT userdata.parentId,userdata.title, userdata.salutation, userdata.dob, userdata.locale, userdata.username, userdata"
 			+ ".password, userdata.pwdexpirydate,  userdata.mobilenumber, userdata.altcontactnumber, userdata.emailid, userdata.createddate, userdata"
 			+ ".lastmodifieddate,  userdata.createdby, userdata.lastmodifiedby, userdata.active, userdata.name, userdata.gender, userdata.pan, userdata.aadhaarnumber, userdata"
 			+ ".type,  userdata.version, userdata.guardian, userdata.guardianrelation, userdata.signature, userdata.accountlocked, userdata.accountlockeddate, userdata"
@@ -88,7 +88,7 @@ public class UserTypeQueryBuilder {
 
 	private static final String SELECT_USER_ROLE_QUERY = "SELECT distinct(user_id) from eg_userrole_v1 ur";
 	
-	private static final String SELECT_USER_PARENT_QUERY = "SELECT userdata.title, userdata.salutation, userdata.dob, userdata.locale, userdata.username, userdata"
+	private static final String SELECT_USER_PARENT_QUERY = "SELECT userdata.parentId,userdata.title, userdata.salutation, userdata.dob, userdata.locale, userdata.username, userdata"
 			+ ".password, userdata.pwdexpirydate,  userdata.mobilenumber, userdata.altcontactnumber, userdata.emailid, userdata.createddate, userdata"
 			+ ".lastmodifieddate,  userdata.createdby, userdata.lastmodifiedby, userdata.active, userdata.name, userdata.gender, userdata.pan, userdata.aadhaarnumber, userdata"
 			+ ".type,  userdata.version, userdata.guardian, userdata.guardianrelation, userdata.signature, userdata.accountlocked, userdata.accountlockeddate, userdata"
@@ -283,7 +283,7 @@ public class UserTypeQueryBuilder {
 
 		if (userSearchCriteria.getTenantId() != null) {
 			isAppendAndClause = addAndClauseIfRequired(false, selectQuery);
-			selectQuery.append(" ur.role_tenantid = ?");
+			selectQuery.append(" userdata.tenantid = ?");
 			preparedStatementValues.add(userSearchCriteria.getTenantId().trim());
 		}
 

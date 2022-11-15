@@ -558,6 +558,16 @@
       "description": "HRMS Admin"
     },
     {
+      "name": "Basic employee roles",
+      "code": "COMMON_EMPLOYEE",
+      "description": "Basic employee roles"
+    },
+    {
+      "name": "National Dashboard Systeme user",
+      "code": "NDA_SYSTEM",
+      "description": "National Dashboard Systeme user"
+    },
+    {
       "code": "UC_EMP",
       "name": "Universal Collection Employee",
       "description": "Universal Miscellaneous Collection Employee"

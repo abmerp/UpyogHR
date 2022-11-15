@@ -53,7 +53,7 @@ public class CalculatorController {
 	 * @param calculationReq The calculation Request
 	 * @return Calculation Response
 	 */
-	@RequestMapping(value = {"/{servicename}/_calculate","/_calculate"}, method = RequestMethod.POST)
+	@RequestMapping(value = {"/{servicename}/_calculates","/_calculates"}, method = RequestMethod.POST)
 	public ResponseEntity<CalculationRes> calculate(@Valid @RequestBody CalculationReq calculationReq,@PathVariable(required = false) String servicename) {
 
 		if(servicename==null)
@@ -119,5 +119,28 @@ public class CalculatorController {
 		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
 		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
 	}
+	@RequestMapping(value = {"/{servicename}/_calculator","/_calculator"}, method = RequestMethod.POST)
+	public ResponseEntity<CalculationRes> calculator(@Valid @RequestBody CalculationReq calculationReq,@PathVariable(required = false) String servicename) {
+
+		if(servicename==null)
+			servicename = businessService_TL;
+		List<Calculation> calculations = null;
+		switch(servicename)
+		{
+			case businessService_TL:
+				calculations = calculationService.calculator(calculationReq);
+				break;
+
+			case businessService_BPA:
+				calculations = bpaCalculationService.calculate(calculationReq);
+			break;
+		default:
+			//	throw new CustomException("UNKNOWN_BUSINESSSERVICE", " Business Service not supported");
+		}
+
+		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
+		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
+	}
+
 
 }

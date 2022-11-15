@@ -45,13 +45,13 @@ public class TransitionService {
      * @return List of ProcessStateAndAction containing the State object for status before the action and after the action and
      * the Action object for the given action
      */
-    public List<ProcessStateAndAction> getProcessStateAndActions(List<ProcessInstance> processInstances,Boolean isTransitionCall){
+    public List<ProcessStateAndAction> getProcessStateAndActions(ProcessInstanceRequest processInstances,Boolean isTransitionCall){
         List<ProcessStateAndAction> processStateAndActions = new LinkedList<>();
 
         BusinessService businessService = getBusinessService(processInstances);
-        Map<String,ProcessInstance> idToProcessInstanceFromDbMap = prepareProcessStateAndAction(processInstances,businessService);
+        Map<String,ProcessInstance> idToProcessInstanceFromDbMap = prepareProcessStateAndAction(processInstances.getProcessInstances(),businessService);
         List<String> allowedRoles = workflowUtil.rolesAllowedInService(businessService);
-        for(ProcessInstance processInstance: processInstances){
+        for(ProcessInstance processInstance: processInstances.getProcessInstances()){
 
             ProcessStateAndAction processStateAndAction = new ProcessStateAndAction();
             processStateAndAction.setProcessInstanceFromRequest(processInstance);
@@ -62,9 +62,9 @@ public class TransitionService {
             State currentState = null;
             if(processStateAndAction.getProcessInstanceFromDb()!=null && isTransitionCall)
                 currentState = processStateAndAction.getProcessInstanceFromDb().getState();
-            else if(!isTransitionCall)
+            else if(!isTransitionCall) {
                 currentState = processStateAndAction.getProcessInstanceFromRequest().getState();
-
+            }
 
             //Assign businessSla when creating processInstance
             if(processStateAndAction.getProcessInstanceFromDb()==null && isTransitionCall)
@@ -155,13 +155,13 @@ public class TransitionService {
 
 
 
-    private BusinessService getBusinessService(List<ProcessInstance> processInstances){
+    private BusinessService getBusinessService(ProcessInstanceRequest processInstances){
         BusinessServiceSearchCriteria criteria = new BusinessServiceSearchCriteria();
-        String tenantId = processInstances.get(0).getTenantId();
-        String businessService = processInstances.get(0).getBusinessService();
+        String tenantId = processInstances.getProcessInstances().get(0).getTenantId();
+        String businessService = processInstances.getProcessInstances().get(0).getBusinessService();
         criteria.setTenantId(tenantId);
         criteria.setBusinessServices(Collections.singletonList(businessService));
-        List<BusinessService> businessServices = businessServiceRepository.getBusinessServices(criteria);
+        List<BusinessService> businessServices = businessServiceRepository.getBusinessServices(processInstances.getRequestInfo(),criteria);
         if(CollectionUtils.isEmpty(businessServices))
             throw new CustomException("BUSINESSSERVICE ERROR","No bussinessService object found for businessSerice: "+
                     businessService + " and tenantId: "+tenantId);
@@ -170,20 +170,6 @@ public class TransitionService {
                     businessService + " and tenantId: "+tenantId);
         return businessServices.get(0);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

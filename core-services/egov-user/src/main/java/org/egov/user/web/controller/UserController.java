@@ -198,7 +198,7 @@ public class UserController {
 	private UserSearchResponse searchUsers(@RequestBody UserSearchRequest request, HttpHeaders headers) {
 
 		UserSearchCriteria searchCriteria = request.toDomain();
-
+//TODO PALAM
 		if (!isInterServiceCall(headers)) {
 			if ((isEmpty(searchCriteria.getId()) && isEmpty(searchCriteria.getUuid()) )
 					&& (searchCriteria.getLimit() > defaultSearchSize || searchCriteria.getLimit() == 0))
@@ -222,8 +222,8 @@ public class UserController {
 		List<Developerdetail> listDevelopers = developerRegistration1.getDeveloperDetail();
 
 		return new DeveloperResponse(responseInfo, developerRegistration1.getId(),
-				developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy(),
-				developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy(),
+				developerRegistration1.getCurrentVersion(), developerRegistration1.getCreatedBy().toString(),
+				developerRegistration1.getCreatedDate(), developerRegistration1.getUpdateddBy().toString(),
 				developerRegistration1.getUpdatedDate(), listDevelopers.get(listDevelopers.size() - 1));
 
 	}

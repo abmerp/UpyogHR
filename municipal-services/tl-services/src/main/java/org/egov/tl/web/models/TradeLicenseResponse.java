@@ -31,6 +31,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @Builder
 public class TradeLicenseResponse   {
+	
         @JsonProperty("ResponseInfo")
         private ResponseInfo responseInfo = null;
 
