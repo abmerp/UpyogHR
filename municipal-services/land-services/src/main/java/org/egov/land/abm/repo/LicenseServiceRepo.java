@@ -17,8 +17,8 @@ public interface LicenseServiceRepo extends JpaRepository<LicenseServiceDao, Lon
 	@Query(value="select n.id from LicenseServiceDao n")
 	public List<String> getApplicantsNumber();
 	
-	@Query(value="select n from NewServiceInfo n where n.loiNumber=?1")
-	public NewServiceInfo findByLoiNumber(String loiNumber);
+	@Query(value="select n from LicenseServiceDao n where n.loiNumber=?1")
+	public LicenseServiceDao findByLoiNumber(String loiNumber);
 	
 	public boolean existsByLoiNumber(String loiNumber);
 }

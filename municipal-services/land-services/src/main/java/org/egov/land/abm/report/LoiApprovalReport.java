@@ -10,10 +10,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.egov.land.abm.newservices.entity.NewServiceInfo;
-import org.egov.land.abm.service.NewServiceInfoService;
+import org.egov.land.abm.newservices.entity.LicenseServiceDao;
+import org.egov.land.abm.service.LicenseService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,7 +41,9 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 @RestController
 public class LoiApprovalReport {
 
-	private static String FILE = "D:\\Volume-E\\FirstPdf.pdf";
+	//private static String FILE = "D:\\Volume-E\\FirstPdf.pdf";
+	
+	private String MY_FILE ;
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
 	private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL, BaseColor.RED);
 	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
@@ -47,14 +51,16 @@ public class LoiApprovalReport {
 	private static Font normal = new Font(Font.FontFamily.TIMES_ROMAN, 12);
 
 	@Autowired
-	NewServiceInfoService newServiceInfoServce;
+	LicenseService newServiceInfoService;
+	@Autowired Environment env;
 
 	@RequestMapping(value = "/loi/report/_create", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Map<String, byte[]>> createLoiReport() throws IOException {
 
+		this.MY_FILE = env.getProperty("egov.loireport");
+		File file = new File(MY_FILE);
 		createReport();
 
-		File file = new File("D:\\Volume-E\\FirstPdf.pdf");
 		int length = (int) file.length();
 		BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
 		byte[] bytes = new byte[length];
@@ -76,7 +82,7 @@ public class LoiApprovalReport {
 	public void createReport() {
 		try {
 			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(FILE));
+			PdfWriter.getInstance(document, new FileOutputStream(MY_FILE));
 			document.open();
 			addMetaData(document);
 			addTitlePage(document);
@@ -137,12 +143,14 @@ public class LoiApprovalReport {
 
 	private void addContent(Document document) throws DocumentException, JsonProcessingException {
 
-		NewServiceInfo newServiceInfo = null;
+		LicenseServiceDao newServiceInfo = null;
 
-		boolean result = newServiceInfoServce.existsByLoiNumber("1212");
+		boolean result = newServiceInfoService.existsByLoiNumber("1212");
 		if (result) {
 			System.out.println("true");
 			newServiceInfo = getLatestNewServicesInfo("1212");
+		}else {
+			System.out.println("False");
 		}
 
 		if(newServiceInfo!=null) {
@@ -419,9 +427,9 @@ public class LoiApprovalReport {
 		return true;
 	}
 
-	public NewServiceInfo getLatestNewServicesInfo(String loiNumber) {
+	public LicenseServiceDao getLatestNewServicesInfo(String loiNumber) {
 
-		NewServiceInfo newServiceInfo = newServiceInfoServce.findByLoiNumber(loiNumber);
+		LicenseServiceDao newServiceInfo = newServiceInfoService.findByLoiNumber(loiNumber);
 		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
 		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
 			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {

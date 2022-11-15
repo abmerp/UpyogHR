@@ -270,7 +270,7 @@ public class LicenseService {
 	}
 	
 	
-	public NewServiceInfo findByLoiNumber(String loiNumber) {
+	public LicenseServiceDao findByLoiNumber(String loiNumber) {
 		return this.newServiceInfoRepo.findByLoiNumber(loiNumber);
 	}
 	public boolean existsByLoiNumber(String loiNumber) {
