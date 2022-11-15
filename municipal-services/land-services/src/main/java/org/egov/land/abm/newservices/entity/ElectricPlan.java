@@ -24,6 +24,7 @@ public class ElectricPlan {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
 	private boolean electricalInfra;
 	private boolean elecricDistribution;
 	private boolean electricalCapacity;
