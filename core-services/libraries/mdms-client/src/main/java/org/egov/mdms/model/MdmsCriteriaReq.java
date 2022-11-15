@@ -25,7 +25,6 @@ public class MdmsCriteriaReq {
 	
 	@JsonProperty("RequestInfo")
 	@Valid
-	@NotNull
 	private RequestInfo requestInfo;
 	
 	@JsonProperty("MdmsCriteria")

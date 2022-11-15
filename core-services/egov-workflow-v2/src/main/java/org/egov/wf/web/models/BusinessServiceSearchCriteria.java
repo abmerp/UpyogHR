@@ -20,9 +20,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class BusinessServiceSearchCriteria {
 
-	  @NotNull
-	    @JsonProperty("RequestInfo")
-	 private RequestInfo requestInfo;
+	 @JsonProperty("RequestInfo")
+	    private RequestInfo requestInfo;
 
     @NotNull
     @JsonProperty("tenantId")
@@ -43,5 +42,6 @@ public class BusinessServiceSearchCriteria {
         this.businessServices = criteria.getBusinessServices();
         this.stateUuids = criteria.getStateUuids();
         this.actionUuids = criteria.getActionUuids();
+        this.requestInfo = criteria.getRequestInfo();
     }
 }

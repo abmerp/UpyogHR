@@ -127,6 +127,7 @@ public class TradeLicenseService {
        switch(businessServicefromPath)
        {
            case businessService_TL:
+        	 //  repository.save(tradeLicenseRequest);
                if (config.getIsExternalWorkFlowEnabled())
                    wfIntegrator.callWorkFlow(tradeLicenseRequest);
                
@@ -394,20 +395,20 @@ public class TradeLicenseService {
                     break;
             }
             BusinessService businessService = workflowService.getBusinessService(tradeLicenseRequest.getLicenses().get(0).getTenantId(), tradeLicenseRequest.getRequestInfo(), businessServiceName);
-            List<TradeLicense> searchResult = getLicensesWithOwnerInfo(tradeLicenseRequest);
+          //  List<TradeLicense> searchResult = getLicensesWithOwnerInfo(tradeLicenseRequest);
             
             validateLatestApplicationCancellation(tradeLicenseRequest, businessService);
 
             enrichmentService.enrichTLUpdateRequest(tradeLicenseRequest, businessService);
-            tlValidator.validateUpdate(tradeLicenseRequest, searchResult, mdmsData);
+          //  tlValidator.validateUpdate(tradeLicenseRequest, searchResult, mdmsData);
             switch(businessServicefromPath)
             {
                 case businessService_BPA:
                   //  validateMobileNumberUniqueness(tradeLicenseRequest);
                     break;
             }
-            Map<String, Difference> diffMap = diffService.getDifference(tradeLicenseRequest, searchResult);
-            Map<String, Boolean> idToIsStateUpdatableMap = util.getIdToIsStateUpdatableMap(businessService, searchResult);
+          //  Map<String, Difference> diffMap = diffService.getDifference(tradeLicenseRequest, searchResult);
+            Map<String, Boolean> idToIsStateUpdatableMap = util.getIdToIsStateUpdatableMap(businessService, null);
 
             /*
              * call workflow service if it's enable else uses internal workflow process
@@ -429,7 +430,9 @@ public class TradeLicenseService {
             }
             enrichmentService.postStatusEnrichment(tradeLicenseRequest,endStates,mdmsData);
             userService.createUser(tradeLicenseRequest, false);
+            if(businessServicefromPath.equalsIgnoreCase(businessService_BPA)) {
             calculationService.addCalculation(tradeLicenseRequest);
+            }
             repository.update(tradeLicenseRequest, idToIsStateUpdatableMap);
             licenceResponse=  tradeLicenseRequest.getLicenses();
         }

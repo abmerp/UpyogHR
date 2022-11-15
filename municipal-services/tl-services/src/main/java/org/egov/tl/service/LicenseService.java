@@ -160,11 +160,12 @@ public class LicenseService {
 			tradeLicenseDetail.getVerificationDocuments();
 			tradeLicenseDetail.setTradeType("NewTL");
 			
-			
-			
-			
 			request.addLicensesItem(tradeLicense);
-			tradeLicenseService.create(request, TLConstants.businessService_TL);
+			List<TradeLicense> tradelicenses = tradeLicenseService.create(request, TLConstants.businessService_TL);
+		//	request.getLicenses().clear();
+			request.setLicenses(tradelicenses);
+			tradeLicenseService.update(request, TLConstants.businessService_TL);
+			
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 			authtoken.put("UserId", user.getId());

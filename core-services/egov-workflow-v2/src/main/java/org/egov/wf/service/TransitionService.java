@@ -55,9 +55,11 @@ public class TransitionService {
 
             ProcessStateAndAction processStateAndAction = new ProcessStateAndAction();
             processStateAndAction.setProcessInstanceFromRequest(processInstance);
+
             if(isTransitionCall){
                 processStateAndAction.getProcessInstanceFromRequest().setModuleName(businessService.getBusiness());
             }
+            if(idToProcessInstanceFromDbMap!=null && idToProcessInstanceFromDbMap.size()>0)
             processStateAndAction.setProcessInstanceFromDb(idToProcessInstanceFromDbMap.get(processInstance.getBusinessId()));
             State currentState = null;
             if(processStateAndAction.getProcessInstanceFromDb()!=null && isTransitionCall)
@@ -81,7 +83,7 @@ public class TransitionService {
             }
             else processStateAndAction.setCurrentState(currentState);
 
-            if(!CollectionUtils.isEmpty(processStateAndAction.getCurrentState().getActions())){
+            if(processStateAndAction.getCurrentState()!= null && !CollectionUtils.isEmpty(processStateAndAction.getCurrentState().getActions())){
                 for (Action action : processStateAndAction.getCurrentState().getActions()){
                     if(action.getAction().equalsIgnoreCase(processInstance.getAction())){
                         if(action.getRoles().contains("*"))

@@ -338,6 +338,7 @@ public class TradeUtil {
 	public Map<String, Boolean> getIdToIsStateUpdatableMap(BusinessService businessService,
 			List<TradeLicense> searchresult) {
 		Map<String, Boolean> idToIsStateUpdatableMap = new HashMap<>();
+		if(searchresult!= null)
 		searchresult.forEach(result -> {
 			String nameofBusinessService = result.getBusinessService();
 			if (StringUtils.equals(nameofBusinessService, businessService_BPA)

@@ -59,11 +59,11 @@ public class TLQueryBuilder {
             " tlinsti.instituionname as instiinstituionname, tlinsti.contactno as insticontactno, tlinsti.organisationregistrationno as instiorganisationregistrationno, tlinsti.address as instiaddress FROM eg_tl_tradelicense tl"
             +INNER_JOIN_STRING
             +"eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id"
-            +INNER_JOIN_STRING
+            +LEFT_OUTER_JOIN_STRING
             +"eg_tl_address tladdress ON tladdress.tradelicensedetailid = tld.id"
-            +INNER_JOIN_STRING
+            +LEFT_OUTER_JOIN_STRING
             +"eg_tl_owner tlowner ON tlowner.tradelicensedetailid = tld.id"
-            +INNER_JOIN_STRING
+            +LEFT_OUTER_JOIN_STRING
             +"eg_tl_tradeunit tlunit ON tlunit.tradelicensedetailid = tld.id"
             +LEFT_OUTER_JOIN_STRING
             +"eg_tl_accessory tlacc ON tlacc.tradelicensedetailid = tld.id"

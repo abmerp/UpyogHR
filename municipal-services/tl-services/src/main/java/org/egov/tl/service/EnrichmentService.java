@@ -232,10 +232,11 @@ public class EnrichmentService {
 		TradeLicenseSearchCriteria searchCriteria = new TradeLicenseSearchCriteria();
 		searchCriteria.setTenantId(criteria.getTenantId());
 		Set<String> ownerids = new HashSet<>();
-		licenses.forEach(license -> {
-			license.getTradeLicenseDetail().getOwners().forEach(owner -> ownerids.add(owner.getUuid()));
-		});
-
+		/*
+		 * licenses.forEach(license -> {
+		 * license.getTradeLicenseDetail().getOwners().forEach(owner ->
+		 * ownerids.add(owner.getUuid())); });
+		 */
 		/*
 		 * licenses.forEach(tradeLicense -> {
 		 * ownerids.add(tradeLicense.getCitizenInfo().getUuid()); });
