@@ -109,7 +109,7 @@ public class CalculationService {
 		// mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
 		Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(), tenantId,
 				calculationReq.getCalculatorRequest().getPurposeCode());
-		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getCalculatorRequest());
+		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getRequestInfo(),calculationReq.getCalculatorRequest());
 //     
 //       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
 //               calculationReq.getCalulationCriteria(),mdmsData);

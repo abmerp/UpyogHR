@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.tlcalculator.utils.LandUtil;
 import org.egov.tlcalculator.validator.LandMDMSValidator;
 import org.egov.tlcalculator.web.models.CalculatorRequest;
@@ -23,7 +24,7 @@ public class CalculatorImpl implements Calculator {
 		return (AREA * Double.valueOf(arce));
 	}
 
-	public FeesTypeCalculationDto feesTypeCalculation(CalculatorRequest calculatorRequest) {
+	public FeesTypeCalculationDto feesTypeCalculation(RequestInfo requestInfo,CalculatorRequest calculatorRequest) {
 
 		double area1 = (PERCENTAGE1 * Double.valueOf(calculatorRequest.getTotalLandSize()));
 		double area2 = PERCENTAGE2 * Double.valueOf(calculatorRequest.getTotalLandSize());
@@ -31,8 +32,8 @@ public class CalculatorImpl implements Calculator {
 		Map<String, List<String>> mdmsData;
 		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
 		LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeCode = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
-				.mDMSCallPurposeCode(calculatorRequest.getRequestInfo(),
-						calculatorRequest.getRequestInfo().getUserInfo().getTenantId(),
+				.mDMSCallPurposeCode(requestInfo,
+						requestInfo.getUserInfo().getTenantId(),
 						calculatorRequest.getPurposeCode());
 
 		mdmsData = valid.getAttributeValues(mDMSCallPurposeCode);
