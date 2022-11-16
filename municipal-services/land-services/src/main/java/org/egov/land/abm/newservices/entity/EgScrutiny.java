@@ -35,6 +35,7 @@ public class EgScrutiny implements Serializable {
 	@Column(name="application_id")
 	private Integer applicationId;
 
+	@Column(name="comment")
 	private String comment;
 
 	@Column(name="created_on")
@@ -63,7 +64,7 @@ public class EgScrutiny implements Serializable {
 	private Date ts;
 	
 	@Column(name="is_final_approval")
-	private boolean isFinalApproval = false;
+	private boolean isFinalApproval;
 	
 	
 
