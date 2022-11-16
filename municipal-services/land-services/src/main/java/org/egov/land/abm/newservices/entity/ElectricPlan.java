@@ -25,6 +25,9 @@ public class ElectricPlan {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	private String loiNumber;
+	private String selfCentredDrawing;
+	private String shapFileTemplate;
 	private boolean electricalInfra;
 	private boolean elecricDistribution;
 	private boolean electricalCapacity;
@@ -33,5 +36,7 @@ public class ElectricPlan {
 	private String environmentalClearance;
 	private String autoCad;
 	private String verifiedPlan;
+	
+	
 	
 }
