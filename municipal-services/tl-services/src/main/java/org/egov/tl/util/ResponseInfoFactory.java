@@ -1,7 +1,5 @@
 package org.egov.tl.util;
 
-import java.util.Date;
-
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.response.ResponseInfo;
 import org.springframework.stereotype.Component;
@@ -13,7 +11,7 @@ public class ResponseInfoFactory {
 
         final String apiId = requestInfo != null ? requestInfo.getApiId() : "";
         final String ver = requestInfo != null ? requestInfo.getVer() : "";
-        Date ts = null;
+        Long ts = null;
         if(requestInfo!=null)
             ts = requestInfo.getTs();
         final String resMsgId = "uief87324"; // FIXME : Hard-coded
