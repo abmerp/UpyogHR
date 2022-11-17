@@ -7,7 +7,7 @@
   "categoryiId": 1,
   "code": "Company",
 
-   "isActive": 1
+   "isActive": 1,
   "Type": "Company"
  },
  {
@@ -15,7 +15,7 @@
   "code": "Individual",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Individual"
  },
  {
@@ -23,7 +23,7 @@
   "code": "Society",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Society"
  },
  {
@@ -31,7 +31,7 @@
   "code": "Trust",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Trust"
  },
  {
@@ -39,7 +39,7 @@
   "code": "Others",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "WWWWOthers"
  },
  {
@@ -47,7 +47,7 @@
   "code": "Institution",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Institution"
  },
  {
@@ -55,7 +55,7 @@
   "code": "Firm",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Firm"
  },
  {
@@ -63,7 +63,7 @@
   "code": "Limited Liability Partnership",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Limited Liability Partnership"
  },
  {
@@ -71,7 +71,7 @@
   "code": "Hindu Undivided Family",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Hindu Undevided Family"
  },
  {
@@ -79,7 +79,7 @@
   "code": "Partnership Firm",
 
   
-   "isActive": 1
+   "isActive": 1,
   "Type": "Partnership Firm"
  },
  {
@@ -87,7 +87,7 @@
   "code": "Proprietorship Firm",
 
  
-   "isActive": 1
+   "isActive": 1,
   "Type": "Proprietorship Firm"
  }
 ]
