@@ -1,5 +1,9 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -81,7 +85,6 @@ public class LandSchedule {
 
 	private String ht;
 	private String htRemark;
-	private String remark;
 	private String gasRemark;
 
 	private String gas;
@@ -110,5 +113,7 @@ public class LandSchedule {
 	private String LayoutPlan;
 	private String proposedLayoutPlan;
 	private String revisedLansSchedule;
+	@JsonProperty("document")
+	private List<Document> document;
 
 }

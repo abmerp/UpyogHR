@@ -1,5 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -83,6 +85,6 @@ public class DetailsAppliedLandData1 {
 	private String undeterminedLength;
 	private String undeterminedDim;
 	private String undeterminedEntered;
-
+	private List<Document> docuemnts;
 	
 }
