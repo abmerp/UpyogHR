@@ -32,9 +32,10 @@ public class LandSchedule {
 	private String renewalFee;
 	private String freshlyApplied;
 	private String approvedLayoutPlan;
-	private String uploadPreviouslyLayoutPla;
+	private String uploadPreviouslyLayoutPlan;
 
 	private String encumburance;
+	private String encumburanceOther;
 	private String litigation;
 	private String litigationRemark;;
 	private String litigationDoc;
