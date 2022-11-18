@@ -2,6 +2,7 @@ package org.egov.user.abm.developer.contract;
 
 import java.util.List;
 
+import org.egov.user.domain.model.Document;
 import org.egov.user.domain.model.Role;
 
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class AddRemoveAuthoizedUsers {
 	private String password;
 	private String tenantId;
 	private String mobileNumber;
+	private List<Document> document;
 //	private String email;
 //	private String uploadPanPdf;
 //	private String uploadAadharPdf;
