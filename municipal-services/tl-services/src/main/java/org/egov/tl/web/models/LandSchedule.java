@@ -51,23 +51,23 @@ public class LandSchedule {
 	private String appliedLand;
 	private String appliedLandDoc;
 
-	private String revenuerasta;
+	private String revenueRasta;
 	private String revenueRastaWidth;
 
-	private String watercourse;
-	private String watercourseRemark;
+	private String waterCourse;
+	private String waterCourseRemark;
 
 	private String compactBlock;
 	private String compactBlockRemark;
 
-	private String sandwiched;
-	private String sandwichedRemark;
+	private String landSandwiched;
+	private String landSandwichedRemark;
 	private String acquistion;
 
 	private String acquistionRemark;
 
-	private String section4;
-	private String section6;
+	private String sectionFour;
+	private String sectionSix;
 	private String orderUpload;
 	private String landCompensation;
 	private String releaseStatus;
