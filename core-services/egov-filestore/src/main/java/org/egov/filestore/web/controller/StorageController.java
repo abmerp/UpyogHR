@@ -92,7 +92,7 @@ public class StorageController {
 		return responseFactory.getFilesByTagResponse(fileInfoList);
 	}
 
-	@PostMapping(produces = APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/upload",produces = APPLICATION_JSON_UTF8_VALUE)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ResponseBody
 	public StorageResponse storeFiles(@RequestParam("file") List<MultipartFile> files,
