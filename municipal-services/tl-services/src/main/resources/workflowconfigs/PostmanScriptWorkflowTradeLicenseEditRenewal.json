@@ -2,19 +2,26 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
 --header 'Content-Type: application/json' \
 --data-raw '{
   "RequestInfo": {
-    "apiId": "Rainmaker",
-    "action": "",
-    "did": 1,
-    "key": "",
-    "msgId": "20170310130900|en_IN",
-    "requesterId": "",
-    "ts": 1513579888683,
-    "ver": ".01",
-    "authToken": "{{Auth_Token}}"
-  },
+        "apiId": "Rainmaker",
+        "action": "_create",
+        "did": 1,
+        "key": "",
+        "msgId": "20170310130900|en_IN",
+        "ts": 0,
+        "ver": ".01",
+        "authToken": "80458c19-3b48-4aa8-b86e-e2e195e6753a",
+        "userInfo": {
+            "uuid": "5fe074f2-c12d-4a27-bd7b-92d15f9ab19c",
+            "name": "rahul7",
+            "userName": "rahul7",
+            "tenantId": "hr",
+            "id": 97,
+            "mobileNumber": "7895877833"
+        }
+    },
   "BusinessServices": [
     {
-      "tenantId": "pb",
+      "tenantId": "hr",
       "businessService": "EDITRENEWAL",
       "business": "tl-services",
       "businessServiceSla": 172800000,
