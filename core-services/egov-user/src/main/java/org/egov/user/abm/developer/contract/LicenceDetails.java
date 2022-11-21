@@ -37,6 +37,6 @@ public class LicenceDetails {
     private String addressLineFourCorrespondence;
     private String cityCorrespondence;
     private String pincodeCorrespondence;
-    private List<Gender> gender;
+    private String gender;
 
 }

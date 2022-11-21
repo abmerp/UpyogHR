@@ -2,12 +2,10 @@ package org.egov.user.abm.developer.contract;
 
 import java.util.List;
 
-import org.egov.user.domain.model.Document;
-
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+@Getter	
 @Setter
 public class AddInfo {
 
@@ -29,7 +27,7 @@ public class AddInfo {
     private String email;
     private String registeredContactNo;
     private String gst_Number;
-    private List<Document> document;
+
 	private List<DirectorsInformation> directorsInformation;
 	private List<ShareholdingPattens> shareHoldingPatterens;
     
