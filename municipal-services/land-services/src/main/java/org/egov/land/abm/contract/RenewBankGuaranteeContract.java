@@ -1,6 +1,7 @@
 package org.egov.land.abm.contract;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.land.abm.models.RenewBankGuaranteeRequest;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,18 +11,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ServicePlanContract {
+public class RenewBankGuaranteeContract {
 
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
 	
-	@JsonProperty("ServicePlanRequest")
-	private ServicePlanRequest servicePlanRequest;
 	
-	
+	@JsonProperty("RenewBankGuaranteeRequest")
+	RenewBankGuaranteeRequest renewBankGuaranteeRequest;
 }

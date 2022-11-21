@@ -260,7 +260,7 @@ public class LicenseService {
 					mapDNo.put("UserLoginId", user.getId());
 					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 							.toString();
-					System.out.println("dairyNumber" + dairyNumber);
+				
 
 					/************************************************
 					 * End Here
