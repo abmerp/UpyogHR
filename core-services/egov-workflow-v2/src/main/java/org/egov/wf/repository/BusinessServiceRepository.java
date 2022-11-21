@@ -58,8 +58,7 @@ public class BusinessServiceRepository {
         Map<String, Boolean> stateLevelMapping = mdmsService.getStateLevelMapping(requestinfo);
 
         if(!CollectionUtils.isEmpty(criteria.getBusinessServices())){
-
-            criteria.getBusinessServices().forEach(businessService -> {
+           criteria.getBusinessServices().forEach(businessService -> {
                 if(stateLevelMapping.get(businessService)==null || stateLevelMapping.get(businessService))
                     stateLevelBusinessServices.add(businessService);
                 else

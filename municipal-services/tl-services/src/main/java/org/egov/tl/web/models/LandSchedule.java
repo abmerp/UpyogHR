@@ -1,5 +1,9 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,9 +32,10 @@ public class LandSchedule {
 	private String renewalFee;
 	private String freshlyApplied;
 	private String approvedLayoutPlan;
-	private String uploadPreviouslyLayoutPla;
+	private String uploadPreviouslyLayoutPlan;
 
 	private String encumburance;
+	private String encumburanceOther;
 	private String litigation;
 	private String litigationRemark;;
 	private String litigationDoc;
@@ -46,23 +51,23 @@ public class LandSchedule {
 	private String appliedLand;
 	private String appliedLandDoc;
 
-	private String revenuerasta;
+	private String revenueRasta;
 	private String revenueRastaWidth;
 
-	private String watercourse;
-	private String watercourseRemark;
+	private String waterCourse;
+	private String waterCourseRemark;
 
 	private String compactBlock;
 	private String compactBlockRemark;
 
-	private String sandwiched;
-	private String sandwichedRemark;
+	private String landSandwiched;
+	private String landSandwichedRemark;
 	private String acquistion;
 
 	private String acquistionRemark;
 
-	private String section4;
-	private String section6;
+	private String sectionFour;
+	private String sectionSix;
 	private String orderUpload;
 	private String landCompensation;
 	private String releaseStatus;
@@ -81,7 +86,6 @@ public class LandSchedule {
 
 	private String ht;
 	private String htRemark;
-	private String remark;
 	private String gasRemark;
 
 	private String gas;
@@ -110,5 +114,7 @@ public class LandSchedule {
 	private String LayoutPlan;
 	private String proposedLayoutPlan;
 	private String revisedLansSchedule;
+	@JsonProperty("document")
+	private List<Document> document;
 
 }

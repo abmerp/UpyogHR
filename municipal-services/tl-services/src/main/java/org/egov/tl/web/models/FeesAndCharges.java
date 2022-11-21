@@ -1,5 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,5 +18,5 @@ public class FeesAndCharges {
 	private String payableNow;
 	private String remark;
 	private String adjustFee;
-	
+	private List<Document> docuemnts;
 }

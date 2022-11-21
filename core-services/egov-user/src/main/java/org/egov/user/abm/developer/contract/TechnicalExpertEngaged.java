@@ -1,5 +1,9 @@
 package org.egov.user.abm.developer.contract;
 
+import java.util.List;
+
+import org.egov.user.domain.model.Document;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +31,6 @@ public class TechnicalExpertEngaged {
 	private String engineerDocN;
 	private String architectNameN;
 	private String architectDocN;
-	private String uplaodSpaBoard;
-	private String uplaodSpaBoardDoc;
+	private List<Document> document;
 
 }
