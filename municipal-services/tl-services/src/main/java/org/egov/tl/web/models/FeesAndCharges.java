@@ -18,5 +18,5 @@ public class FeesAndCharges {
 	private String payableNow;
 	private String remark;
 	private String adjustFee;
-	private List<Document> docuemnts;
+	
 }

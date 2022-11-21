@@ -85,6 +85,6 @@ public class DetailsAppliedLandData1 {
 	private String undeterminedLength;
 	private String undeterminedDim;
 	private String undeterminedEntered;
-	private List<Document> docuemnts;
+	private List<String> docuemnts;
 	
 }

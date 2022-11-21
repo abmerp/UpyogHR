@@ -21,7 +21,7 @@ public class LandSchedule {
 	private String typeLand;
 	private String thirdParty;
 	private String thirdPartyRemark;
-	private Document thirdPartyDoc;
+	private String thirdPartyDoc;
 
 	private String migrationLic;
 	private String areaUnderMigration;
@@ -31,25 +31,25 @@ public class LandSchedule {
 	private String validityOfParentLic;
 	private String renewalFee;
 	private String freshlyApplied;
-	private Document approvedLayoutPlan;
-	private Document uploadPreviouslyLayoutPlan;
+	private String approvedLayoutPlan;
+	private String uploadPreviouslyLayoutPlan;
 
 	private String encumburance;
 	private String encumburanceOther;
 	private String litigation;
 	private String litigationRemark;;
-	private Document litigationDoc;
+	private String litigationDoc;
 
 	private String court;
 	private String courtyCaseNo;
-	private Document courtDoc;
+	private String courtDoc;
 
 	private String insolvency;
 	private String insolvencyRemark;
-	private Document insolvencyDoc;
+	private String insolvencyDoc;
 
 	private String appliedLand;
-	private Document appliedLandDoc;
+	private String appliedLandDoc;
 
 	private String revenueRasta;
 	private String revenueRastaWidth;
@@ -68,7 +68,7 @@ public class LandSchedule {
 
 	private String sectionFour;
 	private String sectionSix;
-	private Document orderUpload;
+	private String orderUpload;
 	private String landCompensation;
 	private String releaseStatus;
 	private String awardDate;
@@ -105,25 +105,25 @@ public class LandSchedule {
 
 	@JsonProperty("landSchedule")
 
-	private Document landSchedule;
+	private String landSchedule;
 	@JsonProperty("mutation")
-	private Document mutation;
+	private String mutation;
 	@JsonProperty("jambandhi")
-	private Document jambandhi;
+	private String jambandhi;
 	@JsonProperty("detailsOfLease")
-	private Document detailsOfLease;
+	private String detailsOfLease;
 	@JsonProperty("addSalesDeed")
-	private Document addSalesDeed;
+	private String addSalesDeed;
 	@JsonProperty("revisedLandSchedule")
-	private Document revisedLandSchedule;
+	private String revisedLandSchedule;
 	@JsonProperty("copyofSpaBoard")
-	private Document copyofSpaBoard;
+	private String copyofSpaBoard;
 	@JsonProperty("copyOfShajraPlan")
-	private Document copyOfShajraPlan;
+	private String copyOfShajraPlan;
 //	private String LayoutPlan;
 	@JsonProperty("proposedLayoutPlan")
-	private Document proposedLayoutPlan;
+	private String proposedLayoutPlan;
 	@JsonProperty("revisedLansSchedule")
-	private Document revisedLansSchedule;
+	private String revisedLansSchedule;
 
 }

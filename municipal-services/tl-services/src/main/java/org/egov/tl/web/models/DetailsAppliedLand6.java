@@ -14,7 +14,7 @@ public class DetailsAppliedLand6 {
 	private String democraticPlan;
 	private String sectoralPlan;
 	private String developmentPlan;
-	private List<Document> uploadLayoutPlan;
+	private String uploadLayoutPlan;
 
 
 	
