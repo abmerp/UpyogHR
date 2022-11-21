@@ -58,8 +58,7 @@ public class Document   {
         @JsonProperty("documentUid")
         private String documentUid;
 
-        @JsonProperty("auditDetails")
-        private AuditDetails auditDetails = null;
+        
 
 
 }

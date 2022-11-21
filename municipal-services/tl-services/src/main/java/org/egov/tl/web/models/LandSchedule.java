@@ -21,7 +21,7 @@ public class LandSchedule {
 	private String typeLand;
 	private String thirdParty;
 	private String thirdPartyRemark;
-	private String thirdPartyDoc;
+	private Document thirdPartyDoc;
 
 	private String migrationLic;
 	private String areaUnderMigration;
@@ -31,25 +31,25 @@ public class LandSchedule {
 	private String validityOfParentLic;
 	private String renewalFee;
 	private String freshlyApplied;
-	private String approvedLayoutPlan;
-	private String uploadPreviouslyLayoutPlan;
+	private Document approvedLayoutPlan;
+	private Document uploadPreviouslyLayoutPlan;
 
 	private String encumburance;
 	private String encumburanceOther;
 	private String litigation;
 	private String litigationRemark;;
-	private String litigationDoc;
+	private Document litigationDoc;
 
 	private String court;
 	private String courtyCaseNo;
-	private String courtDoc;
+	private Document courtDoc;
 
 	private String insolvency;
 	private String insolvencyRemark;
-	private String insolvencyDoc;
+	private Document insolvencyDoc;
 
 	private String appliedLand;
-	private String appliedLandDoc;
+	private Document appliedLandDoc;
 
 	private String revenueRasta;
 	private String revenueRastaWidth;
@@ -68,7 +68,7 @@ public class LandSchedule {
 
 	private String sectionFour;
 	private String sectionSix;
-	private String orderUpload;
+	private Document orderUpload;
 	private String landCompensation;
 	private String releaseStatus;
 	private String awardDate;
@@ -76,7 +76,7 @@ public class LandSchedule {
 	private String siteDetail;
 	private String siteApproachable;
 
-	private String approachable;
+	// private String approachable;
 	private String vacant;
 	private String vacantRemark;
 
@@ -99,22 +99,31 @@ public class LandSchedule {
 	private String marginalLandRemark;
 	private String utilityLine;
 
-	private String land;
+	// private String land;
 	private String utilityWidth;
 	private String utilityRemark;
 
-	private String landSchedule;
-	private String mutation;
-	private String jambandhi;
-	private String detailsOfLease;
-	private String addSalesDeed;
-	private String revisedLandSchedule;
-	private String copyofSpaBoard;
-	private String copyOfShajraPlan;
-	private String LayoutPlan;
-	private String proposedLayoutPlan;
-	private String revisedLansSchedule;
-	@JsonProperty("document")
-	private List<Document> document;
+	@JsonProperty("landSchedule")
+
+	private Document landSchedule;
+	@JsonProperty("mutation")
+	private Document mutation;
+	@JsonProperty("jambandhi")
+	private Document jambandhi;
+	@JsonProperty("detailsOfLease")
+	private Document detailsOfLease;
+	@JsonProperty("addSalesDeed")
+	private Document addSalesDeed;
+	@JsonProperty("revisedLandSchedule")
+	private Document revisedLandSchedule;
+	@JsonProperty("copyofSpaBoard")
+	private Document copyofSpaBoard;
+	@JsonProperty("copyOfShajraPlan")
+	private Document copyOfShajraPlan;
+//	private String LayoutPlan;
+	@JsonProperty("proposedLayoutPlan")
+	private Document proposedLayoutPlan;
+	@JsonProperty("revisedLansSchedule")
+	private Document revisedLansSchedule;
 
 }
