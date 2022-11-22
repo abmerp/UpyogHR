@@ -1,5 +1,6 @@
 package org.egov.tl.web.models;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,7 @@ import lombok.Setter;
 public class CapacityDevelopColonyLawAct {
 	
 	private int serialNumber;
-	private String coloniesDeveloped;
+	private String coloniesDeveloped;	
 	private String area;
 	private String purpose;
 	private String statusOfDevelopment;

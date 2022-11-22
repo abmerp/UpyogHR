@@ -1,5 +1,6 @@
 package org.egov.tl.web.models;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ public class TechnicalExpertEngaged {
 
 	private String engineerName;
 	private String engineerQualification;
-	private String engineerSign;
+	private String engineerSign;	
 	private String engineerDegree;
 	private String architectName;
 	private String architectQualification;
@@ -27,7 +28,6 @@ public class TechnicalExpertEngaged {
 	private String engineerDocN;
 	private String architectNameN;
 	private String architectDocN;
-	private String uplaodSpaBoard;
-	private String uplaodSpaBoardDoc;
+
 
 }
