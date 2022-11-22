@@ -327,8 +327,9 @@ public class LicenseService {
 					map3.put("PayAgreegator", "PNB");
 					map3.put("LcApplicantName", user.getUserName());
 					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
+					//to do select development plan
 					map3.put("LcDevelopmentPlan",
-							newobj.getDetailsofAppliedLand().getDetailsAppliedLand6().getDevelopmentPlan());
+							"developmentplan");
 					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
 					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 							.toString();

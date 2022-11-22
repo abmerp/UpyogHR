@@ -5,13 +5,13 @@ import lombok.Setter;
 
 @Getter
   @Setter
-  public class DetailsAppliedLandDdjay2 {
+  public class DetailsAppliedLandDdjay {
   
   
   private String frozenNo; 
   private String frozenArea; 
   private String organize; 
- 
+  private String organizeArea;
   
   
   }
