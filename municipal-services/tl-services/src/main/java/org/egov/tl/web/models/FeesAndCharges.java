@@ -11,7 +11,11 @@ public class FeesAndCharges {
 
 	private String totalArea;
 	private String purpose;
-	private String devPlan;
+	private String potential;
+	private String licNumber;
+	private String amount;
+	private String amountAdjusted;
+	private String amountPayable;
 	private String scrutinyFee;
 	private String licenseFee;
 	private String conversionCharges;

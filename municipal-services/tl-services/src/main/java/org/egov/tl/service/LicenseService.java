@@ -329,7 +329,7 @@ public class LicenseService {
 					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
 					//to do select development plan
 					map3.put("LcDevelopmentPlan",
-							"developmentplan");
+							newobj.getApplicantPurpose().getPotential());
 					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
 					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 							.toString();
