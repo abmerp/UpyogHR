@@ -117,13 +117,12 @@ public class LicenseService {
 
 		// ********************transaction number***************.//
 		String transactionNumber;
-	
+
 		if (!StringUtil.isBlank(newServiceIn.getApplicationStatus())
-				&& newServiceIn.getApplicationStatus().equalsIgnoreCase("Submit")) {
+				&& newServiceIn.getApplicationStatus().equalsIgnoreCase("INITIATE")) {
 			TradeLicenseRequest request = new TradeLicenseRequest();
 			request.setRequestInfo(newServiceInfo.getRequestInfo());
 
-			
 			TradeLicense tradeLicense = new TradeLicense();
 
 			TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
@@ -131,17 +130,17 @@ public class LicenseService {
 			tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
 			tradeLicense.setAction("INITIATE");
 			tradeLicense.setApplicationDate(new Date().getTime());
-		//	tradeLicense.getApplicationNumber();
+			// tradeLicense.getApplicationNumber();
 			tradeLicense.setApplicationType(TradeLicense.ApplicationTypeEnum.NEW);
-			//tradeLicense.getAssignee();
-		//	tradeLicense.getAuditDetails();
+			// tradeLicense.getAssignee();
+			// tradeLicense.getAuditDetails();
 			tradeLicense.setBusinessService("TL");
-		//	tradeLicense.getCalculation();
-		//	tradeLicense.getComment();
-			//tradeLicense.getFileStoreId();
-			tradeLicense.setFinancialYear("2022-23");	
+			// tradeLicense.getCalculation();
+			// tradeLicense.getComment();
+			// tradeLicense.getFileStoreId();
+			tradeLicense.setFinancialYear("2022-23");
 			tradeLicense.setIssuedDate(new Date().getTime());
-			//tradeLicense.getLicenseNumber();
+			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 			tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
@@ -149,23 +148,22 @@ public class LicenseService {
 //			tradeLicense.setValidTo();
 //			tradeLicense.setWfDocuments();
 			tradeLicense.setWorkflowCode("NewTL");
-			
-			
+
 			tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
-			tradeLicenseDetail.setId(String.valueOf(newServiceInfo.getId()));			
+			tradeLicenseDetail.setId(String.valueOf(newServiceInfo.getId()));
 			tradeLicenseDetail.getAdditionalDetail();
 			tradeLicenseDetail.getApplicationDocuments();
 			tradeLicenseDetail.getChannel();
 			tradeLicenseDetail.getOwners();
 			tradeLicenseDetail.getVerificationDocuments();
 			tradeLicenseDetail.setTradeType("NewTL");
-			
+
 			request.addLicensesItem(tradeLicense);
 			List<TradeLicense> tradelicenses = tradeLicenseService.create(request, TLConstants.businessService_TL);
-		//	request.getLicenses().clear();
+			// request.getLicenses().clear();
 			request.setLicenses(tradelicenses);
 			tradeLicenseService.update(request, TLConstants.businessService_TL);
-			
+
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 			authtoken.put("UserId", user.getId());
@@ -260,7 +258,6 @@ public class LicenseService {
 					mapDNo.put("UserLoginId", user.getId());
 					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 							.toString();
-				
 
 					/************************************************
 					 * End Here
@@ -314,8 +311,7 @@ public class LicenseService {
 					map3.put("MobNo", user.getMobileNumber());
 					map3.put("TxnNo", "");
 					map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-					map3.put("NameofOwner",
-							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+					map3.put("NameofOwner", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 					map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 					map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
 					map3.put("UserId", user.getId());
@@ -327,9 +323,8 @@ public class LicenseService {
 					map3.put("PayAgreegator", "PNB");
 					map3.put("LcApplicantName", user.getUserName());
 					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
-					//to do select development plan
-					map3.put("LcDevelopmentPlan",
-							newobj.getApplicantPurpose().getPotential());
+					// to do select development plan
+					map3.put("LcDevelopmentPlan", newobj.getApplicantPurpose().getPotential());
 					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
 					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 							.toString();
@@ -345,5 +340,29 @@ public class LicenseService {
 
 		}
 
+	}
+
+	public LicenseServiceDao findNewServicesInfoById(Long id) {
+
+		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
+		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
+		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
+			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
+				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
+			}
+		}
+		return newServiceInfo;
+	}
+
+	public LicenseServiceDao findByLoiNumber(String loiNumber) {
+		return this.newServiceInfoRepo.findByLoiNumber(loiNumber);
+	}
+
+	public boolean existsByLoiNumber(String loiNumber) {
+		return this.newServiceInfoRepo.existsByLoiNumber(loiNumber);
+	}
+
+	public boolean existsById(Long id) {
+		return this.newServiceInfoRepo.existsById(id);
 	}
 }
