@@ -56,6 +56,9 @@ public class LicenseServiceDao {
 
 	@Column(name = "caseNumber")
 	private String caseNumber;
+	
+	@Column(name = "loiNumber")
+	private String loiNumber;
 
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
