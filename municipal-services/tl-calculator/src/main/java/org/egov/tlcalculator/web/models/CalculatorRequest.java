@@ -28,6 +28,7 @@ public class CalculatorRequest {
 
 	@JsonProperty("purposeCode")
 	private String purposeCode;
+	
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;	
 	

@@ -127,7 +127,7 @@ public class LicenseService {
 
 			TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 			tradeLicense.setId(String.valueOf(newServiceInfo.getId()));
-			tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
+			//tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
 			tradeLicense.setAction("INITIATE");
 			tradeLicense.setApplicationDate(new Date().getTime());
 			// tradeLicense.getApplicationNumber();
@@ -162,7 +162,7 @@ public class LicenseService {
 			List<TradeLicense> tradelicenses = tradeLicenseService.create(request, TLConstants.businessService_TL);
 			// request.getLicenses().clear();
 			request.setLicenses(tradelicenses);
-			tradeLicenseService.update(request, TLConstants.businessService_TL);
+			//tradeLicenseService.update(request, TLConstants.businessService_TL);
 
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();

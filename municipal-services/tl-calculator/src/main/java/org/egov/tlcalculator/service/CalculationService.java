@@ -132,8 +132,10 @@ public class CalculationService {
 
 			calculation.setTradeLicense(criteria.getTradelicense());
 			calculation.setTradeTypeBillingIds(new FeeAndBillingSlabIds("", new BigDecimal(result.getTotalFee()),
-					result.getConversionChargesCal(), result.getExternalDevelopmentChargesCal(),
-					result.getScrutinyFeeChargesCal(), result.getLicenseFeeChargesCal(),
+					result.getScrutinyFeeChargesCal(),
+					 result.getLicenseFeeChargesCal(),
+					result.getConversionChargesCal(), 
+					result.getExternalDevelopmentChargesCal(),					
 					result.getStateInfrastructureDevelopmentChargesCal(), bilingSlabId));
 
 			taxHeadEstimate.setTaxHeadCode("Gst");
