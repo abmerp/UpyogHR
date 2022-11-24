@@ -17,8 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ThirPartyAPiCall {
-
+public class ThirPartyAPiCall {}
+/*
 	@Value("${tcp.url}")
 	public String tcpurl;
 	@Value("${tcp.auth.token}")
@@ -81,11 +81,11 @@ public class ThirPartyAPiCall {
 	@Value("${tcp.plotid}")
 	public String plotId;
 	@Value("${tcp.isconfirmed}")
-	public String isConfirmed;
+	public String isConfirmed;*/
 
-	@Autowired
-	public RestTemplate restTemplate;
-
+//	@Autowired
+//	public RestTemplate restTemplate;
+/*
 	public ResponseEntity<Map> getAuthToken(Map<String, Object> map) {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -203,3 +203,4 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 }
+*/

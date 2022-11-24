@@ -173,9 +173,9 @@ public class LicenseService {
 			mapTNum.put("TpUserId", user.getId());
 			mapTNum.put("EmailId", user.getEmailId());
 			mapTNum.put("MobNo", user.getMobileNumber());
-			transactionNumber = thirPartyAPiCall.generateTransactionNumber(mapTNum, authtoken).getBody().get("Value")
-					.toString();
-			log.info("TransactionNumber\t" + transactionNumber);
+//			transactionNumber = thirPartyAPiCall.generateTransactionNumber(mapTNum, authtoken).getBody().get("Value")
+//					.toString();
+		//	log.info("TransactionNumber\t" + transactionNumber);
 
 		}
 		newServiceIn = newServiceInfoRepo.save(newServiceIn);
@@ -256,15 +256,15 @@ public class LicenseService {
 					mapDNo.put("UserId", "1234");
 					mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
 					mapDNo.put("UserLoginId", user.getId());
-					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
-							.toString();
+					//dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
+					//		.toString();
 
 					/************************************************
 					 * End Here
 					 *****************************/
 					// case number
 					Map<String, Object> mapCNO = new HashMap<String, Object>();
-					mapCNO.put("DiaryNo", dairyNumber);
+				//	mapCNO.put("DiaryNo", dairyNumber);
 					mapCNO.put("DiaryDate", date);
 					mapCNO.put("DeveloperId", 2);
 					mapCNO.put("PurposeId", 2);
@@ -276,15 +276,15 @@ public class LicenseService {
 					mapCNO.put("ChallanAmount", "12.5");
 					mapCNO.put("UserId", "2");
 					mapCNO.put("UserLoginId", user.getId());
-					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
-							.toString();
-					System.out.println("caseNumber" + caseNumber);
+//					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
+//							.toString();
+//					System.out.println("caseNumber" + caseNumber);
 					/************************************************
 					 * End Here
 					 *****************************/
 					// application number
 					Map<String, Object> mapANo = new HashMap<String, Object>();
-					mapANo.put("DiaryNo", dairyNumber);
+					//mapANo.put("DiaryNo", dairyNumber);
 					mapANo.put("DiaryDate", date);
 					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
 					mapANo.put("Village", "0618");
@@ -295,9 +295,9 @@ public class LicenseService {
 					mapANo.put("DateForFilingOfReply", date);
 					mapANo.put("UserId", "2");
 					mapANo.put("UserLoginId", user.getId());
-					applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
-							.get("Value").toString();
-					System.out.println("applicationNmber" + applicationNmber);
+//					applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
+//							.get("Value").toString();
+//					
 
 					/************************************************
 					 * End Here
@@ -326,9 +326,9 @@ public class LicenseService {
 					// to do select development plan
 					map3.put("LcDevelopmentPlan", newobj.getApplicantPurpose().getPotential());
 					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
-					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
-							.toString();
-					System.out.println("saveTransaction" + saveTransaction);
+//					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
+//							.toString();
+//					
 
 					/************************************************
 					 * End Here

@@ -59,14 +59,15 @@ public class TransitionService {
             if(isTransitionCall){
                 processStateAndAction.getProcessInstanceFromRequest().setModuleName(businessService.getBusiness());
             }
-            if(idToProcessInstanceFromDbMap!=null && idToProcessInstanceFromDbMap.size()>0)
+           // if(idToProcessInstanceFromDbMap!=null && idToProcessInstanceFromDbMap.size()>0)
             processStateAndAction.setProcessInstanceFromDb(idToProcessInstanceFromDbMap.get(processInstance.getBusinessId()));
             State currentState = null;
             if(processStateAndAction.getProcessInstanceFromDb()!=null && isTransitionCall)
                 currentState = processStateAndAction.getProcessInstanceFromDb().getState();
-            else if(!isTransitionCall) {
+            else if(!isTransitionCall)
                 currentState = processStateAndAction.getProcessInstanceFromRequest().getState();
-            }
+
+            
 
             //Assign businessSla when creating processInstance
             if(processStateAndAction.getProcessInstanceFromDb()==null && isTransitionCall)
@@ -83,7 +84,7 @@ public class TransitionService {
             }
             else processStateAndAction.setCurrentState(currentState);
 
-            if(processStateAndAction.getCurrentState()!= null && !CollectionUtils.isEmpty(processStateAndAction.getCurrentState().getActions())){
+            if(!CollectionUtils.isEmpty(processStateAndAction.getCurrentState().getActions())){
                 for (Action action : processStateAndAction.getCurrentState().getActions()){
                     if(action.getAction().equalsIgnoreCase(processInstance.getAction())){
                         if(action.getRoles().contains("*"))
