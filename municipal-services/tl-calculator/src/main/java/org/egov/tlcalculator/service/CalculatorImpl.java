@@ -78,6 +78,8 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
@@ -280,6 +282,8 @@ public class CalculatorImpl implements Calculator {
 				break;
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 						(PERCENTAGE1 * (areaInSqmtr(calculatorRequest.getTotalLandSize())) * 2.5f * 10 + PERCENTAGE2
@@ -457,6 +461,8 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 						(PERCENTAGE1 * (areaInSqmtr(calculatorRequest.getTotalLandSize())) * 2.5f * 10 + PERCENTAGE2
@@ -629,6 +635,8 @@ public class CalculatorImpl implements Calculator {
 				break;
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 						(PERCENTAGE1 * (areaInSqmtr(calculatorRequest.getTotalLandSize())) * 2.5f * 10 + PERCENTAGE2
@@ -799,6 +807,8 @@ public class CalculatorImpl implements Calculator {
 
 				break;
 			case PURPOSE_ITP:
+				break;
+			case PURPOSE_CIC:
 				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
@@ -983,6 +993,8 @@ public class CalculatorImpl implements Calculator {
 								+ (PERCENTAGE2 * (areaInSqmtr(calculatorRequest.getTotalLandSize()))
 										* stateInfrastructureDevelopmentCharges * 1.9f));
 
+				break;
+			case PURPOSE_CIC:
 				break;
 			case PURPOSE_IPL:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
