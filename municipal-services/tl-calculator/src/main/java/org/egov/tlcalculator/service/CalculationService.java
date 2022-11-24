@@ -133,7 +133,7 @@ public class CalculationService {
 			calculation.setTradeLicense(criteria.getTradelicense());
 			calculation.setTradeTypeBillingIds(new FeeAndBillingSlabIds("", new BigDecimal(result.getTotalFee()),
 					result.getScrutinyFeeChargesCal(),
-					 result.getLicenseFeeChargesCal(),
+					result.getLicenseFeeChargesCal(),
 					result.getConversionChargesCal(), 
 					result.getExternalDevelopmentChargesCal(),					
 					result.getStateInfrastructureDevelopmentChargesCal(), bilingSlabId));

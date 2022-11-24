@@ -37,18 +37,7 @@ public class BankGuaranteeController {
 		return new ResponseEntity<>(newBankGuaranteeResponse, HttpStatus.OK);	
 	}
 	
-	@PostMapping("/guarantee/_search")
-	public ResponseEntity<NewBankGuaranteeResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper){
-		
-		NewBankGuarantee newBankguarantee = bankGuaranteeService.search(requestInfoWrapper.getLoiNumber());
-		List<NewBankGuarantee> newBankGuaranteeList = new ArrayList<NewBankGuarantee>();
-		newBankGuaranteeList.add(newBankguarantee);
-		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder().newBankGuaranteeList(newBankGuaranteeList)
-											.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
-											.build();
-		
-		return new ResponseEntity<>(newBankGuaranteeResponse, HttpStatus.OK);	
-	}
+	
 	
 	
 	
