@@ -1,301 +1,336 @@
 {
-    "tenantId": "hr",
+   "tenantId": "hr",
     "moduleName": "Workflow",
-    "BusinessService": [
+    "BusinessServices": [
       {
         "tenantId": "hr",
-        "uuid": "2b75575a-f84d-11e8-8eb2-f2801f1b9fd1",
         "businessService": "NewTL",
+		"business": "tl-services",
+        "businessServiceSla": 172800000,
         "getUri": "",
         "postUri": "",
         "states": [
-          {
-            "businessServiceId": "NewTL",
-            "state": "INITIATED",
-            "applicableNextStates": "APPLIED",
-            "applicableActions": "INITIATE",
-            "docUploadRequired": "false",
-            "UpdateAllowed": "false",
-            "isTerminateState": "false",
-            "isStartState": "true",
-            "uuid": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "APPLY",
-                "nextStateId": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CITIZEN,TL_CEMP",
-                "tenantId": "hr",
-                "uuid": "4bd0f10a-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "APPLIED",
-            "applicableNextStates": "Paid,Cancelled,Rejected",
-            "applicableActions": "Reject,Pay,Cancel,Mark",
-            "docUploadRequired": "false",
-            "UpdateAllowed": "true",
-            "isTerminateState": "false",
-            "isStartState": "false",
-            "uuid": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "PAY",
-                "nextStateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "SYSTEM_PAYMENT",
-                "tenantId": "hr",
-                "uuid": "4bd0f2a4-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "CANCEL",
-                "nextStateId": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CLERK",
-                "tenantId": "hr",
-                "uuid": "4bd0f3ee-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fd8c8-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "REJECT",
-                "nextStateId": "bf5fe318-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CLERK",
-                "tenantId": "hr",
-                "uuid": "4bd0f524-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "APPROVE",
-                "nextStateId": "bf5fdfbc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_APPROVER",
-                "tenantId": "hr",
-                "uuid": "543f802e-f952-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "PAID",
-            "applicableNextStates": "Intermediate",
-            "applicableActions": "Approve,Cancel,Reject,Mark",
-            "docUploadRequired": "false",
-            "UpdateAllowed": "true",
-            "isTerminateState": "false",
-            "isStartState": "false",
-            "uuid": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "CANCEL",
-                "nextStateId": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CLERK",
-                "tenantId": "hr",
-                "uuid": "4bd0faa6-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "REJECT",
-                "nextStateId": "bf5fe318-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CLERK",
-                "tenantId": "hr",
-                "uuid": "4bd0fc54-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "MARK",
-                "nextStateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CLERK",
-                "tenantId": "hr",
-                "uuid": "4bd0feac-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fdaee-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "FORWARD",
-                "nextStateId": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CLERK",
-                "tenantId": "hr",
-                "uuid": "4bd10136-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "FIELDINSPECTION",
-            "applicableNextStates": "Approved,Cancelled,Rejected",
-            "applicableActions": "",
-            "docUploadRequired": "",
-            "UpdateAllowed": "",
-            "isTerminateState": "false",
-            "isStartState": "false",
-            "uuid": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "CANCEL",
-                "nextStateId": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_FIELD_INSPECTOR",
-                "tenantId": "hr",
-                "uuid": "4bd1041a-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "REJECT",
-                "nextStateId": "bf5fe318-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_FIELD_INSPECTOR",
-                "tenantId": "hr",
-                "uuid": "4bd1064a-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "MARK",
-                "nextStateId": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_FIELD_INSPECTOR",
-                "tenantId": "hr",
-                "uuid": "4bd108ac-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fdd28-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "FORWARD",
-                "nextStateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_FIELD_INSPECTOR",
-                "tenantId": "hr",
-                "uuid": "4bd10de8-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "APPROVED",
-            "applicableNextStates": "",
-            "applicableActions": "CANCEL",
-            "docUploadRequired": "true",
-            "UpdateAllowed": "true",
-            "isTerminateState": "true",
-            "isStartState": "false",
-            "uuid": "bf5fdfbc-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fdfbc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "CANCEL",
-                "nextStateId": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_APPROVER",
-                "tenantId": "hr",
-                "uuid": "4bd11770-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "CANCELLED",
-            "applicableNextStates": "",
-            "applicableActions": "",
-            "docUploadRequired": "false",
-            "UpdateAllowed": "true",
-            "isTerminateState": "true",
-            "isStartState": "false",
-            "uuid": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "",
-                "nextStateId": "",
-                "roles": "",
-                "tenantId": "hr",
-                "uuid": "4bd112e8-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "REJECTED",
-            "applicableNextStates": "Initiated",
-            "applicableActions": "Reapply",
-            "docUploadRequired": "true",
-            "UpdateAllowed": "true",
-            "isTerminateState": "true",
-            "isStartState": "false",
-            "uuid": "bf5fe318-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fe318-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "REINITIATE",
-                "nextStateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CITIZEN,TL_CEMP",
-                "tenantId": "hr",
-                "uuid": "4bd115fe-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "PENDINGAPPROVAL",
-            "applicableNextStates": "",
-            "applicableActions": "",
-            "docUploadRequired": "",
-            "UpdateAllowed": "",
-            "isTerminateState": "false",
-            "isStartState": "false",
-            "uuid": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "APPROVE",
-                "nextStateId": "bf5fdfbc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_APPROVER",
-                "tenantId": "hr",
-                "uuid": "4bd10f50-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "CANCEL",
-                "nextStateId": "bf5fe0fc-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_APPROVER",
-                "tenantId": "hr",
-                "uuid": "4bd11086-f7d3-11e8-8eb2-f2801f1b9fd1"
-              },
-              {
-                "stateId": "bf5fe444-f7df-11e8-8eb2-f2801f1b9fd1",
-                "action": "REJECT",
-                "nextStateId": "bf5fe318-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "TL_APPROVER",
-                "tenantId": "hr",
-                "uuid": "4bd111a8-f7d3-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          },
-          {
-            "businessServiceId": "NewTL",
-            "state": "",
-            "applicableNextStates": "Initiated",
-            "applicableActions": "INITIATE",
-            "docUploadRequired": "false",
-            "UpdateAllowed": "true",
-            "isTerminateState": "false",
-            "isStartState": "true",
-            "uuid": "9d458700-f894-11e8-8eb2-f2801f1b9fd1",
-            "tenantId": "hr",
-            "actions": [
-              {
-                "stateId": "9d458700-f894-11e8-8eb2-f2801f1b9fd1",
-                "action": "INITIATE",
-                "nextStateId": "bf5fd4f4-f7df-11e8-8eb2-f2801f1b9fd1",
-                "roles": "CITIZEN,TL_CEMP",
-                "tenantId": "hr",
-                "uuid": "2efb9036-f895-11e8-8eb2-f2801f1b9fd1"
-              }
-            ]
-          }
-        ]
-      }
-    ]
+		 {
+          "tenantId": "hr",
+          "sla": null,
+          "state": null,
+          "applicationStatus": null,
+          "docUploadRequired": false,
+          "isStartState": true,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "INITIATE",
+              "nextState": "INITIATED",
+              "roles": [
+                "CITIZEN"
+              ]
+            }
+          ]
+        },
+		 {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "INITIATED",
+          "applicationStatus": "INITIATED",
+          "docUploadRequired": false,
+          "isStartState": true,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "PAID",
+              "nextState": "APPLIED",
+              "roles": [
+                "CITIZEN"
+           
+              ]
+            },
+			 {
+              "tenantId": "hr",
+              "action": "CANCEL",
+              "nextState": "",
+              "roles": [
+                "CITIZEN"
+              
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "INITIATE",
+              "nextState": "INITIATED",
+              "roles": [
+                "CITIZEN"
+              
+              ]
+            }
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": null,
+          "state": "APPLIED",
+          "applicationStatus": "APPLIED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DTP",
+              "roles": [
+                "CTP(HR)"
+              ]
+            }            
+          ]
+        },
+		        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTP",
+          "applicationStatus": "DTP",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DEPARMENT",
+              "roles": [
+                "DTP(HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DEPARMENT",
+          "applicationStatus": "DEPARMENT",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "DTP(HQ)",
+              "roles": [
+                "Patwari (HQ),AO(HQ), DA/DDA/ADA(HQ), AD/JD/SD(HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTP(HQ)",
+          "applicationStatus": "DTP(HQ)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "JE(HQ)",
+              "roles": [
+                "DTP(HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "JE(HQ)",
+          "applicationStatus": "JE(HQ)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "ATP(HQ)",
+              "roles": [
+                "JE(HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "ATP(HQ)",
+          "applicationStatus": "ATP(HQ)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "DTP(HQ)",
+              "roles": [
+                "ATP(HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTP(HQ)",
+          "applicationStatus": "DTP(HQ)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "CHECKED",
+              "nextState": "STP (HQ)",
+              "roles": [
+                "DTP(HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "STP (HQ)",
+          "applicationStatus": "STP (HQ)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "CTP(HR)",
+              "roles": [
+                "STP (HQ)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "CTP(HR)",
+          "applicationStatus": "CTP(HR)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DTCP(HR)",
+              "roles": [
+                "CTP(HR)"
+              ]
+            }          
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTCP(HR)",
+          "applicationStatus": "DTCP(HR)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "APPROVED",
+              "nextState": "REVIEWED",
+              "roles": [
+                "DTCP(HR)"
+              ]
+            },
+			{
+              "tenantId": "hr",
+              "action": "CANCEL",
+              "nextState": "",
+              "roles": [
+                "DTCP(HR)"
+              ]
+            } 			
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "REVIEWED",
+          "applicationStatus": "REVIEWED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DTP(Field)",
+              "roles": [
+                "DTP(HQ)"
+              ]
+            }		           
+						
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTP(Field)",
+          "applicationStatus": "DTP(Field)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+           
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DTP(Field)",
+              "roles": [
+                "DTP(Field)"
+              ]
+            }
+						
+          ]
+        }
+      ]
   }
+]
+}
