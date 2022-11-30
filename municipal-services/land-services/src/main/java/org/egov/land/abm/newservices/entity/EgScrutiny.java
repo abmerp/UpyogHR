@@ -41,7 +41,7 @@ public class EgScrutiny implements Serializable {
 	@Column(name="created_on")
 	private Time createdOn;
 
-	@Column(name="field_value")
+	@Column(name="field_value",length=1000)
 	private String fieldValue;
 	
 	@Column(name="name")

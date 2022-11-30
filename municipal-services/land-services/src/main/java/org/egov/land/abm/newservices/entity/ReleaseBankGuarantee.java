@@ -13,23 +13,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@Builder
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Table(name="eg_renew_bank_guarantee")
-public class RenewBankGuarantee {
+@Table(name="eg_release_bank_guarantee")
+public class ReleaseBankGuarantee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "licence_number", length = 200)
-	private String licenceNumber;
+	@Column(name="license_number")
+	private String licenseNumber;
 	
-	@Column(name = "extend_by", length = 200)
-	private String extendBy;
+	@Column(name="idc_edc")
+	private String idcOrEdc;
+	
+	@Column(name="full_partial")
+	private String fullOrPartial;
+	
+	
 	
 }

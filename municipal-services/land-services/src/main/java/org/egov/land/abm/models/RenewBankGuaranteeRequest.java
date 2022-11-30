@@ -26,7 +26,7 @@ public class RenewBankGuaranteeRequest {
 		this.extendBy = renewBankGuarantee.getExtendBy();
 	}
 	
-	public RenewBankGuarantee builder() {
+	public RenewBankGuarantee toBuilder() {
 		return RenewBankGuarantee.builder().id(this.id)
 				.licenceNumber(this.licenceNumber)
 				.extendBy(this.extendBy).build();

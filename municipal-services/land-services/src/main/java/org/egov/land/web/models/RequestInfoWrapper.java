@@ -20,4 +20,7 @@ public class RequestInfoWrapper {
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo;
 	private Long applicationid;
+	private Long renewBankGuaranateeId;
+	private Long releaseBankId;
+	
 }
