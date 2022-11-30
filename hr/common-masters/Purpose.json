@@ -16,11 +16,8 @@
       "disableRemarks": null,
       "scrutinyFeeCharges":1.75,
       "licenseFeeCharges":1.75,
-      "conversionCharges": 1.75,
-      
-      "externalDevelopmentCharges": 1.75,
-        
-      
+      "conversionCharges": 1.75,      
+      "externalDevelopmentCharges": 1.75,       
       "stateInfrastructureDevelopmentCharges":1.75
     },
     {

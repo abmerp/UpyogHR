@@ -8,6 +8,7 @@
       "actioncode": "",
       "tenantId": "hr"
     },
+   
     {
       "rolecode": "SUPERUSER",
       "actionid": 629,
@@ -11051,6 +11052,12 @@
     {
       "rolecode": "SUPERUSER",
       "actionid": 1095,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "SUPERUSER",
+      "actionid": 2380,
       "actioncode": "",
       "tenantId": "hr"
     },
@@ -26472,6 +26479,99 @@
     {
       "rolecode": "EMPLOYEE",
       "actionid": 2379,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	 {
+      "rolecode": "DEVELOPER",
+      "actionid":2689 ,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	 {
+      "rolecode": "CTP_HR",
+      "actionid": 2690,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	 {
+      "rolecode": "DTP_HQ",
+      "actionid": 2691,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "Patwari_HQ",
+      "actionid": 2692,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "AO_HQ",
+      "actionid":2693 ,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "DA_HQ",
+      "actionid": 2694,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "DDA_HQ",
+      "actionid": 2695,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "ADA_HQ",
+      "actionid": 2696,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "AD_HQ",
+      "actionid": 2697,
+      "actioncode": "",
+      "tenantId": "hr"
+    },{
+      "rolecode": "JD_HQ",
+      "actionid": 2698,
+      "actioncode": "",
+      "tenantId": "hr"
+    },{
+      "rolecode": "SD_HQ",
+      "actionid": 2699,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "JE_HQ",
+      "actionid": 2700,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "ATP_HQ",
+      "actionid": 2711,
+      "actioncode": "",
+      "tenantId": "hr"
+    },{
+      "rolecode": "STP_HQ",
+      "actionid": 2701,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "DTCP_HR",
+      "actionid": 2702,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+	{
+      "rolecode": "LAO",
+      "actionid": 2704,
       "actioncode": "",
       "tenantId": "hr"
     }

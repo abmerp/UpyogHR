@@ -1,3 +1,4 @@
+
 {
   "tenantId": "hr",
   "moduleName": "ACCESSCONTROL-ROLES",
@@ -666,6 +667,122 @@
       "code": "INTERNAL_MICROSERVICE_ROLE",
       "name": "Internal Microservice Role",
       "description": "Internal role for plain access"
+    },
+	 {
+      "code": "DEVELOPER",
+      "name": "Developer ",
+      "description": "developer role"
+    },
+    {
+      "code": "DTP_HQ",
+      "name": "District of town planner ",
+      "description": "DTP role"
+    },
+    {
+      "code": "Patwari_HQ",
+      "name": "Patwari Head Quarter",
+      "description": "Patwari  role"
+    },
+    {
+      "code": "ATP_HQ",
+      "name": "Assistant Town Planner Head Quarter",
+      "description": "ATP role"
+    },
+    {
+      "code": "JD_HQ",
+      "name": "Junior Draftsman ",
+      "description": "JD role"
+    },
+	{
+      "code": "SD_HQ",
+      "name": "Senior Draftsman",
+      "description": "SD role"
+    },
+    {
+      "code": "AO_HQ",
+      "name": "Account Officer Head Quarte",
+      "description": "AO role"
+    },
+	{
+      "code": "DDA_HQ",
+      "name": "Deputy District Attorney",
+      "description": "DDA role"
+    },
+    {
+      "code": "DA_HQ",
+      "name": "District Attorney",
+      "description": "DA role"
+    },
+    {
+      "code": "ADA_HQ",
+      "name": "Assistant District Attorney Head Quarter ",
+      "description": "ADA role"
+    },
+	 {
+      "code": "AD_HQ",
+      "name": "Assistant Draftsman",
+      "description": "AD role"
+    },
+    {
+      "code": "JE_HQ",
+      "name": "Junior Engineer Head Quarter",
+      "description": "JE role"
+    },
+   
+    {
+      "code": "STP_HQ",
+      "name": "Senior Town Planner Head Quarter",
+      "description": "STP role"
+    },
+    {
+      "code": "CTP_HR",
+      "name": "Chief Town Planner Haryana",
+      "description": "CTP HR role"
+    },
+    {
+      "code": "DTCP_HR",
+      "name": "Director of Town and Country Planning",
+      "description": "DTCP HR role"
+    },
+	 {
+      "code": "LAO",
+      "name": "Land Acquisition Officer",
+      "description": "LAO role"
+    },
+	{
+      "code": "DTP_FIELD",
+      "name": "District Town Planner Field",
+      "description": "DTP field role"
+    },
+	{
+      "code": "Patwari_FIELD",
+      "name": "Patwari Field",
+      "description": "Patwari Field role"
+    },
+	{
+      "code": "JE_FIELD",
+      "name": "Junior Engineer Field",
+      "description": "Junior Engineer Field role"
+    },
+	{
+      "code": "JD_FIELD",
+      "name": "Junior Draftsman Field",
+      "description": "JD Field role"
+    },
+	{
+      "code": "SD_FIELD",
+      "name": "Senior Draftsman Field",
+      "description": "SD Field role"
+    },
+	{
+      "code": "ATP_FIELD",
+      "name": "Assistant Town Planner Field",
+      "description": "ATP Field role"
+    },
+	{
+      "code": "STP_Circle",
+      "name": "Senior Town Planner Circle",
+      "description": "STP circle role"
     }
   ]
 }

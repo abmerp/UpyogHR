@@ -11,7 +11,7 @@ public class GISDeatils {
 
 	
 	private String latitude;
-	private String longitudtue;
+	private String longitude;
 	
 
 

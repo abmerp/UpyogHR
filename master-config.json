@@ -259,6 +259,15 @@
         "$.tenantId"
       ]
     },
+	"LandType": {
+            "masterName": "LandType",
+            "moduleDefinition": null,
+            "isStateLevel": true,
+            "uniqueKeys": [
+                "$.landId",
+				"$.land"
+            ]
+    },
     "PotentialZone": {
       "masterName": "PotentialZone",
       "isStateLevel": true,
@@ -682,6 +691,7 @@
         "$.code"
       ]
     },
+
     "ServiceDefs": {
       "masterName": "ServiceDefs",
       "isStateLevel": true,
@@ -2272,6 +2282,7 @@
     }
   },
   "XstateWebChatbot": {
+    
     "FrequentlyAskedQuestions": {
       "masterName": "FrequentlyAskedQuestions",
       "isStateLevel": true,
@@ -2294,12 +2305,31 @@
         ]
     }
   },
+
   "zuul": {
     "RateLimiting": {
       "masterName": "RateLimiting",
       "isStateLevel": true,
       "uniqueKeys": [
         "$.services"
+        ]
+    }
+  },
+
+  "Office-Master":{
+    "OfficeMaster":{
+      "masterName": "OfficeMaster",
+      "isStateLevel": true,
+      "uniqueKeys": [
+        "$.officeName"    
+        ]
+    },
+    "OfficeType":{
+      "masterName": "OfficeType",
+      "isStateLevel": true,
+      "uniqueKeys": [
+        "$.officeTypeID",
+        "$.OfficeTypeCode"
         ]
     }
   }
