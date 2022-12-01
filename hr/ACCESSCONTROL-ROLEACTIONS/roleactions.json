@@ -214,6 +214,12 @@
       "tenantId": "hr"
     },
     {
+      "rolecode": "SUPERUSER",
+      "actionid": 1687,
+      "actioncode": "",
+      "tenantId": "hr"
+    },
+    {
       "rolecode": "GA",
       "actionid": 383,
       "actioncode": "",
