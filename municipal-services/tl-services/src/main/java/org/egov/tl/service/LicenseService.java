@@ -98,7 +98,7 @@ public class LicenseService {
 					break;
 				}
 			}
-
+			newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 			newServiceIn.setUpdatedDate(new Date());
 			newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
 			newServiceIn.setUpdateddBy(newServiceInfo.getUpdateddBy());
