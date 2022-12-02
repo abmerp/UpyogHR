@@ -116,7 +116,7 @@ public class CalculationService {
 //     
 		List<Calculation> calculations = new ArrayList<>();
 		Calculation calculation = null;
-		TaxHeadEstimate taxHeadEstimate = new TaxHeadEstimate();
+		
 
 		List<String> bilingSlabId = new ArrayList<String>();
 		for (CalulationCriteria criteria : calculationReq.getCalulationCriteria()) {
@@ -137,11 +137,13 @@ public class CalculationService {
 					result.getConversionChargesCal(), 
 					result.getExternalDevelopmentChargesCal(),					
 					result.getStateInfrastructureDevelopmentChargesCal(), bilingSlabId));
-
-			taxHeadEstimate.setTaxHeadCode("Gst");
-
+			List<TaxHeadEstimate> taxHeadEstimates = new ArrayList<>();
+			
+			TaxHeadEstimate taxHeadEstimate = new TaxHeadEstimate("Gst",new BigDecimal(100),
+			Category.TAX);
 			// TODO Add TAX when required
-			// calculation.getTaxHeadEstimates().add(taxHeadEstimate);
+			taxHeadEstimates.add(taxHeadEstimate);
+			 calculation.setTaxHeadEstimates(taxHeadEstimates);
 
 			calculations.add(calculation);
 		}
