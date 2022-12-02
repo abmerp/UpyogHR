@@ -115,10 +115,9 @@ public class CalculationService {
 
 	public List<Calculation> calculator(CalculationReq calculationReq) {
 		String tenantId = calculationReq.getRequestInfo().getUserInfo().getTenantId();
-		// Object mdmsData =
-		// mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
-		Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(), tenantId,
-				calculationReq.getCalculatorRequest().getPurposeCode());
+		 Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
+//		Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(), tenantId,
+//				calculationReq.getCalculatorRequest().getPurposeCode());
 		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getRequestInfo(),
 				calculationReq.getCalculatorRequest());
 //     
