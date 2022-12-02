@@ -87,10 +87,13 @@ public class CalculationService {
 		String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
 		Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(), tenantId);
 		List<Calculation> calculations = null;
-		TradeLicense license = utils.getTradeLicense(calculationReq.getRequestInfo(), calculationReq.getCalculatorRequest().getApplicationNumber(),
+		TradeLicense license = utils.getTradeLicense(calculationReq.getRequestInfo(),
+				calculationReq.getCalculatorRequest().getApplicationNumber(),
 				calculationReq.getRequestInfo().getUserInfo().getTenantId());
 		List<CalulationCriteria> calulationCriteria = new ArrayList<>();
-		CalulationCriteria objectCalulationCriteria  = new CalulationCriteria(license, calculationReq.getCalculatorRequest().getApplicationNumber(), calculationReq.getRequestInfo().getUserInfo().getTenantId());
+		CalulationCriteria objectCalulationCriteria = new CalulationCriteria(license,
+				calculationReq.getCalculatorRequest().getApplicationNumber(),
+				calculationReq.getRequestInfo().getUserInfo().getTenantId());
 		calulationCriteria.add(objectCalulationCriteria);
 		calculationReq.setCalulationCriteria(calulationCriteria);
 		if (calculationReq.getCalulationCriteria().get(0).getTradelicense().getBusinessService()
@@ -116,14 +119,14 @@ public class CalculationService {
 		// mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
 		Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(), tenantId,
 				calculationReq.getCalculatorRequest().getPurposeCode());
-		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getRequestInfo(),calculationReq.getCalculatorRequest());
+		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getRequestInfo(),
+				calculationReq.getCalculatorRequest());
 //     
 //       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
 //               calculationReq.getCalulationCriteria(),mdmsData);
 //     
 		List<Calculation> calculations = new ArrayList<>();
 		Calculation calculation = null;
-		
 
 		List<String> bilingSlabId = new ArrayList<String>();
 		for (CalulationCriteria criteria : calculationReq.getCalulationCriteria()) {
@@ -139,18 +142,13 @@ public class CalculationService {
 
 			calculation.setTradeLicense(criteria.getTradelicense());
 			calculation.setTradeTypeBillingIds(new FeeAndBillingSlabIds("", new BigDecimal(result.getTotalFee()),
-					result.getScrutinyFeeChargesCal(),
-					result.getLicenseFeeChargesCal(),
-					result.getConversionChargesCal(), 
-					result.getExternalDevelopmentChargesCal(),					
+					result.getScrutinyFeeChargesCal(), result.getLicenseFeeChargesCal(),
+					result.getConversionChargesCal(), result.getExternalDevelopmentChargesCal(),
 					result.getStateInfrastructureDevelopmentChargesCal(), bilingSlabId));
-			List<TaxHeadEstimate> taxHeadEstimates = new ArrayList<>();
-			
-			TaxHeadEstimate taxHeadEstimate = new TaxHeadEstimate("Gst",new BigDecimal(100),
-			Category.TAX);
-			// TODO Add TAX when required
-			taxHeadEstimates.add(taxHeadEstimate);
-			 calculation.setTaxHeadEstimates(taxHeadEstimates);
+			EstimatesAndSlabs estimatesAndSlabs = getTaxHeadEstimates(criteria, calculationReq.getRequestInfo(),
+					mdmsData);
+			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
+			calculation.setTaxHeadEstimates(taxHeadEstimates);
 
 			calculations.add(calculation);
 		}
@@ -236,7 +234,7 @@ public class CalculationService {
 		EstimatesAndSlabs estimatesAndSlabs = new EstimatesAndSlabs();
 		BillingSlabSearchCriteria searchCriteria = new BillingSlabSearchCriteria();
 		searchCriteria.setTenantId(license.getTenantId());
-		//searchCriteria.setStructureType(license.getTradeLicenseDetail().getStructureType());
+		// searchCriteria.setStructureType(license.getTradeLicenseDetail().getStructureType());
 		searchCriteria.setLicenseType(license.getLicenseType().toString());
 
 		Map calculationTypeMap = mdmsService.getCalculationType(requestInfo, license, mdmsData);
@@ -293,7 +291,7 @@ public class CalculationService {
 	private TaxHeadEstimate getAdhocPenalty(CalulationCriteria calulationCriteria) {
 		TradeLicense license = calulationCriteria.getTradelicense();
 		TaxHeadEstimate estimate = new TaxHeadEstimate();
-	//	estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocPenalty());
+		// estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocPenalty());
 		estimate.setTaxHeadCode(config.getAdhocPenaltyTaxHead());
 		estimate.setCategory(Category.PENALTY);
 		return estimate;
@@ -309,7 +307,7 @@ public class CalculationService {
 	private TaxHeadEstimate getAdhocExemption(CalulationCriteria calulationCriteria) {
 		TradeLicense license = calulationCriteria.getTradelicense();
 		TaxHeadEstimate estimate = new TaxHeadEstimate();
-		//estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocExemption());
+		// estimate.setEstimateAmount(license.getTradeLicenseDetail().getAdhocExemption());
 		estimate.setTaxHeadCode(config.getAdhocExemptionTaxHead());
 		estimate.setCategory(Category.EXEMPTION);
 		return estimate;
@@ -324,7 +322,7 @@ public class CalculationService {
 			CalculationType calculationType) {
 
 		List<BigDecimal> tradeUnitFees = new LinkedList<>();
-		//List<TradeUnit> tradeUnits = license.getTradeLicenseDetail().getTradeUnits();
+		// List<TradeUnit> tradeUnits = license.getTradeLicenseDetail().getTradeUnits();
 		List<String> billingSlabIds = new LinkedList<>();
 		int i = 0;
 		/*
