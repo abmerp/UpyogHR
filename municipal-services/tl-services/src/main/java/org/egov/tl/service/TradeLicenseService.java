@@ -180,14 +180,14 @@ public class TradeLicenseService {
             criteria.setFinancialYear(currentFinancialYear);
         	
         }
-        
+      
          if(criteria.getMobileNumber()!=null || criteria.getOwnerName() != null){
              licenses = getLicensesFromMobileNumber(criteria,requestInfo);
          }
          else {
              licenses = getLicensesWithOwnerInfo(criteria,requestInfo);
          }
-
+        
          return licenses;       
     }
     
@@ -317,6 +317,7 @@ public class TradeLicenseService {
         List<TradeLicense> licenses = repository.getLicenses(criteria);
         if(licenses.isEmpty())
             return Collections.emptyList();
+        if(criteria.getBusinessService().equalsIgnoreCase(TLConstants.businessService_BPA)) 
         licenses = enrichmentService.enrichTradeLicenseSearch(licenses,criteria,requestInfo);
         return licenses;
     }
