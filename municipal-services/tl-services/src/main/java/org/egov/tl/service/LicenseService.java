@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.thrift.transport.TTransport;
+
 import org.egov.common.contract.request.User;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
@@ -29,6 +29,10 @@ import org.egov.tl.web.models.TradeLicenseRequest;
 import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,12 +51,12 @@ public class LicenseService {
 	TradeLicenseService tradeLicenseService;
 
 	@Transactional
-	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo) {
+	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo) throws JsonProcessingException {
 
 		List<LicenseDetails> newServiceInfoData;
 		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceIn;
-		List<LicenseDetails> newServiceInfoDatas;
+		List<LicenseDetails> newServiceInfoDatas = null;
 		User user = newServiceInfo.getRequestInfo().getUserInfo();
 		if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 
@@ -147,7 +151,8 @@ public class LicenseService {
 //			tradeLicense.setValidFrom();
 //			tradeLicense.setValidTo();
 //			tradeLicense.setWfDocuments();
-			tradeLicense.setWorkflowCode("NewTL");
+			tradeLicense.setWorkflowCode("NewTL");			
+		
 
 			tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
 			tradeLicenseDetail.setId(String.valueOf(newServiceInfo.getId()));
@@ -157,6 +162,14 @@ public class LicenseService {
 			tradeLicenseDetail.getOwners();
 			tradeLicenseDetail.getVerificationDocuments();
 			tradeLicenseDetail.setTradeType("NewTL");
+			
+			
+			
+			ObjectMapper mapper = new ObjectMapper();
+			String data = mapper.writeValueAsString(newServiceInfoDatas);
+			JsonNode jsonNode = mapper.readTree(data);			
+			tradeLicenseDetail.setAdditionalDetail(jsonNode);	
+			
 
 			request.addLicensesItem(tradeLicense);
 			List<TradeLicense> tradelicenses = tradeLicenseService.create(request, TLConstants.businessService_TL);
