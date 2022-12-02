@@ -317,7 +317,7 @@ public class TradeLicenseService {
         List<TradeLicense> licenses = repository.getLicenses(criteria);
         if(licenses.isEmpty())
             return Collections.emptyList();
-        if(criteria.getBusinessService().equalsIgnoreCase(TLConstants.businessService_BPA)) 
+        if(licenses.get(0).getBusinessService().equalsIgnoreCase(TLConstants.businessService_BPA)) 
         licenses = enrichmentService.enrichTradeLicenseSearch(licenses,criteria,requestInfo);
         return licenses;
     }
