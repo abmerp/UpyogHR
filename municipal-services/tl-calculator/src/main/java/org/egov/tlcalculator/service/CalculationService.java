@@ -89,7 +89,10 @@ public class CalculationService {
 		List<Calculation> calculations = null;
 		TradeLicense license = utils.getTradeLicense(calculationReq.getRequestInfo(), calculationReq.getCalculatorRequest().getApplicationNumber(),
 				calculationReq.getRequestInfo().getUserInfo().getTenantId());
-		
+		List<CalulationCriteria> calulationCriteria = new ArrayList<>();
+		CalulationCriteria objectCalulationCriteria  = new CalulationCriteria(license, calculationReq.getCalculatorRequest().getApplicationNumber(), calculationReq.getRequestInfo().getUserInfo().getTenantId());
+		calulationCriteria.add(objectCalulationCriteria);
+		calculationReq.setCalulationCriteria(calulationCriteria);
 		if (calculationReq.getCalulationCriteria().get(0).getTradelicense().getBusinessService()
 				.equalsIgnoreCase(businessService_TL)) {
 			calculations = calculator(calculationReq);
