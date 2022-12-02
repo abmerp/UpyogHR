@@ -51,7 +51,8 @@ public class LicenseService {
 	TradeLicenseService tradeLicenseService;
 
 	@Transactional
-	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo) throws JsonProcessingException {
+	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
+			throws JsonProcessingException {
 
 		List<LicenseDetails> newServiceInfoData;
 		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
@@ -109,6 +110,7 @@ public class LicenseService {
 			newServiceIn.setCreatedBy(newServiceInfo.getCreatedBy());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
+			newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 			newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
 			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
 
@@ -131,7 +133,7 @@ public class LicenseService {
 
 			TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 			tradeLicense.setId(String.valueOf(newServiceInfo.getId()));
-			//tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
+			// tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
 			tradeLicense.setAction("INITIATE");
 			tradeLicense.setApplicationDate(new Date().getTime());
 			// tradeLicense.getApplicationNumber();
@@ -146,13 +148,12 @@ public class LicenseService {
 			tradeLicense.setIssuedDate(new Date().getTime());
 			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
-			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
-			tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
+			tradeLicense.setTenantId(newServiceIn.getTenantId());
+			tradeLicense.setTradeName(newServiceIn.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose());
 //			tradeLicense.setValidFrom();
 //			tradeLicense.setValidTo();
 //			tradeLicense.setWfDocuments();
-			tradeLicense.setWorkflowCode("NewTL");			
-		
+			tradeLicense.setWorkflowCode("NewTL");
 
 			tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
 			tradeLicenseDetail.setId(String.valueOf(newServiceInfo.getId()));
@@ -162,20 +163,17 @@ public class LicenseService {
 			tradeLicenseDetail.getOwners();
 			tradeLicenseDetail.getVerificationDocuments();
 			tradeLicenseDetail.setTradeType("NewTL");
-			
-			
-			
+
 			ObjectMapper mapper = new ObjectMapper();
 			String data = mapper.writeValueAsString(newServiceInfoDatas);
-			JsonNode jsonNode = mapper.readTree(data);			
-			tradeLicenseDetail.setAdditionalDetail(jsonNode);	
-			
+			JsonNode jsonNode = mapper.readTree(data);
+			tradeLicenseDetail.setAdditionalDetail(jsonNode);
 
 			request.addLicensesItem(tradeLicense);
 			List<TradeLicense> tradelicenses = tradeLicenseService.create(request, TLConstants.businessService_TL);
 			// request.getLicenses().clear();
 			request.setLicenses(tradelicenses);
-			//tradeLicenseService.update(request, TLConstants.businessService_TL);
+			// tradeLicenseService.update(request, TLConstants.businessService_TL);
 			newServiceIn.setApplicationNumber(tradelicenses.get(0).getApplicationNumber());
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
@@ -188,7 +186,7 @@ public class LicenseService {
 			mapTNum.put("MobNo", user.getMobileNumber());
 //			transactionNumber = thirPartyAPiCall.generateTransactionNumber(mapTNum, authtoken).getBody().get("Value")
 //					.toString();
-		//	log.info("TransactionNumber\t" + transactionNumber);
+			// log.info("TransactionNumber\t" + transactionNumber);
 
 		}
 		newServiceIn = newServiceInfoRepo.save(newServiceIn);
@@ -269,15 +267,16 @@ public class LicenseService {
 					mapDNo.put("UserId", "1234");
 					mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
 					mapDNo.put("UserLoginId", user.getId());
-					//dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
-					//		.toString();
+					// dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo,
+					// authtoken).getBody().get("Value")
+					// .toString();
 
 					/************************************************
 					 * End Here
 					 *****************************/
 					// case number
 					Map<String, Object> mapCNO = new HashMap<String, Object>();
-				//	mapCNO.put("DiaryNo", dairyNumber);
+					// mapCNO.put("DiaryNo", dairyNumber);
 					mapCNO.put("DiaryDate", date);
 					mapCNO.put("DeveloperId", 2);
 					mapCNO.put("PurposeId", 2);
@@ -297,7 +296,7 @@ public class LicenseService {
 					 *****************************/
 					// application number
 					Map<String, Object> mapANo = new HashMap<String, Object>();
-					//mapANo.put("DiaryNo", dairyNumber);
+					// mapANo.put("DiaryNo", dairyNumber);
 					mapANo.put("DiaryDate", date);
 					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
 					mapANo.put("Village", "0618");
