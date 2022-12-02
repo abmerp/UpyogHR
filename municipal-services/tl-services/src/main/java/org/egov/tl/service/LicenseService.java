@@ -176,7 +176,7 @@ public class LicenseService {
 			// request.getLicenses().clear();
 			request.setLicenses(tradelicenses);
 			//tradeLicenseService.update(request, TLConstants.businessService_TL);
-
+			newServiceIn.setApplicationNumber(tradelicenses.get(0).getApplicationNumber());
 			Map<String, Object> authtoken = new HashMap<String, Object>();
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 			authtoken.put("UserId", user.getId());

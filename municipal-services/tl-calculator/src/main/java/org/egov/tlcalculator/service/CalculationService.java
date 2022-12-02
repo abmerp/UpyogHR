@@ -36,6 +36,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import io.swagger.annotations.License;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -86,6 +87,9 @@ public class CalculationService {
 		String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
 		Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(), tenantId);
 		List<Calculation> calculations = null;
+		TradeLicense license = utils.getTradeLicense(calculationReq.getRequestInfo(), calculationReq.getCalculatorRequest().getApplicationNumber(),
+				calculationReq.getRequestInfo().getUserInfo().getTenantId());
+		
 		if (calculationReq.getCalulationCriteria().get(0).getTradelicense().getBusinessService()
 				.equalsIgnoreCase(businessService_TL)) {
 			calculations = calculator(calculationReq);
