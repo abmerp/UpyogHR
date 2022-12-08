@@ -22098,6 +22098,11 @@
       "tenantId": "hr"
     },
     {
+      "rolecode": "CTP_HR",
+      "actionid": 1752,
+      "tenantId": "hr"
+    },
+    {
       "rolecode": "DTP_HQ",
       "actionid": 2691,
       "tenantId": "hr"
