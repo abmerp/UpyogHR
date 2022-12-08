@@ -147,6 +147,7 @@ public class CalculationService {
 			EstimatesAndSlabs estimatesAndSlabs = getTaxHeadEstimates(criteria, calculationReq.getRequestInfo(),
 					mdmsData);
 			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
+			taxHeadEstimates.get(0).setEstimateAmount(new BigDecimal(result.getTotalFee()));
 			calculation.setTaxHeadEstimates(taxHeadEstimates);
 			taxHeadEstimates.get(0).setEstimateAmount(new BigDecimal(result.getTotalFee()));
 			calculations.add(calculation);
