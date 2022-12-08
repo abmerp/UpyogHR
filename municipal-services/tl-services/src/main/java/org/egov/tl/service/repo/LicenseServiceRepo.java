@@ -20,5 +20,8 @@ public interface LicenseServiceRepo extends JpaRepository<LicenseServiceDao, Lon
 	@Query(value="select n from LicenseServiceDao n where n.loiNumber=?1")
 	public LicenseServiceDao findByLoiNumber(String loiNumber);
 	
+	
+	@Query(value="select n from LicenseServiceDao n where n.applicationNumber=?1")
+	public LicenseServiceDao findByAppNumber(String appNumber);
 	public boolean existsByLoiNumber(String loiNumber);
 }

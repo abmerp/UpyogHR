@@ -33,6 +33,8 @@ public class LicenseServiceResponseInfo {
 	private String application_Status;
 
 	private String applicationNumber;
+	
+	private String businessservice;
 
 	private String dairyNumber;
 

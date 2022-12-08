@@ -179,7 +179,7 @@ public class LicenseService {
 			Map<String, Object> mapTNum = new HashMap<String, Object>();
 
 			authtoken.put("UserId", user.getId());
-			authtoken.put("TpUserId", user.getId());			
+			authtoken.put("TpUserId", user.getId());
 			authtoken.put("EmailId", user.getEmailId());
 
 			mapTNum.put("UserLoginId", user.getId());
@@ -211,6 +211,27 @@ public class LicenseService {
 	public LicenseServiceResponseInfo getNewServicesInfoById(Long id) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
+		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
+		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
+			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
+				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
+			}
+		}
+		try {
+			BeanUtils.copyProperties(licenseServiceResponseInfo, newServiceInfo);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return licenseServiceResponseInfo;
+	}
+
+	public LicenseServiceResponseInfo getNewServicesInfoById(String applcationNUmber) {
+		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
+		LicenseServiceDao newServiceInfo = newServiceInfoRepo.findByAppNumber(applcationNUmber);
 		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
 		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
 			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
@@ -335,7 +356,7 @@ public class LicenseService {
 					// TODO Renu to Add these two vaues
 					map3.put("PaymentMode", "online");
 					map3.put("PayAgreegator", "PNB");
-					
+
 					map3.put("LcApplicantName", user.getUserName());
 					map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
 					// to do select development plan
