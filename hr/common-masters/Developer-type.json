@@ -2,94 +2,93 @@
     "tenantId": "hr",
 	"moduleName": "Developer-type",
 
-"Developer-type":[
+"DeveloperType":[
  {
-  "lc_applicant_category_id": 1,
-  "lc_applicant_category_desc": "Company",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Company"
+  "categoryiId": 1,
+  "code": "Company",
+
+   "isActive": 1,
+  "Type": "Company"
  },
  {
-  "lc_applicant_category_id": 2,
-  "lc_applicant_category_desc": "Individual(s)",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Individual(s)"
+  "categoryiId": 2,
+  "code": "Individual",
+
+  
+   "isActive": 1,
+  "Type": "Individual"
  },
  {
-  "lc_applicant_category_id": 3,
-  "lc_applicant_category_desc": "Society",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Society"
+  "categoryiId": 3,
+  "code": "Society",
+
+  
+   "isActive": 1,
+  "Type": "Society"
  },
  {
-  "lc_applicant_category_id": 4,
-  "lc_applicant_category_desc": "Trust",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Trust"
+  "categoryiId": 4,
+  "code": "Trust",
+
+  
+   "isActive": 1,
+  "Type": "Trust"
  },
  {
-  "lc_applicant_category_id": 5,
-  "lc_applicant_category_desc": "Others",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "WWWWOthers"
+  "categoryiId": 5,
+  "code": "Others",
+
+  
+   "isActive": 1,
+  "Type": "WWWWOthers"
  },
  {
-  "lc_applicant_category_id": 6,
-  "lc_applicant_category_desc": "Institution",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Institution"
+  "categoryiId": 6,
+  "code": "Institution",
+
+  
+   "isActive": 1,
+  "Type": "Institution"
  },
  {
-  "lc_applicant_category_id": 7,
-  "lc_applicant_category_desc": "Firm",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Firm"
+  "categoryiId": 7,
+  "code": "Firm",
+
+  
+   "isActive": 1,
+  "Type": "Firm"
  },
  {
-  "lc_applicant_category_id": 8,
-  "lc_applicant_category_desc": "Limited Liability Partnership",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Limited Liability Partnership"
+  "categoryiId": 8,
+  "code": "Limited Liability Partnership",
+
+  
+   "isActive": 1,
+  "Type": "Limited Liability Partnership"
  },
  {
-  "lc_applicant_category_id": 9,
-  "lc_applicant_category_desc": "Hindu Undivided Family",
-  "user_id": 1,
-  "created_on": "10\/03\/2016",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Hindu Undevided Family"
+  "categoryiId": 9,
+  "code": "Hindu Undivided Family",
+
+  
+   "isActive": 1,
+  "Type": "Hindu Undevided Family"
  },
  {
-  "lc_applicant_category_id": 10,
-  "lc_applicant_category_desc": "Partnership Firm",
-  "user_id": 1,
-  "created_on": "01\/01\/2018",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Partnership Firm"
+  "categoryiId": 10,
+  "code": "Partnership Firm",
+
+  
+   "isActive": 1,
+  "Type": "Partnership Firm"
  },
  {
-  "lc_applicant_category_id": 11,
-  "lc_applicant_category_desc": "Proprietorship Firm",
-  "user_id": 1,
-  "created_on": "02\/24\/2019",
-  "isdeleted": 0,
-  "lc_applicant_category_desc_order": "Proprietorship Firm"
+  "categoryiId": 11,
+  "code": "Proprietorship Firm",
+
+ 
+   "isActive": 1,
+  "Type": "Proprietorship Firm"
  }
 ]
 }

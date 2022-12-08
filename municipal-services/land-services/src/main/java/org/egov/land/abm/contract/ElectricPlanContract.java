@@ -15,9 +15,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ElectricPlanContract {
 
-	@JsonProperty("requestInfo")
+	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
 	
-	@JsonProperty("electricPlanRequest")
+	@JsonProperty("ElectricPlanRequest")
 	private ElectricPlanRequest electricPlanRequest;
 }

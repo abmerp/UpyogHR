@@ -7,12 +7,12 @@ import lombok.Setter;
 @Setter
 public class ObtainedLicense {
 	
-	private String registeredDoc;
+	private String obtainedLiceneseYN;
     private String boardDocY;
     private String earlierDocY;
-    private String boardDocN;
+    private String boardDocN;	
     private String earlierDocN;
-    private String technicalAssistanceAgreementDoc;        
+     
 
 	
 	

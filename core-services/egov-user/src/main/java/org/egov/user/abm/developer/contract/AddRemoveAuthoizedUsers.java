@@ -13,17 +13,18 @@ public class AddRemoveAuthoizedUsers {
 
 //	private int serialNumber;
 	private String userName;
-	private String name;
+	private String name;	
 	private String gender;
-	private boolean active;
+	private String active;
 	private String type;
 	private String password;
 	private String tenantId;
 	private String mobileNumber;
+	private String uploadAadharPdf;
 //	private String email;
-//	private String uploadPanPdf;
+	private String uploadPanPdf;
 //	private String uploadAadharPdf;
-//	private String uploadDigitalSignaturePdf;
+	private String uploadDigitalSignaturePdf;
 	private List<Role> roles;
 	private String emailId;
 	private String dob;

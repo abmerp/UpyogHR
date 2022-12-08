@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CapcityDevelopAColony {
+public class CapcityDevelopAColony {	
 	
 	private String individualCertificateCA;
 	private String companyBalanceSheet;
@@ -19,6 +19,7 @@ public class CapcityDevelopAColony {
 	private String technicalExpert;
 	private String designatedDirectors;
 	private String alreadtObtainedLic;
+
 	private List<CapacityDevelopAColonyHdruAct> capacityDevelopColonyHdruAct;
 	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
 	private List<TechnicalExpertEngaged> technicalExpertEngaged;

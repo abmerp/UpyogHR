@@ -1,17 +1,11 @@
 package org.egov.pg.service.gateways.nic;
 
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.paytm.pg.merchant.CheckSumServiceHelper;
+import com.paytm.pg.merchant.*;
+import lombok.extern.slf4j.Slf4j;
 import org.egov.pg.models.Transaction;
 import org.egov.pg.service.Gateway;
-import org.egov.pg.service.gateways.paytm.PaytmResponse;
 import org.egov.pg.utils.Utils;
 import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +14,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClientException;
@@ -27,13 +22,13 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.paytm.pg.merchant.CheckSumServiceHelper;
-import com.paytm.pg.merchant.*;
+import java.net.URI;
+import java.util.Collections;
+import java.util.Map;
+import java.util.TreeMap;
 
-import lombok.Getter;
-import lombok.Setter;
-
+@Service
+@Slf4j
 public class NicGateway implements Gateway {
 
 	private static final String GATEWAY_NAME = "NIC";
@@ -62,7 +57,7 @@ public class NicGateway implements Gateway {
 		DDO = environment.getRequiredProperty("nic.DDO");
 		DeptCode = environment.getRequiredProperty("nic.DeptCode");
 		// ApplicationNumber = environment.getRequiredProperty("nic.ApplicationNumber");
-		Bank = environment.getRequiredProperty("nic.Bank");
+	//	Bank = environment.getRequiredProperty("nic.Bank");
 
 		UUrl_Debit = environment.getRequiredProperty("nic.UUrl_Debit");
 

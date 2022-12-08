@@ -1,44 +1,33 @@
 curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/businessservice/_create' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-  "RequestInfo": {
-    "apiId": "Rainmaker",
-    "action": "",
-    "did": 1,
-    "key": "",
-    "msgId": "20170310130900|en_IN",
-    "requesterId": "",
-    "ts": 1513579888683,
-    "ver": ".01",
-    "authToken": "e03cfa08-072c-405f-bb77-83dd4b9876d0",
-    "userInfo": {
-      "id": 73,
-      "userName": null,
-      "name": null,
-      "type": "EMPLOYEE",
-      "mobileNumber": null,
-      "emailId": null,
-      "roles": [
-        {
-          "id": 2,
-          "name": "Customer Support Representative",
-          "code": null,
-          "tenantId": null
+ "RequestInfo": {
+        "apiId": "Rainmaker",
+        "action": "_create",
+        "did": 1,
+        "key": "",
+        "msgId": "20170310130900|en_IN",
+        "ts": 0,
+        "ver": ".01",
+        "authToken": "80458c19-3b48-4aa8-b86e-e2e195e6753a",
+        "userInfo": {
+            "uuid": "5fe074f2-c12d-4a27-bd7b-92d15f9ab19c",
+            "name": "rahul7",
+            "userName": "rahul7",
+            "tenantId": "hr",
+            "id": 97,
+            "mobileNumber": "7895877833"
         }
-      ],
-      "tenantId": null,
-      "uuid": "uuid"
-    }
-  },
+    },
   "BusinessServices": [
     {
-      "tenantId": "pb.amritsar",
+      "tenantId": "hr",
       "businessService": "NewTL",
       "business": "tl-services",
       "businessServiceSla": 172800000,
       "states": [
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": null,
           "applicationStatus": null,
@@ -48,7 +37,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": true,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "INITIATE",
               "nextState": "INITIATED",
               "roles": [
@@ -59,7 +48,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "INITIATED",
           "applicationStatus": "INITIATED",
@@ -69,7 +58,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": true,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "APPLY",
               "nextState": "APPLIED",
               "roles": [
@@ -78,7 +67,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "INITIATE",
               "nextState": "INITIATED",
               "roles": [
@@ -89,7 +78,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "APPLIED",
           "applicationStatus": "APPLIED",
@@ -99,7 +88,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": true,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "FORWARD",
               "nextState": "FIELDINSPECTION",
               "roles": [
@@ -107,7 +96,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "REJECT",
               "nextState": "REJECTED",
               "roles": [
@@ -117,7 +106,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "REJECTED",
           "applicationStatus": "REJECTED",
@@ -128,7 +117,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "actions": null
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": 86400000,
           "state": "FIELDINSPECTION",
           "applicationStatus": "FIELDINSPECTION",
@@ -138,7 +127,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": true,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "SENDBACKTOCITIZEN",
               "nextState": "CITIZENACTIONREQUIRED",
               "roles": [
@@ -146,7 +135,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "FORWARD",
               "nextState": "PENDINGAPPROVAL",
               "roles": [
@@ -154,7 +143,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "REJECT",
               "nextState": "REJECTED",
               "roles": [
@@ -162,7 +151,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "SENDBACK",
               "nextState": "APPLIED",
               "roles": [
@@ -172,7 +161,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": 43200000,
           "state": "PENDINGAPPROVAL",
           "applicationStatus": "PENDINGAPPROVAL",
@@ -182,7 +171,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": false,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "SENDBACK",
               "nextState": "FIELDINSPECTION",
               "roles": [
@@ -190,7 +179,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "APPROVE",
               "nextState": "PENDINGPAYMENT",
               "roles": [
@@ -198,7 +187,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "REJECT",
               "nextState": "REJECTED",
               "roles": [
@@ -208,7 +197,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": 43200000,
           "state": "PENDINGPAYMENT",
           "applicationStatus": "PENDINGPAYMENT",
@@ -218,7 +207,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": false,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "ADHOC",
               "nextState": "PENDINGPAYMENT",
               "roles": [
@@ -226,7 +215,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "PAY",
               "nextState": "APPROVED",
               "roles": [
@@ -238,7 +227,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "APPROVED",
           "applicationStatus": "APPROVED",
@@ -248,7 +237,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": false,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "EXPIRE",
               "nextState": "EXPIRED",
               "roles": [
@@ -256,7 +245,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
               ]
             },
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "CANCEL",
               "nextState": "CANCELLED",
               "roles": [
@@ -266,7 +255,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "CANCELLED",
           "applicationStatus": "CANCELLED",
@@ -277,7 +266,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "actions": null
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "CITIZENACTIONREQUIRED",
           "applicationStatus": "CITIZENACTIONREQUIRED",
@@ -287,7 +276,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           "isStateUpdatable": true,
           "actions": [
             {
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "RESUBMIT",
               "nextState": "FIELDINSPECTION",
               "roles": [
@@ -296,7 +285,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
             },
             {
               
-              "tenantId": "pb.amritsar",
+              "tenantId": "hr",
               "action": "FORWARD",
               "nextState": "FIELDINSPECTION",
               "roles": [
@@ -307,7 +296,7 @@ curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/b
           ]
         },
         {
-          "tenantId": "pb.amritsar",
+          "tenantId": "hr",
           "sla": null,
           "state": "EXPIRED",
           "applicationStatus": "EXPIRED",

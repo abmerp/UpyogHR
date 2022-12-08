@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class AppliedLandDetails {
 
+	@JsonProperty("rowid")
+	private String rowid;
 	@JsonProperty("tehsil")
 	private String tehsil;
 
@@ -67,6 +69,6 @@ public class AppliedLandDetails {
 	private String registeringAuthority;
 
 	@JsonProperty("registeringAuthorityDoc")
-	private Document registeringAuthorityDoc;
+	private String registeringAuthorityDoc;
 
 }

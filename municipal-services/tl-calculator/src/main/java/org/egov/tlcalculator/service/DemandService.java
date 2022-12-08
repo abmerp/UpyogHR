@@ -164,8 +164,10 @@ public class DemandService {
 
 			String tenantId = calculation.getTenantId();
 			String consumerCode = calculation.getTradeLicense().getApplicationNumber();
+			
+			//TODO 
 
-			User owner = license.getTradeLicenseDetail().getOwners().get(0).toCommonUser();
+		//	User owner = license.getTradeLicenseDetail().getOwners().get(0).toCommonUser();
 
 			List<DemandDetail> demandDetails = new LinkedList<>();
 
@@ -203,7 +205,7 @@ public class DemandService {
 			if (calculation.getAccessoryBillingIds() != null
 					&& !CollectionUtils.isEmpty(calculation.getAccessoryBillingIds().getBillingSlabIds()))
 				combinedBillingSlabs.addAll(calculation.getAccessoryBillingIds().getBillingSlabIds());
-			Demand singleDemand = Demand.builder().consumerCode(consumerCode).demandDetails(demandDetails).payer(owner)
+			Demand singleDemand = Demand.builder().consumerCode(consumerCode).demandDetails(demandDetails)//.payer(owner)
 					.minimumAmountPayable(config.getMinimumPayableAmount()).tenantId(tenantId)
 					.taxPeriodFrom(taxPeriodFrom).taxPeriodTo(taxPeriodTo).consumerType("tradelicense")
 					.businessService(config.getBusinessServiceTL())

@@ -8,7 +8,7 @@ import lombok.Setter;
 public class CapacityDevelopColonyLawAct {
 	
 	private int serialNumber;
-	private String coloniesDeveloped;
+	private String coloniesDeveloped;	
 	private String area;
 	private String purpose;
 	private String statusOfDevelopment;

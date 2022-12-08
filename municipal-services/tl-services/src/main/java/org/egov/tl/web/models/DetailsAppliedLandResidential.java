@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
   @Setter
-  public class DetailsAppliedLandResidential4 {
+  public class DetailsAppliedLandResidential {
   
   private String npnlNo; 
   private String npnlArea; 

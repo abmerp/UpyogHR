@@ -11,6 +11,7 @@ import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.net.ssl.HttpsURLConnection;
@@ -96,13 +97,16 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		map.put("MobileNo", sms.getMobileNumber());
-
-		String smsBody = sms.getMessage();
+	
+	
+	String smsBody = sms.getMessage();
+	String[ ] smsContent = smsBody.split("#");
 		if (smsBody.split("#").length > 1) {
 			String templateId = smsBody.split("#")[1];
 
 			sms.setTemplateId(templateId);
 			smsBody = smsBody.split("#")[0];
+			map.put("TemplateId", templateId);
 
 		} else if (StringUtils.isEmpty(sms.getTemplateId())) {
 			log.info("No template Id, Message Not sent" + smsBody);
@@ -110,6 +114,7 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		} else {
 			map.put("TemplateId", sms.getTemplateId());
 		}
+		
 		map.put("Content", smsBody);
 
 		map.put("Purpose", sms.getCategory());
@@ -155,7 +160,7 @@ public class NICSMSServiceImpl extends BaseSMSService {
 		ResponseEntity<Map> response = restTemplate.postForEntity(smsProperties.tcpurl + smsProperties.smsurl, request,
 				Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
-			log.info("transaction Number\n" + response.getBody().get("Value"));
+			log.info("SMS NOTIFICATION\n" + response.getBody().get("Value"));
 		}
 		return response;
 	}

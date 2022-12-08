@@ -9,10 +9,10 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -23,13 +23,13 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -40,13 +40,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -57,13 +57,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -74,13 +74,13 @@
       "order": 3,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -91,13 +91,13 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -108,19 +108,19 @@
       "order": 6,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.derabassi"
+          "code": "hr.kurukshetra"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -131,13 +131,13 @@
       "order": 3,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -148,13 +148,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -165,13 +165,13 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -182,13 +182,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -199,19 +199,19 @@
       "order": 4,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         },
         {
-          "code": "hr.mohali"
+          "code": "hr.kaithal"
         },
         {
-          "code": "hr.nayagaon"
+          "code": "hr.yamunanagar"
         }
       ]
     },
@@ -222,16 +222,16 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         },
         {
-          "code": "hr.derabassi"
+          "code": "hr.kurukshetra"
         }
       ]
     },
@@ -242,13 +242,13 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -259,10 +259,10 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -273,10 +273,10 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         },
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         }
       ]
     },
@@ -287,10 +287,10 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         },
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         }
       ]
     },
@@ -301,12 +301,12 @@
       "order": 4,
       "tenants": [
         {
-          "code": "hr.jalandhar",
-          "name": "Jalandhar"
+          "code": "hr.jind",
+          "name": "Jind"
         },
         {
-          "code": "hr.phagwara",
-          "name": "Phagwara"
+          "code": "hr.hisar",
+          "name": "Hisar"
         }
       ]
     },
@@ -317,16 +317,16 @@
       "order": 2,
       "tenants": [
         {
-          "code": "hr.jalandhar",
-          "name": "Jalandhar"
+          "code": "hr.jind",
+          "name": "Jind"
         },
         {
-          "code": "hr.phagwara",
-          "name": "Phagwara"
+          "code": "hr.hisar",
+          "name": "Hisar"
         },
         {
-          "code": "hr.amritsar",
-          "name": "Amritsar"
+          "code": "hr.punchkula",
+          "name": "punchkula"
         }
       ]
     },
@@ -337,12 +337,12 @@
       "order": 4,
       "tenants": [
         {
-          "code": "hr.jalandhar",
-          "name": "Jalandhar"
+          "code": "hr.jind",
+          "name": "Jind"
         },
         {
-          "code": "hr.amritsar",
-          "name": "Amritsar"
+          "code": "hr.punchkula",
+          "name": "punchkula"
         },
         {
           "code": "hr.testing",
@@ -357,13 +357,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -374,19 +374,19 @@
       "order": 5,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.derabassi"
+          "code": "hr.kurukshetra"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -397,13 +397,13 @@
       "order": 3,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -414,13 +414,13 @@
       "order": 3,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -431,13 +431,13 @@
       "order": 4,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.phagwara"
+          "code": "hr.hisar"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -448,13 +448,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },{
@@ -464,13 +464,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },{
@@ -480,13 +480,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -497,13 +497,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     },
@@ -514,13 +514,13 @@
       "order": 1,
       "tenants": [
         {
-          "code": "hr.jalandhar"
+          "code": "hr.jind"
         },
         {
-          "code": "hr.nawanshahr"
+          "code": "hr.ambala"
         },
         {
-          "code": "hr.amritsar"
+          "code": "hr.punchkula"
         }
       ]
     }

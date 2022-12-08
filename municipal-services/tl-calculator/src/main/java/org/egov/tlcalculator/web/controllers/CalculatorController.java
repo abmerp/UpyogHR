@@ -128,7 +128,7 @@ public class CalculatorController {
 		switch(servicename)
 		{
 			case businessService_TL:
-				calculations = calculationService.calculator(calculationReq);
+				calculations = calculationService.calculate(calculationReq,false);
 				break;
 
 			case businessService_BPA:

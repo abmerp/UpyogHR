@@ -18,8 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CalculatorRequest {
 
-	@JsonProperty("requestInfo")
-	private RequestInfo requestInfo;
+
 
 	@JsonProperty("totalLandSize")
 	private String totalLandSize;
@@ -29,6 +28,7 @@ public class CalculatorRequest {
 
 	@JsonProperty("purposeCode")
 	private String purposeCode;
+	
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;	
 	

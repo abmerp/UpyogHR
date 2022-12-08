@@ -1,0 +1,31 @@
+{
+   "tenantId":"hr",
+   "moduleName":"common-masters",
+   "LandType":[
+      {
+         "landId":"1",
+         "land":"Chahi",
+         "isActive":"true"
+      },
+      {
+         "landId":"2",
+         "land":"nehri",
+         "isActive":"true"
+      },
+	  {
+         "landId":"3",
+         "land":"Gair",
+         "isActive":"true"
+      },
+      {
+         "landId":"4",
+         "land":"Mumkin",
+         "isActive":"true"
+      },
+	  {
+         "landId":"5",
+         "land":"Others",
+         "isActive":"true"
+      }
+   ]
+}

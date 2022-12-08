@@ -1,0 +1,312 @@
+curl --location --request POST 'http://10.1.1.18:8443/egov-workflow-v2/egov-wf/businessservice/_create' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+ "RequestInfo": {
+        "apiId": "Rainmaker",
+        "action": "_create",
+        "did": 1,
+        "key": "",
+        "msgId": "20170310130900|en_IN",
+        "ts": 0,
+        "ver": ".01",
+        "authToken": "80458c19-3b48-4aa8-b86e-e2e195e6753a",
+        "userInfo": {
+            "uuid": "5fe074f2-c12d-4a27-bd7b-92d15f9ab19c",
+            "name": "rahul7",
+            "userName": "rahul7",
+            "tenantId": "hr",
+            "id": 97,
+            "mobileNumber": "7895877833"
+        }
+    },
+  "BusinessServices": [
+    {
+      "tenantId": "hr",
+      "businessService": "BUILDER",
+      "business": "BPREG",
+      "businessServiceSla": 172800000,
+      "states": [
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": null,
+          "applicationStatus": null,
+          "docUploadRequired": false,
+          "isStartState": true,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "INITIATE",
+              "nextState": "INITIATED",
+              "roles": [
+                "CITIZEN",
+                "TL_CEMP"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "INITIATED",
+          "applicationStatus": "INITIATED",
+          "docUploadRequired": false,
+          "isStartState": true,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "APPLY",
+              "nextState": "APPLIED",
+              "roles": [
+                "CITIZEN",
+                "TL_CEMP"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "INITIATE",
+              "nextState": "INITIATED",
+              "roles": [
+                "CITIZEN",
+                "TL_CEMP"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "APPLIED",
+          "applicationStatus": "APPLIED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "FIELDINSPECTION",
+              "roles": [
+                "TL_DOC_VERIFIER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "REJECT",
+              "nextState": "REJECTED",
+              "roles": [
+                "TL_DOC_VERIFIER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "REJECTED",
+          "applicationStatus": "REJECTED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": true,
+          "isStateUpdatable": false,
+          "actions": null
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "FIELDINSPECTION",
+          "applicationStatus": "FIELDINSPECTION",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "SENDBACKTOCITIZEN",
+              "nextState": "CITIZENACTIONREQUIRED",
+              "roles": [
+                "TL_FIELD_INSPECTOR"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "PENDINGAPPROVAL",
+              "roles": [
+                "TL_FIELD_INSPECTOR"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "REJECT",
+              "nextState": "REJECTED",
+              "roles": [
+                "TL_FIELD_INSPECTOR"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK",
+              "nextState": "APPLIED",
+              "roles": [
+                "TL_FIELD_INSPECTOR"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 43200000,
+          "state": "PENDINGAPPROVAL",
+          "applicationStatus": "PENDINGAPPROVAL",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": false,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK",
+              "nextState": "FIELDINSPECTION",
+              "roles": [
+                "TL_APPROVER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "APPROVE",
+              "nextState": "PENDINGPAYMENT",
+              "roles": [
+                "TL_APPROVER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "REJECT",
+              "nextState": "REJECTED",
+              "roles": [
+                "TL_APPROVER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 43200000,
+          "state": "PENDINGPAYMENT",
+          "applicationStatus": "PENDINGPAYMENT",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": false,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "ADHOC",
+              "nextState": "PENDINGPAYMENT",
+              "roles": [
+                "TL_CEMP"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "PAY",
+              "nextState": "APPROVED",
+              "roles": [
+                "CITIZEN",
+                "TL_CEMP",
+                "SYSTEM_PAYMENT"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "APPROVED",
+          "applicationStatus": "APPROVED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": false,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "EXPIRE",
+              "nextState": "EXPIRED",
+              "roles": [
+                "SYSTEM"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "CANCEL",
+              "nextState": "CANCELLED",
+              "roles": [
+                "TL_APPROVER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "CANCELLED",
+          "applicationStatus": "CANCELLED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": true,
+          "isStateUpdatable": false,
+          "actions": null
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "CITIZENACTIONREQUIRED",
+          "applicationStatus": "CITIZENACTIONREQUIRED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "RESUBMIT",
+              "nextState": "FIELDINSPECTION",
+              "roles": [
+                "TL_CEMP"
+              ]
+            },
+            {
+              
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "FIELDINSPECTION",
+              "roles": [
+                "CITIZEN",
+                "TL_CEMP"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": null,
+          "state": "EXPIRED",
+          "applicationStatus": "EXPIRED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": true,
+          "isStateUpdatable": false,
+          "actions": null
+        }
+      ]
+    }
+  ]
+}'

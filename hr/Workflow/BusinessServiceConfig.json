@@ -7,6 +7,10 @@
       "isStateLevel": true
     },
     {
+      "code": "BUILDER",
+      "isStateLevel": true
+    },
+    {
       "code": "FIRENOC",
       "isStateLevel": true
     }

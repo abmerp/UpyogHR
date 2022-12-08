@@ -217,6 +217,7 @@ public class UserService {
 	public User createUser(User user, RequestInfo requestInfo) {
 		user.setUuid(UUID.randomUUID().toString());
 		user.validateNewUser(createUserValidateName);
+		user.setActive(true);
 		conditionallyValidateOtp(user);
 		/* encrypt here */
 		user = encryptionDecryptionUtil.encryptObject(user, "User", User.class);

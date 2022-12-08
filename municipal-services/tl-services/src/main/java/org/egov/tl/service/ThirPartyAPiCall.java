@@ -93,7 +93,7 @@ public class ThirPartyAPiCall {
 		headers.set("access_key", tcpAccessKey);
 		headers.set("secret_key", tcpSecretKey);
 		headers.setContentType(MediaType.APPLICATION_JSON);
-
+       
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 

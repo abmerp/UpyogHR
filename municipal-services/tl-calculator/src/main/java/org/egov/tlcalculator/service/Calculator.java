@@ -14,7 +14,7 @@ public interface Calculator {
 	
 	
 	String PURPOSE_RPL = "RPL";
-
+	String PURPOSE_CIC = "CIC";
 	String PURPOSE_ITP = "ITP";
 	String PURPOSE_ITC = "ITC";
 	String PURPOSE_IPL = "IPL";

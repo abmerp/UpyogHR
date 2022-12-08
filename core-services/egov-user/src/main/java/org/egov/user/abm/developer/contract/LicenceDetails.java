@@ -10,7 +10,13 @@ import lombok.Setter;
 public class LicenceDetails {
 	private String name;
     private String mobileNumber;
-   
+    private String isAddressSame;
+    private String districtCorrespondence;
+    private String stateCorrespondence;
+    private String tehsilCorrespondence;
+    private String villageCorrespondence;
+    
+
 	private String village;
 	private String tehsil;
 	private String state;
@@ -31,6 +37,6 @@ public class LicenceDetails {
     private String addressLineFourCorrespondence;
     private String cityCorrespondence;
     private String pincodeCorrespondence;
-    private List<Gender> gender;
+    private String gender;
 
 }

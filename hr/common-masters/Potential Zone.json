@@ -5,21 +5,21 @@
 {
       "zone":"Hyper",
       "code": "HYP",
-      "Active": "True"
+       "isActive": 1
 	  
 },
 
 {
       "zone":"High1",
       "code": "HIG1",
-      "Active": "True"
+       "isActive": 1
 	  },
 	 
 
 {
       "zone":"High2",
       "code": "HIG2",
-      "Active": "True"
+       "isActive": 1
 	  },
 	  
 	  
@@ -27,14 +27,14 @@
 {
       "zone":"Medium",
       "code": "MDM",
-      "Active": "True"
+       "isActive": 1
 	  },
 	  
 	   
 {
       "zone":"Low",
       "code": "LOW",
-      "Active": "True"
+       "isActive": 1
 	  },
 	  
 	  
@@ -42,7 +42,7 @@
 {
       "zone":"Low2",
       "code": "LOW2",
-      "Active": "True"
+       "isActive": 1
 	  }
   ]
 	  }

@@ -1,12 +1,15 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class DetailsAppliedLandData1 {
+public class DetailsAppliedLandPlot {
 
+	private String regularOption;
 	private String resplotno;
 	private String reslengthmtr;
 	private String reswidthmtr;
@@ -36,10 +39,9 @@ public class DetailsAppliedLandData1 {
 	private String publiclengthmtr;
 	private String publicwidthmtr;
 	private String publicareasq;
-	private String stpplotno;
-	private String stplengthmtr;
-	private String stpwidthmtr;
-	private String stpareasq;
+	
+	
+	
 	private String etpplotno;
 	private String etplengthmtr;
 	private String etpwidthmtr;
@@ -58,6 +60,7 @@ public class DetailsAppliedLandData1 {
 	private String milkboothareasq;
 	private String gssplotno;
 	private String gsslengthmtr;
+	private String gssWidthmtr;
 	private String gssareasq;
 	private String resDimension;
 	private String resEnteredArea;
@@ -83,6 +86,6 @@ public class DetailsAppliedLandData1 {
 	private String undeterminedLength;
 	private String undeterminedDim;
 	private String undeterminedEntered;
-
+	
 	
 }

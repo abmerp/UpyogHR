@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.tlcalculator.utils.LandUtil;
 import org.egov.tlcalculator.validator.LandMDMSValidator;
 import org.egov.tlcalculator.web.models.CalculatorRequest;
@@ -23,7 +24,7 @@ public class CalculatorImpl implements Calculator {
 		return (AREA * Double.valueOf(arce));
 	}
 
-	public FeesTypeCalculationDto feesTypeCalculation(CalculatorRequest calculatorRequest) {
+	public FeesTypeCalculationDto feesTypeCalculation(RequestInfo requestInfo,CalculatorRequest calculatorRequest) {
 
 		double area1 = (PERCENTAGE1 * Double.valueOf(calculatorRequest.getTotalLandSize()));
 		double area2 = PERCENTAGE2 * Double.valueOf(calculatorRequest.getTotalLandSize());
@@ -31,8 +32,8 @@ public class CalculatorImpl implements Calculator {
 		Map<String, List<String>> mdmsData;
 		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
 		LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeCode = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
-				.mDMSCallPurposeCode(calculatorRequest.getRequestInfo(),
-						calculatorRequest.getRequestInfo().getUserInfo().getTenantId(),
+				.mDMSCallPurposeCode(requestInfo,
+						requestInfo.getUserInfo().getTenantId(),
 						calculatorRequest.getPurposeCode());
 
 		mdmsData = valid.getAttributeValues(mDMSCallPurposeCode);
@@ -76,6 +77,8 @@ public class CalculatorImpl implements Calculator {
 				break;
 
 			case PURPOSE_ITP:
+				break;
+			case PURPOSE_CIC:
 				break;
 			case PURPOSE_ITC:
 
@@ -279,6 +282,8 @@ public class CalculatorImpl implements Calculator {
 				break;
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 						(PERCENTAGE1 * (areaInSqmtr(calculatorRequest.getTotalLandSize())) * 2.5f * 10 + PERCENTAGE2
@@ -456,6 +461,8 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 						(PERCENTAGE1 * (areaInSqmtr(calculatorRequest.getTotalLandSize())) * 2.5f * 10 + PERCENTAGE2
@@ -628,6 +635,8 @@ public class CalculatorImpl implements Calculator {
 				break;
 			case PURPOSE_ITP:
 				break;
+			case PURPOSE_CIC:
+				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 						(PERCENTAGE1 * (areaInSqmtr(calculatorRequest.getTotalLandSize())) * 2.5f * 10 + PERCENTAGE2
@@ -798,6 +807,8 @@ public class CalculatorImpl implements Calculator {
 
 				break;
 			case PURPOSE_ITP:
+				break;
+			case PURPOSE_CIC:
 				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
@@ -982,6 +993,8 @@ public class CalculatorImpl implements Calculator {
 								+ (PERCENTAGE2 * (areaInSqmtr(calculatorRequest.getTotalLandSize()))
 										* stateInfrastructureDevelopmentCharges * 1.9f));
 
+				break;
+			case PURPOSE_CIC:
 				break;
 			case PURPOSE_IPL:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(

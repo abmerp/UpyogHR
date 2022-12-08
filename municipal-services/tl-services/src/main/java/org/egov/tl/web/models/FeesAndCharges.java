@@ -1,5 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +11,11 @@ public class FeesAndCharges {
 
 	private String totalArea;
 	private String purpose;
-	private String devPlan;
+	private String potential;
+	private String licNumber;
+	private String amount;
+	private String amountAdjusted;
+	private String amountPayable;
 	private String scrutinyFee;
 	private String licenseFee;
 	private String conversionCharges;

@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-@Table(name = "eg_license") 
+@Table(name = "eg_license")
 public class LicenseServiceDao {
 
 	@Id
@@ -57,6 +57,10 @@ public class LicenseServiceDao {
 	@Column(name = "caseNumber")
 	private String caseNumber;
 
+	@Column(name = "loiNumber")
+	private String loiNumber;
+	@Column(name = "tenantId")
+	private String tenantId;
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
 	private List<LicenseDetails> newServiceInfoData;

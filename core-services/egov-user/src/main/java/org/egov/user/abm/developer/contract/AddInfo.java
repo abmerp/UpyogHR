@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
+@Getter	
 @Setter
 public class AddInfo {
 
@@ -27,6 +27,7 @@ public class AddInfo {
     private String email;
     private String registeredContactNo;
     private String gst_Number;
+
 	private List<DirectorsInformation> directorsInformation;
 	private List<ShareholdingPattens> shareHoldingPatterens;
     

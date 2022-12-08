@@ -2,6 +2,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.egov.pg.models.Transaction;
 import org.egov.pg.service.Gateway;
 import org.egov.pg.service.gateways.axis.AxisGateway;
+import org.egov.pg.service.gateways.nic.NicGateway;
 import org.egov.pg.service.gateways.paytm.PaytmGateway;
 import org.egov.pg.service.gateways.phonepe.PhonepeGateway;
 import org.egov.pg.utils.Utils;
@@ -98,7 +99,22 @@ public class Test {
 //        URI redirectUri = gateway.generateRedirectURI(txn);
 //        System.out.println(redirectUri);
 //    }
+    @org.junit.Test
+    public void nicTest() {
+        Transaction txn = Transaction.builder().txnAmount("100")
+                .txnId("PB_PG_2018_06_08_000014_55")
+                .productInfo("Property Tax Payment")
+                .gateway("NIC")
+                .callbackUrl("http://egrashry.nic.in/pg-service/transaction/v1/_update")
+                .user(user)
+                .build();
 
+
+        Gateway gateway = new NicGateway(restTemplate,  environment, objectMapper);
+
+        URI redirectUri = gateway.generateRedirectURI(txn);
+        System.out.println(redirectUri);
+    }
 
     @org.junit.Test
     public void phonepeStatus() {
@@ -132,7 +148,22 @@ public class Test {
 
 
     }
+    @org.junit.Test
+    public void nicStatus() {
 
+        Transaction txn = Transaction.builder().txnAmount("100")
+                .txnId("PB_PG_2018_06_09-000014_24")
+                .billId("bf102213-46b3-487a-97b4-4a0a3e81eb3f")
+                .productInfo("Property Tax Payment")
+                .gateway("NIC")
+                .callbackUrl("http://egrashry.nic.in/pg-service/transaction/v1/_update")
+                .build();
+
+        Gateway gateway = new NicGateway(restTemplate, environment, objectMapper);
+        gateway.fetchStatus(txn, Collections.singletonMap("transactionId", "PB_PG_2018_06_09-000014_24"));
+
+
+    }
     @org.junit.Test
     public void axisStatus() {
 
