@@ -204,7 +204,7 @@ public class LicenseService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		objLicenseServiceRequestInfo.setBusinessService(TLConstants.businessService_TL);
 		return objLicenseServiceRequestInfo;
 	}
 
