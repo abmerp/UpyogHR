@@ -494,7 +494,7 @@ public class PlanReportService {
             frb.setPageSizeAndOrientation(Page.Page_A4_Portrait());
             frb.setGrandTotalLegend(TOTAL);
             frb.setGrandTotalLegendStyle(reportService.getNumberStyle());
-            DynamicReport build = frb.build();
+            DynamicReport build = frb.build();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             Subreport sub = new Subreport();
             sub.setDynamicReport(build);
             Style style = new Style();
@@ -662,7 +662,10 @@ public class PlanReportService {
         valuesMap.put("surrenderRoadArea", plan.getTotalSurrenderRoadArea());
         String imageURL = ReportUtil.getImageURL("/egi/resources/global/images/thumbnail_image004.jpg");
         valuesMap.put("egovLogo", imageURL);
-        valuesMap.put("cityLogo", cityService.getCityLogoURLByCurrentTenant());
+        String newImageURL = ReportUtil.getImageURL("/egi/resources/global/images/tcplogo_transparent.png");
+        valuesMap.put("cityLogo", newImageURL);
+        String niuaImageURL = ReportUtil.getImageURL("/egi/resources/global/images/UPYOG-Logo2.png");
+        valuesMap.put("niuaLogo", niuaImageURL);
 
         if (clientSpecificSubReport) {
 
