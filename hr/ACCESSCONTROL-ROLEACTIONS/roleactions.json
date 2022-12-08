@@ -235356,6 +235356,16 @@
       "rolecode": "STP_Circle",
       "actionid": 9999,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "EMPLOYEE",
+      "actionid": 2711,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "EMPLOYEE",
+      "actionid": 2712,
+      "tenantId": "hr"
     }
   ]
 }
