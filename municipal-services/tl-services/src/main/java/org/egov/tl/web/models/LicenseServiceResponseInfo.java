@@ -34,7 +34,7 @@ public class LicenseServiceResponseInfo {
 
 	private String applicationNumber;
 	
-	private String businessservice;
+	private String businessService;
 
 	private String dairyNumber;
 
