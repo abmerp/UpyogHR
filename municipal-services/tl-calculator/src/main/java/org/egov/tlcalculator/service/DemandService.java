@@ -173,7 +173,7 @@ public class DemandService {
 
 			calculation.getTaxHeadEstimates().forEach(taxHeadEstimate -> {
 				demandDetails.add(DemandDetail.builder().taxAmount(taxHeadEstimate.getEstimateAmount())
-						.taxHeadMasterCode(taxHeadEstimate.getTaxHeadCode()).collectionAmount(BigDecimal.ZERO)
+						.taxHeadMasterCode(taxHeadEstimate.getTaxHeadCode()).collectionAmount(calculation.getTradeTypeBillingIds().getFee())
 						.tenantId(tenantId).build());
 			});
 			Long taxPeriodFrom = System.currentTimeMillis();
