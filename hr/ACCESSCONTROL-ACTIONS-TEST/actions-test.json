@@ -25578,6 +25578,28 @@
          "serviceCode":"",
          "code":"",
          "path":""
+      },
+      {
+         "id":2711,
+         "name":"eg scrutiny search",
+         "url":"/land-services/egscrutiny/_search",
+         "displayName":"eg scrutiny",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+         "id":2712,
+         "name":"eg scrutiny searchall",
+         "url":"/land-services/egscrutiny/_searchbylogin",
+         "displayName":"eg scrutiny seacrhall",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
       }
    ]
 }

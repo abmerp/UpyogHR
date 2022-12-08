@@ -76,7 +76,7 @@ public class NewLicenseReport {
 			HttpServletResponse response, @RequestParam("id") Long id) throws IOException {
 
 		try {
-			createNewLicenseReport(requestInfo);
+			createNewLicenseReport(requestInfo,id);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -96,10 +96,10 @@ public class NewLicenseReport {
 		}
 	}
 
-	public void createNewLicenseReport(RequestInfo requestInfo)
+	public void createNewLicenseReport(RequestInfo requestInfo,Long id)
 			throws MalformedURLException, IOException, DocumentException {
 
-		Long id = (long) 626;
+		
 		boolean flag = true;
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(id);
 
@@ -152,22 +152,27 @@ public class NewLicenseReport {
 
 				for (String split : splitStr) {
 
-					PdfPCell cell1;
+					PdfPCell cell1 = null;
 					if (flag) {
 						String str = fetchContentFromLocalization(requestInfo, "hr", "tl-new-license", split);
-						cell1 = new PdfPCell(new Paragraph(str, blackFont1));
-						flag = false;
+						if(str!=null) {
+							cell1 = new PdfPCell(new Paragraph(str, blackFont1));
+							flag = false;
+						}
+						
 					} else {
 						cell1 = new PdfPCell(new Paragraph(split, blackFont));
 						flag = true;
 					}
 
-					cell1.setPaddingLeft(10);
-					cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
-					cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					cell1.setPadding(4);
-					cell1.setBorderColor(new BaseColor(109, 109, 109));
-					table.addCell(cell1);
+					if(cell1!=null) {
+						cell1.setPaddingLeft(10);
+						cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
+						cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+						cell1.setPadding(4);
+						cell1.setBorderColor(new BaseColor(109, 109, 109));
+						table.addCell(cell1);
+					}
 				}
 			}
 		}
