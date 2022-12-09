@@ -36,12 +36,12 @@ public class NicGateway implements Gateway {
 	private String STO;
 	private String DDO;
 	private String DeptCode;
-
-	private String Bank;
-
+	private String SchemeName;
+	private String SchemeCount;
 	private String UUrl_Debit;
 	private String UUrl_Status;
-
+	private String OfficeName;
+	
 	private final RestTemplate restTemplate;
 	private ObjectMapper objectMapper;
 	private final boolean ACTIVE;
@@ -56,43 +56,53 @@ public class NicGateway implements Gateway {
 		STO = environment.getRequiredProperty("nic.STO");
 		DDO = environment.getRequiredProperty("nic.DDO");
 		DeptCode = environment.getRequiredProperty("nic.DeptCode");
-		// ApplicationNumber = environment.getRequiredProperty("nic.ApplicationNumber");
-	//	Bank = environment.getRequiredProperty("nic.Bank");
-
-		UUrl_Debit = environment.getRequiredProperty("nic.UUrl_Debit");
+		OfficeName = environment.getRequiredProperty("nic.OfficeName");
+		SchemeName = environment.getRequiredProperty("nic.SchemeName");
+		SchemeCount = environment.getRequiredProperty("nic.SchemeCount");
+		UUrl_Debit = environment.getRequiredProperty("nic.Uurl.debit");
+		
 
 	}
 
 	@Override
 	public URI generateRedirectURI(Transaction transaction) {
-
+		
+		
+		
 		TreeMap<String, String> paramMap = new TreeMap<>();
 		paramMap.put("DTO", DTO);
 		paramMap.put("STO", STO);
 		paramMap.put("DDO", DDO);
-		paramMap.put("DeptCode", DeptCode);
-		paramMap.put("ApplicationNumber", transaction.getApplicationNumber());
-		paramMap.put("FullName", transaction.getUser().getUserName());
-		paramMap.put("CityName", transaction.getCityName());
-		paramMap.put("Address", transaction.getAddress());
-		paramMap.put("pinCode", transaction.getPinCode());
-		paramMap.put("OfficeName", transaction.getOfficeName());
-		paramMap.put("emailId", transaction.getUser().getEmailId());
-		paramMap.put("TXN_AMOUNT", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
-		paramMap.put("challanYear", transaction.getChallanYear());
-		paramMap.put("CALLBACK_URL", transaction.getCallbackUrl());
-		paramMap.put("gatewayPaymentMode", transaction.getGatewayPaymentMode());
-		paramMap.put("bankname", Bank);
+		paramMap.put("Deptcode", DeptCode);			
+				
+		paramMap.put("Applicationnumber", transaction.getConsumerCode());
+		paramMap.put("Fullname", transaction.getUser().getUserName());
+		paramMap.put("cityname", transaction.getCityName());
+		paramMap.put("address", transaction.getAddress());
+		paramMap.put("PINCODE", transaction.getPinCode());
+		paramMap.put("officename", OfficeName);
+		
+	//	paramMap.put("emailId", transaction.getUser().getEmailId());
+		paramMap.put("TotalAmount", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
+		paramMap.put("ChallanYear", transaction.getChallanYear());
+		paramMap.put("UURL", UUrl_Debit);
+		paramMap.put("ptype", transaction.getGatewayPaymentMode());
+		paramMap.put("bank", "0300997");
 		paramMap.put("remarks", transaction.getRemarks());
-		paramMap.put("securityEmail", transaction.getSecurityEmail());
-		paramMap.put("securityPhone", transaction.getSecurityPhone());
-		paramMap.put("validUpto", transaction.getValidUpto());
-		paramMap.put("schemeCount", transaction.getSchemeCount());
+		paramMap.put("securityemail",transaction.getUser().getEmailId());
+		paramMap.put("securityphone", transaction.getUser().getMobileNumber());
+		paramMap.put("valid_upto","");
+		paramMap.put("schemeName", SchemeName);
+		paramMap.put("SCHEMECOUNT", SchemeCount);
+		paramMap.put("FEEAMOUNT1", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
 
 		try {
 
-			String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, paramMap);
-			paramMap.put("CHECKSUMHASH", checkSum);
+			/*
+			 * String checkSum =
+			 * CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode,
+			 * paramMap); paramMap.put("CHECKSUMHASH", checkSum);
+			 */
 
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 			paramMap.forEach((key, value) -> params.put(key, Collections.singletonList(value)));
@@ -106,6 +116,11 @@ public class NicGateway implements Gateway {
 			throw new CustomException("CHECKSUM_GEN_FAILED",
 					"Hash generation failed, gateway redirect URI cannot be generated");
 		}
+	}
+
+	private void validUpto(long currentTimeMillis) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
