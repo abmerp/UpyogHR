@@ -76,13 +76,11 @@ public class NicGateway implements Gateway {
 		paramMap.put("Deptcode", DeptCode);			
 				
 		paramMap.put("Applicationnumber", transaction.getConsumerCode());
-		paramMap.put("Fullname", transaction.getUser().getUserName());
+		paramMap.put("Fullname", transaction.getUser().getName());
 		paramMap.put("cityname", transaction.getCityName());
 		paramMap.put("address", transaction.getAddress());
 		paramMap.put("PINCODE", transaction.getPinCode());
 		paramMap.put("officename", OfficeName);
-		
-	//	paramMap.put("emailId", transaction.getUser().getEmailId());
 		paramMap.put("TotalAmount", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
 		paramMap.put("ChallanYear", transaction.getChallanYear());
 		paramMap.put("UURL", UUrl_Debit);
@@ -92,7 +90,7 @@ public class NicGateway implements Gateway {
 		paramMap.put("securityemail",transaction.getUser().getEmailId());
 		paramMap.put("securityphone", transaction.getUser().getMobileNumber());
 		paramMap.put("valid_upto","");
-		paramMap.put("schemeName", SchemeName);
+		paramMap.put("SCHEMENAME", SchemeName);
 		paramMap.put("SCHEMECOUNT", SchemeCount);
 		paramMap.put("FEEAMOUNT1", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
 
