@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 
 import org.egov.hrms.model.Role;
 import org.egov.hrms.model.enums.GuardianRelation;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -107,8 +108,8 @@ public class User {
     @JsonProperty("active")
     private Boolean active;
 
-    @NotNull
-    @JsonProperty("dob")
+   
+    @JsonProperty("dob") 
     private Long dob;
 
     @JsonProperty("pwdExpiryDate")
