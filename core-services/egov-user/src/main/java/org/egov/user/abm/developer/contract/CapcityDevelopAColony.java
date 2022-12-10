@@ -21,9 +21,14 @@ public class CapcityDevelopAColony {
 	private String alreadtObtainedLic;
 
 	private List<CapacityDevelopAColonyHdruAct> capacityDevelopColonyHdruAct;
-	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
 	private List<TechnicalExpertEngaged> technicalExpertEngaged;
 	private List<DesignationDirector> designationDirector;
 	private List<ObtainedLicense> obtainedLicense;
+	private DevelopeProjectOutside developeProjectOutside;
+	
+	//extra
+	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
+	
+	
 
 }

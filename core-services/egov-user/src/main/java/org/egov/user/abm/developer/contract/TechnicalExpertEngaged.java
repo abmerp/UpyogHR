@@ -7,18 +7,23 @@ import lombok.Setter;
 @Setter
 public class TechnicalExpertEngaged {
 
+	private String expertYn;
+	
 	private String engineerName;
 	private String engineerQualification;
 	private String engineerSign;	
 	private String engineerDegree;
+	
 	private String architectName;
 	private String architectQualification;
 	private String architectSign;
 	private String architectDegree;
+	
 	private String townPlannerName;
 	private String townPlannerQualification;
 	private String townPlannerSign;
 	private String townPlannerDegree;
+	
 	private String existingDeveloperAgreement;
 	private String existingDeveloperAgreementDoc;
 	private String technicalCapacity;
@@ -27,6 +32,8 @@ public class TechnicalExpertEngaged {
 	private String engineerDocN;
 	private String architectNameN;
 	private String architectDocN;
+	private String spaGpa;
+	private String spaGpaDoc;
 
 
 }
