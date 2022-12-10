@@ -25645,6 +25645,17 @@
          "serviceCode":"",
          "code":"",
          "path":""
+      },
+      {
+         "id":2716,
+         "name":"electric plan get",
+         "url":"/land-services/electric/plan/_get",
+         "displayName":"electric plan get",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
       }
       
 
