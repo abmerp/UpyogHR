@@ -149,7 +149,7 @@ public class CalculationService {
 			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
 			taxHeadEstimates.get(0).setEstimateAmount(new BigDecimal(result.getTotalFee()));
 			calculation.setTaxHeadEstimates(taxHeadEstimates);
-
+			taxHeadEstimates.get(0).setEstimateAmount(new BigDecimal(result.getTotalFee()));
 			calculations.add(calculation);
 		}
 
