@@ -235366,6 +235366,26 @@
       "rolecode": "EMPLOYEE",
       "actionid": 2712,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2713,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2714,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2715,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2716,
+      "tenantId": "hr"
     }
   ]
 }

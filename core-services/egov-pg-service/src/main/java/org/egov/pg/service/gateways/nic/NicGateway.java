@@ -23,7 +23,9 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -66,7 +68,8 @@ public class NicGateway implements Gateway {
 
 	@Override
 	public URI generateRedirectURI(Transaction transaction) {
-		
+		SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		String validUpto = df.format(new Date());
 		
 		
 		TreeMap<String, String> paramMap = new TreeMap<>();
@@ -89,7 +92,7 @@ public class NicGateway implements Gateway {
 		paramMap.put("remarks", transaction.getRemarks());
 		paramMap.put("securityemail",transaction.getUser().getEmailId());
 		paramMap.put("securityphone", transaction.getUser().getMobileNumber());
-		paramMap.put("valid_upto","");
+		paramMap.put("valid_upto",validUpto);
 		paramMap.put("SCHEMENAME", SchemeName);
 		paramMap.put("SCHEMECOUNT", SchemeCount);
 		paramMap.put("FEEAMOUNT1", Utils.formatAmtAsRupee(transaction.getTxnAmount()));

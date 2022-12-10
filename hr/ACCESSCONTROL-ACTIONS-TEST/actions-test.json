@@ -25600,6 +25600,53 @@
          "serviceCode":"",
          "code":"",
          "path":""
+      },
+    
+      {
+         "id":2713,
+         "name":"service plan create",
+         "url":"/land-services/serviceplan/_create",
+         "displayName":"service plan create",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+         "id":2714,
+         "name":"service plan get",
+         "url":"/land-services/serviceplan/_get",
+         "displayName":"service plan create",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+         "id":2715,
+         "name":"electric plan create",
+         "url":"/land-services/electric/plan/_create",
+         "displayName":"electric plan create",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+         "id":2716,
+         "name":"electric plan get",
+         "url":"/land-services/electric/plan/_get",
+         "displayName":"electric plan get",
+         "orderNumber":0,
+         "enabled":false,
+         "serviceCode":"",
+         "code":"",
+         "path":""
       }
+      
+
    ]
 }
