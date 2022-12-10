@@ -17,7 +17,7 @@
             "moduleName": "TL",
             "BusinessService": "NewTL",
             "roles": ["TL_CEMP", "TL_DOC_VERIFIER","TL_APPROVER","TL_FIELD_INSPECTOR"],
-            "active": false,
+            "active": true,
             "locality":false,
             "localityModule":"tl-services",
             "redirectConfig": {
@@ -29,7 +29,7 @@
             "moduleName": "PT",
             "BusinessService": "PT.UPDATE",
             "roles": ["PT_CEMP", "PT_DOC_VERIFIER","PT_FIELD_INSPECTOR","PT_APPROVER"],
-            "active": true,
+            "active": false,
             "locality":true,
             "localityModule":"property-services",
             "redirectConfig": {
@@ -110,7 +110,7 @@
             "moduleName": "BPA",
             "BusinessService": "NOC-SERVICES",
             "roles": ["NOC_CEMP", "NOC_DOC_VERIFIER","NOC_FIELD_INSPECTOR","FIRE_NOC_APPROVER","NOC_APPROVER"],
-            "active": false,
+            "active": true,
             "locality":false,
             "localityModule":"noc-services",
             "redirectConfig": {
@@ -121,7 +121,7 @@
             "moduleName": "WNS",
             "BusinessService": "NewWS1",
             "roles": ["WS_CEMP", "WS_DOC_VERIFIER","WS_FIELD_INSPECTOR","WS_APPROVER","WS_CLERK"],
-            "active": true,
+            "active": false,
             "locality":true,
             "localityModule":"ws-services",
             "redirectConfig": {
@@ -132,7 +132,7 @@
             "moduleName": "WNS",
             "BusinessService": "NewSW1",
             "roles": ["SW_CEMP", "SW_DOC_VERIFIER","SW_FIELD_INSPECTOR","SW_APPROVER","SW_CLERK"],
-            "active": true,
+            "active": false,
             "locality":true,
             "localityModule":"sw-services",
             "redirectConfig": {
@@ -143,7 +143,7 @@
             "moduleName": "WNS",
             "BusinessService": "ModifyWSConnection",
             "roles": ["WS_CEMP","WS_APPROVER"],
-            "active": true,
+            "active": false,
             "locality":true,
             "localityModule":"ws-services",
             "redirectConfig": {
@@ -154,7 +154,7 @@
             "moduleName": "WNS",
             "BusinessService": "ModifySWConnection",
             "roles":["SW_CEMP","SW_APPROVER"],
-            "active": true,
+            "active": false,
             "locality":true,
             "localityModule":"sw-services",
             "redirectConfig": {

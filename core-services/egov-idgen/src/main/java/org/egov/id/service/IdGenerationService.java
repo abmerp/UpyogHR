@@ -85,7 +85,7 @@ public class IdGenerationService {
             List<String> generatedId = generateIdFromIdRequest(idRequest, requestInfo);
             for (String ListOfIds : generatedId) {
                 IdResponse idResponse = new IdResponse();
-                idResponse.setId(ListOfIds);
+                idResponse.setId(ListOfIds.replace("-", ""));
                 idResponses.add(idResponse);
             }
             idGenerationResponse.setIdResponses(idResponses);
