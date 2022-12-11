@@ -154,7 +154,10 @@ public class WorkflowService {
 		} catch (IllegalArgumentException e) {
 			throw new CustomException(ErrorConstants.PARSING_ERROR, "Failed to parse response of Workflow");
 		}
+		if(response.getBusinessServices()!=null && response.getBusinessServices().size()>0)
 		return response.getBusinessServices().get(0);
+		else
+			return null;
 	}
 	
 	private StringBuilder buildWorkflowUrl(ProcessInstanceSearchCriteria criteria, StringBuilder url,boolean noStatus) {
