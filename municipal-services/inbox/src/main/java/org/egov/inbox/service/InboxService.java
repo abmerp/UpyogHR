@@ -192,6 +192,7 @@ public class InboxService {
             for (String businessSrv : businessServiceName) {
                 BusinessService businessService = workflowService.getBusinessService(criteria.getTenantId(), requestInfo,
                         businessSrv);
+                if(businessService!=null)
                 bussinessSrvs.add(businessService);
             }
             HashMap<String, String> StatusIdNameMap = workflowService.getActionableStatusesForRole(requestInfo, bussinessSrvs,
