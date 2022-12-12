@@ -16913,6 +16913,16 @@
       "tenantId": "hr"
     },
     {
+      "rolecode": "BPA_BUILDER",
+      "actionid": 2715,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_BUILDER",
+      "actionid": 2713,
+      "tenantId": "hr"
+    },
+    {
       "rolecode": "BPA_STRUCTURALENGINEER",
       "actionid": 1921,
       "tenantId": "hr"
@@ -22103,6 +22113,16 @@
       "tenantId": "hr"
     },
     {
+      "rolecode": "DEVELOPER",
+      "actionid": 2715,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "DEVELOPER",
+      "actionid": 2713,
+      "tenantId": "hr"
+    },
+    {
       "rolecode": "CTP_HR",
       "actionid": 2690,
       "tenantId": "hr"
@@ -22374,7 +22394,7 @@
     },
     {
       "rolecode": "LAO",
-      "actionid": 27,
+      "actionid": 2712,
       "tenantId": "hr"
     },
     {
@@ -177449,6 +177469,11 @@
     },
     {
       "rolecode": "DTP_FIELD",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "DTP_FIELD",
       "actionid": 9999,
       "tenantId": "hr"
     },
@@ -187139,6 +187164,11 @@
     },
     {
       "rolecode": "Patwari_FIELD",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "Patwari_FIELD",
       "actionid": 9999,
       "tenantId": "hr"
     },
@@ -196829,6 +196859,11 @@
     },
     {
       "rolecode": "JE_FIELD",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "JE_FIELD",
       "actionid": 9999,
       "tenantId": "hr"
     },
@@ -206519,6 +206554,11 @@
     },
     {
       "rolecode": "JD_FIELD",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "JD_FIELD",
       "actionid": 9999,
       "tenantId": "hr"
     },
@@ -216209,6 +216249,11 @@
     },
     {
       "rolecode": "SD_FIELD",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "SD_FIELD",
       "actionid": 9999,
       "tenantId": "hr"
     },
@@ -225899,6 +225944,11 @@
     },
     {
       "rolecode": "ATP_FIELD",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "ATP_FIELD",
       "actionid": 9999,
       "tenantId": "hr"
     },
@@ -235585,6 +235635,11 @@
     {
       "rolecode": "STP_Circle",
       "actionid": 2711,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "STP_Circle",
+      "actionid": 2712,
       "tenantId": "hr"
     },
     {
@@ -235597,8 +235652,19 @@
       "actionid": 2711,
       "tenantId": "hr"
     },
+   
     {
       "rolecode": "EMPLOYEE",
+      "actionid": 2712,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2711 ,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
       "actionid": 2712,
       "tenantId": "hr"
     },
@@ -235608,7 +235674,7 @@
       "tenantId": "hr"
     },
     {
-      "rolecode": "CITIZEN",
+      "rolecode": "EMPLOYEE",
       "actionid": 2714,
       "tenantId": "hr"
     },
@@ -235618,7 +235684,7 @@
       "tenantId": "hr"
     },
     {
-      "rolecode": "CITIZEN",
+      "rolecode": "EMPLOYEE",
       "actionid": 2716,
       "tenantId": "hr"
     },
@@ -235657,14 +235723,32 @@
       "actionid": 2177,
       "tenantId": "hr"
     },
+    
     {
       "rolecode": "SUPERUSER",
       "actionid": 1429,
       "tenantId": "hr"
     },
+    
+    
     {
-      "rolecode": "SUPERUSER",
-      "actionid": 2715,
+      "rolecode": "EMPLOYEE",
+      "actionid": 2717,
+      "tenantId": "hr"               
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2717,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "TL_APPROVER",
+      "actionid": 2717,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "TL_CEMP",
+      "actionid": 2717,
       "tenantId": "hr"
     }
   ]
