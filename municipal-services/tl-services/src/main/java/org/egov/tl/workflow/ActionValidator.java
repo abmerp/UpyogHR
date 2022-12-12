@@ -102,7 +102,7 @@ public class ActionValidator {
 		// validateRole(request);
 		// validateAction(request);
 		validatePayAction(request);
-		validateIds(request, businessService);
+		//validateIds(request, businessService);
 	}
 
 	private void validateCancellation(TradeLicenseRequest request, List<TradeLicense> searchResult) {
