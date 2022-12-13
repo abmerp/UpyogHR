@@ -25647,10 +25647,10 @@
          "path":""
       },
       {
-         "id":2716,
-         "name":"electric plan get",
-         "url":"/land-services/electric/plan/_get",
-         "displayName":"electric plan get",
+         "id":2717,
+         "name":"user developer registration",
+         "url":"/user/developer/registration",
+         "displayName":"user developer registration",
          "orderNumber":0,
          "enabled":false,
          "serviceCode":"",

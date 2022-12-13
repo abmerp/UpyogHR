@@ -16308,6 +16308,11 @@
       "tenantId": "hr"
     },
     {
+      "rolecode": "CITIZEN",
+      "actionid": 2717,
+      "tenantId": "hr"
+    },
+    {
       "rolecode": "BPAREG_APPROVER",
       "actionid": 1876,
       "tenantId": "hr"
@@ -235728,28 +235733,8 @@
       "rolecode": "SUPERUSER",
       "actionid": 1429,
       "tenantId": "hr"
-    },
-    
-    
-    {
-      "rolecode": "EMPLOYEE",
-      "actionid": 2717,
-      "tenantId": "hr"               
-    },
-    {
-      "rolecode": "CITIZEN",
-      "actionid": 2717,
-      "tenantId": "hr"
-    },
-    {
-      "rolecode": "TL_APPROVER",
-      "actionid": 2717,
-      "tenantId": "hr"
-    },
-    {
-      "rolecode": "TL_CEMP",
-      "actionid": 2717,
-      "tenantId": "hr"
     }
+    
+   
   ]
 }
