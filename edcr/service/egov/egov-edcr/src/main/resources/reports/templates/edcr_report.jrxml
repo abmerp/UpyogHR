@@ -74,7 +74,7 @@
 				<text><![CDATA[PLAN DOCUMENT SCRUTINY REPORT]]></text>
 			</staticText>
 			<image scaleImage="RetainShape" hAlign="Center" isUsingCache="true" onErrorType="Blank">
-				<reportElement mode="Transparent" x="410" y="3" width="138" height="56" uuid="9575ccfe-2f3c-480c-bea6-2bc196c44f6f"/>
+				<reportElement mode="Transparent" x="410" y="40" width="138" height="56" uuid="9575ccfe-2f3c-480c-bea6-2bc196c44f6f"/>
 				<imageExpression><![CDATA[$P{qrCode}]]></imageExpression>
 			</image>
 			<image scaleImage="RetainShape" hAlign="Center" isUsingCache="true" onErrorType="Blank">

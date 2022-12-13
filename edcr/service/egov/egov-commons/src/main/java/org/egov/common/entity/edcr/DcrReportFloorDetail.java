@@ -62,7 +62,27 @@ public class DcrReportFloorDetail {
     private BigDecimal floorArea;
 
     private BigDecimal carpetArea;
+    
+    private BigDecimal permissibleArea;
+    
+    private String status;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public BigDecimal getPermissibleArea() {
+        return permissibleArea;
+    }
+
+    public void setPermissibleArea(BigDecimal permissibleArea) {
+        this.permissibleArea = permissibleArea;
+    }
+    
     public String getFloorNo() {
         return floorNo;
     }
@@ -70,7 +90,7 @@ public class DcrReportFloorDetail {
     public void setFloorNo(String floorNo) {
         this.floorNo = floorNo;
     }
-
+    
     public String getOccupancy() {
         return occupancy;
     }
