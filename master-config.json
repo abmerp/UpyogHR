@@ -1,7 +1,7 @@
 {
-  "ACCESSCONTROL-ACTIONS-TEST": {
+  "ACCESSCONTROL-ACTIONS": {
     "actions-test": {
-      "masterName": "actions-test",
+      "masterName": "actions",
       "isStateLevel": true,
       "uniqueKeys": [
         "$.id",
