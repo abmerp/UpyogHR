@@ -1,7 +1,7 @@
 {
    "tenantId":"hr",
-   "moduleName":"ACCESSCONTROL-ACTIONS-TEST",
-   "actions-test":[
+   "moduleName":"ACCESSCONTROL-ACTIONS",
+   "actions":[
       {
          "id":238,
          "name":"CreateImmovableAsset",

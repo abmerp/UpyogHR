@@ -1,6 +1,6 @@
 {
   "ACCESSCONTROL-ACTIONS": {
-    "actions-test": {
+    "actions": {
       "masterName": "actions",
       "isStateLevel": true,
       "uniqueKeys": [
