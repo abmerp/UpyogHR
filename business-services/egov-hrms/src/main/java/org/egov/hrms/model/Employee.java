@@ -83,29 +83,28 @@ public class Employee {
 
     private Long dateOfAppointment;
 
-    @Valid
-    @NotEmpty
+  
+   
     @Size(min = 1,max = 50)
     private List<Jurisdiction> jurisdictions = new ArrayList<>();
 
 
-    @Valid
-    @NotEmpty
+   
     @Size(min = 1)
     private List<Assignment> assignments = new ArrayList<>();
 
-    @Valid
+
     @Size(max=25)
     private List<ServiceHistory> serviceHistory = new ArrayList<>();
 
 
     private Boolean IsActive;
 
-    @Valid
+   
     @Size(max=25)
     private List<EducationalQualification> education = new ArrayList<>();
 
-    @Valid
+  
     @Size(max=25)
     private List<DepartmentalTest> tests = new ArrayList<>();
 

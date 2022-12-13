@@ -110,7 +110,34 @@ public class LicenseServiceController {
 		}
 		return map2;
 	}
+	
+	@GetMapping("/licenses/object/_getByApplicationNumber")
+	public Map<String, String> getJsonSingleFormate(@RequestParam("id") String applicationNumber) throws JsonProcessingException {
 
+		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(applicationNumber);
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(licenseServiceResponseInfo);
+
+		JsonNode node = mapper.readValue(json, JsonNode.class);
+
+		((ObjectNode) node.get("newServiceInfoData").get(0).get("DetailsofAppliedLand")).remove("dgpsDetails");
+
+		Map<String, ValueNode> map1 = new LinkedHashMap<>();
+		// flattenJson(node, null, map1);
+		flattenJson(node.get("newServiceInfoData").get(0), null, map1);
+
+		HashMap<String, String> map2 = new HashMap<>();
+
+		for (Entry<String, ValueNode> entry : map1.entrySet()) {
+
+			System.out.println("key======>" + entry.getKey() + " =========" + entry.getValue());
+			if (entry.getKey().contains(".")) {
+				map2.put(entry.getKey().substring(entry.getKey().lastIndexOf(".") + 1), convertNode(entry.getValue()));
+
+			}
+		}
+		return map2;
+	}
 	public static void flattenJson(JsonNode node, String parent, Map<String, ValueNode> map) {
 		if (node instanceof ValueNode) {
 			map.put(parent, (ValueNode) node);

@@ -24,6 +24,9 @@ public class Developerdetail {
 	private List<AddRemoveAuthoizedUsers> aurthorizedUserInfoArray;
 	@JsonProperty
 	private CapcityDevelopAColony capacityDevelopAColony;
+	
+	@JsonProperty
+	private List<LicensesDoc> licensesDoc;
 
 	/*
 	 * public void setJsonData(String jsonData) { // Method parameter jsonData is

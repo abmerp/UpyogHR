@@ -135,10 +135,10 @@ public class UserService {
 	@SuppressWarnings("all")
 	private UserResponse userCall(Object userRequest, StringBuilder uri) {
 		String dobFormat = null;
-		if(uri.toString().contains(userSearchEndpoint) || uri.toString().contains(userUpdateEndpoint))
+		if(uri.toString().contains(userSearchEndpoint) || uri.toString().contains(userUpdateEndpoint))			  
 			dobFormat="yyyy-MM-dd";
 		else if(uri.toString().contains(userCreateEndpoint))
-			dobFormat = "dd/MM/yyyy";
+			dobFormat = "dd-MM-yyyy";
 		try{
 			LinkedHashMap responseMap = (LinkedHashMap) restCallRepository.fetchResult(uri, userRequest);
 			parseResponse(responseMap,dobFormat);

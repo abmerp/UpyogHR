@@ -58,5 +58,9 @@ public class BPAConstants {
     public static final String  USREVENTS_EVENT_POSTEDBY = "SYSTEM-BPAREG";
 
     public static final String BUSINESS_SERVICE_BPAREG = "BPAREG";
+    
+    public static final String EMPLOYEE = "EMPLOYEE";
+    public static final String LOCALIZATION_CODES_JSONPATH = "$.messages.*.code";
+    public static final String LOCALIZATION_MSGS_JSONPATH = "$.messages.*.message";
 
 }

@@ -20,6 +20,8 @@ public class AddInfo {
 //	private List<ShareholdingPattens> shareHoldingPatterens;
 //	private List<DirectorsInformation> directorsInformation;
 	private String showDevTypeFields;
+	private String name;
+	private String mobileNumberUser;
     private String cin_Number;
     private String companyName;
     private String incorporationDate;
@@ -30,6 +32,13 @@ public class AddInfo {
 
 	private List<DirectorsInformation> directorsInformation;
 	private List<ShareholdingPattens> shareHoldingPatterens;
+	
+	private String existingColonizer;
+	
+	private ExistingColonizerData existingColonizerData;
+	
+	private Other other;
+	
     
 
 }
