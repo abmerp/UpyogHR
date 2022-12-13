@@ -22,5 +22,7 @@ public class FeesAndCharges {
 	private String payableNow;
 	private String remark;
 	private String adjustFee;
+	private String belongsDeveloper;
+	private String consentLetter;
 	
 }

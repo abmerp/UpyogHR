@@ -32,6 +32,9 @@ public class AppliedLandDetails {
 	@JsonProperty("marla")
 	private String marla;
 
+	@JsonProperty("hadbastNo")
+	private String hadbastNo;
+	
 	@JsonProperty("bigha")
 	private String bigha;
 
