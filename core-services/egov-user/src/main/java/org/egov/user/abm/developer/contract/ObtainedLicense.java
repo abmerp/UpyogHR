@@ -8,7 +8,7 @@ import lombok.Setter;
 public class ObtainedLicense {
 
 	private String obtainedLiceneseYN;
-	private String agreementColonizerDocY;
+	private String technicalAssistanceAgreementDoc;
 	private String boardDocY;
 	private String registerAndIrrevocableDocY;
 	private String boardResolutionY;
@@ -16,5 +16,9 @@ public class ObtainedLicense {
 	private String dateOfGrantingLic;
 	private String licValidity;
 	private String purpose;
-
+	private String registeredDoc;
+	private String earlierDocY;
+	
+	
+	
 }
