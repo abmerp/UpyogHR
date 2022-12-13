@@ -29,7 +29,10 @@ public class ElectricPlanRequest {
 	private String environmentalClearance;
 	private String autoCad;
 	private String verifiedPlan;
-	
+	private String loiNumber;    
+	private String selfCenteredDrawings;	       
+	private String pdfFormat;	
+ 
 	public ElectricPlanRequest(ElectricPlan electricPlan) {
 		this.id = electricPlan.getId();
 		this.electricalInfra = electricPlan.isElectricalInfra();
@@ -39,6 +42,9 @@ public class ElectricPlanRequest {
 		this.environmentalClearance = electricPlan.getEnvironmentalClearance();
 		this.autoCad = electricPlan.getAutoCad();
 		this.verifiedPlan = electricPlan.getVerifiedPlan();
+		this.loiNumber = electricPlan.getLoiNumber();
+		this.selfCenteredDrawings = electricPlan.getSelfCentredDrawing();
+	
 	}
 	
 	public ElectricPlan toBuilder() {
@@ -49,6 +55,8 @@ public class ElectricPlanRequest {
 				.loadSancation(this.loadSancation)
 				.environmentalClearance(this.environmentalClearance)
 				.autoCad(this.autoCad)
-				.verifiedPlan(this.verifiedPlan).build();
+				.verifiedPlan(this.verifiedPlan)
+				.loiNumber(this.loiNumber)
+				.selfCentredDrawing(this.selfCenteredDrawings).build();
 	}
 }
