@@ -65,11 +65,11 @@
                 "name": "Home Citizen Information and Updates card",
                 "enabled": false,
                 "headerLabel": "CS_COMMON_DASHBOARD_INFO_UPDATES",
-                "sideOption": {
-                    "name": "DASHBOARD_VIEW_ALL_LABEL",
-                    "enabled": true,
-                    "navigationUrl": ""
-                  },
+              "sideOption": {
+                "name": "DASHBOARD_VIEW_ALL_LABEL",
+                "enabled": false,
+                "navigationUrl": ""
+              },
                 "props": [
                   {
                     "code": "CITIZEN_MY_CITY",
@@ -108,7 +108,7 @@
             "headerLabel": "DASHBOARD_WHATS_NEW_LABEL",
             "sideOption": {
               "name": "DASHBOARD_VIEW_ALL_LABEL",
-              "enabled": true,
+              "enabled": false,
               "navigationUrl": "/digit-ui/citizen/engagement/whats-new"
             }
           },
