@@ -68,7 +68,7 @@ public class NicGateway implements Gateway {
 
 	@Override
 	public URI generateRedirectURI(Transaction transaction) {
-		SimpleDateFormat df = new SimpleDateFormat("DD/MM/YYYY");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		String validUpto = df.format(new Date());
 		
 		
