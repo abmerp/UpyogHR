@@ -5,7 +5,7 @@
     {
       "module": "FSM",
       "code": "FSM",
-      "active": true,
+      "active": false,
       "order": 2,
       "tenants": [
         {
@@ -19,7 +19,7 @@
     {
       "module": "PGR",
       "code": "PGR",
-      "active": true,
+      "active": false,
       "order": 2,
       "tenants": [
         {
@@ -36,7 +36,7 @@
     {
       "module": "PT",
       "code": "PT",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {
@@ -238,7 +238,7 @@
     {
       "module": "FIRENOC",
       "code": "FIRENOC",
-      "active": false,
+      "active": true,
       "order": 2,
       "tenants": [
         {
@@ -255,7 +255,7 @@
     {
       "module": "BPAAPPLY",
       "code": "BPAAPPLY",
-      "active": false,
+      "active": true,
       "order": 2,
       "tenants": [
         {
@@ -269,7 +269,7 @@
     {
       "module": "BPAREG",
       "code": "BPAREG",
-      "active": false,
+      "active": true,
       "order": 2,
       "tenants": [
         {
@@ -393,7 +393,7 @@
     {
       "module": "CommonPT",
       "code": "CommonPT",
-      "active": true,
+      "active": false,
       "order": 3,
       "tenants": [
         {
@@ -444,7 +444,7 @@
     {
       "module": "SW",
       "code": "SW",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {
@@ -510,7 +510,7 @@
 {
       "module": "Works",
       "code": "Works",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {
