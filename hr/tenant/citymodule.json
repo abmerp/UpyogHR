@@ -353,7 +353,7 @@
     {
       "module": "WS",
       "code": "WS",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {
