@@ -147,6 +147,12 @@ public class Transaction {
     @JsonProperty("gatewayPaymentMode")
     private String gatewayPaymentMode;
 
+    
+    /**
+     * Mode of payment, as returned by the payment gateway
+     */
+    @JsonProperty("ptype")
+    private String ptype;
     /**
      * Payment Gateway Specific RAW status code
      */
