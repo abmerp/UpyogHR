@@ -68,7 +68,7 @@ public class NicGateway implements Gateway {
 
 	@Override
 	public URI generateRedirectURI(Transaction transaction) {
-		SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
 		String validUpto = df.format(new Date());
 		
 		
@@ -86,9 +86,9 @@ public class NicGateway implements Gateway {
 		paramMap.put("officename", OfficeName);
 		paramMap.put("TotalAmount", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
 		paramMap.put("ChallanYear", transaction.getChallanYear());
-		paramMap.put("UURL", UUrl_Debit);
+		paramMap.put("UURL", transaction.getCallbackUrl());
 		paramMap.put("ptype", transaction.getGatewayPaymentMode());
-		paramMap.put("bank", "0300997");
+		paramMap.put("bank", transaction.getBank());
 		paramMap.put("remarks", transaction.getRemarks());
 		paramMap.put("securityemail",transaction.getUser().getEmailId());
 		paramMap.put("securityphone", transaction.getUser().getMobileNumber());

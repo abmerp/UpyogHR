@@ -175,6 +175,9 @@ public class Transaction {
     @JsonProperty("officeName")
     private String officeName;
     
+    @JsonProperty("bank")
+    private String bank;
+    
     @JsonProperty("challanYear")
     private String challanYear;
     
