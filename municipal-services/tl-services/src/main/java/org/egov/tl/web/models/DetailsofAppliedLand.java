@@ -31,6 +31,15 @@ public class DetailsofAppliedLand {
 	
 	@JsonProperty("DetailsAppliedLand")
 	private DetailsAppliedLand detailsAppliedLand;
+	
+	@JsonProperty("DetailsAppliedLandCommercial")
+	private DetailsAppliedLandCommercial detailsAppliedLandCommercial;
+	
+	@JsonProperty("DetailsAppliedDemarcationPlan")
+	private DetailsAppliedDemarcationPlan DetailsAppliedDemarcationPlan;
+	
+	@JsonProperty("DetailsAppliedLayoutPlan")
+	private DetailsAppliedLayoutPlan DetailsAppliedLayoutPlan;
 
 	
 	

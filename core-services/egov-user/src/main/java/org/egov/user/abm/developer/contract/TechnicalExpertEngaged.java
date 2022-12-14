@@ -32,8 +32,8 @@ public class TechnicalExpertEngaged {
 	private String engineerDocN;
 	private String architectNameN;
 	private String architectDocN;
-	private String spaGpa;
-	private String spaGpaDoc;
+	private String uplaodSpaBoard;
+	private String uplaodSpaBoardDoc;
 
 
 }

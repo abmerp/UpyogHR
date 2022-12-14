@@ -9,12 +9,12 @@ public class CapacityDevelopAColonyHdruAct {
 	
 	private String licenceNumber;
 	private String purposeOfColony;
-	private String validatingLicence;
-	private String grantLicenseDate;
+	private String licValidity;
+	private String dateOfGrantingLic;
 	private String technicalExpertEngaged;
-	private String degreeOfEngineer;
-	private String degreeOfArchitect;
-	private String degreeOfTownPlanner;
+	private String engineerDegree;
+	private String architectDegree;
+	private String townPlannerDegree;
 	
 
 }

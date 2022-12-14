@@ -69,7 +69,7 @@ public class EgScrutinyController {
 
 	@PostMapping("/_search")
 	public ResponseEntity<EgScrutinyInfoResponse> searchEgScrutiny(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") Integer applicationNumber,@RequestParam("userId") Integer userid) {
+			@RequestParam("applicationNumber") String applicationNumber,@RequestParam("userId") Integer userid) {
 
 		List<EgScrutiny> egScrutiny = this.egScrutinyService.search(applicationNumber,userid);
 		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutiny)
@@ -98,7 +98,7 @@ public class EgScrutinyController {
 	@GetMapping("/_searchbyfield")
 	public ResponseEntity<EgScrutinyInfoResponse> findByApplicationIdAndFieldId(
 			@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationId") Integer applicationId,
+			@RequestParam("applicationId") String applicationId,
 			@RequestParam("fieldId") String fieldId,
 			@RequestParam("userId") Integer userId,
 			@RequestParam("serviceId") Integer serviceId) {
@@ -117,7 +117,7 @@ public class EgScrutinyController {
 
 	@PostMapping("/_searchbylogin")
 	public ResponseEntity<EgScrutinyInfoResponse> findLogin(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationId") Integer applicatinNumber, @RequestParam("userid") Integer fieldId) {
+			@RequestParam("applicationId") String applicatinNumber, @RequestParam("userid") Integer fieldId) {
 		System.out.println("search by id ");
 		List<EgScrutiny> egScrutiny = this.egScrutinyService.findByApplicationIdAndUserId(applicatinNumber, fieldId);
 

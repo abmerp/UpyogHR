@@ -41,7 +41,7 @@ public class EgScrutinyService {
 
 	}
 
-	public List<EgScrutiny> search(Integer applicationNumber, Integer userId) {
+	public List<EgScrutiny> search(String applicationNumber, Integer userId) {
 
 		if (userId != null && userId > 0) {
 			return this.egScrutinyRepo.findByApplicationIdAndUserid(applicationNumber, userId);
@@ -56,7 +56,7 @@ public class EgScrutinyService {
 		return this.egScrutinyRepo.findById(id);
 	}
 
-	public EgScrutiny findByApplicationIdAndField_d(Integer applicationId, String fieldId, Integer userId,
+	public EgScrutiny findByApplicationIdAndField_d(String applicationId, String fieldId, Integer userId,
 			Integer serviceId) {
 
 		return this.egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(applicationId, fieldId,
@@ -64,7 +64,7 @@ public class EgScrutinyService {
 
 	}
 
-	public List<EgScrutiny> findByApplicationIdAndUserId(Integer applicantId, Integer fieldId) {
+	public List<EgScrutiny> findByApplicationIdAndUserId(String applicantId, Integer fieldId) {
 		return this.egScrutinyRepo.findByApplicationIdAndUseridOrderByUseridDesc(applicantId, fieldId);
 	}
 

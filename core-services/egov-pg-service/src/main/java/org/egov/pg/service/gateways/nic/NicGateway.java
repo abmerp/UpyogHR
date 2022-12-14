@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
+import java.time.Month;
 
 @Service
 @Slf4j
@@ -68,16 +69,15 @@ public class NicGateway implements Gateway {
 
 	@Override
 	public URI generateRedirectURI(Transaction transaction) {
-		SimpleDateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		String validUpto = df.format(new Date());
 		
-		
+		//todo challan year
 		TreeMap<String, String> paramMap = new TreeMap<>();
 		paramMap.put("DTO", DTO);
 		paramMap.put("STO", STO);
 		paramMap.put("DDO", DDO);
-		paramMap.put("Deptcode", DeptCode);			
-				
+		paramMap.put("Deptcode", DeptCode);							
 		paramMap.put("Applicationnumber", transaction.getConsumerCode());
 		paramMap.put("Fullname", transaction.getUser().getName());
 		paramMap.put("cityname", transaction.getCityName());
@@ -85,10 +85,10 @@ public class NicGateway implements Gateway {
 		paramMap.put("PINCODE", transaction.getPinCode());
 		paramMap.put("officename", OfficeName);
 		paramMap.put("TotalAmount", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
-		paramMap.put("ChallanYear", transaction.getChallanYear());
-		paramMap.put("UURL", UUrl_Debit);
-		paramMap.put("ptype", transaction.getGatewayPaymentMode());
-		paramMap.put("bank", "0300997");
+		paramMap.put("ChallanYear", "2223");
+		paramMap.put("UURL", transaction.getCallbackUrl());
+		paramMap.put("ptype", transaction.getPtype().equalsIgnoreCase("103")?"M":"N");
+		paramMap.put("bank", transaction.getBank());
 		paramMap.put("remarks", transaction.getRemarks());
 		paramMap.put("securityemail",transaction.getUser().getEmailId());
 		paramMap.put("securityphone", transaction.getUser().getMobileNumber());

@@ -190,8 +190,7 @@ public class  TradeLicense   {
         @JsonProperty("status")
         private String status = null;
 
-        @Valid
-        @NotNull
+       
         @JsonProperty("tradeLicenseDetail")
         private TradeLicenseDetail tradeLicenseDetail = null;
 

@@ -19,6 +19,8 @@ public class ApplicantPurpose {
 	private String district;
 	@JsonProperty("state")
 	private String state;
+	
+	
 	@JsonProperty("AppliedLandDetails")
 	List<AppliedLandDetails> appliedLandDetails;
 

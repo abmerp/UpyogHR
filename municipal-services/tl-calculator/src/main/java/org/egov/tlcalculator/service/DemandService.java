@@ -171,8 +171,16 @@ public class DemandService {
 
 			List<DemandDetail> demandDetails = new LinkedList<>();
 
+			/*
+			 * calculation.getTaxHeadEstimates().forEach(taxHeadEstimate -> {
+			 * demandDetails.add(DemandDetail.builder().taxAmount(taxHeadEstimate.
+			 * getEstimateAmount())
+			 * .taxHeadMasterCode(taxHeadEstimate.getTaxHeadCode()).collectionAmount(
+			 * BigDecimal.ZERO) .tenantId(tenantId).build()); });
+			 */
+
 			calculation.getTaxHeadEstimates().forEach(taxHeadEstimate -> {
-				demandDetails.add(DemandDetail.builder().taxAmount(taxHeadEstimate.getEstimateAmount())
+				demandDetails.add(DemandDetail.builder().taxAmount(BigDecimal.ONE)
 						.taxHeadMasterCode(taxHeadEstimate.getTaxHeadCode()).collectionAmount(BigDecimal.ZERO)
 						.tenantId(tenantId).build());
 			});
