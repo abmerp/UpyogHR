@@ -235733,7 +235733,13 @@
       "rolecode": "SUPERUSER",
       "actionid": 1429,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "EMPLOYEE",
+      "actionid": 2718,
+      "tenantId": "hr"
     }
+
     
    
   ]

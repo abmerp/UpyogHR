@@ -25646,17 +25646,28 @@
          "code":"",
          "path":""
       },
-    {
-      "id": 2717,
-      "name": "user developer registration",
-      "url": "/user/developer/registration",
-      "displayName": "user developer registration",
-      "orderNumber": 0,
-      "enabled": true,
-      "serviceCode": "",
-      "code": "",
-      "path": ""
-    }
+      {
+         "id": 2717,
+         "name": "user developer registration",
+         "url": "/user/developer/registration",
+         "displayName": "user developer registration",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2718,
+         "name": "eg scrutiny create",
+         "url": "/land-services/egscrutiny/_create",
+         "displayName": "eg scrutiny create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      }
       
 
    ]
