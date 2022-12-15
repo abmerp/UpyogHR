@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class CapcityDevelopAColony {	
 	
-	private String individualCertificateCA;
+	//private String individualCertificateCA;
 	private String companyBalanceSheet;
 	private String paidUpCapital;
 	private String networthPartners;
@@ -29,7 +29,7 @@ public class CapcityDevelopAColony {
 	private Documents documents;
 	
 	//extra
-	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
+//	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
 	
 	
 

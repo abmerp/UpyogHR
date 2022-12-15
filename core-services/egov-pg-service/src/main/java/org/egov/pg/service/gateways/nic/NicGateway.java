@@ -119,10 +119,7 @@ public class NicGateway implements Gateway {
 		}
 	}
 
-	private void validUpto(long currentTimeMillis) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public Transaction fetchStatus(Transaction currentStatus, Map<String, String> params) {
