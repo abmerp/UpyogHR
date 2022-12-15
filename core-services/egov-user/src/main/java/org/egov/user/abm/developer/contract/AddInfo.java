@@ -2,6 +2,8 @@ package org.egov.user.abm.developer.contract;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +39,9 @@ public class AddInfo {
 	
 	private ExistingColonizerData existingColonizerData;
 	
+	@JsonProperty("othersDetails")
 	private Other other;
+	
 	
     
 
