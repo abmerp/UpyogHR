@@ -40,7 +40,9 @@ public class AddInfo {
 	private ExistingColonizerData existingColonizerData;
 	
 	@JsonProperty("othersDetails")
-	private Other other;
+	private List<Other> othersDetails;
+	
+	private String emailId;
 	
 	
     
