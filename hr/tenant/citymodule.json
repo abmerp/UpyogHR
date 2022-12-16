@@ -457,10 +457,11 @@
           "code": "hr.punchkula"
         }
       ]
-    },{
+    },
+    {
       "module": "CF",
       "code": "CF",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {
@@ -473,10 +474,11 @@
           "code": "hr.punchkula"
         }
       ]
-    },{
+    },
+    {
       "module": "CF",
       "code": "CF",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {
@@ -493,7 +495,7 @@
     {
       "module": "BR",
       "code": "BR",
-      "active": true,
+      "active": false,
       "order": 1,
       "tenants": [
         {

@@ -379,6 +379,11 @@
       "description": "BPA Builder"
     },
     {
+      "code": "BPA_DEVELOPER",
+      "name": "BPA Developer",
+      "description": "BPA Developer"
+    },
+    {
       "code": "BPA_STRUCTURALENGINEER",
       "name": "BPA Structural Engineer",
       "description": "BPA Structural Engineer"
@@ -668,7 +673,7 @@
       "name": "Internal Microservice Role",
       "description": "Internal role for plain access"
     },
-	 {
+    {
       "code": "DEVELOPER",
       "name": "Developer ",
       "description": "developer role"
@@ -693,7 +698,7 @@
       "name": "Junior Draftsman ",
       "description": "JD role"
     },
-	{
+    {
       "code": "SD_HQ",
       "name": "Senior Draftsman",
       "description": "SD role"
@@ -703,7 +708,7 @@
       "name": "Account Officer Head Quarter",
       "description": "AO role"
     },
-	{
+    {
       "code": "DDA_HQ",
       "name": "Deputy District Attorney",
       "description": "DDA role"
@@ -718,7 +723,7 @@
       "name": "Assistant District Attorney Head Quarter ",
       "description": "ADA role"
     },
-	 {
+    {
       "code": "AD_HQ",
       "name": "Assistant Draftsman",
       "description": "AD role"
@@ -728,7 +733,7 @@
       "name": "Junior Engineer Head Quarter",
       "description": "JE role"
     },
-   
+
     {
       "code": "STP_HQ",
       "name": "Senior Town Planner Head Quarter",
@@ -744,42 +749,42 @@
       "name": "Director of Town and Country Planning",
       "description": "DTCP HR role"
     },
-	 {
+    {
       "code": "LAO",
       "name": "Land Acquisition Officer",
       "description": "LAO role"
     },
-	{
+    {
       "code": "DTP_FIELD",
       "name": "District Town Planner Field",
       "description": "DTP field role"
     },
-	{
+    {
       "code": "Patwari_FIELD",
       "name": "Patwari Field",
       "description": "Patwari Field role"
     },
-	{
+    {
       "code": "JE_FIELD",
       "name": "Junior Engineer Field",
       "description": "Junior Engineer Field role"
     },
-	{
+    {
       "code": "JD_FIELD",
       "name": "Junior Draftsman Field",
       "description": "JD Field role"
     },
-	{
+    {
       "code": "SD_FIELD",
       "name": "Senior Draftsman Field",
       "description": "SD Field role"
     },
-	{
+    {
       "code": "ATP_FIELD",
       "name": "Assistant Town Planner Field",
       "description": "ATP Field role"
     },
-	{
+    {
       "code": "STP_Circle",
       "name": "Senior Town Planner Circle",
       "description": "STP circle role"
