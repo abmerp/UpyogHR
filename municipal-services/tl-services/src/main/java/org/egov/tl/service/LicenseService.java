@@ -49,12 +49,13 @@ public class LicenseService {
 	private long id = 1;
 	@Autowired
 	TradeLicenseService tradeLicenseService;
-
+	@Autowired
+	ObjectMapper mapper;
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
 			throws JsonProcessingException {
 
-		List<LicenseDetails> newServiceInfoData;
+	
 		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceIn;
 		List<LicenseDetails> newServiceInfoDatas = null;
@@ -63,10 +64,10 @@ public class LicenseService {
 
 			newServiceIn = em.find(LicenseServiceDao.class, newServiceInfo.getId());
 
-			newServiceInfoData = newServiceIn.getNewServiceInfoData();
+			newServiceInfoDatas = newServiceIn.getNewServiceInfoData();
 			float cv = newServiceIn.getCurrentVersion() + 0.1f;
 
-			for (LicenseDetails newobj : newServiceInfoData) {
+			for (LicenseDetails newobj : newServiceInfoDatas) {
 
 				if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
 
@@ -163,7 +164,7 @@ public class LicenseService {
 			tradeLicenseDetail.getVerificationDocuments();
 			tradeLicenseDetail.setTradeType("NewTL");
 
-			ObjectMapper mapper = new ObjectMapper();
+		
 			String data = mapper.writeValueAsString(newServiceInfoDatas);
 			JsonNode jsonNode = mapper.readTree(data);
 			tradeLicenseDetail.setAdditionalDetail(jsonNode);
