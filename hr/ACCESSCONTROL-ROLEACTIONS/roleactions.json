@@ -235738,8 +235738,22 @@
       "rolecode": "EMPLOYEE",
       "actionid": 2718,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "DEVELOPER",
+      "actionid": 2719,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_BUILDER",
+      "actionid": 2719,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_DEVELOPER",
+      "actionid": 2719,
+      "tenantId": "hr"
     }
-
     
    
   ]
