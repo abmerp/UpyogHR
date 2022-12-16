@@ -26,13 +26,6 @@ public class LicenseServiceRequest {
 
 	private float currentVersion;
 
-	private String createdBy;
-
-	private Date createdDate;
-
-	private String updateddBy;
-
-	private Date updatedDate;
 	private String applicationNumber;
 	private String pageName;
 	@JsonProperty("ApplicationStatus")
