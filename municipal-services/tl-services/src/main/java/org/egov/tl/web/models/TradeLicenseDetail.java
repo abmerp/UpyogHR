@@ -106,6 +106,9 @@ public class TradeLicenseDetail   {
 
         @JsonProperty("additionalDetail")
         private JsonNode additionalDetail = null;
+        
+        @JsonProperty("currentVersion")
+        private float currentVersion;
 
     
 
