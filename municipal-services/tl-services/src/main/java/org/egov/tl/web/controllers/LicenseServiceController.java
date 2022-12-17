@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.egov.common.contract.response.ResponseInfo;
+import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.service.LicenseService;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.ResponseInfoFactory;
@@ -31,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -48,6 +50,11 @@ public class LicenseServiceController {
 	LicenseService newServiceInfoService;
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
+	
+	@Autowired
+	private RestTemplate rest;
+	@Autowired
+	private TLConfiguration config;
 
 	private static final ObjectMapper SORTED_MAPPER = new ObjectMapper();
 
@@ -176,6 +183,9 @@ public class LicenseServiceController {
                                                                                 requestInfoWrapper, @RequestParam
                                                                                 Map<String,
                                                                                         String> params) {
+		
+		String responses  = rest.postForObject(config.getPgHost().concat(config.getPgPath()), params, String.class);
+		System.out.println("responses"+responses);
         List<Transaction> transactions = newServiceInfoService.postTransactionDeatil( params,requestInfoWrapper.getRequestInfo());
         ResponseInfo responseInfo = ResponseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper
                 .getRequestInfo(), true);
