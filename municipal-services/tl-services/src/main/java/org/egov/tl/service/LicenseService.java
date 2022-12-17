@@ -420,6 +420,8 @@ public class LicenseService {
 					/****************
 					 * End Here
 					 ***********/
+					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();				
+					tradeLicenseService.update(new TradeLicenseRequest(), date);
 					break;
 
 				}
