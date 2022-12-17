@@ -288,7 +288,7 @@ public class LicenseService {
 		tradeLicenseRequest.setApplicationNumber(applicationNumber);
 		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
 		for (TradeLicense tradeLicense : tradeLicenses) {
-
+			
 			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
 			});
 
@@ -345,6 +345,8 @@ public class LicenseService {
 					mapDNo.put("UserLoginId", "39");
 					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 							.toString();
+					tradeLicense.setTcpDairyNumber(dairyNumber);
+					
 
 					/****************
 					 * End Here
@@ -363,7 +365,8 @@ public class LicenseService {
 					mapCNO.put("UserLoginId", "39");
 					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
 							.toString();
-					System.out.println("caseNumber" + caseNumber);
+					tradeLicense.setTcpCaseNumber(caseNumber);
+					
 					/****************
 					 * End Here
 					 ***********/
@@ -381,6 +384,7 @@ public class LicenseService {
 					mapANo.put("UserLoginId", "39");
 					applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 							.get("Value").toString();
+					tradeLicense.setTcpApplicationNumber(applicationNumber);
 
 					/****************
 					 * End Here
@@ -411,6 +415,7 @@ public class LicenseService {
 					map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
 					saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 							.toString();
+					tradeLicense.setTcpSaveTransactionNumber(saveTransaction);
 
 					/****************
 					 * End Here

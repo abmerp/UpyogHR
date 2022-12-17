@@ -207,6 +207,18 @@ public class  TradeLicense   {
         @SafeHtml
         @JsonProperty("fileStoreId")
         private String fileStoreId = null;
+        
+        @JsonProperty("tcpDairyNumber")
+        private String tcpDairyNumber;
+        
+        @JsonProperty("tcpCaseNumber")
+        private String tcpCaseNumber;
+        
+        @JsonProperty("tcpApplicationNumber")
+        private String tcpApplicationNumber;
+        
+        @JsonProperty("tcpSaveTransactionNumber")
+        private String tcpSaveTransactionNumber;
 
 }
 

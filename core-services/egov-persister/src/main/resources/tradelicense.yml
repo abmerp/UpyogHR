@@ -332,7 +332,7 @@ serviceMaps:
          jsonMaps:
           - jsonPath: $.Licenses.*.id
 
-       - query: UPDATE eg_tl_tradelicense SET tradeName = ?,licenseNumber = ?,licensetype = ?, oldlicensenumber = ?, propertyid = ?, oldpropertyid = ?, applicationdate = ?, commencementdate = ?, issueddate = ?, financialyear = ?, validfrom = ?, validto = ?, action = ?, status = ?,  lastmodifiedby = ?,  lastmodifiedtime = ?, tcptransactionnumber = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ? WHERE id=?;
+       - query: UPDATE eg_tl_tradelicense SET tradeName = ?,licenseNumber = ?,licensetype = ?, oldlicensenumber = ?, propertyid = ?, oldpropertyid = ?, applicationdate = ?, commencementdate = ?, issueddate = ?, financialyear = ?, validfrom = ?, validto = ?, action = ?, status = ?, tcptransactionnumber = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?, lastmodifiedby = ?,  lastmodifiedtime = ?  WHERE id=?;
          basePath: Licenses.*
          jsonMaps:
           - jsonPath: $.Licenses.*.tradeName
@@ -362,12 +362,6 @@ serviceMaps:
           - jsonPath: $.Licenses.*.action
 
           - jsonPath: $.Licenses.*.status
-
-          - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
-
-          - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
-
-          - jsonPath: $.Licenses.*.id
           
           - jsonPath: $.Licenses.*.tcptransactionnumber 
            
@@ -378,6 +372,14 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tcpapplicationnumber 
               
           - jsonPath: $.Licenses.*.tcploinumber 
+
+          - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
+
+          - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
+
+          - jsonPath: $.Licenses.*.id
+          
+
 
 
        - query: INSERT INTO eg_tl_tradelicensedetail_audit SELECT * FROM eg_tl_tradelicensedetail WHERE id = ?;
