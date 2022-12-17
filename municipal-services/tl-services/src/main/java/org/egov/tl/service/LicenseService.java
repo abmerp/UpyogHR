@@ -178,6 +178,7 @@ public class LicenseService {
 			tradeLicenseDetail.getOwners();
 			tradeLicenseDetail.getVerificationDocuments();
 			tradeLicenseDetail.setTradeType("NewTL");
+			tradeLicenseDetail.setCurrentVersion(newServiceIn.getCurrentVersion());
 
 		
 			String data = mapper.writeValueAsString(newServiceInfoDatas);
@@ -318,9 +319,7 @@ public class LicenseService {
 					 * Dairy Number End Here
 					 ***********/
 					LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
-							.mDMSCallPurposeCode(info,tradeLicense.getTenantId(),
-									tradeLicense.getTradeLicenseDetail().getAdditionalDetail()
-											.get(0).get("ApplicantPurpose").get("purpose").asText());
+							.mDMSCallPurposeCode(info,tradeLicense.getTenantId(),newobj.getApplicantPurpose().getPurpose());
 					System.out.println(mDMSCallPurposeId);
 					Map<String, List<String>> mdmsData;
 					mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
@@ -338,15 +337,11 @@ public class LicenseService {
 
 					Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-					mapDNo.put("Village", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("ApplicantInfo").get("village"));
-					System.out.println(mapDNo);
+					mapDNo.put("Village", newobj.getApplicantInfo().getVillage());					
 					mapDNo.put("DiaryDate", date);
 					mapDNo.put("ReceivedFrom", "");
 					mapDNo.put("UserId", "1234");
-					mapDNo.put("DistrictCode", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("ApplicantPurpose").get("district"));
-					System.out.println(mapDNo);
+					mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());					
 					mapDNo.put("UserLoginId", "39");
 					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 							.toString();
@@ -360,19 +355,10 @@ public class LicenseService {
 					mapCNO.put("DiaryDate", date);
 					mapCNO.put("DeveloperId", 2);
 					mapCNO.put("PurposeId", purposeId);
-					mapCNO.put("StartDate", date);
-					// mapCNO.put("DistrictCode", "0618");
-					mapCNO.put("DistrictCode", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("ApplicantPurpose").get("district"));
-
-					// mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
-					mapCNO.put("Village", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("ApplicantInfo").get("village"));
-
-					// mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
-					mapCNO.put("ChallanAmount", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("FeesAndCharges").get("payableNow"));
-					// mapCNO.put("ChallanAmount", "12.5");
+					mapCNO.put("StartDate", date);					
+					mapCNO.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
+					mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
+					mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());		
 					mapCNO.put("UserId", "2");
 					mapCNO.put("UserLoginId", "39");
 					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
@@ -385,13 +371,9 @@ public class LicenseService {
 					Map<String, Object> mapANo = new HashMap<String, Object>();
 					mapANo.put("DiaryNo", dairyNumber);
 					mapANo.put("DiaryDate", date);
-					// mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
-					mapANo.put("TotalArea", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("FeesAndCharges").get("totalArea"));
-					mapANo.put("Village", tradeLicense.getTradeLicenseDetail().getAdditionalDetail().get(0)
-							.get("ApplicantInfo").get("village"));
+					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());					
+					mapANo.put("Village", newobj.getApplicantInfo().getVillage());
 					mapANo.put("PurposeId", purposeId);
-					// mapANo.put("PurposeId", "2");
 					mapANo.put("NameofOwner", 12.5);
 					mapANo.put("DateOfHearing", date);
 					mapANo.put("DateForFilingOfReply", date);
