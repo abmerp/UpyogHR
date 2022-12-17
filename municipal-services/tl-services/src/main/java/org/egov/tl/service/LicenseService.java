@@ -422,6 +422,7 @@ public class LicenseService {
 					 ***********/
 					tradeLicense.setAction("PAID");
 					tradeLicense.setWorkflowCode("NewTL");
+					tradeLicense.setAssignee(Arrays. asList("3d331be4-c5c2-46ec-9d27-e4f9bd916ba5"));
 					
 					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 					
