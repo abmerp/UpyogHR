@@ -2,7 +2,9 @@ package org.egov.tl.web.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.egov.pg.models.Transaction;
+
+import org.egov.common.contract.response.ResponseInfo;
+
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
