@@ -24,6 +24,7 @@ import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TLConstants;
 import org.egov.tl.validator.LandMDMSValidator;
+import org.egov.tl.web.models.Transaction;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
@@ -273,7 +274,7 @@ public class LicenseService {
 		return this.newServiceInfoRepo.getApplicantsNumber();
 	}
 
-	public LicenseServiceResponseInfo postTransactionDeatil(Map<String, String> requestParam, RequestInfo info) {
+	public List<Transaction> postTransactionDeatil(Map<String, String> requestParam, RequestInfo info) {
 		String applicationNumber = requestParam.get("ApplicationNumber");
 		String dairyNumber;
 		String caseNumber;

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.egov.common.contract.response.ResponseInfo;
 import org.egov.tl.service.LicenseService;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.ResponseInfoFactory;
@@ -16,6 +17,9 @@ import org.egov.tl.web.models.LicenseServiceRequest;
 
 import org.egov.tl.web.models.LicenseServiceResponse;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.egov.tl.web.models.RequestInfoWrapper;
+import org.egov.tl.web.models.Transaction;
+import org.egov.tl.web.models.TransactionResponse;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -166,9 +171,17 @@ public class LicenseServiceController {
 		System.out.println("fnal json string ======> " + json);
 		return json;
 	}
-
+	@RequestMapping(value = "/transaction/v1/_update", method = {RequestMethod.POST, RequestMethod.GET})
+    public ResponseEntity<TransactionResponse> transactionsV1UpdatePost(@RequestBody RequestInfoWrapper
+                                                                                requestInfoWrapper, @RequestParam
+                                                                                Map<String,
+                                                                                        String> params) {
+        List<Transaction> transactions = newServiceInfoService.postTransactionDeatil( params,requestInfoWrapper.getRequestInfo());
+        ResponseInfo responseInfo = ResponseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper
+                .getRequestInfo(), true);
+        TransactionResponse response = new TransactionResponse(responseInfo, transactions);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 	/* FLAT JSON CODE END */
-	
-	
 
 }
