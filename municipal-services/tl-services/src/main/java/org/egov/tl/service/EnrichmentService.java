@@ -363,7 +363,7 @@ public class EnrichmentService {
 					&& (tradeLicense.getStatus().equalsIgnoreCase(STATUS_INITIATED)))
 					|| workflowService.isStateUpdatable(tradeLicense.getStatus(), businessService)) {
 				tradeLicense.getTradeLicenseDetail().setAuditDetails(auditDetails);
-
+              if(tradeLicense.getTradeLicenseDetail().getOwners()!=null)
 				tradeLicense.getTradeLicenseDetail().getOwners().forEach(owner -> {
 					if (owner.getUuid() == null || owner.getUserActive() == null)
 						owner.setUserActive(true);

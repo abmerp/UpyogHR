@@ -420,8 +420,14 @@ public class LicenseService {
 					/****************
 					 * End Here
 					 ***********/
-					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();				
-					tradeLicenseService.update(new TradeLicenseRequest(), date);
+					tradeLicense.setAction("PAID");
+					tradeLicense.setWorkflowCode("NewTL");
+					
+					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+					
+					tradeLicenseRequests.addLicensesItem(tradeLicense);
+					tradeLicenseRequests.setRequestInfo(info);
+					tradeLicenseService.update(tradeLicenseRequests, "TL");
 					break;
 
 				}

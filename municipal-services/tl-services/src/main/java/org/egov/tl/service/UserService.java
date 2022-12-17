@@ -65,7 +65,7 @@ public class UserService{
 
            /* Set<String> listOfMobileNumbers = getMobileNumbers(tradeLicense.getTradeLicenseDetail().getOwners()
                     ,requestInfo,tradeLicense.getTenantId());*/
-
+           if( tradeLicense.getTradeLicenseDetail().getOwners()!=null)
             tradeLicense.getTradeLicenseDetail().getOwners().forEach(owner ->
             {
                 OwnerInfo ownerInfoBackup=owner;
