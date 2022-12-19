@@ -184,8 +184,7 @@ public class LicenseServiceController {
                                                                                 Map<String,
                                                                                         String> params) {
 		
-		String responses  = rest.postForObject(config.getPgHost().concat(config.getPgPath()), params, String.class);
-		System.out.println("responses"+responses);
+
         List<Transaction> transactions = newServiceInfoService.postTransactionDeatil( params,requestInfoWrapper.getRequestInfo());
         ResponseInfo responseInfo = ResponseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper
                 .getRequestInfo(), true);
