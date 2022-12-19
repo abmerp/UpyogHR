@@ -125,7 +125,7 @@ public class NicGateway implements Gateway {
 		TreeMap<String, String> treeMap = new TreeMap<String, String>();
 		// treeMap.put("ApplicationNumber", ApplicationNumber);
 		treeMap.put("ApplicationNumber", currentStatus.getApplicationNumber());
-
+		treeMap.put("ORDER_ID", currentStatus.getTxnId());
 		try {
 			String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, treeMap);
 			treeMap.put("CHECKSUMHASH", checkSum);
@@ -165,7 +165,7 @@ public class NicGateway implements Gateway {
 	@Override
 	public String transactionIdKeyInResponse() {
 		// TODO Auto-generated method stub
-		return "ApplicationNumber";
+		return "ORDERID";
 	}
 
 	private Transaction transformRawResponse(NicResponse resp, Transaction currentStatus) {
