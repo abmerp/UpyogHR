@@ -172,6 +172,7 @@ public class LicenseService {
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceIn.getTenantId());
 			tradeLicense.setTradeName(newServiceIn.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose());
+			tradeLicense.setAccountId(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 
 //			tradeLicense.setValidFrom();
 //			tradeLicense.setValidTo();
