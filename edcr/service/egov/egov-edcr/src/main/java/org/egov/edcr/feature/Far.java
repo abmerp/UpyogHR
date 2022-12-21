@@ -136,6 +136,11 @@ public class Far extends FeatureProcess {
     private static final BigDecimal ONE = BigDecimal.valueOf(1);
     private static final BigDecimal ONE_POINTTWO = BigDecimal.valueOf(1.2);
     private static final BigDecimal ONE_POINTFIVE = BigDecimal.valueOf(1.5);
+    
+    private static final BigDecimal ONE_POINTFOURFIVE = BigDecimal.valueOf(1.45);
+    private static final BigDecimal ONE_POINTTHREE = BigDecimal.valueOf(1.3);
+    private static final BigDecimal ONE_POINTSIXFIVE = BigDecimal.valueOf(1.65);
+    
     private static final BigDecimal ONE_POINTEIGHT = BigDecimal.valueOf(1.8);
     private static final BigDecimal TWO = BigDecimal.valueOf(2);
     private static final BigDecimal TWO_POINTFIVE = BigDecimal.valueOf(2.5);
@@ -143,7 +148,7 @@ public class Far extends FeatureProcess {
     private static final BigDecimal THREE_POINTTWOFIVE = BigDecimal.valueOf(3.25);
     private static final BigDecimal THREE_POINTFIVE = BigDecimal.valueOf(3.5);
     private static final BigDecimal FIFTEEN = BigDecimal.valueOf(15);
-
+    private static final BigDecimal HUNDERD = BigDecimal.valueOf(100);
     private static final BigDecimal ROAD_WIDTH_TWO_POINTFOUR = BigDecimal.valueOf(2.4);
     private static final BigDecimal ROAD_WIDTH_TWO_POINTFOURFOUR = BigDecimal.valueOf(2.44);
     private static final BigDecimal ROAD_WIDTH_THREE_POINTSIX = BigDecimal.valueOf(3.6);
@@ -975,6 +980,28 @@ public class Far extends FeatureProcess {
                 expectedResult = "<= 3.5";
             }
 
+            //*** Implemementayion for FAR as per Haryana 
+            
+            if (typeOfArea.equalsIgnoreCase(OLD)) {
+                
+
+            }
+
+            if (typeOfArea.equalsIgnoreCase(NEW)) {
+            	
+            	if(pl.getPlot().getArea().compareTo(HUNDERD)<=0) {
+                    isAccepted = far.compareTo(ONE_POINTSIXFIVE) <= 0;
+                    pl.getFarDetails().setPermissableFar(ONE_POINTSIXFIVE.doubleValue());
+                    expectedResult = "<= 1.65";
+                }
+            if(pl.getPlot().getArea().compareTo(HUNDERD)>=0) {
+                isAccepted = far.compareTo(ONE_POINTFOURFIVE) <= 0;
+                pl.getFarDetails().setPermissableFar(ONE_POINTFOURFIVE.doubleValue());
+                expectedResult = "<= 1.45";
+            
+            }
+            }
+            
         }
 
         String occupancyName = occupancyType.getType().getName();
@@ -1178,7 +1205,7 @@ public class Far extends FeatureProcess {
         scrutinyDetail.addColumnHeading(1, RULE_NO);
         scrutinyDetail.addColumnHeading(2, OCCUPANCY);
         scrutinyDetail.addColumnHeading(3, AREA_TYPE);
-        scrutinyDetail.addColumnHeading(4, ROAD_WIDTH);
+     //   scrutinyDetail.addColumnHeading(4, ROAD_WIDTH);
         scrutinyDetail.addColumnHeading(5, PERMISSIBLE);
         scrutinyDetail.addColumnHeading(6, PROVIDED);
         scrutinyDetail.addColumnHeading(7, STATUS);
@@ -1199,6 +1226,8 @@ public class Far extends FeatureProcess {
         pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
     }
 
+    
+    
     private ScrutinyDetail getFarScrutinyDetail(String key) {
         ScrutinyDetail scrutinyDetail = new ScrutinyDetail();
         scrutinyDetail.addColumnHeading(1, RULE_NO);
