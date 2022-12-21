@@ -293,7 +293,7 @@ public class PlanReportService {
             frb.addGlobalFooterVariable(carpetArea, DJCalculation.SUM, reportService.getTotalNumberStyle());
 
             frb.addColumn(floor);
-         //   frb.addColumn(occupancy);
+            frb.addColumn(occupancy);
             frb.addColumn(builtUpArea);
             frb.addColumn(floorArea);
             frb.addColumn(carpetArea);
