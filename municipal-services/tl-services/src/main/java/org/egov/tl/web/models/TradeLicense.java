@@ -142,7 +142,10 @@ public class  TradeLicense   {
 		 * @JsonProperty("oldPropertyId") private String oldPropertyId = null;
 		 */
 
-     
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("accountId")
+        private String accountId = null;     
 
         @Size(max=256)
         @SafeHtml

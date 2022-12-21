@@ -330,6 +330,11 @@ public class TLConfiguration {
     @Value("${egov.download.receipt.link}")
     private String receiptDownloadLink;
 
-
+    @Value("${egov.pg-service.host}")
+    private String pgHost;
+    
+    @Value("${egov.pg-service.path}")
+    private String pgPath;
+    
 
 }

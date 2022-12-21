@@ -19,6 +19,7 @@ import javax.transaction.Transactional;
 import org.apache.commons.beanutils.BeanUtils;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.User;
+import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
@@ -35,6 +36,7 @@ import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -50,10 +52,16 @@ public class LicenseService {
 
 	@Autowired
 	LandUtil landUtil;
-	
+
+	@Autowired
+	RestTemplate rest;
+
+	@Autowired
+	TLConfiguration config;
+
 	@Autowired
 	LandMDMSValidator valid;
-	
+
 	@Autowired
 	private ThirPartyAPiCall thirPartyAPiCall;
 	@Autowired
@@ -65,11 +73,11 @@ public class LicenseService {
 	TradeLicenseService tradeLicenseService;
 	@Autowired
 	ObjectMapper mapper;
+
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
 			throws JsonProcessingException {
 
-	
 		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceIn;
 		List<LicenseDetails> newServiceInfoDatas = null;
@@ -164,7 +172,8 @@ public class LicenseService {
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceIn.getTenantId());
 			tradeLicense.setTradeName(newServiceIn.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose());
-			
+			tradeLicense.setAccountId(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
+
 //			tradeLicense.setValidFrom();
 //			tradeLicense.setValidTo();
 //			tradeLicense.setWfDocuments();
@@ -180,7 +189,6 @@ public class LicenseService {
 			tradeLicenseDetail.setTradeType("NewTL");
 			tradeLicenseDetail.setCurrentVersion(newServiceIn.getCurrentVersion());
 
-		
 			String data = mapper.writeValueAsString(newServiceInfoDatas);
 			JsonNode jsonNode = mapper.readTree(data);
 			tradeLicenseDetail.setAdditionalDetail(jsonNode);
@@ -288,7 +296,7 @@ public class LicenseService {
 		tradeLicenseRequest.setApplicationNumber(applicationNumber);
 		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
 		for (TradeLicense tradeLicense : tradeLicenses) {
-			
+
 			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
 			});
 
@@ -299,8 +307,7 @@ public class LicenseService {
 
 			List<LicenseDetails> newServiceInfoData = null;
 			try {
-				newServiceInfoData = reader
-						.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+				newServiceInfoData = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -319,8 +326,9 @@ public class LicenseService {
 					 * Dairy Number End Here
 					 ***********/
 					LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
-							.mDMSCallPurposeCode(info,tradeLicense.getTenantId(),newobj.getApplicantPurpose().getPurpose());
-					System.out.println(mDMSCallPurposeId);
+							.mDMSCallPurposeCode(info, tradeLicense.getTenantId(),
+									newobj.getApplicantPurpose().getPurpose());
+					
 					Map<String, List<String>> mdmsData;
 					mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
 
@@ -337,16 +345,15 @@ public class LicenseService {
 
 					Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-					mapDNo.put("Village", newobj.getApplicantInfo().getVillage());					
+					mapDNo.put("Village", newobj.getApplicantInfo().getVillage());
 					mapDNo.put("DiaryDate", date);
 					mapDNo.put("ReceivedFrom", "");
 					mapDNo.put("UserId", "1234");
-					mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());					
+					mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
 					mapDNo.put("UserLoginId", "39");
 					dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 							.toString();
 					tradeLicense.setTcpDairyNumber(dairyNumber);
-					
 
 					/****************
 					 * End Here
@@ -357,16 +364,16 @@ public class LicenseService {
 					mapCNO.put("DiaryDate", date);
 					mapCNO.put("DeveloperId", 2);
 					mapCNO.put("PurposeId", purposeId);
-					mapCNO.put("StartDate", date);					
+					mapCNO.put("StartDate", date);
 					mapCNO.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
 					mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
-					mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());		
+					mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 					mapCNO.put("UserId", "2");
 					mapCNO.put("UserLoginId", "39");
 					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
 							.toString();
 					tradeLicense.setTcpCaseNumber(caseNumber);
-					
+
 					/****************
 					 * End Here
 					 ***********/
@@ -374,7 +381,7 @@ public class LicenseService {
 					Map<String, Object> mapANo = new HashMap<String, Object>();
 					mapANo.put("DiaryNo", dairyNumber);
 					mapANo.put("DiaryDate", date);
-					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());					
+					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
 					mapANo.put("Village", newobj.getApplicantInfo().getVillage());
 					mapANo.put("PurposeId", purposeId);
 					mapANo.put("NameofOwner", 12.5);
@@ -420,8 +427,27 @@ public class LicenseService {
 					/****************
 					 * End Here
 					 ***********/
-					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();				
-					tradeLicenseService.update(new TradeLicenseRequest(), date);
+					tradeLicense.setAction("PAID");
+					tradeLicense.setWorkflowCode("NewTL");
+					tradeLicense.setAssignee(Arrays.asList("3d331be4-c5c2-46ec-9d27-e4f9bd916ba5"));
+					
+
+				
+					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+
+					tradeLicenseRequests.addLicensesItem(tradeLicense);
+					tradeLicenseRequests.setRequestInfo(info);
+					tradeLicenseService.update(tradeLicenseRequests, "TL");
+					try {
+					  String payment =
+					  rest.postForObject(config.getPgHost().concat(config.getPgPath()),
+					 requestParam, String.class); 
+					  System.out.println("responses"+payment);
+					}
+					catch(Exception e){
+						
+					}
+					 
 					break;
 
 				}
@@ -430,7 +456,7 @@ public class LicenseService {
 		}
 		return null;
 
-		}
+	}
 
 	public LicenseServiceDao findNewServicesInfoById(Long id) {
 

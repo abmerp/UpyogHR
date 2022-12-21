@@ -44,7 +44,7 @@ public class NicGateway implements Gateway {
 	private String UUrl_Debit;
 	private String UUrl_Status;
 	private String OfficeName;
-	
+
 	private final RestTemplate restTemplate;
 	private ObjectMapper objectMapper;
 	private final boolean ACTIVE;
@@ -63,7 +63,6 @@ public class NicGateway implements Gateway {
 		SchemeName = environment.getRequiredProperty("nic.SchemeName");
 		SchemeCount = environment.getRequiredProperty("nic.SchemeCount");
 		UUrl_Debit = environment.getRequiredProperty("nic.Uurl.debit");
-		
 
 	}
 
@@ -71,14 +70,16 @@ public class NicGateway implements Gateway {
 	public URI generateRedirectURI(Transaction transaction) {
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		String validUpto = df.format(new Date());
-		
-		//todo challan year
+
+		// todo challan year
 		TreeMap<String, String> paramMap = new TreeMap<>();
+
 		paramMap.put("DTO", DTO);
 		paramMap.put("STO", STO);
 		paramMap.put("DDO", DDO);
-		paramMap.put("Deptcode", DeptCode);							
+		paramMap.put("Deptcode", DeptCode);
 		paramMap.put("Applicationnumber", transaction.getConsumerCode());
+		paramMap.put("ORDER_ID", transaction.getTxnId());
 		paramMap.put("Fullname", transaction.getUser().getName());
 		paramMap.put("cityname", transaction.getCityName());
 		paramMap.put("address", transaction.getAddress());
@@ -87,12 +88,12 @@ public class NicGateway implements Gateway {
 		paramMap.put("TotalAmount", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
 		paramMap.put("ChallanYear", "2223");
 		paramMap.put("UURL", transaction.getCallbackUrl());
-		paramMap.put("ptype", transaction.getPtype().equalsIgnoreCase("103")?"M":"N");
+		paramMap.put("ptype", transaction.getPtype().equalsIgnoreCase("103") ? "M" : "N");
 		paramMap.put("bank", transaction.getBank());
 		paramMap.put("remarks", transaction.getRemarks());
-		paramMap.put("securityemail",transaction.getUser().getEmailId());
+		paramMap.put("securityemail", transaction.getUser().getEmailId());
 		paramMap.put("securityphone", transaction.getUser().getMobileNumber());
-		paramMap.put("valid_upto",validUpto);
+		paramMap.put("valid_upto", validUpto);
 		paramMap.put("SCHEMENAME", SchemeName);
 		paramMap.put("SCHEMECOUNT", SchemeCount);
 		paramMap.put("FEEAMOUNT1", Utils.formatAmtAsRupee(transaction.getTxnAmount()));
@@ -119,14 +120,12 @@ public class NicGateway implements Gateway {
 		}
 	}
 
-	
-
 	@Override
 	public Transaction fetchStatus(Transaction currentStatus, Map<String, String> params) {
 		TreeMap<String, String> treeMap = new TreeMap<String, String>();
 		// treeMap.put("ApplicationNumber", ApplicationNumber);
 		treeMap.put("ApplicationNumber", currentStatus.getApplicationNumber());
-
+		treeMap.put("ORDER_ID", currentStatus.getTxnId());
 		try {
 			String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, treeMap);
 			treeMap.put("CHECKSUMHASH", checkSum);
@@ -166,7 +165,7 @@ public class NicGateway implements Gateway {
 	@Override
 	public String transactionIdKeyInResponse() {
 		// TODO Auto-generated method stub
-		return "ApplicationNumber";
+		return "ORDERID";
 	}
 
 	private Transaction transformRawResponse(NicResponse resp, Transaction currentStatus) {
