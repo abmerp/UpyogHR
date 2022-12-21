@@ -155,6 +155,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .id(tradeLicenseDetailId)
                       //  .address(address)
                         .auditDetails(auditdetails)
+                        .currentVersion(rs.getFloat("currentversion"))
                        // .structureType(rs.getString("structureType"))
                       //  .operationalArea(operationalArea)
                       //  .noOfEmployees(noOfEmployees)

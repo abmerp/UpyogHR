@@ -63,56 +63,55 @@
             {
                 "code": "HOME_CITIZEN_INFO_UPDATE_CARD",
                 "name": "Home Citizen Information and Updates card",
-                "enabled": true,
+                "enabled": false,
                 "headerLabel": "CS_COMMON_DASHBOARD_INFO_UPDATES",
-                "sideOption": {
-                    "name": "DASHBOARD_VIEW_ALL_LABEL",
-                    "enabled": true,
+              "sideOption": {
+                "name": "DASHBOARD_VIEW_ALL_LABEL",
+                "enabled": false,
+                "navigationUrl": ""
+              },
+                "props": [
+                  {
+                    "code": "CITIZEN_MY_CITY",
+                    "name": "My City",
+                    "label": "CS_HEADER_MYCITY",
+                    "enabled": false,
                     "navigationUrl": ""
                   },
-                "props": [
-                    {
-                        "code": "CITIZEN_MY_CITY",
-                        "name": "My City",
-                        "label": "CS_HEADER_MYCITY",
-                        "enabled": true,
-                        "navigationUrl": ""
-                    },
-                    {
-                        "code": "CITIZEN_EVENTS",
-                        "name": "Events",
-                        "label": "EVENTS_EVENTS_HEADER",
-                        "enabled": true,
-                        "navigationUrl": "/digit-ui/citizen/engagement/events"
-                    },
-                    {
-                        "code": "CITIZEN_DOCUMENTS",
-                        "name": "Documents",
-                        "label": "CS_COMMON_DOCUMENTS",
-                        "enabled": true,
-                        "navigationUrl": "/digit-ui/citizen/engagement/docs"
-                    },
-                    {
-                        "code": "CITIZEN_SURVEYS",
-                        "name": "Surveys",
-                        "label": "CS_COMMON_SURVEYS",
-                        "enabled": true,
-                        "navigationUrl": "/digit-ui/citizen/engagement/surveys/list"
-                    }
+                  {
+                    "code": "CITIZEN_EVENTS",
+                    "name": "Events",
+                    "label": "EVENTS_EVENTS_HEADER",
+                    "enabled": false,
+                    "navigationUrl": "/digit-ui/citizen/engagement/events"
+                  },
+                  {
+                    "code": "CITIZEN_DOCUMENTS",
+                    "name": "Documents",
+                    "label": "CS_COMMON_DOCUMENTS",
+                    "enabled": false,
+                    "navigationUrl": "/digit-ui/citizen/engagement/docs"
+                  },
+                  {
+                    "code": "CITIZEN_SURVEYS",
+                    "name": "Surveys",
+                    "label": "CS_COMMON_SURVEYS",
+                    "enabled": false,
+                    "navigationUrl": "/digit-ui/citizen/engagement/surveys/list"
+                  }
                 ]
             },
-            "whatsNewSection":
-            {
-                "code": "WHATSNEW",
-                "name": "What's New",
-                "enabled": true,
-                "headerLabel": "DASHBOARD_WHATS_NEW_LABEL",
-                "sideOption": {
-                    "name": "DASHBOARD_VIEW_ALL_LABEL",
-                    "enabled": true,
-                    "navigationUrl": "/digit-ui/citizen/engagement/whats-new"
-                  }
-            },
+          "whatsNewSection": {
+            "code": "WHATSNEW",
+            "name": "What's New",
+            "enabled": false,
+            "headerLabel": "DASHBOARD_WHATS_NEW_LABEL",
+            "sideOption": {
+              "name": "DASHBOARD_VIEW_ALL_LABEL",
+              "enabled": false,
+              "navigationUrl": "/digit-ui/citizen/engagement/whats-new"
+            }
+          },
             "whatsAppBannerDesktop":
             {
                 "code": "WHATSAPP_BANNER_DESKTOP",

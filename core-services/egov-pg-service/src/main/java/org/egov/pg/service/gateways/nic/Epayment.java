@@ -1,6 +1,10 @@
 package org.egov.pg.service.gateways.nic;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.egov.pg.models.Transaction;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +13,18 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Epayment {
-	private String ApplicationNumber;
+	private String applicationNumber;
 	private String GRN;
-	private String Status;
-	private Date Valid_Upto;
-	private String Paymenttype;
-	private String Amount;
+	private String status;
+	private Date validUpto;
+	private String paymentType;
+	private String amount;
 	private String CIN;
-	private String BankCode;
-	private Date Transaction_date;
+	private String bankCode;
+	private Date transactionDate;
+	
+	
+	
+	
 
 }

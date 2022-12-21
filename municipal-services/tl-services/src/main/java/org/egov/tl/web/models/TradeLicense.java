@@ -142,7 +142,10 @@ public class  TradeLicense   {
 		 * @JsonProperty("oldPropertyId") private String oldPropertyId = null;
 		 */
 
-     
+        @Size(max=64)
+        @SafeHtml
+        @JsonProperty("accountId")
+        private String accountId = null;     
 
         @Size(max=256)
         @SafeHtml
@@ -207,6 +210,18 @@ public class  TradeLicense   {
         @SafeHtml
         @JsonProperty("fileStoreId")
         private String fileStoreId = null;
+        
+        @JsonProperty("tcpDairyNumber")
+        private String tcpDairyNumber;
+        
+        @JsonProperty("tcpCaseNumber")
+        private String tcpCaseNumber;
+        
+        @JsonProperty("tcpApplicationNumber")
+        private String tcpApplicationNumber;
+        
+        @JsonProperty("tcpSaveTransactionNumber")
+        private String tcpSaveTransactionNumber;
 
 }
 
