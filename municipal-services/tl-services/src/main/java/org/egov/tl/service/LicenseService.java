@@ -101,7 +101,7 @@ public class LicenseService {
 						e.printStackTrace();
 					}
 					newServiceInfoDatas = newServiceIn.getNewServiceInfoData();
-					float cv = newServiceIn.getCurrentVersion() + 0.1f;
+					float cv = tradeLicense.getTradeLicenseDetail().getCurrentVersion() + 0.1f;
 
 					for (LicenseDetails newobj : newServiceInfoDatas) {
 
