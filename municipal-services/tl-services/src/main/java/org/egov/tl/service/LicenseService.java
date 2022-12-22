@@ -229,10 +229,12 @@ public class LicenseService {
 			// tradeLicenseService.update(request, TLConstants.businessService_TL);
 			newServiceIn.setApplicationNumber(tradelicenses.get(0).getApplicationNumber());
 			newServiceIn.setApplicationStatus(tradeLicense.getStatus());
+			//objLicenseServiceRequestInfo.setApplication_Status();
 		}
 		// newServiceIn = newServiceInfoRepo.save(newServiceIn);
 		try {
 			BeanUtils.copyProperties(objLicenseServiceRequestInfo, newServiceIn);
+			
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -324,7 +326,7 @@ public class LicenseService {
 				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 					licenseDetails.add(newobj);
 					licenseServiceResponseInfo.setNewServiceInfoData(licenseDetails);
-					licenseServiceResponseInfo.setApplication_Status(tradeLicense.getStatus());
+					licenseServiceResponseInfo.setApplicationStatus(tradeLicense.getStatus());
 					licenseServiceResponseInfo.setApplicationNumber(applicationNumber);
 					licenseServiceResponseInfo.setBusinessService(tradeLicense.getBusinessService());
 					licenseServiceResponseInfo.setCaseNumber(tradeLicense.getTcpCaseNumber());

@@ -30,7 +30,7 @@ public class LicenseServiceResponseInfo {
 
 	private Date updatedDate;
 
-	private String application_Status;
+	private String applicationStatus;
 
 	private String applicationNumber;
 	
