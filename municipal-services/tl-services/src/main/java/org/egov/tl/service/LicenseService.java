@@ -143,7 +143,8 @@ public class LicenseService {
 				tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
 				newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 				newServiceIn.setUpdatedDate(new Date());
-				newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
+				newServiceIn.setApplicationStatus(tradeLicense.getStatus());
+				newServiceIn.setApplicationNumber(tradeLicense.getApplicationNumber());
 				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 				newServiceIn.setCurrentVersion(cv);
 				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
@@ -166,9 +167,7 @@ public class LicenseService {
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
 			newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
-			newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
-			newServiceIn.setApplicationNumber(newServiceInfo.getApplicationStatus());
-
+			
 			newServiceInfo.getLicenseDetails().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 			newServiceInfoDatas.add(newServiceInfo.getLicenseDetails());
@@ -195,6 +194,7 @@ public class LicenseService {
 			// tradeLicense.getFileStoreId();
 			tradeLicense.setFinancialYear("2022-23");
 			tradeLicense.setIssuedDate(new Date().getTime());
+			tradeLicense.setStatus("INITIATED");
 			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
@@ -228,7 +228,7 @@ public class LicenseService {
 			request.setLicenses(tradelicenses);
 			// tradeLicenseService.update(request, TLConstants.businessService_TL);
 			newServiceIn.setApplicationNumber(tradelicenses.get(0).getApplicationNumber());
-
+			newServiceIn.setApplicationStatus(tradeLicense.getStatus());
 		}
 		// newServiceIn = newServiceInfoRepo.save(newServiceIn);
 		try {
