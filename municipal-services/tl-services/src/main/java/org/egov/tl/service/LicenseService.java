@@ -95,17 +95,17 @@ public class LicenseService {
 					});
 					//newServiceIn = em.find(LicenseServiceDao.class, newServiceInfo.getId());
 					try {
-						newServiceIn = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+						newServiceInfoDatas = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					newServiceInfoDatas = newServiceIn.getNewServiceInfoData();
+				//	newServiceInfoDatas = newServiceIn.getNewServiceInfoData();
 					float cv = tradeLicense.getTradeLicenseDetail().getCurrentVersion() + 0.1f;
 
 					for (LicenseDetails newobj : newServiceInfoDatas) {
 
-						if (newobj.getVer() == newServiceIn.getCurrentVersion()) {
+						if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
 							switch (newServiceInfo.getPageName()) {
 							case "ApplicantInfo": {
@@ -132,18 +132,18 @@ public class LicenseService {
 							}
 
 							newobj.setVer(cv);
-							newServiceIn.getNewServiceInfoData().add(newobj);
+							//newServiceIn.getNewServiceInfoData().add(newobj);
 							break;
 						}
 					}
 					String data = mapper.writeValueAsString(newServiceInfoDatas);
 					JsonNode jsonNode = mapper.readTree(data);
 					tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
-					newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
+					/*newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 					newServiceIn.setUpdatedDate(new Date());
 					newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
 					newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
-					newServiceIn.setCurrentVersion(cv);
+					newServiceIn.setCurrentVersion(cv);*/
 					tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 					tradeLicense.setAction("INITIATE");
 					tradeLicense.setWorkflowCode("NewTL");
@@ -195,8 +195,8 @@ public class LicenseService {
 			tradeLicense.setIssuedDate(new Date().getTime());
 			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
-			tradeLicense.setTenantId(newServiceIn.getTenantId());
-			tradeLicense.setTradeName(newServiceIn.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose());
+			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
+			tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
 			tradeLicense.setAccountId(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 
 //			tradeLicense.setValidFrom();
