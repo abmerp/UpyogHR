@@ -33,6 +33,32 @@ export const OBPSService = {
       params: {},
       auth: true,
     }),
+    CREATEDeveloper: (details, tenantId) =>
+    Request({
+      url: Urls.obps.createDev,
+      data: details,
+      setTimeParam: false,
+      userService: true,
+      method: "POST",
+      auth: true,
+    }),
+  CREATEAuthuser: (details, tenantId) =>
+    Request({
+      url: Urls.obps.createAuthUser,
+      data: details,
+      setTimeParam: false,
+      userService: true,
+      method: "POST",
+      auth: true,
+    }),
+  GETDEVELOPERData: (devId) =>
+    Request({
+      url: Urls.obps.getDeveloperData,
+      params: { devId },
+      auth: true,
+      userService: true,
+      method: "GET"
+    }),
   NOCSearch: (tenantId, sourceRefId) =>
     Request({
       url: Urls.obps.nocSearch,
@@ -96,8 +122,8 @@ export const OBPSService = {
       url: Urls.obps.bpaRegGetBill,
       useCache: false,
       method: "POST",
-      auth: false,
-      userService: false,
+      auth: true,
+      userService: true,
       params: { tenantId, ...filters },
     })
       .then((d) => {
@@ -295,62 +321,6 @@ export const OBPSService = {
     }
 
 
-    let appBusinessService = [], collectionBillDetails = [], collectionBillArray = [], totalAmount = 0, collectionBillRes = [];
-
-    if (BPA?.businessService === "BPA_LOW") appBusinessService = ["BPA.LOW_RISK_PERMIT_FEE"]
-    else if (BPA?.businessService === "BPA") appBusinessService = ["BPA.NC_APP_FEE", "BPA.NC_SAN_FEE"];
-    else if (BPA?.businessService === "BPA_OC") appBusinessService = ["BPA.NC_OC_APP_FEE", "BPA.NC_OC_SAN_FEE"];
-
-    let fetchBillRes = {};
-
-    if (appBusinessService?.[1]) {
-      fetchBillRes = await Digit.PaymentService.fetchBill(BPA?.tenantId, { consumerCode: BPA?.applicationNo, businessService: appBusinessService[1] });
-    }
-
-    for (let i = 0; i < appBusinessService?.length; i++) {
-      let collectionres = await Digit.PaymentService.recieptSearch(BPA?.tenantId, appBusinessService[i], { consumerCodes: BPA?.applicationNo, isEmployee: true });
-      if (collectionres?.Payments?.length > 0) {
-        collectionres?.Payments?.map(res => {
-          res?.paymentDetails?.map(resData => {
-            if (resData?.businessService == appBusinessService[i]) {
-              collectionBillRes.push(res);
-            }
-          })
-        })
-      }
-      if (collectionres?.Payments?.length > 0) collectionBillDetails.push(...collectionres?.Payments);
-    }
-
-    if (collectionBillRes?.length > 0) {
-      collectionBillRes?.map(ob => {
-        ob?.paymentDetails?.[0]?.bill?.billDetails?.[0]?.billAccountDetails.map((bill, index) => {
-          collectionBillArray.push(
-            { title: `${bill?.taxHeadCode}_DETAILS`, value: "", isSubTitle: true },
-            { title: bill?.taxHeadCode, value: `₹${bill?.amount}` },
-            { title: "BPA_STATUS_LABEL", value: "Paid" }
-          );
-          totalAmount = totalAmount + parseInt(bill?.amount);
-        })
-      })
-    }
-    if (fetchBillRes?.Bill?.length > 0) {
-      collectionBillArray.push(
-        { title: `${fetchBillRes?.Bill?.[0]?.billDetails?.[0]?.billAccountDetails?.[0]?.taxHeadCode}_DETAILS` || `BPA_SANC_FEE_DETAILS`, value: "", isSubTitle: true},
-        { title: `BPA_SANC_FEE_LABEL`, value: `₹${fetchBillRes?.Bill?.[0]?.totalAmount}` },
-        { title: "BPA_STATUS_LABEL", value: "Unpaid" }
-      )
-    }
-    totalAmount > 0 && collectionBillArray.push({ title: "BPA_TOT_AMT_PAID", value: `₹${totalAmount}` });
-    
-    const billDetails = {
-      title: "BPA_FEE_DETAILS_LABEL",
-      isFeeDetails: true,
-      additionalDetails: {
-        inspectionReport:[],
-        values: [...collectionBillArray]
-      }
-    };
-
     BPA?.additionalDetails?.fieldinspection_pending?.forEach(fiData => {
       fiData?.docs?.forEach(fiDoc => {
         if(fileDetails?.data[fiDoc?.fileStoreId]) fiDoc.url = fileDetails?.data[fiDoc?.fileStoreId]?.split(',')[0]
@@ -468,12 +438,9 @@ export const OBPSService = {
       ]
     };
 
-    let envCitizenName = window.location.href.includes("/employee") ? "employee" : "citizen";
-
     if(BPA?.businessService.includes("BPA_OC"))
     {
-      applicationDetailsInfo["values"] = [...applicationDetailsInfo?.values,{ title: "BPA_PERMIT_APP_NUMBER", to:`/digit-ui/${envCitizenName}/obps/bpa/${bpaResponse?.BPA?.[0]?.applicationNo}`, value:bpaResponse?.BPA?.[0]?.approvalNo, isLink:true },];
-      applicationDetailsInfo["values"] = [...applicationDetailsInfo?.values,{ title: "BPA_PERMIT_VALIDITY", value: bpaResponse?.BPA?.[0]?.additionalDetails?.validityDate ? `${ConvertEpochToValidityDate(bpaResponse?.BPA?.[0]?.additionalDetails?.validityDate)} - ${format(new Date(bpaResponse?.BPA?.[0]?.additionalDetails?.validityDate), 'dd/MM/yyyy')}` : "NA" },];
+      applicationDetailsInfo["values"] = [...applicationDetailsInfo?.values,{ title: "BPA_PERMIT_APP_NUMBER", to:`/digit-ui/employee/obps/bpa/${bpaResponse?.BPA?.[0]?.applicationNo}`, value:bpaResponse?.BPA?.[0]?.applicationNo, isLink:true },];
     }
 
     let permitcondn = [];
@@ -705,13 +672,9 @@ export const OBPSService = {
     }
 
     if(BPA?.businessService !== "BPA_OC") {
-      details = [...details, applicationDetailsInfo, basicDetails, plotDetails, scrutinyDetails, buildingExtractionDetails, subOccupancyTableDetails, demolitionAreaDetails,addressDetails, ownerDetails, documentDetails, fiReports, ...nocDetails, approvalChecksDetails, PermitConditions]
+      details = [...details, applicationDetailsInfo, basicDetails, plotDetails, scrutinyDetails, buildingExtractionDetails, subOccupancyTableDetails, demolitionAreaDetails,addressDetails, ownerDetails, documentDetails, fiReports, ...nocDetails, approvalChecksDetails,PermitConditions]
     } else {
-      details = [...details, applicationDetailsInfo, basicDetails, plotDetails, scrutinyDetails, buildingExtractionDetails, subOccupancyTableDetails, demolitionAreaDetails, documentDetails, fiReports, ...nocDetails, PermitConditions]
-    }
-
-    if (billDetails?.additionalDetails?.values?.length) {
-      details.push(billDetails)
+      details = [...details, applicationDetailsInfo, basicDetails, plotDetails, scrutinyDetails, buildingExtractionDetails, subOccupancyTableDetails, demolitionAreaDetails, documentDetails, fiReports, ...nocDetails,PermitConditions ]
     }
     
 
@@ -727,8 +690,7 @@ export const OBPSService = {
       comparisionReport: comparisionReport?.comparisonDetail,
       businessService: BPA?.businessService,
       applicationNo: BPA?.applicationNo,
-      applicationStatus : BPA?.status,
-      collectionBillDetails: collectionBillDetails
+      applicationStatus : BPA?.status
     }
   }
 }

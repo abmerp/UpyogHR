@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Hamburger from "./Hamburger";
 import { NotificationBell } from "./svgindex";
 
 const TopBar = ({ img, isMobile, logoUrl, onLogout, toggleSidebar, ulb, userDetails, notificationCount, notificationCountLoaded, cityOfCitizenShownBesideLogo, onNotificationIconClick, hideNotificationIconOnSomeUrlsWhenNotLoggedIn }) => {
+  const userInfo = Digit.UserService.getUser();
+
   return (
     <div className="navbar">
       <div className="center-container">
-        {isMobile && <Hamburger handleClick={toggleSidebar} />}
+     
+      {isMobile && <Hamburger handleClick={toggleSidebar} />}
         <img
           className="city"
           id="topbar-logo" 
-          src={img || "https://cdn.jsdelivr.net/npm/@egovernments/digit-ui-css@1.0.7/img/m_seva_white_logo.png"}
-          alt="mSeva"
+          src={"https://filesuploadbucket1aws.s3.amazonaws.com/tcp-haryana/tcp-logo-hr2.png"}
+          height="100px"
+          alt="TCP"
         />
-        <h3>{cityOfCitizenShownBesideLogo}</h3>
         <div className="RightMostTopBarOptions">
-          {!hideNotificationIconOnSomeUrlsWhenNotLoggedIn ? <div className="EventNotificationWrapper" onClick={onNotificationIconClick}>
+        <h3 className="mx-2 fw-bold">{userInfo?.info?.name}</h3>
+          {!hideNotificationIconOnSomeUrlsWhenNotLoggedIn ? <span className="EventNotificationWrapper" onClick={onNotificationIconClick}>
             { notificationCountLoaded && notificationCount ? <span><p>{notificationCount}</p></span> : null }
-            <NotificationBell />
-          </div> : null}
+            <NotificationBell style={{display:"inline-block"}} />
+            
+          </span> : null}
         </div>
       </div>
     </div>

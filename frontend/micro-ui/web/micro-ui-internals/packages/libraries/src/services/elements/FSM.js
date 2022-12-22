@@ -86,14 +86,4 @@ export const FSMService = {
       auth: true,
     });
   },
-  vehicleTripCreate: (details) => {
-    return Request({
-      url: Urls.fsm.vehicleTripCreate,
-      data: details,
-      useCache: false,
-      userService: true,
-      method: "POST",
-      auth: true,
-    });
-  },
 };

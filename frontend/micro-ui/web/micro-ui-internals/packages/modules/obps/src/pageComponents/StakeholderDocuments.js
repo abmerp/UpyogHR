@@ -41,6 +41,7 @@ const StakeholderDocuments = ({ t, config, onSelect, userType, formData, setErro
         filtredBpaDocs?.[0]?.docTypes?.forEach(doc => {
             documentsList.push(doc);
         });
+        console.log("log123",documentsList)
         setBpaTaxDocuments(documentsList);
 
     }, [!isLoading]);
@@ -89,7 +90,6 @@ const StakeholderDocuments = ({ t, config, onSelect, userType, formData, setErro
                     config={config}
                     onSelect={handleSubmit}
                     onSkip={onSkip}
-                    isDisabled={enableSubmit}
                     onAdd={onAdd}
                     cardStyle={{paddingRight:"16px"}}
                 >

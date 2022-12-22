@@ -17,51 +17,105 @@ import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useParams, useHistory, useLocation, Redirect } from "react-router-dom";
 import { stringReplaceAll } from "../bills/routes/bill-details/utils";
-import $ from "jquery";
-import { makePayment } from "./payGov";
-
+import { Form } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 export const SelectPaymentType = (props) => {
   const { state = {} } = useLocation();
   const userInfo = Digit.UserService.getUser();
   const [showToast, setShowToast] = useState(null);
+  const [bankValue, setBankValue] = useState("");
   const { tenantId: __tenantId, authorization, workflow: wrkflow } = Digit.Hooks.useQueryParams();
   const paymentAmount = state?.paymentAmount;
   const { t } = useTranslation();
-  const history = useHistory();
 
+  const history = useHistory();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm({
+    mode: "onChange",
+    reValidateMode: "onChange",
+    shouldFocusError: true,
+  });
   const { pathname, search } = useLocation();
   // const menu = ["AXIS"];
   const { consumerCode, businessService } = useParams();
   const tenantId = state?.tenantId || __tenantId || Digit.ULBService.getCurrentTenantId();
   const stateTenant = Digit.ULBService.getStateId();
-  const { control, handleSubmit } = useForm();
   const { data: menu, isLoading } = Digit.Hooks.useCommonMDMS(stateTenant, "DIGIT-UI", "PaymentGateway");
   const { data: paymentdetails, isLoading: paymentLoading } = Digit.Hooks.useFetchPayment(
     { tenantId: tenantId, consumerCode: wrkflow === "WNS" ? stringReplaceAll(consumerCode, "+", "/") : consumerCode, businessService },
     {}
   );
+  const [selected, setSelected] = React.useState("");
+  const [getRemarks, setRemarks] = React.useState("");
+  const changeSelectOptionHandler = (event) => setSelected(event.target.value);
+
+  const netBanking = [
+    { name: "Choose...", value: "" },
+    { name: "IDBI", value: "0300997" },
+    { name: "PNB", value: "0300999" },
+  ];
+  const onlineNeft = [
+    { name: "Choose...", value: "" },
+    { name: "IDBI", value: "0300997" },
+  ];
+  const offlineChallan = [
+    { name: "Choose...", value: "" },
+    { name: "IDBI", value: "1603" },
+    ,
+    { name: "PNB", value: "1600" },
+    ,
+    { name: "CBI", value: "1604" },
+  ];
+  let type = null;
+  let options = null;
+  if (selected === "101") {
+    type = netBanking;
+  } else if (selected === "102") {
+    type = onlineNeft;
+  } else if (selected === "103") {
+    type = offlineChallan;
+  }
+  if (type) {
+    options = type.map((el, index) => (
+      <option key={`key${index}`} value={el?.value}>
+        {el?.name}
+      </option>
+    ));
+  }
   useEffect(() => {
     if (paymentdetails?.Bill && paymentdetails.Bill.length == 0) {
       setShowToast({ key: true, label: "CS_BILL_NOT_FOUND" });
     }
   }, [paymentdetails]);
+
   useEffect(() => {
     localStorage.setItem("BillPaymentEnabled", "true");
   }, []);
+
   const { name, mobileNumber } = state;
 
   const billDetails = paymentdetails?.Bill ? paymentdetails?.Bill[0] : {};
 
   const onSubmit = async (d) => {
+    console.log("userInfo", userInfo);
+    console.log(d);
     const filterData = {
       Transaction: {
         tenantId: tenantId,
         txnAmount: paymentAmount || billDetails.totalAmount,
+        bank: bankValue,
+        ptype: selected,
+        remarks: getRemarks,
+        address: "haryana",
         module: businessService,
         billId: billDetails.id,
         consumerCode: wrkflow === "WNS" ? stringReplaceAll(consumerCode, "+", "/") : consumerCode,
         productInfo: "Common Payment",
-        gateway: d?.paymentType || "AXIS",
+        gateway: d.paymentType,
         taxAndPayments: [
           {
             billId: billDetails.id,
@@ -86,80 +140,10 @@ export const SelectPaymentType = (props) => {
     try {
       const data = await Digit.PaymentService.createCitizenReciept(tenantId, filterData);
       const redirectUrl = data?.Transaction?.redirectUrl;
-      if (d?.paymentType == "AXIS") {
-        window.location = redirectUrl;
-      } else {
-        // new payment gatewayfor UPYOG pay
-        try {
-
-          const gatewayParam = redirectUrl
-            ?.split("?")
-            ?.slice(1)
-            ?.join("?")
-            ?.split("&")
-            ?.reduce((curr, acc) => {
-              var d = acc.split("=");
-              curr[d[0]] = d[1];
-              return curr;
-            }, {});
-          var newForm = $("<form>", {
-            action: gatewayParam.txURL,
-            method: "POST",
-            target: "_top",
-          });
-          
-          const orderForNDSLPaymentSite = [
-            "checksum",
-            "messageType",
-            "merchantId",
-            "serviceId",
-            "orderId",
-            "customerId",
-            "transactionAmount",
-            "currencyCode",
-            "requestDateTime",
-            "successUrl",
-            "failUrl",
-            "additionalField1",
-            "additionalField2",
-            "additionalField3",
-            "additionalField4",
-            "additionalField5",
-          ];
-
-          // override default date for UPYOG Custom pay
-          gatewayParam["requestDateTime"] = gatewayParam["requestDateTime"]?.split(new Date().getFullYear()).join(`${new Date().getFullYear()} `);
-        
-          gatewayParam["successUrl"]= redirectUrl?.split("successUrl=")?.[1]?.split("eg_pg_txnid=")?.[0]+'eg_pg_txnid=' +gatewayParam?.orderId;
-          gatewayParam["failUrl"]= redirectUrl?.split("failUrl=")?.[1]?.split("eg_pg_txnid=")?.[0]+'eg_pg_txnid=' +gatewayParam?.orderId;
-          // gatewayParam["successUrl"]= data?.Transaction?.callbackUrl;
-          // gatewayParam["failUrl"]= data?.Transaction?.callbackUrl;
-          
-          // var formdata = new FormData();
-          
-          for (var key of orderForNDSLPaymentSite) {
-           
-            // formdata.append(key,gatewayParam[key]);
-           
-            newForm.append(
-              $("<input>", {
-                name: key,
-                value: gatewayParam[key],
-                // type: "hidden",
-              })
-            );
-          }
-          $(document.body).append(newForm);
-          newForm.submit();
-
-        
-          // makePayment(gatewayParam.txURL,formdata);
-
-        } catch (e) {
-          console.log("Error in payment redirect ", e);
-          //window.location = redirectionUrl;
-        }
-      }
+      console.log("data====", data);
+      // window.location.replace(redirectUrl);
+      console.log("redirectUrl", redirectUrl);
+      // window.location = redirectUrl;
     } catch (error) {
       let messageToShow = "CS_PAYMENT_UNKNOWN_ERROR_ON_SERVER";
       if (error.response?.data?.Errors?.[0]) {
@@ -188,18 +172,69 @@ export const SelectPaymentType = (props) => {
         <Card>
           <div className="payment-amount-info" style={{ marginBottom: "26px" }}>
             <CardLabel className="dark">{t("PAYMENT_CS_TOTAL_AMOUNT_DUE")}</CardLabel>
-            <CardSectionHeader> ₹ {paymentAmount || billDetails?.totalAmount}</CardSectionHeader>
+            <CardSectionHeader> ₹ {paymentAmount || Intl?.NumberFormat("en-IN")?.format(billDetails?.totalAmount)}</CardSectionHeader>
           </div>
-          <CardLabel>{t("PAYMENT_CS_SELECT_METHOD")}</CardLabel>
-          {menu?.length && (
-            <Controller
-              name="paymentType"
-              defaultValue={menu[0]}
-              control={control}
-              render={(props) => <RadioButtons selectedOption={props.value} options={menu} onSelect={props.onChange} />}
-            />
-          )}
-          {!showToast && <SubmitBar label={t("PAYMENT_CS_BUTTON_LABEL")} submit={true} />}
+          <Row>
+            <div className="col col-6">
+              <div>
+                <Form.Label>
+                  <h2>Payment mode</h2>
+                </Form.Label>
+                <select className="form-control" onChange={changeSelectOptionHandler} {...register("pmode")}>
+                  <option>Choose...</option>
+                  <option value="101">Net banking/Debit card/Credit card</option>
+                  <option value="102">Online NEFT/RTGS</option>
+                  <option value="103">Offline Challan</option>
+                </select>
+              </div>
+            </div>
+            <div className="col col-6">
+              <div>
+                <Form.Label>
+                  <h2>Payment Aggregator</h2>
+                </Form.Label>
+                <select className="form-control" onChange={(e) => setBankValue(e?.target?.value)} id="submit" {...register("bank")}>
+                  {
+                    /** This is where we have used our options variable */
+                    options
+                  }
+                </select>
+              </div>
+            </div>
+          </Row>
+          <br></br>
+          <div>
+            <CardLabel>{t("PAYMENT_CS_SELECT_METHOD")}</CardLabel>
+            {menu?.length && (
+              <Controller
+                name="paymentType"
+                defaultValue={menu[0]}
+                control={control}
+                render={(props) => <RadioButtons selectedOption={props.value} options={menu} onSelect={props.onChange} />}
+              />
+            )}
+            <div>
+              <div>
+                <label>
+                  <h2>Enter Remarks</h2>
+                </label>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter remarks"
+                {...register("remarks")}
+                onChange={(e) => setRemarks(e?.target?.value)}
+              />
+              {errors?.remarks && errors?.remarks?.message}
+            </div>
+            <div style={{ marginTop: "5px" }}>
+              {/* <Button style={{ textAlign: "right" }}> Generate LOI</Button> */}
+
+              {!showToast && bankValue && selected && <SubmitBar type="submit" label={t("PAYMENT_CS_BUTTON_LABEL")} submit={true} />}
+            </div>
+            {/* )} */}
+          </div>
         </Card>
       </form>
       <InfoBanner label={t("CS_COMMON_INFO")} text={t("CS_PAYMENT_REDIRECT_NOTICE")} />

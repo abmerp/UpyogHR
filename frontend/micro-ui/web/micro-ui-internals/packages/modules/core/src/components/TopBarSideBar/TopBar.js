@@ -75,7 +75,9 @@ const TopBar = ({
   const urlsToDisableNotificationIcon = (pathname) =>
     !!Digit.UserService?.getUser()?.access_token
       ? false
-      : ["/digit-ui/citizen/select-language", "/digit-ui/citizen/select-location"].includes(pathname);
+      : [
+        // "/digit-ui/citizen/select-language", 
+      "/digit-ui/citizen/select-location"].includes(pathname);
 
   if (CITIZEN) {
     return (
@@ -98,7 +100,9 @@ const TopBar = ({
   return (
     <div className="topbar">
       {mobileView ? <Hamburger handleClick={toggleSidebar} color="#9E9E9E" /> : null}
+      
       <img className="city" src={loggedin ? cityDetails?.logoId : stateInfo?.statelogo} />
+     
       <span style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
         {loggedin &&
           (cityDetails?.city?.ulbGrade ? (

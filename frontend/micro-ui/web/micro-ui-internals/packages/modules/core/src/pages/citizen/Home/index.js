@@ -1,10 +1,19 @@
 import {
-    Calender, CardBasedOptions, CaseIcon, ComplaintIcon, DocumentIcon, HomeIcon, Loader, OBPSIcon, PTIcon, StandaloneSearchBar, WhatsNewCard
+  Calender,
+  CardBasedOptions,
+  CaseIcon,
+  ComplaintIcon,
+  DocumentIcon,
+  HomeIcon,
+  Loader,
+  OBPSIcon,
+  PTIcon,
+  StandaloneSearchBar,
+  WhatsNewCard,
 } from "@egovernments/digit-ui-react-components";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
-
 const Home = () => {
   const { t } = useTranslation();
   const history = useHistory();
@@ -26,7 +35,7 @@ const Home = () => {
   });
 
   if (!tenantId) {
-    history.push(`/digit-ui/citizen/select-language`);
+    history.push(`/digit-ui/citizen/select-location`);
   }
 
   const allCitizenServicesProps = {
@@ -42,20 +51,24 @@ const Home = () => {
         onClick: () => history.push("/digit-ui/citizen/pgr-home"),
       },
       {
-        name: t("MODULE_PT"),
+        // name: t("MODULE_PT"),
+        name: "Application for  Electrical Plan",
         Icon: <PTIcon className="fill-path-primary-main" />,
-        onClick: () => history.push("/digit-ui/citizen/pt-home"),
+        onClick: () => history.push("/digit-ui/citizen/obps/electricalPlan"),
+        // onClick: () => history.push("/digit-ui/citizen/pt-home"),
       },
       {
-        name: t("MODULE_TL"),
+        // name: t("MODULE_TL"),
+        name: "Application for  Service Plan",
         Icon: <CaseIcon className="fill-path-primary-main" />,
-        onClick: () => history.push("/digit-ui/citizen/tl-home"),
+        onClick: () => history.push("/digit-ui/citizen/obps/servicePlan"),
+        // onClick: () => history.push("/digit-ui/citizen/tl-home"),
       },
-      // {
-      //     name: t("ACTION_TEST_WATER_AND_SEWERAGE"),
-      //     Icon: <DropIcon/>,
-      //     onClick: () => history.push("/digit-ui/citizen")
-      // },
+      {
+        name: "Licencing Services",
+        Icon: <CaseIcon className="fill-path-primary-main" />,
+        onClick: () => history.push("/digit-ui/citizen/obps/card"),
+      },
       {
         name: t("CS_COMMON_INBOX_BPA"),
         Icon: <OBPSIcon />,
@@ -103,7 +116,8 @@ const Home = () => {
   ) : (
     <div className="HomePageWrapper">
       <div className="BannerWithSearch">
-        <img src={stateInfo?.bannerUrl} />
+        {/* <img src={stateInfo?.bannerUrl} /> */}
+        {/* <img src={"http://filesuploadbucket1aws.s3.amazonaws.com/tcp-haryana/bg-login.jpg"} /> */}
         <div className="Search">
           <StandaloneSearchBar placeholder={t("CS_COMMON_SEARCH_PLACEHOLDER")} />
         </div>

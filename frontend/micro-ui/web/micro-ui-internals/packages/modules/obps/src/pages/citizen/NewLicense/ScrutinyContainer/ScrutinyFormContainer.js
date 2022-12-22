@@ -33,22 +33,31 @@ const ScrutinyFormcontainer = (props) => {
   const FeesChargesFormHandler = (data) => {
     SetFeesChargesForm(false);
   };
+  const [showhide19, setShowhide19] = useState("true");
+  const handleshow19 = (e) => {
+    const getshow = e.target.value;
+    setShowhide19(getshow);
+  };
+  const handleChange = (e) => {
+    this.setState({ isRadioSelected: true });
+  };
+ 
 
   return (
     <Card>
       <Row style={{ top: 25, padding: 5 }}>
         <div className="ml-auto">
-          <h2>Application : 123</h2>
+          <h2>Application : 181</h2>
         </div>
       </Row>
       <Row style={{ top: 30, padding: 10 }}>
         <ScrutitnyForms></ScrutitnyForms>
       </Row>
-      <Row style={{ top: 30, padding: 10 }}>
+      <Row style={{ top: 30, padding: "10px 22px" }}>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Card>
-            <Card.Header style={{ fontSize: "17px", lineHeight: "18px" }}>
-              <Card.Title style={{ fontFamily: "Roboto", fontSize: 20, fontWeight: "bold", textAlign: "center" }}>Summary</Card.Title>
+            <Card.Header style={{ fontSize: "17px", lineHeight: "18px", margin: "0px 15px" }}>
+              <Card.Title className="m-0" style={{ fontFamily: "Roboto", fontSize: 20, fontWeight: "bold", textAlign: "center" }}>Summary</Card.Title>
             </Card.Header>
             <Col xs={12} md={12}>
               <Form.Label style={{ margin: 5 }}></Form.Label>
@@ -80,12 +89,28 @@ const ScrutinyFormcontainer = (props) => {
           <Button style={{ textAlign: "right" }}>Submit</Button>
         </div> */}
         <Row>
-          <div class="col-md-2 bg-light text-right" style={{ position: "relative", marginBottom: 30 }}>
+          <div class="col-md-2 bg-light text-left" style={{ position: "relative", marginBottom: 30 }}>
             <Button style={{ textAlign: "right" }}>Attach Documents</Button>
+           
           </div>
           <div class="col-md-10 bg-light text-right" style={{ position: "relative", marginBottom: 30 }}>
-            <Button style={{ textAlign: "right" }}>Submit</Button>
+          <Button style={{ textAlign: "right" }} value="Submit" id="Submit" onChange1={handleChange} name="Submit" onClick={handleshow19}>Submit</Button>
+            </div>
+          
+        </Row>
+        <Row>
+          
+          <div class="col-md-12 bg-light text-right" style={{ position: "relative", marginBottom: 30 }}>
+          {/* <Button style={{ textAlign: "right" }}> <a href="http://localhost:3000/digit-ui/citizen/obps/Loi" >Generate LOI</a></Button> */}
+          {/* <input type="radio" value="No" id="No" onChange1={handleChange} name="Yes" onClick={handleshow19} /> */}
           </div>
+          {showhide19 === "Submit" && (
+                     <div>
+                       <Button style={{ textAlign: "right" }}> <a href="http://localhost:3000/digit-ui/citizen/obps/Loi" >Generate LOI</a></Button>
+                     </div>
+                        )}
+                        
+                    
         </Row>
       </Row>
     </Card>

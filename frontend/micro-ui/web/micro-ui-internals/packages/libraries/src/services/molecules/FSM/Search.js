@@ -48,7 +48,6 @@ export const Search = {
     let dsoDetails = {};
     let vehicle = {};
     const response = await Search.application(tenantId, filter);
-    let receivedPayment = response?.additionalDetails?.receivedPayment;
     if (response?.dsoId) {
       const dsoFilters = { ids: response.dsoId, vehicleIds: response?.vehicleId };
       [dsoDetails] = await DsoDetails(tenantId, dsoFilters);
@@ -80,7 +79,7 @@ export const Search = {
     const state = Digit.ULBService.getStateId();
     const vehicleMenu = await MdmsService.getVehicleType(state, "Vehicle", "VehicleType");
     const _vehicle = vehicleMenu?.find((vehicle) => response?.vehicleType === vehicle?.code);
-
+    
     const vehicleMake = _vehicle?.i18nKey;
     const vehicleCapacity = _vehicle?.capacity;
 
@@ -182,7 +181,6 @@ export const Search = {
           { title: "ES_APPLICATION_DETAILS_VEHICLE_NO", value: vehicle?.registrationNumber || "N/A" },
           { title: "ES_APPLICATION_DETAILS_VEHICLE_CAPACITY", value: response?.vehicleCapacity || "N/A" },
           { title: "ES_APPLICATION_DETAILS_POSSIBLE_SERVICE_DATE", value: displayServiceDate(response?.possibleServiceDate) || "N/A" },
-          { title: "ES_APPLICATION_DETAILS_AMOUNT_RECEIVED", value: receivedPayment || "N/A" },
         ],
       },
     ];

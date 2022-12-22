@@ -42,7 +42,6 @@ const Urls = {
     vehicleTripSearch: "/vehicle/trip/v1/_search",
     billingSlabSearch: "/fsm-calculator/v1/billingSlab/_search",
     vehilceUpdate: "/vehicle/trip/v1/_update",
-    vehicleTripCreate: "/vehicle/trip/v1/_create",
   },
 
   payment: {
@@ -111,7 +110,9 @@ const Urls = {
     scrutinyDetails: "/edcr/rest/dcr/scrutinydetails",
     comparisionReport: "/edcr/rest/dcr/occomparison",
     create: "/bpa-services/v1/bpa/_create",
+    createDev: "/user/developer/registration",
     nocSearch: "/noc-services/v1/noc/_search",
+    getDeveloperData: "/user/developer/_getDeveloperById",
     updateNOC: "/noc-services/v1/noc/_update",
     update: "/bpa-services/v1/bpa/_update",
     bpaSearch: "/bpa-services/v1/bpa/_search",
@@ -121,6 +122,7 @@ const Urls = {
     bpaRegUpdate: "/tl-services/v1/BPAREG/_update",
     receipt_download: "/egov-pdf/download/PAYMENT/consolidatedreceipt",
     edcrreportdownload: "/bpa-services/v1/bpa/_permitorderedcr",
+    createAuthUser: "/user/users/_createnovalidate",
   },
 
   edcr: {

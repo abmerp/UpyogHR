@@ -17,16 +17,16 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import Collapse from "react-bootstrap/Collapse";
 import ModalChild from "./Remarks/ModalChild";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+import { useStyles } from "./css/personalInfoChild.style";
 
 const Genarelinfo = (props) => {
   const [showhide1, setShowhide1] = useState("No");
   const [uncheckedValue, setUncheckedVlue] = useState([]);
   const [checkValue, setCheckedVAlue] = useState([]);
-  const [smShow, setSmShow] = useState(false);
   // const [fieldValue, setFieldValue] = useState("");
 
   const genarelinfo = props.genarelinfo;
-  const dataIcons = props. dataForIcons;
+  const dataIcons = props.dataForIcons;
 
   const applicantInfoPersonal = props.ApiResponseData;
   console.log("personal info applicant data1", applicantInfoPersonal);
@@ -78,17 +78,10 @@ const Genarelinfo = (props) => {
 
   const [color, setColor] = useState({ yes: false, no: false });
 
-  const [labelValue, setLabelValue] = useState("");
   const [modaldData, setmodaldData] = useState({ label: "", Remarks: "" });
   const [isyesOrNochecked, setYesorNochecked] = useState(true);
 
-  const [fieldValue, setFieldValue] = useState("");
-  // const genarelinfo = props.genarelinfo;
 
-  const handlemodaldData = (data) => {
-    setmodaldData(data.data);
-    setSmShow(false);
-  };
 
   const handleYesOrNochecked = (data) => {
     setYesorNochecked(data.data);
@@ -227,8 +220,110 @@ const Genarelinfo = (props) => {
 
   console.log("color for the deeloper", developerInputFiledColor);
 
+  const classes = useStyles();
+
+  const [smShow, setSmShow] = useState(false);
+  const [labelValue, setLabelValue] = useState("");
+  const Colors = {
+    approved: "#09cb3d",
+    disapproved: "#ff0000",
+    info: "#FFB602"
+  }
+  const [selectedFieldData, setSelectedFieldData] = useState();
+  const [fieldValue, setFieldValue] = useState("");
+  const [openedModal, setOpennedModal] = useState("")
+  const [fieldIconColors, setFieldIconColors] = useState({
+    purpose: Colors.info,
+    potential: Colors.info,
+    district: Colors.info,
+    state: Colors.info,
+    tehsil: Colors.info,
+    revenue: Colors.info,
+    rectangleNo: Colors.info,
+    killa: Colors.info,
+    landOwner: Colors.info,
+    consolidationType: Colors.info,
+    kanal: Colors.info,
+    marla: Colors.info,
+    sarsai: Colors.info,
+    bigha: Colors.info,
+    biswa: Colors.info,
+    biswansi : Colors.info,
+    collabrationAgreement : Colors.info,
+    developerCompany : Colors.info,
+    dateOfRegistering : Colors.info,
+    dateOfValidity : Colors.info,
+    agreementIrrevocialble : Colors.info,
+    nameOfAuthSignatory : Colors.info,
+    nameOfAuthSignatoryDeveloper : Colors.info,
+    registeringAuthority : Colors.info,
+  })
+
+  const fieldIdList = [{ label: "Purpose Of License", key: "purpose" }, { label: "Potential Zone", key: "potential" }, { label: "District", key: "district" }, { label: "State", key: "state" }, { label: "Tehsil", key: "tehsil" }, { label: "Revenue estate", key: "revenue" }, { label: "Rectangle No.", key: "rectangleNo" }, { label: "Killa", key: "killa" }, { label: "Land Owner", key: "landOwner" }, { label: "Consolidation Type", key: "consolidationType" }, { label: "Kanal", key: "kanal" }, { label: "Marla", key: "marla" }, { label: "Sarsai", key: "sarsai" }, { label: "Bigha", key: "bigha" }, { label: "Biswa", key: "biswa" }, { label: "Biswansi", key: "biswansi" }, { label: "Collaboration Agreement", key: "collabrationAgreement" }, { label: "Developer Company", key: "developerCompany" }, { label: "Date of Registering", key: "dateOfRegistering" }, { label: "Date of Validity", key: "dateOfValidity" }, { label: "Collaboration Agreement Irrevociable", key: "agreementIrrevocialble" }, { label: "Name of Authorized Signatory Developer", key: "nameOfAuthSignatory" }, { label: "Name of Authorized Signatory Developer", key: "nameOfAuthSignatoryDeveloper" }, { label: "Registering Authority", key: "registeringAuthority" }];
+
+
+  const getColorofFieldIcon = () => {
+    let tempFieldColorState = fieldIconColors;
+    fieldIdList.forEach((item) => {
+      if (dataIcons !== null && dataIcons !== undefined) {
+        console.log("color method called");
+        const fieldPresent = dataIcons?.egScrutiny?.filter(ele => (ele.fieldIdL === item.label));
+        console.log("filteration value111", fieldPresent, fieldPresent[0]?.isApproved);
+        if (fieldPresent && fieldPresent.length) {
+          console.log("filteration value111", fieldPresent, fieldPresent[0]?.isApproved);
+          tempFieldColorState = { ...tempFieldColorState, [item.key]: fieldPresent[0].isApproved ? Colors.approved : Colors.disapproved }
+
+        }
+      }
+    })
+
+    setFieldIconColors(tempFieldColorState);
+
+  };
+
+
+  useEffect(() => {
+    getColorofFieldIcon();
+    console.log("repeating1...",)
+  }, [dataIcons])
+
+  useEffect(() => {
+    if (labelValue) {
+      const fieldPresent = dataIcons?.egScrutiny?.filter(ele => (ele.fieldIdL === labelValue));
+      setSelectedFieldData(fieldPresent[0]);
+    } else {
+      setSelectedFieldData(null);
+    }
+  }, [labelValue])
+
+
+
+  const currentRemarks = (data) => {
+    props.showTable({ data: data.data });
+  };
+
+  const handlemodaldData = (data) => {
+    // setmodaldData(data.data);
+    setSmShow(false);
+    console.log("here", openedModal, data);
+    if (openedModal && data) {
+      setFieldIconColors({ ...fieldIconColors, [openedModal]: data.data.isApproved ? Colors.approved : Colors.disapproved })
+    }
+    setOpennedModal("");
+    setLabelValue("");
+  };
+
   return (
     <Form ref={props.generalInfoRef}>
+      <ModalChild
+        labelmodal={labelValue}
+        passmodalData={handlemodaldData}
+        displaymodal={smShow}
+        onClose={() => setSmShow(false)}
+        selectedFieldData={selectedFieldData}
+        fieldValue={fieldValue}
+        remarksUpdate={currentRemarks}
+      ></ModalChild>
       <div
         className="collapse-header"
         onClick={() => setOpen2(!open2)}
@@ -253,21 +348,21 @@ const Genarelinfo = (props) => {
       </div>
       <Collapse in={open2}>
         <div id="example-collapse-text">
-          <Form.Group className="justify-content-center" controlId="formBasicEmail" style={{ border: "2px solid #e9ecef", margin: 10, padding: 10 }}>
+          <Form.Group className="justify-content-center" controlId="formBasicEmail" style={{ border: "2px solid #e9ecef", margin: 10, padding: 20 }}>
             <Row className="ml-auto" style={{ marginBottom: 5 }}>
               <Col md={4} xxl lg="3">
                 <Form.Label>
                   {/* <b></b>  */}
-                  <h5>
-                    Purpose Of License &nbsp; <span style={{ color: "red" }}>*</span>
+                  <h5 className={classes.formLabel}>
+                    Purpose Of License  <span style={{ color: "red" }}>*</span>
                   </h5>
                 </Form.Label>
 
-                <div style={{ display: "flex" }}>
+                <div className="d-flex flex-row  align-items-center">
                   <Form.Control
                     type="text"
-                    placeholder={Genarelinfo !== null ? Genarelinfo.purposeDd : null}
-                    onChange={handleChangesetPurpose}
+                    placeholder={applicantInfoPersonal !== null ? applicantInfoPersonal?.purpose : null}
+                    // onChange={handleChangesetPurpose}
                     height={30}
                     style={{ maxWidth: 200, marginRight: 5 }}
                     disabled
@@ -287,18 +382,14 @@ const Genarelinfo = (props) => {
                   </Form.Control>
                   <ReportProblemIcon
                     style={{
-                      color:
-                        developerInputFiledColor.length > 0
-                          ? developerInputFiledColor[0].color.data
-                          : developerInputCheckedFiledColor.length > 0
-                          ? developerInputCheckedFiledColor[0].color.data
-                          : "#FFB602",
+                      color: fieldIconColors.purpose
                     }}
                     onClick={() => {
+                      setOpennedModal("purpose")
                       setLabelValue("Purpose Of License"),
                         setSmShow(true),
                         console.log("modal open"),
-                        setFieldValue(Genarelinfo !== null ? Genarelinfo.purposeDd : null);
+                        setFieldValue(applicantInfoPersonal !== null ? applicantInfoPersonal?.purpose : null);
                     }}
                   ></ReportProblemIcon>
                   {/* <ModalChild
@@ -307,7 +398,7 @@ const Genarelinfo = (props) => {
                     isYesorNoChecked={handleYesOrNochecked}
                     displaymodal={smShow}
                   ></ModalChild> */}
-                  <ModalChild
+                  {/* <ModalChild
                     labelmodal={labelValue}
                     passmodalData={handlemodaldData}
                     isYesorNoChecked={handleYesOrNochecked}
@@ -315,22 +406,22 @@ const Genarelinfo = (props) => {
                     setColor={setColor}
                     // fieldValue={labelValue}
                     fieldValue={fieldValue}
-                    // remarksUpdate={currentRemarks}
-                  ></ModalChild>
+                  // remarksUpdate={currentRemarks}
+                  ></ModalChild> */}
                 </div>
               </Col>
               <div className="col col-3">
                 <label htmlFor="potential">
-                  <h5>
-                    Potential Zone:&nbsp;<span style={{ color: "red" }}>*</span>
+                  <h5 className={classes.formLabel}>
+                    Potential Zone:<span style={{ color: "red" }}>*</span>
                   </h5>
                 </label>
-                &nbsp;&nbsp; &nbsp;&nbsp;
-                <div style={{ display: "flex" }}>
+                  
+                <div className="d-flex flex-row  align-items-center">
                   <Form.Control
                     height={30}
                     style={{ maxWidth: 200, marginRight: 5 }}
-                    placeholder={Genarelinfo !== null ? Genarelinfo.potential : null}
+                    placeholder={applicantInfoPersonal !== null ? applicantInfoPersonal?.potential : null}
                     className="form-control"
                     id="potential"
                     name="potential"
@@ -347,18 +438,14 @@ const Genarelinfo = (props) => {
                   {/* <Form.Control height={30} style={{ maxWidth: 200, marginRight: 5 }} readOnly></Form.Control> */}
                   <ReportProblemIcon
                     style={{
-                      color:
-                        developerInputFiledColor1.length > 0
-                          ? developerInputFiledColor1[0].color.data
-                          : developerInputCheckedFiledColor1.length > 0
-                          ? developerInputCheckedFiledColor1[0].color.data
-                          : "#FFB602",
+                      color: fieldIconColors.potential
                     }}
                     onClick={() => {
                       setLabelValue("Potential Zone"),
+                      setOpennedModal("potential")
                         setSmShow(true),
                         console.log("modal open"),
-                        setFieldValue(Genarelinfo !== null ? Genarelinfo.potential : null);
+                        setFieldValue(applicantInfoPersonal !== null ? applicantInfoPersonal?.potential : null);
                     }}
                   ></ReportProblemIcon>
                 </div>
@@ -366,37 +453,33 @@ const Genarelinfo = (props) => {
               <Col md={4} xxl lg="3">
                 <div>
                   <Form.Label>
-                    <h5>
-                      District: &nbsp; <span style={{ color: "red" }}>*</span>
+                    <h5 className={classes.formLabel}>
+                      District:  <span style={{ color: "red" }}>*</span>
                     </h5>
                     {/* <span style={{ color: "red" }}>*</span> */}
                   </Form.Label>
-                  &nbsp;&nbsp;
+                  
                 </div>
                 <div>
-                  <div style={{ display: "flex" }}>
+                  <div className="d-flex flex-row  align-items-center">
                     <Form.Control
                       height={30}
                       style={{ maxWidth: 200, marginRight: 5 }}
-                      placeholder={Genarelinfo !== null ? Genarelinfo.district : null}
+                      placeholder={applicantInfoPersonal !== null ? applicantInfoPersonal?.district : null}
                       disabled
                     >
                       {/* <option value="1">no district</option> */}
                     </Form.Control>
                     <ReportProblemIcon
                       style={{
-                        color:
-                          developerInputFiledColor2.length > 0
-                            ? developerInputFiledColor2[0].color.data
-                            : developerInputCheckedFiledColor2.length > 0
-                            ? developerInputCheckedFiledColor2[0].color.data
-                            : "#FFB602",
+                        color: fieldIconColors.district
                       }}
                       onClick={() => {
-                        setLabelValue("district"),
+                        setLabelValue("District"),
+                        setOpennedModal("district")
                           setSmShow(true),
                           console.log("modal open"),
-                          setFieldValue(Genarelinfo !== null ? Genarelinfo.district : null);
+                          setFieldValue(applicantInfoPersonal !== null ? applicantInfoPersonal?.district : null);
                       }}
                     ></ReportProblemIcon>
                   </div>
@@ -405,35 +488,31 @@ const Genarelinfo = (props) => {
               <Col md={4} xxl lg="3">
                 <div>
                   <Form.Label>
-                    <h5>
-                      State &nbsp; <span style={{ color: "red" }}>*</span>
+                    <h5 className={classes.formLabel}>
+                      State  <span style={{ color: "red" }}>*</span>
                     </h5>
                     {/* <span style={{ color: "red" }}>*</span> */}
                   </Form.Label>
-                  &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                      
                 </div>
                 <div>
-                  <div style={{ display: "flex" }}>
+                  <div className="d-flex flex-row  align-items-center">
                     <Form.Control
                       height={30}
                       style={{ maxWidth: 200, marginRight: 5 }}
-                      placeholder={Genarelinfo !== null ? Genarelinfo.state : null}
+                      placeholder={applicantInfoPersonal !== null ? applicantInfoPersonal?.state : null}
                       disabled
                     ></Form.Control>
                     <ReportProblemIcon
                       style={{
-                        color:
-                          developerInputFiledColor3.length > 0
-                            ? developerInputFiledColor3[0].color.data
-                            : developerInputCheckedFiledColor3.length > 0
-                            ? developerInputCheckedFiledColor3[0].color.data
-                            : "#FFB602",
+                        color: fieldIconColors.state
                       }}
                       onClick={() => {
                         setLabelValue("State"),
+                        setOpennedModal("state")
                           setSmShow(true),
                           console.log("modal open"),
-                          setFieldValue(Genarelinfo !== null ? Genarelinfo.state : null);
+                          setFieldValue(applicantInfoPersonal !== null ? applicantInfoPersonal?.state : null);
                       }}
                     ></ReportProblemIcon>
                   </div>
@@ -445,252 +524,437 @@ const Genarelinfo = (props) => {
         <div id="example-collapse-text"> */}
             <div className="ml-auto" style={{ marginTop: 20 }}>
               <h2 style={{ fontSize: 24 }}>2. Details of applied land:</h2>
-              <p>
+              <p className="ml-3 mt-1">
                 Note: The term “Collaboration agreement" shall include all Development agreements/ Joint Venture agreements/ Joint Development
                 agreements/ Memorandum of Understanding etc. and similar agreements registered with competent authority.
               </p>
-              <p>
-                <b>(i) Khasra-wise information to be provided in the following format:</b>&nbsp;&nbsp;
+              <p className="ml-3 mt-1">
+                <b>(i) Khasra-wise information to be provided in the following format:</b> 
               </p>
             </div>
-            {/* <div className="ml-auto"></div> */}
             <br></br>
 
-            <div>
+            <div style={{overflow:"scroll"}}>
               <table className="table table-bordered">
                 <thead>
-                  <tr>
-                    <th class="fw-normal">
-                      Tehsil
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor4.length > 0
-                                ? developerInputFiledColor4[0].color.data
-                                : developerInputCheckedFiledColor4.length > 0
-                                ? developerInputCheckedFiledColor4[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Tehsil"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                  
+                  <tr className="border-bottom-0">
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Tehsil    
                     </th>
-                    <th class="fw-normal">
-                      Revenue estate
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor5.length > 0
-                                ? developerInputFiledColor5[0].color.data
-                                : developerInputCheckedFiledColor5.length > 0
-                                ? developerInputCheckedFiledColor5[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Revenue estate"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Revenue estate    
                     </th>
-                    <th class="fw-normal">
-                      Rectangle No.
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor6.length > 0
-                                ? developerInputFiledColor6[0].color.data
-                                : developerInputCheckedFiledColor6.length > 0
-                                ? developerInputCheckedFiledColor6[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Rectangle No."), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Rectangle No.  
                     </th>
-                    <th class="fw-normal">
-                      Killa
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor7.length > 0
-                                ? developerInputFiledColor7[0].color.data
-                                : developerInputCheckedFiledColor7.length > 0
-                                ? developerInputCheckedFiledColor7[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Killa"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Land owner 
                     </th>
-                    <th class="fw-normal">
-                      Land owner
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor8.length > 0
-                                ? developerInputFiledColor8[0].color.data
-                                : developerInputCheckedFiledColor8.length > 0
-                                ? developerInputCheckedFiledColor8[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Land owner"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Consolidation Type  
                     </th>
-                    <th class="fw-normal">
-                      Consolidation Type{" "}
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor10.length > 0
-                                ? developerInputFiledColor10[0].color.data
-                                : developerInputCheckedFiledColor10.length > 0
-                                ? developerInputCheckedFiledColor10[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Consolidation Type"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Kanal 
                     </th>
-                    <th class="fw-normal">
-                      Kanal/Bigha{" "}
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor11.length > 0
-                                ? developerInputFiledColor11[0].color.data
-                                : developerInputCheckedFiledColor11.length > 0
-                                ? developerInputCheckedFiledColor11[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Kanal/Bigha"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Marla  
                     </th>
-                    <th class="fw-normal">
-                      Marla/Biswa{" "}
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor12.length > 0
-                                ? developerInputFiledColor12[0].color.data
-                                : developerInputCheckedFiledColor12.length > 0
-                                ? developerInputCheckedFiledColor12[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Marla/Biswa"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Sarsai
+                    </th>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Bigha 
+                    </th>
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Biswa 
                     </th>
 
-                    {/* <th>Sarsai</th>
-                <th>Bigha</th>
-                <th>Biswa</th>
-                <th>Biswansi</th>
-                <th>Area &nbsp;&nbsp;</th> */}
-                    <th class="fw-normal">
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                      Biswansi 
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Collaboration Agreement
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Developer Company
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Date of Registering
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Date of Validity
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Collaboration Agreement Irrevociable
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Name of Authorized Signatory
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Name of Authorized Signatory Developer
+                    </th>
+
+                    <th class="fw-normal pb-0 border-bottom-0 align-top">
+                        Registering Authority
+                    </th>
+
+                  </tr>
+                  <tr className="border-top-0">
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.tehsil
+                        }}
+                        onClick={() => {
+                          setLabelValue("Tehsil"),
+                          setOpennedModal("tehsil")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.tehsil : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.revenue
+                        }}
+                        onClick={() => {
+                          setLabelValue("Revenue estate"),
+                          setOpennedModal("revenue")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.revenueEstate : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.rectangleNo
+                        }}
+                        onClick={() => {
+                          setLabelValue("Rectangle No."),
+                          setOpennedModal("rectangeNo")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.rectangleNo : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.landOwner
+                        }}
+                        onClick={() => {
+                          setLabelValue("Land owner"),
+                          setOpennedModal("landOwner")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.landOwner : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.consolidationType
+                        }}
+                        onClick={() => {
+                          setLabelValue("Consolidation Type"),
+                          setOpennedModal("consolidationType")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.consolidationType : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.kanal
+                        }}
+                        onClick={() => {
+                          setLabelValue("Kanal"),
+                          setOpennedModal("kanal")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.kanal : null);
+                        }}
+                      ></ReportProblemIcon>
+                      {/* </div> */}
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.marla
+                        }}
+                        onClick={() => {
+                          setLabelValue("Marla"),
+                          setOpennedModal("marla")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.marla : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.sarsai
+                        }}
+                        onClick={() => {
+                          setLabelValue("Sarsai"),
+                          setOpennedModal("sarsai")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.sarsai : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {/* <div className="d-flex flex-row  align-items-center"> */}
+                      {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.bigha
+                        }}
+                        onClick={() => {
+                          setLabelValue("Bigha"),
+                          setOpennedModal("bigha")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.bigha : null);
+                        }}
+                      ></ReportProblemIcon>
+                      {/* </div> */}
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.biswa
+                        }}
+                        onClick={() => {
+                          setLabelValue("Biswa"),
+                          setOpennedModal("biswa")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.biswa : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.biswansi
+                        }}
+                        onClick={() => {
+                          setLabelValue("Biswansi"),
+                          setOpennedModal("biswansi")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.biswansi : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
                       {" "}
-                      {/* <h6 data-toggle="tooltip" data-placement="top" title="Whether collaboration agreement entered for the Khasra?(yes/no)"> */}
-                      Khewat
-                      <div style={{ display: "flex" }}>
-                        {/* <Form.Control height={30} style={{ maxWidth: 120, marginRight: 5 }} disabled></Form.Control> */}
-                        <ReportProblemIcon
-                          style={{
-                            color:
-                              developerInputFiledColor13.length > 0
-                                ? developerInputFiledColor13[0].color.data
-                                : developerInputCheckedFiledColor13.length > 0
-                                ? developerInputCheckedFiledColor13[0].color.data
-                                : "#FFB602",
-                          }}
-                          onClick={() => {
-                            setLabelValue("Khewat"), setSmShow(true), console.log("modal open");
-                          }}
-                        ></ReportProblemIcon>
-                      </div>
-                      {/* <InfoIcon style={{color:"blue"}}/>  */}
-                      &nbsp;&nbsp;
-                      {/* </h6> */}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.collabrationAgreement
+                        }}
+                        onClick={() => {
+                          setLabelValue("Collabration Agreement"),
+                          setOpennedModal("collabrationAgreement")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.collaboration : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.developerCompany
+                        }}
+                        onClick={() => {
+                          setLabelValue("Developer Company"),
+                          setOpennedModal("developerCompany")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.developerCompany : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.dateOfRegistering
+                        }}
+                        onClick={() => {
+                          setLabelValue("Date of Registering"),
+                          setOpennedModal("dateOfRegistering")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.agreementValidFrom : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.dateOfValidity
+                        }}
+                        onClick={() => {
+                          setLabelValue("Date of Validity"),
+                          setOpennedModal("dateOfValidity")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.validitydate : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.agreementIrrevocialble
+                        }}
+                        onClick={() => {
+                          setLabelValue("Collabration Agreement Irrevociable"),
+                          setOpennedModal("agreementIrrevocialble")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.agreementIrrevocialble : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.nameOfAuthSignatory
+                        }}
+                        onClick={() => {
+                          setLabelValue("Name of Authorized Signatory"),
+                          setOpennedModal("nameOfAuthSignatory")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.nameAuthSign : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.nameOfAuthSignatoryDeveloper
+                        }}
+                        onClick={() => {
+                          setLabelValue("Name of Authorized Signatory Developer"),
+                          setOpennedModal("nameOfAuthSignatoryDeveloper")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.nameAuthSign : null);
+                        }}
+                      ></ReportProblemIcon>
+                    </th>
+                    <th class="fw-normal py-0 border-top-0">
+                      {" "}
+                      <ReportProblemIcon
+                        style={{
+                          color: fieldIconColors.registeringAuthority
+                        }}
+                        onClick={() => {
+                          setLabelValue("Registering Authority"),
+                          setOpennedModal("registeringAuthority")
+                          setSmShow(true),
+                          console.log("modal open"),
+                          setFieldValue(applicantInfoPersonal?.AppliedLandDetails[0] !== null ? applicantInfoPersonal?.AppliedLandDetails[0]?.registeringAuthority : null);
+                        }}
+                      ></ReportProblemIcon>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                {
+                    applicantInfoPersonal?.AppliedLandDetails?.map((item,index)=>(
+                      
+                  <tr key={index}>
                     <td>
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.tehsil} disabled />
                     </td>
                     <td>
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.revenueEstate} disabled />
                     </td>
                     <td>
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.rectangleNo} disabled />
                     </td>
                     <td class="text-center">
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.landOwner} disabled />
                     </td>
                     <td class="text-center">
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.consolidationType} disabled />
                     </td>
                     <td class="text-center">
                       {" "}
-                      <input type="text" className="form-control" disabled />{" "}
+                      <input type="text" className="form-control" placeholder={item?.kanal} disabled />{" "}
                     </td>
                     <td class="text-center">
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.marla} disabled />
                     </td>
                     <td class="text-center">
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.srasai} disabled />
                     </td>
-                    {/* <td class="text-center">
-                  <input type="text" className="form-control" disabled />
-                </td>
-                <td class="text-center">
-                  <input type="text" className="form-control" disabled />
-                </td>
-                <td class="text-center">
-                  <input type="text" className="form-control" disabled />
-                </td>
-                <td class="text-center">
-                  <input type="text" className="form-control" disabled />
-                </td>
-                <td class="text-center">
-                  <input type="text" className="form-control" disabled />
-                </td> */}
                     <td class="text-center">
-                      {" "}
-                      <input type="text" className="form-control" disabled />
+                      <input type="text" className="form-control" placeholder={item?.bigha} disabled />
                     </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.biswa} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.biswansi} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.collaboration} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.developerCompany} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.agreementValidFrom} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.validitydate} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.agreementIrrevocialble} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.nameAuthSign} disabled />
+                    </td>
+                    <td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.nameAuthSign} disabled />
+                    </td><td class="text-center">
+                      <input type="text" className="form-control" placeholder={item?.registeringAuthority} disabled />
+                    </td>
+
+                    
                   </tr>
+                    ))
+                  }
                 </tbody>
               </table>
             </div>
@@ -701,8 +965,6 @@ const Genarelinfo = (props) => {
             </div> */}
           </Form.Group>
           <br></br>
-
-          {/* <hr></hr> */}
         </div>
       </Collapse>
       {/* </Card> */}

@@ -14,7 +14,7 @@ const LanguageSelection = () => {
         header: t("CS_COMMON_CHOOSE_LANGUAGE"),
         submitBarLabel: t( "CORE_COMMON_CONTINUE")
     }), [t])
-
+    console.log("BHG");
     const RadioButtonProps = useMemo(() => ({
         options: languages,
         optionsKey: "label",
@@ -31,6 +31,7 @@ const LanguageSelection = () => {
         <CardHeader>{t("CS_COMMON_CHOOSE_LANGUAGE")}</CardHeader>
         <RadioButtons {...RadioButtonProps}/>
     </PageBasedInput>
+    // additionalWrapperClass
 }
 
 export default LanguageSelection

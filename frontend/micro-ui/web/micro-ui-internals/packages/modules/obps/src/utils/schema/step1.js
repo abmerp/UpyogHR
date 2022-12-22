@@ -15,9 +15,11 @@ const VALIDATION_SCHEMA = Yup.object().shape({
   // }),
   // district: Yup.string().required("This field is mandatory."),
   // state: Yup.string().required("This field is mandatory."),
-  LC: Yup.string().required("This field is mandatory."),
-  notSigned: Yup.string().required("This field is mandatory."),
-
+  LC: Yup.string().required("This field is required."),
+  notSigned: Yup.object({
+    value: Yup.string().required("This field is required"),
+  }),
+  // notSigned: Yup.string().required("This field is mandatory."),
 });
 
 export { VALIDATION_SCHEMA };

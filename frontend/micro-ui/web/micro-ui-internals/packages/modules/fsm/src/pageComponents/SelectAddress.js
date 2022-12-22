@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FormStep, CardLabel, Dropdown, RadioButtons, LabelFieldPair, RadioOrSelect } from "@egovernments/digit-ui-react-components";
-import Timeline from "../components/TLTimelineInFSM";
 
 const SelectAddress = ({ t, config, onSelect, userType, formData }) => {
   const allCities = Digit.Hooks.fsm.useTenants();
@@ -11,8 +10,8 @@ const SelectAddress = ({ t, config, onSelect, userType, formData }) => {
     userType === "employee"
       ? allCities.filter((city) => city.code === tenantId)
       : pincode
-        ? allCities.filter((city) => city?.pincode?.some((pin) => pin == pincode))
-        : allCities;
+      ? allCities.filter((city) => city?.pincode?.some((pin) => pin == pincode))
+      : allCities;
 
   const [selectedCity, setSelectedCity] = useState(() => formData?.address?.city || Digit.SessionStorage.get("fsm.file.address.city") || null);
   const { data: fetchedLocalities } = Digit.Hooks.useBoundaryLocalities(
@@ -117,30 +116,27 @@ const SelectAddress = ({ t, config, onSelect, userType, formData }) => {
     );
   }
   return (
-    <React.Fragment>
-      <Timeline currentStep={1} flow="APPLY" />
-      <FormStep config={config} onSelect={onSubmit} t={t} isDisabled={selectedLocality ? false : true}>
-        <CardLabel>{`${t("MYCITY_CODE_LABEL")} *`}</CardLabel>
+    <FormStep config={config} onSelect={onSubmit} t={t} isDisabled={selectedLocality ? false : true}>
+      <CardLabel>{`${t("MYCITY_CODE_LABEL")} *`}</CardLabel>
+      <RadioOrSelect
+        options={cities}
+        selectedOption={selectedCity}
+        optionKey="i18nKey"
+        onSelect={selectCity}
+        t={t}
+      />
+      {selectedCity && localities && <CardLabel>{`${t("CS_CREATECOMPLAINT_MOHALLA")} *`}</CardLabel>}
+      {selectedCity && localities && (
         <RadioOrSelect
-          options={cities}
-          selectedOption={selectedCity}
-          optionKey="i18nKey"
-          onSelect={selectCity}
+          isMandatory={config.isMandatory}
+          options={localities}
+          selectedOption={selectedLocality}
+          optionKey="i18nkey"
+          onSelect={selectLocality}
           t={t}
         />
-        {selectedCity && localities && <CardLabel>{`${t("CS_CREATECOMPLAINT_MOHALLA")} *`}</CardLabel>}
-        {selectedCity && localities && (
-          <RadioOrSelect
-            isMandatory={config.isMandatory}
-            options={localities}
-            selectedOption={selectedLocality}
-            optionKey="i18nkey"
-            onSelect={selectLocality}
-            t={t}
-          />
-        )}
-      </FormStep>
-    </React.Fragment>
+      )}
+    </FormStep>
   );
 };
 

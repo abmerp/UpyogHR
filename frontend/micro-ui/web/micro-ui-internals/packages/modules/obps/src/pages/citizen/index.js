@@ -38,7 +38,20 @@ import OBPSResponse from "../employee/OBPSResponse";
 import CommonForm from "../citizen/NewLicense/common/index";
 import ScrutinyFormcontainer from "../citizen/NewLicense/ScrutinyContainer/ScrutinyFormContainer";
 import ServiceCard from "../citizen/NewLicense/AllService/Service";
+import ServicePlanService from "./ServicePlan";
+import electricalPlanService from "./ElectricalPlan";
+import renewalClu from "./NewLicense/AllService/Module/Renewal/Renewal";
 import ZoningPlan from "../citizen/NewLicense/AllService/Module/ZoningPlan/ZoningPlan";
+import CardNewLicence from "./NewLicense/CardNewLicence/CadNewLicence";
+import Beneficial from "./NewLicense/AllService/Module/BeneficialInterest/Beneficial";
+import CompletionLic from "./NewLicense/AllService/Module/CompletionLic/CompletionLic";
+import LayoutPlanClu from "./NewLicense/AllService/Module/LayoutPlan/LayoutPlan";
+import TransferLicense from "./NewLicense/AllService/Module/TransferLic/TransferLicense";
+import SurrenderLic from "./NewLicense/AllService/Module/SurrenderLic/SurrenderLic";
+import CompositionClu from "./NewLicense/AllService/Module/CompositionClu/CompositionClu";
+import Standard from "./NewLicense/AllService/Module/StandardDesign/StandardDesign";
+import ExtensionCom from "./NewLicense/AllService/Module/ExtensionCommunity/ExtensionCom";
+
 const App = ({ path }) => {
   const location = useLocation();
   const { t } = useTranslation();
@@ -75,7 +88,9 @@ const App = ({ path }) => {
         {/* <PrivateRoute path={`${path}/common`} component={Common} /> */}
         <PrivateRoute path={`${path}/tab`} component={CommonForm} />
         <PrivateRoute path={`${path}/bank`} component={CommonBank} />
-      
+        <PrivateRoute path={`${path}/electricalPlan`} component={electricalPlanService} />
+        <Route path={`${path}/card`} component={CardNewLicence} />
+        <PrivateRoute path={`${path}/servicePlan`} component={ServicePlanService} />
         <PrivateRoute path={`${path}/submitNew`} component={SubmitNew} />
         <PrivateRoute path={`${path}/renew`} component={RenewNew} />
         <PrivateRoute path={`${path}/replace`} component={Replace} />
@@ -99,7 +114,30 @@ const App = ({ path }) => {
         <PrivateRoute path={`${path}/response`} component={OBPSResponse} />
         <PrivateRoute path={`${path}/scrutiny`} component={ScrutinyFormcontainer} />
         <PrivateRoute path={`${path}/service`} component={ServiceCard} />
+        <PrivateRoute path={`${path}/Beneficial`} component={Beneficial} />
+        <PrivateRoute path={`${path}/CompletionLic`} component={CompletionLic} />
         <PrivateRoute path={`${path}/zoningPlan`} component={ZoningPlan} />
+        <PrivateRoute path={`${path}/LayoutPlanClu`} component={LayoutPlanClu} />
+        <PrivateRoute path={`${path}/renewalClu`} component={renewalClu} />
+        <PrivateRoute path={`${path}/TransferLicense`} component={TransferLicense} />
+        <PrivateRoute path={`${path}/SurrenderLic`} component={SurrenderLic} />
+        <PrivateRoute path={`${path}/CompositionClu`} component={CompositionClu} />
+        <PrivateRoute path={`${path}/Standard`} component={Standard} />
+        <PrivateRoute path={`${path}/ExtensionCom`} component={ExtensionCom} />
+
+        {/* .............................................................................. */}
+
+        {/* <PrivateRoute path={`${path}/Beneficialscrutiny`} component={Beneficialscrutiny} />
+        <PrivateRoute path={`${path}/Completionscrutiny`} component={Completionscrutiny} />
+        <PrivateRoute path={`${path}/CompositionClu`} component={CompositionClu} />
+        <PrivateRoute path={`${path}/ExtensionClu`} component={ExtensionClu} />
+        <PrivateRoute path={`${path}/ExtensionCom`} component={ExtensionCom} />
+        <PrivateRoute path={`${path}/LayoutPlanClu`} component={LayoutPlanClu} />
+        <PrivateRoute path={`${path}/Standard`} component={Standard} />
+        <PrivateRoute path={`${path}/TransferLic`} component={TransferLic} />
+        <PrivateRoute path={`${path}/SurrenderLic`} component={SurrenderLic} />
+        <PrivateRoute path={`${path}/Standard`} component={Standard} />
+        <PrivateRoute path={`${path}/Loi`} component={Loi} /> */}
       </Switch>
     </React.Fragment>
   );

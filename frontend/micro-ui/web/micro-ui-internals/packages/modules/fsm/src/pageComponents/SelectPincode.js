@@ -1,7 +1,6 @@
 import { FormStep, TextInput, CardLabel, LabelFieldPair } from "@egovernments/digit-ui-react-components";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Timeline from "../components/TLTimelineInFSM";
 
 const SelectPincode = ({ t, config, onSelect, formData = {}, userType, register, errors, props }) => {
   const tenants = Digit.Hooks.fsm.useTenants();
@@ -65,7 +64,7 @@ const SelectPincode = ({ t, config, onSelect, formData = {}, userType, register,
             {config.isMandatory ? " * " : null}
           </CardLabel>
           <div className="field">
-            <TextInput key={input.name} value={pincode} onChange={onChange} {...input.validation} />
+            <TextInput key={input.name} value={pincode} onChange={onChange} {...input.validation} autoFocus={presentInModifyApplication} />
           </div>
         </LabelFieldPair>
       );
@@ -73,19 +72,16 @@ const SelectPincode = ({ t, config, onSelect, formData = {}, userType, register,
   }
   const onSkip = () => onSelect();
   return (
-    <React.Fragment>
-      <Timeline currentStep={1} flow="APPLY" />
-      <FormStep
-        t={t}
-        config={{ ...config, inputs }}
-        onSelect={goNext}
-        _defaultValues={{ pincode }}
-        onChange={onChange}
-        onSkip={onSkip}
-        forcedError={t(pincodeServicability)}
-        isDisabled={!pincode}
-      ></FormStep>
-    </React.Fragment>
+    <FormStep
+      t={t}
+      config={{ ...config, inputs }}
+      onSelect={goNext}
+      _defaultValues={{ pincode }}
+      onChange={onChange}
+      onSkip={onSkip}
+      forcedError={t(pincodeServicability)}
+      isDisabled={!pincode}
+    ></FormStep>
   );
 };
 

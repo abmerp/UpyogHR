@@ -20,8 +20,8 @@ function SelectDocument({
   const [selectedDocument, setSelectedDocument] = useState();
   const [file, setFile] = useState(null);
   const [uploadedFile, setUploadedFile] = useState(() => filteredDocument?.fileStoreId || null);
+
   const handleSelectDocument = (value) => setSelectedDocument(value);
-  const allowedFileTypes = /(.*?)(jpg|jpeg|png|image|pdf)$/i;
 
   function selectfile(e) {
     e && setFile(e.file);
@@ -55,11 +55,8 @@ function SelectDocument({
       (async () => {
           setError(null);
           if (file) {
-              const allowedFileTypesRegex = /(.*?)(jpg|jpeg|png|image|pdf)$/i
               if (file.size >= 5242880) {
-                setError(t("CS_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));
-              } else if (file?.type && !allowedFileTypesRegex.test(file?.type)) {
-                setError(t(`NOT_SUPPORTED_FILE_TYPE`))
+                  setError(t("CS_MAXIMUM_UPLOAD_SIZE_EXCEEDED"));
               } else {
                   try {
                       setUploadedFile(null);
@@ -93,9 +90,6 @@ function SelectDocument({
               tenantId={tenantId}
               getFormState={e => getData(e)}
               t={t}
-              allowedFileTypesRegex={allowedFileTypes}
-              allowedMaxSizeInMB={5}
-              acceptFiles="image/*, .pdf, .png, .jpeg, .jpg"
             />
           </div>
         </LabelFieldPair>

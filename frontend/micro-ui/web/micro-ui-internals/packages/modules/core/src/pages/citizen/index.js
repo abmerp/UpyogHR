@@ -6,11 +6,12 @@ import ErrorBoundary from "../../components/ErrorBoundaries";
 import { AppHome } from "../../components/Home";
 import TopBarSideBar from "../../components/TopBarSideBar";
 import CitizenHome from "./Home";
-import LanguageSelection from "./Home/LanguageSelection";
+// import LanguageSelection from "./Home/LanguageSelection";
 import LocationSelection from "./Home/LocationSelection";
 import Login from "./Login";
 import UserProfile from "./Home/UserProfile";
-// import PDF from "../../assets/";
+import ServicePlan from "./ServicePlan";
+import ElectricalPlan from "./ElecticalPlan";
 
 const getTenants = (codes, tenants) => {
   return tenants.filter((tenant) => codes.map((item) => item.code).includes(tenant.code));
@@ -34,8 +35,6 @@ const Home = ({
   const classname = Digit.Hooks.fsm.useRouteSubscription(pathname);
   const { t } = useTranslation();
   const { path } = useRouteMatch();
-  sourceUrl = "https://s3.ap-south-1.amazonaws.com/egov-qa-assets";
-  const pdfUrl = "https://pg-egov-assets.s3.ap-south-1.amazonaws.com/Upyog+Code+and+Copyright+License_v1.pdf"
 
   const appRoutes = modules.map(({ code, tenants }, index) => {
     const Module = Digit.ComponentRegistryService.getComponent(`${code}Module`);
@@ -82,9 +81,9 @@ const Home = ({
             <CitizenHome />
           </Route>
 
-          <Route exact path={`${path}/select-language`}>
+          {/* <Route exact path={`${path}/select-language`}>
             <LanguageSelection />
-          </Route>
+          </Route> */}
 
           <Route exact path={`${path}/select-location`}>
             <LocationSelection />
@@ -102,6 +101,14 @@ const Home = ({
             <Login stateCode={stateCode} isUserRegistered={false} />
           </Route>
 
+          <Route path={`${path}/service-plan`}>
+            <ServicePlan />
+          </Route>
+
+          <Route path={`${path}/electrical-plan`}>
+            <ElectricalPlan />
+          </Route>
+
           <Route path={`${path}/user/profile`}>
             <UserProfile stateCode={stateCode} userType={"citizen"} cityDetails={cityDetails} />
           </Route>
@@ -112,16 +119,15 @@ const Home = ({
           </ErrorBoundary>
         </Switch>
       </div>
-      <div style={{ width: '100%', bottom: 0 }}>
-        <div style={{ display: 'flex', justifyContent: 'center', color:"#22394d" }}>
-          <img style={{ cursor: "pointer", display: "inline-flex", height: '1.4em' }} alt={"Powered by DIGIT"} src={`${sourceUrl}/digit-footer.png`} onError={"this.src='./../digit-footer.png'"} onClick={() => {
-            window.open('https://www.digit.org/', '_blank').focus();
-          }}></img>
-          <span style={{ margin: "0 10px" }}>|</span>
-          <span style={{ cursor: "pointer", fontSize: "16px", fontWeight: "400"}} onClick={() => { window.open('https://niua.in/', '_blank').focus();}} >Copyright © 2022 National Institute of Urban Affairs</span>
-          <span style={{ margin: "0 10px" }}>|</span>
-          <a style={{ cursor: "pointer", fontSize: "16px", fontWeight: "400"}} href={pdfUrl} target='_blank'>UPYOG License</a>
-        </div>
+      <div className="citizen-home-footer" style={window.location.href.includes("citizen/obps") ? { zIndex: "-1" } : {}}>
+        <img
+          alt="Powered by TCP"
+          src={window?.globalConfigs?.getConfig?.("DIGIT_FOOTER")}
+          style={{ height: "1.2em", cursor: "pointer" }}
+          onClick={() => {
+            window.open(window?.globalConfigs?.getConfig?.("DIGIT_HOME_URL"), "_blank").focus();
+          }}
+        />
       </div>
     </div>
   );

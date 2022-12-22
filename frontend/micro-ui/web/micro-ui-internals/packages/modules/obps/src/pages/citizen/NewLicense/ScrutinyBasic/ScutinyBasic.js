@@ -51,6 +51,7 @@ const ScrutitnyForms = () => {
   const [disapprovalData, setDisapprovalData] = useState({});
   const [applictaionNo, setApplicationNO] = useState(null);
   const [iconStates,setIconState]= useState(null)
+  // const [urlGetShareHoldingDoc,setDocShareHoldingUrl] = useState("")
 
   const getUncheckedPersonalinfos = (data) => {
     setDisplayPersonalInfo(data.data);
@@ -104,7 +105,7 @@ const ScrutitnyForms = () => {
   };
   const handleGetInputFieldsValues = async () => {
     try {
-      const Resp = await axios.get("/land-services/new/licenses/_get?id=3").then((response) => {
+      const Resp = await axios.get("/tl-services/new/licenses/_get?id=225").then((response) => {
         return response.data;
       });
 
@@ -129,7 +130,7 @@ const ScrutitnyForms = () => {
         }
     };
     try {
-      const Resp = await axios.post("/land-services/egscrutiny/_search?applicationNumber=123", dataToPass).then((response) => {
+      const Resp = await axios.post("/land-services/egscrutiny/_search?applicationNumber=123&userId=0", dataToPass).then((response) => {
         return response.data;
       });
 
@@ -189,7 +190,7 @@ const ScrutitnyForms = () => {
       },
     };
     try {
-      const Resp = await axios.post("/land-services/egscrutiny/_search?applicationNumber=123", dataToSend).then((response) => {
+      const Resp = await axios.post("/land-services/egscrutiny/_search?applicationNumber=123&userId=0", dataToSend).then((response) => {
         return response.data;
       });
 
@@ -286,6 +287,30 @@ const ScrutitnyForms = () => {
   console.log("remarks api", remarksResponse.egScrutiny !== undefined ? remarksResponse.egScrutiny : null);
 
   console.log("remakes data parsnalinfo", remarksChanges);
+
+ 
+  // const getDocShareholding = async () => {
+  //   if ((Documents?.uploadPdf !== null || Documents?.uploadPdf !== undefined) && (uploadPdf!==null || uploadPdf!=="")) {
+        
+  //       try {
+  //           const response = await axios.get(`/filestore/v1/files/url?tenantId=${tenantId}&fileStoreIds=${Documents?.uploadPdf}`, {
+
+  //           });
+  //           const FILDATA = response.data?.fileStoreIds[0]?.url;
+  //           setDocShareHoldingUrl(FILDATA)
+  //       } catch (error) {
+  //           console.log(error.message);
+  //       }
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   getDocShareholding();
+  // }, [Documents?.uploadPdf]);
+  
+
+
+
   return (
     <div>
       <div style={{ position: "relative", maxWidth: "100%", padding: 2 }}>
@@ -319,16 +344,22 @@ const ScrutitnyForms = () => {
               passUncheckedList={getUncheckedPurposeinfos}
               passCheckedList={getCheckedPurposeInfoValue}
               onClick={() => setOpen(!open)}
+              ApiResponseData={apiResppnse.newServiceInfoData !== undefined ? apiResppnse.newServiceInfoData[0].LandSchedule
+                : null}
+              dataForIcons={iconStates}
             ></Developerinfo>
             {/* </Col> */}
           </div>
           <div>
             <AppliedLandinfo
               appliedInfoRef={appliedInfoRef}
-              purpose={purpose}
+              purpose={apiResppnse.newServiceInfoData?apiResppnse.newServiceInfoData[0]?.ApplicantPurpose?.purpose:null}
               passUncheckedList={getUncheckedAppliedLandInfo}
               passCheckedList={getCheckedAppliedInfoValue}
+              ApiResponseData={apiResppnse.newServiceInfoData !== undefined ? apiResppnse.newServiceInfoData[0].DetailsofAppliedLand
+                : null}
               heightApplied={defaultheightApplied}
+              dataForIcons={iconStates}
             ></AppliedLandinfo>
             {/* </Col> */}
           </div>
@@ -337,6 +368,8 @@ const ScrutitnyForms = () => {
               feeandchargesInfoRef={feeandchargesInfoRef}
               passUncheckedList={getUncheckedFeeandChargesInfo}
               heightFee={defaultheightFee}
+              ApiResponseData={apiResppnse.newServiceInfoData !== undefined ? apiResppnse.newServiceInfoData[0].FeesAndCharges
+                : null}
             ></Feeandcharges>
             {/* </Col> */}
           </div>

@@ -30,7 +30,7 @@ import DisplayPhotos from "./atoms/DisplayPhotos";
 import Dropdown from "./atoms/Dropdown";
 import EllipsisMenu from "./atoms/EllipsisMenu";
 import EmployeeAppContainer from "./atoms/EmployeeAppContainer";
-import { EmployeeModuleCard, ModuleCardFullWidth } from "./atoms/EmployeeModuleCard";
+import {EmployeeModuleCard,ModuleCardFullWidth} from "./atoms/EmployeeModuleCard";
 import GreyOutText from "./atoms/GreyOutText";
 import Hamburger from "./atoms/Hamburger";
 import Header from "./atoms/Header";
@@ -140,11 +140,7 @@ import {
   GalleryIcon,
   RemoveIcon,
   CheckSvg,
-  ErrorIcon,
-  AddIcon,
-  AddNewIcon,
-  InboxIcon,
-  ViewReportIcon,
+  ErrorIcon
 } from "./atoms/svgindex";
 import Table from "./atoms/Table";
 import TelePhone from "./atoms/TelePhone";
@@ -159,7 +155,7 @@ import CardBasedOptions from "./atoms/CardBasedOptions";
 import WhatsNewCard from "./atoms/WhatsNewCard";
 import EventCalendarView from "./atoms/EventCalendarView";
 import InboxLinks from "./atoms/InboxLinks";
-import PopupHeadingLabel from "./atoms/PopupHeadingLabel";
+import PopupHeadingLabel from "./atoms/PopupHeadingLabel"
 
 import { FormComposer } from "./hoc/FormComposer";
 import Modal from "./hoc/Modal";
@@ -190,7 +186,6 @@ import MultiUploadWrapper from "./molecules/MultiUploadWrapper";
 import { FilterForm, FilterFormField } from "./molecules/FilterForm";
 import OpenLinkContainer from "./atoms/OpenLinkContainer";
 import UploadPitPhoto from "./molecules/UploadPitPhoto";
-import ULBHomeCard from "./atoms/ULBHomeCard";
 export {
   Phone,
   Body,
@@ -272,7 +267,6 @@ export {
   EventCalendarView,
   InboxLinks,
   PopupHeadingLabel,
-  ULBHomeCard,
   // Icons
   GetApp,
   ArrowLeft,
@@ -387,9 +381,6 @@ export {
   CheckSvg,
   ModuleCardFullWidth,
   ArrowForward,
-  ErrorIcon,
-  AddIcon,
-  AddNewIcon,
-  InboxIcon,
-  ViewReportIcon,
+  ErrorIcon
 };
+

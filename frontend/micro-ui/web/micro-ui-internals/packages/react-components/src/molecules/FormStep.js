@@ -24,7 +24,6 @@ const FormStep = ({
   isMultipleAllow = false,
   showErrorBelowChildren = false,
   childrenAtTheBottom = true,
-  textInputStyle,
 }) => {
   const { register, watch, errors, handleSubmit } = useForm({
     defaultValues: _defaultValues,
@@ -56,7 +55,6 @@ const FormStep = ({
               inputRef={register(input.validation)}
               isMandatory={errors[input.name]}
               disable={input.disable ? input.disable : false}
-              textInputStyle={textInputStyle}
             />
           </div>
         </React.Fragment>
