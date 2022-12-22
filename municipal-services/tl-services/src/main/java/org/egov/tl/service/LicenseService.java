@@ -80,7 +80,7 @@ public class LicenseService {
 			throws JsonProcessingException {
 
 		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
-		LicenseServiceDao newServiceIn=null;
+		LicenseServiceDao newServiceIn= new LicenseServiceDao();
 		List<LicenseDetails> newServiceInfoDatas = null;
 		User user = newServiceInfo.getRequestInfo().getUserInfo();
 	//	if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
@@ -132,18 +132,20 @@ public class LicenseService {
 							}
 
 							newobj.setVer(cv);
-							//newServiceIn.getNewServiceInfoData().add(newobj);
+							newServiceInfoDatas.add(newobj);
+							newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
 							break;
 						}
 					}
 					String data = mapper.writeValueAsString(newServiceInfoDatas);
 					JsonNode jsonNode = mapper.readTree(data);
+					//tradeLicense.setAuditDetails(null);
 					tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
-					/*newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
+					newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 					newServiceIn.setUpdatedDate(new Date());
 					newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
 					newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
-					newServiceIn.setCurrentVersion(cv);*/
+					newServiceIn.setCurrentVersion(cv);
 					tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 					tradeLicense.setAction("INITIATE");
 					tradeLicense.setWorkflowCode("NewTL");
@@ -159,7 +161,7 @@ public class LicenseService {
 	//	} 
 	else {
 			newServiceInfoDatas = new ArrayList<>();
-			newServiceIn = new LicenseServiceDao();
+			//newServiceIn = new LicenseServiceDao();
 			newServiceIn.setCreatedBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
