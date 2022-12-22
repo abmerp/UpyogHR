@@ -89,6 +89,14 @@ public class Coverage extends FeatureProcess {
     public static final String RULE_38 = "38";
     private static final BigDecimal ROAD_WIDTH_TWELVE_POINTTWO = BigDecimal.valueOf(12.2);
     private static final BigDecimal ROAD_WIDTH_THIRTY_POINTFIVE = BigDecimal.valueOf(30.5);
+
+	private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
+	private static final BigDecimal TWOHUNDREDFIFTY = BigDecimal.valueOf(250);
+	private static final BigDecimal THREEHUNDREDFIFTY = BigDecimal.valueOf(350);
+	private static final BigDecimal FIVEHUNDRED = BigDecimal.valueOf(500);
+	private static final BigDecimal ONETHOUSAND = BigDecimal.valueOf(1000);
+	private static final BigDecimal SEVENTYFIVE_PERCENT = BigDecimal.valueOf(0.75);
+	private static final BigDecimal SIXTYSIX_PERCENT = BigDecimal.valueOf(0.66);
     
     @Override
     public Plan validate(Plan pl) {
@@ -105,6 +113,8 @@ public class Coverage extends FeatureProcess {
         validate(pl);
         BigDecimal totalCoverage = BigDecimal.ZERO;
         BigDecimal totalCoverageArea = BigDecimal.ZERO;
+        boolean isAccepted = false;
+        String expectedResult = StringUtils.EMPTY;
 
         for (Block block : pl.getBlocks()) {
             BigDecimal coverageAreaWithoutDeduction = BigDecimal.ZERO;
@@ -142,9 +152,38 @@ public class Coverage extends FeatureProcess {
         if (pl.getVirtualBuilding() != null) {
             pl.getVirtualBuilding().setTotalCoverageArea(totalCoverageArea);
         }
+        
 
       // BigDecimal roadWidth = pl.getPlanInformation().getRoadWidth();
       
+      //*** Implementation for GROUND COVERAGE as per Haryana
+        if(pl.getPlot().getArea().compareTo(HUNDRED)<=0) {
+        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SEVENTYFIVE_PERCENT);
+        	pl.setCoverage(maxCoverageOnGroundFloor);
+        	expectedResult = "<= 75";
+        }
+        if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)<=0) {
+        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SEVENTYFIVE_PERCENT);
+        	pl.setCoverage(maxCoverageOnGroundFloor);
+        	expectedResult = "<= 187.5";
+        }
+        if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)<=0) {
+        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SIXTYSIX_PERCENT);
+        	pl.setCoverage(maxCoverageOnGroundFloor);
+        	expectedResult = "<= 231";
+        }
+        if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)<=0) {
+        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SIXTYSIX_PERCENT);
+        	pl.setCoverage(maxCoverageOnGroundFloor);
+        	expectedResult = "<= 330";
+        }
+        if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)<=0) {
+        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SIXTYSIX_PERCENT);
+        	pl.setCoverage(maxCoverageOnGroundFloor);
+        	expectedResult = "<= 660";
+        }
+        
+        
         processCoverage(pl, StringUtils.EMPTY, totalCoverage, Forty);
       
 		/*

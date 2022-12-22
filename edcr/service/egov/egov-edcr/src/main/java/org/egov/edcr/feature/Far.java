@@ -994,25 +994,25 @@ public class Far extends FeatureProcess {
                     expectedResult = "<= 1.65";
                 }
             	
-	            if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
+	            if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)<=0) {
 	                isAccepted = far.compareTo(ONE_POINTFOURFIVE) <= 0;
 	                pl.getFarDetails().setPermissableFar(ONE_POINTFOURFIVE.doubleValue());
 	                expectedResult = "<= 1.45";
 	            }
 	            
-	            if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0) {
+	            if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)<=0) {
                     isAccepted = far.compareTo(ONE_POINTTHREE) <= 0;
                     pl.getFarDetails().setPermissableFar(ONE_POINTTHREE.doubleValue());
                     expectedResult = "<= 1.3";
                 }
 	            
-	            if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0) {
+	            if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)<=0) {
 	                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
 	                pl.getFarDetails().setPermissableFar(ONE_POINTTWO.doubleValue());
 	                expectedResult = "<= 1.2";
 	            }
 	            
-	            if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)>=0) {
+	            if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)<=0) {
 	                isAccepted = far.compareTo(ONE) <= 0;
 	                pl.getFarDetails().setPermissableFar(ONE.doubleValue());
 	                expectedResult = "<= 1";
@@ -1028,25 +1028,25 @@ public class Far extends FeatureProcess {
                     expectedResult = "<= 1.65";
                 }
             	
-	            if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
+	            if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)<=0) {
 	                isAccepted = far.compareTo(ONE_POINTFOURFIVE) <= 0;
 	                pl.getFarDetails().setPermissableFar(ONE_POINTFOURFIVE.doubleValue());
 	                expectedResult = "<= 1.45";
 	            }
 	            
-	            if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0) {
+	            if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)<=0) {
                     isAccepted = far.compareTo(ONE_POINTTHREE) <= 0;
                     pl.getFarDetails().setPermissableFar(ONE_POINTTHREE.doubleValue());
                     expectedResult = "<= 1.3";
                 }
 	            
-	            if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0) {
+	            if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)<=0) {
 	                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
 	                pl.getFarDetails().setPermissableFar(ONE_POINTTWO.doubleValue());
 	                expectedResult = "<= 1.2";
 	            }
 	            
-	            if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)>=0) {
+	            if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)<=0) {
 	                isAccepted = far.compareTo(ONE) <= 0;
 	                pl.getFarDetails().setPermissableFar(ONE.doubleValue());
 	                expectedResult = "<= 1";
