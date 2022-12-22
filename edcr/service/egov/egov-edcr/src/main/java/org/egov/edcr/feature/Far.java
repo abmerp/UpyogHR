@@ -148,7 +148,11 @@ public class Far extends FeatureProcess {
     private static final BigDecimal THREE_POINTTWOFIVE = BigDecimal.valueOf(3.25);
     private static final BigDecimal THREE_POINTFIVE = BigDecimal.valueOf(3.5);
     private static final BigDecimal FIFTEEN = BigDecimal.valueOf(15);
-    private static final BigDecimal HUNDERD = BigDecimal.valueOf(100);
+    private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
+    private static final BigDecimal TWOHUNDREDFIFTY = BigDecimal.valueOf(250);
+    private static final BigDecimal THREEHUNDREDFIFTY = BigDecimal.valueOf(350);
+    private static final BigDecimal FIVEHUNDRED = BigDecimal.valueOf(500);
+    private static final BigDecimal ONETHOUSAND = BigDecimal.valueOf(1000);
     private static final BigDecimal ROAD_WIDTH_TWO_POINTFOUR = BigDecimal.valueOf(2.4);
     private static final BigDecimal ROAD_WIDTH_TWO_POINTFOURFOUR = BigDecimal.valueOf(2.44);
     private static final BigDecimal ROAD_WIDTH_THREE_POINTSIX = BigDecimal.valueOf(3.6);
@@ -983,33 +987,80 @@ public class Far extends FeatureProcess {
             //*** Implemementayion for FAR as per Haryana 
             
             if (typeOfArea.equalsIgnoreCase(OLD)) {
-                
+            	
+            	if(pl.getPlot().getArea().compareTo(HUNDRED)<=0) {
+                    isAccepted = far.compareTo(ONE_POINTSIXFIVE) <= 0;
+                    pl.getFarDetails().setPermissableFar(ONE_POINTSIXFIVE.doubleValue());
+                    expectedResult = "<= 1.65";
+                }
+            	
+	            if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
+	                isAccepted = far.compareTo(ONE_POINTFOURFIVE) <= 0;
+	                pl.getFarDetails().setPermissableFar(ONE_POINTFOURFIVE.doubleValue());
+	                expectedResult = "<= 1.45";
+	            }
+	            
+	            if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0) {
+                    isAccepted = far.compareTo(ONE_POINTTHREE) <= 0;
+                    pl.getFarDetails().setPermissableFar(ONE_POINTTHREE.doubleValue());
+                    expectedResult = "<= 1.3";
+                }
+	            
+	            if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0) {
+	                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
+	                pl.getFarDetails().setPermissableFar(ONE_POINTTWO.doubleValue());
+	                expectedResult = "<= 1.2";
+	            }
+	            
+	            if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)>=0) {
+	                isAccepted = far.compareTo(ONE) <= 0;
+	                pl.getFarDetails().setPermissableFar(ONE.doubleValue());
+	                expectedResult = "<= 1";
+	            }
 
             }
 
             if (typeOfArea.equalsIgnoreCase(NEW)) {
             	
-            	if(pl.getPlot().getArea().compareTo(HUNDERD)<=0) {
+            	if(pl.getPlot().getArea().compareTo(HUNDRED)<=0) {
                     isAccepted = far.compareTo(ONE_POINTSIXFIVE) <= 0;
                     pl.getFarDetails().setPermissableFar(ONE_POINTSIXFIVE.doubleValue());
                     expectedResult = "<= 1.65";
                 }
-            if(pl.getPlot().getArea().compareTo(HUNDERD)>=0) {
-                isAccepted = far.compareTo(ONE_POINTFOURFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(ONE_POINTFOURFIVE.doubleValue());
-                expectedResult = "<= 1.45";
-            
+            	
+	            if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
+	                isAccepted = far.compareTo(ONE_POINTFOURFIVE) <= 0;
+	                pl.getFarDetails().setPermissableFar(ONE_POINTFOURFIVE.doubleValue());
+	                expectedResult = "<= 1.45";
+	            }
+	            
+	            if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0) {
+                    isAccepted = far.compareTo(ONE_POINTTHREE) <= 0;
+                    pl.getFarDetails().setPermissableFar(ONE_POINTTHREE.doubleValue());
+                    expectedResult = "<= 1.3";
+                }
+	            
+	            if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0) {
+	                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
+	                pl.getFarDetails().setPermissableFar(ONE_POINTTWO.doubleValue());
+	                expectedResult = "<= 1.2";
+	            }
+	            
+	            if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)>=0) {
+	                isAccepted = far.compareTo(ONE) <= 0;
+	                pl.getFarDetails().setPermissableFar(ONE.doubleValue());
+	                expectedResult = "<= 1";
+	            }
             }
-            }
-            
-        }
 
         String occupancyName = occupancyType.getType().getName();
         if (errors.isEmpty() && StringUtils.isNotBlank(expectedResult)) {
             buildResult(pl, occupancyName, far, typeOfArea, roadWidth, expectedResult, isAccepted);
         }
     }
-
+        
+  }
+    
     private void processFarNonResidential(Plan pl, OccupancyTypeHelper occupancyType, BigDecimal far, String typeOfArea,
             BigDecimal roadWidth, HashMap<String, String> errors) {
 
