@@ -198,7 +198,9 @@ public class LicenseService {
 			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
+			if(newServiceInfo.getLicenseDetails().getApplicantPurpose()!=null)
 			tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
+		
 			tradeLicense.setAccountId(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 
 //			tradeLicense.setValidFrom();
@@ -284,7 +286,7 @@ public class LicenseService {
 		return licenseServiceResponseInfo;
 	}
 
-	public LicenseServiceResponseInfo getNewServicesInfoById(String applicationNumber) {
+	public LicenseServiceResponseInfo getNewServicesInfoById(String applicationNumber,RequestInfo info) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		// LicenseServiceDao newServiceInfo = new
 		// LicenseServiceDao();//newServiceInfoRepo.findByAppNumber(applicationNumber);

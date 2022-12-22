@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.response.ResponseInfo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.service.LicenseService;
@@ -124,9 +125,9 @@ public class LicenseServiceController {
 	}
 	
 	@GetMapping("/licenses/object/_getByApplicationNumber")
-	public Map<String, String> getJsonSingleFormate(@RequestParam("id") String applicationNumber) throws JsonProcessingException {
+	public Map<String, String> getJsonSingleFormate(@RequestParam("id") String applicationNumber,@RequestBody RequestInfo requestInfo) throws JsonProcessingException {
 
-		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(applicationNumber);
+		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfo);
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(licenseServiceResponseInfo);
 
