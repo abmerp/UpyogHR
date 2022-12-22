@@ -80,88 +80,88 @@ public class LicenseService {
 			throws JsonProcessingException {
 
 		LicenseServiceResponseInfo objLicenseServiceRequestInfo = new LicenseServiceResponseInfo();
-		LicenseServiceDao newServiceIn= new LicenseServiceDao();
+		LicenseServiceDao newServiceIn = new LicenseServiceDao();
 		List<LicenseDetails> newServiceInfoDatas = null;
 		User user = newServiceInfo.getRequestInfo().getUserInfo();
-	//	if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
-			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
-			if (!StringUtils.isEmpty(newServiceInfo.getApplicationNumber())) {
-				tradeLicenseRequest.setApplicationNumber(newServiceInfo.getApplicationNumber());
-				List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
-						newServiceInfo.getRequestInfo());
-				for (TradeLicense tradeLicense : tradeLicenses) {
+		// if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
+		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
+		if (!StringUtils.isEmpty(newServiceInfo.getApplicationNumber())) {
+			tradeLicenseRequest.setApplicationNumber(newServiceInfo.getApplicationNumber());
+			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
+					newServiceInfo.getRequestInfo());
+			for (TradeLicense tradeLicense : tradeLicenses) {
 
-					ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
-					});
-					//newServiceIn = em.find(LicenseServiceDao.class, newServiceInfo.getId());
-					try {
-						newServiceInfoDatas = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				//	newServiceInfoDatas = newServiceIn.getNewServiceInfoData();
-					float cv = tradeLicense.getTradeLicenseDetail().getCurrentVersion() + 0.1f;
+				ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
+				});
+				// newServiceIn = em.find(LicenseServiceDao.class, newServiceInfo.getId());
+				try {
+					newServiceInfoDatas = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// newServiceInfoDatas = newServiceIn.getNewServiceInfoData();
+				float cv = tradeLicense.getTradeLicenseDetail().getCurrentVersion() + 0.1f;
 
-					for (LicenseDetails newobj : newServiceInfoDatas) {
+				for (LicenseDetails newobj : newServiceInfoDatas) {
 
-						if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
+					if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
-							switch (newServiceInfo.getPageName()) {
-							case "ApplicantInfo": {
-								newobj.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
-								break;
-							}
-							case "ApplicantPurpose": {
-								newobj.setApplicantPurpose(newServiceInfo.getLicenseDetails().getApplicantPurpose());
-								break;
-							}
-							case "LandSchedule": {
-								newobj.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
-								break;
-							}
-							case "DetailsofAppliedLand": {
-								newobj.setDetailsofAppliedLand(
-										newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
-								break;
-							}
-							case "FeesAndCharges": {
-								newobj.setFeesAndCharges(newServiceInfo.getLicenseDetails().getFeesAndCharges());
-								break;
-							}
-							}
-
-							newobj.setVer(cv);
-							newServiceInfoDatas.add(newobj);
-							newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
+						switch (newServiceInfo.getPageName()) {
+						case "ApplicantInfo": {
+							newobj.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
 							break;
 						}
+						case "ApplicantPurpose": {
+							newobj.setApplicantPurpose(newServiceInfo.getLicenseDetails().getApplicantPurpose());
+							break;
+						}
+						case "LandSchedule": {
+							newobj.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
+							break;
+						}
+						case "DetailsofAppliedLand": {
+							newobj.setDetailsofAppliedLand(
+									newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
+							break;
+						}
+						case "FeesAndCharges": {
+							newobj.setFeesAndCharges(newServiceInfo.getLicenseDetails().getFeesAndCharges());
+							break;
+						}
+						}
+
+						newobj.setVer(cv);
+						newServiceInfoDatas.add(newobj);
+						newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
+						break;
 					}
-					String data = mapper.writeValueAsString(newServiceInfoDatas);
-					JsonNode jsonNode = mapper.readTree(data);
-					//tradeLicense.setAuditDetails(null);
-					tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
-					newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
-					newServiceIn.setUpdatedDate(new Date());
-					newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
-					newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
-					newServiceIn.setCurrentVersion(cv);
-					tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
-					tradeLicense.setAction("INITIATE");
-					tradeLicense.setWorkflowCode("NewTL");
-					//tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-
-					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
-
-					tradeLicenseRequests.addLicensesItem(tradeLicense);
-					tradeLicenseRequests.setRequestInfo(newServiceInfo.getRequestInfo());
-					tradeLicenseService.update(tradeLicenseRequests, "TL");
 				}
+				String data = mapper.writeValueAsString(newServiceInfoDatas);
+				JsonNode jsonNode = mapper.readTree(data);
+				// tradeLicense.setAuditDetails(null);
+				tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
+				newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
+				newServiceIn.setUpdatedDate(new Date());
+				newServiceIn.setApplicationStatus(newServiceInfo.getApplicationStatus());
+				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
+				newServiceIn.setCurrentVersion(cv);
+				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
+				tradeLicense.setAction("INITIATE");
+				tradeLicense.setWorkflowCode("NewTL");
+				// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+
+				TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+
+				tradeLicenseRequests.addLicensesItem(tradeLicense);
+				tradeLicenseRequests.setRequestInfo(newServiceInfo.getRequestInfo());
+				tradeLicenseService.update(tradeLicenseRequests, "TL");
 			}
-	//	} 
-	else {
+		}
+		// }
+		else {
 			newServiceInfoDatas = new ArrayList<>();
-			//newServiceIn = new LicenseServiceDao();
+			// newServiceIn = new LicenseServiceDao();
 			newServiceIn.setCreatedBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
@@ -174,7 +174,7 @@ public class LicenseService {
 			newServiceInfoDatas.add(newServiceInfo.getLicenseDetails());
 			newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
 			newServiceIn.setCurrentVersion(0.1f);
-	
+
 			TradeLicenseRequest request = new TradeLicenseRequest();
 			request.setRequestInfo(newServiceInfo.getRequestInfo());
 
@@ -227,10 +227,8 @@ public class LicenseService {
 			// tradeLicenseService.update(request, TLConstants.businessService_TL);
 			newServiceIn.setApplicationNumber(tradelicenses.get(0).getApplicationNumber());
 
-			
-
 		}
-		//newServiceIn = newServiceInfoRepo.save(newServiceIn);
+		// newServiceIn = newServiceInfoRepo.save(newServiceIn);
 		try {
 			BeanUtils.copyProperties(objLicenseServiceRequestInfo, newServiceIn);
 		} catch (IllegalAccessException e) {
@@ -243,9 +241,8 @@ public class LicenseService {
 		objLicenseServiceRequestInfo.setBusinessService(TLConstants.businessService_TL);
 		return objLicenseServiceRequestInfo;
 	}
-	
-	private String genrateTransactionNUmber(User user )
-	{
+
+	private String genrateTransactionNUmber(User user) {
 		Map<String, Object> authtoken = new HashMap<String, Object>();
 		Map<String, Object> mapTNum = new HashMap<String, Object>();
 
@@ -287,24 +284,56 @@ public class LicenseService {
 		return licenseServiceResponseInfo;
 	}
 
-	public LicenseServiceResponseInfo getNewServicesInfoById(String applcationNUmber) {
+	public LicenseServiceResponseInfo getNewServicesInfoById(String applicationNumber) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
-		LicenseServiceDao newServiceInfo = newServiceInfoRepo.findByAppNumber(applcationNUmber);
-		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
-		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
-			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
-				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
+		// LicenseServiceDao newServiceInfo = new
+		// LicenseServiceDao();//newServiceInfoRepo.findByAppNumber(applicationNumber);
+
+		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
+		tradeLicenseRequest.setApplicationNumber(applicationNumber);
+		List<LicenseDetails> newServiceInfoData = null;
+		List<LicenseDetails> licenseDetails = new ArrayList<LicenseDetails>();
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
+		for (TradeLicense tradeLicense : tradeLicenses) {
+
+			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
+			});
+
+			Map<String, Object> authtoken = new HashMap<String, Object>();
+			authtoken.put("UserId", "39");
+			authtoken.put("TpUserId", "12356");
+			authtoken.put("EmailId", "mkthakur84@gmail.com");
+
+			// List<LicenseDetails> newServiceInfoData = null;
+			try {
+				newServiceInfoData = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// LicenseServiceDao newServiceIn = em.find(LicenseServiceDao.class,
+			// applicationNumber);
+
+			// newServiceInfoData = newServiceIn.getNewServiceInfoData();
+
+			for (LicenseDetails newobj : newServiceInfoData) {
+
+				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
+					licenseDetails.add(newobj);
+					licenseServiceResponseInfo.setNewServiceInfoData(licenseDetails);
+					licenseServiceResponseInfo.setApplication_Status(tradeLicense.getStatus());
+					licenseServiceResponseInfo.setApplicationNumber(applicationNumber);
+					licenseServiceResponseInfo.setBusinessService(tradeLicense.getBusinessService());
+					licenseServiceResponseInfo.setCaseNumber(tradeLicense.getTcpCaseNumber());
+					licenseServiceResponseInfo.setDairyNumber(tradeLicense.getTcpDairyNumber());
+
+					break;
+					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
+				}
 			}
 		}
-		try {
-			BeanUtils.copyProperties(licenseServiceResponseInfo, newServiceInfo);
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		return licenseServiceResponseInfo;
 	}
 
