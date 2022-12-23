@@ -77,7 +77,8 @@ public class Coverage extends FeatureProcess {
     private static final String RULE_EXPECTED_KEY = "coverage.expected";
     private static final String RULE_ACTUAL_KEY = "coverage.actual";
    // private static final BigDecimal ThirtyFive = BigDecimal.valueOf(35);
-    private static final BigDecimal Forty = BigDecimal.valueOf(40);
+    private static final BigDecimal SIXTYSIX = BigDecimal.valueOf(66);
+    private static final BigDecimal SEVENTYFIVE = BigDecimal.valueOf(75);
 	/*
 	 * private static final BigDecimal FortyFive = BigDecimal.valueOf(45); private
 	 * static final BigDecimal Sixty = BigDecimal.valueOf(60); private static final
@@ -157,34 +158,18 @@ public class Coverage extends FeatureProcess {
       // BigDecimal roadWidth = pl.getPlanInformation().getRoadWidth();
       
       //*** Implementation for GROUND COVERAGE as per Haryana
-        if(pl.getPlot().getArea().compareTo(HUNDRED)<=0) {
-        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SEVENTYFIVE_PERCENT);
-        	pl.setCoverage(maxCoverageOnGroundFloor);
-        	expectedResult = "<= 75";
+        if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)<=0) {
+       	 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SEVENTYFIVE);
         }
-        if(pl.getPlot().getArea().compareTo(HUNDRED)>0 && pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)<=0) {
-        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SEVENTYFIVE_PERCENT);
-        	pl.setCoverage(maxCoverageOnGroundFloor);
-        	expectedResult = "<= 187.5";
-        }
-        if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)<=0) {
-        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SIXTYSIX_PERCENT);
-        	pl.setCoverage(maxCoverageOnGroundFloor);
-        	expectedResult = "<= 231";
-        }
-        if(pl.getPlot().getArea().compareTo(THREEHUNDREDFIFTY)>=0 && pl.getPlot().getArea().compareTo(FIVEHUNDRED)<=0) {
-        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SIXTYSIX_PERCENT);
-        	pl.setCoverage(maxCoverageOnGroundFloor);
-        	expectedResult = "<= 330";
-        }
-        if(pl.getPlot().getArea().compareTo(FIVEHUNDRED)>=0 && pl.getPlot().getArea().compareTo(ONETHOUSAND)<=0) {
-        	BigDecimal maxCoverageOnGroundFloor = pl.getPlot().getArea().multiply(SIXTYSIX_PERCENT);
-        	pl.setCoverage(maxCoverageOnGroundFloor);
-        	expectedResult = "<= 660";
+    	
+    	if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
+    		 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SIXTYSIX);
         }
         
         
-        processCoverage(pl, StringUtils.EMPTY, totalCoverage, Forty);
+        
+        
+       
       
 		/*
 		 * // for weighted coverage if (pl.getPlot().getArea().doubleValue() >= 5000) {
@@ -266,7 +251,7 @@ public class Coverage extends FeatureProcess {
         scrutinyDetail.setHeading("Coverage in Percentage");
         scrutinyDetail.addColumnHeading(1, RULE_NO);
         scrutinyDetail.addColumnHeading(2, DESCRIPTION);
-        //scrutinyDetail.addColumnHeading(3, OCCUPANCY);
+        scrutinyDetail.addColumnHeading(3, OCCUPANCY);
         scrutinyDetail.addColumnHeading(4, PERMISSIBLE);
         scrutinyDetail.addColumnHeading(5, PROVIDED);
         scrutinyDetail.addColumnHeading(6, STATUS);
@@ -278,7 +263,7 @@ public class Coverage extends FeatureProcess {
             Map<String, String> details = new HashMap<>();
             details.put(RULE_NO, RULE_38);
             details.put(DESCRIPTION, desc);
-           // details.put(OCCUPANCY, occupancy);
+            details.put(OCCUPANCY, occupancy);
             details.put(PERMISSIBLE, expectedResult);
             details.put(PROVIDED, actualResult);
             details.put(STATUS, Result.Accepted.getResultVal());
@@ -289,7 +274,7 @@ public class Coverage extends FeatureProcess {
             Map<String, String> details = new HashMap<>();
             details.put(RULE_NO, RULE_38);
             details.put(DESCRIPTION, desc);
-           // details.put(OCCUPANCY, occupancy);
+            details.put(OCCUPANCY, occupancy);
             details.put(PERMISSIBLE, expectedResult);
             details.put(PROVIDED, actualResult);
             details.put(STATUS, Result.Not_Accepted.getResultVal());
