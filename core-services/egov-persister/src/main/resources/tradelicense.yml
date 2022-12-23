@@ -389,7 +389,7 @@ serviceMaps:
 
 
 
-       - query: UPDATE eg_tl_tradelicensedetail SET surveyno = ?, subownershipcategory = ?, channel = ?, additionaldetail = ?,operationalArea = ?,noOfEmployees = ?,structureType = ?,adhocExemption = ?,adhocPenalty = ?,adhocExemptionReason = ?,adhocPenaltyReason = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET surveyno = ?, subownershipcategory = ?, channel = ?, additionaldetail = ?,operationalArea = ?,noOfEmployees = ?,structureType = ?, currentVersion = ?, adhocExemption = ?,adhocPenalty = ?,adhocExemptionReason = ?,adhocPenaltyReason = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.surveyNo
@@ -407,6 +407,8 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.noOfEmployees
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.structureType
+          
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.adhocExemption
 
@@ -787,9 +789,10 @@ serviceMaps:
           - jsonPath: $.Licenses.*.id
 
 
-       - query: UPDATE eg_tl_tradelicensedetail SET additionaldetail = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET currentVersion = ?, additionaldetail = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps:
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
           - jsonPath: $.Licenses.*.tradeLicenseDetail.additionalDetail
             type: JSON
             dbType: JSONB
