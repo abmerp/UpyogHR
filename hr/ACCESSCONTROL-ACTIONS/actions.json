@@ -25678,6 +25678,17 @@
          "serviceCode": "",
          "code": "",
          "path": ""
+      },
+      {
+         "id": 2720,
+         "name": "search tl service",
+         "url": "egov-searcher/tl-services/inboxtlsearch/_get",
+         "displayName": "search tl service",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
       }
       
 
