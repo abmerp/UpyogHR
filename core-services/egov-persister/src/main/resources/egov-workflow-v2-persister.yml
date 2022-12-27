@@ -28,7 +28,9 @@ serviceMaps:
 
       - jsonPath: $.ProcessInstances.*.assigner.uuid
       
-      - jsonPath: $.ProcessInstances.*.assignee
+      - jsonPath: $.ProcessInstances.*.assignes
+        type: ARRAY
+        dbType: STRING
 
       - jsonPath: $.ProcessInstances.*.stateSla
 

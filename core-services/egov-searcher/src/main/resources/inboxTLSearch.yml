@@ -9,8 +9,8 @@ SearchDefinitions:
           (
           select DISTINCT(tl.applicationNumber) as applicationnumber,tl.applicationdate as createdtime from eg_tl_tradelicense as tl
           INNER JOIN eg_tl_tradelicensedetail tld ON tl.id = tld.tradelicenseid
-          INNER JOIN eg_tl_owner owner ON tld.id = owner.tradelicensedetailid
-          INNER JOIN eg_tl_address tladd ON tladd.tradelicensedetailid = tld.id
+          LEFT OUTER JOIN eg_tl_owner owner ON tld.id = owner.tradelicensedetailid
+          LEFT OUTER JOIN eg_tl_address tladd ON tladd.tradelicensedetailid = tld.id
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.applicationNumber
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where
@@ -64,8 +64,8 @@ SearchDefinitions:
           (
           select DISTINCT(tl.applicationNumber) as applicationnumber,tl.applicationdate as createdtime from eg_tl_tradelicense as tl
           INNER JOIN eg_tl_tradelicensedetail tld ON tl.id = tld.tradelicenseid
-          INNER JOIN eg_tl_owner owner ON tld.id = owner.tradelicensedetailid
-          INNER JOIN eg_tl_address tladd ON tladd.tradelicensedetailid = tld.id
+          LEFT OUTER JOIN eg_tl_owner owner ON tld.id = owner.tradelicensedetailid
+          LEFT OUTER JOIN eg_tl_address tladd ON tladd.tradelicensedetailid = tld.id
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.applicationNumber
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where
@@ -119,8 +119,8 @@ SearchDefinitions:
           (
           select DISTINCT(tl.applicationNumber) as applicationnumber,tl.applicationdate as createdtime from eg_tl_tradelicense as tl
           INNER JOIN eg_tl_tradelicensedetail tld ON tl.id = tld.tradelicenseid
-          INNER JOIN eg_tl_owner owner ON tld.id = owner.tradelicensedetailid
-          INNER JOIN eg_tl_address tladd ON tladd.tradelicensedetailid = tld.id
+          LEFT OUTER JOIN eg_tl_owner owner ON tld.id = owner.tradelicensedetailid
+          LEFT OUTER JOIN eg_tl_address tladd ON tladd.tradelicensedetailid = tld.id
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.applicationNumber
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where
