@@ -18,13 +18,13 @@ public class EgScrutinyService {
 	public EgScrutiny createAndUpdateEgScrutiny(EgScrutinyInfoRequest egScrutinyInfoRequest) {
 
 		boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
+				egScrutinyInfoRequest.getEgScrutiny().getApplicationNumber(),
 				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
 				egScrutinyInfoRequest.getEgScrutiny().getServiceId());
 
 		if (isExist) {
 			EgScrutiny egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-					egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
+					egScrutinyInfoRequest.getEgScrutiny().getApplicationNumber(),
 					egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(),
 					egScrutinyInfoRequest.getEgScrutiny().getUserid(),
 					egScrutinyInfoRequest.getEgScrutiny().getServiceId());

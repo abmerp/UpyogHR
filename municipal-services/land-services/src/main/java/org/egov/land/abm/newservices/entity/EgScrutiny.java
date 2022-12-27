@@ -33,7 +33,7 @@ public class EgScrutiny implements Serializable {
 	private Integer id;
 
 	@Column(name="application_id")
-	private String applicationId;
+	private String applicationNumber;
 
 	@Column(name="comment")
 	private String comment;
