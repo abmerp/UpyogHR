@@ -24,4 +24,5 @@ public class Documents {
 	private String architectSign;
 	private String townPlannerSign;
 	private String individualCertificateCA;
+
 }
