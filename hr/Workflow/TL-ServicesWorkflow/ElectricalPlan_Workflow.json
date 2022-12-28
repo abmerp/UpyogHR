@@ -1,0 +1,352 @@
+{
+  "RequestInfo": {
+    "apiId": "Rainmaker",
+    "action": "_create",
+    "did": 1,
+    "key": "",
+    "msgId": "20170310130900|en_IN",
+    "ts": 0,
+    "ver": ".01",
+    "authToken": "80458c19-3b48-4aa8-b86e-e2e195e6753a",
+    "userInfo": {
+      "uuid": "5fe074f2-c12d-4a27-bd7b-92d15f9ab19c",
+      "name": "rahul7",
+      "userName": "rahul7",
+      "tenantId": "hr",
+      "id": 97,
+      "mobileNumber": "7895877833"
+    }
+  },
+  "BusinessServices": [
+    {
+      "tenantId": "hr",
+      "businessService": "ELECTRICAL_PLAN",
+      "business": "tl-services",
+      "businessServiceSla": 172800000,
+      "states": [
+        {
+          "tenantId": "hr",
+          "sla": "",
+          "state": "",
+          "applicationStatus": "",
+          "docUploadRequired": false,
+          "isStartState": true,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "INITIATE",
+              "nextState": "CTP(HR)",
+              "roles": [
+                "DEVELOPER",
+                "BPA_BUILDER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": "",
+          "state": "CTP(HR)",
+          "applicationStatus": "CTP(HR)",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "INITIAL_DTP",
+              "roles": [
+                "CTP_HR"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "INITIAL_DTP",
+          "applicationStatus": "INITIAL_DTP",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DEPARMENT_HQ",
+              "roles": [
+                "DTP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DEPARMENT_HQ",
+          "applicationStatus": "DEPARMENT",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "DTP_HQ1",
+              "roles": [
+                
+                "AO_HQ",
+				"ASST_JE_HQ",
+                "JE_HQ",
+				"DA_HQ",
+				"JD_HQ",
+				"SD_HQ",
+                "EE_HQ"
+                
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTP_HQ1",
+          "applicationStatus": "DTP_HQ1",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "SEND_TO_DEPUTATION_ENGINEER",
+              "nextState": "DEPUTATION_ENGINEER",
+              "roles": [
+                "DTP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DEPUTATION_ENGINEER",
+          "applicationStatus": "DEPUTATION_ENGINEER",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "DTP_HQ2",
+              "roles": [
+                
+                "EE_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTP_HQ2",
+          "applicationStatus": "DTP_HQ2",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "STP_HQ",
+              "roles": [
+                "DTP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "STP_HQ",
+          "applicationStatus": "STP_HQ",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "SEND_TO_EXTERNAL_VERIF",
+              "nextState": "EXTERNAL_VERIF",
+              "roles": [
+                "STP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "EXTERNAL_VERIF",
+          "applicationStatus": "EXTERNAL_VERIF",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "STP_HQ2",
+              "roles": [
+               
+                "HSVP",
+                "GMDA",
+                "FMDA",
+                "PMDA"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "STP_HQ2",
+          "applicationStatus": "STP_HQ2",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "REMARKS",
+              "nextState": "CTP_HR",
+              "roles": [
+                "STP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "CTP_HR",
+          "applicationStatus": "CTP_HR",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DTCP_HR",
+              "roles": [
+                "CTP_HR"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "DTCP_HR",
+          "applicationStatus": "DTCP_HR",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "APPROVED",
+              "nextState": "REVIEWED",
+              "roles": [
+                "DTCP_HR"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_STP",
+              "nextState": "STP_HQ3",
+              "roles": [
+                "DTCP_HR"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "STP_HQ3",
+          "applicationStatus": "STP_HQ3",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_APPLICANT",
+              "nextState": "BACK_TO_APPLICANT",
+              "roles": [
+                "STP_HQ"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "DTCP_HR",
+              "roles": [
+                "STP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "BACK_TO_APPLICANT",
+          "applicationStatus": "BACK_TO_APPLICANT",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "STP_HQ2",
+              "roles": [
+                "DEVELOPER",
+                "BPA_BUILDER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "REVIEWED",
+          "applicationStatus": "REVIEWED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": true,
+          "isStateUpdatable": false,
+          "actions": null
+        }
+      ]
+    }
+  ]
+}

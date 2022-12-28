@@ -788,6 +788,21 @@
       "code": "STP_Circle",
       "name": "Senior Town Planner Circle",
       "description": "STP circle role"
+    },
+    {
+      "code": "ASST_JE_HQ",
+      "name": "Assistant Junior Engineer Head Quarter",
+      "description": "Assistant JE role"
+    },
+	  {
+      "code": "CE_HQ",
+      "name": "Civil Engineer Head Quarter",
+      "description": "Civil Engineer JE role"
+    },
+	  {
+      "code": "EE_HQ",
+      "name": "Electrical Engineer Head Quarter",
+      "description": "Electrical Engineer JE role"
     }
   ]
 }
