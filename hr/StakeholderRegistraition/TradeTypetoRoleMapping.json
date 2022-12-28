@@ -374,7 +374,7 @@
             }
         ]
       },
-      {
+    {
         "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
         "tradeType": "BPA_DEVELOPER.CLASSA",
         "role": ["BPA_INDIVIDUAL"],
@@ -387,8 +387,8 @@
                 "required": true
             }
         ]
-      },
-      {
+    },
+    {
         "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
         "tradeType": "BPA_DEVELOPER.CLASSA",
         "role": ["BPA_SOCIETY"],
@@ -530,5 +530,6 @@
             }
         ]
       }
+	  
   ]
 }
