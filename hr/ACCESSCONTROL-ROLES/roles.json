@@ -365,38 +365,38 @@
     },
     {
       "code": "BPA_ARCHITECT",
-      "name": "BPA Architect",
-      "description": "BPA Architect"
+      "name": "Architect",
+      "description": "Architect"
     },
     {
       "code": "BPA_ENGINEER",
-      "name": "BPA Engineer",
-      "description": "BPA Engineer"
+      "name": "Engineer",
+      "description": "Engineer"
     },
     {
       "code": "BPA_BUILDER",
-      "name": "BPA Builder",
-      "description": "BPA Builder"
+      "name": "Builder",
+      "description": "Builder"
     },
     {
       "code": "BPA_DEVELOPER",
-      "name": "BPA Developer",
-      "description": "BPA Developer"
+      "name": "Developer",
+      "description": "Developer"
     },
     {
       "code": "BPA_STRUCTURALENGINEER",
-      "name": "BPA Structural Engineer",
-      "description": "BPA Structural Engineer"
+      "name": "Structural Engineer",
+      "description": "Structural Engineer"
     },
     {
       "code": "BPA_TOWNPLANNER",
-      "name": "BPA Town Planner",
-      "description": "BPA Town Planner"
+      "name": "Town Planner",
+      "description": "Town Planner"
     },
     {
       "code": "BPA_SUPERVISOR",
       "name": "BPA Supervisor",
-      "description": "BPA Supervisor"
+      "description": "Supervisor"
     },
     {
       "code": "ANONYMOUS",
@@ -406,21 +406,21 @@
     {
       "code": "BPAREG_APPROVER",
       "name": "BPAREG Approver",
-      "description": "BPA Stakeholder workflow Approver"
+      "description": "Stakeholder workflow Approver"
     },
     {
       "code": "BPAREG_DOC_VERIFIER",
       "name": "BPAREG doc verifier",
-      "description": "BPA Stakeholder workflow document verifier"
+      "description": "Stakeholder workflow document verifier"
     },
     {
       "code": "BPA_APPROVER",
-      "name": "BPA Services Approver",
-      "description": "BPA Services workflow Approver"
+      "name": "Services Approver",
+      "description": "Services workflow Approver"
     },
     {
       "code": "BPA_VERIFIER",
-      "name": "BPA Services verifier",
+      "name": "Services verifier",
       "description": "BPA Services workflow document & field inspection verifier"
     },
     {
@@ -480,13 +480,13 @@
     },
     {
       "code": "BPA_FIELD_INSPECTOR",
-      "name": "BPA Field Inspector",
-      "description": "BPA Service field inspector"
+      "name": "Field Inspector",
+      "description": "Service field inspector"
     },
     {
       "code": "BPA_NOC_VERIFIER",
-      "name": "BPA NOC Verifier",
-      "description": "BPA Service NOC verifier"
+      "name": "NOC Verifier",
+      "description": "Service NOC verifier"
     },
     {
       "code": "NOC_DEPT_APPROVER",
