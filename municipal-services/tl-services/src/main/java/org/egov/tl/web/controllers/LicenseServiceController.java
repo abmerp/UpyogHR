@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.validation.Valid;
+
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.response.ResponseInfo;
 import org.egov.tl.config.TLConfiguration;
@@ -123,12 +125,11 @@ public class LicenseServiceController {
 		return map2;
 	}
 
-	@GetMapping("/licenses/object/_getByApplicationNumber")
-	public ResponseEntity<LicenseServiceResponseInfo> getJsonSingleFormate(
-			@RequestParam("applicationNumber") String applicationNumber, @RequestBody RequestInfo requestInfo)
-			throws JsonProcessingException {
+	@PostMapping("/licenses/object/_getByApplicationNumber")
+	public ResponseEntity<LicenseServiceResponseInfo> getJsonSingleFormate(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationNumber") String applicationNumber){
 
-		return new ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(applicationNumber, requestInfo),
+		return new ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfoWrapper.getRequestInfo()),
 				HttpStatus.OK);
 	}
 
