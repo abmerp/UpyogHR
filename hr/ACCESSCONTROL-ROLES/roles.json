@@ -807,22 +807,22 @@
     {
       "code": "HSVP",
       "name": "HSVP External Agencies",
-      "description": "HSVP External Agencies For Verification role"
+      "description": "Haryana Shahri Vikas Pradhikaran"
     },
 	  {
       "code": "GMDA",
       "name": "GMDA External Agencies",
-      "description": "GMDA External Agencies For Verification role"
+      "description": "Gurugram Metropolitan Development Authority"
     },
 	  {
       "code": "FMDA",
       "name": "FMDA External Agencies",
-      "description": "FMDA External Agencies For Verification role"
+      "description": "Faridabad Metropolitan Development Authority"
     },
 	  {
       "code": "PMDA",
       "name": "PMDA External Agencies",
-      "description": "PMDA External Agencies For Verification role"
+      "description": "Panchkula Metropolitan Development Authority"
     }
   ]
 }

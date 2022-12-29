@@ -36,10 +36,10 @@
           "actions": [
             {
               "tenantId": "hr",
-              "action": "INITIATE",
-              "nextState": "CTP(HR)",
+              "action": "APPLY",
+              "nextState": "SP_APPLIED",
               "roles": [
-                "DEVELOPER",
+                "BPA_DEVELOPER",
                 "BPA_BUILDER"
               ]
             }
@@ -48,8 +48,8 @@
         {
           "tenantId": "hr",
           "sla": "",
-          "state": "CTP(HR)",
-          "applicationStatus": "CTP(HR)",
+          "state": "SP_APPLIED",
+          "applicationStatus": "SP_APPLIED",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -58,7 +58,7 @@
             {
               "tenantId": "hr",
               "action": "FORWARD",
-              "nextState": "INITIAL_DTP",
+              "nextState": "SP_PENDING_FROM_DTP_HQ",
               "roles": [
                 "CTP_HR"
               ]
@@ -68,8 +68,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "INITIAL_DTP",
-          "applicationStatus": "INITIAL_DTP",
+          "state": "SP_PENDING_FROM_DTP_HQ",
+          "applicationStatus": "SP_PENDING_FROM_DTP_HQ",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -78,7 +78,7 @@
             {
               "tenantId": "hr",
               "action": "FORWARD",
-              "nextState": "DEPARMENT_HQ",
+              "nextState": "SP_PENDING_FROM_DEPARMENT_HQ",
               "roles": [
                 "DTP_HQ"
               ]
@@ -88,8 +88,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "DEPARMENT_HQ",
-          "applicationStatus": "DEPARMENT",
+          "state": "SP_PENDING_FROM_DEPARMENT_HQ",
+          "applicationStatus": "SP_PENDING_FROM_DEPARMENT",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -98,7 +98,7 @@
             {
               "tenantId": "hr",
               "action": "REMARKS",
-              "nextState": "DTP_HQ1",
+              "nextState": "SP_REAMARK_SENDBACK_TO_DTP_HQ",
               "roles": [
                 
                 "AO_HQ",
@@ -115,69 +115,29 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "DTP_HQ1",
-          "applicationStatus": "DTP_HQ1",
+          "state": "SP_REAMARK_SENDBACK_TO_DTP_HQ",
+          "applicationStatus": "SP_REAMARK_SENDBACK_TO_DTP_HQ",
           "docUploadRequired": false,
-          "isStartState": false,
-          "isTerminateState": false,
-          "isStateUpdatable": true,
-          "actions": [
-            {
-              "tenantId": "hr",
-              "action": "SEND_TO_DEPUTATION_ENGINEER",
-              "nextState": "DEPUTATION_ENGINEER",
-              "roles": [
-                "DTP_HQ"
-              ]
-            }
-          ]
-        },
-        {
-          "tenantId": "hr",
-          "sla": 86400000,
-          "state": "DEPUTATION_ENGINEER",
-          "applicationStatus": "DEPUTATION_ENGINEER",
-          "docUploadRequired": false,
-          "isStartState": false,
-          "isTerminateState": false,
-          "isStateUpdatable": true,
-          "actions": [
-            {
-              "tenantId": "hr",
-              "action": "REMARKS",
-              "nextState": "DTP_HQ2",
-              "roles": [
-                
-                "CE_HQ"
-              ]
-            }
-          ]
-        },
-        {
-          "tenantId": "hr",
-          "sla": 86400000,
-          "state": "DTP_HQ2",
-          "applicationStatus": "DTP_HQ2",
-          "docUploadRequired": false,
-          "isStartState": false,
+          "isStartState": false,   
           "isTerminateState": false,
           "isStateUpdatable": true,
           "actions": [
             {
               "tenantId": "hr",
               "action": "FORWARD",
-              "nextState": "STP_HQ",
+              "nextState": "SP_PENDING_FROM_STP_HQ",
               "roles": [
                 "DTP_HQ"
               ]
             }
           ]
         },
+        
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "STP_HQ",
-          "applicationStatus": "STP_HQ",
+          "state": "SP_PENDING_FROM_STP_HQ",
+          "applicationStatus": "SP_PENDING_FROM_STP_HQ",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -186,7 +146,7 @@
             {
               "tenantId": "hr",
               "action": "SEND_TO_EXTERNAL_VERIF",
-              "nextState": "EXTERNAL_VERIF",
+              "nextState": "SP_EXTERNAL_VERIF",
               "roles": [
                 "STP_HQ"
               ]
@@ -196,8 +156,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "EXTERNAL_VERIF",
-          "applicationStatus": "EXTERNAL_VERIF",
+          "state": "SP_EXTERNAL_VERIF",
+          "applicationStatus": "SP_EXTERNAL_VERIF",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -206,7 +166,7 @@
             {
               "tenantId": "hr",
               "action": "REMARKS",
-              "nextState": "STP_HQ2",
+              "nextState": "SP_REMARK_SENDBACK_TO_STP_HQ",
               "roles": [
                 
                 "HSVP",
@@ -220,8 +180,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "STP_HQ2",
-          "applicationStatus": "STP_HQ2",
+          "state": "SP_REMARK_SENDBACK_TO_STP_HQ",
+          "applicationStatus": "SP_REMARK_SENDBACK_TO_STP_HQ",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -230,7 +190,7 @@
             {
               "tenantId": "hr",
               "action": "REMARKS",
-              "nextState": "CTP_HR",
+              "nextState": "SP_PENDING_FROM_CTP_HR",
               "roles": [
                 "STP_HQ"
               ]
@@ -240,8 +200,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "CTP_HR",
-          "applicationStatus": "CTP_HR",
+          "state": "SP_PENDING_FROM_CTP_HR",
+          "applicationStatus": "SP_PENDING_FROM_CTP_HR",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -250,7 +210,7 @@
             {
               "tenantId": "hr",
               "action": "FORWARD",
-              "nextState": "DTCP_HR",
+              "nextState": "SP_PENDING_FROM_DTCP_HR",
               "roles": [
                 "CTP_HR"
               ]
@@ -260,8 +220,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "DTCP_HR",
-          "applicationStatus": "DTCP_HR",
+          "state": "SP_PENDING_FROM_DTCP_HR",
+          "applicationStatus": "SP_PENDING_FROM_DTCP_HR",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -270,7 +230,7 @@
             {
               "tenantId": "hr",
               "action": "APPROVED",
-              "nextState": "REVIEWED",
+              "nextState": "SP_REVIEWED",
               "roles": [
                 "DTCP_HR"
               ]
@@ -278,7 +238,7 @@
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_STP",
-              "nextState": "STP_HQ3",
+              "nextState": "SP_SENDBACK_TO_STP_HQ_FROM_DTCP_HR",
               "roles": [
                 "DTCP_HR"
               ]
@@ -288,8 +248,8 @@
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "STP_HQ3",
-          "applicationStatus": "STP_HQ3",
+          "state": "SP_SENDBACK_TO_STP_HQ_FROM_DTCP_HR",
+          "applicationStatus": "SP_SENDBACK_TO_STP_HQ_FROM_DTCP_HR",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -297,27 +257,20 @@
           "actions": [
             {
               "tenantId": "hr",
-              "action": "SENDBACK_TO_APPLICANT",
-              "nextState": "BACK_TO_APPLICANT",
-              "roles": [
-                "STP_HQ"
-              ]
-            },
-            {
-              "tenantId": "hr",
-              "action": "FORWARD",
-              "nextState": "DTCP_HR",
+              "action": "SENDBACK_TO_AUTH_USER",
+              "nextState": "SP_SENDBACK_TO_APPLICANT",
               "roles": [
                 "STP_HQ"
               ]
             }
+            
           ]
         },
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "BACK_TO_APPLICANT",
-          "applicationStatus": "BACK_TO_APPLICANT",
+          "state": "SP_SENDBACK_TO_APPLICANT",
+          "applicationStatus": "SP_SENDBACK_TO_APPLICANT",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -326,19 +279,55 @@
             {
               "tenantId": "hr",
               "action": "FORWARD",
-              "nextState": "STP_HQ2",
+              "nextState": "SP_REMARK_SENDBACK_TO_STP_HQ_BY_CITIZEN",
               "roles": [
-                "DEVELOPER",
+                "BPA_DEVELOPER",
                 "BPA_BUILDER"
               ]
             }
           ]
         },
+		{
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "SP_REMARK_SENDBACK_TO_STP_HQ_BY_CITIZEN",
+          "applicationStatus": "SP_REMARK_SENDBACK_TO_STP_HQ_BY_CITIZEN",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_CTP_HR",
+              "nextState": "SP_PENDING_FROM_CTP_HR",
+              "roles": [
+                "STP_HQ"
+              ]
+            },
+			{
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_DTP_HQ",
+              "nextState": "SP_PENDING_FROM_DTP_HQ",
+              "roles": [
+                "STP_HQ"
+              ]
+            },
+			{
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_EXTERNAL_VERIF",
+              "nextState": "SP_EXTERNAL_VERIF",
+              "roles": [
+                "STP_HQ"
+              ]
+            }
+          ]
+        },
         {
           "tenantId": "hr",
           "sla": 86400000,
-          "state": "REVIEWED",
-          "applicationStatus": "REVIEWED",
+          "state": "SP_REVIEWED",
+          "applicationStatus": "SP_REVIEWED",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": true,
