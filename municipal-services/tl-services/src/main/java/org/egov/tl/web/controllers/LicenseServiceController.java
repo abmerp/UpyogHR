@@ -7,7 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.response.ResponseInfo;
@@ -22,7 +21,7 @@ import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.Transaction;
 import org.egov.tl.web.models.TransactionResponse;
-import org.json.simple.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +50,7 @@ public class LicenseServiceController {
 	LicenseService newServiceInfoService;
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
-	
+
 	@Autowired
 	private RestTemplate rest;
 	@Autowired
@@ -123,34 +122,16 @@ public class LicenseServiceController {
 		}
 		return map2;
 	}
-	
+
 	@GetMapping("/licenses/object/_getByApplicationNumber")
-	public Map<String, String> getJsonSingleFormate(@RequestParam("id") String applicationNumber,@RequestBody RequestInfo requestInfo) throws JsonProcessingException {
+	public ResponseEntity<LicenseServiceResponseInfo> getJsonSingleFormate(
+			@RequestParam("applicationNumber") String applicationNumber, @RequestBody RequestInfo requestInfo)
+			throws JsonProcessingException {
 
-		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfo);
-		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(licenseServiceResponseInfo);
-
-		JsonNode node = mapper.readValue(json, JsonNode.class);
-
-		((ObjectNode) node.get("newServiceInfoData").get(0).get("DetailsofAppliedLand")).remove("dgpsDetails");
-
-		Map<String, ValueNode> map1 = new LinkedHashMap<>();
-		// flattenJson(node, null, map1);
-		flattenJson(node.get("newServiceInfoData").get(0), null, map1);
-
-		HashMap<String, String> map2 = new HashMap<>();
-
-		for (Entry<String, ValueNode> entry : map1.entrySet()) {
-
-			System.out.println("key======>" + entry.getKey() + " =========" + entry.getValue());
-			if (entry.getKey().contains(".")) {
-				map2.put(entry.getKey().substring(entry.getKey().lastIndexOf(".") + 1), convertNode(entry.getValue()));
-
-			}
-		}
-		return map2;
+		return new ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(applicationNumber, requestInfo),
+				HttpStatus.OK);
 	}
+
 	public static void flattenJson(JsonNode node, String parent, Map<String, ValueNode> map) {
 		if (node instanceof ValueNode) {
 			map.put(parent, (ValueNode) node);
@@ -179,19 +160,18 @@ public class LicenseServiceController {
 		System.out.println("fnal json string ======> " + json);
 		return json;
 	}
-	@RequestMapping(value = "/transaction/v1/_update", method = {RequestMethod.POST, RequestMethod.GET})
-    public ResponseEntity<TransactionResponse> transactionsV1UpdatePost(@RequestBody RequestInfoWrapper
-                                                                                requestInfoWrapper, @RequestParam
-                                                                                Map<String,
-                                                                                        String> params) {
-		
 
-        List<Transaction> transactions = newServiceInfoService.postTransactionDeatil( params,requestInfoWrapper.getRequestInfo());
-        ResponseInfo responseInfo = ResponseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper
-                .getRequestInfo(), true);
-        TransactionResponse response = new TransactionResponse(responseInfo, transactions);
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
+	@RequestMapping(value = "/transaction/v1/_update", method = { RequestMethod.POST, RequestMethod.GET })
+	public ResponseEntity<TransactionResponse> transactionsV1UpdatePost(
+			@RequestBody RequestInfoWrapper requestInfoWrapper, @RequestParam Map<String, String> params) {
+
+		List<Transaction> transactions = newServiceInfoService.postTransactionDeatil(params,
+				requestInfoWrapper.getRequestInfo());
+		ResponseInfo responseInfo = ResponseInfoFactory
+				.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true);
+		TransactionResponse response = new TransactionResponse(responseInfo, transactions);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
 	/* FLAT JSON CODE END */
 
 }

@@ -28,6 +28,9 @@ public class LicenseServiceRequest {
 
 	private String applicationNumber;
 	private String pageName;
+	@JsonProperty("action")
+	private String action;
+	
 	@JsonProperty("ApplicationStatus")
 	private String applicationStatus;
 	@JsonProperty("LicenseDetails")

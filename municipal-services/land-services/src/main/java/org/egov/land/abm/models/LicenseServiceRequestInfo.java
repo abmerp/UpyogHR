@@ -5,6 +5,8 @@ import java.util.Date;
 import org.egov.land.abm.newservices.pojo.LicenseDetails;
 import org.egov.land.web.models.User;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +29,8 @@ public class LicenseServiceRequestInfo {
 
 	private String pageName;
 	private String applicationStatus;
+	
+	
 	
 	private LicenseDetails newServiceInfoData;
 }
