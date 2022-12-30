@@ -8,6 +8,14 @@
         {
             "code": "APPLICATIONTYPE.RENEWAL",
             "active": true
+        },
+        {
+            "code": "APPLICATIONTYPE.SERVICE_PLAN",
+            "active": true
+        },
+        {
+            "code": "APPLICATIONTYPE.ELECTRICAL_PLAN",
+            "active": true
         }
     ]
 }

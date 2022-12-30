@@ -21,6 +21,16 @@
       "businessService": "DisconnectSWConnection1",
       "active": "true",
       "isStatelevel": "false"
+    },
+    {
+      "businessService": "SERVICE_PLAN",
+      "active": "true",
+      "isStatelevel": "true"
+    },
+    {
+      "businessService": "ELECTRICAL_PLAN",
+      "active": "true",
+      "isStatelevel": "true"
     }
   ]
 }
