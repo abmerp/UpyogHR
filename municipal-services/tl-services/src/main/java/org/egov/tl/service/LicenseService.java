@@ -323,9 +323,11 @@ public class LicenseService {
 
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		tradeLicenseRequest.setApplicationNumber(applicationNumber);
+
 		List<LicenseDetails> newServiceInfoData = null;
 		List<LicenseDetails> licenseDetails = new ArrayList<LicenseDetails>();
-		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);		
+		licenseServiceResponseInfo.setWorkFlowCode(tradeLicenses.get(0).getWorkflowCode());
 		for (TradeLicense tradeLicense : tradeLicenses) {
 
 			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
