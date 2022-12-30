@@ -148,7 +148,7 @@ public class LicenseService {
 				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 				newServiceIn.setCurrentVersion(cv);
 				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
-				tradeLicense.setAction("INITIATE");
+				tradeLicense.setAction(newServiceInfo.getAction());
 				tradeLicense.setWorkflowCode("NewTL");
 				// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 
@@ -182,7 +182,7 @@ public class LicenseService {
 			TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 			tradeLicense.setId(String.valueOf(newServiceInfo.getId()));
 			// tradeLicense.setStatus(newServiceInfo.getApplicationStatus());
-			tradeLicense.setAction("INITIATE");
+			tradeLicense.setAction(newServiceInfo.getAction());
 			tradeLicense.setApplicationDate(new Date().getTime());
 			// tradeLicense.getApplicationNumber();
 			tradeLicense.setApplicationType(TradeLicense.ApplicationTypeEnum.NEW);
@@ -194,7 +194,35 @@ public class LicenseService {
 			// tradeLicense.getFileStoreId();
 			tradeLicense.setFinancialYear("2022-23");
 			tradeLicense.setIssuedDate(new Date().getTime());
-			tradeLicense.setStatus("INITIATED");
+		//	tradeLicense.setStatus("INITIATED");
+			switch(tradeLicense.getAction()){
+			case "INITIATE": {
+				tradeLicense.setStatus("INITIATED");
+				break;
+			}
+			case "PURPOSE": {
+				tradeLicense.setStatus("PURPOSE");
+				break;
+			}
+			case "LANDSCHEDULE": {
+				tradeLicense.setStatus("LANDSCHEDULE");
+				break;
+			}
+			case "LANDDETAILS": {
+				tradeLicense.setStatus("LANDDETAILS");
+				break;
+			}
+			case "FEESANDCHARGES": {
+				tradeLicense.setStatus("FEESANDCHARGES");
+				break;
+			}
+			case "PAID": {
+				tradeLicense.setStatus("PAID");
+				break;
+			}
+				
+			}
+			
 			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
@@ -295,9 +323,11 @@ public class LicenseService {
 
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		tradeLicenseRequest.setApplicationNumber(applicationNumber);
+
 		List<LicenseDetails> newServiceInfoData = null;
 		List<LicenseDetails> licenseDetails = new ArrayList<LicenseDetails>();
-		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);		
+		licenseServiceResponseInfo.setWorkFlowCode(tradeLicenses.get(0).getWorkflowCode());
 		for (TradeLicense tradeLicense : tradeLicenses) {
 
 			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {

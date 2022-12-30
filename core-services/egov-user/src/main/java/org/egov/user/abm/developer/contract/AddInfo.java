@@ -7,44 +7,62 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter	
+@Getter
 @Setter
 public class AddInfo {
 
-//	private String CIN_Number;
-//	private String companyName;
-//	private String dateOfCorporation;
-//	private String registeredAddress;
-//	private String email;
-//	private String mobileNumber;
-//	private String GST_Number;
-//	private List<FinancialCapacity> financialCapacity;
-//	private List<ShareholdingPattens> shareHoldingPatterens;
-//	private List<DirectorsInformation> directorsInformation;
-	private String showDevTypeFields;
-	private String name;
-	private String mobileNumberUser;
-    private String cin_Number;
-    private String companyName;
-    private String incorporationDate;
-    private String registeredAddress;
-    private String email;
-    private String registeredContactNo;
-    private String gst_Number;
+	@JsonProperty("csr_Number")
+	private String csr_Number;
 
+	@JsonProperty("llp_Number")
+	private String llp_Number;
+
+	@JsonProperty("showDevTypeFields")
+	private String showDevTypeFields;
+
+	@JsonProperty("name")
+	private String name;
+
+	@JsonProperty("mobileNumberUser")
+	private String mobileNumberUser;
+
+	@JsonProperty("cin_Number")
+	private String cin_Number;
+
+	@JsonProperty("companyName")
+	private String companyName;
+
+	@JsonProperty("incorporationDate")
+	private String incorporationDate;
+
+	@JsonProperty("registeredAddress")
+	private String registeredAddress;
+
+	@JsonProperty("email")
+	private String email;
+
+	@JsonProperty("registeredContactNo")
+	private String registeredContactNo;
+
+	@JsonProperty("gst_Number")
+	private String gst_Number;
+
+	@JsonProperty("DirectorsInformation")
 	private List<DirectorsInformation> directorsInformation;
+
+	@JsonProperty("ShareholdingPattens")
 	private List<ShareholdingPattens> shareHoldingPatterens;
-	
+
+	@JsonProperty("existingColonizer")
 	private String existingColonizer;
-	
+
+	@JsonProperty("ExistingColonizerData")
 	private ExistingColonizerData existingColonizerData;
-	
+
 	@JsonProperty("othersDetails")
 	private List<Other> othersDetails;
-	
+
+	@JsonProperty("emailId")
 	private String emailId;
-	
-	
-    
 
 }

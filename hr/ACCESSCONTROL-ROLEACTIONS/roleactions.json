@@ -235753,6 +235753,26 @@
       "rolecode": "BPA_DEVELOPER",
       "actionid": 2719,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "EMPLOYEE",
+      "actionid": 2720,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2720,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_BUILDER",
+      "actionid": 1700,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "DEVELOPER",
+      "actionid": 1700,
+      "tenantId": "hr"
     }
     
    

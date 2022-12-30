@@ -125,5 +125,7 @@ public class LandSchedule {
 	private String proposedLayoutPlan;
 	@JsonProperty("revisedLansSchedule")
 	private String revisedLansSchedule;
+	@JsonProperty("areaOfParentLicence")
+	private String areaOfParentLicence;
 
 }
