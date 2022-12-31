@@ -50,13 +50,13 @@ public class AddInfo {
 	@JsonProperty("DirectorsInformation")
 	private List<DirectorsInformation> directorsInformation;
 
-	@JsonProperty("ShareholdingPattens")
+	@JsonProperty("shareHoldingPatterens")
 	private List<ShareholdingPattens> shareHoldingPatterens;
 
 	@JsonProperty("existingColonizer")
 	private String existingColonizer;
 
-	@JsonProperty("ExistingColonizerData")
+	@JsonProperty("existingColonizerData")
 	private ExistingColonizerData existingColonizerData;
 
 	@JsonProperty("othersDetails")
