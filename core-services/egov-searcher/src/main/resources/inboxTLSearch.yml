@@ -49,6 +49,12 @@ SearchDefinitions:
     - name: pi.businessservice
       isMandatory: false
       jsonPath: $.searchCriteria.businessservice
+    - name: tl.tcpDairyNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.tcpDairyNumber
+    - name: tl.issueddate
+      isMandatory: false
+      jsonPath: $.searchCriteria.issuedDate
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -104,6 +110,12 @@ SearchDefinitions:
     - name: pi.businessservice
       isMandatory: false
       jsonPath: $.searchCriteria.businessservice
+    - name: tl.tcpDairyNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.tcpDairyNumber
+    - name: tl.issueddate
+      isMandatory: false
+      jsonPath: $.searchCriteria.issuedDate
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -159,6 +171,12 @@ SearchDefinitions:
     - name: pi.businessservice
       isMandatory: false
       jsonPath: $.searchCriteria.businessservice
+    - name: tl.tcpDairyNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.tcpDairyNumber
+    - name: tl.issueddate
+      isMandatory: false
+      jsonPath: $.searchCriteria.issuedDate
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
