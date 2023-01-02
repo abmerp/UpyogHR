@@ -118,7 +118,7 @@ public class Parking extends FeatureProcess {
     private static final double MECH_PARKING_WIDTH = 2.7;
     private static final double MECH_PARKING_HEIGHT = 5.5;
 
-    private static final double OPEN_ECS = 23;
+    private static final double OPEN_ECS = 12.5;
     private static final double COVER_ECS = 28;
     private static final double BSMNT_ECS = 32;
     private static final double PARK_A = 0.25;

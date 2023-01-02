@@ -95,16 +95,16 @@ public class StairCover extends FeatureProcess {
             if (b.getStairCovers() != null && !b.getStairCovers().isEmpty()) {
                 minHeight = b.getStairCovers().stream().reduce(BigDecimal::min).get();
 
-                if (minHeight.compareTo(new BigDecimal(3)) <= 0) {
+                if (minHeight.compareTo(new BigDecimal(2.5)) <= 0) {
                     details.put(DESCRIPTION, STAIRCOVER_DESCRIPTION);
-                    details.put(VERIFIED, "Verified whether stair cover height is <= 3 meters");
+                    details.put(VERIFIED, "Verified whether stair cover height is <= 2.5 meters");
                     details.put(ACTION, "Not included stair cover height(" + minHeight + ") to building height");
                     details.put(STATUS, Result.Accepted.getResultVal());
                     scrutinyDetail.getDetail().add(details);
                     pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
                 } else {
                     details.put(DESCRIPTION, STAIRCOVER_DESCRIPTION);
-                    details.put(VERIFIED, "Verified whether stair cover height is <= 3 meters");
+                    details.put(VERIFIED, "Verified whether stair cover height is <= 2.5 meters");
                     details.put(ACTION, "Included stair cover height(" + minHeight + ") to building height");
                     details.put(STATUS, Result.Verify.getResultVal());
                     scrutinyDetail.getDetail().add(details);
