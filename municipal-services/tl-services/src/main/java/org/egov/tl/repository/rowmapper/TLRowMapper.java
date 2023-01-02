@@ -70,7 +70,11 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .status(rs.getString("status"))
                         .tenantId(tenantId)
                         .tradeName(rs.getString("tradeName"))
-                       // .propertyId(rs.getString("propertyid"))
+                        .tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
+                        .tcpCaseNumber(rs.getString("tcpcasenumber"))
+                        .tcpDairyNumber(rs.getString("tcpdairynumber"))
+                       // .tcpDairyNumber(tcploinumber
+                        //.tcpSaveTransactionNumber(tenantId)
                      //   .oldPropertyId(rs.getString("oldpropertyid"))
                         .businessService(rs.getString("businessservice"))
                         .fileStoreId(rs.getString("tl_fileStoreId"))
