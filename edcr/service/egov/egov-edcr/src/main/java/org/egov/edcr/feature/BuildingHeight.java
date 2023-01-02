@@ -85,6 +85,7 @@ public class BuildingHeight extends FeatureProcess {
     public static final String UPTO = "Up To";
     public static final String DECLARED = "Declared";
     private static final BigDecimal TWELVE = BigDecimal.valueOf(12);
+    private static final BigDecimal SIXTEENPOINTFIVE = BigDecimal.valueOf(16.5);
     private static final BigDecimal TEN = BigDecimal.valueOf(10);
 
     @Override
@@ -126,35 +127,37 @@ public class BuildingHeight extends FeatureProcess {
 
         // get maximum height from buildings.
         for (Block block : Plan.getBlocks()) {
-            BigDecimal maximumDistanceToRoadEdge = BigDecimal.ZERO;
-            BigDecimal maximumSetBackToBuildingLine = BigDecimal.ZERO;
-            BigDecimal exptectedDistance = BigDecimal.ZERO;
+			/*
+			 * BigDecimal maximumDistanceToRoadEdge = BigDecimal.ZERO; BigDecimal
+			 * maximumSetBackToBuildingLine = BigDecimal.ZERO; BigDecimal exptectedDistance
+			 * = BigDecimal.ZERO;
+			 */
             BigDecimal actualDistance = BigDecimal.ZERO;
 
             // Get Maximum distance to road Edge
-            maximumDistanceToRoadEdge = getMaximumDistanceFromRoadEdge(maximumDistanceToRoadEdge, block);
-            maximumSetBackToBuildingLine = getMaximumDistanceFromSetBackToBuildingLine(maximumSetBackToBuildingLine, block);
+           // maximumDistanceToRoadEdge = getMaximumDistanceFromRoadEdge(maximumDistanceToRoadEdge, block);
+           // maximumSetBackToBuildingLine = getMaximumDistanceFromSetBackToBuildingLine(maximumSetBackToBuildingLine, block);
             actualDistance = block.getBuilding().getBuildingHeight();
-            if (maximumDistanceToRoadEdge != null) {
-                if (maximumDistanceToRoad.compareTo(TWELVE) <= 0) {
+			/*
+			 * if (maximumDistanceToRoadEdge != null) { if
+			 * (maximumDistanceToRoad.compareTo(TWELVE) <= 0) {
+			 * 
+			 * if (maximumSetBackToBuildingLine != null &&
+			 * maximumSetBackToBuildingLine.compareTo(BigDecimal.ZERO) > 0) {
+			 * exptectedDistance = maximumDistanceToRoadEdge
+			 * .multiply(BigDecimal.valueOf(2)).add(BigDecimal.valueOf(3).multiply(
+			 * maximumSetBackToBuildingLine .divide(BigDecimal.valueOf(0.5), 0,
+			 * RoundingMode.DOWN))) .setScale(DECIMALDIGITS_MEASUREMENTS,
+			 * ROUNDMODE_MEASUREMENTS); } else exptectedDistance =
+			 * maximumDistanceToRoadEdge.multiply(BigDecimal.valueOf(2))
+			 * .setScale(DECIMALDIGITS_MEASUREMENTS, ROUNDMODE_MEASUREMENTS);
+			 * 
+			 * } } // Show for each block height if
+			 * (exptectedDistance.compareTo(BigDecimal.ZERO) > 0) {
+			 */                String actualResult = getLocaleMessage(RULE_ACTUAL_KEY, actualDistance.toString());
+                String expectedResult = getLocaleMessage(RULE_EXPECTED_KEY, SIXTEENPOINTFIVE.toString());
 
-                    if (maximumSetBackToBuildingLine != null && maximumSetBackToBuildingLine.compareTo(BigDecimal.ZERO) > 0) {
-                        exptectedDistance = maximumDistanceToRoadEdge
-                                .multiply(BigDecimal.valueOf(2)).add(BigDecimal.valueOf(3).multiply(maximumSetBackToBuildingLine
-                                        .divide(BigDecimal.valueOf(0.5), 0, RoundingMode.DOWN)))
-                                .setScale(DECIMALDIGITS_MEASUREMENTS, ROUNDMODE_MEASUREMENTS);
-                    } else
-                        exptectedDistance = maximumDistanceToRoadEdge.multiply(BigDecimal.valueOf(2))
-                                .setScale(DECIMALDIGITS_MEASUREMENTS, ROUNDMODE_MEASUREMENTS);
-
-                }
-            }
-            // Show for each block height
-            if (exptectedDistance.compareTo(BigDecimal.ZERO) > 0) {
-                String actualResult = getLocaleMessage(RULE_ACTUAL_KEY, actualDistance.toString());
-                String expectedResult = getLocaleMessage(RULE_EXPECTED_KEY, exptectedDistance.toString());
-
-                if (actualDistance.compareTo(exptectedDistance) > 0) {
+                if (actualDistance.compareTo(SIXTEENPOINTFIVE) > 0) {
                     Map<String, String> details = new HashMap<>();
                     details.put(RULE_NO, subRule);
                     details.put(DESCRIPTION, HEIGHT_OF_BUILDING + " for Block " + block.getNumber());
@@ -176,7 +179,7 @@ public class BuildingHeight extends FeatureProcess {
 
                 }
             }
-        }
+       // }
     }
 
     private void checkBuildingInSecurityZoneArea(Plan Plan) {
