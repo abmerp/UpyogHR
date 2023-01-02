@@ -365,13 +365,13 @@ serviceMaps:
 
           - jsonPath: $.Licenses.*.status
           
-          - jsonPath: $.Licenses.*.tcptransactionnumber 
+          - jsonPath: $.Licenses.*.tcpTransactionNumber 
            
-          - jsonPath: $.Licenses.*.tcpdairynumber 
+          - jsonPath: $.Licenses.*.tcpDairyNumber 
             
-          - jsonPath: $.Licenses.*.tcpcasenumber 
+          - jsonPath: $.Licenses.*.tcpCaseNumber 
              
-          - jsonPath: $.Licenses.*.tcpapplicationnumber 
+          - jsonPath: $.Licenses.*.tcpApplicationNumber 
               
           - jsonPath: $.Licenses.*.tcploinumber 
 
