@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.service.LicenseService;
 import org.egov.tl.service.dao.LicenseServiceDao;
 
@@ -24,6 +25,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,13 +61,13 @@ public class LoiApprovalReport {
 	LicenseService newServiceInfoService;
 	@Autowired Environment env;
 
-	@RequestMapping(value = "/loi/report/_create", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, byte[]>> createLoiReport(@RequestParam("id") Long id) throws IOException {
+	@RequestMapping(value = "/loi/report/_create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, byte[]>> createLoiReport(@RequestParam("applicationNumber") String applicationNumber, @RequestBody RequestInfo requestInfo) throws IOException {
 
 	
 		this.MY_FILE = env.getProperty("egov.loireport");
 		File file = new File(MY_FILE);
-		createReport(id);
+		createReport(applicationNumber);
 
 		int length = (int) file.length();
 		BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
@@ -85,15 +87,15 @@ public class LoiApprovalReport {
 		 */
 	}
 
-	public void createReport(Long id) {
+	public void createReport(String applicationNumber) {
 		
 		LicenseServiceDao newServiceInfo = null;
 
 		//boolean result = newServiceInfoService.existsByLoiNumber("1212");
-		boolean result = newServiceInfoService.existsById(id);
+		boolean result = newServiceInfoService.existsByApplicationNumber(applicationNumber);
 		if (result) {
 //			newServiceInfo = getLatestNewServicesInfo("1212");
-			newServiceInfo = newServiceInfoService.findNewServicesInfoById(id);
+			newServiceInfo = newServiceInfoService.findNewServicesInfoById(applicationNumber);
 		}else {
 			System.out.println("False");
 		}

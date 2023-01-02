@@ -550,7 +550,7 @@ public class LicenseService {
 
 	}
 
-	public LicenseServiceDao findNewServicesInfoById(Long id) {
+	public LicenseServiceDao findNewServicesInfoById(String applicationNumber) {
 
 		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
 		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
@@ -570,7 +570,7 @@ public class LicenseService {
 		return this.newServiceInfoRepo.existsByLoiNumber(loiNumber);
 	}
 
-	public boolean existsById(Long id) {
-		return this.newServiceInfoRepo.existsById(id);
+	public boolean existsByApplicationNumber(String applicationNumber) {
+		return this.newServiceInfoRepo.existsByApplicationNumber(applicationNumber);
 	}
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LicenseServiceRepo extends JpaRepository<LicenseServiceDao, Long> {
 
-	public boolean existsById(Long id);
+	public boolean existsByApplicationNumber(String applicationNumber);
 	
 	
 	
