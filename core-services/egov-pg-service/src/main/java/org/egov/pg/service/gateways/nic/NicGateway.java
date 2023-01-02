@@ -127,8 +127,11 @@ public class NicGateway implements Gateway {
 		treeMap.put("ApplicationNumber", currentStatus.getApplicationNumber());
 		treeMap.put("ORDER_ID", currentStatus.getTxnId());
 		try {
-			String checkSum = CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode, treeMap);
-			treeMap.put("CHECKSUMHASH", checkSum);
+			/*
+			 * String checkSum =
+			 * CheckSumServiceHelper.getCheckSumServiceHelper().genrateCheckSum(DeptCode,
+			 * treeMap); treeMap.put("CHECKSUMHASH", checkSum);
+			 */
 
 			HttpHeaders httpHeaders = new HttpHeaders();
 			httpHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString());
@@ -143,11 +146,11 @@ public class NicGateway implements Gateway {
 		} catch (RestClientException e) {
 			// log.error("Unable to fetch status from Paytm gateway", e);
 			throw new CustomException("UNABLE_TO_FETCH_STATUS", "Unable to fetch status from Paytm gateway");
-		} catch (Exception e) {
-			// log.error("Paytm Checksum generation failed", e);
-			throw new CustomException("CHECKSUM_GEN_FAILED",
-					"Hash generation failed, gateway redirect URI cannot be generated");
-		}
+		} /*
+			 * catch (Exception e) { // log.error("Paytm Checksum generation failed", e);
+			 * throw new CustomException("CHECKSUM_GEN_FAILED",
+			 * "Hash generation failed, gateway redirect URI cannot be generated"); }
+			 */
 	}
 
 	@Override

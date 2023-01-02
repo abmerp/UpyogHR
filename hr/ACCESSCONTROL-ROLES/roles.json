@@ -788,6 +788,41 @@
       "code": "STP_Circle",
       "name": "Senior Town Planner Circle",
       "description": "STP circle role"
+    },
+    {
+      "code": "ASST_JE_HQ",
+      "name": "Assistant Junior Engineer Head Quarter",
+      "description": "Assistant JE role"
+    },
+    {
+      "code": "CE_HQ",
+      "name": "Civil Engineer Head Quarter",
+      "description": "Civil Engineer JE role"
+    },
+    {
+      "code": "EE_HQ",
+      "name": "Electrical Engineer Head Quarter",
+      "description": "Electrical Engineer JE role"
+    },
+    {
+      "code": "HSVP",
+      "name": "HSVP External Agencies",
+      "description": "HSVP External Agencies For Verification role"
+    },
+    {
+      "code": "GMDA",
+      "name": "GMDA External Agencies",
+      "description": "GMDA External Agencies For Verification role"
+    },
+    {
+      "code": "FMDA",
+      "name": "FMDA External Agencies",
+      "description": "FMDA External Agencies For Verification role"
+    },
+    {
+      "code": "PMDA",
+      "name": "PMDA External Agencies",
+      "description": "PMDA External Agencies For Verification role"
     }
   ]
 }

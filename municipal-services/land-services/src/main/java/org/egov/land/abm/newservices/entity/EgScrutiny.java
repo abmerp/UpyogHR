@@ -56,6 +56,8 @@ public class EgScrutiny implements Serializable {
 	private Integer userid;
 	
 	private Integer serviceId;
+	@Column(name="IsLOIPart")
+	private Boolean isLOIPart;
 	
 	@Column(name="document_id")
 	private String documentId;
