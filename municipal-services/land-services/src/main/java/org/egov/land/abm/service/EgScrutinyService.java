@@ -32,6 +32,7 @@ public class EgScrutinyService {
 			egScrutiny.setCreatedOn(egScrutinyInfoRequest.getEgScrutiny().getCreatedOn());
 			egScrutiny.setIsApproved(egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 			egScrutiny.setFieldValue(egScrutinyInfoRequest.getEgScrutiny().getFieldValue());
+			egScrutiny.setIsLOIPart(egScrutinyInfoRequest.getEgScrutiny().getIsLOIPart());
 			egScrutiny.setTs(new Date());
 			return egScrutinyRepo.save(egScrutiny);
 		} else {

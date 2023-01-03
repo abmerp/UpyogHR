@@ -116,15 +116,15 @@ public class InteriorOpenSpaceService extends FeatureProcess {
 				details.put(RULE_NO, RULE_43);
 				details.put(DESCRIPTION, INTERNALCOURTYARD_DESCRIPTION);
 
-				if (minInteriorCourtYardArea.compareTo(BigDecimal.valueOf(9)) >= 0) {
-					details.put(REQUIRED, "Minimum area 9.0 Sq. M  ");
+				if (minInteriorCourtYardArea.compareTo(BigDecimal.valueOf(12)) >= 0) {
+					details.put(REQUIRED, "Minimum area 12.0 Sq. M  ");
 					details.put(PROVIDED, "Area " + minInteriorCourtYardArea + " at floor " + f.getNumber());
 					details.put(STATUS, Result.Accepted.getResultVal());
 					scrutinyDetail.getDetail().add(details);
 					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
 				} else {
-					details.put(REQUIRED, "Minimum area 9.0 Sq. M  ");
+					details.put(REQUIRED, "Minimum area 12.0 Sq. M  ");
 					details.put(PROVIDED, "Area " + minInteriorCourtYardArea + " at floor " + f.getNumber());
 					details.put(STATUS, Result.Not_Accepted.getResultVal());
 					scrutinyDetail.getDetail().add(details);
@@ -168,15 +168,15 @@ public class InteriorOpenSpaceService extends FeatureProcess {
 				details.put(RULE_NO, RULE_43);
 				details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
 
-				if (minVentilationShaftArea.compareTo(BigDecimal.valueOf(1.2)) >= 0) {
-					details.put(REQUIRED, "Minimum area 1.2 Sq. M  ");
+				if (minVentilationShaftArea.compareTo(BigDecimal.valueOf(1.875)) >= 0) {
+					details.put(REQUIRED, "Minimum area 1.875 Sq. M  ");
 					details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
 					details.put(STATUS, Result.Accepted.getResultVal());
 					scrutinyDetail.getDetail().add(details);
 					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
 				} else {
-					details.put(REQUIRED, "Minimum area 1.2 Sq. M  ");
+					details.put(REQUIRED, "Minimum area 1.875 Sq. M  ");
 					details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
 					details.put(STATUS, Result.Not_Accepted.getResultVal());
 					scrutinyDetail.getDetail().add(details);
@@ -187,15 +187,15 @@ public class InteriorOpenSpaceService extends FeatureProcess {
 				Map<String, String> details = new HashMap<>();
 				details.put(RULE_NO, RULE_43A);
 				details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
-				if (minVentilationShaftWidth.compareTo(BigDecimal.valueOf(0.9)) >= 0) {
-					details.put(REQUIRED, "Minimum width 0.9 M ");
+				if (minVentilationShaftWidth.compareTo(BigDecimal.valueOf(1.25)) >= 0) {
+					details.put(REQUIRED, "Minimum width 1.25 M ");
 					details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
 					details.put(STATUS, Result.Accepted.getResultVal());
 					scrutinyDetail.getDetail().add(details);
 					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
 				} else {
-					details.put(REQUIRED, "Minimum width 0.9 M ");
+					details.put(REQUIRED, "Minimum width 1.25 M ");
 					details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
 					details.put(STATUS, Result.Not_Accepted.getResultVal());
 					scrutinyDetail.getDetail().add(details);
