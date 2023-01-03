@@ -73,5 +73,10 @@ public class AppliedLandDetails {
 
 	@JsonProperty("registeringAuthorityDoc")
 	private String registeringAuthorityDoc;
-
+	
+	@JsonProperty("khewats")
+	private String khewats;
+	
+	@JsonProperty("totalArea")
+	private String totalArea;
 }
