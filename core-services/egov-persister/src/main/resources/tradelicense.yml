@@ -839,56 +839,50 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
 
  - version: 1.0
-   description: save new bankguarantee details in eg_bg_new_bank_guarantee table
-   fromTopic: save-new-bankguarantee
+   description: Save Service Plan Application
+   fromTopic: save-sp-tradelicense
    isTransaction: true
    queryMaps:
-       - query: INSERT INTO eg_bg_new_bank_guarantee(id,application_number, status,loi_number,memo_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, consent_letter, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?);
-         basePath: NewBankGuaranteeRequest
-         jsonMaps:
-          - jsonPath: $.NewBankGuaranteeRequest.id
-
-          - jsonPath: $.NewBankGuaranteeRequest.applicationNumber
-
-          - jsonPath: $.NewBankGuaranteeRequest.status
-
-          - jsonPath: $.NewBankGuaranteeRequest.loiNumber
-
-          - jsonPath: $.NewBankGuaranteeRequest.memoNumber
-
-          - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
-
-          - jsonPath: $.NewBankGuaranteeRequest.uploadBg
-
-          - jsonPath: $.NewBankGuaranteeRequest.bankName
-
-          - jsonPath: $.NewBankGuaranteeRequest.amountInFig
-
-          - jsonPath: $.NewBankGuaranteeRequest.amountInWords
-
-          - jsonPath: $.NewBankGuaranteeRequest.consentLetter
-
-          - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
-
-          - jsonPath: $.NewBankGuaranteeRequest.validity
-
-          - jsonPath: $.NewBankGuaranteeRequest.tenantId
-
-          - jsonPath: $.NewBankGuaranteeRequest.additionalDetails
-            type: JSON
-            dbType: JSONB
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdBy
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedBy
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdTime
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
 
 
-       - query: INSERT INTO eg_bg_new_bank_guarantee_auditdetails SELECT * FROM eg_bg_new_bank_guarantee WHERE id =?;
-         basePath: NewBankGuaranteeRequest
+       - query: INSERT INTO public.eg_service_plan (loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?);
+         basePath: ServicePlanRequest
          jsonMaps:
 
-           - jsonPath: $.NewBankGuaranteeRequest.id
+          - jsonPath: $.ServicePlanRequest.loiNumber
+
+          - jsonPath: $.ServicePlanRequest.autoCadFile
+
+          - jsonPath: $.ServicePlanRequest.certifieadCopyOfThePlan
+
+          - jsonPath: $.ServicePlanRequest.environmentalClearance
+
+          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingFromEmpaneledDoc
+
+          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingsFromCharetedEng
+
+          - jsonPath: $.ServicePlanRequest.shapeFileAsPerTemplate
+
+          - jsonPath: $.ServicePlanRequest.status
+
+          - jsonPath: $.ServicePlanRequest.action
+
+          - jsonPath: $.ServicePlanRequest.undertaking
+
+          - jsonPath: $.ServicePlanRequest.action
+
+          - jsonPath: $.ServicePlanRequest.businessService
+
+          - jsonPath: $.ServicePlanRequest.comment
+
+          - jsonPath: $.ServicePlanRequest.tenantID
+
+          - jsonPath: $.ServicePlanRequest.applicationNumber
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.createdBy
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.createdTime
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedTime
