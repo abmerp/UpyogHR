@@ -25711,6 +25711,28 @@
          "serviceCode": "",
          "code": "",
          "path": ""
+      },
+      {
+         "id":2723,
+         "name":"service plan create",
+         "url":"/tl-services/serviceplan/_create",
+         "displayName":"service plan create",
+         "orderNumber":0,
+         "enabled":true,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+         "id":2724,
+         "name":"service plan get",
+         "url":"/tl-services/serviceplan/_get",
+         "displayName":"service plan create",
+         "orderNumber":0,
+         "enabled":true,
+         "serviceCode":"",
+         "code":"",
+         "path":""
       }
       
 

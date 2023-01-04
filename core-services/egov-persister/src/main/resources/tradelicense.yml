@@ -7,7 +7,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
-       - query: INSERT INTO eg_tl_tradelicense( id, accountid,tenantid,tradeName, validfrom,validto,licensetype,applicationNumber, oldlicensenumber, propertyId, oldPropertyId ,applicationdate, commencementdate, financialyear, action, status, businessservice, workflowcode, createdby, lastmodifiedby, createdtime, lastmodifiedtime ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO eg_tl_tradelicense( id, accountid,tenantid,tradeName, validfrom,validto,licensetype,applicationNumber, oldlicensenumber, propertyId, oldPropertyId ,applicationdate, commencementdate, financialyear, action, status,businessservice, createdby, lastmodifiedby, createdtime, lastmodifiedtime ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: Licenses.*
          jsonMaps:
           - jsonPath: $.Licenses.*.id       
@@ -43,8 +43,6 @@ serviceMaps:
           - jsonPath: $.Licenses.*.status
           
           - jsonPath: $.Licenses.*.businessService
-          
-          - jsonPath: $.Licenses.*.workflowCode
 
           - jsonPath: $.Licenses.*.auditDetails.createdBy
 
@@ -334,7 +332,7 @@ serviceMaps:
          jsonMaps:
           - jsonPath: $.Licenses.*.id
 
-       - query: UPDATE eg_tl_tradelicense SET tradeName = ?,licenseNumber = ?,licensetype = ?, oldlicensenumber = ?, propertyid = ?, oldpropertyid = ?, applicationdate = ?, commencementdate = ?, issueddate = ?, financialyear = ?, validfrom = ?, validto = ?, action = ?, status = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?, lastmodifiedby = ?,  lastmodifiedtime = ?  WHERE id=?;
+       - query: UPDATE eg_tl_tradelicense SET tradeName = ?,licenseNumber = ?,licensetype = ?, oldlicensenumber = ?, propertyid = ?, oldpropertyid = ?, applicationdate = ?, commencementdate = ?, issueddate = ?, financialyear = ?, validfrom = ?, validto = ?, action = ?, status = ?, tcptransactionnumber = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?, lastmodifiedby = ?,  lastmodifiedtime = ?  WHERE id=?;
          basePath: Licenses.*
          jsonMaps:
           - jsonPath: $.Licenses.*.tradeName
@@ -364,12 +362,14 @@ serviceMaps:
           - jsonPath: $.Licenses.*.action
 
           - jsonPath: $.Licenses.*.status
+          
+          - jsonPath: $.Licenses.*.tcptransactionnumber 
            
-          - jsonPath: $.Licenses.*.tcpDairyNumber 
+          - jsonPath: $.Licenses.*.tcpdairynumber 
             
-          - jsonPath: $.Licenses.*.tcpCaseNumber 
+          - jsonPath: $.Licenses.*.tcpcasenumber 
              
-          - jsonPath: $.Licenses.*.tcpApplicationNumber 
+          - jsonPath: $.Licenses.*.tcpapplicationnumber 
               
           - jsonPath: $.Licenses.*.tcploinumber 
 
@@ -389,7 +389,7 @@ serviceMaps:
 
 
 
-       - query: UPDATE eg_tl_tradelicensedetail SET surveyno = ?, subownershipcategory = ?, channel = ?, additionaldetail = ?,operationalArea = ?,noOfEmployees = ?,structureType = ?, currentVersion = ?, adhocExemption = ?,adhocPenalty = ?,adhocExemptionReason = ?,adhocPenaltyReason = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET surveyno = ?, subownershipcategory = ?, channel = ?, additionaldetail = ?,operationalArea = ?,noOfEmployees = ?,structureType = ?,adhocExemption = ?,adhocPenalty = ?,adhocExemptionReason = ?,adhocPenaltyReason = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.surveyNo
@@ -407,8 +407,6 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.noOfEmployees
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.structureType
-          
-          - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.adhocExemption
 
@@ -767,7 +765,7 @@ serviceMaps:
           - jsonPath: $.Licenses[*][?({id} in @.tradeLicenseDetail.verificationDocuments[*].id)].auditDetails.lastModifiedTime
 
 
-       - query: UPDATE eg_tl_tradelicense SET validfrom = ?, validto = ?, licenseNumber =?, issueddate = ?, action = ?, status = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?,  lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id=?;
+       - query: UPDATE eg_tl_tradelicense SET validfrom = ?, validto = ?, licenseNumber =?, issueddate = ?, action = ?, status = ?,  lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id=?;
          basePath: Licenses.*
          jsonMaps:
           - jsonPath: $.Licenses.*.validFrom
@@ -781,14 +779,6 @@ serviceMaps:
           - jsonPath: $.Licenses.*.action
 
           - jsonPath: $.Licenses.*.status
-           
-          - jsonPath: $.Licenses.*.tcpDairyNumber 
-            
-          - jsonPath: $.Licenses.*.tcpCaseNumber 
-             
-          - jsonPath: $.Licenses.*.tcpApplicationNumber 
-              
-          - jsonPath: $.Licenses.*.tcploinumber           
 
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
 
@@ -797,10 +787,9 @@ serviceMaps:
           - jsonPath: $.Licenses.*.id
 
 
-       - query: UPDATE eg_tl_tradelicensedetail SET currentVersion = ?, additionaldetail = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET additionaldetail = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps:
-          - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
           - jsonPath: $.Licenses.*.tradeLicenseDetail.additionalDetail
             type: JSON
             dbType: JSONB
@@ -838,57 +827,53 @@ serviceMaps:
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
 
+
+
  - version: 1.0
-   description: save new bankguarantee details in eg_bg_new_bank_guarantee table
-   fromTopic: save-new-bankguarantee
+   description: Save Service Plan Application
+   fromTopic: save-sp-tradelicense
    isTransaction: true
    queryMaps:
-       - query: INSERT INTO eg_bg_new_bank_guarantee(id,application_number, status,loi_number,memo_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, consent_letter, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?);
-         basePath: NewBankGuaranteeRequest
-         jsonMaps:
-          - jsonPath: $.NewBankGuaranteeRequest.id
-
-          - jsonPath: $.NewBankGuaranteeRequest.applicationNumber
-
-          - jsonPath: $.NewBankGuaranteeRequest.status
-
-          - jsonPath: $.NewBankGuaranteeRequest.loiNumber
-
-          - jsonPath: $.NewBankGuaranteeRequest.memoNumber
-
-          - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
-
-          - jsonPath: $.NewBankGuaranteeRequest.uploadBg
-
-          - jsonPath: $.NewBankGuaranteeRequest.bankName
-
-          - jsonPath: $.NewBankGuaranteeRequest.amountInFig
-
-          - jsonPath: $.NewBankGuaranteeRequest.amountInWords
-
-          - jsonPath: $.NewBankGuaranteeRequest.consentLetter
-
-          - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
-
-          - jsonPath: $.NewBankGuaranteeRequest.validity
-
-          - jsonPath: $.NewBankGuaranteeRequest.tenantId
-
-          - jsonPath: $.NewBankGuaranteeRequest.additionalDetails
-            type: JSON
-            dbType: JSONB
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdBy
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedBy
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdTime
-
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
 
 
-       - query: INSERT INTO eg_bg_new_bank_guarantee_auditdetails SELECT * FROM eg_bg_new_bank_guarantee WHERE id =?;
-         basePath: NewBankGuaranteeRequest
+       - query: INSERT INTO public.eg_service_plan (loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?);
+         basePath: ServicePlanRequest
          jsonMaps:
 
-           - jsonPath: $.NewBankGuaranteeRequest.id
+          - jsonPath: $.ServicePlanRequest.loiNumber
+
+          - jsonPath: $.ServicePlanRequest.autoCadFile
+
+          - jsonPath: $.ServicePlanRequest.certifieadCopyOfThePlan
+
+          - jsonPath: $.ServicePlanRequest.environmentalClearance
+
+          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingFromEmpaneledDoc
+
+          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingsFromCharetedEng
+
+          - jsonPath: $.ServicePlanRequest.shapeFileAsPerTemplate
+
+          - jsonPath: $.ServicePlanRequest.status
+
+          - jsonPath: $.ServicePlanRequest.action
+
+          - jsonPath: $.ServicePlanRequest.undertaking
+
+          - jsonPath: $.ServicePlanRequest.action
+
+          - jsonPath: $.ServicePlanRequest.businessService
+
+          - jsonPath: $.ServicePlanRequest.comment
+
+          - jsonPath: $.ServicePlanRequest.tenantID
+
+          - jsonPath: $.ServicePlanRequest.applicationNumber
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.createdBy
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.createdTime
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedTime
