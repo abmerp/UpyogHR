@@ -336,5 +336,13 @@ public class TLConfiguration {
     @Value("${egov.pg-service.path}")
     private String pgPath;
     
+    @Value("${persister.bankguarantee.new.save}")
+    private String saveNewBankGuaranteeTopic;
+    
+	@Value("${egov.idgen.tl.bankguarantee.new.name}")
+	private String newBankGuaranteeApplNoIdGenName;
+
+	@Value("${egov.idgen.tl.bankguarantee.new.format}")
+	private String newBankGuaranteeApplNoIdGenFormat;
 
 }

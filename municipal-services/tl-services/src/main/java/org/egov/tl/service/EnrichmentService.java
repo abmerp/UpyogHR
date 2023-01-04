@@ -140,7 +140,7 @@ public class EnrichmentService {
 	 * @param count       Number of ids to be generated
 	 * @return List of ids generated using idGen service
 	 */
-	private List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
+	public List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
 		List<IdResponse> idResponses = idGenRepository.getId(requestInfo, tenantId, idKey, idformat, count)
 				.getIdResponses();
 

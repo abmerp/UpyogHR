@@ -25700,6 +25700,17 @@
          "serviceCode": "",
          "code": "",
          "path": ""
+      },
+      {
+         "id": 2722,
+         "name": "bank guarantee create",
+         "url": "/tl-services/bank/guarantee/_create",
+         "displayName": "bank guarantee create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
       }
       
 

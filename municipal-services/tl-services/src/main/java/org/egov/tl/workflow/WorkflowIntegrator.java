@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.config.TLConfiguration;
+import org.egov.tl.service.BankGuaranteeService;
 import org.egov.tl.util.TLConstants;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -123,6 +125,10 @@ public class WorkflowIntegrator {
 						}
 						obj.put(BUSINESSSERVICEKEY, tradeType);
 						obj.put(MODULENAMEKEY, BPAMODULENAMEVALUE);
+						break;
+					case BankGuaranteeService.BUSINESSSERVICE_BG_NEW:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 						break;
 				}
 				obj.put(ACTIONKEY, license.getAction());
