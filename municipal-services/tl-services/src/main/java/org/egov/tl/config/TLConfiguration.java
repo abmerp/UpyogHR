@@ -340,7 +340,7 @@ public class TLConfiguration {
     @Value("${egov.idgen.tlSP.applicationNum.name}")
     private String SPapplicationNumberIdgenNameTL;
     
-    @Value("${egov.idgen.tl.applicationNum.format}")
+    @Value("${egov.idgen.tlSP.applicationNum.format}")
     private String SPapplicationNumberIdgenFormatTL;
     
     //Service Plan Save Topic
