@@ -20,7 +20,7 @@ public class AppliedLandDetails {
 	@JsonProperty("mustil")
 	private String mustil;
 
-	@JsonProperty("consolidationType")
+	@JsonProperty("consolidationType")	
 	private String consolidationType;
 
 	@JsonProperty("sarsai")
@@ -77,6 +77,9 @@ public class AppliedLandDetails {
 	@JsonProperty("khewats")
 	private String khewats;
 	
-	@JsonProperty("totalArea")
-	private String totalArea;
+	@JsonProperty("consolidatedTotal")
+	private String consolidatedTotal;
+
+	@JsonProperty("nonConsolidatedTotal")
+	private String nonConsolidatedTotal;
 }
