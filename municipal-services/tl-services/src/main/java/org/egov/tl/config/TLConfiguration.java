@@ -346,6 +346,16 @@ public class TLConfiguration {
     //Service Plan Save Topic
     @Value("${persister.save.ServicePlan.topic}")
     private String SPsaveTopic;
+	
+	
+    @Value("${persister.bankguarantee.new.save}")
+    private String saveNewBankGuaranteeTopic;
+	
+   @Value("${egov.idgen.tl.bankguarantee.new.name}")
+   private String newBankGuaranteeApplNoIdGenName;
+
+   @Value("${egov.idgen.tl.bankguarantee.new.format}")
+   private String newBankGuaranteeApplNoIdGenFormat;
     
 
 }
