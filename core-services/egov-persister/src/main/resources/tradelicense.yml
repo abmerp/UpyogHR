@@ -839,6 +839,63 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
 
  - version: 1.0
+   description: save new bankguarantee details in eg_bg_new_bank_guarantee table
+   fromTopic: save-new-bankguarantee
+   isTransaction: true
+   queryMaps:
+       - query: INSERT INTO eg_bg_new_bank_guarantee(id,application_number, status,loi_number,memo_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, consent_letter, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?);
+         basePath: NewBankGuaranteeRequest
+         jsonMaps:
+          - jsonPath: $.NewBankGuaranteeRequest.id
+
+          - jsonPath: $.NewBankGuaranteeRequest.applicationNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.status
+
+          - jsonPath: $.NewBankGuaranteeRequest.loiNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.memoNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
+
+          - jsonPath: $.NewBankGuaranteeRequest.uploadBg
+
+          - jsonPath: $.NewBankGuaranteeRequest.bankName
+
+          - jsonPath: $.NewBankGuaranteeRequest.amountInFig
+
+          - jsonPath: $.NewBankGuaranteeRequest.amountInWords
+
+          - jsonPath: $.NewBankGuaranteeRequest.consentLetter
+
+          - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
+
+          - jsonPath: $.NewBankGuaranteeRequest.validity
+
+          - jsonPath: $.NewBankGuaranteeRequest.tenantId
+
+          - jsonPath: $.NewBankGuaranteeRequest.additionalDetails
+            type: JSON
+            dbType: JSONB
+
+          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdBy
+
+          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedBy
+
+          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdTime
+
+          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
+
+
+       - query: INSERT INTO eg_bg_new_bank_guarantee_auditdetails SELECT * FROM eg_bg_new_bank_guarantee WHERE id =?;
+         basePath: NewBankGuaranteeRequest
+         jsonMaps:
+
+           - jsonPath: $.NewBankGuaranteeRequest.id
+
+
+
+ - version: 1.0
    description: Save Service Plan Application
    fromTopic: save-sp-tradelicense
    isTransaction: true
