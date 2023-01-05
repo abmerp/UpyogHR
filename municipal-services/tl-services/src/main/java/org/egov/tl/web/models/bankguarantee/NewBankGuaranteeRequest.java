@@ -54,6 +54,8 @@ public class NewBankGuaranteeRequest {
 		this.applicationNumber = newBankGuarantee.getApplicationNumber();
 		this.status = newBankGuarantee.getStatus();
 		this.tenantId = newBankGuarantee.getTenantId();
+		this.additionalDetails = newBankGuarantee.getAdditionalDetails();
+		this.auditDetails = newBankGuarantee.getAuditDetails();
 
 	}
 	
@@ -73,6 +75,8 @@ public class NewBankGuaranteeRequest {
 				.applicationNumber(this.applicationNumber)
 				.status(this.status)
 				.tenantId(this.tenantId)
+				.additionalDetails(this.additionalDetails)
+				.auditDetails(this.auditDetails)
 				.build();
 	}
 }

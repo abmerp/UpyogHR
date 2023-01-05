@@ -235988,6 +235988,56 @@
       "rolecode": "EMPLOYEE",
       "actionid": 2724,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "EMPLOYEE",
+      "actionid": 2725,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CITIZEN",
+      "actionid": 2725,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_BUILDER",
+      "actionid": 2725,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_DEVELOPER",
+      "actionid": 2725,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "EMPLOYEE",
+      "actionid": 2726,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_BUILDER",
+      "actionid": 2726,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "BPA_DEVELOPER",
+      "actionid": 2726,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "SO_HQ",
+      "actionid": 2726,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "AO_HQ",
+      "actionid": 2726,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "CAO",
+      "actionid": 2726,
+      "tenantId": "hr"
     }
     
    

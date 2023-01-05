@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.egov.tl.web.models.AuditDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,50 +20,53 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="eg_new_bank_guarantee")
+//@Entity(name="eg_new_bank_guarantee")
 public class NewBankGuarantee {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
-	@Column(name = "loi_number", length = 100)
+	//@Column(name = "loi_number", length = 100)
 	private String loiNumber;
 	
-	@Column(name = "memo_number", length = 100)
+	//@Column(name = "memo_number", length = 100)
 	private String memoNumber;
 	
-	@Column(name = "type_of_bg", length = 100)
+	//@Column(name = "type_of_bg", length = 100)
 	private String typeOfBg;
 	
-	@Column(name = "upload_Bg", length = 100)
+	//@Column(name = "upload_Bg", length = 100)
 	private String uploadBg;
 	
-	@Column(name = "bank_name", length = 100)
+	//@Column(name = "bank_name", length = 100)
 	private String bankName;
 	
-	@Column(name = "amount_In_Fig", length = 100)
+	//@Column(name = "amount_In_Fig", length = 100)
 	private String amountInFig;
 	
-	@Column(name = "amount_in_words", length = 200)
+	//@Column(name = "amount_in_words", length = 200)
 	private String amountInWords;
 	
-	@Column(name = "consent_Letter", length = 200)
+	//@Column(name = "consent_Letter", length = 200)
 	private String consentLetter;
 	
-	@Column(name = "license_Applied", length = 200)
+	//@Column(name = "license_Applied", length = 200)
 	private String licenseApplied;
 
 
-	@Column(name = "validity", length = 100)
+	//@Column(name = "validity", length = 100)
 	private String validity;
 	
-	@Column(name = "application_number", length = 32)
+	//@Column(name = "application_number", length = 32)
 	private String applicationNumber;
 	
-	@Column(name = "tenantId", length = 16)
+	//@Column(name = "tenantId", length = 16)
 	private String tenantId;
 	
-	@Column(name = "status", length = 100)
+	//@Column(name = "status", length = 100)
 	private String status;
+	
+	private Object additionalDetails;
+	private AuditDetails auditDetails;
 }

@@ -25733,6 +25733,28 @@
          "serviceCode":"",
          "code":"",
          "path":""
+      },
+      {
+         "id": 2725,
+         "name": "bank guarantee search",
+         "url": "/tl-services/bank/guarantee/_search",
+         "displayName": "bank guarantee search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2726,
+         "name": "new bank guarantee update",
+         "url": "/tl-services/bank/guarantee/_update",
+         "displayName": "new bank guarantee update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
       }
       
 

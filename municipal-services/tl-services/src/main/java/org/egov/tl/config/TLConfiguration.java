@@ -356,6 +356,9 @@ public class TLConfiguration {
 
    @Value("${egov.idgen.tl.bankguarantee.new.format}")
    private String newBankGuaranteeApplNoIdGenFormat;
+   
+   @Value("${persister.bankguarantee.new.update}")
+   private String updateNewBankGuaranteeTopic;
     
 
 }
