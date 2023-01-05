@@ -149,17 +149,15 @@ public class MinioRepository implements CloudFilesManager {
 			String fileName = fileLocation.
 					substring(fileLocation.indexOf('/') + 1, fileLocation.length());
 			String signedUrl = getSignedUrl(fileName);
-			if (util.isFileAnImage(artifact.getFileName())) {
-				try {
-					signedUrl = setThumnailSignedURL(fileName, new StringBuilder(signedUrl));
-				} catch (InvalidKeyException | ErrorResponseException | IllegalArgumentException
-						| InsufficientDataException | InternalException | InvalidBucketNameException
-						| InvalidExpiresRangeException | InvalidResponseException | NoSuchAlgorithmException
-						| XmlParserException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			/*
+			 * if (util.isFileAnImage(artifact.getFileName())) { try { signedUrl =
+			 * setThumnailSignedURL(fileName, new StringBuilder(signedUrl)); } catch
+			 * (InvalidKeyException | ErrorResponseException | IllegalArgumentException |
+			 * InsufficientDataException | InternalException | InvalidBucketNameException |
+			 * InvalidExpiresRangeException | InvalidResponseException |
+			 * NoSuchAlgorithmException | XmlParserException | IOException e) { // TODO
+			 * Auto-generated catch block e.printStackTrace(); } }
+			 */
 			
 			mapOfIdAndSASUrls.put(artifact.getFileStoreId(), signedUrl);
 			
