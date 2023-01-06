@@ -129,7 +129,7 @@ public class BankGuaranteeService {
 		}
 	}
 	
-	public List<NewBankGuarantee> searchNewBankGuarantee(RequestInfo requestInfo, String applicationNumber) {
+	public List<NewBankGuarantee> searchNewBankGuarantee(RequestInfo requestInfo, List<String> applicationNumber) {
 		List<NewBankGuaranteeRequest> newBankGuaranteeRequestData = newBankGuaranteeRepo
 				.getNewBankGuaranteeData(applicationNumber);
 		List<NewBankGuarantee> newBankGuaranteeData = newBankGuaranteeRequestData.stream()
@@ -146,9 +146,10 @@ public class BankGuaranteeService {
 		if (StringUtils.isEmpty(newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber())) {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
+		List<String> applicationNos = new ArrayList<>();
+		applicationNos.add(newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber());
 		List<NewBankGuarantee> newBankGuaranteeSearchResult = searchNewBankGuarantee(
-				newBankGuaranteeContract.getRequestInfo(),
-				newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber());
+				newBankGuaranteeContract.getRequestInfo(), applicationNos);
 		if (CollectionUtils.isEmpty(newBankGuaranteeSearchResult) || newBankGuaranteeSearchResult.size() > 1) {
 			throw new CustomException(
 					"Found none or multiple new bank guarantee applications with applicationNumber:"

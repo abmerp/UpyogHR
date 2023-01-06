@@ -20,15 +20,43 @@ public class NewBankGuaranteeQueryBuilder {
 	
 	private static final String QUERY = "select ebnbg.id as ebnbg_id, ebnbg.application_number as ebnbg_application_number, ebnbg.status as ebnbg_status, ebnbg.loi_number as ebnbg_loi_number, ebnbg.memo_number as ebnbg_memo_number, ebnbg.type_of_bg as ebnbg_type_of_bg, ebnbg.upload_bg as ebnbg_upload_bg, ebnbg.bank_name as ebnbg_bank_name, ebnbg.amount_in_fig as ebnbg_amount_in_fig, ebnbg.amount_in_words as ebnbg_amount_in_words, ebnbg.consent_letter as ebnbg_consent_letter, ebnbg.license_applied as ebnbg_license_applied, ebnbg.validity as ebnbg_validity, ebnbg.tenantid as ebnbg_tenantid, ebnbg.additionaldetails as ebnbg_additionaldetails, ebnbg.createdby as ebnbg_createdby, ebnbg.lastmodifiedby as ebnbg_lastmodifiedby, ebnbg.createdtime as ebnbg_createdtime, ebnbg.lastmodifiedtime as ebnbg_lastmodifiedtime from eg_bg_new_bank_guarantee ebnbg";
 	
-	public String getNewBankGuaranteeSearchQuery(String applicationNumber, List<Object> preparedStmtList) {
+	public String getNewBankGuaranteeSearchQuery(List<String> applicationNumber, List<Object> preparedStmtList) {
 		StringBuilder builder = new StringBuilder(QUERY);
 		if(Objects.nonNull(applicationNumber)) {
 			addClauseIfRequired(preparedStmtList, builder);
-			builder.append(" ebnbg.application_number=?");
-			preparedStmtList.add(applicationNumber);
+			builder.append(" ebnbg.application_number in (" + createQuery(applicationNumber) + ")");
+			addToPreparedStatement(preparedStmtList, applicationNumber);
 		}
 		return builder.toString();
 		
+	}
+	
+	/**
+	 * add values to the preparedStatment List
+	 * @param preparedStmtList
+	 * @param ids
+	 */
+	private void addToPreparedStatement(List<Object> preparedStmtList, List<String> ids) {
+		ids.forEach(id -> {
+			preparedStmtList.add(id);
+		});
+
+	}
+	
+	/**
+	 * produce a query input for the multiple values
+	 * @param ids
+	 * @return
+	 */
+	private Object createQuery(List<String> ids) {
+		StringBuilder builder = new StringBuilder();
+		int length = ids.size();
+		for (int i = 0; i < length; i++) {
+			builder.append(" ?");
+			if (i != length - 1)
+				builder.append(",");
+		}
+		return builder.toString();
 	}
 	
 	/**

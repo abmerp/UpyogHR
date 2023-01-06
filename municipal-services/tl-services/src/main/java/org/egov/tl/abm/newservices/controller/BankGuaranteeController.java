@@ -41,7 +41,7 @@ public class BankGuaranteeController {
 	
 	@PostMapping("/guarantee/_search")
 	public ResponseEntity<NewBankGuaranteeResponse> searchNewBankGuarantee(@RequestBody RequestInfo requestInfo,
-			@RequestParam("applicationNumber") String applicationNumber) {
+			@RequestParam("applicationNumber") List<String> applicationNumber) {
 		
 		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.searchNewBankGuarantee(requestInfo,
 				applicationNumber);

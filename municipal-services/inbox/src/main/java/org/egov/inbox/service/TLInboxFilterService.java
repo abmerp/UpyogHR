@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.egov.inbox.util.BpaConstants.BPAREG;
@@ -46,12 +47,23 @@ public class TLInboxFilterService {
 
     @Value("${egov.searcher.tl.count.path}")
     private String tlInboxSearcherCountEndpoint;
+    
+    @Value("${egov.searcher.tl.bgnew.search.path}")
+    private String newBankGuaranteeSearcherEndpoint;
+    
+    @Value("${egov.searcher.tl.bgnew.count.path}")
+    private String newBankGuaranteeSearcherCountEndpoint;
+    
+    @Value("${egov.searcher.tl.bgnew.search.desc.path}")
+    private String newBankGuaranteeSearcherDescEndpoint;
 
     @Autowired
     private RestTemplate restTemplate;
 
     @Autowired
     private ServiceRequestRepository serviceRequestRepository;
+    
+    private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 
     public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria, HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo){
         List<String> acknowledgementNumbers = new ArrayList<>();
@@ -122,11 +134,26 @@ public class TLInboxFilterService {
             searcherRequest.put(SEARCH_CRITERIA_PARAM, searchCriteria);
 
             StringBuilder uri = new StringBuilder();
-            if(moduleSearchCriteria.containsKey(SORT_ORDER_PARAM) && moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)){
-                uri.append(searcherHost).append(tlInboxSearcherDescEndpoint);
-            }else {
-                uri.append(searcherHost).append(tlInboxSearcherEndpoint);
-            }
+            System.out.println("*******criteria*****"+criteria.getProcessSearchCriteria().getBusinessService());
+            //switch case:
+			if (Objects.nonNull(criteria.getProcessSearchCriteria().getBusinessService())
+					&& !criteria.getProcessSearchCriteria().getBusinessService().isEmpty()) {
+				//assumption: only one businessService will be sent in searcher as multiple will have different search endpoints
+				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
+				switch(businessService) {
+				case BUSINESSSERVICE_BG_NEW:
+					tlInboxSearcherDescEndpoint = newBankGuaranteeSearcherDescEndpoint;
+					tlInboxSearcherEndpoint = newBankGuaranteeSearcherEndpoint;
+					break;
+				}
+			}
+			if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+					&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+				uri.append(searcherHost).append(tlInboxSearcherDescEndpoint);
+			} else {
+				uri.append(searcherHost).append(tlInboxSearcherEndpoint);
+			}
+            
 
             result = restTemplate.postForObject(uri.toString(), searcherRequest, Map.class);
 
@@ -211,6 +238,16 @@ public class TLInboxFilterService {
             searcherRequest.put(REQUESTINFO_PARAM, requestInfo);
             searcherRequest.put(SEARCH_CRITERIA_PARAM, searchCriteria);
 
+            if (Objects.nonNull(criteria.getProcessSearchCriteria().getBusinessService())
+					&& !criteria.getProcessSearchCriteria().getBusinessService().isEmpty()) {
+				//assumption: only one businessService will be sent in searcher as multiple will have different search endpoints
+				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
+				switch(businessService) {
+				case BUSINESSSERVICE_BG_NEW:
+					tlInboxSearcherCountEndpoint = newBankGuaranteeSearcherCountEndpoint;
+					break;
+				}
+			}
             StringBuilder uri = new StringBuilder();
             uri.append(searcherHost).append(tlInboxSearcherCountEndpoint);
 

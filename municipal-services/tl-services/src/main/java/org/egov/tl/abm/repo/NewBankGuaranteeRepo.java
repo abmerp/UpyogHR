@@ -38,7 +38,7 @@ public class NewBankGuaranteeRepo {
 		producer.push(tlConfiguration.getUpdateNewBankGuaranteeTopic(), newBankGuaranteeContract);
 	}
 	
-	public List<NewBankGuaranteeRequest> getNewBankGuaranteeData(String applicationNumber) {
+	public List<NewBankGuaranteeRequest> getNewBankGuaranteeData(List<String> applicationNumber) {
 		List<Object> preparedStmtList = new ArrayList<>();
 		String query = newBankGuaranteeQueryBuilder.getNewBankGuaranteeSearchQuery(applicationNumber, preparedStmtList);
 		log.info("query inside method getNewBankGuaranteeData:" + query);
