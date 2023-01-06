@@ -71,12 +71,12 @@ public class NewLicenseReport {
 	@Autowired public RestTemplate restTemplate;
 	@Autowired TLConfiguration config;
 
-	@RequestMapping(value = "new/license/report", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "new/license/report", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void jsonToPdf(@ModelAttribute("RequestInfo") RequestInfo requestInfo, HttpServletRequest request,
-			HttpServletResponse response, @RequestParam("id") Long id) throws IOException {
+			HttpServletResponse response, @RequestParam("applicationNumber") String applicationNumber) throws IOException {
 
 		try {
-			createNewLicenseReport(requestInfo,id);
+			createNewLicenseReport(requestInfo,applicationNumber);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		}
@@ -96,12 +96,12 @@ public class NewLicenseReport {
 		}
 	}
 
-	public void createNewLicenseReport(RequestInfo requestInfo,Long id)
+	public void createNewLicenseReport(RequestInfo requestInfo,String applicationNumber)
 			throws MalformedURLException, IOException, DocumentException {
 
 		
 		boolean flag = true;
-		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(id);
+		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber, requestInfo);
 
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		String json = ow.writeValueAsString(licenseServiceResponceInfo);

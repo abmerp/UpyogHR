@@ -79,12 +79,13 @@ public class LicenseServiceController {
 
 		return new ResponseEntity<>(newServiceResponseInfo, HttpStatus.OK);
 	}
-
-	@GetMapping("/licenses/_get")
-	public ResponseEntity<LicenseServiceResponseInfo> getNewServicesDetailById(@RequestParam("id") Long id) {
-		return new ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(id), HttpStatus.OK);
-	}
-
+	
+	  @GetMapping("/licenses/_get") public
+	  ResponseEntity<LicenseServiceResponseInfo>
+	  getNewServicesDetailById(@RequestParam("applicationNumber") String applicationNumber,@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) { return new
+	  ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfoWrapper.getRequestInfo()),
+	  HttpStatus.OK); }
+	 
 	@GetMapping("/licenses/_getall")
 	public List<LicenseServiceDao> getNewServicesDetailAll() {
 
@@ -98,9 +99,9 @@ public class LicenseServiceController {
 
 	/* FOR FLATE JSON FOR JSON TO PDF */
 	@GetMapping("/licenses/object/_get")
-	public Map<String, String> getJsonSingleFormate(@RequestParam("id") Long id) throws JsonProcessingException {
+	public Map<String, String> getJsonSingleFormate(@RequestParam("applicationNumber") String applicationNumber,@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) throws JsonProcessingException {
 
-		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(id);
+		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfoWrapper.getRequestInfo());
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(licenseServiceResponseInfo);
 
