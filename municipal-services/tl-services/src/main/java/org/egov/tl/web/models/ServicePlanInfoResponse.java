@@ -19,6 +19,6 @@ import lombok.Setter;
 public class ServicePlanInfoResponse {
 
 	private ResponseInfo responseInfo = null;
-	private List<ServicePlanRequest> servicePlanRequest;
+	private List<ServicePlanRequest> servicePlanResponse;
 	
 }

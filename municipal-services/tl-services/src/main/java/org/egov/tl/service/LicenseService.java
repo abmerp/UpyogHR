@@ -295,7 +295,7 @@ public class LicenseService {
 		return transactionNumber;
 	}
 
-	public LicenseServiceResponseInfo getNewServicesInfoById(Long id) {
+	public LicenseServiceResponseInfo getNewServicesInfoById1(String applicationNumber,RequestInfo info) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
 		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
