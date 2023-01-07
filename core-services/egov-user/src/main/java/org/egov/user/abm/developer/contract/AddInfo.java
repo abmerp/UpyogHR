@@ -1,4 +1,4 @@
-package org.egov.user.abm.developer.contract;
+	package org.egov.user.abm.developer.contract;
 
 import java.util.List;
 
@@ -64,5 +64,11 @@ public class AddInfo {
 
 	@JsonProperty("emailId")
 	private String emailId;
+	
+	@JsonProperty("uploadDigitalSignaturePdf")
+	private String uploadDigitalSignaturePdf;
+	
+	@JsonProperty("uploadBoardResolution")
+	private String uploadBoardResolution;
 
 }

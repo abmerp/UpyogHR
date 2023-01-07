@@ -9,4 +9,7 @@ public class TechnicalCapacityOutsideHaryanaDetails {
 	private String project;
 	private String authority;
 	private String statusOfDevelopment;
+	private String projectArea;
+	private String location;
+
 }
