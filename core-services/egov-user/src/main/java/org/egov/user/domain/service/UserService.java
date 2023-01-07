@@ -10,7 +10,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.common.contract.response.ResponseInfo;
 import org.egov.tracer.model.CustomException;
+import org.egov.user.abm.developer.contract.SsoCitizen;
 import org.egov.user.domain.exception.*;
 import org.egov.user.domain.model.LoggedInUserUpdatePasswordRequest;
 import org.egov.user.domain.model.NonLoggedInUserUpdatePasswordRequest;
@@ -25,11 +27,17 @@ import org.egov.user.persistence.repository.OtpRepository;
 import org.egov.user.persistence.repository.UserRepository;
 import org.egov.user.web.contract.Otp;
 import org.egov.user.web.contract.OtpValidateRequest;
+import org.egov.user.web.contract.UserSearchRequest;
+import org.egov.user.web.contract.UserSearchResponse;
+import org.egov.user.web.contract.UserSearchResponseContent;
+import org.egov.user.web.controller.UserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
@@ -38,6 +46,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -49,6 +58,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.egov.tracer.http.HttpUtils.isInterServiceCall;
 import static org.egov.user.config.UserServiceConstants.USER_CLIENT_ID;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
@@ -56,6 +66,20 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 @Slf4j
 public class UserService {
 
+	@Value("${tcp.url}")
+	public String tcpurl;
+	@Value("${tcp.auth.token}")
+	public String tcpAuthToken;
+	@Value("${tcp.access.key}")
+	public String tcpAccessKey;
+	@Value("${tcp.secret.key}")
+	public String tcpSecretKey;
+	@Value("${tcp.sso.citizen.url}")
+	public String ssoCitizenUrl;
+	@Value("${tcp.is.existSSO.Token}")
+	public String tcpExistSSoNumber;
+	@Value("${egov.user.search.default.size}")
+	private Integer defaultSearchSize;
 	private UserRepository userRepository;
 	private OtpRepository otpRepository;
 	private PasswordEncoder passwordEncoder;
@@ -95,6 +119,7 @@ public class UserService {
 
 	@Autowired
 	private NotificationUtil notificationUtil;
+	private UserSearchCriteria userSearchCriteria;
 
 	public UserService(UserRepository userRepository, OtpRepository otpRepository, FileStoreRepository fileRepository,
 			PasswordEncoder passwordEncoder, EncryptionDecryptionUtil encryptionDecryptionUtil, TokenStore tokenStore,
@@ -216,8 +241,9 @@ public class UserService {
 	 */
 	public User createUser(User user, RequestInfo requestInfo) {
 		user.setUuid(UUID.randomUUID().toString());
-		user.validateNewUser(createUserValidateName);
 		user.setActive(true);
+		user.validateNewUser(createUserValidateName);
+	
 		conditionallyValidateOtp(user);
 		/* encrypt here */
 		user = encryptionDecryptionUtil.encryptObject(user, "User", User.class);
@@ -651,6 +677,81 @@ public class UserService {
 		if (!CollectionUtils.isEmpty(errorMap.keySet())) {
 			throw new CustomException(errorMap);
 		}
+	}
+
+	public ResponseEntity<Map> getAuthToken(Map<String, Object> map) {
+		SsoCitizen ssoCitizenData = new SsoCitizen();
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.set("access_key", tcpAccessKey);
+		headers.set("secret_key", tcpSecretKey);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		map.put("UserId", "39");
+		map.put("TpUserId", "12346");
+		map.put("EmailId", "mkthakur84@gmail.com");
+
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpAuthToken, entity, Map.class);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("Token No\n" + response.getBody().get("Value"));
+		}
+		return response;
+	}
+
+	public ResponseEntity<Map> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
+		
+		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
+		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
+		ssoCitizenMap.put("MobNo", ssoCitizen.getMobileNumber());
+		ResponseEntity<Map> isExistSSOToken = isExistSSOToken(ssoCitizenMap);
+		String ssoValue = (String) isExistSSOToken.getBody().get("Value");
+		String sso = "yes";
+		String sso1 = "no";
+		User user = new User();
+		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
+		if (ssoValue.equalsIgnoreCase(sso)) {
+			userSearchCriteria.setUserName(ssoCitizen.getMobileNumber());
+			userSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
+			List<User> searchUsers = searchUsers(userSearchCriteria, true, requestInfo);
+			System.out.println("searchUsers" + searchUsers);
+		
+			if(null == searchUsers || searchUsers.isEmpty()) {
+				user.setTenantId(requestInfo.getUserInfo().getTenantId());
+				user.setUsername(ssoCitizen.getMobileNumber());
+				user.setName(ssoCitizen.getUserId());
+				user.setMobileNumber(ssoCitizen.getMobileNumber());
+				user.setOtpReference("123456");	
+			//	User createUser = createUser(user,requestInfo);
+				Object newUser =registerWithLogin(user,requestInfo);
+				
+				System.out.println("newUser"+newUser);
+				
+		} else {
+			user.setUuid(searchUsers.get(0).getUuid());
+			user.setRoles(searchUsers.get(0).getRoles());		
+			user.setTenantId(requestInfo.getUserInfo().getTenantId());
+			User updatedUser = updateWithoutOtpValidation(user, requestInfo);
+			System.out.println("updatedUser"+updatedUser);
+			}
+		} else {
+			throw new InvalidUserSearchCriteriaException(this.userSearchCriteria);
+		}
+
+		return null;
+
+	}
+
+	public ResponseEntity<Map> isExistSSOToken(Map<String, Object> request) {
+		request.put("UserId", "39");
+		request.put("TokenId", getAuthToken(request).getBody().get("Value"));
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
+		}
+		return response;
 	}
 
 }

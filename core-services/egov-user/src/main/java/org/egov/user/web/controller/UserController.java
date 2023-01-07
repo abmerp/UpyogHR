@@ -6,6 +6,8 @@ import org.egov.common.contract.response.ResponseInfo;
 import org.egov.user.abm.developer.contract.DevDetail;
 import org.egov.user.abm.developer.contract.DeveloperRegistration;
 import org.egov.user.abm.developer.contract.Developerdetail;
+import org.egov.user.abm.developer.contract.SsoCitizen;
+import org.egov.user.abm.developer.contract.SsoCitizenRequest;
 import org.egov.user.abm.developer.services.DeveloperRegistrationService;
 import org.egov.user.domain.model.*;
 
@@ -195,7 +197,7 @@ public class UserController {
 		return new UpdateResponse(responseInfo, Collections.singletonList(updateRequest));
 	}
 
-	private UserSearchResponse searchUsers(@RequestBody UserSearchRequest request, HttpHeaders headers) {
+	public UserSearchResponse searchUsers(@RequestBody UserSearchRequest request, HttpHeaders headers) {
 
 		UserSearchCriteria searchCriteria = request.toDomain();
 //TODO PALAM
@@ -235,6 +237,19 @@ public class UserController {
 			return false;
 		}
 		return true;
+	}
+	
+	@PostMapping("/users/_ssoCitizen")
+	public  Map<String,Object> ssoCitizen(@RequestBody  SsoCitizenRequest ssoCitizenRequest){
+		
+		SsoCitizen ssoCitizenData = ssoCitizenRequest.getSsoCitizen();
+	
+		ResponseEntity<Map> ssoCitizen =  userService.ssoCitizen(ssoCitizenData, ssoCitizenRequest.getRequestInfo());
+		
+		return (Map<String, Object>) ssoCitizen;
+
+
+
 	}
 
 }
