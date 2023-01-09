@@ -143,13 +143,40 @@ public class LicenseService {
 				tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
 				newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 				newServiceIn.setUpdatedDate(new Date());
-				newServiceIn.setApplicationStatus(tradeLicense.getStatus());
+				//newServiceIn.setApplicationStatus(tradeLicense.getStatus());
 				newServiceIn.setApplicationNumber(tradeLicense.getApplicationNumber());
 				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 				newServiceIn.setCurrentVersion(cv);
 				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 				tradeLicense.setAction(newServiceInfo.getAction());
 				tradeLicense.setWorkflowCode("NewTL");
+				switch(tradeLicense.getAction()){
+				case "INITIATE": {
+					tradeLicense.setStatus("INITIATED");
+					break;
+				}
+				case "PURPOSE": {
+					tradeLicense.setStatus("PURPOSE");
+					break;
+				}
+				case "LANDSCHEDULE": {
+					tradeLicense.setStatus("LANDSCHEDULE");
+					break;
+				}
+				case "LANDDETAILS": {
+					tradeLicense.setStatus("LANDDETAILS");
+					break;
+				}
+				case "FEESANDCHARGES": {
+					tradeLicense.setStatus("FEESANDCHARGES");
+					break;
+				}
+				case "PAID": {
+					tradeLicense.setStatus("PAID");
+					break;
+				}
+				}
+					
 				// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 
 				TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
@@ -159,6 +186,7 @@ public class LicenseService {
 				tradeLicenseService.update(tradeLicenseRequests, "TL");
 			}
 		}
+		
 		// }
 		else {
 			newServiceInfoDatas = new ArrayList<>();

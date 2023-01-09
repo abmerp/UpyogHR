@@ -46,6 +46,10 @@ public class AppliedLandDetails {
 
 	@JsonProperty("landOwner")
 	private String landOwner;
+	
+	@JsonProperty("landOwnerRegistry")
+	private String landOwnerRegistry;
+
 
 	@JsonProperty("collaboration")
 	private String collaboration;
