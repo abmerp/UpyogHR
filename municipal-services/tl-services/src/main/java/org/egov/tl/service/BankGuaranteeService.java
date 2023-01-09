@@ -12,11 +12,15 @@ import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.BankGuaranteeSearchContract;
 import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
+import org.egov.tl.abm.newservices.contract.RenewBankGuaranteeContract;
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
+import org.egov.tl.abm.newservices.entity.RenewBankGuarantee;
 import org.egov.tl.abm.repo.NewBankGuaranteeJpaRepo;
 import org.egov.tl.abm.repo.NewBankGuaranteeRepo;
+import org.egov.tl.abm.repo.RenewBankGuaranteeRepo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
+import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.TradeLicense;
@@ -52,10 +56,14 @@ public class BankGuaranteeService {
 	private WorkflowIntegrator workflowIntegrator;
 	@Autowired
 	private WorkflowService workflowService;
+	@Autowired
+	private LicenseService licenseService;
+	@Autowired
+	private RenewBankGuaranteeRepo renewBankGuaranteeRepo;
 	
 	public static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	public static final String BUSINESSSERVICE_TENANTID = "hr";
-	public static final String BUSINESSSERVICE_NEW_BG = "NEW_BG";
+	public static final String BUSINESSSERVICE_BG_RENEW = "BG_RENEW";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -78,11 +86,11 @@ public class BankGuaranteeService {
 		//set INITIATED status as not expected from UI-
 		newBankGuaranteeContract.getNewBankGuaranteeRequest().setStatus("INITIATED");
 		newBankGuaranteeContract.getNewBankGuaranteeRequest().setId(UUID.randomUUID().toString());
-		validateValidityFormat(newBankGuaranteeContract);
+		validateValidityFormat(newBankGuaranteeContract.getNewBankGuaranteeRequest().getValidity());
 		NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeContract.getNewBankGuaranteeRequest().toBuilder();
 		
 		//call workflow to insert processinstance-
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequest(newBankGuaranteeContract);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeContract);
 		workflowIntegrator.callWorkFlow(processInstanceRequest);
 		
 		newBankGuaranteeRepo.save(newBankGuaranteeContract);
@@ -91,7 +99,7 @@ public class BankGuaranteeService {
 
 	}
 	
-	private TradeLicenseRequest prepareProcessInstanceRequest(NewBankGuaranteeContract newBankGuaranteeContract) {
+	private TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeContract newBankGuaranteeContract) {
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
 		List<TradeLicense> licenses = new ArrayList<>();
 		TradeLicense tradeLicense = new TradeLicense();
@@ -115,12 +123,11 @@ public class BankGuaranteeService {
 		return tradeLicenseRequest;
 	}
 	
-	private void validateValidityFormat(NewBankGuaranteeContract newBankGuaranteeContract) {
+	private void validateValidityFormat(String validity) {
 		try {
-			if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getValidity())) {
-				log.debug("validity in payload:"+newBankGuaranteeContract.getNewBankGuaranteeRequest().getValidity());
-				LocalDate localDate = LocalDate
-						.parse(newBankGuaranteeContract.getNewBankGuaranteeRequest().getValidity());
+			if (Objects.nonNull(validity)) {
+				log.debug("validity in payload:" + validity);
+				LocalDate localDate = LocalDate.parse(validity);
 			}
 		} catch (Exception ex) {
 			log.error("Exception while parsing validity into java.time.LocalDate", ex);
@@ -132,9 +139,18 @@ public class BankGuaranteeService {
 	public List<NewBankGuarantee> searchNewBankGuarantee(RequestInfo requestInfo, List<String> applicationNumber) {
 		List<NewBankGuaranteeRequest> newBankGuaranteeRequestData = newBankGuaranteeRepo
 				.getNewBankGuaranteeData(applicationNumber);
+		// populate new license detail-
+		//populateNewLicenseDetails(newBankGuaranteeRequestData);
 		List<NewBankGuarantee> newBankGuaranteeData = newBankGuaranteeRequestData.stream()
 				.map(newBankGuaranteeRequest -> newBankGuaranteeRequest.toBuilder()).collect(Collectors.toList());
 		return newBankGuaranteeData;
+	}
+	
+	private void populateNewLicenseDetails(List<NewBankGuaranteeRequest> newBankGuaranteeRequestData) {
+		for (NewBankGuaranteeRequest newBankGuaranteeRequest : newBankGuaranteeRequestData) {
+			LicenseServiceDao license = licenseService.findByLoiNumber(newBankGuaranteeRequest.getLoiNumber());
+			newBankGuaranteeRequest.setLicense(license);
+		}
 	}
 	
 	public NewBankGuarantee updateNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
@@ -164,7 +180,7 @@ public class BankGuaranteeService {
 		enrichAuditDetailsOnUpdate(newBankGuaranteeContract);
 
 		// call workflow to insert processinstance-
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequest(newBankGuaranteeContract);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeContract);
 		workflowIntegrator.callWorkFlow(processInstanceRequest);
 
 		// push to update-
@@ -224,11 +240,60 @@ public class BankGuaranteeService {
 		newBankGuaranteeContract.getNewBankGuaranteeRequest().setAuditDetails(auditDetails);
 	}
 	
-	/*
-	public RenewBankGuarantee createRenewBankGuarantee(RenewBankGuaranteeContract renewBankGuarantee) {
-		return renewBankGuaranteeRepo.save(renewBankGuarantee.getRenewBankGuarantee().toBuilder());
+	
+	public RenewBankGuarantee createRenewBankGuarantee(RenewBankGuaranteeContract renewBankGuaranteeContract) {
+		// populate audit details-
+		AuditDetails auditDetails = tradeUtil
+				.getAuditDetails(renewBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), true);
+		renewBankGuaranteeContract.getRenewBankGuaranteeRequest().setAuditDetails(auditDetails);
+
+		//populate applicationNumber from idgen-
+		List<String> idGenIds = enrichmentService.getIdList(renewBankGuaranteeContract.getRequestInfo(),
+				renewBankGuaranteeContract.getRenewBankGuaranteeRequest().getTenantId(),
+				tlConfiguration.getRenewBankGuaranteeApplNoIdGenName(),
+				tlConfiguration.getRenewBankGuaranteeApplNoIdGenFormat(), 1);
+		String applicationNo = idGenIds.get(0);
+		renewBankGuaranteeContract.getRenewBankGuaranteeRequest().setApplicationNumber(applicationNo);
+		//set INITIATED status as not expected from UI-
+		renewBankGuaranteeContract.getRenewBankGuaranteeRequest().setStatus("INITIATED");
+		renewBankGuaranteeContract.getRenewBankGuaranteeRequest().setId(UUID.randomUUID().toString());
+		validateValidityFormat(renewBankGuaranteeContract.getRenewBankGuaranteeRequest().getValidity());
+		RenewBankGuarantee renewBankGuaranteeEntity = renewBankGuaranteeContract.getRenewBankGuaranteeRequest().toBuilder();
+		
+		//call workflow to insert processinstance-
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForRenewBG(renewBankGuaranteeContract);
+		workflowIntegrator.callWorkFlow(processInstanceRequest);
+		
+		renewBankGuaranteeRepo.save(renewBankGuaranteeContract);
+		
+		return renewBankGuaranteeEntity;
 	}
 	
+	private TradeLicenseRequest prepareProcessInstanceRequestForRenewBG(RenewBankGuaranteeContract renewBankGuaranteeContract) {
+		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
+		List<TradeLicense> licenses = new ArrayList<>();
+		TradeLicense tradeLicense = new TradeLicense();
+
+		tradeLicense.setBusinessService(BUSINESSSERVICE_BG_RENEW);
+		tradeLicense.setAction(renewBankGuaranteeContract.getRenewBankGuaranteeRequest().getWorkflowAction());
+		tradeLicense.setAssignee(renewBankGuaranteeContract.getRenewBankGuaranteeRequest().getWorkflowAssignee());
+		tradeLicense.setApplicationNumber(renewBankGuaranteeContract.getRenewBankGuaranteeRequest().getApplicationNumber());
+		tradeLicense.setWorkflowCode(BUSINESSSERVICE_BG_RENEW);// workflowname
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(BUSINESSSERVICE_BG_RENEW);
+		tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicense.setComment(renewBankGuaranteeContract.getRenewBankGuaranteeRequest().getWorkflowComment());
+		tradeLicense.setWfDocuments(null);
+		tradeLicense.setTenantId("hr");
+		tradeLicense.setBusinessService(BUSINESSSERVICE_BG_RENEW);
+
+		licenses.add(tradeLicense);
+		tradeLicenseRequest.setLicenses(licenses);
+		tradeLicenseRequest.setRequestInfo(renewBankGuaranteeContract.getRequestInfo());
+		return tradeLicenseRequest;
+	}
+	
+	/*
 	public RenewBankGuarantee searchRenewBankGuarantee(Long renewBankGuaranteeId) {
 		return renewBankGuaranteeRepo.getOne(renewBankGuaranteeId);
 	}

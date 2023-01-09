@@ -20,8 +20,8 @@
     createdtime bigint,
     lastmodifiedtime bigint,
     
-    CONSTRAINT eg_land_bankGuarantee_uk UNIQUE (id),
-    CONSTRAINT eg_land_bankGuarantee_pk PRIMARY KEY (id)
+    CONSTRAINT eg_bg_new_bankGuarantee_uk UNIQUE (id),
+    CONSTRAINT eg_bg_new_bankGuarantee_pk PRIMARY KEY (id)
 );
 
 

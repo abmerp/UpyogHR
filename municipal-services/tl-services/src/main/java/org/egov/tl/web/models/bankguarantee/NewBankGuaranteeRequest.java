@@ -3,6 +3,7 @@ package org.egov.tl.web.models.bankguarantee;
 import java.util.List;
 
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
+import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.web.models.AuditDetails;
 
 import lombok.AllArgsConstructor;
@@ -38,6 +39,7 @@ public class NewBankGuaranteeRequest {
 	private String workflowAction;
 	private String workflowComment;
 	private List<String> workflowAssignee;
+	private LicenseServiceDao license;
 
 	public NewBankGuaranteeRequest(NewBankGuarantee newBankGuarantee) {
 		this.id = newBankGuarantee.getId();
@@ -56,6 +58,7 @@ public class NewBankGuaranteeRequest {
 		this.tenantId = newBankGuarantee.getTenantId();
 		this.additionalDetails = newBankGuarantee.getAdditionalDetails();
 		this.auditDetails = newBankGuarantee.getAuditDetails();
+		this.license = newBankGuarantee.getLicense();
 
 	}
 	
@@ -77,6 +80,7 @@ public class NewBankGuaranteeRequest {
 				.tenantId(this.tenantId)
 				.additionalDetails(this.additionalDetails)
 				.auditDetails(this.auditDetails)
+				.license(this.license)
 				.build();
 	}
 }

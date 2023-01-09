@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.web.models.AuditDetails;
 
 import lombok.AllArgsConstructor;
@@ -69,4 +70,5 @@ public class NewBankGuarantee {
 	
 	private Object additionalDetails;
 	private AuditDetails auditDetails;
+	private LicenseServiceDao license;
 }
