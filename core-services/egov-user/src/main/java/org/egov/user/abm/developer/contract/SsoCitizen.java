@@ -17,5 +17,6 @@ public class SsoCitizen {
 	private String returnUrl;
 	private String redirectUrl;
 	private String tenantId;
+	private String tokenId;
 
 }

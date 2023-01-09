@@ -74,8 +74,6 @@ public class UserService {
 	public String tcpAccessKey;
 	@Value("${tcp.secret.key}")
 	public String tcpSecretKey;
-	@Value("${tcp.sso.citizen.url}")
-	public String ssoCitizenUrl;
 	@Value("${tcp.is.existSSO.Token}")
 	public String tcpExistSSoNumber;
 	@Value("${egov.user.search.default.size}")
@@ -89,6 +87,7 @@ public class UserService {
 	private FileStoreRepository fileRepository;
 	private EncryptionDecryptionUtil encryptionDecryptionUtil;
 	private TokenStore tokenStore;
+	UserController userController;
 
 	@Value("${egov.user.host}")
 	private String userHost;
@@ -293,8 +292,9 @@ public class UserService {
 		log.info("Validating User........");
 		if (isCitizenLoginOtpBased && !StringUtils.isNumeric(user.getUsername()))
 			throw new UserNameNotValidException();
-		else if (isCitizenLoginOtpBased)
+		else if (isCitizenLoginOtpBased) {
 			user.setMobileNumber(user.getUsername());
+		}
 		if (!isCitizenLoginOtpBased)
 			validatePassword(user.getPassword());
 		user.setRoleToCitizen();
@@ -308,7 +308,7 @@ public class UserService {
 	 * @return
 	 */
 	public Object registerWithLogin(User user, RequestInfo requestInfo) {
-		user.setActive(true);
+		user.setActive(true);		
 		createCitizen(user, requestInfo);
 		return getAccess(user, user.getOtpReference());
 	}
@@ -701,22 +701,24 @@ public class UserService {
 		return response;
 	}
 
-	public ResponseEntity<Map> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
+	public Object ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 		
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
-		ssoCitizenMap.put("MobNo", ssoCitizen.getMobileNumber());
+		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = isExistSSOToken(ssoCitizenMap);
 		String ssoValue = (String) isExistSSOToken.getBody().get("Value");
+	
 		String sso = "yes";
 		String sso1 = "no";
+
 		User user = new User();
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 		if (ssoValue.equalsIgnoreCase(sso)) {
 			userSearchCriteria.setUserName(ssoCitizen.getMobileNumber());
 			userSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
 			List<User> searchUsers = searchUsers(userSearchCriteria, true, requestInfo);
-			System.out.println("searchUsers" + searchUsers);
+			log.info("searchUsers" + searchUsers);
 		
 			if(null == searchUsers || searchUsers.isEmpty()) {
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
@@ -725,28 +727,33 @@ public class UserService {
 				user.setMobileNumber(ssoCitizen.getMobileNumber());
 				user.setOtpReference("123456");	
 			//	User createUser = createUser(user,requestInfo);
-				Object newUser =registerWithLogin(user,requestInfo);
-				
-				System.out.println("newUser"+newUser);
+				Object newUser =registerWithLogin(user,requestInfo);				
+				log.info("newUser"+newUser);
+				return newUser;
 				
 		} else {
 			user.setUuid(searchUsers.get(0).getUuid());
 			user.setRoles(searchUsers.get(0).getRoles());		
 			user.setTenantId(requestInfo.getUserInfo().getTenantId());
+			user.setActive(true);
 			User updatedUser = updateWithoutOtpValidation(user, requestInfo);
-			System.out.println("updatedUser"+updatedUser);
+			log.info("updatedUser"+updatedUser);			
+			user.setUsername(searchUsers.get(0).getMobileNumber());			
+			user.setOtpReference("123456");				
+			return getAccess(user, user.getOtpReference());
+			
 			}
 		} else {
-			throw new InvalidUserSearchCriteriaException(this.userSearchCriteria);
+			
+			throw new InvalidUserSearchCriteriaException(new UserSearchCriteria());
+			
+			
 		}
-
-		return null;
 
 	}
 
 	public ResponseEntity<Map> isExistSSOToken(Map<String, Object> request) {
-		request.put("UserId", "39");
-		request.put("TokenId", getAuthToken(request).getBody().get("Value"));
+
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
