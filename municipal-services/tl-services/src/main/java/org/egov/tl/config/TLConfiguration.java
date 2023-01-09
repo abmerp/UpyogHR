@@ -346,6 +346,10 @@ public class TLConfiguration {
     //Service Plan Save Topic
     @Value("${persister.save.ServicePlan.topic}")
     private String SPsaveTopic;
+    
+  //Service Plan Update Topic
+    @Value("${persister.update.ServicePlan.topic}")
+    private String SPupdateTopic;
 	
 	
     @Value("${persister.bankguarantee.new.save}")

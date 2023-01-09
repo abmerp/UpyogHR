@@ -56,6 +56,15 @@ public class TLInboxFilterService {
     
     @Value("${egov.searcher.tl.bgnew.search.desc.path}")
     private String newBankGuaranteeSearcherDescEndpoint;
+    
+    @Value("${egov.searcher.tl.SP.search.path}")
+    private String servicePlanSearcherEndpoint;
+
+    @Value("${egov.searcher.tl.SP.count.path}")
+    private String servicePlanSearcherCountEndpoint;
+
+    @Value("${egov.searcher.tl.SP.search.desc.path}")
+    private String servicePlaneSearcherDescEndpoint;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -64,6 +73,8 @@ public class TLInboxFilterService {
     private ServiceRequestRepository serviceRequestRepository;
     
     private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
+    
+    private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
 
     public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria, HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo){
         List<String> acknowledgementNumbers = new ArrayList<>();
@@ -144,6 +155,11 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_BG_NEW:
 					tlInboxSearcherDescEndpoint = newBankGuaranteeSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = newBankGuaranteeSearcherEndpoint;
+					break;
+					
+				case BUSINESSSERVICE_SERVICE_PLAN:
+					tlInboxSearcherDescEndpoint = servicePlaneSearcherDescEndpoint;
+					tlInboxSearcherEndpoint = servicePlanSearcherEndpoint;
 					break;
 				}
 			}
@@ -245,6 +261,10 @@ public class TLInboxFilterService {
 				switch(businessService) {
 				case BUSINESSSERVICE_BG_NEW:
 					tlInboxSearcherCountEndpoint = newBankGuaranteeSearcherCountEndpoint;
+					break;
+					
+				case BUSINESSSERVICE_SERVICE_PLAN:
+					tlInboxSearcherCountEndpoint = servicePlanSearcherCountEndpoint;
 					break;
 				}
 			}

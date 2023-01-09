@@ -944,6 +944,54 @@ serviceMaps:
 
           - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedTime
 
+
+
+ - version: 1.0
+   description: Update Service Plan Application
+   fromTopic: update-sp-tradelicense
+   isTransaction: true
+   queryMaps:
+
+
+       - query: UPDATE public.eg_service_plan SET auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=? , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? WHERE application_number=?;
+ 
+         basePath: ServicePlanRequest
+         jsonMaps:
+
+          - jsonPath: $.ServicePlanRequest.autoCadFile
+
+          - jsonPath: $.ServicePlanRequest.certifieadCopyOfThePlan
+
+          - jsonPath: $.ServicePlanRequest.environmentalClearance
+
+          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingFromEmpaneledDoc
+
+          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingsFromCharetedEng
+
+          - jsonPath: $.ServicePlanRequest.shapeFileAsPerTemplate
+
+          - jsonPath: $.ServicePlanRequest.undertaking
+
+          - jsonPath: $.ServicePlanRequest.action
+         
+          - jsonPath: $.ServicePlanRequest.status
+
+          - jsonPath: $.ServicePlanRequest.action
+
+          - jsonPath: $.ServicePlanRequest.businessService
+
+          - jsonPath: $.ServicePlanRequest.comment
+
+          - jsonPath: $.ServicePlanRequest.tenantID
+
+          - jsonPath: $.ServicePlanRequest.loiNumber
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedTime
+
+          - jsonPath: $.ServicePlanRequest.applicationNumber
+
  - version: 1.0
    description: update new bank guarantee details in eg_bg_new_bank_guarantee table
    fromTopic: update-new-bankguarantee

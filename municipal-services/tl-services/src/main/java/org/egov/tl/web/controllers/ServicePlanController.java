@@ -27,14 +27,16 @@ public class ServicePlanController {
 	@Autowired private ResponseInfoFactory responseInfoFactory;
 	
 	@PostMapping("/_create")
-	public ResponseEntity<ServicePlanInfoResponse> createAndUpdateServicePlan(@RequestBody ServicePlanContract servicePlanContract) {
-		ServicePlanRequest servicePlanRequest = servicePlanService.createAndUpdate(servicePlanContract);
+	public ResponseEntity<ServicePlanInfoResponse> createServicePlan(
+			@RequestBody ServicePlanContract servicePlanContract) {
+		ServicePlanRequest servicePlanRequest = servicePlanService.create(servicePlanContract);
 		List<ServicePlanRequest> servicePlanRequestList = new ArrayList<>();
 		servicePlanRequestList.add(servicePlanRequest);
-		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder().
-				servicePlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(
-						servicePlanContract.getRequestInfo(), true)).build();
-		return new ResponseEntity<>(servicePlanInfoResponse, HttpStatus.OK);	
+		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder()
+				.servicePlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(servicePlanContract.getRequestInfo(), true))
+				.build();
+		return new ResponseEntity<>(servicePlanInfoResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("/_get")
@@ -45,5 +47,18 @@ public class ServicePlanController {
 				servicePlanResponse(servicePlanRequest).responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(
 						requestInfoWrapper.getRequestInfo(), true)).build();
 		return new ResponseEntity<>(servicePlanInfoResponse, HttpStatus.OK);	
+	}
+
+	@PostMapping("/_update")
+	public ResponseEntity<ServicePlanInfoResponse> UpdateServicePlan(
+			@RequestBody ServicePlanContract servicePlanContract) {
+		ServicePlanRequest servicePlanRequest = servicePlanService.Update(servicePlanContract);
+		List<ServicePlanRequest> servicePlanRequestList = new ArrayList<>();
+		servicePlanRequestList.add(servicePlanRequest);
+		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder()
+				.servicePlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(servicePlanContract.getRequestInfo(), true))
+				.build();
+		return new ResponseEntity<>(servicePlanInfoResponse, HttpStatus.OK);
 	}
 }
