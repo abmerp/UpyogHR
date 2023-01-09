@@ -236038,6 +236038,91 @@
       "rolecode": "CAO",
       "actionid": 2726,
       "tenantId": "hr"
+    },
+    {
+      "rolecode": "AO_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "DTCP_HR",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "DA_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "SD_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "JE_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "CTP_HR",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "STP_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "BPA_BUILDER",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "DEVELOPER",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+    {
+      "rolecode": "DTP_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+	  {
+      "rolecode": "JD_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "ASST_JE_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "CE_HQ",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "HSVP",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+      {
+      "rolecode": "GMDA",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+	  {
+      "rolecode": "FMDA",
+      "actionid": 2727,
+      "tenantId": "hr"
+    },
+  	{
+      "rolecode": "PMDA",
+      "actionid": 2727,
+      "tenantId": "hr"
     }
     
    
