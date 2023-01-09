@@ -441,7 +441,7 @@ public class LicenseService {
 
 					Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-					mapDNo.put("Village", newobj.getApplicantInfo().getVillage());
+					mapDNo.put("Village", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 					mapDNo.put("DiaryDate", date);
 					mapDNo.put("ReceivedFrom", "");
 					mapDNo.put("UserId", "1234");
@@ -462,7 +462,7 @@ public class LicenseService {
 					mapCNO.put("PurposeId", purposeId);
 					mapCNO.put("StartDate", date);
 					mapCNO.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
-					mapCNO.put("Village", newobj.getApplicantInfo().getVillage());
+					mapCNO.put("Village", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 					mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 					mapCNO.put("UserId", "2");
 					mapCNO.put("UserLoginId", "39");
@@ -478,7 +478,7 @@ public class LicenseService {
 					mapANo.put("DiaryNo", dairyNumber);
 					mapANo.put("DiaryDate", date);
 					mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
-					mapANo.put("Village", newobj.getApplicantInfo().getVillage());
+					mapANo.put("Village", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 					mapANo.put("PurposeId", purposeId);
 					mapANo.put("NameofOwner", 12.5);
 					mapANo.put("DateOfHearing", date);

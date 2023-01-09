@@ -180,7 +180,7 @@ public class LoiApprovalReport {
 			subList1.setIndentationLeft(30f);
 
 			String content = "Your request for grant of licence under section 3 of the Haryana Development and Regulation of Urban Areas Act, 1975 and Rules, 1976 framed there under for the development of a Residential Plotted Colony under New Integrated Licensing Policy-2016 over an area measuring 0.00 acres in the revenue estate of village'"
-					+ newServiceInfo.getNewServiceInfoData().get(0).getApplicantInfo().getVillage()
+					+ newServiceInfo.getNewServiceInfoData().get(0).getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate()
 					+ "', Sector-00, _________ _________ has been examined/considered by the Department. You are therefore, called upon to fulfill the following requirements/pre-requisites laid down in Rule-11 of the Haryana Development and Regulation of Urban Areas Rules, 1976 within a period of 60 days from the date of issue of this notice, failing which the grant of licence shall be refused: ";
 			Paragraph para = new Paragraph();
 			addEmptyLine(para, 3);
