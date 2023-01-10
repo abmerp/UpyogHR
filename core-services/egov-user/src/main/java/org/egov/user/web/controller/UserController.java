@@ -244,7 +244,7 @@ public class UserController {
 		
 		SsoCitizen ssoCitizenData = ssoCitizenRequest.getSsoCitizen();
 	
-		ResponseEntity<Map> ssoCitizen =  userService.ssoCitizen(ssoCitizenData, ssoCitizenRequest.getRequestInfo());
+		Object ssoCitizen =  userService.ssoCitizen(ssoCitizenData, ssoCitizenRequest.getRequestInfo());
 		
 		return (Map<String, Object>) ssoCitizen;
 

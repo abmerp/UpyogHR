@@ -6,10 +6,13 @@ import java.util.List;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.abm.newservices.contract.BankGuaranteeSearchContract;
 import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
+import org.egov.tl.abm.newservices.contract.RenewBankGuaranteeContract;
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
+import org.egov.tl.abm.newservices.entity.RenewBankGuarantee;
 import org.egov.tl.service.BankGuaranteeService;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeResponse;
+import org.egov.tl.web.models.bankguarantee.RenewBankGuaranteeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,7 +71,7 @@ public class BankGuaranteeController {
 	}
 	
 	
-	/*
+	
 	@PostMapping("/renew/_create")
 	public ResponseEntity<RenewBankGuaranteeResponse> renewCreate(@RequestBody RenewBankGuaranteeContract renewBankGuaranteeContract){
 		
@@ -82,7 +85,7 @@ public class BankGuaranteeController {
 		return new ResponseEntity<>(renewBankGuaranteeResponse, HttpStatus.OK);	
 	}
 	
-	
+	/*
 	@PostMapping("/renew/_search")
 	public ResponseEntity<RenewBankGuaranteeResponse> renewSearch(@RequestBody RequestInfoWrapper requestInfoWrapper){
 		

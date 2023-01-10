@@ -363,6 +363,15 @@ public class TLConfiguration {
    
    @Value("${persister.bankguarantee.new.update}")
    private String updateNewBankGuaranteeTopic;
+   
+   @Value("${persister.bankguarantee.renew.save}")
+   private String saveRenewBankGuaranteeTopic;
+   
+   @Value("${egov.idgen.tl.bankguarantee.renew.name}")
+   private String renewBankGuaranteeApplNoIdGenName;
+
+   @Value("${egov.idgen.tl.bankguarantee.renew.format}")
+   private String renewBankGuaranteeApplNoIdGenFormat;
     
  //Electrical Plan Application number Sequencce
     @Value("${egov.idgen.tlEP.applicationNum.name}")
