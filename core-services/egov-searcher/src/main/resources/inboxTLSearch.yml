@@ -403,3 +403,92 @@ SearchDefinitions:
     jsonFormat: {"ResponseInfo": {},"Licenses": []}
     outJsonPath: $.Licenses
     responseInfoPath: $.ResponseInfo
+
+ - name: inboxtlsearchcountEP
+   query:
+    baseQuery: SELECT row_to_json(TotalCount) from (SELECT COUNT(result) from
+          (
+          select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from 
+          eg_electric_plan as tl
+          INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
+          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          where 
+           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          order by tl.created_time  asc
+          ) result) TotalCount
+    groupBy:
+    orderBy:
+   searchParams:
+    condition: AND
+    params:
+    - name: tl.application_number
+      isMandatory: false
+      jsonPath: $.searchCriteria.application_number
+    pagination:
+      noOfRecords: $.searchCriteria.noOfRecords
+      offset: $.searchCriteria.offset
+
+   output:
+    jsonFormat: {"ResponseInfo": {},"TotalCount": {}}
+    outJsonPath: $.TotalCount
+    responseInfoPath: $.ResponseInfo
+
+ - name: inboxtlsearchEP
+   query:
+    baseQuery: Select row_to_json(result) from
+          (
+          select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from 
+          eg_electric_plan as tl
+          LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
+          INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
+          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          where 
+           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          order by tl.created_time  asc
+          ) result
+    groupBy:
+    orderBy:
+   searchParams:
+    condition: AND
+    params:
+    - name: tl.application_number
+      isMandatory: false
+      jsonPath: $.searchCriteria.application_number
+    pagination:
+      noOfRecords: $.searchCriteria.noOfRecords
+      offset: $.searchCriteria.offset
+
+   output:
+    jsonFormat: {"ResponseInfo": {},"Licenses": []}
+    outJsonPath: $.Licenses
+    responseInfoPath: $.ResponseInfo
+
+ - name: inboxtlsearchdescEP
+   query:
+    baseQuery: Select row_to_json(result) from
+          (
+          select DISTINCT(tl.application_number) as applicationNumber  , tl.createdtime  as createdtime from 
+          eg_electric_plan as tl
+          LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
+          INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
+          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          where 
+           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          order by tl.createdtime   desc
+          ) result
+    groupBy:
+    orderBy:
+   searchParams:
+    condition: AND
+    params:
+    - name: tl.application_number
+      isMandatory: false
+      jsonPath: $.searchCriteria.application_number
+    pagination:
+      noOfRecords: $.searchCriteria.noOfRecords
+      offset: $.searchCriteria.offset
+
+   output:
+    jsonFormat: {"ResponseInfo": {},"Licenses": []}
+    outJsonPath: $.Licenses
+    responseInfoPath: $.ResponseInfo

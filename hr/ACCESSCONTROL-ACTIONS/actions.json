@@ -25766,6 +25766,40 @@
          "serviceCode":"",
          "code":"",
          "path":""
+      },
+      {      
+         "id":2728,
+         "name":"electrical plan create",
+         "url":"/tl-services/electric/plan/_create",
+         "displayName":"electrical plan create",
+         "orderNumber":0,
+         "enabled":true,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+         "id":2729,
+         "name":"electrical plan get",
+         "url":"/tl-services/electric/plan/_get",
+         "displayName":"electrical plan create",
+         "orderNumber":0,
+         "enabled":true,
+         "serviceCode":"",
+         "code":"",
+         "path":""
+      },
+      {
+
+         "id":2730,
+         "name":"electrical plan update",
+         "url":"/tl-services/electric/plan/_update",
+         "displayName":"electrical plan update",
+         "orderNumber":0,
+         "enabled":true,
+         "serviceCode":"",
+         "code":"",
+         "path":""
       }
       
 
