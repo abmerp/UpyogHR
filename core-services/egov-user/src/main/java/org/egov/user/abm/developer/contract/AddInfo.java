@@ -70,5 +70,15 @@ public class AddInfo {
 	
 	@JsonProperty("uploadBoardResolution")
 	private String uploadBoardResolution;
+	
+	@JsonProperty("isUndertaken")
+	private Boolean isUndertaken;
+	
+	@JsonProperty("existingDirectors")
+	private String existingDirectors;
+	
+	@JsonProperty("DirectorsInformationMCA")
+	private List<DirectorsInformationMCA> directorsInformationMCA;
+	
 
 }
