@@ -68,16 +68,14 @@ public class UserService {
 
 	@Value("${tcp.url}")
 	public String tcpurl;
-	@Value("${tcp.auth.token}")
-	public String tcpAuthToken;
-	@Value("${tcp.access.key}")
-	public String tcpAccessKey;
-	@Value("${tcp.secret.key}")
-	public String tcpSecretKey;
 	@Value("${tcp.is.existSSO.Token}")
 	public String tcpExistSSoNumber;
+	@Value("${tcp.return.url}")
+	public String tcpReturnUrl;
+	
 	@Value("${egov.user.search.default.size}")
-	private Integer defaultSearchSize;
+	private Integer defaultSearchSize;	
+
 	private UserRepository userRepository;
 	private OtpRepository otpRepository;
 	private PasswordEncoder passwordEncoder;
@@ -679,29 +677,9 @@ public class UserService {
 		}
 	}
 
-	public ResponseEntity<Map> getAuthToken(Map<String, Object> map) {
-		SsoCitizen ssoCitizenData = new SsoCitizen();
-		HttpHeaders headers = new HttpHeaders();
 
-		headers.set("access_key", tcpAccessKey);
-		headers.set("secret_key", tcpSecretKey);
-		headers.setContentType(MediaType.APPLICATION_JSON);
 
-		map.put("UserId", "39");
-		map.put("TpUserId", "12346");
-		map.put("EmailId", "mkthakur84@gmail.com");
-
-		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
-
-		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpAuthToken, entity, Map.class);
-		if (response.getStatusCode() == HttpStatus.OK) {
-			log.info("Token No\n" + response.getBody().get("Value"));
-		}
-		return response;
-	}
-
-	public Object ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
+	public Map<String,Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 		
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
@@ -729,7 +707,11 @@ public class UserService {
 			//	User createUser = createUser(user,requestInfo);
 				Object newUser =registerWithLogin(user,requestInfo);				
 				log.info("newUser"+newUser);
-				return newUser;
+				ssoCitizenMap.put("Token",newUser );
+				String contextPath =(" /citizen/obps/stakeholder/apply/stakeholder-docs-required");
+				String url =( tcpReturnUrl + contextPath );
+				ssoCitizenMap.put("Url", url);
+				return (Map<String, Object>) ssoCitizenMap;
 				
 		} else {
 			user.setUuid(searchUsers.get(0).getUuid());
@@ -740,14 +722,23 @@ public class UserService {
 			log.info("updatedUser"+updatedUser);			
 			user.setUsername(searchUsers.get(0).getMobileNumber());			
 			user.setOtpReference("123456");				
-			return getAccess(user, user.getOtpReference());
+			Object updateUser= getAccess(user, user.getOtpReference());
+			ssoCitizenMap.put("Token",updateUser );
+			String contextPath =("/citizen");
+			String url =( tcpReturnUrl + contextPath );
+			ssoCitizenMap.put("Url", url);
+			return (Map<String, Object>) ssoCitizenMap;
 			
 			}
 		} else {
 			
+			  try { ssoCitizenMap.put("ReturnUrl", ssoCitizen.getReturnUrl());
+			  ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId()); return ssoCitizenMap;
+			  } catch(Exception e) { log.error("Exception while creating user: ",e);
+			 
+				log.error("ReturnUrl: "+ssoCitizenMap);
 			throw new InvalidUserSearchCriteriaException(new UserSearchCriteria());
-			
-			
+			}
 		}
 
 	}
