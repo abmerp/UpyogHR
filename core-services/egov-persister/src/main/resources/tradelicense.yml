@@ -1047,3 +1047,119 @@ serviceMaps:
          jsonMaps:
 
            - jsonPath: $.NewBankGuaranteeRequest.id
+
+
+
+ - version: 1.0
+   description: Save Electrical Plan Application
+   fromTopic: save-ep-tradelicense
+   isTransaction: true
+   queryMaps:
+
+
+       - query: INSERT INTO public.eg_electric_plan( auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+         basePath: ElectricPlanRequest
+         jsonMaps:
+
+          - jsonPath: $.ElectricPlanRequest.autoCad
+
+          - jsonPath: $.ElectricPlanRequest.elecricDistribution
+
+          - jsonPath: $.ElectricPlanRequest.electricalCapacity
+
+          - jsonPath: $.ElectricPlanRequest.electricalInfra
+
+          - jsonPath: $.ElectricPlanRequest.environmentalClearance
+
+          - jsonPath: $.ElectricPlanRequest.loadSancation
+
+          - jsonPath: $.ElectricPlanRequest.switchingStation
+
+          - jsonPath: $.ElectricPlanRequest.verifiedPlan
+
+          - jsonPath: $.ElectricPlanRequest.loiNumber
+
+          - jsonPath: $.ElectricPlanRequest.selfCenteredDrawings
+
+          - jsonPath: $.ElectricPlanRequest.tenantID
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.createdBy
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.createdTime
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedTime
+
+          - jsonPath: $.ElectricPlanRequest.applicationNumber
+          
+          - jsonPath: $.ElectricPlanRequest.businessService
+          
+          - jsonPath: $.ElectricPlanRequest.action
+          
+          - jsonPath: $.ElectricPlanRequest.status
+          
+          - jsonPath: $.ElectricPlanRequest.comment
+          
+          - jsonPath: $.ElectricPlanRequest.pdfFormat
+
+
+
+ - version: 1.0
+   description: Update Electric Plan Application
+   fromTopic: update-ep-tradelicense
+   isTransaction: true
+   queryMaps:
+
+
+       - query: UPDATE public.eg_electric_plan SET  auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?, status=?, comment=?, pdf_format=? WHERE application_number=?;
+ 
+         basePath: ElectricPlanRequest
+         jsonMaps:
+
+          - jsonPath: $.ElectricPlanRequest.autoCad
+
+          - jsonPath: $.ElectricPlanRequest.elecricDistribution
+
+          - jsonPath: $.ElectricPlanRequest.electricalCapacity
+
+          - jsonPath: $.ElectricPlanRequest.electricalInfra
+
+          - jsonPath: $.ElectricPlanRequest.environmentalClearance
+
+          - jsonPath: $.ElectricPlanRequest.loadSancation
+
+          - jsonPath: $.ElectricPlanRequest.switchingStation
+
+          - jsonPath: $.ElectricPlanRequest.verifiedPlan
+
+          - jsonPath: $.ElectricPlanRequest.loiNumber
+
+          - jsonPath: $.ElectricPlanRequest.selfCenteredDrawings
+
+          - jsonPath: $.ElectricPlanRequest.tenantID
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.createdBy
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.createdTime
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedTime
+
+          - jsonPath: $.ElectricPlanRequest.applicationNumber
+          
+          - jsonPath: $.ElectricPlanRequest.businessService
+          
+          - jsonPath: $.ElectricPlanRequest.action
+          
+          - jsonPath: $.ElectricPlanRequest.status
+          
+          - jsonPath: $.ElectricPlanRequest.comment
+          
+          - jsonPath: $.ElectricPlanRequest.pdfFormat
+
+          - jsonPath: $.ElectricPlanRequest.applicationNumber
+           
+           

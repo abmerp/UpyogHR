@@ -65,6 +65,15 @@ public class TLInboxFilterService {
 
     @Value("${egov.searcher.tl.SP.search.desc.path}")
     private String servicePlaneSearcherDescEndpoint;
+    
+    @Value("${egov.searcher.tl.EP.search.path}")
+    private String electricPlanSearcherEndpoint;
+
+    @Value("${egov.searcher.tl.EP.count.path}")
+    private String electricPlanSearcherCountEndpoint;
+
+    @Value("${egov.searcher.tl.EP.search.desc.path}")
+    private String electricPlaneSearcherDescEndpoint;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -75,6 +84,8 @@ public class TLInboxFilterService {
     private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
     
     private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
+    
+    private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
 
     public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria, HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo){
         List<String> acknowledgementNumbers = new ArrayList<>();
@@ -160,6 +171,11 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_SERVICE_PLAN:
 					tlInboxSearcherDescEndpoint = servicePlaneSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = servicePlanSearcherEndpoint;
+					break;
+					
+				case BUSINESSSERVICE_ELECTRICAL_PLAN:
+					tlInboxSearcherDescEndpoint = electricPlaneSearcherDescEndpoint;
+					tlInboxSearcherEndpoint = electricPlanSearcherEndpoint;
 					break;
 				}
 			}
@@ -265,6 +281,10 @@ public class TLInboxFilterService {
 					
 				case BUSINESSSERVICE_SERVICE_PLAN:
 					tlInboxSearcherCountEndpoint = servicePlanSearcherCountEndpoint;
+					break;
+					
+				case BUSINESSSERVICE_ELECTRICAL_PLAN:
+					tlInboxSearcherCountEndpoint = electricPlanSearcherCountEndpoint;
 					break;
 				}
 			}
