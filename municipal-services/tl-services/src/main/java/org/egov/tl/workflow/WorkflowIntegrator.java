@@ -54,6 +54,8 @@ public class WorkflowIntegrator {
 	private static final String TLMODULENAMEVALUE = "TL";
 	
 	private static final String SPNAMEVALUE = "SERVICE_PLAN";
+	
+	private static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
 
 	private static final String BPAMODULENAMEVALUE = "BPAREG";
 
@@ -122,6 +124,11 @@ public class WorkflowIntegrator {
 					case SPNAMEVALUE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, SPNAMEVALUE);
+						break;
+						
+					case EPNAMEVALUE:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, EPNAMEVALUE);
 						break;
 
 					case businessService_BPA:
