@@ -82,18 +82,23 @@
           "role": ["BPA_COMPANY"],
           "endstate": "APPROVED",
           "applicationFee": 100,
-          "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
-          ]
+        "docTypes": [
+          {
+            "code": "ARTICLES_OF_ASSOCIATION",
+            "info": "ARTICLES_OF_ASSOCIATION",
+            "required": true
+          },
+          {
+            "code": "MEMORANDUM_OF_ARTICLES",
+            "info": "MEMORANDUM_OF_ARTICLES",
+            "required": true
+          },
+          {
+            "code": "APPL.BPAREG_OTHERS",
+            "info": "",
+            "required": false
+          }
+        ]
         },
       {
           "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
@@ -102,11 +107,12 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+              
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
       },
       {
@@ -115,18 +121,23 @@
           "role": ["BPA_SOCIETY"],
           "endstate": "APPROVED",
           "applicationFee": 100,
-          "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
-          ]
+        "docTypes": [
+          {
+            "code": "ARTICLES_OF_ASSOCIATION",
+            "info": "ARTICLES_OF_ASSOCIATION",
+            "required": true
+          },
+          {
+            "code": "MEMORANDUM_OF_ARTICLES",
+            "info": "MEMORANDUM_OF_ARTICLES",
+            "required": true
+          },
+          {
+            "code": "APPL.BPAREG_OTHERS",
+            "info": "",
+            "required": false
+          }
+        ]
         },
         {
           "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
@@ -135,16 +146,21 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -154,16 +170,12 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -173,16 +185,21 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -192,22 +209,27 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              }, 
-              {
-                  "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
-  
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
+
           ]
         },
         {
@@ -217,21 +239,26 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -241,21 +268,17 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "AFFIDAVIT_AND_PANCARD",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            
+            {
+              "code": "AFFIDAVIT_AND_PANCARD",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -270,11 +293,16 @@
                   "info": "ARTICLES_OF_ASSOCIATION",
                   "required": true
               },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -284,16 +312,11 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "",
-                  "info": "",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         }
         
