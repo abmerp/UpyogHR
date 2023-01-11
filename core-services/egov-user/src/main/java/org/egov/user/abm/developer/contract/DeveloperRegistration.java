@@ -41,7 +41,7 @@ public class DeveloperRegistration {
 	private Date createdDate;
 	
 	@Column(name="updated_by")
-	private Long updateddBy;
+	private String updateddBy;
 	
 	@Column(name="updated_date")
 	private Date updatedDate;

@@ -24,7 +24,7 @@ public class Developerdetail {
 	private List<AddRemoveAuthoizedUsers> aurthorizedUserInfoArray;
 	@JsonProperty
 	private CapcityDevelopAColony capacityDevelopAColony;
-	
+
 	@JsonProperty
 	private List<LicensesDoc> licensesDoc;
 
@@ -34,5 +34,7 @@ public class Developerdetail {
 	 * ObjectMapper().writeValueAsString(this); } catch (JsonProcessingException e)
 	 * { log.error(e.getMessage()); } }
 	 */
+	@JsonProperty("applicantType")
+	private ApplicantType applicantType;
 
 }
