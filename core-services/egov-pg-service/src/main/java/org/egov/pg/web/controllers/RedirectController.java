@@ -45,7 +45,8 @@ public class RedirectController {
 
     @PostMapping(value = "/transaction/v1/_redirect", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Object> method(@RequestBody MultiValueMap<String, String> formData) {
-        String returnURL = formData.get(returnUrlKey).get(0);
+        String returnURL = "http://103.166.62.118:3001/digit-ui/citizen/payment/success/TL/HRTL20221214000698/hr?eg_pg_txnid%3DPB_PG_2022_12_14_000105_02";
+    	
         MultiValueMap<String, String> params = UriComponentsBuilder.fromUriString(returnURL).build().getQueryParams();
 
         /*
@@ -54,14 +55,13 @@ public class RedirectController {
          * And from transaction details get the GATEWAY info.
          */
         String gateway = null;
-        if(!params.isEmpty()) {
-            List<String> txnId = params.get(PgConstants.PG_TXN_IN_LABEL);
-            TransactionCriteria critria = new TransactionCriteria();
-            critria.setTxnId(txnId.get(0));
-            List<Transaction> transactions = transactionService.getTransactions(critria);
-            if(!transactions.isEmpty())
-                gateway = transactions.get(0).getGateway();
-        }
+		/*
+		 * if(!params.isEmpty()) { List<String> txnId =
+		 * params.get(PgConstants.PG_TXN_IN_LABEL); TransactionCriteria critria = new
+		 * TransactionCriteria(); critria.setTxnId(txnId.get(0)); List<Transaction>
+		 * transactions = transactionService.getTransactions(critria);
+		 * if(!transactions.isEmpty()) gateway = transactions.get(0).getGateway(); }
+		 */
         HttpHeaders httpHeaders = new HttpHeaders();
         /*
          * The NSDL PAYGOV integration is not allowing multiple schems or protocols (ex: HTTP, HTTPS)
@@ -71,16 +71,18 @@ public class RedirectController {
          * https://test.org/pg-service/transaction/v1/_redirect?originalreturnurl=/digit-ui/citizen/payment/success/PT/PG-PT-2022-03-10-006063/pg.citya?eg_pg_txnid=PB_PG_2022_07_12_002082_48
          * Here we are reading originalreturnurl value and then forming redirect URL with domain name.
          */
-        if(gateway != null && gateway.equalsIgnoreCase("PAYGOV")) {
+   //     if(gateway != null && gateway.equalsIgnoreCase("PAYGOV")) {
             StringBuilder redirectURL = new StringBuilder();
-            redirectURL.append(citizenRedirectDomain).append(returnURL);
-            formData.remove(returnUrlKey);
+            redirectURL.append(returnURL);
+         //   formData.remove(returnUrlKey);
             httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString())
                     .queryParams(formData).build().encode().toUri());
-        } else {
-            httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(formData.get(returnUrlKey).get(0))
-                    .queryParams(formData).build().encode().toUri());
-        }
+     //   } 
+        //else {*/
+		/*
+		 * httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(formData.get(
+		 * returnUrlKey).get(0)) .queryParams(formData).build().encode().toUri()); }
+		 */
 
         return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
     }
