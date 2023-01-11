@@ -2,6 +2,8 @@ package org.egov.tl.web.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,5 +39,7 @@ public class LicenceDetails {
 	private String pincodeCorrespondence;
 	private String gender;
 	private String uploadBoardResolution;
+	@JsonProperty("uploadDigitalSignaturePdf")
+	private String uploadDigitalSignaturePdf;
 
 }

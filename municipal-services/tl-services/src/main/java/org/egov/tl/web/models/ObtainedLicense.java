@@ -18,7 +18,7 @@ public class ObtainedLicense {
 	private String licValidity;
 	private String purpose;
 	private String registeredDoc;
-	private String earlierDocY;
+	private String earlierDocY;	
 
 	
 	
