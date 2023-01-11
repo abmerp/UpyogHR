@@ -86,4 +86,14 @@ public class AppliedLandDetails {
 
 	@JsonProperty("nonConsolidatedTotal")
 	private String nonConsolidatedTotal;
+	
+	@JsonProperty("changeInInfo")
+	private String changeInInfo;
+	@JsonProperty("editKhewats")
+	private String editKhewats;
+	@JsonProperty("editRectangleNo")
+	private String editRectangleNo;
+	
+	@JsonProperty("typeLand")
+	private String typeLand;
 }
