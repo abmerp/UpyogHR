@@ -268,10 +268,10 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-            
+
             {
               "code": "AFFIDAVIT_AND_PANCARD",
-              "info": "ARTICLES_OF_ASSOCIATION",
+              "info": "AFFIDAVIT_AND_PANCARD",
               "required": true
             },
             {
@@ -288,16 +288,7 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-            {
-              "code": "MEMORANDUM_OF_ARTICLES",
-              "info": "MEMORANDUM_OF_ARTICLES",
-              "required": true
-            },
+          
             {
               "code": "APPL.BPAREG_OTHERS",
               "info": "",
