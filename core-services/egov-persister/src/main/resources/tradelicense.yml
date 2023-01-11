@@ -839,11 +839,11 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
 
  - version: 1.0
-   description: save new bankguarantee details in eg_bg_new_bank_guarantee table
+   description: save new bankguarantee details in eg_tl_bank_guarantee table
    fromTopic: save-new-bankguarantee
    isTransaction: true
    queryMaps:
-       - query: INSERT INTO eg_bg_new_bank_guarantee(id,application_number, status,loi_number,memo_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, consent_letter, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO eg_tl_bank_guarantee(id,application_number, status,loi_number,bg_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, bank_Guarantee_Status, licence_Number, hardcopy_Submitted, full_Certificate, partial_Certificate, additional_Documents, hardcopy_Submitted_Document, existing_Bg_Number, claim_Period, origin_Country, tcp_submission_received, indian_bank_advised_certificate, release_bank_guarantee) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: NewBankGuaranteeRequest
          jsonMaps:
           - jsonPath: $.NewBankGuaranteeRequest.id
@@ -854,7 +854,7 @@ serviceMaps:
 
           - jsonPath: $.NewBankGuaranteeRequest.loiNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.memoNumber
+          - jsonPath: $.NewBankGuaranteeRequest.bgNumber
 
           - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
 
@@ -865,8 +865,6 @@ serviceMaps:
           - jsonPath: $.NewBankGuaranteeRequest.amountInFig
 
           - jsonPath: $.NewBankGuaranteeRequest.amountInWords
-
-          - jsonPath: $.NewBankGuaranteeRequest.consentLetter
 
           - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
 
@@ -886,8 +884,35 @@ serviceMaps:
 
           - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
 
+          - jsonPath: $.NewBankGuaranteeRequest.bankGuaranteeStatus
 
-       - query: INSERT INTO eg_bg_new_bank_guarantee_auditdetails SELECT * FROM eg_bg_new_bank_guarantee WHERE id =?;
+          - jsonPath: $.NewBankGuaranteeRequest.licenceNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmitted
+
+          - jsonPath: $.NewBankGuaranteeRequest.fullCertificate
+
+          - jsonPath: $.NewBankGuaranteeRequest.partialCertificate
+
+          - jsonPath: $.NewBankGuaranteeRequest.additionalDocuments
+            type: JSON
+            dbType: JSONB
+
+          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmittedDocument
+
+          - jsonPath: $.NewBankGuaranteeRequest.existingBgNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.claimPeriod
+
+          - jsonPath: $.NewBankGuaranteeRequest.originCountry
+
+          - jsonPath: $.NewBankGuaranteeRequest.tcpSubmissionReceived
+
+          - jsonPath: $.NewBankGuaranteeRequest.indianBankAdvisedCertificate
+
+          - jsonPath: $.NewBankGuaranteeRequest.releaseBankGuarantee
+
+       - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
          basePath: NewBankGuaranteeRequest
          jsonMaps:
 
@@ -993,12 +1018,12 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.applicationNumber
 
  - version: 1.0
-   description: update new bank guarantee details in eg_bg_new_bank_guarantee table
+   description: update new bank guarantee details in eg_tl_bank_guarantee table
    fromTopic: update-new-bankguarantee
    isTransaction: true
    queryMaps:
 
-       - query: UPDATE eg_bg_new_bank_guarantee SET application_number=?, status=?, loi_number=?, memo_number=?, type_of_bg=?, upload_bg=?, bank_name=?, amount_In_Fig=?, amount_in_words=?, consent_Letter=?, license_Applied=?, validity=?::date,tenantId=?, additionalDetails=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=?  WHERE id=?;
+       - query: UPDATE eg_tl_bank_guarantee SET application_number=?, status=?, loi_number=?, bg_number=?, type_of_bg=?, upload_bg=?, bank_name=?, amount_In_Fig=?, amount_in_words=?, license_Applied=?, validity=?::date,tenantId=?, additionalDetails=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=?, bank_Guarantee_Status=?, licence_Number=?, hardcopy_Submitted=?, full_Certificate=?, partial_Certificate=?, additional_Documents=?, hardcopy_Submitted_Document=?, existing_Bg_Number=?, claim_Period=?, origin_Country=?, tcp_submission_received=?, indian_bank_advised_certificate=?, release_bank_guarantee=?  WHERE id=?;
          basePath: NewBankGuaranteeRequest
          jsonMaps:
           - jsonPath: $.NewBankGuaranteeRequest.applicationNumber
@@ -1007,7 +1032,7 @@ serviceMaps:
 
           - jsonPath: $.NewBankGuaranteeRequest.loiNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.memoNumber
+          - jsonPath: $.NewBankGuaranteeRequest.bgNumber
 
           - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
 
@@ -1018,8 +1043,6 @@ serviceMaps:
           - jsonPath: $.NewBankGuaranteeRequest.amountInFig
 
           - jsonPath: $.NewBankGuaranteeRequest.amountInWords
-
-          - jsonPath: $.NewBankGuaranteeRequest.consentLetter
 
           - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
 
@@ -1039,10 +1062,38 @@ serviceMaps:
 
           - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
 
+          - jsonPath: $.NewBankGuaranteeRequest.bankGuaranteeStatus
+
+          - jsonPath: $.NewBankGuaranteeRequest.licenceNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmitted
+
+          - jsonPath: $.NewBankGuaranteeRequest.fullCertificate
+
+          - jsonPath: $.NewBankGuaranteeRequest.partialCertificate
+
+          - jsonPath: $.NewBankGuaranteeRequest.additionalDocuments
+            type: JSON
+            dbType: JSONB
+
+          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmittedDocument
+
+          - jsonPath: $.NewBankGuaranteeRequest.existingBgNumber
+
+          - jsonPath: $.NewBankGuaranteeRequest.claimPeriod
+
+          - jsonPath: $.NewBankGuaranteeRequest.originCountry
+
+          - jsonPath: $.NewBankGuaranteeRequest.tcpSubmissionReceived
+
+          - jsonPath: $.NewBankGuaranteeRequest.indianBankAdvisedCertificate
+
+          - jsonPath: $.NewBankGuaranteeRequest.releaseBankGuarantee
+
           - jsonPath: $.NewBankGuaranteeRequest.id
 
 
-       - query: INSERT INTO eg_bg_new_bank_guarantee_auditdetails SELECT * FROM eg_bg_new_bank_guarantee WHERE id =?;
+       - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
          basePath: NewBankGuaranteeRequest
          jsonMaps:
 

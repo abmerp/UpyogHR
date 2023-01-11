@@ -30,6 +30,11 @@ public class NewBankGuaranteeRowMapper implements ResultSetExtractor<List<NewBan
 						|| rs.getString("ebnbg_additionaldetails").equals("null") ? null
 								: rs.getString("ebnbg_additionaldetails"),
 						Object.class);
+				Map<String, String> additionalDocuments = new Gson()
+						.fromJson(rs.getString("ebnbg_additional_Documents").equals("{}")
+								|| rs.getString("ebnbg_additional_Documents").equals("null") ? null
+										: rs.getString("ebnbg_additional_Documents"),
+								Map.class);
 				
 				AuditDetails auditDetails = AuditDetails.builder()
 						.createdBy(rs.getString("ebnbg_createdby"))
@@ -44,18 +49,32 @@ public class NewBankGuaranteeRowMapper implements ResultSetExtractor<List<NewBan
 						.applicationNumber(rs.getString("ebnbg_application_number"))
 						.status(rs.getString("ebnbg_status"))
 						.loiNumber(rs.getString("ebnbg_loi_number"))
-						.memoNumber(rs.getString("ebnbg_memo_number"))
+						//.memoNumber(rs.getString("ebnbg_memo_number"))
+						.bgNumber(rs.getString("ebnbg_bg_number"))
 						.typeOfBg(rs.getString("ebnbg_type_of_bg"))
 						.uploadBg(rs.getString("ebnbg_upload_bg"))
 						.bankName(rs.getString("ebnbg_bank_name"))
-						.amountInFig(rs.getString("ebnbg_amount_in_fig"))
+						.amountInFig(rs.getBigDecimal("ebnbg_amount_in_fig"))
 						.amountInWords(rs.getString("ebnbg_amount_in_words"))
-						.consentLetter(rs.getString("ebnbg_consent_letter"))
+						//.consentLetter(rs.getString("ebnbg_consent_letter"))
 						.licenseApplied(rs.getString("ebnbg_license_applied"))
 						.validity(rs.getString("ebnbg_validity"))
 						.tenantId(rs.getString("ebnbg_tenantid"))
 						.additionalDetails(additionalDetails)
 						.auditDetails(auditDetails)
+						.hardcopySubmittedDocument(rs.getString("ebnbg_hardcopy_Submitted_Document"))
+						.existingBgNumber(rs.getString("ebnbg_existing_Bg_Number"))
+						.claimPeriod(rs.getInt("ebnbg_claim_Period"))
+						.originCountry(rs.getString("ebnbg_origin_Country"))
+						.tcpSubmissionReceived(rs.getString("ebnbg_tcp_submission_received"))
+						.indianBankAdvisedCertificate(rs.getString("ebnbg_indian_bank_advised_certificate"))
+						.releaseBankGuarantee(rs.getString("ebnbg_release_bank_guarantee"))
+						.bankGuaranteeStatus(rs.getString("ebnbg_bank_Guarantee_Status"))
+						.licenceNumber(rs.getString("ebnbg_licence_Number"))
+						.hardcopySubmittedDocument(rs.getString("ebnbg_hardcopy_Submitted"))
+						.fullCertificate(rs.getString("ebnbg_full_Certificate"))
+						.partialCertificate(rs.getString("ebnbg_partial_Certificate"))
+						.additionalDocuments(additionalDocuments)
 						.build();
 				newBankGuaranteeRequestMap.put(id, currentNewBankGuaranteeRequest);
 			}

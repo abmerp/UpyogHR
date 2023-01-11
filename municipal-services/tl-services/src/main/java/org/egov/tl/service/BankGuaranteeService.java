@@ -64,6 +64,12 @@ public class BankGuaranteeService {
 	public static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	public static final String BUSINESSSERVICE_TENANTID = "hr";
 	public static final String BUSINESSSERVICE_BG_RENEW = "BG_RENEW";
+	public static final String BG_NEW_ACTION_EXTEND = "EXTEND";
+	public static final String BG_NEW_ACTION_RELEASE = "RELEASE";
+	public static final String BG_NEW_STATUS_APPROVED = "APPROVED";
+	public static final String BG_STATUS_VALID = "VALID";
+	public static final String BG_NEW_ACTION_APPROVE = "APPROVE";
+	public static final String BG_STATUS_RELEASED = "RELEASED";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -139,11 +145,21 @@ public class BankGuaranteeService {
 	public List<NewBankGuarantee> searchNewBankGuarantee(RequestInfo requestInfo, List<String> applicationNumber) {
 		List<NewBankGuaranteeRequest> newBankGuaranteeRequestData = newBankGuaranteeRepo
 				.getNewBankGuaranteeData(applicationNumber);
+		//populate audit entries-
 		// populate new license detail-
 		//populateNewLicenseDetails(newBankGuaranteeRequestData);
 		List<NewBankGuarantee> newBankGuaranteeData = newBankGuaranteeRequestData.stream()
 				.map(newBankGuaranteeRequest -> newBankGuaranteeRequest.toBuilder()).collect(Collectors.toList());
+		populateAuditEntries(newBankGuaranteeData);
 		return newBankGuaranteeData;
+	}
+	
+	private void populateAuditEntries(List<NewBankGuarantee> newBankGuaranteeData) {
+		for (NewBankGuarantee newBankGuarantee : newBankGuaranteeData) {
+			List<NewBankGuaranteeRequest> auditData = newBankGuaranteeRepo
+					.getBankGuaranteeAuditEntries(newBankGuarantee.getApplicationNumber());
+			newBankGuarantee.setAuditEntries(auditData);
+		}
 	}
 	
 	private void populateNewLicenseDetails(List<NewBankGuaranteeRequest> newBankGuaranteeRequestData) {
@@ -177,6 +193,10 @@ public class BankGuaranteeService {
 		BusinessService workflow = workflowService.getBusinessService(BUSINESSSERVICE_TENANTID,
 				newBankGuaranteeContract.getRequestInfo(), BUSINESSSERVICE_BG_NEW);
 		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, newBankGuaranteeContract);
+		validateExtendOrRelease(newBankGuaranteeContract, currentStatus,
+				newBankGuaranteeSearchResult.get(0).getBankGuaranteeStatus());
+		setValidBgStatusOnApproval(newBankGuaranteeContract);
+		setBgStatusOnRelease(newBankGuaranteeContract);
 		enrichAuditDetailsOnUpdate(newBankGuaranteeContract);
 
 		// call workflow to insert processinstance-
@@ -187,6 +207,39 @@ public class BankGuaranteeService {
 		newBankGuaranteeRepo.update(newBankGuaranteeContract);
 		NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().toBuilder();
 		return newBankGuarantee;
+	}
+	
+	private void validateExtendOrRelease(NewBankGuaranteeContract newBankGuaranteeContract, String currentStatus,
+			String currentBgStatus) {
+		if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+				&& BG_NEW_ACTION_EXTEND
+						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+				&& !(currentStatus.equals(BG_NEW_STATUS_APPROVED) && currentBgStatus.equals(BG_STATUS_VALID))) {
+			throw new CustomException("Cannot extend the Bank guarantee as it is not valid/approved",
+					"Cannot extend the Bank guarantee as it is not valid/approved");
+		} else if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+				&& BG_NEW_ACTION_RELEASE
+						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+				&& !(currentStatus.equals(BG_NEW_STATUS_APPROVED) && currentBgStatus.equals(BG_STATUS_VALID))) {
+			throw new CustomException("Cannot release the Bank guarantee as it is not valid/approved",
+					"Cannot release the Bank guarantee as it is not valid/approved");
+		}
+	}
+	
+	private void setValidBgStatusOnApproval(NewBankGuaranteeContract newBankGuaranteeContract) {
+		if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+				&& BG_NEW_ACTION_APPROVE
+						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())) {
+			newBankGuaranteeContract.getNewBankGuaranteeRequest().setBankGuaranteeStatus(BG_STATUS_VALID);
+		}
+	}
+	
+	private void setBgStatusOnRelease(NewBankGuaranteeContract newBankGuaranteeContract) {
+		if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+				&& BG_NEW_ACTION_RELEASE
+						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())) {
+			newBankGuaranteeContract.getNewBankGuaranteeRequest().setBankGuaranteeStatus(BG_STATUS_RELEASED);
+		}
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,

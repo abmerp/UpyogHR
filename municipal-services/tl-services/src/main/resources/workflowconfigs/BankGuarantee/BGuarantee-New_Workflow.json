@@ -134,6 +134,35 @@
           "applicationStatus": "APPROVED",
           "docUploadRequired": false,
           "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "EXTEND",
+              "nextState": "APPROVED",
+              "roles": [
+                "BPA_DEVELOPER",
+                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "RELEASE",
+              "nextState": "RELEASED",
+              "roles": [
+                "CAO"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "RELEASED",
+          "applicationStatus": "RELEASED",
+          "docUploadRequired": false,
+          "isStartState": false,
           "isTerminateState": true,
           "isStateUpdatable": false,
           "actions": null
