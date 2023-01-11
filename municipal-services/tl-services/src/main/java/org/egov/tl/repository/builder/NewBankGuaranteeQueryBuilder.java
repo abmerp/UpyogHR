@@ -18,7 +18,9 @@ public class NewBankGuaranteeQueryBuilder {
 	
 	private static final String LEFT_OUTER_JOIN_STRING = " LEFT OUTER JOIN ";
 	
-	private static final String QUERY = "select ebnbg.id as ebnbg_id, ebnbg.application_number as ebnbg_application_number, ebnbg.status as ebnbg_status, ebnbg.loi_number as ebnbg_loi_number, ebnbg.memo_number as ebnbg_memo_number, ebnbg.type_of_bg as ebnbg_type_of_bg, ebnbg.upload_bg as ebnbg_upload_bg, ebnbg.bank_name as ebnbg_bank_name, ebnbg.amount_in_fig as ebnbg_amount_in_fig, ebnbg.amount_in_words as ebnbg_amount_in_words, ebnbg.consent_letter as ebnbg_consent_letter, ebnbg.license_applied as ebnbg_license_applied, ebnbg.validity as ebnbg_validity, ebnbg.tenantid as ebnbg_tenantid, ebnbg.additionaldetails as ebnbg_additionaldetails, ebnbg.createdby as ebnbg_createdby, ebnbg.lastmodifiedby as ebnbg_lastmodifiedby, ebnbg.createdtime as ebnbg_createdtime, ebnbg.lastmodifiedtime as ebnbg_lastmodifiedtime from eg_bg_new_bank_guarantee ebnbg";
+	private static final String QUERY = "select ebnbg.id as ebnbg_id, ebnbg.application_number as ebnbg_application_number, ebnbg.status as ebnbg_status, ebnbg.loi_number as ebnbg_loi_number, ebnbg.bg_number as ebnbg_bg_number, ebnbg.type_of_bg as ebnbg_type_of_bg, ebnbg.upload_bg as ebnbg_upload_bg, ebnbg.bank_name as ebnbg_bank_name, ebnbg.amount_in_fig as ebnbg_amount_in_fig, ebnbg.amount_in_words as ebnbg_amount_in_words, ebnbg.license_applied as ebnbg_license_applied, ebnbg.validity as ebnbg_validity, ebnbg.tenantid as ebnbg_tenantid, ebnbg.additionaldetails as ebnbg_additionaldetails, ebnbg.createdby as ebnbg_createdby, ebnbg.lastmodifiedby as ebnbg_lastmodifiedby, ebnbg.createdtime as ebnbg_createdtime, ebnbg.lastmodifiedtime as ebnbg_lastmodifiedtime ,ebnbg.hardcopy_Submitted_Document as ebnbg_hardcopy_Submitted_Document ,ebnbg.existing_Bg_Number as ebnbg_existing_Bg_Number  ,ebnbg.claim_Period as ebnbg_claim_Period ,ebnbg.origin_Country as ebnbg_origin_Country ,ebnbg.tcp_submission_received as ebnbg_tcp_submission_received ,ebnbg.indian_bank_advised_certificate as ebnbg_indian_bank_advised_certificate ,ebnbg.release_bank_guarantee as ebnbg_release_bank_guarantee, ebnbg.bank_Guarantee_Status as ebnbg_bank_Guarantee_Status, ebnbg.licence_Number as ebnbg_licence_Number, ebnbg.hardcopy_Submitted as ebnbg_hardcopy_Submitted, ebnbg.full_Certificate as ebnbg_full_Certificate, ebnbg.partial_Certificate as ebnbg_partial_Certificate, ebnbg.additional_Documents as ebnbg_additional_Documents  from eg_tl_bank_guarantee ebnbg";
+	
+	private static final String AUDIT_QUERY = "select ebnbg.id as ebnbg_id, ebnbg.application_number as ebnbg_application_number, ebnbg.status as ebnbg_status, ebnbg.loi_number as ebnbg_loi_number, ebnbg.bg_number as ebnbg_bg_number, ebnbg.type_of_bg as ebnbg_type_of_bg, ebnbg.upload_bg as ebnbg_upload_bg, ebnbg.bank_name as ebnbg_bank_name, ebnbg.amount_in_fig as ebnbg_amount_in_fig, ebnbg.amount_in_words as ebnbg_amount_in_words, ebnbg.license_applied as ebnbg_license_applied, ebnbg.validity as ebnbg_validity, ebnbg.tenantid as ebnbg_tenantid, ebnbg.additionaldetails as ebnbg_additionaldetails, ebnbg.createdby as ebnbg_createdby, ebnbg.lastmodifiedby as ebnbg_lastmodifiedby, ebnbg.createdtime as ebnbg_createdtime, ebnbg.lastmodifiedtime as ebnbg_lastmodifiedtime ,ebnbg.hardcopy_Submitted_Document as ebnbg_hardcopy_Submitted_Document ,ebnbg.existing_Bg_Number as ebnbg_existing_Bg_Number  ,ebnbg.claim_Period as ebnbg_claim_Period ,ebnbg.origin_Country as ebnbg_origin_Country ,ebnbg.tcp_submission_received as ebnbg_tcp_submission_received ,ebnbg.indian_bank_advised_certificate as ebnbg_indian_bank_advised_certificate ,ebnbg.release_bank_guarantee as ebnbg_release_bank_guarantee, ebnbg.bank_Guarantee_Status as ebnbg_bank_Guarantee_Status, ebnbg.licence_Number as ebnbg_licence_Number, ebnbg.hardcopy_Submitted as ebnbg_hardcopy_Submitted, ebnbg.full_Certificate as ebnbg_full_Certificate, ebnbg.partial_Certificate as ebnbg_partial_Certificate, ebnbg.additional_Documents as ebnbg_additional_Documents  from eg_tl_bank_guarantee_auditdetails ebnbg where ebnbg.application_number = ? order by ebnbg.lastmodifiedtime asc";
 	
 	public String getNewBankGuaranteeSearchQuery(List<String> applicationNumber, List<Object> preparedStmtList) {
 		StringBuilder builder = new StringBuilder(QUERY);
@@ -29,6 +31,12 @@ public class NewBankGuaranteeQueryBuilder {
 		}
 		return builder.toString();
 		
+	}
+	
+	public String getBankGuaranteeAuditSearchQuery(String applicationNumber, List<Object> preparedStmtList) {
+		StringBuilder builder = new StringBuilder(AUDIT_QUERY);
+		preparedStmtList.add(applicationNumber);
+		return builder.toString();
 	}
 	
 	/**

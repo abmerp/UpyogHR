@@ -1,6 +1,8 @@
 package org.egov.tl.web.models.bankguarantee;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.service.dao.LicenseServiceDao;
@@ -21,13 +23,13 @@ public class NewBankGuaranteeRequest {
 
 	private String id;
 	private String loiNumber;
-	private String memoNumber;
+	private String bgNumber;
 	private String typeOfBg;
 	private String uploadBg;
 	private String bankName;
-	private String amountInFig;
+	private BigDecimal amountInFig;
 	private String amountInWords;
-	private String consentLetter;
+	//private String consentLetter;
 	private String licenseApplied;
 	private String validity;
 	private String applicationNumber;
@@ -40,17 +42,35 @@ public class NewBankGuaranteeRequest {
 	private String workflowComment;
 	private List<String> workflowAssignee;
 	private LicenseServiceDao license;
+	
+	private String bankGuaranteeStatus;
+	// fields for renew(extend)-
+	private String licenceNumber;
+	private Boolean hardcopySubmitted;
+	// fields for release-
+	private String fullCertificate;
+	private String partialCertificate;
+	private Map<String, String> additionalDocuments;
+	
+	private String hardcopySubmittedDocument;
+	private String existingBgNumber;
+	private Integer claimPeriod;
+	private String originCountry;
+	private String tcpSubmissionReceived;
+	private String indianBankAdvisedCertificate;
+	private String releaseBankGuarantee;
+	private List<NewBankGuaranteeRequest> auditEntries = null;
 
 	public NewBankGuaranteeRequest(NewBankGuarantee newBankGuarantee) {
 		this.id = newBankGuarantee.getId();
 		this.loiNumber = newBankGuarantee.getLoiNumber();
-		this.memoNumber = newBankGuarantee.getMemoNumber();
+		this.bgNumber = newBankGuarantee.getBgNumber();
 		this.typeOfBg = newBankGuarantee.getTypeOfBg();
 		this.uploadBg = newBankGuarantee.getUploadBg();
 		this.bankName = newBankGuarantee.getBankName();
 		this.amountInFig = newBankGuarantee.getAmountInFig();
 		this.amountInWords = newBankGuarantee.getAmountInWords();
-		this.consentLetter = newBankGuarantee.getConsentLetter();
+		//this.consentLetter = newBankGuarantee.getConsentLetter();
 		this.licenseApplied = newBankGuarantee.getLicenseApplied();
 		this.validity = newBankGuarantee.getValidity();
 		this.applicationNumber = newBankGuarantee.getApplicationNumber();
@@ -59,6 +79,19 @@ public class NewBankGuaranteeRequest {
 		this.additionalDetails = newBankGuarantee.getAdditionalDetails();
 		this.auditDetails = newBankGuarantee.getAuditDetails();
 		this.license = newBankGuarantee.getLicense();
+		this.bankGuaranteeStatus = newBankGuarantee.getBankGuaranteeStatus();
+		this.licenceNumber = newBankGuarantee.getLicenceNumber();
+		this.hardcopySubmitted = newBankGuarantee.getHardcopySubmitted();
+		this.fullCertificate = newBankGuarantee.getFullCertificate();
+		this.partialCertificate = newBankGuarantee.getPartialCertificate();
+		this.additionalDocuments = newBankGuarantee.getAdditionalDocuments();
+		this.hardcopySubmittedDocument = newBankGuarantee.getHardcopySubmittedDocument();
+		this.existingBgNumber = newBankGuarantee.getExistingBgNumber();
+		this.claimPeriod = newBankGuarantee.getClaimPeriod();
+		this.originCountry = newBankGuarantee.getOriginCountry();
+		this.tcpSubmissionReceived = newBankGuarantee.getTcpSubmissionReceived();
+		this.indianBankAdvisedCertificate = newBankGuarantee.getIndianBankAdvisedCertificate();
+		this.releaseBankGuarantee = newBankGuarantee.getReleaseBankGuarantee();
 
 	}
 	
@@ -66,13 +99,13 @@ public class NewBankGuaranteeRequest {
 	public NewBankGuarantee toBuilder() {
 		return NewBankGuarantee.builder().id(this.id)
 				.loiNumber(this.loiNumber)
-				.memoNumber(this.memoNumber)
+				.bgNumber(this.bgNumber)
 				.typeOfBg(this.typeOfBg)
 				.uploadBg(this.uploadBg)
 				.bankName(this.bankName)
 				.amountInFig(this.amountInFig)
 				.amountInWords(this.amountInWords)
-				.consentLetter(this.consentLetter)
+				//.consentLetter(this.consentLetter)
 				.licenseApplied(this.licenseApplied)
 				.validity(this.validity)
 				.applicationNumber(this.applicationNumber)
@@ -81,6 +114,19 @@ public class NewBankGuaranteeRequest {
 				.additionalDetails(this.additionalDetails)
 				.auditDetails(this.auditDetails)
 				.license(this.license)
+				.bankGuaranteeStatus(this.bankGuaranteeStatus)
+				.licenceNumber(this.licenceNumber)
+				.hardcopySubmitted(this.hardcopySubmitted)
+				.fullCertificate(this.fullCertificate)
+				.partialCertificate(this.partialCertificate)
+				.additionalDocuments(this.additionalDocuments)
+				.hardcopySubmittedDocument(this.hardcopySubmittedDocument)
+				.existingBgNumber(this.existingBgNumber)
+				.claimPeriod(this.claimPeriod)
+				.originCountry(this.originCountry)
+				.tcpSubmissionReceived(this.tcpSubmissionReceived)
+				.indianBankAdvisedCertificate(this.indianBankAdvisedCertificate)
+				.releaseBankGuarantee(this.releaseBankGuarantee)
 				.build();
 	}
 }
