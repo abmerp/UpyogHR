@@ -268,10 +268,10 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-
+            
             {
               "code": "AFFIDAVIT_AND_PANCARD",
-              "info": "AFFIDAVIT_AND_PANCARD",
+              "info": "AFFIDAVIT AND PANCARD",
               "required": true
             },
             {
@@ -288,8 +288,7 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-          
-            {
+              {
               "code": "APPL.BPAREG_OTHERS",
               "info": "",
               "required": false
