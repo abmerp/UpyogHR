@@ -26,7 +26,9 @@ import org.egov.tl.web.models.TransactionResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -79,13 +81,16 @@ public class LicenseServiceController {
 
 		return new ResponseEntity<>(newServiceResponseInfo, HttpStatus.OK);
 	}
-	
-	  @GetMapping("/licenses/_get") public
-	  ResponseEntity<LicenseServiceResponseInfo>
-	  getNewServicesDetailById(@RequestParam("applicationNumber") String applicationNumber,@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) { return new
-	  ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfoWrapper.getRequestInfo()),
-	  HttpStatus.OK); }
-	 
+
+	@GetMapping("/licenses/_get")
+	public ResponseEntity<LicenseServiceResponseInfo> getNewServicesDetailById(
+			@RequestParam("applicationNumber") String applicationNumber,
+			@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
+		return new ResponseEntity<>(
+				newServiceInfoService.getNewServicesInfoById(applicationNumber, requestInfoWrapper.getRequestInfo()),
+				HttpStatus.OK);
+	}
+
 	@GetMapping("/licenses/_getall")
 	public List<LicenseServiceDao> getNewServicesDetailAll() {
 
@@ -99,9 +104,11 @@ public class LicenseServiceController {
 
 	/* FOR FLATE JSON FOR JSON TO PDF */
 	@GetMapping("/licenses/object/_get")
-	public Map<String, String> getJsonSingleFormate(@RequestParam("applicationNumber") String applicationNumber,@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) throws JsonProcessingException {
+	public Map<String, String> getJsonSingleFormate(@RequestParam("applicationNumber") String applicationNumber,
+			@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) throws JsonProcessingException {
 
-		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfoWrapper.getRequestInfo());
+		LicenseServiceResponseInfo licenseServiceResponseInfo = newServiceInfoService
+				.getNewServicesInfoById(applicationNumber, requestInfoWrapper.getRequestInfo());
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(licenseServiceResponseInfo);
 
@@ -127,10 +134,12 @@ public class LicenseServiceController {
 	}
 
 	@PostMapping("/licenses/object/_getByApplicationNumber")
-	public ResponseEntity<LicenseServiceResponseInfo> getJsonSingleFormate(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber){
+	public ResponseEntity<LicenseServiceResponseInfo> getJsonSingleFormate(
+			@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationNumber") String applicationNumber) {
 
-		return new ResponseEntity<>(newServiceInfoService.getNewServicesInfoById(applicationNumber,requestInfoWrapper.getRequestInfo()),
+		return new ResponseEntity<>(
+				newServiceInfoService.getNewServicesInfoById(applicationNumber, requestInfoWrapper.getRequestInfo()),
 				HttpStatus.OK);
 	}
 
@@ -163,16 +172,10 @@ public class LicenseServiceController {
 		return json;
 	}
 
-	@RequestMapping(value = "/transaction/v1/_update", method = { RequestMethod.POST, RequestMethod.GET })
-	public ResponseEntity<TransactionResponse> transactionsV1UpdatePost(
-			@RequestBody RequestInfoWrapper requestInfoWrapper, @RequestParam Map<String, String> params) {
+	@PostMapping(value = "/transaction/v1/_redirect", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public ResponseEntity<Object> method(@RequestBody MultiValueMap<String, String> formData) {
 
-		List<Transaction> transactions = newServiceInfoService.postTransactionDeatil(params,
-				requestInfoWrapper.getRequestInfo());
-		ResponseInfo responseInfo = ResponseInfoFactory
-				.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true);
-		TransactionResponse response = new TransactionResponse(responseInfo, transactions);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		return newServiceInfoService.postTransactionDeatil(formData);
 	}
 	/* FLAT JSON CODE END */
 
