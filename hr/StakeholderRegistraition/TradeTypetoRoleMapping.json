@@ -102,7 +102,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_COMPANY",
+      "tradeType": "BPA_DEVELOPER.Company",
       "role": [ "BPA_COMPANY" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -126,7 +126,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_INDIVIDUAL",
+      "tradeType": "BPA_DEVELOPER.Individual",
       "role": [ "BPA_INDIVIDUAL" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -141,7 +141,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_SOCIETY",
+      "tradeType": "BPA_DEVELOPER.Society",
       "role": [ "BPA_SOCIETY" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -165,7 +165,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_TRUST",
+      "tradeType": "BPA_DEVELOPER.Trust",
       "role": [ "BPA_TRUST" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -189,7 +189,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_OTHERS",
+      "tradeType": "BPA_DEVELOPER.Others",
       "role": [ "BPA_OTHERS" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -204,7 +204,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_INSTITUTION",
+      "tradeType": "BPA_DEVELOPER.Institution",
       "role": [ "BPA_INSTITUTION" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -228,7 +228,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_FIRM",
+      "tradeType": "BPA_DEVELOPER.Firm",
       "role": [ "BPA_FIRM" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -258,7 +258,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_LIMITED_LIABILITY_PATRTNERSHIP",
+      "tradeType": "BPA_DEVELOPER.Limited Liability Partnership",
       "role": [ "BPA_LIMITED_LIABILITY_PATRTNERSHIP" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -287,7 +287,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_HINDU_UNDIVIDED_FAMILY",
+      "tradeType": "BPA_DEVELOPER.Hindu Undivided Famil",
       "role": [ "BPA_HINDU_UNDIVIDED_FAMILY" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -307,7 +307,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_PATRTNERSHIP_FIRM",
+      "tradeType": "BPA_DEVELOPER.Partnership Firm",
       "role": [ "BPA_PATRTNERSHIP_FIRM" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
@@ -321,7 +321,7 @@
     },
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
-      "tradeType": "BPA_DEVELOPER.BPA_PROPRIETORSHIP_FIRM",
+      "tradeType": "BPA_DEVELOPER.Proprietorship Firm",
       "role": [ "BPA_PROPRIETORSHIP_FIRM" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
