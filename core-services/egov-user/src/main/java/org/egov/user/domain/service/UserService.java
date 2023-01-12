@@ -685,6 +685,8 @@ public class UserService {
 
 	public Map<String,Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 		
+		requestInfo = new RequestInfo();
+		
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
@@ -702,10 +704,12 @@ public class UserService {
 		
 			if(null == searchUsers || searchUsers.isEmpty()) {
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
-				user.setUsername(ssoCitizen.getMobileNumber());
+				user.setUsername(ssoCitizen.getEmailId());
 				user.setName(ssoCitizen.getUserId());
 				user.setMobileNumber(ssoCitizen.getMobileNumber());
 				user.setOtpReference("123456");	
+				user.setIdentificationMark(ssoCitizen.getUserId());
+				
 			//	User createUser = createUser(user,requestInfo);
 				Object newUser =registerWithLogin(user,requestInfo);				
 				log.info("newUser"+newUser);
