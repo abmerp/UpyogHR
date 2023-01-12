@@ -685,10 +685,11 @@ public class UserService {
 
 	public Map<String,Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 		
-		requestInfo = new RequestInfo();
-		org.egov.common.contract.request.User userInfo = new org.egov.common.contract.request.User();
-		userInfo.setTenantId("hr");
-		requestInfo.setUserInfo(userInfo);
+	//	requestInfo = new RequestInfo();
+	//	org.egov.common.contract.request.User userInfo = new org.egov.common.contract.request.User();
+		
+	//	userInfo.setTenantId("hr");
+	//	requestInfo.setUserInfo(userInfo);
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
@@ -699,7 +700,7 @@ public class UserService {
 		User user = new User();
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 		if (ssoValue.equalsIgnoreCase(sso)) {
-			userSearchCriteria.setUserName(ssoCitizen.getMobileNumber());
+			userSearchCriteria.setUserName(ssoCitizen.getEmailId());
 			userSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
 			List<User> searchUsers = searchUsers(userSearchCriteria, true, requestInfo);
 			log.info("searchUsers" + searchUsers);
@@ -728,10 +729,10 @@ public class UserService {
 			user.setTenantId(requestInfo.getUserInfo().getTenantId());
 			user.setActive(true);
 			User updatedUser = updateWithoutOtpValidation(user, requestInfo);
-			log.info("updatedUser"+updatedUser);			
-			user.setUsername(searchUsers.get(0).getMobileNumber());			
-			user.setOtpReference("123456");				
-			Object updateUser= getAccess(user, user.getOtpReference());
+			log.info("updatedUser"+updatedUser);	
+						
+			updatedUser.setOtpReference("123456");				
+			Object updateUser= getAccess(updatedUser, updatedUser.getOtpReference());
 			ssoCitizenMap.put("Token",updateUser );		
 			String url =( tcpReturnUrl + citizenNewLicense );
 			ssoCitizenMap.put("ReturnUrl", url);
