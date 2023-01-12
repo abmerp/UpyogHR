@@ -92,6 +92,7 @@ public class AdditionalFeature extends FeatureProcess {
     private static final BigDecimal SEVEN = BigDecimal.valueOf(7);
     private static final BigDecimal TEN = BigDecimal.valueOf(10);
     private static final BigDecimal TWELVE = BigDecimal.valueOf(12);
+    private static final BigDecimal SIXTEENPOINTFIVE = BigDecimal.valueOf(16.5);
     private static final BigDecimal NINETEEN = BigDecimal.valueOf(19);
 
     private static final BigDecimal ROAD_WIDTH_TWO_POINTFOUR = BigDecimal.valueOf(2.4);
@@ -362,32 +363,35 @@ public class AdditionalFeature extends FeatureProcess {
             BigDecimal buildingHeight = block.getBuilding().getBuildingHeight();
 
             if (typeOfArea.equalsIgnoreCase(OLD)) {
-                if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
-                    errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
-                    pl.addErrors(errors);
-                } else if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOURFOUR) >= 0
-                        && roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) < 0) {
-                    isAccepted = buildingHeight.compareTo(SEVEN) <= 0;
-                    requiredBuildingHeight = "<= 7";
-                } else if (roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) >= 0
-                        && roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) < 0) {
-                    isAccepted = buildingHeight.compareTo(TEN) <= 0;
-                    requiredBuildingHeight = "<= 10";
-                } else if (roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) >= 0
-                        && roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                    isAccepted = buildingHeight.compareTo(TEN) <= 0;
-                    requiredBuildingHeight = "<= 10";
-                } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
-                        && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
-                    isAccepted = buildingHeight.compareTo(TWELVE) <= 0;
-                    requiredBuildingHeight = "<= 12";
-                } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0) {
-                    List<SetBack> setBacks = block.getSetBacks();
-                    BigDecimal permitedHeight = getPermitedHeight(roadWidth, setBacks);
-                    isAccepted = buildingHeight.compareTo(permitedHeight) <= 0;
-                    requiredBuildingHeight = "<=" + permitedHeight.toString();
-                    ruleNo = RULE_39;
-                }
+//                if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
+//                    errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
+//                    pl.addErrors(errors);
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOURFOUR) >= 0
+//                        && roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) < 0) {
+//                    isAccepted = buildingHeight.compareTo(SEVEN) <= 0;
+//                    requiredBuildingHeight = "<= 7";
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) >= 0
+//                        && roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) < 0) {
+//                    isAccepted = buildingHeight.compareTo(TEN) <= 0;
+//                    requiredBuildingHeight = "<= 10";
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) >= 0
+//                        && roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                    isAccepted = buildingHeight.compareTo(TEN) <= 0;
+//                    requiredBuildingHeight = "<= 10";
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
+//                        && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
+//                    isAccepted = buildingHeight.compareTo(TWELVE) <= 0;
+//                    requiredBuildingHeight = "<= 12";
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0) {
+//                    List<SetBack> setBacks = block.getSetBacks();
+//                    BigDecimal permitedHeight = getPermitedHeight(roadWidth, setBacks);
+//                    isAccepted = buildingHeight.compareTo(permitedHeight) <= 0;
+//                    requiredBuildingHeight = "<=" + permitedHeight.toString();
+//                    ruleNo = RULE_39;
+//                }
+            	isAccepted = buildingHeight.compareTo(SIXTEENPOINTFIVE) <= 0;
+                requiredBuildingHeight = "<= 16.5";
+            	
                 /*
                  * else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0 && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO)
                  * <= 0) { return BETWEEN_NINEPOINT_ONE_TWELVEPOINT_TWO; } else if
@@ -406,23 +410,26 @@ public class AdditionalFeature extends FeatureProcess {
             }
 
             if (typeOfArea.equalsIgnoreCase(NEW)) {
-                if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                    errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
-                    pl.addErrors(errors);
-                } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
-                        && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
-                    isAccepted = buildingHeight.compareTo(TWELVE) <= 0;
-                    requiredBuildingHeight = "<= 12";
-                } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
-                        && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
-                    isAccepted = buildingHeight.compareTo(NINETEEN) <= 0;
-                    requiredBuildingHeight = "<= 19";
-                } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) > 0) {
-                    List<SetBack> setBacks = block.getSetBacks();
-                    BigDecimal permitedHeight = getPermitedHeight(roadWidth, setBacks);
-                    isAccepted = buildingHeight.compareTo(permitedHeight) <= 0;
-                    requiredBuildingHeight = "<=" + permitedHeight.toString();
-                } /*
+//                if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                    errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
+//                    pl.addErrors(errors);
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
+//                        && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
+//                    isAccepted = buildingHeight.compareTo(TWELVE) <= 0;
+//                    requiredBuildingHeight = "<= 12";
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
+//                        && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
+//                    isAccepted = buildingHeight.compareTo(NINETEEN) <= 0;
+//                    requiredBuildingHeight = "<= 19";
+//                } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) > 0) {
+//                    List<SetBack> setBacks = block.getSetBacks();
+//                    BigDecimal permitedHeight = getPermitedHeight(roadWidth, setBacks);
+//                    isAccepted = buildingHeight.compareTo(permitedHeight) <= 0;
+//                    requiredBuildingHeight = "<=" + permitedHeight.toString();
+//                } 
+            	isAccepted = buildingHeight.compareTo(SIXTEENPOINTFIVE) <= 0;
+                requiredBuildingHeight = "<= 16.5";
+                /*
                    * else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0 &&
                    * roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) <= 0) { return
                    * BETWEEN_TWELVEPOINT_TWO_EIGHTEENPOINT_THREE; } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE)
@@ -443,7 +450,7 @@ public class AdditionalFeature extends FeatureProcess {
                 details.put(RULE_NO, ruleNo);
                 details.put(DESCRIPTION, HEIGHT_BUILDING);
                 details.put(DxfFileConstants.AREA_TYPE, typeOfArea);
-                details.put(DxfFileConstants.ROAD_WIDTH, roadWidth.toString());
+//                details.put(DxfFileConstants.ROAD_WIDTH, roadWidth.toString());
                 details.put(PERMISSIBLE, requiredBuildingHeight);
                 details.put(PROVIDED, String.valueOf(buildingHeight));
                 details.put(STATUS, isAccepted ? Result.Accepted.getResultVal() : Result.Not_Accepted.getResultVal());
@@ -716,7 +723,7 @@ public class AdditionalFeature extends FeatureProcess {
         scrutinyDetail.addColumnHeading(1, RULE_NO);
         scrutinyDetail.addColumnHeading(2, DESCRIPTION);
         scrutinyDetail.addColumnHeading(3, DxfFileConstants.AREA_TYPE);
-        scrutinyDetail.addColumnHeading(4, DxfFileConstants.ROAD_WIDTH);
+//        scrutinyDetail.addColumnHeading(4, DxfFileConstants.ROAD_WIDTH);
         scrutinyDetail.addColumnHeading(5, PERMISSIBLE);
         scrutinyDetail.addColumnHeading(6, PROVIDED);
         scrutinyDetail.addColumnHeading(7, STATUS);

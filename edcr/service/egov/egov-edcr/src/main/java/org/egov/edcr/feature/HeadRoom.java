@@ -65,7 +65,7 @@ import org.springframework.stereotype.Service;
 public class HeadRoom extends FeatureProcess {
     private static final String RULE42_5_ii = "42-5-ii";
     private static final String RULE_42_5_ii_DESCRIPTION = "Minimum clear of stair head-room";
-    private static final BigDecimal TWO_POINTTWO = BigDecimal.valueOf(2.2);
+    private static final BigDecimal TWO_POINTTEN = BigDecimal.valueOf(2.10);
 
     @Override
     public Plan validate(Plan plan) {
@@ -97,13 +97,13 @@ public class HeadRoom extends FeatureProcess {
 
                         BigDecimal minWidth = Util.roundOffTwoDecimal(minHeadRoomDimension);
 
-                        if (minWidth.compareTo(TWO_POINTTWO) >= 0) {
+                        if (minWidth.compareTo(TWO_POINTTEN) >= 0) {
                             setReportOutputDetails(plan, RULE42_5_ii, RULE_42_5_ii_DESCRIPTION,
-                                    String.valueOf(TWO_POINTTWO), String.valueOf(minWidth), Result.Accepted.getResultVal(),
+                                    String.valueOf(TWO_POINTTEN), String.valueOf(minWidth), Result.Accepted.getResultVal(),
                                     scrutinyDetail);
                         } else {
                             setReportOutputDetails(plan, RULE42_5_ii, RULE_42_5_ii_DESCRIPTION,
-                                    String.valueOf(TWO_POINTTWO), String.valueOf(minWidth), Result.Not_Accepted.getResultVal(),
+                                    String.valueOf(TWO_POINTTEN), String.valueOf(minWidth), Result.Not_Accepted.getResultVal(),
                                     scrutinyDetail);
                         }
                     }

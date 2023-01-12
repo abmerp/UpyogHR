@@ -94,11 +94,8 @@ public class RearYardService extends GeneralRule {
 
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_0_9 = BigDecimal.valueOf(0.9);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_1_2 = BigDecimal.valueOf(1.2);
-	private static final BigDecimal REARYARDMINIMUM_DISTANCE_1_5 = BigDecimal.valueOf(1.5);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_1_8 = BigDecimal.valueOf(1.8);
-	private static final BigDecimal REARYARDMINIMUM_DISTANCE_2 = BigDecimal.valueOf(2);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_2_5 = BigDecimal.valueOf(2.5);
-	private static final BigDecimal REARYARDMINIMUM_DISTANCE_3 = BigDecimal.valueOf(3);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_3_6 = BigDecimal.valueOf(3.6);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_4 = BigDecimal.valueOf(4);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_4_5 = BigDecimal.valueOf(4.5);
@@ -108,6 +105,10 @@ public class RearYardService extends GeneralRule {
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_8 = BigDecimal.valueOf(8);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_9 = BigDecimal.valueOf(9);
 	private static final BigDecimal REARYARDMINIMUM_DISTANCE_12 = BigDecimal.valueOf(12);
+	private static final BigDecimal REARYARDMINIMUM_DISTANCE_1 = BigDecimal.valueOf(1);
+	private static final BigDecimal REARYARDMINIMUM_DISTANCE_1_5 = BigDecimal.valueOf(1.5);
+	private static final BigDecimal REARYARDMINIMUM_DISTANCE_2 = BigDecimal.valueOf(2);
+	private static final BigDecimal REARYARDMINIMUM_DISTANCE_3 = BigDecimal.valueOf(3);
 
 	public static final String BSMT_REAR_YARD_DESC = "Basement Rear Setback";
 	private static final int PLOTAREA_300 = 300;
@@ -255,7 +256,7 @@ public class RearYardService extends GeneralRule {
 		Boolean valid = false;
 		BigDecimal minVal = BigDecimal.valueOf(0);
 		BigDecimal meanVal = BigDecimal.valueOf(0);
-		BigDecimal depthOfPlot = pl.getPlanInformation().getDepthOfPlot();
+		BigDecimal plotArea = pl.getPlanInformation().getPlotArea();
 
 		if (mostRestrictiveOccupancy.getSubtype() != null && (A_R.equalsIgnoreCase(mostRestrictiveOccupancy.getSubtype().getCode())
 				|| A_AF.equalsIgnoreCase(mostRestrictiveOccupancy.getSubtype().getCode())
@@ -265,15 +266,15 @@ public class RearYardService extends GeneralRule {
 					&& DxfFileConstants.COMMERCIAL.equalsIgnoreCase(pl.getPlanInformation().getLandUseZone())
 					&& pl.getPlanInformation().getRoadWidth().compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
 				valid = commercialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult,
-						DxfFileConstants.RULE_28, rule, minVal, meanVal, depthOfPlot, valid);
+						DxfFileConstants.RULE_28, rule, minVal, meanVal, plotArea, valid);
 			} else {
 				valid = residentialUptoTenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult,
-						subRule, rule, minVal, meanVal, depthOfPlot, valid);
+						subRule, rule, minVal, meanVal, plotArea, valid);
 			}
 
         } else if (F.equalsIgnoreCase(mostRestrictiveOccupancy.getType().getCode())) {
             valid = commercialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult, subRule,
-                    rule, minVal, meanVal, depthOfPlot, valid);
+                    rule, minVal, meanVal, plotArea, valid);
         }
 
 		return valid;
@@ -281,30 +282,19 @@ public class RearYardService extends GeneralRule {
 
 	private Boolean residentialUptoTenMts(Block block, Integer level, final BigDecimal min, final BigDecimal mean,
 			final OccupancyTypeHelper mostRestrictiveOccupancy, RearYardResult rearYardResult, String subRule,
-			String rule, BigDecimal minVal, BigDecimal meanVal, BigDecimal depthOfPlot, Boolean valid) {
-
-		if (depthOfPlot.compareTo(BigDecimal.valueOf(10)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_0_9;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(10)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(15)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_1_2;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(15)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(21)) <= 0) {
+			String rule, BigDecimal minVal, BigDecimal meanVal, BigDecimal plotArea, Boolean valid) {
+		
+		if (plotArea.compareTo(BigDecimal.valueOf(75))<0)
 			minVal = REARYARDMINIMUM_DISTANCE_1_5;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(21)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(27)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_1_8;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(27)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(33)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_2_5;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(33)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(39)) <= 0) {
+			else if (plotArea.compareTo(BigDecimal.valueOf(75)) > 0
+				&& plotArea.compareTo(BigDecimal.valueOf(150)) <= 0) {
+			minVal = REARYARDMINIMUM_DISTANCE_2;
+			valid = validateMinimumAndMeanValue(min, mean, minVal, meanVal);
+		} else if (plotArea.compareTo(BigDecimal.valueOf(150)) > 0
+				&& plotArea.compareTo(BigDecimal.valueOf(250)) <= 0) {
+			minVal = REARYARDMINIMUM_DISTANCE_2;
+		} else if (plotArea.compareTo(BigDecimal.valueOf(250)) > 0) {
 			minVal = REARYARDMINIMUM_DISTANCE_3;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(39)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(45)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(45)) > 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
 		}
 
 		valid = validateMinimumAndMeanValue(min, mean, minVal, meanVal);
@@ -352,7 +342,7 @@ public class RearYardService extends GeneralRule {
 		Boolean valid = false;
 		BigDecimal minVal = BigDecimal.valueOf(0);
 		BigDecimal meanVal = BigDecimal.valueOf(0);
-		BigDecimal depthOfPlot = pl.getPlanInformation().getDepthOfPlot();
+		BigDecimal plotArea = pl.getPlanInformation().getPlotArea();
 
 		if (mostRestrictiveOccupancy.getSubtype() != null && A_R.equalsIgnoreCase(mostRestrictiveOccupancy.getSubtype().getCode())
                 || A_AF.equalsIgnoreCase(mostRestrictiveOccupancy.getSubtype().getCode())
@@ -362,15 +352,15 @@ public class RearYardService extends GeneralRule {
 					&& DxfFileConstants.COMMERCIAL.equalsIgnoreCase(pl.getPlanInformation().getLandUseZone())
 					&& pl.getPlanInformation().getRoadWidth().compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
 				commercialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult,
-						DxfFileConstants.RULE_28, rule, minVal, meanVal, depthOfPlot, valid);
+						DxfFileConstants.RULE_28, rule, minVal, meanVal, plotArea, valid);
 			} else {
 				valid = residentialUptoTwelveMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult,
-						subRule, rule, minVal, meanVal, depthOfPlot, valid, errors, pl);
+						subRule, rule, minVal, meanVal, plotArea, valid, errors, pl);
 			}
 
 		}else if (F.equalsIgnoreCase(mostRestrictiveOccupancy.getType().getCode())) {
 	            valid = commercialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult, subRule,
-	                    rule, minVal, meanVal, depthOfPlot, valid);
+	                    rule, minVal, meanVal, plotArea, valid);
 	        }
 
 		return valid;
@@ -394,33 +384,21 @@ public class RearYardService extends GeneralRule {
 
 	private Boolean residentialUptoTwelveMts(Block block, Integer level, final BigDecimal min, final BigDecimal mean,
 			final OccupancyTypeHelper mostRestrictiveOccupancy, RearYardResult rearYardResult, String subRule,
-			String rule, BigDecimal minVal, BigDecimal meanVal, BigDecimal depthOfPlot, Boolean valid,
+			String rule, BigDecimal minVal, BigDecimal meanVal, BigDecimal plotArea, Boolean valid,
 			HashMap<String, String> errors, Plan pl) {
 
-		if (depthOfPlot.compareTo(BigDecimal.valueOf(10)) <= 0) {
-			errors.put("uptoTwelveHeightUptoTenDepthRearYard",
-					"No construction shall be permitted if depth of plot is less than 10 and building height less than 12 having floors upto G+2.");
-			pl.addErrors(errors);
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(10)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(15)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_1_8;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(15)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(21)) <= 0) {
+
+		if (plotArea.compareTo(BigDecimal.valueOf(75))<0)
+			minVal = REARYARDMINIMUM_DISTANCE_1_5;
+			else if (plotArea.compareTo(BigDecimal.valueOf(75)) > 0
+				&& plotArea.compareTo(BigDecimal.valueOf(150)) <= 0) {
 			minVal = REARYARDMINIMUM_DISTANCE_2;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(21)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(27)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_2_5;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(27)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(33)) <= 0) {
+			valid = validateMinimumAndMeanValue(min, mean, minVal, meanVal);
+		} else if (plotArea.compareTo(BigDecimal.valueOf(150)) > 0
+				&& plotArea.compareTo(BigDecimal.valueOf(250)) <= 0) {
+			minVal = REARYARDMINIMUM_DISTANCE_2;
+		} else if (plotArea.compareTo(BigDecimal.valueOf(250)) > 0) {
 			minVal = REARYARDMINIMUM_DISTANCE_3;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(33)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(39)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(39)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(45)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(45)) > 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
 		}
 
 		valid = validateMinimumAndMeanValue(min, mean, minVal, meanVal);
@@ -488,7 +466,7 @@ public class RearYardService extends GeneralRule {
 		Boolean valid = false;
 		BigDecimal minVal = BigDecimal.valueOf(0);
 		BigDecimal meanVal = BigDecimal.valueOf(0);
-		BigDecimal depthOfPlot = pl.getPlanInformation().getDepthOfPlot();
+		BigDecimal plotArea = pl.getPlanInformation().getPlotArea();
 
         if (A_R.equalsIgnoreCase(mostRestrictiveOccupancy.getSubtype().getCode())
                 || A_AF.equalsIgnoreCase(mostRestrictiveOccupancy.getSubtype().getCode())
@@ -499,14 +477,14 @@ public class RearYardService extends GeneralRule {
 					&& DxfFileConstants.COMMERCIAL.equalsIgnoreCase(pl.getPlanInformation().getLandUseZone())
 					&& pl.getPlanInformation().getRoadWidth().compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
 				valid = commercialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult,
-						DxfFileConstants.RULE_28, rule, minVal, meanVal, depthOfPlot, valid);
+						DxfFileConstants.RULE_28, rule, minVal, meanVal, plotArea, valid);
 			} else {
 				valid = residentialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult,
-						subRule, rule, minVal, meanVal, depthOfPlot, valid, errors, pl);
+						subRule, rule, minVal, meanVal, plotArea, valid, errors, pl);
 			}
 		} else if (F.equalsIgnoreCase(mostRestrictiveOccupancy.getType().getCode())) {
 			valid = commercialUptoSixteenMts(block, level, min, mean, mostRestrictiveOccupancy, rearYardResult, subRule,
-					rule, minVal, meanVal, depthOfPlot, valid);
+					rule, minVal, meanVal, plotArea, valid);
 		}
 
 		return valid;
@@ -514,32 +492,20 @@ public class RearYardService extends GeneralRule {
 
 	private Boolean residentialUptoSixteenMts(Block block, Integer level, final BigDecimal min, final BigDecimal mean,
 			final OccupancyTypeHelper mostRestrictiveOccupancy, RearYardResult rearYardResult, String subRule,
-			String rule, BigDecimal minVal, BigDecimal meanVal, BigDecimal depthOfPlot, Boolean valid,
+			String rule, BigDecimal minVal, BigDecimal meanVal, BigDecimal plotArea, Boolean valid,
 			HashMap<String, String> errors, Plan pl) {
-		if (depthOfPlot.compareTo(BigDecimal.valueOf(10)) <= 0) {
-			errors.put("uptoSixteenHeightUptoTenDepthRearYard",
-					"No construction shall be permitted if depth of plot is less than 10 and building height less than 16 having floors upto G+4.");
-			pl.addErrors(errors);
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(10)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(15)) <= 0) {
+
+		if (plotArea.compareTo(BigDecimal.valueOf(75))<0)
+			minVal = REARYARDMINIMUM_DISTANCE_1_5;
+			else if (plotArea.compareTo(BigDecimal.valueOf(75)) > 0
+				&& plotArea.compareTo(BigDecimal.valueOf(150)) <= 0) {
 			minVal = REARYARDMINIMUM_DISTANCE_2;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(15)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(21)) <= 0) {
+			valid = validateMinimumAndMeanValue(min, mean, minVal, meanVal);
+		} else if (plotArea.compareTo(BigDecimal.valueOf(150)) > 0
+				&& plotArea.compareTo(BigDecimal.valueOf(250)) <= 0) {
+			minVal = REARYARDMINIMUM_DISTANCE_2;
+		} else if (plotArea.compareTo(BigDecimal.valueOf(250)) > 0) {
 			minVal = REARYARDMINIMUM_DISTANCE_3;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(21)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(27)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_3_6;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(27)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(33)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(33)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(39)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(39)) > 0
-				&& depthOfPlot.compareTo(BigDecimal.valueOf(45)) <= 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4;
-		} else if (depthOfPlot.compareTo(BigDecimal.valueOf(45)) > 0) {
-			minVal = REARYARDMINIMUM_DISTANCE_4_5;
 		}
 
 		valid = validateMinimumAndMeanValue(min, mean, minVal, meanVal);
