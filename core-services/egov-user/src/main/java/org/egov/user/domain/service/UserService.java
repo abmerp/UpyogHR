@@ -686,7 +686,9 @@ public class UserService {
 	public Map<String,Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 		
 		requestInfo = new RequestInfo();
-		
+		org.egov.common.contract.request.User userInfo = new org.egov.common.contract.request.User();
+		userInfo.setTenantId("hr");
+		requestInfo.setUserInfo(userInfo);
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
