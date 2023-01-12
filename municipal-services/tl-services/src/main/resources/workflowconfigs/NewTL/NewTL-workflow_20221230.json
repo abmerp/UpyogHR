@@ -7,15 +7,7 @@
     "msgId": "20170310130900|en_IN",
     "ts": 0,
     "ver": ".01",
-    "authToken": "80458c19-3b48-4aa8-b86e-e2e195e6753a",
-    "userInfo": {
-      "uuid": "5fe074f2-c12d-4a27-bd7b-92d15f9ab19c",
-      "name": "rahul7",
-      "userName": "rahul7",
-      "tenantId": "hr",
-      "id": 97,
-      "mobileNumber": "7895877833"
-    }
+    "authToken": "4c689f23-067d-48a8-9e85-4c07b8615975"
   },
   "BusinessServices": [
     {
@@ -75,6 +67,33 @@
             },
             {
               "tenantId": "hr",
+              "action": "FORWARD_TO_LANDSCHEDULE",
+              "nextState": "LANDSCHEDULE",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_LANDDETAILS",
+              "nextState": "LANDDETAILS",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_FEESANDCHARGES",
+              "nextState": "FEESANDCHARGES",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
               "action": "INITIATE",
               "nextState": "INITIATED",
               "roles": [
@@ -98,6 +117,24 @@
               "tenantId": "hr",
               "action": "SENDBACK",
               "nextState": "INITIATED",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_LANDDETAILS",
+              "nextState": "LANDDETAILS",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_FEESANDCHARGES",
+              "nextState": "FEESANDCHARGES",
               "roles": [
                                 "BPA_DEVELOPER",
                                 "BPA_BUILDER"
@@ -144,6 +181,24 @@
             },
             {
               "tenantId": "hr",
+              "action": "SENDBACK_TO_INITIATED",
+              "nextState": "INITIATED",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_FEESANDCHARGES",
+              "nextState": "FEESANDCHARGES",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
               "action": "CANCEL",
               "nextState": "CANCELLED",
               "roles": [
@@ -183,6 +238,24 @@
             },
             {
               "tenantId": "hr",
+              "action": "SENDBACK_TO_PURPOSE",
+              "nextState": "PURPOSE",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_INITIATED",
+              "nextState": "INITIATED",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
               "action": "CANCEL",
               "nextState": "CANCELLED",
               "roles": [
@@ -215,6 +288,33 @@
               "tenantId": "hr",
               "action": "SENDBACK",
               "nextState": "LANDDETAILS",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_LANDSCHEDULE",
+              "nextState": "LANDSCHEDULE",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_PURPOSE",
+              "nextState": "PURPOSE",
+              "roles": [
+                                "BPA_DEVELOPER",
+                                "BPA_BUILDER"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "SENDBACK_TO_INITIATED",
+              "nextState": "INITIATED",
               "roles": [
                                 "BPA_DEVELOPER",
                                 "BPA_BUILDER"

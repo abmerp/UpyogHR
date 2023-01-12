@@ -55,6 +55,10 @@ public class DeveloperRegistrationService {
 
 				if (listDevDetail.getVersion() == devRegistration.getCurrentVersion()) {
 					switch (detail.getPageName()) {
+					case "applicantType": {
+						listDevDetail.setApplicantType(detail.getDevDetail().getApplicantType());
+						break;
+					}
 					case "addInfo": {
 						listDevDetail.setAddInfo(detail.getDevDetail().getAddInfo());
 						break;
