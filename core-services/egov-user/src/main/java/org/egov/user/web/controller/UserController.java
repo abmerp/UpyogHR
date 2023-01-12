@@ -25,9 +25,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
@@ -54,6 +57,15 @@ public class UserController {
 
 	private UserService userService;
 	private TokenService tokenService;
+	
+	@Value("${tcp.redirect.url.host}")
+	private String redirectUrlhost;
+	
+	@Value("${tcp.citizen.redirect.url}")
+	private String redirectUrlCitizen;
+	
+	@Value("${tcp.employee.redirect.url}")
+	private String redirectUrlEmployee;
 
 	@Value("${mobile.number.validation.workaround.enabled}")
 	private String mobileValidationWorkaroundEnabled;
@@ -251,5 +263,31 @@ public class UserController {
 
 
 	}
+
+    @PostMapping(value = "/_ssoCitizen/v1/_redirect", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<Object> methodCitizen(@RequestBody MultiValueMap<String, String> formData) {
+        String returnURL = redirectUrlhost+redirectUrlCitizen;
+        MultiValueMap<String, String> params = UriComponentsBuilder.fromUriString(returnURL).build().getQueryParams();
+        String gateway = null;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        StringBuilder redirectURL = new StringBuilder();
+        redirectURL.append(returnURL);
+        httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString())
+                .queryParams(formData).build().encode().toUri());
+        return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
+       }
+
+    @PostMapping(value = "/_ssoEmployee/v1/_redirect", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<Object> methodEmployee(@RequestBody MultiValueMap<String, String> formData) {
+        String returnURL = redirectUrlhost+redirectUrlEmployee;
+        MultiValueMap<String, String> params = UriComponentsBuilder.fromUriString(returnURL).build().getQueryParams();
+        String gateway = null;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        StringBuilder redirectURL = new StringBuilder();
+        redirectURL.append(returnURL);
+        httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString())
+                .queryParams(formData).build().encode().toUri());
+        return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
+       }
 
 }

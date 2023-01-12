@@ -24,6 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 public class RedirectController {
+	
+	@Value("${tcp.url.host}")
+	private String urlHost;
+	
+	@Value("${tcp.payment.url}")
+	private String paymentUrl;
 
     @Value("${egov.default.citizen.url}")
     private String defaultURL;
@@ -45,7 +51,8 @@ public class RedirectController {
 
     @PostMapping(value = "/transaction/v1/_redirect", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Object> method(@RequestBody MultiValueMap<String, String> formData) {
-        String returnURL = "http://103.166.62.118:3001/digit-ui/citizen/payment/success/TL/HRTL20221214000698/hr?eg_pg_txnid%3DPB_PG_2022_12_14_000105_02";
+    	String returnURL = urlHost+ paymentUrl;
+   //     String returnURL = "http://103.166.62.118:3001/digit-ui/citizen/payment/success/TL/HRTL20221214000698/hr?eg_pg_txnid%3DPB_PG_2022_12_14_000105_02";
     	
         MultiValueMap<String, String> params = UriComponentsBuilder.fromUriString(returnURL).build().getQueryParams();
 

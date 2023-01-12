@@ -72,6 +72,10 @@ public class UserService {
 	public String tcpExistSSoNumber;
 	@Value("${tcp.return.url}")
 	public String tcpReturnUrl;
+	@Value("${contextPath.citizen.stakeholder}")
+	public String citizenStakeholder;
+	@Value("${contextPath.citizen.newlicense}")
+	public String citizenNewLicense;
 	
 	@Value("${egov.user.search.default.size}")
 	private Integer defaultSearchSize;	
@@ -686,10 +690,8 @@ public class UserService {
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = isExistSSOToken(ssoCitizenMap);
 		String ssoValue = (String) isExistSSOToken.getBody().get("Value");
-	
 		String sso = "yes";
 		String sso1 = "no";
-
 		User user = new User();
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 		if (ssoValue.equalsIgnoreCase(sso)) {
@@ -707,10 +709,11 @@ public class UserService {
 			//	User createUser = createUser(user,requestInfo);
 				Object newUser =registerWithLogin(user,requestInfo);				
 				log.info("newUser"+newUser);
-				ssoCitizenMap.put("Token",newUser );
-				String contextPath =(" /citizen/obps/stakeholder/apply/stakeholder-docs-required");
-				String url =( tcpReturnUrl + contextPath );
-				ssoCitizenMap.put("Url", url);
+				ssoCitizenMap.put("TokenId",newUser );
+				
+				String url =( tcpReturnUrl + citizenStakeholder );
+				ssoCitizenMap.put("ReturnUrl", url);
+				ssoCitizenMap.put("RedirectUrl", ssoCitizen.getRedirectUrl());
 				return (Map<String, Object>) ssoCitizenMap;
 				
 		} else {
@@ -723,10 +726,10 @@ public class UserService {
 			user.setUsername(searchUsers.get(0).getMobileNumber());			
 			user.setOtpReference("123456");				
 			Object updateUser= getAccess(user, user.getOtpReference());
-			ssoCitizenMap.put("Token",updateUser );
-			String contextPath =("/citizen");
-			String url =( tcpReturnUrl + contextPath );
-			ssoCitizenMap.put("Url", url);
+			ssoCitizenMap.put("Token",updateUser );		
+			String url =( tcpReturnUrl + citizenNewLicense );
+			ssoCitizenMap.put("ReturnUrl", url);
+			ssoCitizenMap.put("RedirectUrl", ssoCitizen.getRedirectUrl());
 			return (Map<String, Object>) ssoCitizenMap;
 			
 			}
