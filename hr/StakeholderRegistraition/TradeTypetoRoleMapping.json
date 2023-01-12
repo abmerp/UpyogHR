@@ -79,7 +79,7 @@
     {
       "id": "313bbadb-c0d7-49b5-b021-77a608f138a31",
       "tradeType": "BPA_DEVELOPER",
-      "role": [ "BPA_COMPANY" ],
+      "role": [ "BPA_DEVELOPER" ],
       "endstate": "APPROVED",
       "applicationFee": 100,
       "docTypes": [
