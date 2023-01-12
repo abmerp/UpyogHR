@@ -76,9 +76,9 @@ public class UserService {
 	public String citizenStakeholder;
 	@Value("${contextPath.citizen.newlicense}")
 	public String citizenNewLicense;
-	
+
 	@Value("${egov.user.search.default.size}")
-	private Integer defaultSearchSize;	
+	private Integer defaultSearchSize;
 
 	private UserRepository userRepository;
 	private OtpRepository otpRepository;
@@ -244,7 +244,7 @@ public class UserService {
 		user.setUuid(UUID.randomUUID().toString());
 		user.setActive(true);
 		user.validateNewUser(createUserValidateName);
-	
+
 		conditionallyValidateOtp(user);
 		/* encrypt here */
 		user = encryptionDecryptionUtil.encryptObject(user, "User", User.class);
@@ -310,7 +310,7 @@ public class UserService {
 	 * @return
 	 */
 	public Object registerWithLogin(User user, RequestInfo requestInfo) {
-		user.setActive(true);		
+		user.setActive(true);
 		createCitizen(user, requestInfo);
 		return getAccess(user, user.getOtpReference());
 	}
@@ -681,20 +681,28 @@ public class UserService {
 		}
 	}
 
+	public Map<String, Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 
+		// requestInfo = new RequestInfo();
+		// org.egov.common.contract.request.User userInfo = new
+		// org.egov.common.contract.request.User();
 
-	public Map<String,Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
-		
-	//	requestInfo = new RequestInfo();
-	//	org.egov.common.contract.request.User userInfo = new org.egov.common.contract.request.User();
-		
-	//	userInfo.setTenantId("hr");
-	//	requestInfo.setUserInfo(userInfo);
+		// userInfo.setTenantId("hr");
+		// requestInfo.setUserInfo(userInfo);
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
-		ResponseEntity<Map> isExistSSOToken = isExistSSOToken(ssoCitizenMap);
-		String ssoValue = (String) isExistSSOToken.getBody().get("Value");
+		ResponseEntity<Map> isExistSSOToken = null;
+		String ssoValue = "no";
+
+		try {
+			isExistSSOToken = isExistSSOToken(ssoCitizenMap);
+
+			ssoValue = (String) isExistSSOToken.getBody().get("Value");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String sso = "yes";
 		String sso1 = "no";
 		User user = new User();
@@ -704,50 +712,53 @@ public class UserService {
 			userSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
 			List<User> searchUsers = searchUsers(userSearchCriteria, true, requestInfo);
 			log.info("searchUsers" + searchUsers);
-		
-			if(null == searchUsers || searchUsers.isEmpty()) {
+
+			if (null == searchUsers || searchUsers.isEmpty()) {
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setUsername(ssoCitizen.getEmailId());
 				user.setName(ssoCitizen.getUserId());
 				user.setMobileNumber(ssoCitizen.getMobileNumber());
-				user.setOtpReference("123456");	
+				user.setOtpReference("123456");
 				user.setIdentificationMark(ssoCitizen.getUserId());
-				
-			//	User createUser = createUser(user,requestInfo);
-				Object newUser =registerWithLogin(user,requestInfo);				
-				log.info("newUser"+newUser);
-				ssoCitizenMap.put("TokenId",newUser );
-				
-				String url =( tcpReturnUrl + citizenStakeholder );
+
+				// User createUser = createUser(user,requestInfo);
+				Object newUser = registerWithLogin(user, requestInfo);
+				log.info("newUser" + newUser);
+				ssoCitizenMap.put("TokenId", newUser);
+
+				String url = (tcpReturnUrl + citizenStakeholder);
 				ssoCitizenMap.put("ReturnUrl", url);
 				ssoCitizenMap.put("RedirectUrl", ssoCitizen.getRedirectUrl());
 				return (Map<String, Object>) ssoCitizenMap;
-				
-		} else {
-			user.setUuid(searchUsers.get(0).getUuid());
-			user.setRoles(searchUsers.get(0).getRoles());		
-			user.setTenantId(requestInfo.getUserInfo().getTenantId());
-			user.setActive(true);
-			User updatedUser = updateWithoutOtpValidation(user, requestInfo);
-			log.info("updatedUser"+updatedUser);	
-						
-			updatedUser.setOtpReference("123456");				
-			Object updateUser= getAccess(updatedUser, updatedUser.getOtpReference());
-			ssoCitizenMap.put("Token",updateUser );		
-			String url =( tcpReturnUrl + citizenNewLicense );
-			ssoCitizenMap.put("ReturnUrl", url);
-			ssoCitizenMap.put("RedirectUrl", ssoCitizen.getRedirectUrl());
-			return (Map<String, Object>) ssoCitizenMap;
-			
+
+			} else {
+				user.setUuid(searchUsers.get(0).getUuid());
+				user.setRoles(searchUsers.get(0).getRoles());
+				user.setTenantId(requestInfo.getUserInfo().getTenantId());
+				user.setActive(true);
+				User updatedUser = updateWithoutOtpValidation(user, requestInfo);
+				log.info("updatedUser" + updatedUser);
+
+				updatedUser.setOtpReference("123456");
+				Object updateUser = getAccess(updatedUser, updatedUser.getOtpReference());
+				ssoCitizenMap.put("Token", updateUser);
+				String url = (tcpReturnUrl + citizenNewLicense);
+				ssoCitizenMap.put("ReturnUrl", url);
+				ssoCitizenMap.put("RedirectUrl", ssoCitizen.getRedirectUrl());
+				return (Map<String, Object>) ssoCitizenMap;
+
 			}
 		} else {
-			
-			  try { ssoCitizenMap.put("ReturnUrl", ssoCitizen.getReturnUrl());
-			  ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId()); return ssoCitizenMap;
-			  } catch(Exception e) { log.error("Exception while creating user: ",e);
-			 
-				log.error("ReturnUrl: "+ssoCitizenMap);
-			throw new InvalidUserSearchCriteriaException(new UserSearchCriteria());
+
+			try {
+				ssoCitizenMap.put("ReturnUrl", ssoCitizen.getReturnUrl());
+				ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
+				return ssoCitizenMap;
+			} catch (Exception e) {
+				log.error("Exception while creating user: ", e);
+
+				log.error("ReturnUrl: " + ssoCitizenMap);
+				throw new InvalidUserSearchCriteriaException(new UserSearchCriteria());
 			}
 		}
 
