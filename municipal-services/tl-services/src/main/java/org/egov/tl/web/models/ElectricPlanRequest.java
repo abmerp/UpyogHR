@@ -1,9 +1,12 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +40,8 @@ public class ElectricPlanRequest {
 	private String action;
 	private String status;
 	private String comment;
+	@JsonProperty("assignee")
+        private List<String> assignee = null;
 	
 	private AuditDetails auditDetails = null;
  
