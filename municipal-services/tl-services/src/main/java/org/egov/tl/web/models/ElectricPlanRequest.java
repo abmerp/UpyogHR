@@ -37,6 +37,8 @@ public class ElectricPlanRequest {
 	private String action;
 	private String status;
 	private String comment;
+	@JsonProperty("assignee")
+        private List<String> assignee = null;
 	
 	private AuditDetails auditDetails = null;
  

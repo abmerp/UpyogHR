@@ -149,24 +149,24 @@ public class ElectricPlanService {
 		ElectricPlanRequest electricPlanRequest = electricPlanContract.getElectricPlanRequest();
 
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
-		TradeLicense tradeLicenseSP = new TradeLicense();
-		List<TradeLicense> tradeLicenseSPlist = new ArrayList<>();
-		tradeLicenseSP.setBusinessService(electricPlanRequest.getBusinessService());
-		tradeLicenseSP.setAction(electricPlanRequest.getAction());
-//		tradeLicenseSP.setAssignee(electricPlanRequest.getAssignee());
-		tradeLicenseSP.setApplicationNumber(electricPlanRequest.getApplicationNumber());
-		tradeLicenseSP.setWorkflowCode(businessService_TL);
+		TradeLicense tradeLicenseEP = new TradeLicense();
+		List<TradeLicense> tradeLicenseEPlist = new ArrayList<>();
+		tradeLicenseEP.setBusinessService(electricPlanRequest.getBusinessService());
+		tradeLicenseEP.setAction(electricPlanRequest.getAction());
+		tradeLicenseEP.setAssignee(electricPlanRequest.getAssignee());
+		tradeLicenseEP.setApplicationNumber(electricPlanRequest.getApplicationNumber());
+		tradeLicenseEP.setWorkflowCode(businessService_TL);
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 		tradeLicenseDetail.setTradeType(businessService_TL);
-		tradeLicenseSP.setTradeLicenseDetail(tradeLicenseDetail);
-		tradeLicenseSP.setComment(electricPlanRequest.getComment());
-		tradeLicenseSP.setWfDocuments(null);
-		tradeLicenseSP.setTenantId(electricPlanRequest.getTenantID());
-		tradeLicenseSP.setBusinessService(businessService_TL);
+		tradeLicenseEP.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicenseEP.setComment(electricPlanRequest.getComment());
+		tradeLicenseEP.setWfDocuments(null);
+		tradeLicenseEP.setTenantId(electricPlanRequest.getTenantID());
+		tradeLicenseEP.setBusinessService(businessService_TL);
 
 		tradeLicenseRequest.setRequestInfo(electricPlanContract.getRequestInfo());
-		tradeLicenseSPlist.add(tradeLicenseSP);
-		tradeLicenseRequest.setLicenses(tradeLicenseSPlist);
+		tradeLicenseEPlist.add(tradeLicenseEP);
+		tradeLicenseRequest.setLicenses(tradeLicenseEPlist);
 
 		return tradeLicenseRequest;
 	}
