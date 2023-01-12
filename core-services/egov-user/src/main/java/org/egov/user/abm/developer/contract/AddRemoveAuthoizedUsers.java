@@ -20,7 +20,7 @@ public class AddRemoveAuthoizedUsers {
 	private String password;
 	private String tenantId;
 	private String mobileNumber;
-//	private String uploadAadharPdf;
+	private String uploadAadharPdf;
 	private String uploadBoardResolution;
 	private String uuid;
 //	private String email;

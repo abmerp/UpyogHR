@@ -823,6 +823,21 @@
       "code": "PMDA",
       "name": "PMDA External Agencies",
       "description": "PMDA External Agencies For Verification role"
+    },
+    {
+      "code": "SO_HQ",
+      "name": "Section Officer",
+      "description": "Section Officer role"
+    },
+    {
+      "code": "AO_HQ",
+      "name": "Accountant Officer",
+      "description": "Accountant Officer role"
+    },
+    {
+      "code": "CAO_HQ",
+      "name": "Chief Accountant Officer",
+      "description": "Chief Accountant Officer role"
     }
   ]
 }

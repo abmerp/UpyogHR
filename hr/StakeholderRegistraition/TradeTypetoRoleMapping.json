@@ -67,298 +67,14 @@
         "applicationFee": 100,
         "docTypes": null
       },
-      {
-        "id": "df027b77-69c1-4749-8608-601328a2deea",
-        "tradeType": "BUILDER.CLASSA",
-        "role": ["BPA_BUILDER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": [
-            {
-                "code": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "info": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EDC_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EXP_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "info": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "info": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "info": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_OTHERS",
-                "info": "",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "info": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "required": false
-            }
-        ]
-      },
-      {
-        "id": "df027b77-69c1-4749-8608-601328a2deea",
-        "tradeType": "BUILDER.CLASSB",
-        "role": ["BPA_BUILDER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": null
-      },
-      {
-        "id": "df027b77-69c1-4749-8608-601328a2deea",
-        "tradeType": "BUILDER.CLASSC",
-        "role": ["BPA_BUILDER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": null
-      },
-      {
-        "id": "7f26d283-cc52-4684-9bbc-f87ade6f2228",
-        "tradeType": "ENGINEER.CLASSA",
-        "role": ["BPA_ENGINEER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": [
-            {
-                "code": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "info": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EDC_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EXP_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "info": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "info": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "info": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_OTHERS",
-                "info": "",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "info": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "required": false
-            }
-        ]
-      },
-      {
-        "id": "7f26d283-cc52-4684-9bbc-f87ade6f2228",
-        "tradeType": "ENGINEER.CLASSB",
-        "role": ["BPA_ENGINEER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": null
-      },
-      {
-        "id": "7f26d283-cc52-4684-9bbc-f87ade6f2228",
-        "tradeType": "ENGINEER.CLASSC",
-        "role": ["BPA_ENGINEER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": null
-      },
-      {
-        "id": "91d278e9-0bcd-4436-978e-793af58e325f",
-        "tradeType": "STRUCTURALENGINEER.CLASSA",
-        "role": ["BPA_STRUCTURALENGINEER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": [
-            {
-                "code": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "info": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EDC_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EXP_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "info": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "info": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "info": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_OTHERS",
-                "info": "",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "info": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "required": false
-            }
-        ]
-      },
-      {
-        "id": "91d278e9-0bcd-4436-978e-793af58e325f",
-        "tradeType": "STRUCTURALENGINEER.CLASSB",
-        "role": ["BPA_STRUCTURALENGINEER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": null
-      },
-      {
-        "id": "91d278e9-0bcd-4436-978e-793af58e325f",
-        "tradeType": "STRUCTURALENGINEER.CLASSC",
-        "role": ["BPA_STRUCTURALENGINEER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": null
-      },
-      {
-        "id": "57b66c2a-0033-4875-a3bd-856e5cf82427",
-        "tradeType": "TOWNPLANNER.CLASSA",
-        "role": ["BPA_TOWNPLANNER"],
-        "endstate": "APPROVED",
-        "applicationFee": 100,
-        "docTypes": [
-            {
-                "code": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "info": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EDC_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EXP_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "info": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "info": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "info": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_OTHERS",
-                "info": "",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "info": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "required": false
-            }
-        ]
-      },
+
       {
         "id": "57b66c2a-0033-4875-a3bd-856e5cf82430",
-        "tradeType": "SUPERVISOR.CLASSA",
-        "role": ["BPA_SUPERVISOR"],
+        "tradeType": "CITIZEN.CLASSA",
+        "role": [ "CITIZEN" ],
         "endstate": "APPROVED",
         "applicationFee": 100,
-        "docTypes": [
-            {
-                "code": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "info": "APPL.BPAREG_GOVT_APPROVED_ID_CARD",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EDC_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_EXP_CERTIFICATE",
-                "info": "",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "info": "APPL.BPAREG_PASS_PORT_SIZE_PHOTO",
-                "required": true
-            },
-            {
-                "code": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "info": "APPL.BPAREG_SHOWCAUSE_NOTICE_IFANY",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "info": "APPL.BPAREG_INCOMETAX_STATEMENT",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_OTHERS",
-                "info": "",
-                "required": false
-            },
-            {
-                "code": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "info": "APPL.BPAREG_REGISTRATION_CERTIFICATE",
-                "required": false
-            }
-        ]
+        "docTypes": null
       },
       {
           "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
@@ -366,18 +82,23 @@
           "role": ["BPA_COMPANY"],
           "endstate": "APPROVED",
           "applicationFee": 100,
-          "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
-          ]
+        "docTypes": [
+          {
+            "code": "ARTICLES_OF_ASSOCIATION",
+            "info": "ARTICLES_OF_ASSOCIATION",
+            "required": true
+          },
+          {
+            "code": "MEMORANDUM_OF_ARTICLES",
+            "info": "MEMORANDUM_OF_ARTICLES",
+            "required": true
+          },
+          {
+            "code": "APPL.BPAREG_OTHERS",
+            "info": "",
+            "required": false
+          }
+        ]
         },
       {
           "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
@@ -386,11 +107,12 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+              
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
       },
       {
@@ -399,18 +121,23 @@
           "role": ["BPA_SOCIETY"],
           "endstate": "APPROVED",
           "applicationFee": 100,
-          "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
-          ]
+        "docTypes": [
+          {
+            "code": "ARTICLES_OF_ASSOCIATION",
+            "info": "ARTICLES_OF_ASSOCIATION",
+            "required": true
+          },
+          {
+            "code": "MEMORANDUM_OF_ARTICLES",
+            "info": "MEMORANDUM_OF_ARTICLES",
+            "required": true
+          },
+          {
+            "code": "APPL.BPAREG_OTHERS",
+            "info": "",
+            "required": false
+          }
+        ]
         },
         {
           "id": "313bbadb-c0d7-49b5-b021-77a608f13a31",
@@ -419,16 +146,21 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -438,16 +170,12 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -457,16 +185,21 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -476,22 +209,27 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              }, 
-              {
-                  "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
-  
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
+
           ]
         },
         {
@@ -501,21 +239,26 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "ARTICLES_OF_ASSOCIATION",
+              "info": "ARTICLES_OF_ASSOCIATION",
+              "required": true
+            },
+            {
+              "code": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "info": "REGISTERED_IRREVOCABLE_PARTNERSHIP_DEED",
+              "required": true
+            },
+            {
+              "code": "MEMORANDUM_OF_ARTICLES",
+              "info": "MEMORANDUM_OF_ARTICLES",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -525,21 +268,17 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "AFFIDAVIT_AND_PANCARD",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            
+            {
+              "code": "AFFIDAVIT_AND_PANCARD",
+              "info": "AFFIDAVIT AND PANCARD",
+              "required": true
+            },
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -550,15 +289,10 @@
           "applicationFee": 100,
           "docTypes": [
               {
-                  "code": "ARTICLES_OF_ASSOCIATION",
-                  "info": "ARTICLES_OF_ASSOCIATION",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         },
         {
@@ -568,16 +302,11 @@
           "endstate": "APPROVED",
           "applicationFee": 100,
           "docTypes": [
-              {
-                  "code": "",
-                  "info": "",
-                  "required": true
-              },
-              {
-                  "code": "MEMORANDUM_OF_ARTICLES",
-                  "info": "MEMORANDUM_OF_ARTICLES",
-                  "required": true
-              }
+            {
+              "code": "APPL.BPAREG_OTHERS",
+              "info": "",
+              "required": false
+            }
           ]
         }
         

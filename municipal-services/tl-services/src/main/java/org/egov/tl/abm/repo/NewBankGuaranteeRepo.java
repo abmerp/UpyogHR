@@ -7,6 +7,7 @@ import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.builder.NewBankGuaranteeQueryBuilder;
+import org.egov.tl.repository.rowmapper.BankGuaranteeAuditRowMapper;
 import org.egov.tl.repository.rowmapper.NewBankGuaranteeRowMapper;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class NewBankGuaranteeRepo {
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private NewBankGuaranteeRowMapper rowMapper;
+	@Autowired
+	private BankGuaranteeAuditRowMapper bankGuaranteeAuditRowMapper;
 
 	public void save(NewBankGuaranteeContract newBankGuaranteeContract) {
 		producer.push(tlConfiguration.getSaveNewBankGuaranteeTopic(), newBankGuaranteeContract);
@@ -46,5 +49,14 @@ public class NewBankGuaranteeRepo {
 		List<NewBankGuaranteeRequest> newBankGuaranteeData = jdbcTemplate.query(query, preparedStmtList.toArray(),
 				rowMapper);
 		return newBankGuaranteeData;
+	}
+	
+	public List<NewBankGuaranteeRequest> getBankGuaranteeAuditEntries(String applicationNumber) {
+		List<Object> preparedStmtList = new ArrayList<>();
+		String query = newBankGuaranteeQueryBuilder.getBankGuaranteeAuditSearchQuery(applicationNumber,
+				preparedStmtList);
+		List<NewBankGuaranteeRequest> bankGuaranteeAuditData = jdbcTemplate.query(query, preparedStmtList.toArray(),
+				bankGuaranteeAuditRowMapper);
+		return bankGuaranteeAuditData;
 	}
 }

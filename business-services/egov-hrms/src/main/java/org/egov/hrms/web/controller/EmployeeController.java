@@ -42,6 +42,8 @@ package org.egov.hrms.web.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.hrms.model.SsoEmployee;
+import org.egov.hrms.model.SsoEmployeeRequest;
 import org.egov.hrms.service.EmployeeService;
 import org.egov.hrms.web.contract.EmployeeRequest;
 import org.egov.hrms.web.contract.EmployeeResponse;
@@ -129,6 +131,19 @@ public class EmployeeController {
 		response = employeeService.getEmployeeCountResponse(requestInfo,tenantId);
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
+	
+	@PostMapping("/_ssoEmployee")
+    public  Map<String,Object> ssoEmployee(@RequestBody  SsoEmployeeRequest ssoEmployeeRequest){
+		
+		SsoEmployee ssoEmployeeData = ssoEmployeeRequest.getSsoEmployee();
+	
+		Object ssoEmployee =  employeeService.ssoEmployee(ssoEmployeeData, ssoEmployeeRequest.getRequestInfo());
+		
+		return (Map<String, Object>) ssoEmployee;
+	}
+
+
+	
 
 
 }

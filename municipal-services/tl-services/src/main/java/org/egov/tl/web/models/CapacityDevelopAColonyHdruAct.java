@@ -9,9 +9,12 @@ import lombok.Setter;
 public class CapacityDevelopAColonyHdruAct {
 	
 	private String licenceNumber;
-	private String nameOfDeveloper;	
 	private String purposeOfColony;
-	private String sectorAndDevelopmentPlan;
-	private String validatingLicence;
-
+	private String licValidity;
+	private String dateOfGrantingLic;
+	private String technicalExpertEngaged;
+	private String engineerDegree;
+	private String architectDegree;
+	private String townPlannerDegree;
+	
 }
