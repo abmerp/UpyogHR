@@ -14,7 +14,7 @@
       "isActiveForPosting": true,
       "isClosed": false,
       "transferClosingBalance": false,
-      "module": "WS"
+      "module": "TL"
     },
     {
       "id": "20",
