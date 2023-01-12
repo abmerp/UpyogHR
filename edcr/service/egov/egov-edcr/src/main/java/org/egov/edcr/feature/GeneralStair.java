@@ -434,6 +434,9 @@ public class GeneralStair extends FeatureProcess {
 
 			case DxfFileConstants.A:
 				return BigDecimal.valueOf(0.25);
+				
+			case DxfFileConstants.A_R:
+				return BigDecimal.valueOf(0.25);
 
 			default:
 				return BigDecimal.valueOf(0.3);
