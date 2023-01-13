@@ -1115,15 +1115,15 @@ serviceMaps:
 
           - jsonPath: $.ElectricPlanRequest.autoCad
 
-          - jsonPath: $.ElectricPlanRequest.elecricDistribution
+          - jsonPath: $.ElectricPlanRequest.electricDistribution
 
           - jsonPath: $.ElectricPlanRequest.electricalCapacity
 
-          - jsonPath: $.ElectricPlanRequest.electricalInfra
+          - jsonPath: $.ElectricPlanRequest.electricInfra
 
           - jsonPath: $.ElectricPlanRequest.environmentalClearance
 
-          - jsonPath: $.ElectricPlanRequest.loadSancation
+          - jsonPath: $.ElectricPlanRequest.LoadSancation
 
           - jsonPath: $.ElectricPlanRequest.switchingStation
 
@@ -1171,15 +1171,15 @@ serviceMaps:
 
           - jsonPath: $.ElectricPlanRequest.autoCad
 
-          - jsonPath: $.ElectricPlanRequest.elecricDistribution
+          - jsonPath: $.ElectricPlanRequest.electricDistribution
 
           - jsonPath: $.ElectricPlanRequest.electricalCapacity
 
-          - jsonPath: $.ElectricPlanRequest.electricalInfra
+          - jsonPath: $.ElectricPlanRequest.electricInfra
 
           - jsonPath: $.ElectricPlanRequest.environmentalClearance
 
-          - jsonPath: $.ElectricPlanRequest.loadSancation
+          - jsonPath: $.ElectricPlanRequest.LoadSancation
 
           - jsonPath: $.ElectricPlanRequest.switchingStation
 
