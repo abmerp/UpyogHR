@@ -683,18 +683,18 @@ public class UserService {
 
 	public Map<String, Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 
-		// requestInfo = new RequestInfo();
-		// org.egov.common.contract.request.User userInfo = new
-		// org.egov.common.contract.request.User();
+		requestInfo = new RequestInfo();
+		 org.egov.common.contract.request.User userInfo = new
+		 org.egov.common.contract.request.User();
 
-		// userInfo.setTenantId("hr");
-		// requestInfo.setUserInfo(userInfo);
+		 userInfo.setTenantId("hr");
+		 requestInfo.setUserInfo(userInfo);
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = null;
 		String ssoValue = "no";
-		requestInfo.getUserInfo().setTenantId("hr");
+		//requestInfo.getUserInfo().setTenantId("hr");
 		log.info("Data by Request"+ssoCitizenMap);
 		try {
 			isExistSSOToken = isExistSSOToken(ssoCitizenMap);
