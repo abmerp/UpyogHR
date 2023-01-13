@@ -149,7 +149,8 @@ public class EnrichmentService {
         processStateAndActions.forEach(processStateAndAction -> {
 
         	if (CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromRequest().getAssignes())
-                    && !CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromDb().getAssignes())
+               && (processStateAndAction.getProcessInstanceFromDb() != null)    
+               && !CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromDb().getAssignes())
                     && processStateAndAction.getProcessInstanceFromDb().getAssignes().size() > 1) {
                 processStateAndAction.getProcessInstanceFromDb().getAssignes()
                         .removeIf(userp -> userp.getUuid().equals(requestInfo.getUserInfo().getUuid()));
