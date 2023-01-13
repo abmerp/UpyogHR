@@ -106,6 +106,18 @@ public class TransitionService {
                     if(state.getUuid().equalsIgnoreCase(processStateAndAction.getAction().getNextState())){
                         processStateAndAction.setResultantState(state);
                         break;
+    }
+                }
+ //if remarks comes from one of multiple assignees, stay at same state-
+                if (CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromRequest().getAssignes())
+                        && !CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromDb().getAssignes())
+                        && processStateAndAction.getProcessInstanceFromDb().getAssignes().size() > 1) {
+                    for (State state : businessService.getStates()) {
+                        if (state.getUuid().equalsIgnoreCase(processStateAndAction.getAction().getCurrentState())) {
+                            processStateAndAction.setResultantState(state);
+                            break;
+                        }
+                
                     }
                 }
             }
