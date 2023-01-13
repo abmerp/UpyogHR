@@ -694,6 +694,7 @@ public class UserService {
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = null;
 		String ssoValue = "no";
+		requestInfo.getUserInfo().setTenantId("hr");
 		log.info("Data by Request"+ssoCitizenMap);
 		try {
 			isExistSSOToken = isExistSSOToken(ssoCitizenMap);
