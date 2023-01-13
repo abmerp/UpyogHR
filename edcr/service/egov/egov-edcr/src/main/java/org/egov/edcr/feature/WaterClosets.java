@@ -123,11 +123,11 @@ public class WaterClosets extends FeatureProcess {
 							}
 						}
 
-						if (minHeight.compareTo(new BigDecimal(2.4)) >= 0
-								&& totalArea.compareTo(new BigDecimal(1.2)) >= 0
-								&& minWidth.compareTo(new BigDecimal(1)) >= 0) {
+						if (minHeight.compareTo(new BigDecimal(2.75)) >= 0
+								&& totalArea.compareTo(new BigDecimal(1.1)) >= 0
+								&& minWidth.compareTo(new BigDecimal(0.85)) >= 0) {
 
-							details.put(REQUIRED, "Height >= 2.4, Total Area >= 1.2, Width >= 1");
+							details.put(REQUIRED, "Height >= 2.75, Total Area >= 1.1, Width >= 0.85");
 							details.put(PROVIDED, "Height >= " + minHeight + ", Total Area >= " + totalArea
 									+ ", Width >= " + minWidth);
 							details.put(STATUS, Result.Accepted.getResultVal());
@@ -135,7 +135,7 @@ public class WaterClosets extends FeatureProcess {
 							pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
 						} else {
-							details.put(REQUIRED, "Height >= 2.4, Total Area >= 1.2, Width >= 1");
+							details.put(REQUIRED, "Height >= 2.75, Total Area >= 1.1, Width >= 0.85");
 							details.put(PROVIDED, "Height >= " + minHeight + ", Total Area >= " + totalArea
 									+ ", Width >= " + minWidth);
 							details.put(STATUS, Result.Not_Accepted.getResultVal());
