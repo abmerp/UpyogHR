@@ -13,6 +13,11 @@
   "distCodeTCP": "BI"
  },
  {
+    "name": "Charkhi Dadri",
+    "distCodeNIC": "0624",
+    "distCodeTCP": "CD"
+   },
+ {
   "name": "Faridabad",
   "distCodeNIC": "0619",
   "distCodeTCP": "FD"
@@ -63,6 +68,18 @@
   "distCodeTCP": "MH"
  },
  {
+    "name": "Mewat",
+    "distCodeNIC": "0620",
+    "distCodeTCP": "MT"
+   },
+   
+ {
+    "name": "Palwal",
+    "distCodeNIC": "0621",
+    "distCodeTCP": "PL"
+   },
+  
+ {
   "name": "Panchkula",
   "distCodeNIC": "0601",
   "distCodeTCP": "PK"
@@ -96,21 +113,7 @@
   "name": "Yamunanagar",
   "distCodeNIC": "0603",
   "distCodeTCP": "YR"
- },
- {
-  "name": "Mewat",
-  "distCodeNIC": "0620",
-  "distCodeTCP": "MT"
- },
- {
-  "name": "Palwal",
-  "distCodeNIC": "0621",
-  "distCodeTCP": "PL"
- },
- {
-  "name": "Charkhi Dadri",
-  "distCodeNIC": "0624",
-  "distCodeTCP": "CD"
  }
+
 ]
 }

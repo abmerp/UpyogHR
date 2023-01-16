@@ -127,5 +127,14 @@ public class LandSchedule {
 	private String revisedLansSchedule;
 	@JsonProperty("areaOfParentLicence")
 	private String areaOfParentLicence;
+	
+	//-----addon---------
+	@JsonProperty("reraRegistered")
+	private String reraRegistered;
+	@JsonProperty("reraDocUpload")
+	private String reraDocUpload;
+	@JsonProperty("reraNonRegistrationDoc")
+	private String reraNonRegistrationDoc;
+
 
 }
