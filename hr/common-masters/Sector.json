@@ -1,0 +1,11140 @@
+{
+    "tenantId": "hr",
+    "moduleName": "common-masters",
+    "Sector": [
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "1",
+  "sectorCode": "060700421"
+ },
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "2",
+  "sectorCode": "060700422"
+ },
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "3",
+  "sectorCode": "060700423"
+ },
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "4",
+  "sectorCode": "060700424"
+ },
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "5",
+  "sectorCode": "060700425"
+ },
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "6",
+  "sectorCode": "060700426"
+ },
+ {
+  "devPlanCode": "MAD",
+  "sectorNo": "7",
+  "sectorCode": "060700427"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "1",
+  "sectorCode": "061000561"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "2",
+  "sectorCode": "061000562"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "3",
+  "sectorCode": "061000563"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "4",
+  "sectorCode": "061000564"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "5",
+  "sectorCode": "061000565"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "6",
+  "sectorCode": "061000566"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "7",
+  "sectorCode": "061000567"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "8",
+  "sectorCode": "061000568"
+ },
+ {
+  "devPlanCode": "BHU",
+  "sectorNo": "9",
+  "sectorCode": "061000569"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "NA",
+  "sectorCode": "06020009NA"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "1",
+  "sectorCode": "062400011"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "8",
+  "sectorCode": "062400018"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "2",
+  "sectorCode": "062400012"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "7",
+  "sectorCode": "062400017"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "3",
+  "sectorCode": "062400013"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "4",
+  "sectorCode": "062400014"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "5",
+  "sectorCode": "062400015"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "13",
+  "sectorCode": "0624000113"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "12",
+  "sectorCode": "0624000112"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "6",
+  "sectorCode": "062400016"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "11",
+  "sectorCode": "0624000111"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "10",
+  "sectorCode": "0624000110"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "9",
+  "sectorCode": "062400019"
+ },
+ {
+  "devPlanCode": "CAD",
+  "sectorNo": "NA",
+  "sectorCode": "06240001NA"
+ },
+ {
+  "devPlanCode": "NAP",
+  "sectorNo": "NA",
+  "sectorCode": "06010029NA"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "NA",
+  "sectorCode": "06150044NA"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "NA",
+  "sectorCode": "06180005NA"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "40",
+  "sectorCode": "0615004440"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "Agriculture Zone",
+  "sectorCode": "06070038Agriculture Zone"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "14",
+  "sectorCode": "0618000114"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "26",
+  "sectorCode": "0618000126"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "24",
+  "sectorCode": "0618000124"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "75",
+  "sectorCode": "0618000175"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "9",
+  "sectorCode": "061800019"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "4",
+  "sectorCode": "061800014"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "70A",
+  "sectorCode": "0618000170A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "70",
+  "sectorCode": "0618000170"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "74",
+  "sectorCode": "0618000174"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "73",
+  "sectorCode": "0618000173"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "72A",
+  "sectorCode": "0618000172A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "71",
+  "sectorCode": "0618000171"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "69",
+  "sectorCode": "0618000169"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "68",
+  "sectorCode": "0618000168"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "7",
+  "sectorCode": "061800017"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "99",
+  "sectorCode": "0618000199"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "100",
+  "sectorCode": "06180001100"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "102",
+  "sectorCode": "06180001102"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "101",
+  "sectorCode": "06180001101"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "104",
+  "sectorCode": "06180001104"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "107",
+  "sectorCode": "06180001107"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "105",
+  "sectorCode": "06180001105"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "110",
+  "sectorCode": "06180001110"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "115",
+  "sectorCode": "06180001115"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "110A",
+  "sectorCode": "06180001110A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "111",
+  "sectorCode": "06180001111"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "87",
+  "sectorCode": "0618000187"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "91",
+  "sectorCode": "0618000191"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "97",
+  "sectorCode": "0618000197"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "98",
+  "sectorCode": "0618000198"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "95",
+  "sectorCode": "0618000195"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "92",
+  "sectorCode": "0618000192"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "81",
+  "sectorCode": "0618000181"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "86",
+  "sectorCode": "0618000186"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "82",
+  "sectorCode": "0618000182"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "90",
+  "sectorCode": "0618000190"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "93",
+  "sectorCode": "0618000193"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "94",
+  "sectorCode": "0618000194"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "89",
+  "sectorCode": "0618000189"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "85",
+  "sectorCode": "0618000185"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "84",
+  "sectorCode": "0618000184"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "88",
+  "sectorCode": "0618000188"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "47",
+  "sectorCode": "0618000147"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "67",
+  "sectorCode": "0618000167"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "51",
+  "sectorCode": "0618000151"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "46",
+  "sectorCode": "0618000146"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "45",
+  "sectorCode": "0618000145"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "44",
+  "sectorCode": "0618000144"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "41",
+  "sectorCode": "0618000141"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "60",
+  "sectorCode": "0618000160"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "59",
+  "sectorCode": "0618000159"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "52",
+  "sectorCode": "0618000152"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "52A",
+  "sectorCode": "0618000152A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "53",
+  "sectorCode": "0618000153"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "27",
+  "sectorCode": "0618000127"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "43",
+  "sectorCode": "0618000143"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "54",
+  "sectorCode": "0618000154"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "42",
+  "sectorCode": "0618000142"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "26A",
+  "sectorCode": "0618000126A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "9B",
+  "sectorCode": "061800019B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "3",
+  "sectorCode": "061800013"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "2",
+  "sectorCode": "061800012"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M3A",
+  "sectorCode": "06180001M3A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M4",
+  "sectorCode": "06180001M4"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M3",
+  "sectorCode": "06180001M3"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M5",
+  "sectorCode": "06180001M5"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M11",
+  "sectorCode": "06180001M11"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M9",
+  "sectorCode": "06180001M9"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M14",
+  "sectorCode": "06180001M14"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "96",
+  "sectorCode": "0618000196"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M10",
+  "sectorCode": "06180001M10"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M12",
+  "sectorCode": "06180001M12"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M13",
+  "sectorCode": "06180001M13"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M7",
+  "sectorCode": "06180001M7"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M15",
+  "sectorCode": "06180001M15"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M6",
+  "sectorCode": "06180001M6"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M16",
+  "sectorCode": "06180001M16"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M1A",
+  "sectorCode": "06180001M1A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M1",
+  "sectorCode": "06180001M1"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M1C",
+  "sectorCode": "06180001M1C"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "79",
+  "sectorCode": "0618000179"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "108",
+  "sectorCode": "06180001108"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "103",
+  "sectorCode": "06180001103"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M8",
+  "sectorCode": "06180001M8"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "109",
+  "sectorCode": "06180001109"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "112",
+  "sectorCode": "06180001112"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "113",
+  "sectorCode": "06180001113"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "102A",
+  "sectorCode": "06180001102A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "106",
+  "sectorCode": "06180001106"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "114",
+  "sectorCode": "06180001114"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "22",
+  "sectorCode": "0618000122"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "28",
+  "sectorCode": "0618000128"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "9A",
+  "sectorCode": "061800019A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "3A",
+  "sectorCode": "061800013A"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "32",
+  "sectorCode": "0604002132"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "35",
+  "sectorCode": "0604002135"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "34",
+  "sectorCode": "0604002134"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "33",
+  "sectorCode": "0604002133"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "4",
+  "sectorCode": "060400214"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "9",
+  "sectorCode": "060400219"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "8",
+  "sectorCode": "060400218"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "14",
+  "sectorCode": "0604002114"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "11",
+  "sectorCode": "0609003111"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "10",
+  "sectorCode": "0609003110"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "18",
+  "sectorCode": "0609003118"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "22",
+  "sectorCode": "0609003122"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "3",
+  "sectorCode": "060900313"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "12",
+  "sectorCode": "0609003112"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "1",
+  "sectorCode": "060900401"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "2",
+  "sectorCode": "060900402"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "10",
+  "sectorCode": "0609004010"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "9",
+  "sectorCode": "060900409"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "15",
+  "sectorCode": "0609003715"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "17",
+  "sectorCode": "0609003717"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "18",
+  "sectorCode": "0609003718"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "16",
+  "sectorCode": "0609003716"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "19",
+  "sectorCode": "0609003719"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "20",
+  "sectorCode": "0609003720"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "11",
+  "sectorCode": "0609003711"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "12",
+  "sectorCode": "0609003712"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "13",
+  "sectorCode": "0609003713"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "6",
+  "sectorCode": "060900376"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "10",
+  "sectorCode": "0609003710"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "5",
+  "sectorCode": "060900425"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "4",
+  "sectorCode": "060900424"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "3",
+  "sectorCode": "060900423"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "2",
+  "sectorCode": "060900422"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "9",
+  "sectorCode": "060900379"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "3",
+  "sectorCode": "060900373"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "6",
+  "sectorCode": "060900426"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "7",
+  "sectorCode": "060900427"
+ },
+ {
+  "devPlanCode": "UCH",
+  "sectorNo": "1",
+  "sectorCode": "060900421"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "2",
+  "sectorCode": "060900312"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "23",
+  "sectorCode": "0609003123"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "19",
+  "sectorCode": "0609003119"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "20",
+  "sectorCode": "0609003120"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "1",
+  "sectorCode": "060700381"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "33A",
+  "sectorCode": "0607003833-A"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "33",
+  "sectorCode": "0607003833"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "32",
+  "sectorCode": "0607003832"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "32A",
+  "sectorCode": "0607003832-A"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "37A",
+  "sectorCode": "0607003837-A"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "37",
+  "sectorCode": "0607003837"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "1A",
+  "sectorCode": "060700381-A"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "34A",
+  "sectorCode": "0607003834-A"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "7",
+  "sectorCode": "060700417"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "6",
+  "sectorCode": "060700416"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "3",
+  "sectorCode": "060700413"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "28",
+  "sectorCode": "0607003828"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "34",
+  "sectorCode": "0607003834"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "3",
+  "sectorCode": "060700383"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "35A",
+  "sectorCode": "0607003835-A"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "4",
+  "sectorCode": "060700384"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "26",
+  "sectorCode": "0607003826"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "2",
+  "sectorCode": "060700382"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "5",
+  "sectorCode": "060700415"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "4",
+  "sectorCode": "060700414"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "2",
+  "sectorCode": "060700412"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "1",
+  "sectorCode": "060700411"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "23",
+  "sectorCode": "0607003823"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "5A",
+  "sectorCode": "060700385-A"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "6",
+  "sectorCode": "060700386"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "10",
+  "sectorCode": "0607003810"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "9",
+  "sectorCode": "060700389"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "20",
+  "sectorCode": "0607003820"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "14",
+  "sectorCode": "0607003814"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "4",
+  "sectorCode": "061500514"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "5",
+  "sectorCode": "061500515"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "3",
+  "sectorCode": "061500513"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "12A",
+  "sectorCode": "0615005112A"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "10A",
+  "sectorCode": "0615005110A"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "12",
+  "sectorCode": "0615005112"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "10",
+  "sectorCode": "0615005110"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "6",
+  "sectorCode": "061500516"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "1",
+  "sectorCode": "061500511"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "2",
+  "sectorCode": "061500512"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "7",
+  "sectorCode": "061500517"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "8",
+  "sectorCode": "061500518"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "9A",
+  "sectorCode": "061500519A"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "11",
+  "sectorCode": "0615005111"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "9",
+  "sectorCode": "061500519"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "12A",
+  "sectorCode": "0615004412 A"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "15",
+  "sectorCode": "0615004415"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "4A",
+  "sectorCode": "061500444(A)"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "3B",
+  "sectorCode": "061500443(B)"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "12B",
+  "sectorCode": "0615005112B"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "13A",
+  "sectorCode": "0615005113A"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "13",
+  "sectorCode": "0612004913"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "14",
+  "sectorCode": "0612004914"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "16",
+  "sectorCode": "0612004916"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "15",
+  "sectorCode": "0612004915"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "11",
+  "sectorCode": "0612004911"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "12",
+  "sectorCode": "0612004912"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "4",
+  "sectorCode": "061200494"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "2",
+  "sectorCode": "061200492"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "7",
+  "sectorCode": "061200497"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "18",
+  "sectorCode": "0612004918"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "1",
+  "sectorCode": "061200491"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "19",
+  "sectorCode": "0612004919"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "4",
+  "sectorCode": "061200504"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "38",
+  "sectorCode": "0618000138"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "30",
+  "sectorCode": "0618000130"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "29",
+  "sectorCode": "0618000129"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "25",
+  "sectorCode": "0618000125"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "25A",
+  "sectorCode": "0618000125A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "20",
+  "sectorCode": "0618000120"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "17",
+  "sectorCode": "0618000117"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "16",
+  "sectorCode": "0618000116"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "11A",
+  "sectorCode": "0618000111A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "15",
+  "sectorCode": "0618000115"
+ },
+ {
+  "devPlanCode": "GWA",
+  "sectorNo": "2",
+  "sectorCode": "061800022"
+ },
+ {
+  "devPlanCode": "GWA",
+  "sectorNo": "1",
+  "sectorCode": "061800021"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "18",
+  "sectorCode": "0618000118"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "19",
+  "sectorCode": "0618000119"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "56",
+  "sectorCode": "0618000156"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "55",
+  "sectorCode": "0618000155"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "61",
+  "sectorCode": "0618000161"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "58",
+  "sectorCode": "0618000158"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "49",
+  "sectorCode": "0618000149"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "66",
+  "sectorCode": "0618000166"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "65",
+  "sectorCode": "0618000165"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "50",
+  "sectorCode": "0618000150"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "62",
+  "sectorCode": "0618000162"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "57",
+  "sectorCode": "0618000157"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "23",
+  "sectorCode": "0618000123"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "13",
+  "sectorCode": "0618000113"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "23A",
+  "sectorCode": "0618000123A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "39",
+  "sectorCode": "0618000139"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "40",
+  "sectorCode": "0618000140"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "5",
+  "sectorCode": "061800015"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "6",
+  "sectorCode": "061800016"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "12A",
+  "sectorCode": "0618000112A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "1",
+  "sectorCode": "061800011"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "37D",
+  "sectorCode": "0618000137D"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "37B",
+  "sectorCode": "0618000137B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "37C",
+  "sectorCode": "0618000137C"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "37A",
+  "sectorCode": "0618000137A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "8",
+  "sectorCode": "061800018"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "10A",
+  "sectorCode": "0618000110A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "10",
+  "sectorCode": "0618000110"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M1B",
+  "sectorCode": "06180001M1B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M1D",
+  "sectorCode": "06180001M1D"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "80",
+  "sectorCode": "0618000180"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "78",
+  "sectorCode": "0618000178"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "77",
+  "sectorCode": "0618000177"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "76",
+  "sectorCode": "0618000176"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "75A",
+  "sectorCode": "0618000175A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "74A",
+  "sectorCode": "0618000174A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "35",
+  "sectorCode": "0618000135"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "34",
+  "sectorCode": "0618000134"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "33",
+  "sectorCode": "0618000133"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "11",
+  "sectorCode": "0618000111"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "37",
+  "sectorCode": "0618000137"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "36",
+  "sectorCode": "0618000136"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "83",
+  "sectorCode": "0618000183"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "82A",
+  "sectorCode": "0618000182A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "81A",
+  "sectorCode": "0618000181A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M6A",
+  "sectorCode": "06180001M6A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M2",
+  "sectorCode": "06180001M2"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "72",
+  "sectorCode": "0618000172"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "48",
+  "sectorCode": "0618000148"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "64",
+  "sectorCode": "0618000164"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "63",
+  "sectorCode": "0618000163"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "21",
+  "sectorCode": "0618000121"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "31",
+  "sectorCode": "0618000131"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "32",
+  "sectorCode": "0618000132"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "2",
+  "sectorCode": "062000032"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "4",
+  "sectorCode": "062000034"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "5",
+  "sectorCode": "062000035"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "6",
+  "sectorCode": "062000036"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "8",
+  "sectorCode": "062000038"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "10",
+  "sectorCode": "0620000310"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "9",
+  "sectorCode": "062000039"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "9A",
+  "sectorCode": "062000039A"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "11A",
+  "sectorCode": "0620000311A"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "11",
+  "sectorCode": "0620000311"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "12",
+  "sectorCode": "0620000312"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "3",
+  "sectorCode": "062000033"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "7",
+  "sectorCode": "062000037"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "11",
+  "sectorCode": "0620000411"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "4",
+  "sectorCode": "062000044"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "2",
+  "sectorCode": "062000042"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "7",
+  "sectorCode": "062000047"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "6",
+  "sectorCode": "062000046"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "14",
+  "sectorCode": "0620000414"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "12",
+  "sectorCode": "0620000412"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "5",
+  "sectorCode": "062000045"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "1",
+  "sectorCode": "062000041"
+ },
+ {
+  "devPlanCode": "NUH",
+  "sectorNo": "1",
+  "sectorCode": "062000031"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "8",
+  "sectorCode": "062000048"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "3",
+  "sectorCode": "062000043"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "9",
+  "sectorCode": "062000049"
+ },
+ {
+  "devPlanCode": "TAO",
+  "sectorNo": "10",
+  "sectorCode": "0620000410"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "10",
+  "sectorCode": "0621000610"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "11",
+  "sectorCode": "0621000611"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "14",
+  "sectorCode": "0621000614"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "15",
+  "sectorCode": "0621000615"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "16",
+  "sectorCode": "0621000616"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "9",
+  "sectorCode": "062100069"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "12",
+  "sectorCode": "0621000612"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "13",
+  "sectorCode": "0621000613"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "8",
+  "sectorCode": "062100068"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "12A",
+  "sectorCode": "0621000612-A"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "1",
+  "sectorCode": "062100061"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "18",
+  "sectorCode": "0621000618"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "19",
+  "sectorCode": "0621000619"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "17",
+  "sectorCode": "0621000617"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "21",
+  "sectorCode": "0621000621"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "19A",
+  "sectorCode": "0621000619-A"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "20",
+  "sectorCode": "0621000620"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "2",
+  "sectorCode": "062100062"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "3",
+  "sectorCode": "062100063"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "7",
+  "sectorCode": "062100067"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "6",
+  "sectorCode": "062100066"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "5",
+  "sectorCode": "062100065"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "4",
+  "sectorCode": "062100064"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "23",
+  "sectorCode": "0621000623"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "22",
+  "sectorCode": "0621000622"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "24",
+  "sectorCode": "0621000624"
+ },
+ {
+  "devPlanCode": "PAL",
+  "sectorNo": "25",
+  "sectorCode": "0621000625"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "3",
+  "sectorCode": "062100053"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "2",
+  "sectorCode": "062100052"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "4",
+  "sectorCode": "062100054"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "5",
+  "sectorCode": "062100055"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "6",
+  "sectorCode": "062100056"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "1",
+  "sectorCode": "062100051"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "7",
+  "sectorCode": "062100057"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "16",
+  "sectorCode": "0602000916"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "17",
+  "sectorCode": "0602000917"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "1",
+  "sectorCode": "060200091"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "18A",
+  "sectorCode": "0602000918A"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "28",
+  "sectorCode": "0602000928"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "29",
+  "sectorCode": "0602000929"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "8",
+  "sectorCode": "060200098"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "9",
+  "sectorCode": "060200099"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "10",
+  "sectorCode": "0602000910"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "12",
+  "sectorCode": "0602000912"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "24",
+  "sectorCode": "0602000924"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "11",
+  "sectorCode": "0602000911"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "21",
+  "sectorCode": "0602000921"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "23",
+  "sectorCode": "0602000923"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "25",
+  "sectorCode": "0602000925"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "27",
+  "sectorCode": "0602000927"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "26",
+  "sectorCode": "0602000926"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "13",
+  "sectorCode": "0602000913"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "14",
+  "sectorCode": "0602000914"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "14A",
+  "sectorCode": "0602000914A"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "15",
+  "sectorCode": "0602000915"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "5",
+  "sectorCode": "060200095"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "6",
+  "sectorCode": "060200096"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "40",
+  "sectorCode": "0602000940"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "36",
+  "sectorCode": "0602000936"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "37",
+  "sectorCode": "0602000937"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "38",
+  "sectorCode": "0602000938"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "39",
+  "sectorCode": "0602000939"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "43",
+  "sectorCode": "0602000943"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "42",
+  "sectorCode": "0602000942"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "19",
+  "sectorCode": "0602000919"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "18B",
+  "sectorCode": "0602000918B"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "18C",
+  "sectorCode": "0602000918C"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "20",
+  "sectorCode": "0602000920"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "41B",
+  "sectorCode": "0602000941B"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "41A",
+  "sectorCode": "0602000941A"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "19B",
+  "sectorCode": "0602000919B"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "41",
+  "sectorCode": "0602000941"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "19C",
+  "sectorCode": "0602000919C"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "18",
+  "sectorCode": "0602000918"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "22",
+  "sectorCode": "0602000922"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "32",
+  "sectorCode": "0602000932"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "33",
+  "sectorCode": "0602000933"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "34",
+  "sectorCode": "0602000934"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "40A",
+  "sectorCode": "0602000940A"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "35",
+  "sectorCode": "0602000935"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "31",
+  "sectorCode": "0602000931"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "30",
+  "sectorCode": "0602000930"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "44A",
+  "sectorCode": "0602000944A"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "44",
+  "sectorCode": "0602000944"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "12",
+  "sectorCode": "0602000712"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "13",
+  "sectorCode": "0602000713"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "8",
+  "sectorCode": "060200078"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "6",
+  "sectorCode": "060200076"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "10",
+  "sectorCode": "0602000710"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "3",
+  "sectorCode": "060200073"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "9",
+  "sectorCode": "060200079"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "7",
+  "sectorCode": "060200077"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "4",
+  "sectorCode": "060200074"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "5",
+  "sectorCode": "060200075"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "2",
+  "sectorCode": "060200072"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "1",
+  "sectorCode": "060200071"
+ },
+ {
+  "devPlanCode": "NRH",
+  "sectorNo": "11",
+  "sectorCode": "0602000711"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "2",
+  "sectorCode": "060200092"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "7",
+  "sectorCode": "060200097"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "4",
+  "sectorCode": "060200094"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "3",
+  "sectorCode": "060200093"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "38",
+  "sectorCode": "0604002138"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "40",
+  "sectorCode": "0604002140"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "41",
+  "sectorCode": "0604002141"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "42",
+  "sectorCode": "0604002142"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "43",
+  "sectorCode": "0604002143"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "44",
+  "sectorCode": "0604002144"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "26A",
+  "sectorCode": "0604002126A"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "19",
+  "sectorCode": "0604002119"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "12",
+  "sectorCode": "0604002112"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "11",
+  "sectorCode": "0604002111"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "6",
+  "sectorCode": "060400216"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "1",
+  "sectorCode": "060400211"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "39",
+  "sectorCode": "0604002139"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "37",
+  "sectorCode": "0604002137"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "36",
+  "sectorCode": "0604002136"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "31",
+  "sectorCode": "0604002131"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "13",
+  "sectorCode": "0604002113"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "10",
+  "sectorCode": "0604002110"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "7",
+  "sectorCode": "060400217"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "5",
+  "sectorCode": "060400215"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "2",
+  "sectorCode": "060400212"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "29",
+  "sectorCode": "0604002129"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "28",
+  "sectorCode": "0604002128"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "15",
+  "sectorCode": "0604002115"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "27",
+  "sectorCode": "0604002127"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "16",
+  "sectorCode": "0604002116"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "23B",
+  "sectorCode": "0604002123B"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "23A",
+  "sectorCode": "0604002123A"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "22",
+  "sectorCode": "0604002122"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "18",
+  "sectorCode": "0604002118"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "20",
+  "sectorCode": "0604002120"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "25",
+  "sectorCode": "0604002125"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "24",
+  "sectorCode": "0604002124"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "48",
+  "sectorCode": "0604002148"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "47",
+  "sectorCode": "0604002147"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "45",
+  "sectorCode": "0604002145"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "26",
+  "sectorCode": "0604002126"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "46",
+  "sectorCode": "0604002146"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "3",
+  "sectorCode": "060400213"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "30",
+  "sectorCode": "0604002130"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "17",
+  "sectorCode": "0604002117"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "21",
+  "sectorCode": "0604002121"
+ },
+ {
+  "devPlanCode": "KUR",
+  "sectorNo": "23",
+  "sectorCode": "0604002123"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "6",
+  "sectorCode": "060100246"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "14",
+  "sectorCode": "0601002414"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "15",
+  "sectorCode": "0601002415"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "16",
+  "sectorCode": "0601002416"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "9",
+  "sectorCode": "060100249"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "10",
+  "sectorCode": "0601002410"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "11",
+  "sectorCode": "0601002411"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "19",
+  "sectorCode": "0601002419"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "20",
+  "sectorCode": "0601002420"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "8",
+  "sectorCode": "060100248"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "17",
+  "sectorCode": "0601002417"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "21",
+  "sectorCode": "0601002421"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "3",
+  "sectorCode": "060100243"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "5",
+  "sectorCode": "060100245"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "7",
+  "sectorCode": "060100247"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "18",
+  "sectorCode": "0601002418"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "1",
+  "sectorCode": "060100241"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "2",
+  "sectorCode": "060100242"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "4",
+  "sectorCode": "060100244"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "12",
+  "sectorCode": "0601002412"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "12A",
+  "sectorCode": "0601002412A"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "2",
+  "sectorCode": "060100222"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "3",
+  "sectorCode": "060100223"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "4",
+  "sectorCode": "060100224"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "5",
+  "sectorCode": "060100225"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "5C",
+  "sectorCode": "060100225-C"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "5D",
+  "sectorCode": "060100225-D"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "5A",
+  "sectorCode": "060100225-A"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "5B",
+  "sectorCode": "060100225-B"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "6",
+  "sectorCode": "060100226"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "7",
+  "sectorCode": "060100227"
+ },
+ {
+  "devPlanCode": "MSD",
+  "sectorNo": "1",
+  "sectorCode": "060100221"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "8",
+  "sectorCode": "060300268"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "9",
+  "sectorCode": "060300269"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "7",
+  "sectorCode": "060300267"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "5",
+  "sectorCode": "060300265"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "16",
+  "sectorCode": "0603002616"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "12",
+  "sectorCode": "0603002612"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "14",
+  "sectorCode": "0603002614"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "19",
+  "sectorCode": "0603002619"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "20",
+  "sectorCode": "0603002620"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "21",
+  "sectorCode": "0603002621"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "23",
+  "sectorCode": "0603002623"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "38",
+  "sectorCode": "0603002638"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "39",
+  "sectorCode": "0603002639"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "28",
+  "sectorCode": "0603002628"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "26",
+  "sectorCode": "0603002626"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "27",
+  "sectorCode": "0603002627"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "35",
+  "sectorCode": "0603002635"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "28A",
+  "sectorCode": "0603002628-A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "34",
+  "sectorCode": "0603002634"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "32",
+  "sectorCode": "0603002632"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "31",
+  "sectorCode": "0603002631"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "29",
+  "sectorCode": "0603002629"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "3",
+  "sectorCode": "060300263"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "4",
+  "sectorCode": "060300264"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "2",
+  "sectorCode": "060300262"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "2A",
+  "sectorCode": "060300262-A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "16A",
+  "sectorCode": "0603002616-A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "11",
+  "sectorCode": "0603002611"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "17",
+  "sectorCode": "0603002617"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "18",
+  "sectorCode": "0603002618"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "17A",
+  "sectorCode": "0603002617-A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "30",
+  "sectorCode": "0603002630"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "12A",
+  "sectorCode": "0603002612A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "13",
+  "sectorCode": "0603002613"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "10",
+  "sectorCode": "0603002610"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "6",
+  "sectorCode": "060300266"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "25",
+  "sectorCode": "0603002625"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "33",
+  "sectorCode": "0603002633"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "36",
+  "sectorCode": "0603002636"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "37",
+  "sectorCode": "0603002637"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "2B",
+  "sectorCode": "060300262-B"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "1",
+  "sectorCode": "060300261"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "15",
+  "sectorCode": "0603002615"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "24",
+  "sectorCode": "0603002624"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "22",
+  "sectorCode": "0603002622"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "25D",
+  "sectorCode": "0614002525-D"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "25C",
+  "sectorCode": "0614002525-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "27A",
+  "sectorCode": "0614002527-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "27B",
+  "sectorCode": "0614002527-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30B",
+  "sectorCode": "0614002530-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30D",
+  "sectorCode": "0614002530-D"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30C",
+  "sectorCode": "0614002530-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "31C",
+  "sectorCode": "0614002531-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "33C",
+  "sectorCode": "0614002533-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "33B",
+  "sectorCode": "0614002533-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "33A",
+  "sectorCode": "0614002533-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "31B",
+  "sectorCode": "0614002531-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "31A",
+  "sectorCode": "0614002531-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30",
+  "sectorCode": "0614002530"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30A",
+  "sectorCode": "0614002530-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "27",
+  "sectorCode": "0614002527"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "31",
+  "sectorCode": "0614002531"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "29",
+  "sectorCode": "0614002529"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "32",
+  "sectorCode": "0614002532"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "33",
+  "sectorCode": "0614002533"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "34",
+  "sectorCode": "0614002534"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "35",
+  "sectorCode": "0614002535"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "36",
+  "sectorCode": "0614002536"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "36A",
+  "sectorCode": "0614002536-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "37",
+  "sectorCode": "0614002537"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "7",
+  "sectorCode": "061400257"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "6",
+  "sectorCode": "061400256"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "5",
+  "sectorCode": "061400255"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "4",
+  "sectorCode": "061400254"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "3",
+  "sectorCode": "061400253"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "2",
+  "sectorCode": "061400252"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "1",
+  "sectorCode": "061400251"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "14",
+  "sectorCode": "0614002514"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "22D",
+  "sectorCode": "0614002522-D"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "16",
+  "sectorCode": "0614002516"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "13",
+  "sectorCode": "0614002513"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "12",
+  "sectorCode": "0614002512"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "8",
+  "sectorCode": "061400258"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "11",
+  "sectorCode": "0614002511"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "9",
+  "sectorCode": "061400259"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "10",
+  "sectorCode": "0614002510"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "17",
+  "sectorCode": "0614002517"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "18",
+  "sectorCode": "0614002518"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "18A",
+  "sectorCode": "0614002518-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "19",
+  "sectorCode": "0614002519"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "20",
+  "sectorCode": "0614002520"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21A",
+  "sectorCode": "0614002521-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21",
+  "sectorCode": "0614002521"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "22",
+  "sectorCode": "0614002522"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "22B",
+  "sectorCode": "0614002522-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "22C",
+  "sectorCode": "0614002522-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "22A",
+  "sectorCode": "0614002522-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21D",
+  "sectorCode": "0614002521-D"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21C",
+  "sectorCode": "0614002521-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21B",
+  "sectorCode": "0614002521-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21E",
+  "sectorCode": "0614002521-E"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "9",
+  "sectorCode": "061400239"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "10",
+  "sectorCode": "0614002310"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "1",
+  "sectorCode": "061400231"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "2",
+  "sectorCode": "061400232"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "3",
+  "sectorCode": "061400233"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "4",
+  "sectorCode": "061400234"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "5",
+  "sectorCode": "061400235"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "11",
+  "sectorCode": "0614002311"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "8",
+  "sectorCode": "061400238"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "6",
+  "sectorCode": "061400236"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "12",
+  "sectorCode": "0614002312"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "7",
+  "sectorCode": "061400237"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "13",
+  "sectorCode": "0614002313"
+ },
+ {
+  "devPlanCode": "MEH",
+  "sectorNo": "14",
+  "sectorCode": "0614002314"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "27D",
+  "sectorCode": "0614002527-D"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "27C",
+  "sectorCode": "0614002527-C"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "26A",
+  "sectorCode": "0614002526-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "26",
+  "sectorCode": "0614002526"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "28",
+  "sectorCode": "0614002528"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "15",
+  "sectorCode": "0614002515"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "23",
+  "sectorCode": "0614002523"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "24",
+  "sectorCode": "0614002524"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "25",
+  "sectorCode": "0614002525"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "25A",
+  "sectorCode": "0614002525-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "25B",
+  "sectorCode": "0614002525-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "25E",
+  "sectorCode": "0614002525-E"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "20A",
+  "sectorCode": "0614002520-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "20B",
+  "sectorCode": "0614002520-B"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "26B",
+  "sectorCode": "0614002526-B"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "8",
+  "sectorCode": "060800188"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "9A",
+  "sectorCode": "060800189A"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "3",
+  "sectorCode": "060800183"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "4",
+  "sectorCode": "060800184"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "5",
+  "sectorCode": "060800185"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "7",
+  "sectorCode": "060800187"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "1A",
+  "sectorCode": "060800181A"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "1",
+  "sectorCode": "060800181"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "12",
+  "sectorCode": "0608001812"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "2",
+  "sectorCode": "060800182"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "16",
+  "sectorCode": "0608001816"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "17A",
+  "sectorCode": "0608001817A"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "17",
+  "sectorCode": "0608001817"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "6",
+  "sectorCode": "060800186"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "15",
+  "sectorCode": "0608001815"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "13",
+  "sectorCode": "0608001813"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "14",
+  "sectorCode": "0608001814"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "11",
+  "sectorCode": "0608001811"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "10",
+  "sectorCode": "0608001810"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "9",
+  "sectorCode": "060800189"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "3A",
+  "sectorCode": "060800203A"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "5",
+  "sectorCode": "060800205"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "02",
+  "sectorCode": "0608002002"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "01",
+  "sectorCode": "0608002001"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "6",
+  "sectorCode": "060800206"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "7",
+  "sectorCode": "060800207"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "18",
+  "sectorCode": "0608001718"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "19",
+  "sectorCode": "0608001719"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "17",
+  "sectorCode": "0608001717"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "10",
+  "sectorCode": "0608001710"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "8",
+  "sectorCode": "060800178"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "2",
+  "sectorCode": "060800172"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "4",
+  "sectorCode": "060800174"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "20",
+  "sectorCode": "0608001720"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "21",
+  "sectorCode": "0608001721"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "21A",
+  "sectorCode": "0608001721A"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "16",
+  "sectorCode": "0608001716"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "11",
+  "sectorCode": "0608001711"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "15",
+  "sectorCode": "0608001715"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "12",
+  "sectorCode": "0608001712"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "7",
+  "sectorCode": "060800177"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "3",
+  "sectorCode": "060800173"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "5",
+  "sectorCode": "060800175"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "6",
+  "sectorCode": "060800176"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "14",
+  "sectorCode": "0608001714"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "13",
+  "sectorCode": "0608001713"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "9",
+  "sectorCode": "060800179"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "1",
+  "sectorCode": "060800171"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "19",
+  "sectorCode": "0608001819"
+ },
+ {
+  "devPlanCode": "GOH",
+  "sectorNo": "18",
+  "sectorCode": "0608001818"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "03",
+  "sectorCode": "0608002003"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "04",
+  "sectorCode": "0608002004"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "1",
+  "sectorCode": "060900311"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "4",
+  "sectorCode": "060900314"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "5",
+  "sectorCode": "060900315"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "7A",
+  "sectorCode": "060900317-A"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "9",
+  "sectorCode": "060900319"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "8",
+  "sectorCode": "060900318"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "7",
+  "sectorCode": "060900317"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "6",
+  "sectorCode": "060900316"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "21",
+  "sectorCode": "0609003121"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "25",
+  "sectorCode": "0609003125"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "17",
+  "sectorCode": "0609003117"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "14",
+  "sectorCode": "0609003114"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "16",
+  "sectorCode": "0609003116"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "12A",
+  "sectorCode": "0609003112A"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "24",
+  "sectorCode": "0609003124"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "15",
+  "sectorCode": "0609003115"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "13",
+  "sectorCode": "0609003113"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "3",
+  "sectorCode": "060900403"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "1",
+  "sectorCode": "060900371"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "2",
+  "sectorCode": "060900372"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "14",
+  "sectorCode": "0609003714"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "5",
+  "sectorCode": "060900375"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "4",
+  "sectorCode": "060900374"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "7",
+  "sectorCode": "060900377"
+ },
+ {
+  "devPlanCode": "NAR",
+  "sectorNo": "8",
+  "sectorCode": "060900378"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "7",
+  "sectorCode": "060900407"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "8",
+  "sectorCode": "060900408"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "6",
+  "sectorCode": "060900406"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "4",
+  "sectorCode": "060900404"
+ },
+ {
+  "devPlanCode": "SAF",
+  "sectorNo": "5",
+  "sectorCode": "060900405"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "33",
+  "sectorCode": "0605003233"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "6",
+  "sectorCode": "060500326"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "5",
+  "sectorCode": "060500325"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "4",
+  "sectorCode": "060500324"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "2",
+  "sectorCode": "060500322"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "1",
+  "sectorCode": "060500321"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "3",
+  "sectorCode": "060500323"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "18",
+  "sectorCode": "0605003218"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "17",
+  "sectorCode": "0605003217"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "32",
+  "sectorCode": "0605003232"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "16",
+  "sectorCode": "0605003216"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "29",
+  "sectorCode": "0605003229"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "28",
+  "sectorCode": "0605003228"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "34",
+  "sectorCode": "0605003234"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "25",
+  "sectorCode": "0605003225"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "14B",
+  "sectorCode": "0605003214-B"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "14",
+  "sectorCode": "0605003214"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "14A",
+  "sectorCode": "0605003214-A"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "15",
+  "sectorCode": "0605003215"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "26",
+  "sectorCode": "0605003226"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "20",
+  "sectorCode": "0605003220"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "21",
+  "sectorCode": "0605003221"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "22",
+  "sectorCode": "0605003222"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "23",
+  "sectorCode": "0605003223"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "11",
+  "sectorCode": "0605003211"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "30",
+  "sectorCode": "0605003230"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "31",
+  "sectorCode": "0605003231"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "13",
+  "sectorCode": "0605003213"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "19",
+  "sectorCode": "0605003219"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "12",
+  "sectorCode": "0605003212"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "24",
+  "sectorCode": "0605003224"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "7",
+  "sectorCode": "060500327"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "8",
+  "sectorCode": "060500328"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "9",
+  "sectorCode": "060500329"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "10",
+  "sectorCode": "0605003210"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "4A",
+  "sectorCode": "060500324-A"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "16A",
+  "sectorCode": "0606002716-A"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "10",
+  "sectorCode": "0606002710"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "7",
+  "sectorCode": "060600277"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "6",
+  "sectorCode": "060600276"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "12",
+  "sectorCode": "0606002712"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "13",
+  "sectorCode": "0606002713"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "8",
+  "sectorCode": "060600278"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "3A",
+  "sectorCode": "060600273-A"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "5",
+  "sectorCode": "060600275"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "16B",
+  "sectorCode": "0606002716-B"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "1",
+  "sectorCode": "060600271"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "11B",
+  "sectorCode": "0606002711-B"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "14",
+  "sectorCode": "0606003614"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "12",
+  "sectorCode": "0606003612"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "11",
+  "sectorCode": "0606003611"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "8",
+  "sectorCode": "060600368"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "7",
+  "sectorCode": "060600367"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "15",
+  "sectorCode": "0606003615"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "16",
+  "sectorCode": "0606003616"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "9",
+  "sectorCode": "060600369"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "13",
+  "sectorCode": "0606003613"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "6I",
+  "sectorCode": "060600366-I"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "6II",
+  "sectorCode": "060600366-II"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "10",
+  "sectorCode": "0606003610"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "3",
+  "sectorCode": "060600363"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "4",
+  "sectorCode": "060600364"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "2",
+  "sectorCode": "060600362"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "1",
+  "sectorCode": "060600361"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "5",
+  "sectorCode": "060600365"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "4",
+  "sectorCode": "060600274"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "3B",
+  "sectorCode": "060600273-B"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "2",
+  "sectorCode": "060600272"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "11A",
+  "sectorCode": "0606002711-A"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "1",
+  "sectorCode": "060600301"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "4",
+  "sectorCode": "060600304"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "3",
+  "sectorCode": "060600303"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "2",
+  "sectorCode": "060600302"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "9",
+  "sectorCode": "060600309"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "8",
+  "sectorCode": "060600308"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "7",
+  "sectorCode": "060600307"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "6",
+  "sectorCode": "060600306"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "10",
+  "sectorCode": "0606003010"
+ },
+ {
+  "devPlanCode": "GHA",
+  "sectorNo": "5",
+  "sectorCode": "060600305"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "39",
+  "sectorCode": "0606003339"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "38",
+  "sectorCode": "0606003338"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "3",
+  "sectorCode": "060600333"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "17",
+  "sectorCode": "0606003317"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "44",
+  "sectorCode": "0606003344"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "35A",
+  "sectorCode": "0606003335-A"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "30",
+  "sectorCode": "0606003330"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "28",
+  "sectorCode": "0606003328"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "9",
+  "sectorCode": "060600339"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "33",
+  "sectorCode": "0606003333"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "34",
+  "sectorCode": "0606003334"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "35",
+  "sectorCode": "0606003335"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "11",
+  "sectorCode": "0606003311"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "8II",
+  "sectorCode": "060600338-II"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "8",
+  "sectorCode": "060600338"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "7",
+  "sectorCode": "060600337"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "6",
+  "sectorCode": "060600336"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "5",
+  "sectorCode": "060600335"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "43A",
+  "sectorCode": "0606003343-A"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "43B",
+  "sectorCode": "0606003343-B"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "37",
+  "sectorCode": "0606003337"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "4",
+  "sectorCode": "060600334"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "36",
+  "sectorCode": "0606003336"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "13",
+  "sectorCode": "0606003313"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "26",
+  "sectorCode": "0606003326"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "14",
+  "sectorCode": "0606003314"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "24",
+  "sectorCode": "0606003324"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "15",
+  "sectorCode": "0606003315"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "12",
+  "sectorCode": "0606003312"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "25",
+  "sectorCode": "0606003325"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "13EXT",
+  "sectorCode": "0606003313-EXT"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "22",
+  "sectorCode": "0606003322"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "10",
+  "sectorCode": "0606003310"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "29",
+  "sectorCode": "0606003329"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "23",
+  "sectorCode": "0606003323"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "16",
+  "sectorCode": "0606003316"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "27",
+  "sectorCode": "0606003327"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "32",
+  "sectorCode": "0606003332"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "43",
+  "sectorCode": "0606003343"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "42",
+  "sectorCode": "0606003342"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "41",
+  "sectorCode": "0606003341"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "40",
+  "sectorCode": "0606003340"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "1",
+  "sectorCode": "060600331"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "31A",
+  "sectorCode": "0606003331-A"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "19",
+  "sectorCode": "0606003319"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "18",
+  "sectorCode": "0606003318"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "2",
+  "sectorCode": "060600332"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "31",
+  "sectorCode": "0606003331"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "45",
+  "sectorCode": "0606003345"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "21",
+  "sectorCode": "0606003321"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "20",
+  "sectorCode": "0606003320"
+ },
+ {
+  "devPlanCode": "NIL",
+  "sectorNo": "15A",
+  "sectorCode": "0606003615-A"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "15",
+  "sectorCode": "0606002715"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "9",
+  "sectorCode": "060600279"
+ },
+ {
+  "devPlanCode": "ASS",
+  "sectorNo": "14",
+  "sectorCode": "0606002714"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "30",
+  "sectorCode": "0607003830"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "29II",
+  "sectorCode": "0607003829-II"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "29I",
+  "sectorCode": "0607003829-I"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "25II",
+  "sectorCode": "0607003825-II"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "25I",
+  "sectorCode": "0607003825-I"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "24",
+  "sectorCode": "0607003824"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "12",
+  "sectorCode": "0607003812"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "11",
+  "sectorCode": "0607003811"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "22",
+  "sectorCode": "0607003822"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "16",
+  "sectorCode": "0607003816"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "21",
+  "sectorCode": "0607003821"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "15",
+  "sectorCode": "0607003815"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "17",
+  "sectorCode": "0607003817"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "31",
+  "sectorCode": "0607003831"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "27",
+  "sectorCode": "0607003827"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "5",
+  "sectorCode": "060700385"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "7",
+  "sectorCode": "060700387"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "8",
+  "sectorCode": "060700388"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "38",
+  "sectorCode": "0607003838"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "39",
+  "sectorCode": "0607003839"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "36",
+  "sectorCode": "0607003836"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "35",
+  "sectorCode": "0607003835"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "13",
+  "sectorCode": "0607003813"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "18",
+  "sectorCode": "0607003818"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "19",
+  "sectorCode": "0607003819"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "40",
+  "sectorCode": "0607003840"
+ },
+ {
+  "devPlanCode": "PAN",
+  "sectorNo": "19A",
+  "sectorCode": "0607003819-A"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "39",
+  "sectorCode": "0617003939"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "38",
+  "sectorCode": "0617003938"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "37",
+  "sectorCode": "0617003937"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "30",
+  "sectorCode": "0617003930"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "29B",
+  "sectorCode": "0617003929-B"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "29A",
+  "sectorCode": "0617003929-A"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "29",
+  "sectorCode": "0617003929"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "36",
+  "sectorCode": "0617003936"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "35",
+  "sectorCode": "0617003935"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "34",
+  "sectorCode": "0617003934"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "33",
+  "sectorCode": "0617003933"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "32",
+  "sectorCode": "0617003932"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "31",
+  "sectorCode": "0617003931"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "23",
+  "sectorCode": "0617003923"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "22",
+  "sectorCode": "0617003922"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "11A",
+  "sectorCode": "0617003911-A"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "8",
+  "sectorCode": "061700398"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "9",
+  "sectorCode": "061700399"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "12",
+  "sectorCode": "0617003912"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "11",
+  "sectorCode": "0617003911"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "21",
+  "sectorCode": "0617003921"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "20",
+  "sectorCode": "0617003920"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "24",
+  "sectorCode": "0617003924"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "25",
+  "sectorCode": "0617003925"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "19",
+  "sectorCode": "0617003919"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "26",
+  "sectorCode": "0617003926"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "27",
+  "sectorCode": "0617003927"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "18",
+  "sectorCode": "0617003918"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "28",
+  "sectorCode": "0617003928"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "17",
+  "sectorCode": "0617003917"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "16",
+  "sectorCode": "0617003916"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "1",
+  "sectorCode": "061700391"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "3",
+  "sectorCode": "061700393"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "2",
+  "sectorCode": "061700392"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "4",
+  "sectorCode": "061700394"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "5",
+  "sectorCode": "061700395"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "10",
+  "sectorCode": "0617003910"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "6",
+  "sectorCode": "061700396"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "7",
+  "sectorCode": "061700397"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "13",
+  "sectorCode": "0617003913"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "14",
+  "sectorCode": "0617003914"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "15",
+  "sectorCode": "0617003915"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "2",
+  "sectorCode": "061700292"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "2A",
+  "sectorCode": "061700292-A"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "3",
+  "sectorCode": "061700293"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "3A",
+  "sectorCode": "061700293-A"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "4",
+  "sectorCode": "061700294"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "4A",
+  "sectorCode": "061700294-A"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "6",
+  "sectorCode": "061700296"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "21",
+  "sectorCode": "0617002921"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "5A",
+  "sectorCode": "061700295-A"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "20",
+  "sectorCode": "0617002920"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "19",
+  "sectorCode": "0617002919"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "15",
+  "sectorCode": "0617002915"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "17",
+  "sectorCode": "0617002917"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "14",
+  "sectorCode": "0617002914"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "13",
+  "sectorCode": "0617002913"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "12",
+  "sectorCode": "0617002912"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "2B",
+  "sectorCode": "061700292-B"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "1B",
+  "sectorCode": "061700291-B"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "1A",
+  "sectorCode": "061700291-A"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "1",
+  "sectorCode": "061700291"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "8",
+  "sectorCode": "061700298"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "10",
+  "sectorCode": "0617002910"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "11",
+  "sectorCode": "0617002911"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "9",
+  "sectorCode": "061700299"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "7",
+  "sectorCode": "061700297"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "7A",
+  "sectorCode": "061700297-A"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "5",
+  "sectorCode": "061700295"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "5B",
+  "sectorCode": "061700295-B"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "16",
+  "sectorCode": "0617002916"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "18",
+  "sectorCode": "0617002918"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "24",
+  "sectorCode": "0617002924"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "23",
+  "sectorCode": "0617002923"
+ },
+ {
+  "devPlanCode": "DHA",
+  "sectorNo": "22",
+  "sectorCode": "0617002922"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "11",
+  "sectorCode": "0617002811"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "12",
+  "sectorCode": "0617002812"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "13",
+  "sectorCode": "0617002813"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "14",
+  "sectorCode": "0617002814"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "4A",
+  "sectorCode": "061700284-A"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "4",
+  "sectorCode": "061700284"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "5",
+  "sectorCode": "061700285"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "8",
+  "sectorCode": "061700288"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "10A",
+  "sectorCode": "0617002810-A"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "9",
+  "sectorCode": "061700289"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "7",
+  "sectorCode": "061700287"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "1A",
+  "sectorCode": "061700281-A"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "6",
+  "sectorCode": "061700286"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "1",
+  "sectorCode": "061700281"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "2",
+  "sectorCode": "061700282"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "3A",
+  "sectorCode": "061700283-A"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "3",
+  "sectorCode": "061700283"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "17",
+  "sectorCode": "0617002817"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "10",
+  "sectorCode": "0617002810"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "16",
+  "sectorCode": "0617002816"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "15",
+  "sectorCode": "0617002815"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "7A",
+  "sectorCode": "061700287-A"
+ },
+ {
+  "devPlanCode": "BAW",
+  "sectorNo": "6A",
+  "sectorCode": "061700286-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "8",
+  "sectorCode": "061600348"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "7",
+  "sectorCode": "061600347"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "7A",
+  "sectorCode": "061600347-A"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "10A",
+  "sectorCode": "0616003510A"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "10",
+  "sectorCode": "0616003510"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "8A",
+  "sectorCode": "061600348-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "11",
+  "sectorCode": "0616003411"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "8B",
+  "sectorCode": "061600348-B"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "9",
+  "sectorCode": "061600349"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "9A",
+  "sectorCode": "061600349-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "6B",
+  "sectorCode": "061600346-B"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "7B",
+  "sectorCode": "061600347-B"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "1",
+  "sectorCode": "061600341"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "6A",
+  "sectorCode": "061600346-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "5",
+  "sectorCode": "061600345"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "5A",
+  "sectorCode": "061600345-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "6",
+  "sectorCode": "061600346"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "4A",
+  "sectorCode": "061600344-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "4",
+  "sectorCode": "061600344"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "10",
+  "sectorCode": "0616003410"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "11",
+  "sectorCode": "0616003511"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "12",
+  "sectorCode": "0616003512"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "1",
+  "sectorCode": "061600351"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "6",
+  "sectorCode": "061600356"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "9",
+  "sectorCode": "061600359"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "8",
+  "sectorCode": "061600358"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "7",
+  "sectorCode": "061600357"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "2",
+  "sectorCode": "061600342"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "2A",
+  "sectorCode": "061600342-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "3A",
+  "sectorCode": "061600343-A"
+ },
+ {
+  "devPlanCode": "MAH",
+  "sectorNo": "3",
+  "sectorCode": "061600343"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "5",
+  "sectorCode": "061600355"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "4",
+  "sectorCode": "061600354"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "3",
+  "sectorCode": "061600353"
+ },
+ {
+  "devPlanCode": "NAN",
+  "sectorNo": "2",
+  "sectorCode": "061600352"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "32",
+  "sectorCode": "0613004532"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "31",
+  "sectorCode": "0613004531"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "30",
+  "sectorCode": "0613004530"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "29",
+  "sectorCode": "0613004529"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "28",
+  "sectorCode": "0613004528"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "27",
+  "sectorCode": "0613004527"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "26",
+  "sectorCode": "0613004526"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "25",
+  "sectorCode": "0613004525"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "15",
+  "sectorCode": "0613004515"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "21",
+  "sectorCode": "0613004521"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "3",
+  "sectorCode": "061300453"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "8",
+  "sectorCode": "061300458"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "7",
+  "sectorCode": "061300457"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "6",
+  "sectorCode": "061300456"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "4",
+  "sectorCode": "061300454"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "2",
+  "sectorCode": "061300452"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "1",
+  "sectorCode": "061300451"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "24A",
+  "sectorCode": "0613004524A"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "1",
+  "sectorCode": "061300471"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "8",
+  "sectorCode": "061300478"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "2",
+  "sectorCode": "061300472"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "7",
+  "sectorCode": "061300477"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "3",
+  "sectorCode": "061300473"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "4",
+  "sectorCode": "061300474"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "5",
+  "sectorCode": "061300475"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "12",
+  "sectorCode": "0613004512"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "13",
+  "sectorCode": "0613004513"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "23",
+  "sectorCode": "0613004523"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "24",
+  "sectorCode": "0613004524"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "22",
+  "sectorCode": "0613004522"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "9",
+  "sectorCode": "061300459"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "10",
+  "sectorCode": "0613004510"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "5",
+  "sectorCode": "061300455"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "4A",
+  "sectorCode": "061300454A"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "11",
+  "sectorCode": "0613004511"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "13",
+  "sectorCode": "0613004713"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "12",
+  "sectorCode": "0613004712"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "6",
+  "sectorCode": "061300476"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "11",
+  "sectorCode": "0613004711"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "10",
+  "sectorCode": "0613004710"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "9",
+  "sectorCode": "061300479"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "20",
+  "sectorCode": "0613004520"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "16",
+  "sectorCode": "0613004516"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "17",
+  "sectorCode": "0613004517"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "19",
+  "sectorCode": "0613004519"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "18",
+  "sectorCode": "0613004518"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "2A",
+  "sectorCode": "061300452A"
+ },
+ {
+  "devPlanCode": "BHI",
+  "sectorNo": "14",
+  "sectorCode": "0613004514"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "22",
+  "sectorCode": "0611005422"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "25",
+  "sectorCode": "0611005425"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "26",
+  "sectorCode": "0611005426"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "2",
+  "sectorCode": "061100542"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "18",
+  "sectorCode": "0611005418"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "17",
+  "sectorCode": "0611005417"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "4",
+  "sectorCode": "061100544"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "5",
+  "sectorCode": "061100545"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "6",
+  "sectorCode": "061100546"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "24",
+  "sectorCode": "0611005424"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "23",
+  "sectorCode": "0611005423"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "16",
+  "sectorCode": "0611005416"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "15",
+  "sectorCode": "0611005415"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "14",
+  "sectorCode": "0611005414"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "12",
+  "sectorCode": "0611005412"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "11",
+  "sectorCode": "0611005411"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "13",
+  "sectorCode": "0611005413"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "8",
+  "sectorCode": "061100548"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "7",
+  "sectorCode": "061100547"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "10",
+  "sectorCode": "0611005410"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "9",
+  "sectorCode": "061100549"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "2A",
+  "sectorCode": "061100542-A"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "3",
+  "sectorCode": "061100543"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "8",
+  "sectorCode": "061100468"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "9",
+  "sectorCode": "061100469"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "7",
+  "sectorCode": "061100467"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "5",
+  "sectorCode": "061100465"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "4",
+  "sectorCode": "061100464"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "6",
+  "sectorCode": "061100466"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "10",
+  "sectorCode": "0611004610"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "2",
+  "sectorCode": "061100462"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "11",
+  "sectorCode": "0611004611"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "12",
+  "sectorCode": "0611004612"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "1",
+  "sectorCode": "061100461"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "3",
+  "sectorCode": "061100463"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "1",
+  "sectorCode": "061100541"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "27",
+  "sectorCode": "0611005427"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "20",
+  "sectorCode": "0611005420"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "19",
+  "sectorCode": "0611005419"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "27A",
+  "sectorCode": "0611005427A"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "1A",
+  "sectorCode": "061100541-A"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "1",
+  "sectorCode": "061000531"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "9",
+  "sectorCode": "061000489"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "15",
+  "sectorCode": "0610005515"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "6",
+  "sectorCode": "061000556"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "7",
+  "sectorCode": "061000557"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "8",
+  "sectorCode": "061000558"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "9",
+  "sectorCode": "061000559"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "4",
+  "sectorCode": "061000554"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "5",
+  "sectorCode": "061000555"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "2",
+  "sectorCode": "061000552"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "11",
+  "sectorCode": "0610004811"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "10",
+  "sectorCode": "0610005510"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "3",
+  "sectorCode": "061000553"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "17",
+  "sectorCode": "0610005317"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "16",
+  "sectorCode": "0610005316"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "15",
+  "sectorCode": "0610005315"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "14",
+  "sectorCode": "0610005314"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "8",
+  "sectorCode": "061000538"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "7",
+  "sectorCode": "061000537"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "4",
+  "sectorCode": "061000534"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "3",
+  "sectorCode": "061000533"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "5",
+  "sectorCode": "061000535"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "13",
+  "sectorCode": "0610005313"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "10",
+  "sectorCode": "0610005310"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "9",
+  "sectorCode": "061000539"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "11",
+  "sectorCode": "0610005311"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "2",
+  "sectorCode": "061000532"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "12",
+  "sectorCode": "0610005312"
+ },
+ {
+  "devPlanCode": "RAT",
+  "sectorNo": "6",
+  "sectorCode": "061000536"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "8",
+  "sectorCode": "061000488"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "8A",
+  "sectorCode": "061000488-A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "16",
+  "sectorCode": "0610004816"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "12",
+  "sectorCode": "0610004812"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "12A",
+  "sectorCode": "0610004812-A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "20",
+  "sectorCode": "0610004820"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "3",
+  "sectorCode": "061000483"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "5A",
+  "sectorCode": "061000485A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "18",
+  "sectorCode": "0610004818"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "17",
+  "sectorCode": "0610004817"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "15",
+  "sectorCode": "0610004815"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "14",
+  "sectorCode": "0610004814"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "13",
+  "sectorCode": "0610004813"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "13A",
+  "sectorCode": "0610004813-A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "11A",
+  "sectorCode": "0610004811-A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "10",
+  "sectorCode": "0610004810"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "7",
+  "sectorCode": "061000487"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "7A",
+  "sectorCode": "061000487-A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "6",
+  "sectorCode": "061000486"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "5",
+  "sectorCode": "061000485"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "4",
+  "sectorCode": "061000484"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "2A",
+  "sectorCode": "061000482-A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "19",
+  "sectorCode": "0610004819"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "16",
+  "sectorCode": "0610005516"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "9A",
+  "sectorCode": "061000559A"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "11",
+  "sectorCode": "0610005511"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "13",
+  "sectorCode": "0610005513"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "14",
+  "sectorCode": "0610005514"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "12",
+  "sectorCode": "0610005512"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "1",
+  "sectorCode": "061000551"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "21",
+  "sectorCode": "0610004821"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "1",
+  "sectorCode": "061000481"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "2",
+  "sectorCode": "061000482"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "3A",
+  "sectorCode": "061500443(A)"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "13",
+  "sectorCode": "0615004413"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "14",
+  "sectorCode": "0615004414"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "3",
+  "sectorCode": "061500443"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "1",
+  "sectorCode": "061500441"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "2",
+  "sectorCode": "061500442"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "4B",
+  "sectorCode": "061500444(B)"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "17",
+  "sectorCode": "0615004417"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "16",
+  "sectorCode": "0615004416"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "18",
+  "sectorCode": "0615004418"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "17A",
+  "sectorCode": "0615004417-A"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "4",
+  "sectorCode": "061500444"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "5",
+  "sectorCode": "061500445"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "6",
+  "sectorCode": "061500446"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "18A",
+  "sectorCode": "0615004418(A)"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "28A",
+  "sectorCode": "0615004428(A)"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "28",
+  "sectorCode": "0615004428"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "12",
+  "sectorCode": "0615004412"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "11",
+  "sectorCode": "0615004411"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "10",
+  "sectorCode": "0615004410"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "9A",
+  "sectorCode": "061500449A"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "7",
+  "sectorCode": "061500447"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "8",
+  "sectorCode": "061500448"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "9",
+  "sectorCode": "061500449"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "22A",
+  "sectorCode": "0615004422(A)"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "22",
+  "sectorCode": "0615004422"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "21",
+  "sectorCode": "0615004421"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "19",
+  "sectorCode": "0615004419"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "20",
+  "sectorCode": "0615004420"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "27",
+  "sectorCode": "0615004427"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "26",
+  "sectorCode": "0615004426"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "25",
+  "sectorCode": "0615004425"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "24",
+  "sectorCode": "0615004424"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "23",
+  "sectorCode": "0615004423"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "14A",
+  "sectorCode": "0615005114A"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "14B",
+  "sectorCode": "0615005114B"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "14",
+  "sectorCode": "0615005114"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "13",
+  "sectorCode": "0615005113"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "15",
+  "sectorCode": "0615005115"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "16",
+  "sectorCode": "0615005116"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "1",
+  "sectorCode": "061200501"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "3",
+  "sectorCode": "061200503"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "5",
+  "sectorCode": "061200505"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": " 11 A",
+  "sectorCode": "06120050 11 A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "39",
+  "sectorCode": "0612005039"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "39A",
+  "sectorCode": "0612005039A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "36",
+  "sectorCode": "0612005036"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "37",
+  "sectorCode": "0612005037"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "38",
+  "sectorCode": "0612005038"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "33B",
+  "sectorCode": "0612005033B"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "33A",
+  "sectorCode": "0612005033A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "33",
+  "sectorCode": "0612005033"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "34",
+  "sectorCode": "0612005034"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "35",
+  "sectorCode": "0612005035"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "40",
+  "sectorCode": "0612005040"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "41",
+  "sectorCode": "0612005041"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "42",
+  "sectorCode": "0612005042"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "43",
+  "sectorCode": "0612005043"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "44",
+  "sectorCode": "0612005044"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "32",
+  "sectorCode": "0612005032"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "31",
+  "sectorCode": "0612005031"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "30",
+  "sectorCode": "0612005030"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "22A",
+  "sectorCode": "0612005022A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "18",
+  "sectorCode": "0612005018"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "10",
+  "sectorCode": "0612005010"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "12",
+  "sectorCode": "0612005012"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "6",
+  "sectorCode": "061200506"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "22",
+  "sectorCode": "0612005022"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "21A",
+  "sectorCode": "0612005021A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "21",
+  "sectorCode": "0612005021"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "23",
+  "sectorCode": "0612005023"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "24",
+  "sectorCode": "0612005024"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "18A",
+  "sectorCode": "0612005018A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "19",
+  "sectorCode": "0612005019"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "26",
+  "sectorCode": "0612005026"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "25",
+  "sectorCode": "0612005025"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "7",
+  "sectorCode": "061200507"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "27",
+  "sectorCode": "0612005027"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "15B",
+  "sectorCode": "0612005015B"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "13",
+  "sectorCode": "0612005013"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "16",
+  "sectorCode": "0612005016"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "28",
+  "sectorCode": "0612005028"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "14",
+  "sectorCode": "0612005014"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "20",
+  "sectorCode": "0612005020"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "15A",
+  "sectorCode": "0612005015A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "15",
+  "sectorCode": "0612005015"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "45",
+  "sectorCode": "0612005045"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "29",
+  "sectorCode": "0612005029"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "2",
+  "sectorCode": "061200502"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "17",
+  "sectorCode": "0612005017"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "11",
+  "sectorCode": "0612005011"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "9",
+  "sectorCode": "061200499"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "17",
+  "sectorCode": "0612004917"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "10",
+  "sectorCode": "0612004910"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "6",
+  "sectorCode": "061200496"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "5",
+  "sectorCode": "061200495"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "3",
+  "sectorCode": "061200493"
+ },
+ {
+  "devPlanCode": "HAN",
+  "sectorNo": "8",
+  "sectorCode": "061200498"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "10A",
+  "sectorCode": "0612004310-A"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "1",
+  "sectorCode": "061200431"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "12A",
+  "sectorCode": "0612004312-A"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "2",
+  "sectorCode": "061200432"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "4",
+  "sectorCode": "061200434"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "5",
+  "sectorCode": "061200435"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "6",
+  "sectorCode": "061200436"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "12",
+  "sectorCode": "0612004312"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "8A",
+  "sectorCode": "061200438-A"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "7",
+  "sectorCode": "061200437"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "9A",
+  "sectorCode": "061200439-A"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "10",
+  "sectorCode": "0612004310"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "11",
+  "sectorCode": "0612004311"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "13A",
+  "sectorCode": "0612004313-A"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "13",
+  "sectorCode": "0612004313"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "3",
+  "sectorCode": "061200433"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "8",
+  "sectorCode": "061200438"
+ },
+ {
+  "devPlanCode": "AGR",
+  "sectorNo": "9",
+  "sectorCode": "061200439"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "53",
+  "sectorCode": "0619000153"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "39",
+  "sectorCode": "0619000139"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "57",
+  "sectorCode": "0619000157"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "54",
+  "sectorCode": "0619000154"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "56",
+  "sectorCode": "0619000156"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "52",
+  "sectorCode": "0619000152"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "50",
+  "sectorCode": "0619000150"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "49",
+  "sectorCode": "0619000149"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "23",
+  "sectorCode": "0619000123"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "22",
+  "sectorCode": "0619000122"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "58",
+  "sectorCode": "0619000158"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "56A",
+  "sectorCode": "0619000156-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "55",
+  "sectorCode": "0619000155"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "25",
+  "sectorCode": "0619000125"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "60",
+  "sectorCode": "0619000160"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "26",
+  "sectorCode": "0619000126"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "24",
+  "sectorCode": "0619000124"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "5",
+  "sectorCode": "061900015"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "6",
+  "sectorCode": "061900016"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "20B",
+  "sectorCode": "0619000120-B"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "11",
+  "sectorCode": "0619000111"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "15A",
+  "sectorCode": "0619000115-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "48",
+  "sectorCode": "0619000148"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "21D",
+  "sectorCode": "0619000121-D"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "47",
+  "sectorCode": "0619000147"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "21C",
+  "sectorCode": "0619000121-C"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "44",
+  "sectorCode": "0619000144"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "43",
+  "sectorCode": "0619000143"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "41",
+  "sectorCode": "0619000141"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "42",
+  "sectorCode": "0619000142"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "38",
+  "sectorCode": "0619000138"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "21B",
+  "sectorCode": "0619000121-B"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "21A",
+  "sectorCode": "0619000121-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "46",
+  "sectorCode": "0619000146"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "20",
+  "sectorCode": "0619000120"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "27A",
+  "sectorCode": "0619000127-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "20A",
+  "sectorCode": "0619000120-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "16A",
+  "sectorCode": "0619000116-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "19",
+  "sectorCode": "0619000119"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "28",
+  "sectorCode": "0619000128"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "29",
+  "sectorCode": "0619000129"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "45",
+  "sectorCode": "0619000145"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "27B",
+  "sectorCode": "0619000127-B"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "32",
+  "sectorCode": "0619000132"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "27C",
+  "sectorCode": "0619000127-C"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "27D",
+  "sectorCode": "0619000127-D"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "35",
+  "sectorCode": "0619000135"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "36",
+  "sectorCode": "0619000136"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "31",
+  "sectorCode": "0619000131"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "33",
+  "sectorCode": "0619000133"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "30",
+  "sectorCode": "0619000130"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "34",
+  "sectorCode": "0619000134"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "37",
+  "sectorCode": "0619000137"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "59",
+  "sectorCode": "0619000159"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "63",
+  "sectorCode": "0619000163"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "1",
+  "sectorCode": "061900011"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "4",
+  "sectorCode": "061900014"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "7",
+  "sectorCode": "061900017"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "64",
+  "sectorCode": "0619000164"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "2",
+  "sectorCode": "061900012"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "3",
+  "sectorCode": "061900013"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "15",
+  "sectorCode": "0619000115"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "10",
+  "sectorCode": "0619000110"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "12",
+  "sectorCode": "0619000112"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "13",
+  "sectorCode": "0619000113"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "8",
+  "sectorCode": "061900018"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "9",
+  "sectorCode": "061900019"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "81",
+  "sectorCode": "0619000181"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "65",
+  "sectorCode": "0619000165"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "61",
+  "sectorCode": "0619000161"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "62",
+  "sectorCode": "0619000162"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "67",
+  "sectorCode": "0619000167"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "69",
+  "sectorCode": "0619000169"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "68",
+  "sectorCode": "0619000168"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "71",
+  "sectorCode": "0619000171"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "66",
+  "sectorCode": "0619000166"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "80",
+  "sectorCode": "0619000180"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "70",
+  "sectorCode": "0619000170"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "74",
+  "sectorCode": "0619000174"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "75",
+  "sectorCode": "0619000175"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "73",
+  "sectorCode": "0619000173"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "76",
+  "sectorCode": "0619000176"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "72",
+  "sectorCode": "0619000172"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "77",
+  "sectorCode": "0619000177"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "51",
+  "sectorCode": "0619000151"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "79",
+  "sectorCode": "0619000179"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "78",
+  "sectorCode": "0619000178"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "16",
+  "sectorCode": "0619000116"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "14",
+  "sectorCode": "0619000114"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "17",
+  "sectorCode": "0619000117"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "18",
+  "sectorCode": "0619000118"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "86",
+  "sectorCode": "0619000186"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "87",
+  "sectorCode": "0619000187"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "82",
+  "sectorCode": "0619000182"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "85",
+  "sectorCode": "0619000185"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "88",
+  "sectorCode": "0619000188"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "83",
+  "sectorCode": "0619000183"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "84",
+  "sectorCode": "0619000184"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "89",
+  "sectorCode": "0619000189"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "61",
+  "sectorCode": "0608000161"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "62",
+  "sectorCode": "0608000162"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "63",
+  "sectorCode": "0608000163"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "35",
+  "sectorCode": "0608000135"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "8",
+  "sectorCode": "060800018"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "9",
+  "sectorCode": "060800019"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "17",
+  "sectorCode": "0608000117"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "18",
+  "sectorCode": "0608000118"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "19",
+  "sectorCode": "0608000119"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "58",
+  "sectorCode": "0608000158"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "59",
+  "sectorCode": "0608000159"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "60",
+  "sectorCode": "0608000160"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "64",
+  "sectorCode": "0608000164"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "65",
+  "sectorCode": "0608000165"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "66",
+  "sectorCode": "0608000166"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "67",
+  "sectorCode": "0608000167"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "68",
+  "sectorCode": "0608000168"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "69",
+  "sectorCode": "0608000169"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "26",
+  "sectorCode": "0608000126"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "27",
+  "sectorCode": "0608000127"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "10",
+  "sectorCode": "0608000110"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "11",
+  "sectorCode": "0608000111"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "33",
+  "sectorCode": "0608000133"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "20",
+  "sectorCode": "0608000120"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "21",
+  "sectorCode": "0608000121"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "23",
+  "sectorCode": "0608000123"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "24",
+  "sectorCode": "0608000124"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "25",
+  "sectorCode": "0608000125"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "28",
+  "sectorCode": "0608000128"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "34",
+  "sectorCode": "0608000134"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "36",
+  "sectorCode": "0608000136"
+ },
+ {
+  "devPlanCode": "SIR",
+  "sectorNo": "21",
+  "sectorCode": "0611005421"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "3A",
+  "sectorCode": "061700393A"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "3",
+  "sectorCode": "060100253"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "4",
+  "sectorCode": "060100254"
+ },
+ {
+  "devPlanCode": "GWA",
+  "sectorNo": "3",
+  "sectorCode": "061800023"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "32A",
+  "sectorCode": "0618000132A"
+ },
+ {
+  "devPlanCode": "FAT",
+  "sectorNo": "86",
+  "sectorCode": "0610004886"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "27",
+  "sectorCode": "0619000127"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "26A",
+  "sectorCode": "0608000126A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "7",
+  "sectorCode": "060800017"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "41",
+  "sectorCode": "0608000141"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "13",
+  "sectorCode": "0608000113"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "16",
+  "sectorCode": "0608000116"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "1",
+  "sectorCode": "060100251"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "2",
+  "sectorCode": "060100252"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "32",
+  "sectorCode": "0601002532"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "31",
+  "sectorCode": "0601002531"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "5",
+  "sectorCode": "060100255"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "6",
+  "sectorCode": "060100256"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "7",
+  "sectorCode": "060100257"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "8",
+  "sectorCode": "060100258"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "9",
+  "sectorCode": "060100259"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "10",
+  "sectorCode": "0601002510"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "12",
+  "sectorCode": "0601002512"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "11",
+  "sectorCode": "0601002511"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "14",
+  "sectorCode": "0601002514"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "15",
+  "sectorCode": "0601002515"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "16",
+  "sectorCode": "0601002516"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "17",
+  "sectorCode": "0601002517"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "18",
+  "sectorCode": "0601002518"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "19",
+  "sectorCode": "0601002519"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "20",
+  "sectorCode": "0601002520"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "21",
+  "sectorCode": "0601002521"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "22",
+  "sectorCode": "0601002522"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "23",
+  "sectorCode": "0601002523"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "24",
+  "sectorCode": "0601002524"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "25",
+  "sectorCode": "0601002525"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "26",
+  "sectorCode": "0601002526"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "27",
+  "sectorCode": "0601002527"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "28",
+  "sectorCode": "0601002528"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "29",
+  "sectorCode": "0601002529"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "30",
+  "sectorCode": "0601002530"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "1B",
+  "sectorCode": "061700391B"
+ },
+ {
+  "devPlanCode": "REW",
+  "sectorNo": "2B",
+  "sectorCode": "061700392B"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "4A",
+  "sectorCode": "060100254-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "NIIT",
+  "sectorCode": "06190001NIIT"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "63A",
+  "sectorCode": "0618000163A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "67A",
+  "sectorCode": "0618000167A"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "1",
+  "sectorCode": "061800031"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "2",
+  "sectorCode": "061800032"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "3",
+  "sectorCode": "061800033"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "4",
+  "sectorCode": "061800034"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "5",
+  "sectorCode": "061800035"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "6",
+  "sectorCode": "061800036"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "7",
+  "sectorCode": "061800037"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "8",
+  "sectorCode": "061800038"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "9",
+  "sectorCode": "061800039"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "10",
+  "sectorCode": "0618000310"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "11",
+  "sectorCode": "0618000311"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "12",
+  "sectorCode": "0618000312"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "13",
+  "sectorCode": "0618000313"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "14",
+  "sectorCode": "0618000314"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "15",
+  "sectorCode": "0618000315"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "16",
+  "sectorCode": "0618000316"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "17",
+  "sectorCode": "0618000317"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "18",
+  "sectorCode": "0618000318"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "19",
+  "sectorCode": "0618000319"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "20",
+  "sectorCode": "0618000320"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "21",
+  "sectorCode": "0618000321"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "52",
+  "sectorCode": "0608000152"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "2",
+  "sectorCode": "060800012"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "29",
+  "sectorCode": "0608000129"
+ },
+ {
+  "devPlanCode": "ALI",
+  "sectorNo": "12",
+  "sectorCode": "0601002312"
+ },
+ {
+  "devPlanCode": "ALI",
+  "sectorNo": "13",
+  "sectorCode": "0601002313"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "0",
+  "sectorCode": "061500510"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "22",
+  "sectorCode": "0601002622"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "16",
+  "sectorCode": "0601002616"
+ },
+ {
+  "devPlanCode": "AMB",
+  "sectorNo": "19A",
+  "sectorCode": "0602000919A"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "7",
+  "sectorCode": "060200107"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "2",
+  "sectorCode": "060200102"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "2A",
+  "sectorCode": "060200102A"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "4",
+  "sectorCode": "060200104"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "5",
+  "sectorCode": "060200105"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "3",
+  "sectorCode": "060200103"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "6",
+  "sectorCode": "060200106"
+ },
+ {
+  "devPlanCode": "SAH",
+  "sectorNo": "1",
+  "sectorCode": "060200101"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "91",
+  "sectorCode": "0619000191"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "90",
+  "sectorCode": "0619000190"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "M12A",
+  "sectorCode": "06180001M12A"
+ },
+ {
+  "devPlanCode": "HIS",
+  "sectorNo": "11A",
+  "sectorCode": "0612005011A"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "1",
+  "sectorCode": "061200531"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "7",
+  "sectorCode": "061200537"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "6",
+  "sectorCode": "061200536"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "5",
+  "sectorCode": "061200535"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "4",
+  "sectorCode": "061200534"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "2",
+  "sectorCode": "061200532"
+ },
+ {
+  "devPlanCode": "TAL",
+  "sectorNo": "3",
+  "sectorCode": "061200533"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "18A",
+  "sectorCode": "0605003218A"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "2",
+  "sectorCode": "060600372"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "8",
+  "sectorCode": "060600378"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "5B",
+  "sectorCode": "060600375B"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "6",
+  "sectorCode": "060600376"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "7",
+  "sectorCode": "060600377"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "3",
+  "sectorCode": "060600373"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "4",
+  "sectorCode": "060600374"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "5A",
+  "sectorCode": "060600375A"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "5",
+  "sectorCode": "060600375"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "28A",
+  "sectorCode": "0606003328A"
+ },
+ {
+  "devPlanCode": "IND",
+  "sectorNo": "1",
+  "sectorCode": "060600371"
+ },
+ {
+  "devPlanCode": "KAR",
+  "sectorNo": "32A",
+  "sectorCode": "0606003332A"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "1",
+  "sectorCode": "060400221"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "13",
+  "sectorCode": "0604002213"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "12",
+  "sectorCode": "0604002212"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "5",
+  "sectorCode": "060400225"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "14",
+  "sectorCode": "0604002214"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "11",
+  "sectorCode": "0604002211"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "8",
+  "sectorCode": "060400228"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "7",
+  "sectorCode": "060400227"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "6",
+  "sectorCode": "060400226"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "2",
+  "sectorCode": "060400222"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "9",
+  "sectorCode": "060400229"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "10",
+  "sectorCode": "0604002210"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "4",
+  "sectorCode": "060400224"
+ },
+ {
+  "devPlanCode": "SHA",
+  "sectorNo": "3",
+  "sectorCode": "060400223"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "31",
+  "sectorCode": "0601002731"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "22",
+  "sectorCode": "0601002722"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "5",
+  "sectorCode": "060100265"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "6A",
+  "sectorCode": "060100266A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "21",
+  "sectorCode": "0601002621"
+ },
+ {
+  "devPlanCode": "PKL",
+  "sectorNo": "1A",
+  "sectorCode": "060100241A"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "24",
+  "sectorCode": "0601002724"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "25",
+  "sectorCode": "0601002725"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "26",
+  "sectorCode": "0601002726"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "28",
+  "sectorCode": "0601002728"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "27",
+  "sectorCode": "0601002727"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "19",
+  "sectorCode": "0601002619"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "14",
+  "sectorCode": "0601002614"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "17A",
+  "sectorCode": "0601002617A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "23A",
+  "sectorCode": "0601002623A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "3",
+  "sectorCode": "060100263"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "2",
+  "sectorCode": "060100262"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "1",
+  "sectorCode": "060100261"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "4",
+  "sectorCode": "060100264"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "6",
+  "sectorCode": "060100266"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "15",
+  "sectorCode": "0601002615"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "7A",
+  "sectorCode": "060100267A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "7",
+  "sectorCode": "060100267"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "24",
+  "sectorCode": "0601002624"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "20",
+  "sectorCode": "0601002620"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "9",
+  "sectorCode": "060100269"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "23",
+  "sectorCode": "0601002623"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "8",
+  "sectorCode": "060100268"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "18A",
+  "sectorCode": "0601002618A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "18",
+  "sectorCode": "0601002618"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "20A",
+  "sectorCode": "0601002520A"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "13A",
+  "sectorCode": "0601002513A"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "31A",
+  "sectorCode": "0601002531A"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "32",
+  "sectorCode": "0601002732"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "23",
+  "sectorCode": "0601002723"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "22A",
+  "sectorCode": "0601002622A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "12A",
+  "sectorCode": "0601002612A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "13A",
+  "sectorCode": "0601002613A"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "10",
+  "sectorCode": "0601002610"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "13",
+  "sectorCode": "0601002513"
+ },
+ {
+  "devPlanCode": "KOT",
+  "sectorNo": "11",
+  "sectorCode": "0601002611"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "3",
+  "sectorCode": "061400263"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "4",
+  "sectorCode": "061400264"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "28",
+  "sectorCode": "0614002628"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "24",
+  "sectorCode": "0614002624"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "25",
+  "sectorCode": "0614002625"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "26",
+  "sectorCode": "0614002626"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "27",
+  "sectorCode": "0614002627"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "13",
+  "sectorCode": "0614002613"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "14",
+  "sectorCode": "0614002614"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "21",
+  "sectorCode": "0614002621"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "22",
+  "sectorCode": "0614002622"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "23",
+  "sectorCode": "0614002623"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "17",
+  "sectorCode": "0614002617"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "15",
+  "sectorCode": "0614002615"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "16",
+  "sectorCode": "0614002616"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "20",
+  "sectorCode": "0614002620"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "2",
+  "sectorCode": "061400262"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "1",
+  "sectorCode": "061400261"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "19",
+  "sectorCode": "0614002619"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "5",
+  "sectorCode": "061400265"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "33",
+  "sectorCode": "0614002633"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "10",
+  "sectorCode": "0614002610"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "9",
+  "sectorCode": "061400269"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "12",
+  "sectorCode": "0614002612"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "11",
+  "sectorCode": "0614002611"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "8",
+  "sectorCode": "061400268"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "32",
+  "sectorCode": "0614002632"
+ },
+ {
+  "devPlanCode": "SAP",
+  "sectorNo": "30",
+  "sectorCode": "0614002630"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "15",
+  "sectorCode": "0611004615"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "14",
+  "sectorCode": "0611004614"
+ },
+ {
+  "devPlanCode": "DAB",
+  "sectorNo": "13",
+  "sectorCode": "0611004613"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "1A",
+  "sectorCode": "060800011A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "21A",
+  "sectorCode": "0608000121A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "22A",
+  "sectorCode": "0608000122A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "22",
+  "sectorCode": "0608000122"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "15A",
+  "sectorCode": "0608000115A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "13A",
+  "sectorCode": "0608000113A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "13B",
+  "sectorCode": "0608000113B"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "12",
+  "sectorCode": "0608000112"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "47",
+  "sectorCode": "0608000147"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "18B",
+  "sectorCode": "0608000118B"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "25A",
+  "sectorCode": "0608000125A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "31",
+  "sectorCode": "0608000131"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "32",
+  "sectorCode": "0608000132"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "30",
+  "sectorCode": "0608000130"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "37",
+  "sectorCode": "0608000137"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "38",
+  "sectorCode": "0608000138"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "17A",
+  "sectorCode": "0608000117A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "16A",
+  "sectorCode": "0608000116A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "46",
+  "sectorCode": "0608000146"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "45",
+  "sectorCode": "0608000145"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "44",
+  "sectorCode": "0608000144"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "42",
+  "sectorCode": "0608000142"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "51",
+  "sectorCode": "0608000151"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "43",
+  "sectorCode": "0608000143"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "53",
+  "sectorCode": "0608000153"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "18A",
+  "sectorCode": "0608000118A"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "54",
+  "sectorCode": "0608000154"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "15B",
+  "sectorCode": "0608000115B"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "6",
+  "sectorCode": "060800016"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "5",
+  "sectorCode": "060800015"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "3",
+  "sectorCode": "060800013"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "4",
+  "sectorCode": "060800014"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "39",
+  "sectorCode": "0608000139"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "49",
+  "sectorCode": "0608000149"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "57",
+  "sectorCode": "0608000157"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "56",
+  "sectorCode": "0608000156"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "50",
+  "sectorCode": "0608000150"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "1",
+  "sectorCode": "060800011"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "55",
+  "sectorCode": "0608000155"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "48",
+  "sectorCode": "0608000148"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "15",
+  "sectorCode": "0608000115"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "40",
+  "sectorCode": "0608000140"
+ },
+ {
+  "devPlanCode": "SON",
+  "sectorNo": "14",
+  "sectorCode": "0608000114"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "30A",
+  "sectorCode": "0603002630A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "35A",
+  "sectorCode": "0603002635A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "18A",
+  "sectorCode": "0603002618A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "24A",
+  "sectorCode": "0603002624A"
+ },
+ {
+  "devPlanCode": "YAM",
+  "sectorNo": "36A",
+  "sectorCode": "0603002636A"
+ },
+ {
+  "devPlanCode": "SAM",
+  "sectorNo": "NA",
+  "sectorCode": "06070041NA"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "NA",
+  "sectorCode": "061200504NA"
+ },
+ {
+  "sectorNo": "NA",
+  "sectorCode": "06180006NA"
+ },
+ {
+  "sectorNo": "Bilaspur",
+  "sectorCode": "06180001Bilaspur"
+ },
+ {
+  "sectorNo": "68A",
+  "sectorCode": "0618000168A"
+ },
+ {
+  "sectorNo": "79A",
+  "sectorCode": "0618000179A"
+ },
+ {
+  "sectorNo": "79B",
+  "sectorCode": "0618000179B"
+ },
+ {
+  "sectorNo": "88A",
+  "sectorCode": "0618000188A"
+ },
+ {
+  "sectorNo": "88B",
+  "sectorCode": "0618000188B"
+ },
+ {
+  "sectorNo": "89A",
+  "sectorCode": "0618000189A"
+ },
+ {
+  "sectorNo": "89B",
+  "sectorCode": "0618000189B"
+ },
+ {
+  "sectorNo": "95A",
+  "sectorCode": "0618000195A"
+ },
+ {
+  "sectorNo": "95B",
+  "sectorCode": "0618000195B"
+ },
+ {
+  "sectorNo": "99A",
+  "sectorCode": "0618000199A"
+ },
+ {
+  "sectorNo": "36A",
+  "sectorCode": "0618000136A"
+ },
+ {
+  "sectorNo": "36B",
+  "sectorCode": "0618000136B"
+ },
+ {
+  "sectorNo": "22",
+  "sectorCode": "0618000322"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "25",
+  "sectorCode": "0618000325"
+ },
+ {
+  "sectorNo": "EXISTING TOWN-OLD MUNICIPAL LIMIT",
+  "sectorCode": "06120050EXISTING TOWN-OLD MUNICIPAL LIMIT"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "Agriculture Zone",
+  "sectorCode": "06180001Agriculture Zone"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "4",
+  "sectorCode": "061800054"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "14",
+  "sectorCode": "0601002714"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "3",
+  "sectorCode": "061800073"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "29",
+  "sectorCode": "0615005129"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "1",
+  "sectorCode": "062100081"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "2",
+  "sectorCode": "062100082"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "3",
+  "sectorCode": "062100083"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "4",
+  "sectorCode": "062100084"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "5",
+  "sectorCode": "062100085"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "6",
+  "sectorCode": "062100086"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "7",
+  "sectorCode": "062100087"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "8",
+  "sectorCode": "062100088"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "9",
+  "sectorCode": "062100089"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "10",
+  "sectorCode": "0621000810"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "10A",
+  "sectorCode": "0621000810A"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "11",
+  "sectorCode": "0621000811"
+ },
+ {
+  "devPlanCode": "HOD",
+  "sectorNo": "12",
+  "sectorCode": "0621000812"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "17",
+  "sectorCode": "0620000517"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "1",
+  "sectorCode": "061700401"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "2",
+  "sectorCode": "061700402"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "3",
+  "sectorCode": "061700403"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "4",
+  "sectorCode": "061700404"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "5",
+  "sectorCode": "061700405"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "6",
+  "sectorCode": "061700406"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "7",
+  "sectorCode": "061700407"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "8",
+  "sectorCode": "061700408"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "9",
+  "sectorCode": "061700409"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "10",
+  "sectorCode": "0617004010"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "11",
+  "sectorCode": "0617004011"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "12",
+  "sectorCode": "0617004012"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "13",
+  "sectorCode": "0617004013"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "14",
+  "sectorCode": "0617004014"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "15",
+  "sectorCode": "0617004015"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "16",
+  "sectorCode": "0617004016"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "17",
+  "sectorCode": "0617004017"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "18",
+  "sectorCode": "0617004018"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "19",
+  "sectorCode": "0617004019"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "20",
+  "sectorCode": "0617004020"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "21",
+  "sectorCode": "0617004021"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "22",
+  "sectorCode": "0617004022"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "23",
+  "sectorCode": "0617004023"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "24",
+  "sectorCode": "0617004024"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "25",
+  "sectorCode": "0617004025"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "26",
+  "sectorCode": "0617004026"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "27",
+  "sectorCode": "0617004027"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "28",
+  "sectorCode": "0617004028"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "29",
+  "sectorCode": "0617004029"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "30",
+  "sectorCode": "0617004030"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "31",
+  "sectorCode": "0617004031"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "32",
+  "sectorCode": "0617004032"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "33",
+  "sectorCode": "0617004033"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "34",
+  "sectorCode": "0617004034"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "35",
+  "sectorCode": "0617004035"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "36",
+  "sectorCode": "0617004036"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "37",
+  "sectorCode": "0617004037"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "38",
+  "sectorCode": "0617004038"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "39",
+  "sectorCode": "0617004039"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "40",
+  "sectorCode": "0617004040"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "41",
+  "sectorCode": "0617004041"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "42",
+  "sectorCode": "0617004042"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "43",
+  "sectorCode": "0617004043"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "44",
+  "sectorCode": "0617004044"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "45",
+  "sectorCode": "0617004045"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "46",
+  "sectorCode": "0617004046"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "47",
+  "sectorCode": "0617004047"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "48",
+  "sectorCode": "0617004048"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "49",
+  "sectorCode": "0617004049"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "50",
+  "sectorCode": "0617004050"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "51",
+  "sectorCode": "0617004051"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "52",
+  "sectorCode": "0617004052"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "53",
+  "sectorCode": "0617004053"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "54",
+  "sectorCode": "0617004054"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "55",
+  "sectorCode": "0617004055"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "56",
+  "sectorCode": "0617004056"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "57",
+  "sectorCode": "0617004057"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "58",
+  "sectorCode": "0617004058"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "59",
+  "sectorCode": "0617004059"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "60",
+  "sectorCode": "0617004060"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "61",
+  "sectorCode": "0617004061"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "62",
+  "sectorCode": "0617004062"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "63",
+  "sectorCode": "0617004063"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "64",
+  "sectorCode": "0617004064"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "65",
+  "sectorCode": "0617004065"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "66",
+  "sectorCode": "0617004066"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "67",
+  "sectorCode": "0617004067"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "68",
+  "sectorCode": "0617004068"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "69",
+  "sectorCode": "0617004069"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "70",
+  "sectorCode": "0617004070"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "71",
+  "sectorCode": "0617004071"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "72",
+  "sectorCode": "0617004072"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "73",
+  "sectorCode": "0617004073"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "74",
+  "sectorCode": "0617004074"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "75",
+  "sectorCode": "0617004075"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "76",
+  "sectorCode": "0617004076"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "77",
+  "sectorCode": "0617004077"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "78",
+  "sectorCode": "0617004078"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "79",
+  "sectorCode": "0617004079"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "80",
+  "sectorCode": "0617004080"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "81",
+  "sectorCode": "0617004081"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "82",
+  "sectorCode": "0617004082"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "83",
+  "sectorCode": "0617004083"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "84",
+  "sectorCode": "0617004084"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "85",
+  "sectorCode": "0617004085"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "86",
+  "sectorCode": "0617004086"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "87",
+  "sectorCode": "0617004087"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "88",
+  "sectorCode": "0617004088"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "89",
+  "sectorCode": "0617004089"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "90",
+  "sectorCode": "0617004090"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "91",
+  "sectorCode": "0617004091"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "92",
+  "sectorCode": "0617004092"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "93",
+  "sectorCode": "0617004093"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "94",
+  "sectorCode": "0617004094"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "95",
+  "sectorCode": "0617004095"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "96",
+  "sectorCode": "0617004096"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "97",
+  "sectorCode": "0617004097"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "98",
+  "sectorCode": "0617004098"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "99",
+  "sectorCode": "0617004099"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "100",
+  "sectorCode": "06170040100"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "101",
+  "sectorCode": "06170040101"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "102",
+  "sectorCode": "06170040102"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "103",
+  "sectorCode": "06170040103"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "104",
+  "sectorCode": "06170040104"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "105",
+  "sectorCode": "06170040105"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "106",
+  "sectorCode": "06170040106"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "107",
+  "sectorCode": "06170040107"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "108",
+  "sectorCode": "06170040108"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "109",
+  "sectorCode": "06170040109"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "110",
+  "sectorCode": "06170040110"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C1",
+  "sectorCode": "06170040C1"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C2",
+  "sectorCode": "06170040C2"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C3",
+  "sectorCode": "06170040C3"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C4",
+  "sectorCode": "06170040C4"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C5",
+  "sectorCode": "06170040C5"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C6",
+  "sectorCode": "06170040C6"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C7",
+  "sectorCode": "06170040C7"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C8",
+  "sectorCode": "06170040C8"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C9",
+  "sectorCode": "06170040C9"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C10",
+  "sectorCode": "06170040C10"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C11",
+  "sectorCode": "06170040C11"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C12",
+  "sectorCode": "06170040C12"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C13",
+  "sectorCode": "06170040C13"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C14",
+  "sectorCode": "06170040C14"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C15",
+  "sectorCode": "06170040C15"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C16",
+  "sectorCode": "06170040C16"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C18",
+  "sectorCode": "06170040C18"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C17",
+  "sectorCode": "06170040C17"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C19",
+  "sectorCode": "06170040C19"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C20",
+  "sectorCode": "06170040C20"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C21",
+  "sectorCode": "06170040C21"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C22",
+  "sectorCode": "06170040C22"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C23",
+  "sectorCode": "06170040C23"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "C24",
+  "sectorCode": "06170040C24"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-1",
+  "sectorCode": "06170040I-1"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-2",
+  "sectorCode": "06170040I-2"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-3",
+  "sectorCode": "06170040I-3"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-4",
+  "sectorCode": "06170040I-4"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-5",
+  "sectorCode": "06170040I-5"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-6",
+  "sectorCode": "06170040I-6"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-7",
+  "sectorCode": "06170040I-7"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-8",
+  "sectorCode": "06170040I-8"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-9",
+  "sectorCode": "06170040I-9"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-10",
+  "sectorCode": "06170040I-10"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-11",
+  "sectorCode": "06170040I-11"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-12",
+  "sectorCode": "06170040I-12"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-13",
+  "sectorCode": "06170040I-13"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-14",
+  "sectorCode": "06170040I-14"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-15",
+  "sectorCode": "06170040I-15"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-16",
+  "sectorCode": "06170040I-16"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-17",
+  "sectorCode": "06170040I-17"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-18",
+  "sectorCode": "06170040I-18"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-19",
+  "sectorCode": "06170040I-19"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-20",
+  "sectorCode": "06170040I-20"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-21",
+  "sectorCode": "06170040I-21"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-22",
+  "sectorCode": "06170040I-22"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-23",
+  "sectorCode": "06170040I-23"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-24",
+  "sectorCode": "06170040I-24"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-25",
+  "sectorCode": "06170040I-25"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-26",
+  "sectorCode": "06170040I-26"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-27",
+  "sectorCode": "06170040I-27"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-28",
+  "sectorCode": "06170040I-28"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-29",
+  "sectorCode": "06170040I-29"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-30",
+  "sectorCode": "06170040I-30"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-31",
+  "sectorCode": "06170040I-31"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-32",
+  "sectorCode": "06170040I-32"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-33",
+  "sectorCode": "06170040I-33"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-34",
+  "sectorCode": "06170040I-34"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-35",
+  "sectorCode": "06170040I-35"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-36",
+  "sectorCode": "06170040I-36"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-37",
+  "sectorCode": "06170040I-37"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-38",
+  "sectorCode": "06170040I-38"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-39",
+  "sectorCode": "06170040I-39"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-40",
+  "sectorCode": "06170040I-40"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-41",
+  "sectorCode": "06170040I-41"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-42",
+  "sectorCode": "06170040I-42"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-43",
+  "sectorCode": "06170040I-43"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-44",
+  "sectorCode": "06170040I-44"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-45",
+  "sectorCode": "06170040I-45"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-46",
+  "sectorCode": "06170040I-46"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-47",
+  "sectorCode": "06170040I-47"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-48",
+  "sectorCode": "06170040I-48"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-49",
+  "sectorCode": "06170040I-49"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-50",
+  "sectorCode": "06170040I-50"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-51",
+  "sectorCode": "06170040I-51"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-52",
+  "sectorCode": "06170040I-52"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-3A",
+  "sectorCode": "06170040I-3A"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "I-6A",
+  "sectorCode": "06170040I-6A"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-1",
+  "sectorCode": "06170040PSP-1"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-2",
+  "sectorCode": "06170040PSP-2"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-3",
+  "sectorCode": "06170040PSP-3"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-4",
+  "sectorCode": "06170040PSP-4"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-5",
+  "sectorCode": "06170040PSP-5"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-6",
+  "sectorCode": "06170040PSP-6"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-7",
+  "sectorCode": "06170040PSP-7"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-8",
+  "sectorCode": "06170040PSP-8"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-9",
+  "sectorCode": "06170040PSP-9"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-10",
+  "sectorCode": "06170040PSP-10"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-11",
+  "sectorCode": "06170040PSP-11"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-12",
+  "sectorCode": "06170040PSP-12"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-13",
+  "sectorCode": "06170040PSP-13"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-14",
+  "sectorCode": "06170040PSP-14"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-15",
+  "sectorCode": "06170040PSP-15"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-16",
+  "sectorCode": "06170040PSP-16"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-17",
+  "sectorCode": "06170040PSP-17"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-18",
+  "sectorCode": "06170040PSP-18"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-19",
+  "sectorCode": "06170040PSP-19"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-20",
+  "sectorCode": "06170040PSP-20"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-21",
+  "sectorCode": "06170040PSP-21"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PSP-22",
+  "sectorCode": "06170040PSP-22"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-1",
+  "sectorCode": "06170040PU-1"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-2",
+  "sectorCode": "06170040PU-2"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-3",
+  "sectorCode": "06170040PU-3"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-4",
+  "sectorCode": "06170040PU-4"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-5",
+  "sectorCode": "06170040PU-5"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-6",
+  "sectorCode": "06170040PU-6"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-7",
+  "sectorCode": "06170040PU-7"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-8",
+  "sectorCode": "06170040PU-8"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-9",
+  "sectorCode": "06170040PU-9"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-10",
+  "sectorCode": "06170040PU-10"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-11",
+  "sectorCode": "06170040PU-11"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-12",
+  "sectorCode": "06170040PU-12"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-13",
+  "sectorCode": "06170040PU-13"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-14",
+  "sectorCode": "06170040PU-14"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-15",
+  "sectorCode": "06170040PU-15"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-16",
+  "sectorCode": "06170040PU-16"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-17",
+  "sectorCode": "06170040PU-17"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-18",
+  "sectorCode": "06170040PU-18"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-19",
+  "sectorCode": "06170040PU-19"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-20",
+  "sectorCode": "06170040PU-20"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-21",
+  "sectorCode": "06170040PU-21"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-22",
+  "sectorCode": "06170040PU-22"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-23",
+  "sectorCode": "06170040PU-23"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-24",
+  "sectorCode": "06170040PU-24"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-25",
+  "sectorCode": "06170040PU-25"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-26",
+  "sectorCode": "06170040PU-26"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-27",
+  "sectorCode": "06170040PU-27"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-28",
+  "sectorCode": "06170040PU-28"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-29",
+  "sectorCode": "06170040PU-29"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-30",
+  "sectorCode": "06170040PU-30"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-31",
+  "sectorCode": "06170040PU-31"
+ },
+ {
+  "devPlanCode": "MBI",
+  "sectorNo": "PU-32",
+  "sectorCode": "06170040PU-32"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "13-A",
+  "sectorCode": "0601002513-A"
+ },
+ {
+  "devPlanCode": "PIN",
+  "sectorNo": "31-A",
+  "sectorCode": "0601002531-A"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "35",
+  "sectorCode": "0605003235"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "36",
+  "sectorCode": "0605003236"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "37",
+  "sectorCode": "0605003237"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "38",
+  "sectorCode": "0605003238"
+ },
+ {
+  "devPlanCode": "KAI",
+  "sectorNo": "39",
+  "sectorCode": "0605003239"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "22",
+  "sectorCode": "0608001722"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "23",
+  "sectorCode": "0608001723"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "24",
+  "sectorCode": "0608001724"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "1",
+  "sectorCode": "060800201"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "2",
+  "sectorCode": "060800202"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "3",
+  "sectorCode": "060800203"
+ },
+ {
+  "devPlanCode": "KHA",
+  "sectorNo": "4",
+  "sectorCode": "060800204"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "26",
+  "sectorCode": "0609003126"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "26A",
+  "sectorCode": "0609003126A"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "5A",
+  "sectorCode": "060900315A"
+ },
+ {
+  "devPlanCode": "JIN",
+  "sectorNo": "9A",
+  "sectorCode": "060900319A"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "1-A",
+  "sectorCode": "061000551-A"
+ },
+ {
+  "devPlanCode": "TOH",
+  "sectorNo": "2-A",
+  "sectorCode": "061000552-A"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "21-F",
+  "sectorCode": "0614002521-F"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30-E",
+  "sectorCode": "0614002530-E"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "30-F",
+  "sectorCode": "0614002530-F"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "33-D",
+  "sectorCode": "0614002533-D"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "38",
+  "sectorCode": "0614002538"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "39",
+  "sectorCode": "0614002539"
+ },
+ {
+  "devPlanCode": "ROH",
+  "sectorNo": "40",
+  "sectorCode": "0614002540"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "1",
+  "sectorCode": "061400271"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "10",
+  "sectorCode": "0614002710"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "2",
+  "sectorCode": "061400272"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "3",
+  "sectorCode": "061400273"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "4",
+  "sectorCode": "061400274"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "5",
+  "sectorCode": "061400275"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "6",
+  "sectorCode": "061400276"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "7",
+  "sectorCode": "061400277"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "8",
+  "sectorCode": "061400278"
+ },
+ {
+  "devPlanCode": "KAL",
+  "sectorNo": "9",
+  "sectorCode": "061400279"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "29",
+  "sectorCode": "0615004429"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "30",
+  "sectorCode": "0615004430"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "31",
+  "sectorCode": "0615004431"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "32",
+  "sectorCode": "0615004432"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "33",
+  "sectorCode": "0615004433"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "34",
+  "sectorCode": "0615004434"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "35",
+  "sectorCode": "0615004435"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "36",
+  "sectorCode": "0615004436"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "37",
+  "sectorCode": "0615004437"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "38",
+  "sectorCode": "0615004438"
+ },
+ {
+  "devPlanCode": "BAH",
+  "sectorNo": "39",
+  "sectorCode": "0615004439"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "17",
+  "sectorCode": "0615005117"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "18",
+  "sectorCode": "0615005118"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "19",
+  "sectorCode": "0615005119"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "20",
+  "sectorCode": "0615005120"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "21",
+  "sectorCode": "0615005121"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "22",
+  "sectorCode": "0615005122"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "23",
+  "sectorCode": "0615005123"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "24",
+  "sectorCode": "0615005124"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "25",
+  "sectorCode": "0615005125"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "26",
+  "sectorCode": "0615005126"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "27",
+  "sectorCode": "0615005127"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "28",
+  "sectorCode": "0615005128"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "30",
+  "sectorCode": "0615005130"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "31",
+  "sectorCode": "0615005131"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "32",
+  "sectorCode": "0615005132"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "33",
+  "sectorCode": "0615005133"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "34",
+  "sectorCode": "0615005134"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "35",
+  "sectorCode": "0615005135"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "36",
+  "sectorCode": "0615005136"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "37",
+  "sectorCode": "0615005137"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "38",
+  "sectorCode": "0615005138"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "39",
+  "sectorCode": "0615005139"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "40",
+  "sectorCode": "0615005140"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "41",
+  "sectorCode": "0615005141"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "12",
+  "sectorCode": "0618000112"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "36-A",
+  "sectorCode": "0618000136-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "36-B",
+  "sectorCode": "0618000136-B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "63-A",
+  "sectorCode": "0618000163-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "67-A",
+  "sectorCode": "0618000167-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "79-B",
+  "sectorCode": "0618000179-B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "88-A",
+  "sectorCode": "0618000188-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "88-B",
+  "sectorCode": "0618000188-B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "89-A",
+  "sectorCode": "0618000189-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "89-B",
+  "sectorCode": "0618000189-B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "95-A",
+  "sectorCode": "0618000195-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "95-B",
+  "sectorCode": "0618000195-B"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "99-A",
+  "sectorCode": "0618000199-A"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-1",
+  "sectorCode": "06180001P-1"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-2",
+  "sectorCode": "06180001P-2"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-3",
+  "sectorCode": "06180001P-3"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-4",
+  "sectorCode": "06180001P-4"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-5",
+  "sectorCode": "06180001P-5"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-6",
+  "sectorCode": "06180001P-6"
+ },
+ {
+  "devPlanCode": "GUR",
+  "sectorNo": "P-7",
+  "sectorCode": "06180001P-7"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "19A",
+  "sectorCode": "0618000319A"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "20A",
+  "sectorCode": "0618000320A"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "21A",
+  "sectorCode": "0618000321A"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "23",
+  "sectorCode": "0618000323"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "24",
+  "sectorCode": "0618000324"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "26",
+  "sectorCode": "0618000326"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "27",
+  "sectorCode": "0618000327"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "28",
+  "sectorCode": "0618000328"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "29",
+  "sectorCode": "0618000329"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "30",
+  "sectorCode": "0618000330"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "31",
+  "sectorCode": "0618000331"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "32",
+  "sectorCode": "0618000332"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "33",
+  "sectorCode": "0618000333"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "34",
+  "sectorCode": "0618000334"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "35",
+  "sectorCode": "0618000335"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "36",
+  "sectorCode": "0618000336"
+ },
+ {
+  "devPlanCode": "SOH",
+  "sectorNo": "79-A",
+  "sectorCode": "0618000379-A"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "1",
+  "sectorCode": "061800051"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "10",
+  "sectorCode": "0618000510"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "11",
+  "sectorCode": "0618000511"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "12",
+  "sectorCode": "0618000512"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "2",
+  "sectorCode": "061800052"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "3",
+  "sectorCode": "061800053"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "5",
+  "sectorCode": "061800055"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "6",
+  "sectorCode": "061800056"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "7",
+  "sectorCode": "061800057"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "8",
+  "sectorCode": "061800058"
+ },
+ {
+  "devPlanCode": "PAT",
+  "sectorNo": "9",
+  "sectorCode": "061800059"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "1",
+  "sectorCode": "061800071"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "2",
+  "sectorCode": "061800072"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "4",
+  "sectorCode": "061800074"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "5",
+  "sectorCode": "061800075"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "6",
+  "sectorCode": "061800076"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "7",
+  "sectorCode": "061800077"
+ },
+ {
+  "devPlanCode": "FRK",
+  "sectorNo": "8",
+  "sectorCode": "061800078"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "100",
+  "sectorCode": "06190001100"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "101",
+  "sectorCode": "06190001101"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "102",
+  "sectorCode": "06190001102"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "103",
+  "sectorCode": "06190001103"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "104",
+  "sectorCode": "06190001104"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "105",
+  "sectorCode": "06190001105"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "105A",
+  "sectorCode": "06190001105A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "106",
+  "sectorCode": "06190001106"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "107",
+  "sectorCode": "06190001107"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "108",
+  "sectorCode": "06190001108"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "109",
+  "sectorCode": "06190001109"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "109A",
+  "sectorCode": "06190001109A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "110",
+  "sectorCode": "06190001110"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "110A",
+  "sectorCode": "06190001110A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "111",
+  "sectorCode": "06190001111"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "112",
+  "sectorCode": "06190001112"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "113",
+  "sectorCode": "06190001113"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "114",
+  "sectorCode": "06190001114"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "115",
+  "sectorCode": "06190001115"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "116",
+  "sectorCode": "06190001116"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "117",
+  "sectorCode": "06190001117"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "118",
+  "sectorCode": "06190001118"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "119",
+  "sectorCode": "06190001119"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "120",
+  "sectorCode": "06190001120"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "121",
+  "sectorCode": "06190001121"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "122",
+  "sectorCode": "06190001122"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "123",
+  "sectorCode": "06190001123"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "124",
+  "sectorCode": "06190001124"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "125",
+  "sectorCode": "06190001125"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "126",
+  "sectorCode": "06190001126"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "127",
+  "sectorCode": "06190001127"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "128",
+  "sectorCode": "06190001128"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "129",
+  "sectorCode": "06190001129"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "130",
+  "sectorCode": "06190001130"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "131",
+  "sectorCode": "06190001131"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "132",
+  "sectorCode": "06190001132"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "133",
+  "sectorCode": "06190001133"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "134",
+  "sectorCode": "06190001134"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "134-A",
+  "sectorCode": "06190001134-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "135",
+  "sectorCode": "06190001135"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "136",
+  "sectorCode": "06190001136"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "136-A",
+  "sectorCode": "06190001136-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "137",
+  "sectorCode": "06190001137"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "138",
+  "sectorCode": "06190001138"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "139",
+  "sectorCode": "06190001139"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "140",
+  "sectorCode": "06190001140"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "141",
+  "sectorCode": "06190001141"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "142",
+  "sectorCode": "06190001142"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "143",
+  "sectorCode": "06190001143"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "144",
+  "sectorCode": "06190001144"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "145",
+  "sectorCode": "06190001145"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "145-A",
+  "sectorCode": "06190001145-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "146",
+  "sectorCode": "06190001146"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "147",
+  "sectorCode": "06190001147"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "148",
+  "sectorCode": "06190001148"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "149",
+  "sectorCode": "06190001149"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "150",
+  "sectorCode": "06190001150"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "151",
+  "sectorCode": "06190001151"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "152",
+  "sectorCode": "06190001152"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "153",
+  "sectorCode": "06190001153"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "154",
+  "sectorCode": "06190001154"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "154-A",
+  "sectorCode": "06190001154-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "155",
+  "sectorCode": "06190001155"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "156",
+  "sectorCode": "06190001156"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "156-A",
+  "sectorCode": "06190001156-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "157",
+  "sectorCode": "06190001157"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "158",
+  "sectorCode": "06190001158"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "94A",
+  "sectorCode": "0619000194A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "95A",
+  "sectorCode": "0619000195A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "96A",
+  "sectorCode": "0619000196A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "97A",
+  "sectorCode": "0619000197A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "99A",
+  "sectorCode": "0619000199A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "84A",
+  "sectorCode": "0619000184A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "117A",
+  "sectorCode": "06190001117A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "121A",
+  "sectorCode": "06190001121A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "51-A",
+  "sectorCode": "0619000151-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "52-A",
+  "sectorCode": "0619000152-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "89-A",
+  "sectorCode": "0619000189-A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "92",
+  "sectorCode": "0619000192"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "93",
+  "sectorCode": "0619000193"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "94",
+  "sectorCode": "0619000194"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "95",
+  "sectorCode": "0619000195"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "96",
+  "sectorCode": "0619000196"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "97",
+  "sectorCode": "0619000197"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "98",
+  "sectorCode": "0619000198"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "99",
+  "sectorCode": "0619000199"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "10",
+  "sectorCode": "0621000510"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "11",
+  "sectorCode": "0621000511"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "12",
+  "sectorCode": "0621000512"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "13",
+  "sectorCode": "0621000513"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "14",
+  "sectorCode": "0621000514"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "8",
+  "sectorCode": "062100058"
+ },
+ {
+  "devPlanCode": "HAT",
+  "sectorNo": "9",
+  "sectorCode": "062100059"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "1",
+  "sectorCode": "062100091"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "10",
+  "sectorCode": "0621000910"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "11",
+  "sectorCode": "0621000911"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "12",
+  "sectorCode": "0621000912"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "13",
+  "sectorCode": "0621000913"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "2",
+  "sectorCode": "062100092"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "3",
+  "sectorCode": "062100093"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "4",
+  "sectorCode": "062100094"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "4A",
+  "sectorCode": "062100094A"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "4-A",
+  "sectorCode": "062100094-A"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "5",
+  "sectorCode": "062100095"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "5A",
+  "sectorCode": "062100095A"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "5-A",
+  "sectorCode": "062100095-A"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "6",
+  "sectorCode": "062100096"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "6A",
+  "sectorCode": "062100096A"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "7",
+  "sectorCode": "062100097"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "8",
+  "sectorCode": "062100098"
+ },
+ {
+  "devPlanCode": "PRI",
+  "sectorNo": "9",
+  "sectorCode": "062100099"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "12",
+  "sectorCode": "0620000512"
+ },
+ {
+  "devPlanCode": "NAJ",
+  "sectorNo": "N\/A",
+  "sectorCode": "06150053N\/A"
+ },
+ {
+  "devPlanCode": "JHA",
+  "sectorNo": "N\/A",
+  "sectorCode": "06150051N\/A"
+ },
+ {
+  "devPlanCode": "DAD",
+  "sectorNo": "NA",
+  "sectorCode": "06130047NA"
+ },
+ {
+  "devPlanCode": "GAN",
+  "sectorNo": "N\/A",
+  "sectorCode": "06080017N\/A"
+ },
+ {
+  "devPlanCode": "FAR",
+  "sectorNo": "54A",
+  "sectorCode": "0619000154A"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "14",
+  "sectorCode": "0620000514"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "25",
+  "sectorCode": "0620000525"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "9",
+  "sectorCode": "062000059"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "11",
+  "sectorCode": "0620000511"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "13",
+  "sectorCode": "0620000513"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "15",
+  "sectorCode": "0620000515"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "16",
+  "sectorCode": "0620000516"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "18",
+  "sectorCode": "0620000518"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "19",
+  "sectorCode": "0620000519"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "19A",
+  "sectorCode": "0620000519A"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "20",
+  "sectorCode": "0620000520"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "20A",
+  "sectorCode": "0620000520A"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "21",
+  "sectorCode": "0620000521"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "21A",
+  "sectorCode": "0620000521A"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "22",
+  "sectorCode": "0620000522"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "23",
+  "sectorCode": "0620000523"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "24",
+  "sectorCode": "0620000524"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "26",
+  "sectorCode": "0620000526"
+ },
+ {
+  "devPlanCode": "SHM",
+  "sectorNo": "27",
+  "sectorCode": "0620000527"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "1",
+  "sectorCode": "060400231"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "2",
+  "sectorCode": "060400232"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "2A",
+  "sectorCode": "060400232A"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "3",
+  "sectorCode": "060400233"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "4",
+  "sectorCode": "060400234"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "4A",
+  "sectorCode": "060400234A"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "5",
+  "sectorCode": "060400235"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "6",
+  "sectorCode": "060400236"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "7",
+  "sectorCode": "060400237"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "7A",
+  "sectorCode": "060400237A"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "8",
+  "sectorCode": "060400238"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "9",
+  "sectorCode": "060400239"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "10",
+  "sectorCode": "0604002310"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "11",
+  "sectorCode": "0604002311"
+ },
+ {
+  "devPlanCode": "PEH",
+  "sectorNo": "12",
+  "sectorCode": "0604002312"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "1",
+  "sectorCode": "061500541"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "2",
+  "sectorCode": "061500542"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "3",
+  "sectorCode": "061500543"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "4",
+  "sectorCode": "061500544"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "5",
+  "sectorCode": "061500545"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "6",
+  "sectorCode": "061500546"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "7",
+  "sectorCode": "061500547"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "8",
+  "sectorCode": "061500548"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "9",
+  "sectorCode": "061500549"
+ },
+ {
+  "devPlanCode": "BAD",
+  "sectorNo": "100",
+  "sectorCode": "06150054100"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "1",
+  "sectorCode": "060400241"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "2",
+  "sectorCode": "060400242"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "3",
+  "sectorCode": "060400243"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "4",
+  "sectorCode": "060400244"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "5",
+  "sectorCode": "060400245"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "6",
+  "sectorCode": "060400246"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "7",
+  "sectorCode": "060400247"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "8",
+  "sectorCode": "060400248"
+ },
+ {
+  "devPlanCode": "LAD",
+  "sectorNo": "1A",
+  "sectorCode": "060400241A"
+ },
+ {
+  "devPlanCode": "PKE",
+  "sectorNo": "30",
+  "sectorCode": "0601002730"
+ }
+]
+}

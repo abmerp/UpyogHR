@@ -1,0 +1,116 @@
+{
+    "tenantId": "hr",
+    "moduleName": "common-masters",
+    "District":[
+ {
+  "name": "Ambala",
+  "distCodeNIC": "0602",
+  "distCodeTCP": "AA"
+ },
+ {
+  "name": "Bhiwani",
+  "distCodeNIC": "0613",
+  "distCodeTCP": "BI"
+ },
+ {
+  "name": "Faridabad",
+  "distCodeNIC": "0619",
+  "distCodeTCP": "FD"
+ },
+ {
+  "name": "Fatehabad",
+  "distCodeNIC": "0610",
+  "distCodeTCP": "FT"
+ },
+ {
+  "name": "Gurugram",
+  "distCodeNIC": "0618",
+  "distCodeTCP": "GN"
+ },
+ {
+  "name": "Hissar",
+  "distCodeNIC": "0612",
+  "distCodeTCP": "HR"
+ },
+ {
+  "name": "Jhajjar",
+  "distCodeNIC": "0615",
+  "distCodeTCP": "JR"
+ },
+ {
+  "name": "Jind",
+  "distCodeNIC": "0609",
+  "distCodeTCP": "JD"
+ },
+ {
+  "name": "Kaithal",
+  "distCodeNIC": "0605",
+  "distCodeTCP": "KT"
+ },
+ {
+  "name": "Karnal",
+  "distCodeNIC": "0606",
+  "distCodeTCP": "KL"
+ },
+ {
+  "name": "Kurukshetra",
+  "distCodeNIC": "0604",
+  "distCodeTCP": "KA"
+ },
+ {
+  "name": "Mahindergarh",
+  "distCodeNIC": "0616",
+  "distCodeTCP": "MH"
+ },
+ {
+  "name": "Panchkula",
+  "distCodeNIC": "0601",
+  "distCodeTCP": "PK"
+ },
+ {
+  "name": "Panipat",
+  "distCodeNIC": "0607",
+  "distCodeTCP": "PT"
+ },
+ {
+  "name": "Rewari",
+  "distCodeNIC": "0617",
+  "distCodeTCP": "RI"
+ },
+ {
+  "name": "Rohtak",
+  "distCodeNIC": "0614",
+  "distCodeTCP": "RK"
+ },
+ {
+  "name": "Sirsa",
+  "distCodeNIC": "0611",
+  "distCodeTCP": "SA"
+ },
+ {
+  "name": "Sonipat",
+  "distCodeNIC": "0608",
+  "distCodeTCP": "ST"
+ },
+ {
+  "name": "Yamunanagar",
+  "distCodeNIC": "0603",
+  "distCodeTCP": "YR"
+ },
+ {
+  "name": "Mewat",
+  "distCodeNIC": "0620",
+  "distCodeTCP": "MT"
+ },
+ {
+  "name": "Palwal",
+  "distCodeNIC": "0621",
+  "distCodeTCP": "PL"
+ },
+ {
+  "name": "Charkhi Dadri",
+  "distCodeNIC": "0624",
+  "distCodeTCP": "CD"
+ }
+]
+}

@@ -1,0 +1,424 @@
+{
+    "tenantId": "hr",
+      "moduleName": "common-masters",
+      "PotentialZone": 
+    [
+ {
+  "devPlan": "FARIDABAD",
+  "devPlanCode": "FAR",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "GWAL PAHARI",
+  "devPlanCode": "GWA",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "KOT BEHLA URBAN COMPLEX",
+  "devPlanCode": "KOT",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "SRI MATA MANSA DEVI URBAN COMPLEX",
+  "devPlanCode": "MSD",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "Panipat",
+  "devPlanCode": "PAN",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "PINJORE",
+  "devPlanCode": "PIN",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "PANCHKULA EXTENSION",
+  "devPlanCode": "PKE",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "PANCHKULA INTERIM MASTER PLAN",
+  "devPlanCode": "PKL",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "Sonipat",
+  "devPlanCode": "SON",
+  "potentialZone": "High"
+ },
+ {
+  "devPlan": "GURGAON-MANESAR",
+  "devPlanCode": "GUR",
+  "potentialZone": "Hyper"
+ },
+ {
+  "devPlan": "DADRI",
+  "devPlanCode": "CAD",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "AD Badri",
+  "devPlanCode": "ADB",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Agroha",
+  "devPlanCode": "AGR",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "ALIPUR",
+  "devPlanCode": "ALI",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "ASSANDH",
+  "devPlanCode": "ASS",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Arogya Dham Badsa",
+  "devPlanCode": "BAD",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "BERI",
+  "devPlanCode": "BER",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "BHIWANI",
+  "devPlanCode": "BHI",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Dabwali",
+  "devPlanCode": "DAB",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "DADRI",
+  "devPlanCode": "DAD",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Dadupur Headworks",
+  "devPlanCode": "DPR",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Fatehabad",
+  "devPlanCode": "FAT",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Ferozpur Jhirka",
+  "devPlanCode": "FER",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "FARUKHNAGAR",
+  "devPlanCode": "FRK",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "GHARAUNDA",
+  "devPlanCode": "GHA",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "GOHANA",
+  "devPlanCode": "GOH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "HANSI",
+  "devPlanCode": "HAN",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Hathin",
+  "devPlanCode": "HAT",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "INDRI",
+  "devPlanCode": "IND",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Jhajjar",
+  "devPlanCode": "JHA",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Jind",
+  "devPlanCode": "JIN",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Kaithal",
+  "devPlanCode": "KAI",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Kalanaur",
+  "devPlanCode": "KAL",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Kapal Mochan",
+  "devPlanCode": "KAP",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Kharkhauda",
+  "devPlanCode": "KHA",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Ladwa",
+  "devPlanCode": "LAD",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "MAHENDRA GARH",
+  "devPlanCode": "MAH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Mayyar",
+  "devPlanCode": "MAY",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Meham",
+  "devPlanCode": "MEH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "NARNAUL",
+  "devPlanCode": "NAN",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Narwana",
+  "devPlanCode": "NAR",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "NILOKHERI AND TARAORI",
+  "devPlanCode": "NIL",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Naraingarh",
+  "devPlanCode": "NRH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "NUH",
+  "devPlanCode": "NUH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "PATAUDI",
+  "devPlanCode": "PAT",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Pehowa",
+  "devPlanCode": "PEH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Raipur Rani",
+  "devPlanCode": "RAI",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "RATIA",
+  "devPlanCode": "RAT",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Safidon",
+  "devPlanCode": "SAF",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "SAHA",
+  "devPlanCode": "SAH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Samalkha",
+  "devPlanCode": "SAM",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "SAMPLA",
+  "devPlanCode": "SAP",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "SHAHABAD",
+  "devPlanCode": "SHA",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "SOHNA IN MEWAT",
+  "devPlanCode": "SHM",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "SIRSA",
+  "devPlanCode": "SIR",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "TALWANDI-RANA",
+  "devPlanCode": "TAL",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "TAORU",
+  "devPlanCode": "TAO",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "TOHANA",
+  "devPlanCode": "TOH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Uchana",
+  "devPlanCode": "UCH",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "SAMPLA in Jhajjar",
+  "devPlanCode": "SMP",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Madlauda",
+  "devPlanCode": "MAD",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "Bhuna",
+  "devPlanCode": "BHU",
+  "potentialZone": "Low"
+ },
+ {
+  "devPlan": "NA",
+  "devPlanCode": "NA",
+  "potentialZone": "Low Potential"
+ },
+ {
+  "devPlan": "Not Applicable",
+  "devPlanCode": "NAJ",
+  "potentialZone": "Low Potential"
+ },
+ {
+  "devPlan": "Ambala",
+  "devPlanCode": "AMB",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "BAHADURGARH",
+  "devPlanCode": "BAH",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "DHARUHERA",
+  "devPlanCode": "DHA",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "Ganaur",
+  "devPlanCode": "GAN",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "HISSAR",
+  "devPlanCode": "HIS",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "HODAL",
+  "devPlanCode": "HOD",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "KARNAL",
+  "devPlanCode": "KAR",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "Kurukshetra",
+  "devPlanCode": "KUR",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "MANGAR",
+  "devPlanCode": "MAN",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "Manesar-Bawal Investment Region (MBIR)",
+  "devPlanCode": "MBI",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "PALWAL",
+  "devPlanCode": "PAL",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "PRITHLA",
+  "devPlanCode": "PRI",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "REWARI",
+  "devPlanCode": "REW",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "Rohtak",
+  "devPlanCode": "ROH",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "Yamunanagar-Jagdhari",
+  "devPlanCode": "YAM",
+  "potentialZone": "Medium"
+ },
+ {
+  "devPlan": "BAWAL",
+  "devPlanCode": "BAW",
+  "potentialZone": "Medium Potential"
+ },
+ {
+  "devPlan": "SOHNA",
+  "devPlanCode": "SOH",
+  "potentialZone": "Not Clear"
+ },
+ {
+  "devPlan": "Uklana",
+  "devPlanCode": "UKL"
+ },
+ {
+  "devPlan": "NA",
+  "devPlanCode": "NAP"
+ },
+ {
+  "devPlan": "KMP Global Corridor",
+  "devPlanCode": "KMP"
+ }
+]
+}

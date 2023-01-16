@@ -632,9 +632,18 @@ public class EmployeeService {
 		Map<String, Object> ssoEmployeeMap = new HashMap<String, Object>();
 		ssoEmployeeMap.put("UserId", ssoEmployee.getUid());
 		ssoEmployeeMap.put("TokenId", ssoEmployee.getTokenId());
-		ResponseEntity<Map> isExistSSOToken = isExistSSOToken(ssoEmployeeMap);
-		String ssoValue = (String) isExistSSOToken.getBody().get("Value");
+		ResponseEntity<Map> isExistSSOToken = null;
+		String ssoValue = "no";
+		//requestInfo.getUserInfo().setTenantId("hr");
+		log.info("Data by Request"+ssoEmployeeMap);
+		try {
+			isExistSSOToken = isExistSSOToken(ssoEmployeeMap);
 
+			ssoValue = (String) isExistSSOToken.getBody().get("Value");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		String sso = "yes";
 		String sso1 = "no";
 		EmployeeRequest employeeRequest = new EmployeeRequest();
