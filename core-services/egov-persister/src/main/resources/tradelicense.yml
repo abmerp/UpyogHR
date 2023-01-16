@@ -1174,7 +1174,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
-       - query: INSERT INTO eg_electric_plan_audit SELECT * FROM eg_electric_plan WHERE applicationNumber = ?;
+       - query: INSERT INTO eg_electric_plan_audit SELECT * FROM eg_electric_plan WHERE application_number = ?;
          basePath: ElectricPlanRequest.*
          jsonMaps:
           - jsonPath: $.ElectricPlanRequest.*.applicationNumber
