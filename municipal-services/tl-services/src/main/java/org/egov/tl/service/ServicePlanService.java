@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -77,34 +78,42 @@ public class ServicePlanService {
 	@Autowired
 	private WorkflowService workflowService;
 
-	public ServicePlanRequest create(ServicePlanContract servicePlanContract) {
+	public List<ServicePlanRequest> create(ServicePlanContract servicePlanContract) {
 
 		String uuid = servicePlanContract.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
+		
+		RequestInfo requestInfo = servicePlanContract.getRequestInfo();
 
-		ServicePlanRequest servicePlanRequest = servicePlanContract.getServicePlanRequest();
+		 List<ServicePlanRequest> servicePlanRequestList = servicePlanContract.getServicePlanRequest();
+		 
+		 for (ServicePlanRequest servicePlanRequest : servicePlanRequestList) {
+			 List<String> applicationNumbers = null;
+				int count = 1;
 
-		List<String> applicationNumbers = null;
-		int count = 1;
+				servicePlanRequest.setId(UUID.randomUUID().toString());
+				
+				applicationNumbers = getIdList(servicePlanContract.getRequestInfo(), servicePlanRequest.getTenantID(),
+						config.getSPapplicationNumberIdgenNameTL(), config.getSPapplicationNumberIdgenFormatTL(), count);
 
-		applicationNumbers = getIdList(servicePlanContract.getRequestInfo(), servicePlanRequest.getTenantID(),
-				config.getSPapplicationNumberIdgenNameTL(), config.getSPapplicationNumberIdgenFormatTL(), count);
+				servicePlanRequest.setAuditDetails(auditDetails);
+				servicePlanRequest.setApplicationNumber(applicationNumbers.get(0));
 
-		servicePlanRequest.setAuditDetails(auditDetails);
-		servicePlanRequest.setApplicationNumber(applicationNumbers.get(0));
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo);
 
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanContract);
+				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
-		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+				servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+		}
 
-		servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+		
 
-		servicePlanContract.setServicePlanRequest(servicePlanRequest);
+		servicePlanContract.setServicePlanRequest(servicePlanRequestList);
 
 		producer.push(config.getSPsaveTopic(), servicePlanContract);
 
-		return servicePlanRequest;
+		return servicePlanRequestList;
 
 	}
 
@@ -126,7 +135,7 @@ public class ServicePlanService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time\r\n"
+		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time\r\n"
 				+ "FROM public.eg_service_plan\r\n" + "WHERE business_service = 'SERVICE_PLAN' ";
 
 		builder = new StringBuilder(query);
@@ -151,25 +160,29 @@ public class ServicePlanService {
 		return Result;
 	}
 
-	public ServicePlanRequest Update(ServicePlanContract servicePlanContract) {
+	public List<ServicePlanRequest> Update(ServicePlanContract servicePlanContract) {
 
 		String uuid = servicePlanContract.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, false);
 
-		ServicePlanRequest servicePlanRequest = servicePlanContract.getServicePlanRequest();
+		RequestInfo requestInfo = servicePlanContract.getRequestInfo();
+
+		 List<ServicePlanRequest> servicePlanRequestList = servicePlanContract.getServicePlanRequest();
+		 
+		 for (ServicePlanRequest servicePlanRequest : servicePlanRequestList) {
 
 		if (Objects.isNull(servicePlanContract) || Objects.isNull(servicePlanContract.getServicePlanRequest())) {
 			throw new CustomException("ServicePlanContract must not be null", "ServicePlanContract must not be null");
 		}
 
-		if (StringUtils.isEmpty(servicePlanContract.getServicePlanRequest().getApplicationNumber())) {
+		if (StringUtils.isEmpty(servicePlanRequest.getApplicationNumber())) {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
 
 		List<ServicePlanRequest> searchServicePlan = searchServicePlan(
-				servicePlanContract.getServicePlanRequest().getLoiNumber(),
-				servicePlanContract.getServicePlanRequest().getApplicationNumber());
+				servicePlanRequest.getLoiNumber(),
+				servicePlanRequest.getApplicationNumber());
 		if (CollectionUtils.isEmpty(searchServicePlan) || searchServicePlan.size() > 1) {
 			throw new CustomException("Found none or multiple service plan applications with applicationNumber.",
 					"Found none or multiple service plan applications with applicationNumber.");
@@ -180,35 +193,33 @@ public class ServicePlanService {
 		BusinessService workflow = workflowService.getBusinessService(servicePlanRequest.getTenantID(),
 				servicePlanContract.getRequestInfo(), businessService_TL);
 
-		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract);
-//		enrichAuditDetailsOnUpdate(servicePlanContract); 
+		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract , servicePlanRequest);
 
 		List<String> applicationNumbers = null;
 		int count = 1;
 
-//		applicationNumbers = getIdList(servicePlanContract.getRequestInfo(), servicePlanRequest.getTenantID(),
-//				config.getSPapplicationNumberIdgenNameTL(), config.getSPapplicationNumberIdgenFormatTL(), count);
 
 		servicePlanRequest.setAuditDetails(auditDetails);
-//		servicePlanRequest.setApplicationNumber(applicationNumbers.get(0));
 
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanContract);
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo);
 
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 		servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+		
+		
+		 }
 
-		servicePlanContract.setServicePlanRequest(servicePlanRequest);
+		servicePlanContract.setServicePlanRequest(servicePlanRequestList);
 
 		producer.push(config.getSPupdateTopic(), servicePlanContract);
 
-		return servicePlanRequest;
+		return servicePlanRequestList;
 
 	}
 
-	private TradeLicenseRequest prepareProcessInstanceRequest(ServicePlanContract servicePlanContract) {
+	private TradeLicenseRequest prepareProcessInstanceRequest(ServicePlanRequest servicePlanRequest, RequestInfo requestInfo) {
 
-		ServicePlanRequest servicePlanRequest = servicePlanContract.getServicePlanRequest();
 
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
 		TradeLicense tradeLicenseSP = new TradeLicense();
@@ -217,16 +228,16 @@ public class ServicePlanService {
 		tradeLicenseSP.setAction(servicePlanRequest.getAction());
 		tradeLicenseSP.setAssignee(servicePlanRequest.getAssignee());
 		tradeLicenseSP.setApplicationNumber(servicePlanRequest.getApplicationNumber());
-		tradeLicenseSP.setWorkflowCode(businessService_TL);
+		tradeLicenseSP.setWorkflowCode(servicePlanRequest.getWorkflowCode());
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 		tradeLicenseDetail.setTradeType(businessService_TL);
 		tradeLicenseSP.setTradeLicenseDetail(tradeLicenseDetail);
 		tradeLicenseSP.setComment(servicePlanRequest.getComment());
-		tradeLicenseSP.setWfDocuments(null);
+		tradeLicenseSP.setWfDocuments(servicePlanRequest.getWfDocuments());
 		tradeLicenseSP.setTenantId(servicePlanRequest.getTenantID());
 		tradeLicenseSP.setBusinessService(businessService_TL);
 
-		tradeLicenseRequest.setRequestInfo(servicePlanContract.getRequestInfo());
+		tradeLicenseRequest.setRequestInfo(requestInfo);
 		tradeLicenseSPlist.add(tradeLicenseSP);
 		tradeLicenseRequest.setLicenses(tradeLicenseSPlist);
 
@@ -234,7 +245,7 @@ public class ServicePlanService {
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			ServicePlanContract servicePlanContract) {
+			ServicePlanContract servicePlanContract, ServicePlanRequest servicePlanRequest) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
@@ -244,7 +255,7 @@ public class ServicePlanService {
 		}
 		State currentWorkflowState = currentWorkflowStateOptional.get();
 		List<Action> permissibleActions = currentWorkflowState.getActions();
-		String currentActionFromRequest = servicePlanContract.getServicePlanRequest().getAction();
+		String currentActionFromRequest = servicePlanRequest.getAction();
 		Optional<Action> currentWorkflowActionOptional = permissibleActions.stream()
 				.filter(action -> action.getAction().equals(currentActionFromRequest)).findFirst();
 		if (!currentWorkflowActionOptional.isPresent()) {
@@ -271,6 +282,6 @@ public class ServicePlanService {
 		State nextState = nextStateOptional.get();
 		String nextStateName = nextState.getState();
 		// set next state as status-
-		servicePlanContract.getServicePlanRequest().setStatus(nextStateName);
+		servicePlanRequest.setStatus(nextStateName);
 	}
 }

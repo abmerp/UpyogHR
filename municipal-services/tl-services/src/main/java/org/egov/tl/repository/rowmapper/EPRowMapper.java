@@ -28,7 +28,7 @@ public class EPRowMapper implements ResultSetExtractor<List<ElectricPlanRequest>
 			String loi_number = rs.getString("loi_number");
 			ElectricPlanRequest ElectricPlanRequest = new ElectricPlanRequest();
 			ElectricPlanRequest.setLoiNumber(rs.getString("loi_number"));
-			ElectricPlanRequest.setId(rs.getLong("id"));
+			ElectricPlanRequest.setId(rs.getString("id"));
 			ElectricPlanRequest.setAutoCad(rs.getString("auto_cad"));
 			ElectricPlanRequest.setElectricDistribution(rs.getString("elecric_distribution"));
 			ElectricPlanRequest.setEnvironmentalClearance(rs.getString("environmental_clearance"));

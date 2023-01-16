@@ -36,6 +36,7 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 		while (rs.next()) {
 			String loi_number = rs.getString("loi_number");
 			ServicePlanRequest servicePlanRequest = new ServicePlanRequest();
+			servicePlanRequest.setId(rs.getString("id"));
 			servicePlanRequest.setLoiNumber(rs.getString("loi_number"));
 			servicePlanRequest.setAutoCadFile(rs.getString("auto_cad_file"));
 			servicePlanRequest.setCertifieadCopyOfThePlan(rs.getString("certifiead_copy_of_the_plan"));

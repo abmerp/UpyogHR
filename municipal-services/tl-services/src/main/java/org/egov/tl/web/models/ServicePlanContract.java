@@ -1,5 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import org.egov.common.contract.request.RequestInfo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +21,6 @@ public class ServicePlanContract {
 	private RequestInfo requestInfo = null;
 
 	@JsonProperty("ServicePlanRequest")
-	private ServicePlanRequest servicePlanRequest;
+	private List<ServicePlanRequest> servicePlanRequest;
 
 }
