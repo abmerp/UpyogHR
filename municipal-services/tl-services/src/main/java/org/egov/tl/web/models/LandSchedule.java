@@ -135,6 +135,8 @@ public class LandSchedule {
 	private String reraDocUpload;
 	@JsonProperty("reraNonRegistrationDoc")
 	private String reraNonRegistrationDoc;
+	@JsonProperty("LandScheduleDetails")
+	private LandScheduleDetails landScheduleDetails;
 
 
 }
