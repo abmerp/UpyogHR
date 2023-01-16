@@ -927,47 +927,49 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_service_plan (loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?);
-         basePath: ServicePlanRequest
+       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?);
+         basePath: ServicePlanRequest.*
          jsonMaps:
 
-          - jsonPath: $.ServicePlanRequest.loiNumber
+          - jsonPath: $.ServicePlanRequest.*.id
+          
+          - jsonPath: $.ServicePlanRequest.*.loiNumber
 
-          - jsonPath: $.ServicePlanRequest.autoCadFile
+          - jsonPath: $.ServicePlanRequest.*.autoCadFile
 
-          - jsonPath: $.ServicePlanRequest.certifieadCopyOfThePlan
+          - jsonPath: $.ServicePlanRequest.*.certifieadCopyOfThePlan
 
-          - jsonPath: $.ServicePlanRequest.environmentalClearance
+          - jsonPath: $.ServicePlanRequest.*.environmentalClearance
 
-          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingFromEmpaneledDoc
+          - jsonPath: $.ServicePlanRequest.*.selfCertifiedDrawingFromEmpaneledDoc
 
-          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingsFromCharetedEng
+          - jsonPath: $.ServicePlanRequest.*.selfCertifiedDrawingsFromCharetedEng
 
-          - jsonPath: $.ServicePlanRequest.shapeFileAsPerTemplate
+          - jsonPath: $.ServicePlanRequest.*.shapeFileAsPerTemplate
 
-          - jsonPath: $.ServicePlanRequest.status
+          - jsonPath: $.ServicePlanRequest.*.status
 
-          - jsonPath: $.ServicePlanRequest.action
+          - jsonPath: $.ServicePlanRequest.*.action
 
-          - jsonPath: $.ServicePlanRequest.undertaking
+          - jsonPath: $.ServicePlanRequest.*.undertaking
 
-          - jsonPath: $.ServicePlanRequest.action
+          - jsonPath: $.ServicePlanRequest.*.action
 
-          - jsonPath: $.ServicePlanRequest.businessService
+          - jsonPath: $.ServicePlanRequest.*.businessService
 
-          - jsonPath: $.ServicePlanRequest.comment
+          - jsonPath: $.ServicePlanRequest.*.comment
 
-          - jsonPath: $.ServicePlanRequest.tenantID
+          - jsonPath: $.ServicePlanRequest.*.tenantID
 
-          - jsonPath: $.ServicePlanRequest.applicationNumber
+          - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
-          - jsonPath: $.ServicePlanRequest.auditDetails.createdBy
+          - jsonPath: $.ServicePlanRequest.*.auditDetails.createdBy
 
-          - jsonPath: $.ServicePlanRequest.auditDetails.createdTime
+          - jsonPath: $.ServicePlanRequest.*.auditDetails.createdTime
 
-          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedBy
+          - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedBy
 
-          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedTime
+          - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedTime
 
 
 
@@ -977,45 +979,52 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
+       - query: INSERT INTO eg_service_plan_audit SELECT * FROM eg_service_plan WHERE application_number = ?;
+         basePath: ServicePlanRequest.*
+         jsonMaps:
+          - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
-       - query: UPDATE public.eg_service_plan SET auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=? , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? WHERE application_number=?;
+
+       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=? , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? WHERE application_number=?;
  
-         basePath: ServicePlanRequest
+         basePath: ServicePlanRequest.*
          jsonMaps:
 
-          - jsonPath: $.ServicePlanRequest.autoCadFile
+          - jsonPath: $.ServicePlanRequest.*.id
+          
+          - jsonPath: $.ServicePlanRequest.*.autoCadFile
 
-          - jsonPath: $.ServicePlanRequest.certifieadCopyOfThePlan
+          - jsonPath: $.ServicePlanRequest.*.certifieadCopyOfThePlan
 
-          - jsonPath: $.ServicePlanRequest.environmentalClearance
+          - jsonPath: $.ServicePlanRequest.*.environmentalClearance
 
-          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingFromEmpaneledDoc
+          - jsonPath: $.ServicePlanRequest.*.selfCertifiedDrawingFromEmpaneledDoc
 
-          - jsonPath: $.ServicePlanRequest.selfCertifiedDrawingsFromCharetedEng
+          - jsonPath: $.ServicePlanRequest.*.selfCertifiedDrawingsFromCharetedEng
 
-          - jsonPath: $.ServicePlanRequest.shapeFileAsPerTemplate
+          - jsonPath: $.ServicePlanRequest.*.shapeFileAsPerTemplate
 
-          - jsonPath: $.ServicePlanRequest.undertaking
+          - jsonPath: $.ServicePlanRequest.*.undertaking
 
-          - jsonPath: $.ServicePlanRequest.action
+          - jsonPath: $.ServicePlanRequest.*.action
          
-          - jsonPath: $.ServicePlanRequest.status
+          - jsonPath: $.ServicePlanRequest.*.status
 
-          - jsonPath: $.ServicePlanRequest.action
+          - jsonPath: $.ServicePlanRequest.*.action
 
-          - jsonPath: $.ServicePlanRequest.businessService
+          - jsonPath: $.ServicePlanRequest.*.businessService
 
-          - jsonPath: $.ServicePlanRequest.comment
+          - jsonPath: $.ServicePlanRequest.*.comment
 
-          - jsonPath: $.ServicePlanRequest.tenantID
+          - jsonPath: $.ServicePlanRequest.*.tenantID
 
-          - jsonPath: $.ServicePlanRequest.loiNumber
+          - jsonPath: $.ServicePlanRequest.*.loiNumber
 
-          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedBy
+          - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedBy
 
-          - jsonPath: $.ServicePlanRequest.auditDetails.lastModifiedTime
+          - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedTime
 
-          - jsonPath: $.ServicePlanRequest.applicationNumber
+          - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
  - version: 1.0
    description: update new bank guarantee details in eg_tl_bank_guarantee table
@@ -1108,52 +1117,54 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_electric_plan( auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_electric_plan( id , auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
-         basePath: ElectricPlanRequest
+         basePath: ElectricPlanRequest.*
          jsonMaps:
 
-          - jsonPath: $.ElectricPlanRequest.autoCad
-
-          - jsonPath: $.ElectricPlanRequest.electricDistribution
-
-          - jsonPath: $.ElectricPlanRequest.electricalCapacity
-
-          - jsonPath: $.ElectricPlanRequest.electricInfra
-
-          - jsonPath: $.ElectricPlanRequest.environmentalClearance
-
-          - jsonPath: $.ElectricPlanRequest.LoadSancation
-
-          - jsonPath: $.ElectricPlanRequest.switchingStation
-
-          - jsonPath: $.ElectricPlanRequest.verifiedPlan
-
-          - jsonPath: $.ElectricPlanRequest.loiNumber
-
-          - jsonPath: $.ElectricPlanRequest.selfCenteredDrawings
-
-          - jsonPath: $.ElectricPlanRequest.tenantID
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.createdBy
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.createdTime
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedBy
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedTime
-
-          - jsonPath: $.ElectricPlanRequest.applicationNumber
+          - jsonPath: $.ElectricPlanRequest.*.id
           
-          - jsonPath: $.ElectricPlanRequest.businessService
+          - jsonPath: $.ElectricPlanRequest.*.autoCad
+
+          - jsonPath: $.ElectricPlanRequest.*.electricDistribution
+
+          - jsonPath: $.ElectricPlanRequest.*.electricalCapacity
+
+          - jsonPath: $.ElectricPlanRequest.*.electricInfra
+
+          - jsonPath: $.ElectricPlanRequest.*.environmentalClearance
+
+          - jsonPath: $.ElectricPlanRequest.*.LoadSancation
+
+          - jsonPath: $.ElectricPlanRequest.*.switchingStation
+
+          - jsonPath: $.ElectricPlanRequest.*.verifiedPlan
+
+          - jsonPath: $.ElectricPlanRequest.*.loiNumber
+
+          - jsonPath: $.ElectricPlanRequest.*.selfCenteredDrawings
+
+          - jsonPath: $.ElectricPlanRequest.*.tenantID
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.createdBy
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.createdTime
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.lastModifiedTime
+
+          - jsonPath: $.ElectricPlanRequest.*.applicationNumber
           
-          - jsonPath: $.ElectricPlanRequest.action
+          - jsonPath: $.ElectricPlanRequest.*.businessService
           
-          - jsonPath: $.ElectricPlanRequest.status
+          - jsonPath: $.ElectricPlanRequest.*.action
           
-          - jsonPath: $.ElectricPlanRequest.comment
+          - jsonPath: $.ElectricPlanRequest.*.status
           
-          - jsonPath: $.ElectricPlanRequest.pdfFormat
+          - jsonPath: $.ElectricPlanRequest.*.comment
+          
+          - jsonPath: $.ElectricPlanRequest.*.pdfFormat
 
 
 
@@ -1163,54 +1174,61 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
+       - query: INSERT INTO eg_electric_plan_audit SELECT * FROM eg_electric_plan WHERE applicationNumber = ?;
+         basePath: ElectricPlanRequest.*
+         jsonMaps:
+          - jsonPath: $.ElectricPlanRequest.*.applicationNumber
 
-       - query: UPDATE public.eg_electric_plan SET  auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?, status=?, comment=?, pdf_format=? WHERE application_number=?;
+
+       - query: UPDATE public.eg_electric_plan SET id=? , auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?, status=?, comment=?, pdf_format=? WHERE application_number=?;
  
-         basePath: ElectricPlanRequest
+         basePath: ElectricPlanRequest.*
          jsonMaps:
 
-          - jsonPath: $.ElectricPlanRequest.autoCad
-
-          - jsonPath: $.ElectricPlanRequest.electricDistribution
-
-          - jsonPath: $.ElectricPlanRequest.electricalCapacity
-
-          - jsonPath: $.ElectricPlanRequest.electricInfra
-
-          - jsonPath: $.ElectricPlanRequest.environmentalClearance
-
-          - jsonPath: $.ElectricPlanRequest.LoadSancation
-
-          - jsonPath: $.ElectricPlanRequest.switchingStation
-
-          - jsonPath: $.ElectricPlanRequest.verifiedPlan
-
-          - jsonPath: $.ElectricPlanRequest.loiNumber
-
-          - jsonPath: $.ElectricPlanRequest.selfCenteredDrawings
-
-          - jsonPath: $.ElectricPlanRequest.tenantID
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.createdBy
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.createdTime
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedBy
-
-          - jsonPath: $.ElectricPlanRequest.auditDetails.lastModifiedTime
-
-          - jsonPath: $.ElectricPlanRequest.applicationNumber
+          - jsonPath: $.ElectricPlanRequest.*.id
           
-          - jsonPath: $.ElectricPlanRequest.businessService
-          
-          - jsonPath: $.ElectricPlanRequest.action
-          
-          - jsonPath: $.ElectricPlanRequest.status
-          
-          - jsonPath: $.ElectricPlanRequest.comment
-          
-          - jsonPath: $.ElectricPlanRequest.pdfFormat
+          - jsonPath: $.ElectricPlanRequest.*.autoCad
 
-          - jsonPath: $.ElectricPlanRequest.applicationNumber
+          - jsonPath: $.ElectricPlanRequest.*.electricDistribution
+
+          - jsonPath: $.ElectricPlanRequest.*.electricalCapacity
+
+          - jsonPath: $.ElectricPlanRequest.*.electricInfra
+
+          - jsonPath: $.ElectricPlanRequest.*.environmentalClearance
+
+          - jsonPath: $.ElectricPlanRequest.*.LoadSancation
+
+          - jsonPath: $.ElectricPlanRequest.*.switchingStation
+
+          - jsonPath: $.ElectricPlanRequest.*.verifiedPlan
+
+          - jsonPath: $.ElectricPlanRequest.*.loiNumber
+
+          - jsonPath: $.ElectricPlanRequest.*.selfCenteredDrawings
+
+          - jsonPath: $.ElectricPlanRequest.*.tenantID
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.createdBy
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.createdTime
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ElectricPlanRequest.*.auditDetails.lastModifiedTime
+
+          - jsonPath: $.ElectricPlanRequest.*.applicationNumber
+          
+          - jsonPath: $.ElectricPlanRequest.*.businessService
+          
+          - jsonPath: $.ElectricPlanRequest.*.action
+          
+          - jsonPath: $.ElectricPlanRequest.*.status
+          
+          - jsonPath: $.ElectricPlanRequest.*.comment
+          
+          - jsonPath: $.ElectricPlanRequest.*.pdfFormat
+
+          - jsonPath: $.ElectricPlanRequest.*.applicationNumber
            
            

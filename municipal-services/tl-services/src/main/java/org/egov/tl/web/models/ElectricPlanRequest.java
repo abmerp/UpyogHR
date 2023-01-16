@@ -22,7 +22,7 @@ import lombok.Setter;
 public class ElectricPlanRequest {
 
 	@JsonProperty("id")
-	private Long id;
+	private String id;
 	@JsonProperty("electricInfra")
 	private String electricInfra;
 	@JsonProperty("electricDistribution")
@@ -61,6 +61,10 @@ public class ElectricPlanRequest {
 	private List<String> assignee = null;
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
+	@JsonProperty("workflowCode")
+    private String workflowCode = null;
+	@JsonProperty("wfDocuments")
+    private List<Document> wfDocuments;
  
 //	public ElectricPlanRequest(ElectricPlan electricPlan) {
 //		this.id = electricPlan.getId();

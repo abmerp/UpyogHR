@@ -19,6 +19,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ServicePlanRequest {
 	
+	@JsonProperty("id")
+	private String id;
+	
 	@JsonProperty("loiNumber")
 	private String loiNumber;
 	
@@ -68,6 +71,12 @@ public class ServicePlanRequest {
 	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
+	
+    @JsonProperty("workflowCode")
+    private String workflowCode = null;
+    
+	@JsonProperty("wfDocuments")
+    private List<Document> wfDocuments;
 	
 //	public ServicePlanRequest(ServicePlan servicePlan) {
 //		
