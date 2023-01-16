@@ -14,5 +14,6 @@ public class LandScheduleDetails {
 	private String areaAppliedmigration;
 	private String khasraNumber;
 	private String area;
+	private String balanceOfParentLicence;
 
 }

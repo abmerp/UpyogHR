@@ -136,7 +136,7 @@ public class LandSchedule {
 	@JsonProperty("reraNonRegistrationDoc")
 	private String reraNonRegistrationDoc;
 	@JsonProperty("LandScheduleDetails")
-	private LandScheduleDetails landScheduleDetails;
+	private List<LandScheduleDetails> landScheduleDetails;
 
 
 }
