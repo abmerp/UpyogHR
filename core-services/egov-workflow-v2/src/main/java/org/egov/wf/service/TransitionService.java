@@ -104,7 +104,7 @@ public class TransitionService {
 					}
 				}
 				// if remarks comes from one of multiple assignees, stay at same state-
-				if (CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromRequest().getAssignes())
+				if (!CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromRequest().getAssignes())
 						&& (processStateAndAction.getProcessInstanceFromDb() != null)
 						&& !CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromDb().getAssignes())
 						&& processStateAndAction.getProcessInstanceFromDb().getAssignes().size() > 1) {
