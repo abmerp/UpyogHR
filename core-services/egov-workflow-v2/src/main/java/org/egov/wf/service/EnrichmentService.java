@@ -148,7 +148,7 @@ public class EnrichmentService {
         Map<String,String> errorMap = new HashMap<>();
         processStateAndActions.forEach(processStateAndAction -> {
 
-        	if (CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromRequest().getAssignes())
+        	if (!CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromRequest().getAssignes())
                && (processStateAndAction.getProcessInstanceFromDb() != null)    
                && !CollectionUtils.isEmpty(processStateAndAction.getProcessInstanceFromDb().getAssignes())
                     && processStateAndAction.getProcessInstanceFromDb().getAssignes().size() > 1) {

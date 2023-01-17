@@ -68,6 +68,8 @@ public class EgScrutiny implements Serializable {
 	@Column(name="is_final_approval")
 	private boolean isFinalApproval;
 	
+	@Column(name="bussiness_service_name")
+	private String bussinessServiceName;
 	
 
 }
