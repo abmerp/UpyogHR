@@ -94,7 +94,9 @@
             
       "conversionCharges": 1.50,
              
-      "stateInfrastructureDevelopmentCharges":1.50
+      "stateInfrastructureDevelopmentCharges":1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
             
     },
 	 {
@@ -117,7 +119,9 @@
       
       "conversionCharges": 1.75,
       
-      "stateInfrastructureDevelopmentCharges":1.75
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	    {
       "purposeId": 112,
@@ -157,7 +161,9 @@
       
       "conversionCharges": 1.50,
       
-      "stateInfrastructureDevelopmentCharges": 1.50
+      "stateInfrastructureDevelopmentCharges": 1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	 {
       "purposeId": 7,
@@ -179,7 +185,9 @@
           
       "conversionCharges": 1.50,
              
-      "stateInfrastructureDevelopmentCharges": 1.50
+      "stateInfrastructureDevelopmentCharges": 1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
      {
       "purposeId": 6,
@@ -201,7 +209,9 @@
       
       "conversionCharges": 150,
       
-      "stateInfrastructureDevelopmentCharges": 150
+      "stateInfrastructureDevelopmentCharges": 150,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	{
       "purposeId": 5,
@@ -223,7 +233,9 @@
       
       "conversionCharges": 150,
       
-      "stateInfrastructureDevelopmentCharges": 150
+      "stateInfrastructureDevelopmentCharges": 150,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
       
     },
 	 {
@@ -246,7 +258,9 @@
     
       "conversionCharges": "",
     
-      "stateInfrastructureDevelopmentCharges":""
+      "stateInfrastructureDevelopmentCharges":"",
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     
     },
 	
@@ -306,7 +320,9 @@
            
       "conversionCharges": 1.75,
            
-      "stateInfrastructureDevelopmentCharges":1.75
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
             
     },
 	
@@ -348,7 +364,9 @@
       
       "conversionCharges": 1.50,
       
-      "stateInfrastructureDevelopmentCharges": 1.50
+      "stateInfrastructureDevelopmentCharges": 1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	{
       "purposeId": 1,
@@ -366,7 +384,9 @@
       "licenseFeeCharges":1.75,
       "conversionCharges": 1.75,      
       "externalDevelopmentCharges": 1.75,       
-      "stateInfrastructureDevelopmentCharges":1.75
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
      {
       "purposeId": 113,
@@ -453,7 +473,9 @@
            
       "conversionCharges": 3.5,
           
-      "stateInfrastructureDevelopmentCharges":3.5
+      "stateInfrastructureDevelopmentCharges":3.5,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
              
             },
     {
@@ -516,7 +538,9 @@
       
       "conversionCharges": 3.5,
       
-      "stateInfrastructureDevelopmentCharges": 3.5
+      "stateInfrastructureDevelopmentCharges": 3.5,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     }
      
   ]
