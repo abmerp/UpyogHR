@@ -11,6 +11,8 @@ import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.abm.newservices.entity.RenewBankGuarantee;
 import org.egov.tl.service.BankGuaranteeService;
 import org.egov.tl.util.ResponseInfoFactory;
+import org.egov.tl.web.models.BankGuaranteeCalculationCriteria;
+import org.egov.tl.web.models.bankguarantee.BankGuaranteeCalculationResponse;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeResponse;
 import org.egov.tl.web.models.bankguarantee.RenewBankGuaranteeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +46,12 @@ public class BankGuaranteeController {
 	
 	@PostMapping("/guarantee/_search")
 	public ResponseEntity<NewBankGuaranteeResponse> searchNewBankGuarantee(@RequestBody RequestInfo requestInfo,
-			@RequestParam("applicationNumber") List<String> applicationNumber) {
+			@RequestParam(value = "applicationNumber", required = false) List<String> applicationNumber,
+			@RequestParam(value = "loiNumber", required = false) String loiNumber,
+			@RequestParam(value = "typeOfBg", required = false) String typeOfBg) {
 		
 		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.searchNewBankGuarantee(requestInfo,
-				applicationNumber);
+				applicationNumber, loiNumber, typeOfBg);
 		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
 				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfo, true))

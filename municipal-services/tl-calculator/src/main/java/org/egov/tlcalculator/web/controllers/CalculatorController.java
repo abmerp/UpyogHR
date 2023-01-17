@@ -4,10 +4,14 @@ package org.egov.tlcalculator.web.controllers;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.egov.tlcalculator.service.BPACalculationService;
 import org.egov.tlcalculator.service.CalculationService;
 import org.egov.tlcalculator.service.DemandService;
+import org.egov.tlcalculator.utils.ResponseInfoFactory;
 import org.egov.tlcalculator.web.models.*;
+import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationCriteria;
+import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationResponse;
 import org.egov.tlcalculator.web.models.demand.BillResponse;
 import org.egov.tlcalculator.web.models.demand.GenerateBillCriteria;
 import org.egov.tracer.model.CustomException;
@@ -37,15 +41,19 @@ public class CalculatorController {
 	private DemandService demandService;
 
 	private BPACalculationService bpaCalculationService;
+	
+	private ResponseInfoFactory responseInfoFactory;
 
 	@Autowired
 	public CalculatorController(ObjectMapper objectMapper, HttpServletRequest request,
-								CalculationService calculationService, DemandService demandService, BPACalculationService bpaCalculationService) {
+			CalculationService calculationService, DemandService demandService,
+			BPACalculationService bpaCalculationService, ResponseInfoFactory responseInfoFactory) {
 		this.objectMapper = objectMapper;
 		this.request = request;
 		this.calculationService = calculationService;
 		this.demandService = demandService;
 		this.bpaCalculationService = bpaCalculationService;
+		this.responseInfoFactory = responseInfoFactory;
 	}
 
 	/**
@@ -140,6 +148,18 @@ public class CalculatorController {
 
 		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
 		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/guarantee/_estimate")
+	public ResponseEntity<BankGuaranteeCalculationResponse> getEstimateForBankGuarantee(
+			@RequestBody BankGuaranteeCalculationCriteria bankGuaranteeCalculationCriteria) {
+		
+		BankGuaranteeCalculationResponse bankGuaranteeCalculationResponse = calculationService
+				.getEstimateForBankGuarantee(bankGuaranteeCalculationCriteria);
+		bankGuaranteeCalculationResponse.setResponseInfo(responseInfoFactory
+				.createResponseInfoFromRequestInfo(bankGuaranteeCalculationCriteria.getRequestInfo(), true));
+		return new ResponseEntity<>(bankGuaranteeCalculationResponse, HttpStatus.OK);	
 	}
 
 

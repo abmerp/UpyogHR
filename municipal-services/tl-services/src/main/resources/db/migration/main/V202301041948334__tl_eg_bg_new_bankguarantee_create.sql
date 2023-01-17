@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS public.eg_tl_bank_guarantee(
     id character varying(64) NOT NULL,
     application_number character varying(32) NOT NULL,
-    status character varying(100) NOT NULL,
+    status character varying(100),
     loi_number character varying(100) NOT NULL,
     bg_number character varying(100),
     type_of_bg character varying(100),
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS public.eg_tl_bank_guarantee(
 CREATE TABLE IF NOT EXISTS public.eg_tl_bank_guarantee_auditdetails(
     id character varying(64) NOT NULL,
     application_number character varying(32) NOT NULL,
-    status character varying(100) NOT NULL,
+    status character varying(100),
     loi_number character varying(100) NOT NULL,
     bg_number character varying(100),
     type_of_bg character varying(100),

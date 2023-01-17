@@ -173,6 +173,54 @@ public class MDMSService {
     private StringBuilder getMdmsSearchUrl() {
         return new StringBuilder().append(config.getMdmsHost()).append(config.getMdmsSearchEndpoint());
     }
+    
+    public Object mDMSCallForBankGuarantee(RequestInfo requestInfo,String tenantId){
+        MdmsCriteriaReq mdmsCriteriaReq = getMDMSRequestForBankGuarantee(requestInfo,tenantId);
+        StringBuilder url = getMdmsSearchUrl();
+        Object result = serviceRequestRepository.fetchResult(url , mdmsCriteriaReq);
+        return result;
+    }
+    
+    /**
+     * Creates MDMS request
+     * @param requestInfo The RequestInfo of the calculationRequest
+     * @param tenantId The tenantId of the tradeLicense
+     * @return MDMSCriteria Request
+     */
+    private MdmsCriteriaReq getMDMSRequestForBankGuarantee(RequestInfo requestInfo, String tenantId) {
+
+        // master details for TL module
+        //List<MasterDetail> fyMasterDetails = new ArrayList<>();
+        // filter to only get code field from master data
+
+        //final String filterCodeForUom = "$.[?(@.active==true)]";
+        //final String serviceCode = "$.[?(@.service=='TL.RENEWAL')]";
+
+        //fyMasterDetails.add(MasterDetail.builder().name(TLCalculatorConstants.MDMS_FINANCIALYEAR).filter(filterCodeForUom).build());
+        //ModuleDetail fyModuleDtls = ModuleDetail.builder().masterDetails(fyMasterDetails)
+        //       .moduleName(TLCalculatorConstants.MDMS_EGF_MASTER).build();
+
+        //List<MasterDetail> tlMasterDetails = new ArrayList<>();
+        //tlMasterDetails.add(MasterDetail.builder().name(TLCalculatorConstants.MDMS_CALCULATIONTYPE)
+        //        .filter(filterCodeForUom).build());
+        //ModuleDetail tlModuleDtls = ModuleDetail.builder().masterDetails(tlMasterDetails)
+        //        .moduleName(TLCalculatorConstants.MDMS_TRADELICENSE).build();
+                
+        List<MasterDetail> purposeWiseIdwRatesMaster = new ArrayList<>();
+        purposeWiseIdwRatesMaster.add(MasterDetail.builder().name(TLCalculatorConstants.MDMS_PURPOSEWISE_IDW_RATES).build());
+        ModuleDetail purposeWiseIdwRatesModule = ModuleDetail.builder().masterDetails(purposeWiseIdwRatesMaster)
+                .moduleName(TLCalculatorConstants.MDMS_MODULE_COMMON_MASTERS).build();        
+
+        List<ModuleDetail> moduleDetails = new ArrayList<>();
+        //moduleDetails.add(fyModuleDtls);
+        //moduleDetails.add(tlModuleDtls);
+        moduleDetails.add(purposeWiseIdwRatesModule);
+
+        MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(moduleDetails).tenantId(tenantId)
+                .build();
+
+        return MdmsCriteriaReq.builder().requestInfo(requestInfo).mdmsCriteria(mdmsCriteria).build();
+    }
 
 
 

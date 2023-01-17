@@ -71,6 +71,14 @@ public class TLCalculatorConstants {
     public static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
 
     public static final Long TIMEZONE_OFFSET = 19800000l;
+    
+    //Bank Guarantee master
+	public static final String MDMS_MODULE_COMMON_MASTERS = "common-masters";
+	public static final String MDMS_PURPOSEWISE_IDW_RATES = "Purpose";
+	public static final String MDMS_PURPOSE_PATH = "$.MdmsRes.common-masters.Purpose[?(@.purposeCode==\"{$purposeCode}\")]";
+	public static final BigDecimal IDW_COMMERCIAL_COMPONENT_AREA_FACTOR = new BigDecimal("0.04");
+	public static final BigDecimal IDW_PLOTTED_COMPONENT_AREA_FACTOR = new BigDecimal("0.96");
+	public static final BigDecimal LAKH_TO_RUPEES_CONVERSION_FACTOR = new BigDecimal("100000");
 
 
 }

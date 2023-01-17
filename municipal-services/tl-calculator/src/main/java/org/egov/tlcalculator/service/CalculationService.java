@@ -4,6 +4,8 @@ import static org.egov.tlcalculator.utils.TLCalculatorConstants.businessService_
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +25,11 @@ import org.egov.tlcalculator.web.models.BillingSlabSearchCriteria;
 import org.egov.tlcalculator.web.models.Calculation;
 import org.egov.tlcalculator.web.models.CalculationReq;
 import org.egov.tlcalculator.web.models.CalculationRes;
+import org.egov.tlcalculator.web.models.CalculatorRequest;
 import org.egov.tlcalculator.web.models.CalulationCriteria;
 import org.egov.tlcalculator.web.models.FeeAndBillingSlabIds;
+import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationCriteria;
+import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationResponse;
 import org.egov.tlcalculator.web.models.demand.Category;
 import org.egov.tlcalculator.web.models.demand.TaxHeadEstimate;
 import org.egov.tlcalculator.web.models.enums.CalculationType;
@@ -35,6 +40,11 @@ import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 
 import io.swagger.annotations.License;
 import lombok.extern.slf4j.Slf4j;
@@ -75,6 +85,9 @@ public class CalculationService {
 
 	@Autowired
 	CalculatorImpl calculatorImpl;
+	
+	@Autowired
+	ObjectMapper objectMapper;
 
 	/**
 	 * Calculates tax estimates and creates demand
@@ -192,6 +205,102 @@ public class CalculationService {
 
 		}
 		return calculations;
+	}
+	
+	public BankGuaranteeCalculationResponse getEstimateForBankGuarantee(
+			BankGuaranteeCalculationCriteria bankGuaranteeCalculationCriteria) {
+		try {
+			log.info("inside method getEstimateForBankGuarantee with payload:"
+					+ objectMapper.writeValueAsString(bankGuaranteeCalculationCriteria));
+		} catch (JsonProcessingException e) {
+		}
+		if ((StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getPotentialZone())
+				|| StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getPurposeCode())
+				|| StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getTotalLandSize())
+				|| StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getApplicationNumber()))
+				&& StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getLoiNumber())) {
+			throw new CustomException("either send loiNumber or send all parameters mandatorily",
+					"either send loiNumber or send all parameters mandatorily");
+		}
+		if (!(StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getPotentialZone())
+				&& StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getPurposeCode())
+				&& StringUtils.isEmpty(bankGuaranteeCalculationCriteria.getTotalLandSize()))) {
+			log.info("calculating with the parameters");
+			CalulationCriteria calulationCriteria = CalulationCriteria.builder()
+					.tenantId(bankGuaranteeCalculationCriteria.getTenantId()).build();
+			CalculatorRequest calculatorRequest = CalculatorRequest.builder()
+					.applicationNumber(bankGuaranteeCalculationCriteria.getApplicationNumber())
+					.totalLandSize(bankGuaranteeCalculationCriteria.getTotalLandSize().toString())
+					.potenialZone(bankGuaranteeCalculationCriteria.getPotentialZone())
+					.purposeCode(bankGuaranteeCalculationCriteria.getPurposeCode()).build();
+			List<CalulationCriteria> calculationCriteriaList = new ArrayList<>();
+			calculationCriteriaList.add(calulationCriteria);
+			CalculationReq calculationReq = CalculationReq.builder().calculatorRequest(calculatorRequest)
+					.requestInfo(bankGuaranteeCalculationCriteria.getRequestInfo())
+					.calulationCriteria(calculationCriteriaList).build();
+			List<Calculation> calculations = calculate(calculationReq, true);
+			if (CollectionUtils.isEmpty(calculations)) {
+				throw new CustomException("no calculations found for given criteria",
+						"no calculations found for given criteria");
+			}
+			Double edcCharges = calculations.get(0).getTradeTypeBillingIds().getExternalDevelopmentCharges();
+			BigDecimal bankGuaranteeForEdc = new BigDecimal(0.25 * edcCharges);
+			Object mdmsData = fetchMasterDataForBankGuaranteeAmountCalculations(bankGuaranteeCalculationCriteria);
+
+			// IDW calculation--
+			String purposeMdmsPath = TLCalculatorConstants.MDMS_PURPOSE_PATH;
+			purposeMdmsPath = purposeMdmsPath.replace("{$purposeCode}",
+					bankGuaranteeCalculationCriteria.getPurposeCode());
+
+			List purposeData = JsonPath.read(mdmsData, purposeMdmsPath);
+			BigDecimal iDWPerAcreInLakhsForPlottedComponent = BigDecimal.ZERO;
+			BigDecimal iDWPerAcreInLakhsForCommercialComponent = BigDecimal.ZERO;
+			if (purposeData.size() == 0) {
+				log.error("purpose wise IDW not found for this purpose in master data");
+				BankGuaranteeCalculationResponse bankGuaranteeCalculationResponse = BankGuaranteeCalculationResponse
+						.builder().bankGuaranteeForEDC(bankGuaranteeForEdc).bankGuaranteeForIDW(BigDecimal.ZERO)
+						.build();
+				// TODO:
+			}
+			// Assumption: only one purpose detail found for purpose code in master data-
+			HashMap<String, Object> map = (HashMap<String, Object>) purposeData.get(0);
+			try {
+				iDWPerAcreInLakhsForPlottedComponent = new BigDecimal(
+						String.valueOf(map.get("IDWPerAcreInLakhsForPlottedComponent")));
+				iDWPerAcreInLakhsForCommercialComponent = new BigDecimal(
+						String.valueOf(map.get("IDWPerAcreInLakhsForCommercialComponent")));
+			} catch (Exception ex) {
+				log.error("Exception while parsing IDW per acre rates from master data");
+			}
+			BigDecimal iDWAmountForCommercialComponent = iDWPerAcreInLakhsForCommercialComponent
+					.multiply(TLCalculatorConstants.IDW_COMMERCIAL_COMPONENT_AREA_FACTOR)
+					.multiply(bankGuaranteeCalculationCriteria.getTotalLandSize())
+					.multiply(TLCalculatorConstants.LAKH_TO_RUPEES_CONVERSION_FACTOR);
+			BigDecimal iDWAmountForPlottedComponent = iDWPerAcreInLakhsForPlottedComponent
+					.multiply(TLCalculatorConstants.IDW_PLOTTED_COMPONENT_AREA_FACTOR)
+					.multiply(bankGuaranteeCalculationCriteria.getTotalLandSize())
+					.multiply(TLCalculatorConstants.LAKH_TO_RUPEES_CONVERSION_FACTOR);
+			BigDecimal totalIDWAmount = iDWAmountForCommercialComponent.add(iDWAmountForPlottedComponent);
+			BankGuaranteeCalculationResponse bankGuaranteeCalculationResponse = BankGuaranteeCalculationResponse
+					.builder().bankGuaranteeForEDC(bankGuaranteeForEdc).bankGuaranteeForIDW(totalIDWAmount).build();
+			return bankGuaranteeCalculationResponse;
+
+		} else {
+			log.info("calculating with the loiNumber");
+			// TODO: implement loiNumber based calculation once loiNumber becomes mandatory
+			return null;
+		}
+	}
+	
+	private void calculateEdcBankGuarantee(BigDecimal totalLandSizeInSqMtrs, String potentialZone, String purposeCode ) {
+		
+	}
+	
+	private Object fetchMasterDataForBankGuaranteeAmountCalculations(
+			BankGuaranteeCalculationCriteria bankGuaranteeCalculationCriteria) {
+		Object mdmsData = mdmsService.mDMSCallForBankGuarantee(bankGuaranteeCalculationCriteria.getRequestInfo(),
+				bankGuaranteeCalculationCriteria.getTenantId());
+		return mdmsData;
 	}
 
 	/**
