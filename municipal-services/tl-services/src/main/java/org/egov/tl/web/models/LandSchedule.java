@@ -127,8 +127,8 @@ public class LandSchedule {
 	private String revisedLansSchedule;
 	@JsonProperty("areaOfParentLicence")
 	private String areaOfParentLicence;
-	
-	//-----addon---------
+
+	// -----addon---------
 	@JsonProperty("reraRegistered")
 	private String reraRegistered;
 	@JsonProperty("reraDocUpload")
@@ -137,6 +137,12 @@ public class LandSchedule {
 	private String reraNonRegistrationDoc;
 	@JsonProperty("LandScheduleDetails")
 	private List<LandScheduleDetails> landScheduleDetails;
-
-
+	@JsonProperty("anyOther")
+	private String anyOther;
+	@JsonProperty("anyOtherRemark")
+	private String anyOtherRemark;
+	@JsonProperty("none")
+	private String none;
+	@JsonProperty("noneRemark")
+	private String noneRemark;
 }

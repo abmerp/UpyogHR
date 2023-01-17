@@ -6,117 +6,164 @@
         {
          "devPlan": "AD Badri",
          "devPlanCode": "ADB",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Agroha",
          "devPlanCode": "AGR",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
+
         },
         {
          "devPlan": "ALIPUR",
          "devPlanCode": "ALI",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Ambala",
          "devPlanCode": "AMB",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "ASSANDH",
          "devPlanCode": "ASS",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Arogya Dham Badsa",
          "devPlanCode": "BAD",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "BAHADURGARH",
          "devPlanCode": "BAH",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "BAWAL",
          "devPlanCode": "BAW",
-         "potentialZone": "Medium Potential"
+         "potentialZone": "Medium Potential",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "BERI",
          "devPlanCode": "BER",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "BHIWANI",
          "devPlanCode": "BHI",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Bhuna",
          "devPlanCode": "BHU",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "DADRI",
          "devPlanCode": "CAD",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Dabwali",
          "devPlanCode": "DAB",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "DADRI",
          "devPlanCode": "DAD",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "DHARUHERA",
          "devPlanCode": "DHA",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Dadupur Headworks",
          "devPlanCode": "DPR",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "FARIDABAD",
          "devPlanCode": "FAR",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "Fatehabad",
          "devPlanCode": "FAT",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Ferozpur Jhirka",
          "devPlanCode": "FER",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "FARUKHNAGAR",
          "devPlanCode": "FRK",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Ganaur",
          "devPlanCode": "GAN",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "GHARAUNDA",
          "devPlanCode": "GHA",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "GOHANA",
          "devPlanCode": "GOH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "GURGAON-MANESAR",
@@ -126,67 +173,93 @@
         {
          "devPlan": "GWAL PAHARI",
          "devPlanCode": "GWA",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "HANSI",
          "devPlanCode": "HAN",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Hathin",
          "devPlanCode": "HAT",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "HISSAR",
          "devPlanCode": "HIS",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "HODAL",
          "devPlanCode": "HOD",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "INDRI",
          "devPlanCode": "IND",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Jhajjar",
          "devPlanCode": "JHA",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Jind",
          "devPlanCode": "JIN",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Kaithal",
          "devPlanCode": "KAI",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Kalanaur",
          "devPlanCode": "KAL",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Kapal Mochan",
          "devPlanCode": "KAP",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "KARNAL",
          "devPlanCode": "KAR",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Kharkhauda",
          "devPlanCode": "KHA",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "KMP Global Corridor",
@@ -195,12 +268,16 @@
         {
          "devPlan": "KOT BEHLA URBAN COMPLEX",
          "devPlanCode": "KOT",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "Kurukshetra",
          "devPlanCode": "KUR",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Ladwa",
@@ -210,52 +287,72 @@
         {
          "devPlan": "Madlauda",
          "devPlanCode": "MAD",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "MAHENDRA GARH",
          "devPlanCode": "MAH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "MANGAR",
          "devPlanCode": "MAN",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Mayyar",
          "devPlanCode": "MAY",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Manesar-Bawal Investment Region (MBIR)",
          "devPlanCode": "MBI",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Meham",
          "devPlanCode": "MEH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SRI MATA MANSA DEVI URBAN COMPLEX",
          "devPlanCode": "MSD",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "NA",
          "devPlanCode": "NA",
-         "potentialZone": "Low Potential"
+         "potentialZone": "Low Potential",
+         "code": "LOW2",
+          "isActive": 1
         },
         {
          "devPlan": "Not Applicable",
          "devPlanCode": "NAJ",
-         "potentialZone": "Low Potential"
+         "potentialZone": "Low Potential",
+         "code": "LOW2",
+          "isActive": 1
         },
         {
          "devPlan": "NARNAUL",
          "devPlanCode": "NAN",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "NA",
@@ -264,122 +361,170 @@
         {
          "devPlan": "Narwana",
          "devPlanCode": "NAR",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "NILOKHERI AND TARAORI",
          "devPlanCode": "NIL",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Naraingarh",
          "devPlanCode": "NRH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "NUH",
          "devPlanCode": "NUH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "PALWAL",
          "devPlanCode": "PAL",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Panipat",
          "devPlanCode": "PAN",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "PATAUDI",
          "devPlanCode": "PAT",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Pehowa",
          "devPlanCode": "PEH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "PINJORE",
          "devPlanCode": "PIN",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "PANCHKULA EXTENSION",
          "devPlanCode": "PKE",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "PANCHKULA INTERIM MASTER PLAN",
          "devPlanCode": "PKL",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "PRITHLA",
          "devPlanCode": "PRI",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Raipur Rani",
          "devPlanCode": "RAI",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "RATIA",
          "devPlanCode": "RAT",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "REWARI",
          "devPlanCode": "REW",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Rohtak",
          "devPlanCode": "ROH",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         },
         {
          "devPlan": "Safidon",
          "devPlanCode": "SAF",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SAHA",
          "devPlanCode": "SAH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Samalkha",
          "devPlanCode": "SAM",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SAMPLA",
          "devPlanCode": "SAP",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SHAHABAD",
          "devPlanCode": "SHA",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SOHNA IN MEWAT",
          "devPlanCode": "SHM",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SIRSA",
          "devPlanCode": "SIR",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SAMPLA in Jhajjar",
          "devPlanCode": "SMP",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "SOHNA",
@@ -389,27 +534,37 @@
         {
          "devPlan": "Sonipat",
          "devPlanCode": "SON",
-         "potentialZone": "High"
+         "potentialZone": "High",
+         "code": "HIG1",
+          "isActive": 1
         },
         {
          "devPlan": "TALWANDI-RANA",
          "devPlanCode": "TAL",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "TAORU",
          "devPlanCode": "TAO",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "TOHANA",
          "devPlanCode": "TOH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Uchana",
          "devPlanCode": "UCH",
-         "potentialZone": "Low"
+         "potentialZone": "Low",
+         "code": "LOW",
+         "isActive": 1
         },
         {
          "devPlan": "Uklana",
@@ -418,7 +573,9 @@
         {
          "devPlan": "Yamunanagar-Jagdhari",
          "devPlanCode": "YAM",
-         "potentialZone": "Medium"
+         "potentialZone": "Medium",
+         "code": "MDM",
+          "isActive": 1
         }
        ]
       }
