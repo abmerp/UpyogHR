@@ -12,15 +12,17 @@ public class AppliedLandDetails {
 	
 	@JsonProperty("district")
 	private String district;
+	
 	@JsonProperty("potential")
 	private String potential;
-	@JsonProperty("zone")
 	
+	@JsonProperty("zone")	
 	private String zone;
+	
 	@JsonProperty("developmentPlan")
 	private String developmentPlan;
-	@JsonProperty("sector")
 	
+	@JsonProperty("sector")	
 	private String sector;
 	
 	private String isChange;

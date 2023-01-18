@@ -24,7 +24,6 @@ import org.egov.tl.producer.Producer;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
-import org.egov.tl.web.models.BankGuaranteeCalculationCriteria;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
