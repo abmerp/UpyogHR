@@ -127,6 +127,30 @@ public class LandSchedule {
 	private String revisedLansSchedule;
 	@JsonProperty("areaOfParentLicence")
 	private String areaOfParentLicence;
+	private String minimumApproachFour;
+	private String minimumApproachEleven;
+	private String alreadyConstructedSectorad;
+	private String joiningOwnLand;
+	private String applicantHasDonated;
+	private String giftDeedHibbanama;
+	private String adjoiningOthersLand;
+	private String landOwnerDonated;
+	private String constructedRowWidth;
+	private String irrevocableConsent;
+	private String uploadRrrevocableConsent;
+	private String approachFromProposedSector;
+	private String sectorAndDevelopmentWidth;
+	private String whetherAcquired;
+	private String whetherConstructed;
+	private String serviceSectorRoadAcquired;
+	private String serviceSectorRoadConstructed;
+	private String approachFromInternalCirculation;
+	private String internalAndSectoralWidth;
+	private String parentLicenceApproach;
+	private String availableExistingApproach;
+	private String availableExistingApproachDoc;
+	private String whetherAcquiredForInternalCirculation;
+	private String whetherConstructedForInternalCirculation;
 
 	// -----addon---------
 	@JsonProperty("reraRegistered")
