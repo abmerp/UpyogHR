@@ -85,69 +85,74 @@ public class BankGuaranteeService {
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
 	//@Autowired ReplaceBankGuaranteeRepo replaceBankGuaranteeRepo;
 
-	public NewBankGuarantee createNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
+	public List<NewBankGuarantee> createNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
 
-		// populate audit details-
-		AuditDetails auditDetails = tradeUtil
-				.getAuditDetails(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), true);
-		newBankGuaranteeContract.getNewBankGuaranteeRequest().setAuditDetails(auditDetails);
+		List<NewBankGuarantee> insertedData = new ArrayList<>();
+		for (NewBankGuaranteeRequest newBankGuaranteeRequest : newBankGuaranteeContract.getNewBankGuaranteeRequest()) {
+			// populate audit details-
+			AuditDetails auditDetails = tradeUtil
+					.getAuditDetails(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), true);
+			newBankGuaranteeRequest.setAuditDetails(auditDetails);
 
-		if (!StringUtils.isEmpty(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
-				&& newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction()
-						.equalsIgnoreCase(BG_STATUS_PRE_SUBMIT)) {
-			// if this is for creation of entries in table without workflow involvement-
-			// populate applicationNumber from idgen-
-			List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
-					newBankGuaranteeContract.getNewBankGuaranteeRequest().getTenantId(),
-					tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
-					tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
-			String applicationNo = idGenIds.get(0);
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setApplicationNumber(applicationNo);
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setStatus(null);
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setId(UUID.randomUUID().toString());
-			NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeContract.getNewBankGuaranteeRequest().toBuilder();
-			newBankGuaranteeRepo.save(newBankGuaranteeContract);
-			return newBankGuaranteeEntity;
-		} else {
-			// if this is normal create with workflow involvement-
-			List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
-					newBankGuaranteeContract);
-			// set INITIATED status as not expected from UI-
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setStatus(BG_STATUS_INITIATED);
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setWorkflowAction(BG_ACTION_INITIATE);
-			validateValidityFormat(newBankGuaranteeContract.getNewBankGuaranteeRequest().getValidity());
-			NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeContract.getNewBankGuaranteeRequest().toBuilder();
-			enrichAuditDetailsOnUpdate(newBankGuaranteeContract);
-			// call workflow to insert processinstance-
-			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(
-					newBankGuaranteeContract);
-			workflowIntegrator.callWorkFlow(processInstanceRequest);
-			newBankGuaranteeRepo.update(newBankGuaranteeContract);
-			return newBankGuaranteeEntity;
+			if (!StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
+					&& newBankGuaranteeRequest.getAction()
+							.equalsIgnoreCase(BG_STATUS_PRE_SUBMIT)) {
+				// if this is for creation of entries in table without workflow involvement-
+				// populate applicationNumber from idgen-
+				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
+						newBankGuaranteeRequest.getTenantId(),
+						tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
+				String applicationNo = idGenIds.get(0);
+				newBankGuaranteeRequest.setApplicationNumber(applicationNo);
+				newBankGuaranteeRequest.setStatus(null);
+				newBankGuaranteeRequest.setId(UUID.randomUUID().toString());
+				NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeRequest.toBuilder();
+				newBankGuaranteeRepo.save(newBankGuaranteeContract);
+				insertedData.add(newBankGuaranteeEntity);
+			} else {
+				// if this is normal create with workflow involvement-
+				List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
+						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+				// set INITIATED status as not expected from UI-
+				newBankGuaranteeRequest.setStatus(BG_STATUS_INITIATED);
+				newBankGuaranteeRequest.setAction(BG_ACTION_INITIATE);
+				validateValidityFormat(newBankGuaranteeRequest.getValidity());
+				NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeRequest.toBuilder();
+				enrichAuditDetailsOnUpdate(newBankGuaranteeRequest,newBankGuaranteeContract.getRequestInfo());
+				// call workflow to insert processinstance-
+				TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(
+						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+				workflowIntegrator.callWorkFlow(processInstanceRequest);
+				newBankGuaranteeRepo.update(newBankGuaranteeContract);
+				insertedData.add(newBankGuaranteeEntity);
+			}
 		}
+		return insertedData;
+
 	}
 	
-	private TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeContract newBankGuaranteeContract) {
+	private TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
 		List<TradeLicense> licenses = new ArrayList<>();
 		TradeLicense tradeLicense = new TradeLicense();
 
 		tradeLicense.setBusinessService(BUSINESSSERVICE_BG_NEW);
-		tradeLicense.setAction(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction());
-		tradeLicense.setAssignee(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAssignee());
-		tradeLicense.setApplicationNumber(newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber());
+		tradeLicense.setAction(newBankGuaranteeRequest.getAction());
+		tradeLicense.setAssignee(newBankGuaranteeRequest.getAssignee());
+		tradeLicense.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
 		tradeLicense.setWorkflowCode(BUSINESSSERVICE_BG_NEW);// workflowname
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 		tradeLicenseDetail.setTradeType(BUSINESSSERVICE_BG_NEW);
 		tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
-		tradeLicense.setComment(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowComment());
-		tradeLicense.setWfDocuments(null);
+		tradeLicense.setComment(newBankGuaranteeRequest.getComment());
+		tradeLicense.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		tradeLicense.setTenantId("hr");
 		tradeLicense.setBusinessService(BUSINESSSERVICE_BG_NEW);
 
 		licenses.add(tradeLicense);
 		tradeLicenseRequest.setLicenses(licenses);
-		tradeLicenseRequest.setRequestInfo(newBankGuaranteeContract.getRequestInfo());
+		tradeLicenseRequest.setRequestInfo(requestInfo);
 		return tradeLicenseRequest;
 	}
 	
@@ -194,86 +199,93 @@ public class BankGuaranteeService {
 		}
 	}
 	
-	public NewBankGuarantee updateNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
-		List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(newBankGuaranteeContract);
-		String currentStatus = newBankGuaranteeSearchResult.get(0).getStatus();
-		BusinessService workflow = workflowService.getBusinessService(BUSINESSSERVICE_TENANTID,
-				newBankGuaranteeContract.getRequestInfo(), BUSINESSSERVICE_BG_NEW);
-		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, newBankGuaranteeContract);
-		validateExtendOrRelease(newBankGuaranteeContract, currentStatus,
-				newBankGuaranteeSearchResult.get(0).getBankGuaranteeStatus());
-		setValidBgStatusOnApproval(newBankGuaranteeContract);
-		setBgStatusOnRelease(newBankGuaranteeContract);
-		enrichAuditDetailsOnUpdate(newBankGuaranteeContract);
+	public List<NewBankGuarantee> updateNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
+		List<NewBankGuarantee> updatedData = new ArrayList<>();
+		for(NewBankGuaranteeRequest newBankGuaranteeRequest:newBankGuaranteeContract.getNewBankGuaranteeRequest()) {
+			List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
+					newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+			String currentStatus = newBankGuaranteeSearchResult.get(0).getStatus();
+			BusinessService workflow = workflowService.getBusinessService(BUSINESSSERVICE_TENANTID,
+					newBankGuaranteeContract.getRequestInfo(), BUSINESSSERVICE_BG_NEW);
+			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, newBankGuaranteeRequest,
+					newBankGuaranteeContract.getRequestInfo());
+			validateExtendOrRelease(newBankGuaranteeRequest, currentStatus,
+					newBankGuaranteeSearchResult.get(0).getBankGuaranteeStatus());
+			setValidBgStatusOnApproval(newBankGuaranteeRequest);
+			setBgStatusOnRelease(newBankGuaranteeRequest);
+			enrichAuditDetailsOnUpdate(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
 
-		// call workflow to insert processinstance-
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeContract);
-		workflowIntegrator.callWorkFlow(processInstanceRequest);
+			// call workflow to insert processinstance-
+			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest,
+					newBankGuaranteeContract.getRequestInfo());
+			workflowIntegrator.callWorkFlow(processInstanceRequest);
 
-		// push to update-
-		newBankGuaranteeRepo.update(newBankGuaranteeContract);
-		NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().toBuilder();
-		return newBankGuarantee;
+			// push to update-
+			newBankGuaranteeRepo.update(newBankGuaranteeContract);
+			NewBankGuarantee newBankGuarantee = newBankGuaranteeRequest.toBuilder();
+			updatedData.add(newBankGuarantee);
+		}
+		return updatedData;
+		
 	}
 	
-	private List<NewBankGuarantee> validateAndFetchFromDbForUpdate(NewBankGuaranteeContract newBankGuaranteeContract) {
-		if (Objects.isNull(newBankGuaranteeContract)
-				|| Objects.isNull(newBankGuaranteeContract.getNewBankGuaranteeRequest())) {
+	private List<NewBankGuarantee> validateAndFetchFromDbForUpdate(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
+		if (Objects.isNull(newBankGuaranteeRequest)) {
 			throw new CustomException("NewBankGuaranteeRequest must not be null",
 					"NewBankGuaranteeRequest must not be null");
 		}
-		if (StringUtils.isEmpty(newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber())) {
+		if (StringUtils.isEmpty(newBankGuaranteeRequest.getApplicationNumber())) {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
 		List<String> applicationNos = new ArrayList<>();
-		applicationNos.add(newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber());
+		applicationNos.add(newBankGuaranteeRequest.getApplicationNumber());
 		List<NewBankGuarantee> newBankGuaranteeSearchResult = searchNewBankGuarantee(
-				newBankGuaranteeContract.getRequestInfo(), applicationNos, null, null);
+				requestInfo, applicationNos, null, null);
 		if (CollectionUtils.isEmpty(newBankGuaranteeSearchResult) || newBankGuaranteeSearchResult.size() > 1) {
 			throw new CustomException(
 					"Found none or multiple new bank guarantee applications with applicationNumber:"
-							+ newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber(),
+							+ newBankGuaranteeRequest.getApplicationNumber(),
 					"Found none or multiple new bank guarantee applications with applicationNumber:"
-							+ newBankGuaranteeContract.getNewBankGuaranteeRequest().getApplicationNumber());
+							+ newBankGuaranteeRequest.getApplicationNumber());
 		}
 		return newBankGuaranteeSearchResult;
 	}
 	
-	private void validateExtendOrRelease(NewBankGuaranteeContract newBankGuaranteeContract, String currentStatus,
+	private void validateExtendOrRelease(NewBankGuaranteeRequest newBankGuaranteeRequest, String currentStatus,
 			String currentBgStatus) {
-		if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+		if (Objects.nonNull(newBankGuaranteeRequest.getAction())
 				&& BG_NEW_ACTION_EXTEND
-						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+						.equals(newBankGuaranteeRequest.getAction())
 				&& !(currentStatus.equals(BG_NEW_STATUS_APPROVED) && currentBgStatus.equals(BG_STATUS_VALID))) {
 			throw new CustomException("Cannot extend the Bank guarantee as it is not valid/approved",
 					"Cannot extend the Bank guarantee as it is not valid/approved");
-		} else if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+		} else if (Objects.nonNull(newBankGuaranteeRequest.getAction())
 				&& BG_NEW_ACTION_RELEASE
-						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+						.equals(newBankGuaranteeRequest.getAction())
 				&& !(currentStatus.equals(BG_NEW_STATUS_APPROVED) && currentBgStatus.equals(BG_STATUS_VALID))) {
 			throw new CustomException("Cannot release the Bank guarantee as it is not valid/approved",
 					"Cannot release the Bank guarantee as it is not valid/approved");
 		}
 	}
 	
-	private void setValidBgStatusOnApproval(NewBankGuaranteeContract newBankGuaranteeContract) {
-		if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+	private void setValidBgStatusOnApproval(NewBankGuaranteeRequest newBankGuaranteeRequest) {
+		if (Objects.nonNull(newBankGuaranteeRequest.getAction())
 				&& BG_NEW_ACTION_APPROVE
-						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())) {
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setBankGuaranteeStatus(BG_STATUS_VALID);
+						.equals(newBankGuaranteeRequest.getAction())) {
+			newBankGuaranteeRequest.setBankGuaranteeStatus(BG_STATUS_VALID);
 		}
 	}
 	
-	private void setBgStatusOnRelease(NewBankGuaranteeContract newBankGuaranteeContract) {
-		if (Objects.nonNull(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())
+	private void setBgStatusOnRelease(NewBankGuaranteeRequest newBankGuaranteeRequest) {
+		if (Objects.nonNull(newBankGuaranteeRequest.getAction())
 				&& BG_NEW_ACTION_RELEASE
-						.equals(newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction())) {
-			newBankGuaranteeContract.getNewBankGuaranteeRequest().setBankGuaranteeStatus(BG_STATUS_RELEASED);
+						.equals(newBankGuaranteeRequest.getAction())) {
+			newBankGuaranteeRequest.setBankGuaranteeStatus(BG_STATUS_RELEASED);
 		}
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			NewBankGuaranteeContract newBankGuaranteeContract) {
+			NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
@@ -283,7 +295,7 @@ public class BankGuaranteeService {
 		}
 		State currentWorkflowState = currentWorkflowStateOptional.get();
 		List<Action> permissibleActions = currentWorkflowState.getActions();
-		String currentActionFromRequest = newBankGuaranteeContract.getNewBankGuaranteeRequest().getWorkflowAction();
+		String currentActionFromRequest = newBankGuaranteeRequest.getAction();
 		Optional<Action> currentWorkflowActionOptional = permissibleActions.stream()
 				.filter(action -> action.getAction().equals(currentActionFromRequest)).findFirst();
 		if (!currentWorkflowActionOptional.isPresent()) {
@@ -295,7 +307,7 @@ public class BankGuaranteeService {
 		Action currentWorkflowAction = currentWorkflowActionOptional.get();
 		// validate roles:
 		List<String> workflowPermissibleRoles = currentWorkflowAction.getRoles();
-		List<Role> rolesFromUserInfo = newBankGuaranteeContract.getRequestInfo().getUserInfo().getRoles();
+		List<Role> rolesFromUserInfo = requestInfo.getUserInfo().getRoles();
 		List<String> currentUserRoles = rolesFromUserInfo.stream().map(role -> role.getCode())
 				.collect(Collectors.toList());
 		boolean isAuthorizedActionByRole = org.apache.commons.collections.CollectionUtils.containsAny(currentUserRoles,
@@ -310,17 +322,17 @@ public class BankGuaranteeService {
 		State nextState = nextStateOptional.get();
 		String nextStateName = nextState.getState();
 		// set next state as status-
-		newBankGuaranteeContract.getNewBankGuaranteeRequest().setStatus(nextStateName);
+		newBankGuaranteeRequest.setStatus(nextStateName);
 	}
 
-	private void enrichAuditDetailsOnUpdate(NewBankGuaranteeContract newBankGuaranteeContract) {
+	private void enrichAuditDetailsOnUpdate(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
 		AuditDetails auditDetails = tradeUtil
-				.getAuditDetails(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), false);
+				.getAuditDetails(requestInfo.getUserInfo().getUuid(), false);
 		auditDetails
-				.setCreatedBy(newBankGuaranteeContract.getNewBankGuaranteeRequest().getAuditDetails().getCreatedBy());
+				.setCreatedBy(newBankGuaranteeRequest.getAuditDetails().getCreatedBy());
 		auditDetails.setCreatedTime(
-				newBankGuaranteeContract.getNewBankGuaranteeRequest().getAuditDetails().getCreatedTime());
-		newBankGuaranteeContract.getNewBankGuaranteeRequest().setAuditDetails(auditDetails);
+				newBankGuaranteeRequest.getAuditDetails().getCreatedTime());
+		newBankGuaranteeRequest.setAuditDetails(auditDetails);
 	}
 	
 	

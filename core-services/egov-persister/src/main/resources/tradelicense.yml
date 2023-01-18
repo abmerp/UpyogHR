@@ -844,79 +844,79 @@ serviceMaps:
    isTransaction: true
    queryMaps:
        - query: INSERT INTO eg_tl_bank_guarantee(id,application_number, status,loi_number,bg_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, bank_Guarantee_Status, licence_Number, hardcopy_Submitted, full_Certificate, partial_Certificate, additional_Documents, hardcopy_Submitted_Document, existing_Bg_Number, claim_Period, origin_Country, tcp_submission_received, indian_bank_advised_certificate, release_bank_guarantee) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-         basePath: NewBankGuaranteeRequest
+         basePath: NewBankGuaranteeRequest.*
          jsonMaps:
-          - jsonPath: $.NewBankGuaranteeRequest.id
+          - jsonPath: $.NewBankGuaranteeRequest.*.id
 
-          - jsonPath: $.NewBankGuaranteeRequest.applicationNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.applicationNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.status
+          - jsonPath: $.NewBankGuaranteeRequest.*.status
 
-          - jsonPath: $.NewBankGuaranteeRequest.loiNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.loiNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.bgNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.bgNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
+          - jsonPath: $.NewBankGuaranteeRequest.*.typeOfBg
 
-          - jsonPath: $.NewBankGuaranteeRequest.uploadBg
+          - jsonPath: $.NewBankGuaranteeRequest.*.uploadBg
 
-          - jsonPath: $.NewBankGuaranteeRequest.bankName
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankName
 
-          - jsonPath: $.NewBankGuaranteeRequest.amountInFig
+          - jsonPath: $.NewBankGuaranteeRequest.*.amountInFig
 
-          - jsonPath: $.NewBankGuaranteeRequest.amountInWords
+          - jsonPath: $.NewBankGuaranteeRequest.*.amountInWords
 
-          - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
+          - jsonPath: $.NewBankGuaranteeRequest.*.licenseApplied
 
-          - jsonPath: $.NewBankGuaranteeRequest.validity
+          - jsonPath: $.NewBankGuaranteeRequest.*.validity
 
-          - jsonPath: $.NewBankGuaranteeRequest.tenantId
+          - jsonPath: $.NewBankGuaranteeRequest.*.tenantId
 
-          - jsonPath: $.NewBankGuaranteeRequest.additionalDetails
+          - jsonPath: $.NewBankGuaranteeRequest.*.additionalDetails
             type: JSON
             dbType: JSONB
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdBy
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.createdBy
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedBy
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedBy
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdTime
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.createdTime
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedTime
 
-          - jsonPath: $.NewBankGuaranteeRequest.bankGuaranteeStatus
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankGuaranteeStatus
 
-          - jsonPath: $.NewBankGuaranteeRequest.licenceNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.licenceNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmitted
+          - jsonPath: $.NewBankGuaranteeRequest.*.hardcopySubmitted
 
-          - jsonPath: $.NewBankGuaranteeRequest.fullCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.fullCertificate
 
-          - jsonPath: $.NewBankGuaranteeRequest.partialCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.partialCertificate
 
-          - jsonPath: $.NewBankGuaranteeRequest.additionalDocuments
+          - jsonPath: $.NewBankGuaranteeRequest.*.additionalDocuments
             type: JSON
             dbType: JSONB
 
-          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmittedDocument
+          - jsonPath: $.NewBankGuaranteeRequest.*.hardcopySubmittedDocument
 
-          - jsonPath: $.NewBankGuaranteeRequest.existingBgNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.existingBgNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.claimPeriod
+          - jsonPath: $.NewBankGuaranteeRequest.*.claimPeriod
 
-          - jsonPath: $.NewBankGuaranteeRequest.originCountry
+          - jsonPath: $.NewBankGuaranteeRequest.*.originCountry
 
-          - jsonPath: $.NewBankGuaranteeRequest.tcpSubmissionReceived
+          - jsonPath: $.NewBankGuaranteeRequest.*.tcpSubmissionReceived
 
-          - jsonPath: $.NewBankGuaranteeRequest.indianBankAdvisedCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.indianBankAdvisedCertificate
 
-          - jsonPath: $.NewBankGuaranteeRequest.releaseBankGuarantee
+          - jsonPath: $.NewBankGuaranteeRequest.*.releaseBankGuarantee
 
        - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
-         basePath: NewBankGuaranteeRequest
+         basePath: NewBankGuaranteeRequest.*
          jsonMaps:
 
-           - jsonPath: $.NewBankGuaranteeRequest.id
+           - jsonPath: $.NewBankGuaranteeRequest.*.id
 
 
 
@@ -1033,80 +1033,80 @@ serviceMaps:
    queryMaps:
 
        - query: UPDATE eg_tl_bank_guarantee SET application_number=?, status=?, loi_number=?, bg_number=?, type_of_bg=?, upload_bg=?, bank_name=?, amount_In_Fig=?, amount_in_words=?, license_Applied=?, validity=?::date,tenantId=?, additionalDetails=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=?, bank_Guarantee_Status=?, licence_Number=?, hardcopy_Submitted=?, full_Certificate=?, partial_Certificate=?, additional_Documents=?, hardcopy_Submitted_Document=?, existing_Bg_Number=?, claim_Period=?, origin_Country=?, tcp_submission_received=?, indian_bank_advised_certificate=?, release_bank_guarantee=?  WHERE id=?;
-         basePath: NewBankGuaranteeRequest
+         basePath: NewBankGuaranteeRequest.*
          jsonMaps:
-          - jsonPath: $.NewBankGuaranteeRequest.applicationNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.applicationNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.status
+          - jsonPath: $.NewBankGuaranteeRequest.*.status
 
-          - jsonPath: $.NewBankGuaranteeRequest.loiNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.loiNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.bgNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.bgNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.typeOfBg
+          - jsonPath: $.NewBankGuaranteeRequest.*.typeOfBg
 
-          - jsonPath: $.NewBankGuaranteeRequest.uploadBg
+          - jsonPath: $.NewBankGuaranteeRequest.*.uploadBg
 
-          - jsonPath: $.NewBankGuaranteeRequest.bankName
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankName
 
-          - jsonPath: $.NewBankGuaranteeRequest.amountInFig
+          - jsonPath: $.NewBankGuaranteeRequest.*.amountInFig
 
-          - jsonPath: $.NewBankGuaranteeRequest.amountInWords
+          - jsonPath: $.NewBankGuaranteeRequest.*.amountInWords
 
-          - jsonPath: $.NewBankGuaranteeRequest.licenseApplied
+          - jsonPath: $.NewBankGuaranteeRequest.*.licenseApplied
 
-          - jsonPath: $.NewBankGuaranteeRequest.validity
+          - jsonPath: $.NewBankGuaranteeRequest.*.validity
 
-          - jsonPath: $.NewBankGuaranteeRequest.tenantId
+          - jsonPath: $.NewBankGuaranteeRequest.*.tenantId
 
-          - jsonPath: $.NewBankGuaranteeRequest.additionalDetails
+          - jsonPath: $.NewBankGuaranteeRequest.*.additionalDetails
             type: JSON
             dbType: JSONB
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdBy
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.createdBy
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedBy
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedBy
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.createdTime
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.createdTime
 
-          - jsonPath: $.NewBankGuaranteeRequest.auditDetails.lastModifiedTime
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedTime
 
-          - jsonPath: $.NewBankGuaranteeRequest.bankGuaranteeStatus
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankGuaranteeStatus
 
-          - jsonPath: $.NewBankGuaranteeRequest.licenceNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.licenceNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmitted
+          - jsonPath: $.NewBankGuaranteeRequest.*.hardcopySubmitted
 
-          - jsonPath: $.NewBankGuaranteeRequest.fullCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.fullCertificate
 
-          - jsonPath: $.NewBankGuaranteeRequest.partialCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.partialCertificate
 
-          - jsonPath: $.NewBankGuaranteeRequest.additionalDocuments
+          - jsonPath: $.NewBankGuaranteeRequest.*.additionalDocuments
             type: JSON
             dbType: JSONB
 
-          - jsonPath: $.NewBankGuaranteeRequest.hardcopySubmittedDocument
+          - jsonPath: $.NewBankGuaranteeRequest.*.hardcopySubmittedDocument
 
-          - jsonPath: $.NewBankGuaranteeRequest.existingBgNumber
+          - jsonPath: $.NewBankGuaranteeRequest.*.existingBgNumber
 
-          - jsonPath: $.NewBankGuaranteeRequest.claimPeriod
+          - jsonPath: $.NewBankGuaranteeRequest.*.claimPeriod
 
-          - jsonPath: $.NewBankGuaranteeRequest.originCountry
+          - jsonPath: $.NewBankGuaranteeRequest.*.originCountry
 
-          - jsonPath: $.NewBankGuaranteeRequest.tcpSubmissionReceived
+          - jsonPath: $.NewBankGuaranteeRequest.*.tcpSubmissionReceived
 
-          - jsonPath: $.NewBankGuaranteeRequest.indianBankAdvisedCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.indianBankAdvisedCertificate
 
-          - jsonPath: $.NewBankGuaranteeRequest.releaseBankGuarantee
+          - jsonPath: $.NewBankGuaranteeRequest.*.releaseBankGuarantee
 
-          - jsonPath: $.NewBankGuaranteeRequest.id
+          - jsonPath: $.NewBankGuaranteeRequest.*.id
 
 
        - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
-         basePath: NewBankGuaranteeRequest
+         basePath: NewBankGuaranteeRequest.*
          jsonMaps:
 
-           - jsonPath: $.NewBankGuaranteeRequest.id
+           - jsonPath: $.NewBankGuaranteeRequest.*.id
 
 
 

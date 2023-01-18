@@ -11,8 +11,6 @@ import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.abm.newservices.entity.RenewBankGuarantee;
 import org.egov.tl.service.BankGuaranteeService;
 import org.egov.tl.util.ResponseInfoFactory;
-//import org.egov.tl.web.models.BankGuaranteeCalculationCriteria;
-//import org.egov.tl.web.models.bankguarantee.BankGuaranteeCalculationResponse;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeResponse;
 import org.egov.tl.web.models.bankguarantee.RenewBankGuaranteeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +32,12 @@ public class BankGuaranteeController {
 	@PostMapping("/guarantee/_create")
 	public ResponseEntity<NewBankGuaranteeResponse> createNewBankGuarantee(@RequestBody NewBankGuaranteeContract newBankGuaranteeContract){
 		
-		NewBankGuarantee newBankguarantee = bankGuaranteeService.createNewBankGuarantee(newBankGuaranteeContract);
-		List<NewBankGuarantee> newBankGuaranteeList = new ArrayList<NewBankGuarantee>();
-		newBankGuaranteeList.add(newBankguarantee);
-		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder().newBankGuaranteeList(newBankGuaranteeList)
-											.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(newBankGuaranteeContract.getRequestInfo(), true))
-											.build();
+		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService
+				.createNewBankGuarantee(newBankGuaranteeContract);
+		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
+				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(newBankGuaranteeContract.getRequestInfo(), true))
+				.build();
 		
 		return new ResponseEntity<>(newBankGuaranteeResponse, HttpStatus.OK);	
 	}
@@ -63,9 +61,7 @@ public class BankGuaranteeController {
 	@PostMapping("/guarantee/_update")
 	public ResponseEntity<NewBankGuaranteeResponse> updateNewBankGuarantee(
 			@RequestBody NewBankGuaranteeContract newBankGuaranteeContract) {
-		NewBankGuarantee newBankGuarantee = bankGuaranteeService.updateNewBankGuarantee(newBankGuaranteeContract);
-		List<NewBankGuarantee> newBankGuaranteeList = new ArrayList<NewBankGuarantee>();
-		newBankGuaranteeList.add(newBankGuarantee);
+		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.updateNewBankGuarantee(newBankGuaranteeContract);
 		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
 				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(newBankGuaranteeContract.getRequestInfo(), true))
