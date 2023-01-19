@@ -12,7 +12,7 @@ import lombok.Setter;
 public class DetailsofAppliedLand {
 	
 	@JsonProperty("dgpsDetails")
-	private List<GISDeatils> dgps;
+	private List<List<GISDeatils>> dgps;
 	
 	@JsonProperty("DetailsAppliedLandPlot")
 	private DetailsAppliedLandPlot detailsAppliedLandPlot;
