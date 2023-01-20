@@ -24,6 +24,7 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ElectricPlan;
 import org.egov.tl.web.models.ElectricPlanContract;
 import org.egov.tl.web.models.ElectricPlanRequest;
+import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -85,6 +86,12 @@ public class ElectricPlanService {
 		for (ElectricPlanRequest electricPlanRequest : electricPlanRequestlist) {
 			List<String> applicationNumbers = null;
 			int count = 1;
+			List<ElectricPlanRequest> searchElectricPlan = searchElectricPlan(electricPlanRequest.getLoiNumber(), 
+					electricPlanRequest.getApplicationNumber(),requestInfo );
+			if (!CollectionUtils.isEmpty(searchElectricPlan) || searchElectricPlan.size() > 1) {
+				throw new CustomException("Already Found  or multiple Electric plan applications with LoiNumber.",
+						"Already Found or multiple Electric plan applications with LoiNumber.");
+			}
 
 			electricPlanRequest.setId(UUID.randomUUID().toString());
 			
@@ -111,7 +118,7 @@ public class ElectricPlanService {
 
 	}
 
-	public List<ElectricPlanRequest> searchElectricPlan(String loiNumber, String applicationNumber) {
+	public List<ElectricPlanRequest> searchElectricPlan(String loiNumber, String applicationNumber, RequestInfo requestInfo) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -139,6 +146,12 @@ public class ElectricPlanService {
 				preparedStatement.add(applicationNumberList);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, epRowMapper);
 			}
+		}else if ((requestInfo.getUserInfo().getUuid() != null) ){
+			builder.append("and created_by= :CB");
+			paramMap.put("CB", requestInfo.getUserInfo().getUuid());
+			preparedStatement.add(requestInfo.getUserInfo().getUuid());
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, epRowMapper);
+
 		}
 
 		return Result;
@@ -211,10 +224,10 @@ RequestInfo requestInfo = electricPlanContract.getRequestInfo();
 
 		String loiNumber = null;
 		String applicationNumber = electricPlanRequest.getApplicationNumber();
-		List<ElectricPlanRequest> searchServicePlan = searchElectricPlan(loiNumber, applicationNumber);
+		List<ElectricPlanRequest> searchServicePlan = searchElectricPlan(loiNumber, applicationNumber,requestInfo );
 		if (CollectionUtils.isEmpty(searchServicePlan) || searchServicePlan.size() > 1) {
-			throw new CustomException("Found none or multiple service plan applications with applicationNumber.",
-					"Found none or multiple service plan applications with applicationNumber.");
+			throw new CustomException("Found none or multiple Electric plan applications with applicationNumber.",
+					"Found none or multiple Electric plan applications with applicationNumber.");
 		}
 
 		String currentStatus = searchServicePlan.get(0).getStatus();

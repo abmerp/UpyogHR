@@ -116,7 +116,7 @@
                     "tenantId": "hr",
                     "sla": 86400000,
                     "state": "EP_PENDING_FROM_DEPARMENT_HQ",
-                    "applicationStatus": "EP_PENDING_FROM_DEPARMENT",
+                    "applicationStatus": "EP_PENDING_FROM_DEPARMENT_HQ",
                     "docUploadRequired": false,
                     "isStartState": false,
                     "isTerminateState": false,
@@ -133,7 +133,7 @@
                                 "DA_HQ",
                                 "JD_HQ",
                                 "SD_HQ",
-                                "CE_HQ"
+                                "EE_HQ"
                             ]
                         }
                     ]
@@ -193,10 +193,7 @@
                             "action": "REMARKS",
                             "nextState": "EP_REMARK_SENDBACK_TO_STP_HQ",
                             "roles": [
-                                "HSVP",
-                                "GMDA",
-                                "FMDA",
-                                "PMDA"
+                                "FUD"
                             ]
                         }
                     ]
