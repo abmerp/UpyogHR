@@ -477,7 +477,7 @@ public class LicenseService {
 		String saveTransaction;
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
-		if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
+		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
 
 			Map<String, Object> request = new HashMap<>();
 			request.put("consumerCode", applicationNumber);
@@ -521,7 +521,7 @@ public class LicenseService {
 					UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
-		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Sucess")) {
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
