@@ -106,7 +106,8 @@ public class StairCover extends FeatureProcess {
                     details.put(DESCRIPTION, STAIRCOVER_DESCRIPTION);
                     details.put(VERIFIED, "Verified whether stair cover height is <= 2.5 meters");
                     details.put(ACTION, "Included stair cover height(" + minHeight + ") to building height");
-                    details.put(STATUS, Result.Verify.getResultVal());
+                    details.put(STATUS, Result.Not_Accepted.getResultVal());
+//                    details.put(STATUS, Result.Verify.getResultVal());
                     scrutinyDetail.getDetail().add(details);
                     pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
                 }

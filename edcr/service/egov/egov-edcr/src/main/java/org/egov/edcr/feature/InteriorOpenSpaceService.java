@@ -56,6 +56,7 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.egov.common.entity.edcr.Block;
+import org.egov.common.entity.edcr.Building;
 import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Measurement;
 import org.egov.common.entity.edcr.Plan;
@@ -90,9 +91,9 @@ public class InteriorOpenSpaceService extends FeatureProcess {
 			scrutinyDetail.addColumnHeading(5, STATUS);
 
 			if (b.getBuilding() != null && b.getBuilding().getFloors() != null
-					&& !b.getBuilding().getFloors().isEmpty()) {
+					&& !b.getBuilding().getFloors().isEmpty() && b.getBuilding().getBuildingHeight() != null) {
 				for (Floor f : b.getBuilding().getFloors()) {
-					processVentilationShaft(pl, scrutinyDetail, f);
+					processVentilationShaft(pl, scrutinyDetail, f, b);
 					processInteriorCourtYard(pl, scrutinyDetail, f);
 				}
 			}
@@ -153,7 +154,7 @@ public class InteriorOpenSpaceService extends FeatureProcess {
 		}
 	}
 
-	private void processVentilationShaft(Plan pl, ScrutinyDetail scrutinyDetail, Floor f) {
+	private void processVentilationShaft(Plan pl, ScrutinyDetail scrutinyDetail, Floor f, Block b) {
 		if (f.getInteriorOpenSpace() != null && f.getInteriorOpenSpace().getVentilationShaft() != null
 				&& f.getInteriorOpenSpace().getVentilationShaft().getMeasurements() != null
 				&& !f.getInteriorOpenSpace().getVentilationShaft().getMeasurements().isEmpty()) {
@@ -162,46 +163,137 @@ public class InteriorOpenSpaceService extends FeatureProcess {
 					.stream().map(Measurement::getArea).reduce(BigDecimal::min).get();
 			BigDecimal minVentilationShaftWidth = f.getInteriorOpenSpace().getVentilationShaft().getMeasurements()
 					.stream().map(Measurement::getWidth).reduce(BigDecimal::min).get();
+			
+			if(b.getBuilding().getBuildingHeight().compareTo(BigDecimal.valueOf(10)) <= 0) {
+				if (minVentilationShaftArea.compareTo(BigDecimal.ZERO) > 0) {
+					Map<String, String> details = new HashMap<>();
+					details.put(RULE_NO, RULE_43);
+					details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
 
-			if (minVentilationShaftArea.compareTo(BigDecimal.ZERO) > 0) {
-				Map<String, String> details = new HashMap<>();
-				details.put(RULE_NO, RULE_43);
-				details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
+					if (minVentilationShaftArea.compareTo(BigDecimal.valueOf(1.20)) >= 0) {
+						details.put(REQUIRED, "Minimum area 1.20 Sq. M  ");
+						details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
-				if (minVentilationShaftArea.compareTo(BigDecimal.valueOf(1.875)) >= 0) {
-					details.put(REQUIRED, "Minimum area 1.875 Sq. M  ");
-					details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
-					details.put(STATUS, Result.Accepted.getResultVal());
-					scrutinyDetail.getDetail().add(details);
-					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					} else {
+						details.put(REQUIRED, "Minimum area 1.20 Sq. M  ");
+						details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
+				}
+				
+				if (minVentilationShaftWidth.compareTo(BigDecimal.ZERO) > 0) {
+					Map<String, String> details = new HashMap<>();
+					details.put(RULE_NO, RULE_43A);
+					details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
+					if (minVentilationShaftWidth.compareTo(BigDecimal.valueOf(0.90)) >= 0) {
+						details.put(REQUIRED, "Minimum width 0.90 M ");
+						details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
-				} else {
-					details.put(REQUIRED, "Minimum area 1.875 Sq. M  ");
-					details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
-					details.put(STATUS, Result.Not_Accepted.getResultVal());
-					scrutinyDetail.getDetail().add(details);
-					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					} else {
+						details.put(REQUIRED, "Minimum width 0.90 M ");
+						details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
 				}
 			}
-			if (minVentilationShaftWidth.compareTo(BigDecimal.ZERO) > 0) {
-				Map<String, String> details = new HashMap<>();
-				details.put(RULE_NO, RULE_43A);
-				details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
-				if (minVentilationShaftWidth.compareTo(BigDecimal.valueOf(1.25)) >= 0) {
-					details.put(REQUIRED, "Minimum width 1.25 M ");
-					details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
-					details.put(STATUS, Result.Accepted.getResultVal());
-					scrutinyDetail.getDetail().add(details);
-					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+			
+			if(b.getBuilding().getBuildingHeight().compareTo(BigDecimal.valueOf(10)) >= 0 && b.getBuilding().getBuildingHeight().compareTo(BigDecimal.valueOf(12)) <= 0) {
+				if (minVentilationShaftArea.compareTo(BigDecimal.ZERO) > 0) {
+					Map<String, String> details = new HashMap<>();
+					details.put(RULE_NO, RULE_43);
+					details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
 
-				} else {
-					details.put(REQUIRED, "Minimum width 1.25 M ");
-					details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
-					details.put(STATUS, Result.Not_Accepted.getResultVal());
-					scrutinyDetail.getDetail().add(details);
-					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					if (minVentilationShaftArea.compareTo(BigDecimal.valueOf(2.80)) >= 0) {
+						details.put(REQUIRED, "Minimum area 2.80 Sq. M  ");
+						details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+
+					} else {
+						details.put(REQUIRED, "Minimum area 2.80 Sq. M  ");
+						details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
+				}
+				
+				if (minVentilationShaftWidth.compareTo(BigDecimal.ZERO) > 0) {
+					Map<String, String> details = new HashMap<>();
+					details.put(RULE_NO, RULE_43A);
+					details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
+					if (minVentilationShaftWidth.compareTo(BigDecimal.valueOf(1.20)) >= 0) {
+						details.put(REQUIRED, "Minimum width 1.20 M ");
+						details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+
+					} else {
+						details.put(REQUIRED, "Minimum width 1.20 M ");
+						details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
 				}
 			}
+			
+			if(b.getBuilding().getBuildingHeight().compareTo(BigDecimal.valueOf(12)) >= 0 && b.getBuilding().getBuildingHeight().compareTo(BigDecimal.valueOf(16.5)) <= 0) {
+				if (minVentilationShaftArea.compareTo(BigDecimal.ZERO) > 0) {
+					Map<String, String> details = new HashMap<>();
+					details.put(RULE_NO, RULE_43);
+					details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
+
+					if (minVentilationShaftArea.compareTo(BigDecimal.valueOf(4)) >= 0) {
+						details.put(REQUIRED, "Minimum area 4 Sq. M  ");
+						details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+
+					} else {
+						details.put(REQUIRED, "Minimum area 4 Sq. M  ");
+						details.put(PROVIDED, "Area " + minVentilationShaftArea + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
+				}
+				
+				if (minVentilationShaftWidth.compareTo(BigDecimal.ZERO) > 0) {
+					Map<String, String> details = new HashMap<>();
+					details.put(RULE_NO, RULE_43A);
+					details.put(DESCRIPTION, VENTILATIONSHAFT_DESCRIPTION);
+					if (minVentilationShaftWidth.compareTo(BigDecimal.valueOf(1.50)) >= 0) {
+						details.put(REQUIRED, "Minimum width 1.50 M ");
+						details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+
+					} else {
+						details.put(REQUIRED, "Minimum width 1.50 M ");
+						details.put(PROVIDED, "Area  " + minVentilationShaftWidth + " at floor " + f.getNumber());
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
+				}
+			}
+			
+			
 		}
 	}
 

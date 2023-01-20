@@ -124,14 +124,14 @@ public class PorticoService extends FeatureProcess {
     }
     private void setReportOutputDetails(Plan pl, String ruleNo, String ruleDesc, String expected, String actual, String status,
             ScrutinyDetail scrutinyDetail) {
-        Map<String, String> details = new HashMap<>();
-        details.put(RULE_NO, ruleNo);
-        details.put(DESCRIPTION, ruleDesc);
-        details.put(REQUIRED, expected);
-        details.put(PROVIDED, actual);
-        details.put(STATUS, status);
-        scrutinyDetail.getDetail().add(details);
-        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//        Map<String, String> details = new HashMap<>();
+//        details.put(RULE_NO, ruleNo);
+//        details.put(DESCRIPTION, ruleDesc);
+//        details.put(REQUIRED, expected);
+//        details.put(PROVIDED, actual);
+//        details.put(STATUS, status);
+//        scrutinyDetail.getDetail().add(details);
+//        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
     }
     @Override
     public Map<String, Date> getAmendments() {
