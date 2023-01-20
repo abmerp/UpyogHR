@@ -78,7 +78,7 @@ public class NicGateway implements Gateway {
 		paramMap.put("STO", STO);
 		paramMap.put("DDO", DDO);
 		paramMap.put("Deptcode", DeptCode);
-		paramMap.put("Applicationnumber", transaction.getConsumerCode());
+		paramMap.put("Applicationnumber", transaction.getTxnId());
 		paramMap.put("ORDER_ID", transaction.getTxnId());
 		paramMap.put("Fullname", transaction.getUser().getName());
 		paramMap.put("cityname", transaction.getCityName());
@@ -124,8 +124,8 @@ public class NicGateway implements Gateway {
 	public Transaction fetchStatus(Transaction currentStatus, Map<String, String> params) {
 		TreeMap<String, String> treeMap = new TreeMap<String, String>();
 		// treeMap.put("ApplicationNumber", ApplicationNumber);
-		treeMap.put("ApplicationNumber", currentStatus.getApplicationNumber());
-		treeMap.put("ORDER_ID", currentStatus.getTxnId());
+		treeMap.put("ApplicationNumber", currentStatus.getTxnId());
+		//treeMap.put("ORDER_ID", currentStatus.getTxnId());
 		try {
 			/*
 			 * String checkSum =
