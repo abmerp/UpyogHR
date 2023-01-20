@@ -840,9 +840,9 @@
       "description": "Chief Accountant Officer role"
     },
     {
-      "code": "FUD",
-      "name": "Electrical Plan External Agency Officer",
-      "description": "Electrical Plan External Agency Officer role"
+      "code": "PUD",
+      "name": "Electrical Plan Power Utility Department Officer",
+      "description": "Electrical Plan Power Utility Department role"
     }
   ]
 }
