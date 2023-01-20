@@ -323,8 +323,8 @@ SearchDefinitions:
           eg_service_plan as tl
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
-          where 
-           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          $where 
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
           ) result) TotalCount
     groupBy:
@@ -332,9 +332,33 @@ SearchDefinitions:
    searchParams:
     condition: AND
     params:
-    - name: tl.application_number
+    - name: tl.tenantid
+      isMandatory: true
+      jsonPath: $.searchCriteria.tenantId
+    - name: tl.licenseNumber
       isMandatory: false
-      jsonPath: $.searchCriteria.application_number
+      jsonPath: $.searchCriteria.licenseNumber
+    - name: tl.oldlicensenumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.oldlicensenumber
+    - name: tladd.locality
+      isMandatory: false
+      jsonPath: $.searchCriteria.locality
+    - name: assg.assignee
+      isMandatory: false
+      jsonPath: $.searchCriteria.assignee
+    - name: pi.status
+      isMandatory: false
+      jsonPath: $.searchCriteria.status
+    - name: tl.applicationNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.applicationNumber
+    - name: owner.id
+      isMandatory: false
+      jsonPath: $.searchCriteria.userid
+    - name: pi.businessservice
+      isMandatory: false
+      jsonPath: $.searchCriteria.businessservice
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -353,8 +377,8 @@ SearchDefinitions:
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
-          where 
-           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          $where 
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
           ) result
     groupBy:
@@ -362,9 +386,33 @@ SearchDefinitions:
    searchParams:
     condition: AND
     params:
-    - name: tl.application_number
+    - name: tl.tenantid
+      isMandatory: true
+      jsonPath: $.searchCriteria.tenantId
+    - name: tl.licenseNumber
       isMandatory: false
-      jsonPath: $.searchCriteria.application_number
+      jsonPath: $.searchCriteria.licenseNumber
+    - name: tl.oldlicensenumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.oldlicensenumber
+    - name: tladd.locality
+      isMandatory: false
+      jsonPath: $.searchCriteria.locality
+    - name: assg.assignee
+      isMandatory: false
+      jsonPath: $.searchCriteria.assignee
+    - name: pi.status
+      isMandatory: false
+      jsonPath: $.searchCriteria.status
+    - name: tl.applicationNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.applicationNumber
+    - name: owner.id
+      isMandatory: false
+      jsonPath: $.searchCriteria.userid
+    - name: pi.businessservice
+      isMandatory: false
+      jsonPath: $.searchCriteria.businessservice
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -383,8 +431,8 @@ SearchDefinitions:
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
-          where 
-           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          $where 
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.createdtime   desc
           ) result
     groupBy:
@@ -392,9 +440,33 @@ SearchDefinitions:
    searchParams:
     condition: AND
     params:
-    - name: tl.application_number
+    - name: tl.tenantid
+      isMandatory: true
+      jsonPath: $.searchCriteria.tenantId
+    - name: tl.licenseNumber
       isMandatory: false
-      jsonPath: $.searchCriteria.application_number
+      jsonPath: $.searchCriteria.licenseNumber
+    - name: tl.oldlicensenumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.oldlicensenumber
+    - name: tladd.locality
+      isMandatory: false
+      jsonPath: $.searchCriteria.locality
+    - name: assg.assignee
+      isMandatory: false
+      jsonPath: $.searchCriteria.assignee
+    - name: pi.status
+      isMandatory: false
+      jsonPath: $.searchCriteria.status
+    - name: tl.applicationNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.applicationNumber
+    - name: owner.id
+      isMandatory: false
+      jsonPath: $.searchCriteria.userid
+    - name: pi.businessservice
+      isMandatory: false
+      jsonPath: $.searchCriteria.businessservice
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -412,8 +484,8 @@ SearchDefinitions:
           eg_electric_plan as tl
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
-          where 
-           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          $where 
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
           ) result) TotalCount
     groupBy:
@@ -421,9 +493,33 @@ SearchDefinitions:
    searchParams:
     condition: AND
     params:
-    - name: tl.application_number
+    - name: tl.tenantid
+      isMandatory: true
+      jsonPath: $.searchCriteria.tenantId
+    - name: tl.licenseNumber
       isMandatory: false
-      jsonPath: $.searchCriteria.application_number
+      jsonPath: $.searchCriteria.licenseNumber
+    - name: tl.oldlicensenumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.oldlicensenumber
+    - name: tladd.locality
+      isMandatory: false
+      jsonPath: $.searchCriteria.locality
+    - name: assg.assignee
+      isMandatory: false
+      jsonPath: $.searchCriteria.assignee
+    - name: pi.status
+      isMandatory: false
+      jsonPath: $.searchCriteria.status
+    - name: tl.applicationNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.applicationNumber
+    - name: owner.id
+      isMandatory: false
+      jsonPath: $.searchCriteria.userid
+    - name: pi.businessservice
+      isMandatory: false
+      jsonPath: $.searchCriteria.businessservice
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -442,8 +538,8 @@ SearchDefinitions:
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
-          where 
-           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          $where 
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
           ) result
     groupBy:
@@ -451,9 +547,33 @@ SearchDefinitions:
    searchParams:
     condition: AND
     params:
-    - name: tl.application_number
+    - name: tl.tenantid
+      isMandatory: true
+      jsonPath: $.searchCriteria.tenantId
+    - name: tl.licenseNumber
       isMandatory: false
-      jsonPath: $.searchCriteria.application_number
+      jsonPath: $.searchCriteria.licenseNumber
+    - name: tl.oldlicensenumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.oldlicensenumber
+    - name: tladd.locality
+      isMandatory: false
+      jsonPath: $.searchCriteria.locality
+    - name: assg.assignee
+      isMandatory: false
+      jsonPath: $.searchCriteria.assignee
+    - name: pi.status
+      isMandatory: false
+      jsonPath: $.searchCriteria.status
+    - name: tl.applicationNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.applicationNumber
+    - name: owner.id
+      isMandatory: false
+      jsonPath: $.searchCriteria.userid
+    - name: pi.businessservice
+      isMandatory: false
+      jsonPath: $.searchCriteria.businessservice
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset
@@ -472,8 +592,8 @@ SearchDefinitions:
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
-          where 
-           pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          $where 
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.createdtime   desc
           ) result
     groupBy:
@@ -481,9 +601,33 @@ SearchDefinitions:
    searchParams:
     condition: AND
     params:
-    - name: tl.application_number
+    - name: tl.tenantid
+      isMandatory: true
+      jsonPath: $.searchCriteria.tenantId
+    - name: tl.licenseNumber
       isMandatory: false
-      jsonPath: $.searchCriteria.application_number
+      jsonPath: $.searchCriteria.licenseNumber
+    - name: tl.oldlicensenumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.oldlicensenumber
+    - name: tladd.locality
+      isMandatory: false
+      jsonPath: $.searchCriteria.locality
+    - name: assg.assignee
+      isMandatory: false
+      jsonPath: $.searchCriteria.assignee
+    - name: pi.status
+      isMandatory: false
+      jsonPath: $.searchCriteria.status
+    - name: tl.applicationNumber
+      isMandatory: false
+      jsonPath: $.searchCriteria.applicationNumber
+    - name: owner.id
+      isMandatory: false
+      jsonPath: $.searchCriteria.userid
+    - name: pi.businessservice
+      isMandatory: false
+      jsonPath: $.searchCriteria.businessservice
     pagination:
       noOfRecords: $.searchCriteria.noOfRecords
       offset: $.searchCriteria.offset

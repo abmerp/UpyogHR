@@ -1,4 +1,4 @@
-CREATE TABLE public.eg_electric_plan_audit (
+CREATE TABLE IF NOT EXISTS  public.eg_electric_plan_audit (
 	id bigserial NOT NULL,
 	auto_cad varchar(255) NULL,
 	environmental_clearance varchar(255) NULL,

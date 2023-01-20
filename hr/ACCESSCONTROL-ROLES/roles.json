@@ -838,6 +838,11 @@
       "code": "CAO_HQ",
       "name": "Chief Accountant Officer",
       "description": "Chief Accountant Officer role"
+    },
+    {
+      "code": "FUD",
+      "name": "Electrical Plan External Agency Officer",
+      "description": "Electrical Plan External Agency Officer role"
     }
   ]
 }

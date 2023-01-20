@@ -40,7 +40,7 @@ public class ServicePlanController {
 	@PostMapping("/_get")
 	public ResponseEntity<ServicePlanInfoResponse> getServicePlan(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(required = false) String loiNumber , @RequestParam(required = false) String applicationNumber){
-		List<ServicePlanRequest> servicePlanRequest = servicePlanService.searchServicePlan(loiNumber , applicationNumber);
+		List<ServicePlanRequest> servicePlanRequest = servicePlanService.searchServicePlan(loiNumber , applicationNumber , requestInfoWrapper.getRequestInfo());
 		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder().
 				servicePlanResponse(servicePlanRequest).responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(
 						requestInfoWrapper.getRequestInfo(), true)).build();

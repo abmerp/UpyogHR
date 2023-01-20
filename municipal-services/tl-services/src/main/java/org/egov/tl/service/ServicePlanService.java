@@ -19,6 +19,7 @@ import org.egov.tl.repository.rowmapper.SPRowMapper;
 import org.egov.tl.service.repo.ServicePlanRepo;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.ElectricPlanRequest;
 import org.egov.tl.web.models.ServicePlan;
 import org.egov.tl.web.models.ServicePlanContract;
 import org.egov.tl.web.models.ServicePlanRequest;
@@ -91,6 +92,12 @@ public class ServicePlanService {
 		 for (ServicePlanRequest servicePlanRequest : servicePlanRequestList) {
 			 List<String> applicationNumbers = null;
 				int count = 1;
+				List<ServicePlanRequest> searchServicePlan = searchServicePlan(servicePlanRequest.getLoiNumber(), 
+						servicePlanRequest.getApplicationNumber(),requestInfo );
+				if (!CollectionUtils.isEmpty(searchServicePlan) || searchServicePlan.size() > 1) {
+					throw new CustomException("Already Found  or multiple Service plan applications with LoiNumber.",
+							"Already Found or multiple Service plan applications with LoiNumber.");
+				}
 
 				servicePlanRequest.setId(UUID.randomUUID().toString());
 				
@@ -127,7 +134,7 @@ public class ServicePlanService {
 		return idResponses.stream().map(IdResponse::getId).collect(Collectors.toList());
 	}
 
-	public List<ServicePlanRequest> searchServicePlan(String loiNumber, String applicationNumber) {
+	public List<ServicePlanRequest> searchServicePlan(String loiNumber, String applicationNumber, RequestInfo requestInfo) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -155,6 +162,14 @@ public class ServicePlanService {
 				preparedStatement.add(applicationNumberList);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, spRowMapper);
 			}
+			
+		}
+		else if ((requestInfo.getUserInfo().getUuid() != null) ){
+			builder.append("and created_by= :CB");
+			paramMap.put("CB", requestInfo.getUserInfo().getUuid());
+			preparedStatement.add(requestInfo.getUserInfo().getUuid());
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, spRowMapper);
+
 		}
 
 		return Result;
@@ -182,7 +197,7 @@ public class ServicePlanService {
 
 		List<ServicePlanRequest> searchServicePlan = searchServicePlan(
 				servicePlanRequest.getLoiNumber(),
-				servicePlanRequest.getApplicationNumber());
+				servicePlanRequest.getApplicationNumber() , requestInfo);
 		if (CollectionUtils.isEmpty(searchServicePlan) || searchServicePlan.size() > 1) {
 			throw new CustomException("Found none or multiple service plan applications with applicationNumber.",
 					"Found none or multiple service plan applications with applicationNumber.");
