@@ -461,6 +461,7 @@ public class LicenseService {
 	public ResponseEntity<Object> postTransactionDeatil(MultiValueMap<String, String> requestParam) {
 
 		String applicationNumber = requestParam.get(new String("Applicationnumber")).get(0);
+		String transactionId = requestParam.get(new String("Applicationnumber")).get(0);
 		String grn = requestParam.get(new String("GRN")).get(0);
 		String status = requestParam.get(new String("status")).get(0);
 		String CIN = requestParam.get(new String("CIN")).get(0);
@@ -480,7 +481,7 @@ public class LicenseService {
 		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
 
 			Map<String, Object> request = new HashMap<>();
-			request.put("consumerCode", applicationNumber);
+			request.put("txnId", transactionId);
 			HttpHeaders httpHeaders = new HttpHeaders();
 			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 			HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
@@ -509,6 +510,7 @@ public class LicenseService {
 
 			log.info("transaction" + transaction);
 			String txnId = transaction.getTransaction().get(0).getTxnId();
+			applicationNumber= transaction.getTransaction().get(0).getApplicationNumber();
 
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
@@ -522,6 +524,8 @@ public class LicenseService {
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Sucess")) {
+			
+			
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
@@ -572,7 +576,7 @@ public class LicenseService {
 							log.info("purposeId" + purposeId);
 
 						}
-
+						
 						Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 						mapDNo.put("Village",
@@ -925,6 +929,7 @@ public class LicenseService {
 		charges.getLicenseFeeCharges();
 		charges.getStateInfrastructureDevelopmentCharges();
 		log.info("charges"+charges);
+		
 		return  null;
 	}
 
