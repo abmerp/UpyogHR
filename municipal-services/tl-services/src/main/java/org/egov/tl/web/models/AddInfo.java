@@ -79,6 +79,15 @@ public class AddInfo {
 	@JsonProperty("existingDirectors")
 	private String existingDirectors;
 	
+	@JsonProperty("dob")
+	private String dob;
+	
+	@JsonProperty("gender")
+	private String gender;
+	
+	@JsonProperty("PanNumber")
+	private String PanNumber;
+	
 	@JsonProperty("DirectorsInformationMCA")
 	private List<DirectorsInformationMCA> directorsInformationMCA;
 	

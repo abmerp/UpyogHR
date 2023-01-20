@@ -388,5 +388,8 @@ public class TLConfiguration {
     //Electrical Plan Update Topic
     @Value("${persister.update.ElectricalPlan.topic}")
     private String EPupdateTopic;
+    
+    @Value("${persister.update.tradelicenses.fees.topic}")
+    private String tlFeeTopic;
 
 }
