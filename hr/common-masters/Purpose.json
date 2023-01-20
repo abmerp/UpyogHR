@@ -5,101 +5,24 @@
      {
       "purposeId": 74,
       "name": "AFFORDABLE HOUSING PROJECT",
-      "purposeCode": "AHP",
+      "purposeCode": "AGH",
       "caseType_id": 1,
       "description": "AFFORDABLE HOUSING PROJECT",
-      "isActive": false,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
       "isDisableForNewEntry": 1,
       "disableRemarks": null,
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
+      "scrutinyFeeCharges": "2.25",
+      "licenseFeeCharges": "1.75",
+      "externalDevelopmentCharges": "1.75",
+      "conversionCharges": "1.75",
+      "stateInfrastructureDevelopmentCharges": "1.75"
     },
-	  {
-      "purposeId": 78,
-      "name": "Commercial in Special Zone",
-      "purposeCode": "CIS",
-      "caseType_id": 1,
-      "description": "Commercial in Special Zone",
-      "isActive": false,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 2,
-      "isDisableForNewEntry": null,
-      "disableRemarks": null,
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
-    },
-	 {
-      "purposeId": 2,
-      "name": "Commercial Licence in commercial Zone",
-      "purposeCode": "CIC",
-      "caseType_id": 1,
-      "description": "Commercial",
-      "isActive": 1,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 2,
-      "isDisableForNewEntry": null,
-      "disableRemarks": null,
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
-    },
-	{
-      "purposeId": 63,
-      "name": "Commercial Licence in residential Zone",
-      "purposeCode": "CIR",
-      "caseType_id": 1,
-      "description": "Commercial",
-      "isActive": false,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 2,
-      "isDisableForNewEntry": 1,
-      "disableRemarks": "",
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
-    },
-	  {
-      "purposeId": 94,
-      "name": "Commercial Plotted Colony",
-      "purposeCode": "CPL",
-      "caseType_id": 1,
-      "description": "Policy dt. 06.03.2018 (PF-110)",
-      "isActive": 1,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 1,
-      "isDisableForNewEntry": 0,
-      "disableRemarks": "",
-      "scrutinyFeeCharges": 1.50,
-      
-      "licenseFeeCharges": 1.50,
-             
-      "externalDevelopmentCharges": 1.50,
-            
-      "conversionCharges": 1.50,
-             
-      "stateInfrastructureDevelopmentCharges":1.50
-            
-    },
-	 {
+    {
       "purposeId": 83,
-      "name": "Deen Dayal Jan Awas Yojna-Affordable Plotted 2016",
+      "name": "Affordable residential plotted under DDJAY policy",
       "purposeCode": "DDJAY_APHP",
       "caseType_id": 1,
       "description": "Deen Dayal Jan Awas Yojna-Affordable Plotted 2016",
@@ -117,70 +40,138 @@
       
       "conversionCharges": 1.75,
       
-      "stateInfrastructureDevelopmentCharges":1.75
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
-	    {
-      "purposeId": 112,
-      "name": "Development of Retirement",
-      "purposeCode": "DRH",
+	  {   
+      "purposeId": 78,
+      "name": "Commercial Integrated in commercial sector/belt",
+      "purposeCode": "CICS",
       "caseType_id": 1,
-      "description": "Development of Retirement Housing",
+      "description": "Comm. Integrated",
+      "isActive": 1,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 2,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges": "1.75",
+      "licenseFeeCharges": "1.75",
+      "externalDevelopmentCharges": "1.75",
+      "conversionCharges": "1.75",
+      "stateInfrastructureDevelopmentCharges": "1.75"
+    },
+	 {
+      "purposeId": 2,
+      "name": "Commercial Integrated in residential sector",
+      "purposeCode": "CIRS",
+      "caseType_id": 1,
+      "description": "Comm. Integrated",
+      "isActive": 1,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 2,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges": "1.75",
+      "licenseFeeCharges": "1.75",
+      "externalDevelopmentCharges": "1.75",
+      "conversionCharges": "1.75",
+      "stateInfrastructureDevelopmentCharges": "1.75"
+    },
+	{
+      "purposeId": 63,
+      "name": "Commercial Plotted in commercial sector/belt",
+      "purposeCode": "CPCS",
+      "caseType_id":0,
+      "description": "Comm. Plotted",
       "isActive": false,
-      "edcPercentage": null,
-      "idwPercentage": null,
-      "plotTypeId": 1,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 2,
       "isDisableForNewEntry": 1,
       "disableRemarks": "",
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
+      "scrutinyFeeCharges": "1.50",
+      "licenseFeeCharges": "1.50",
+      "externalDevelopmentCharges": "1.50",
+      "conversionCharges": "1.50",
+      "stateInfrastructureDevelopmentCharges": "1.50"
     },
-	 {
-      "purposeId": 64,
-      "name": "Industrial Plotted colony in Agriculture Zone",
-      "purposeCode": "IPA",
+	  {
+      "purposeId": 94,
+      "name": "Commercial Plotted in residential sector",
+      "purposeCode": "CPRS",
       "caseType_id": 1,
-      "description": "Industrial",
+      "description": "Comm. Plotted",
       "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 1,
-      "isDisableForNewEntry": null,
-      "disableRemarks": null,
+      "isDisableForNewEntry": 0,
+      "disableRemarks": "",
       "scrutinyFeeCharges": 1.50,
       
       "licenseFeeCharges": 1.50,
-      
+             
       "externalDevelopmentCharges": 1.50,
-      
-      "conversionCharges": 1.50,
-      
-      "stateInfrastructureDevelopmentCharges": 1.50
-    },
-	 {
-      "purposeId": 7,
-      "name": "Industrial Plotted colony in Industrial Zone",
-      "purposeCode": "IPL",
-      "caseType_id": 1,
-      "description": "Industrial",
-      "isActive": 1,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 1,
-      "isDisableForNewEntry": null,
-      "disableRemarks": null,
-      "scrutinyFeeCharges": 1.50,
-      
-      "licenseFeeCharges": 1.50,
-      
-      "externalDevelopmentCharges": 1.50,
-          
+            
       "conversionCharges": 1.50,
              
-      "stateInfrastructureDevelopmentCharges": 1.50
+      "stateInfrastructureDevelopmentCharges":1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
+            
     },
+    {
+      "purposeId": 64,
+      "name": "IILP Integrated Undustrail Licenceing Policy",
+      "purposeCode": "IPULP",
+      "caseType_id": 1,
+      "description": "Industrial colony",
+      "isActive": 0,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 1,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges": "",
+      
+      "licenseFeeCharges":"",
+      
+      "externalDevelopmentCharges": "",
+      
+      "conversionCharges": "",
+      
+      "stateInfrastructureDevelopmentCharges": "",
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
+    },
+		 {
+      "purposeId": 64,
+      "name": "Industrial Plotted colony ",
+      "purposeCode": "IPA",
+      "caseType_id": 1,
+      "description": "Industrial colony",
+      "isActive": 1,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 1,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges": 1.50,
+      
+      "licenseFeeCharges": 1.50,
+      
+      "externalDevelopmentCharges": 1.50,
+      
+      "conversionCharges": 1.50,
+      
+      "stateInfrastructureDevelopmentCharges": 1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
+    },
+	
      {
       "purposeId": 6,
       "name": "IT/Cyber City",
@@ -201,7 +192,9 @@
       
       "conversionCharges": 150,
       
-      "stateInfrastructureDevelopmentCharges": 150
+      "stateInfrastructureDevelopmentCharges": 150,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	{
       "purposeId": 5,
@@ -223,7 +216,9 @@
       
       "conversionCharges": 150,
       
-      "stateInfrastructureDevelopmentCharges": 150
+      "stateInfrastructureDevelopmentCharges": 150,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
       
     },
 	 {
@@ -232,7 +227,7 @@
       "purposeCode": "LDEF",
       "caseType_id": 1,
       "description": "Low Density Eco-Friendly Colony(LDEF)",
-      "isActive": false,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -246,17 +241,19 @@
     
       "conversionCharges": "",
     
-      "stateInfrastructureDevelopmentCharges":""
+      "stateInfrastructureDevelopmentCharges":"",
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     
     },
 	
     {
       "purposeId": 84,
-      "name": "Mixed Land use in Comm Zone with Minority Resi Use",
+      "name": "Mixed Land Use (Commercial/Residential) in commercial zone",
       "purposeCode": "MLU-CZ",
       "caseType_id": 1,
       "description": "Mixed Land use in Comm Zone with Minority Resi Use",
-      "isActive": false,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -268,24 +265,7 @@
       "conversionCharges": "",
       "stateInfrastructureDevelopmentCharges": ""
     },
-    {
-      "purposeId": 85,
-      "name": "Mixed Land use in Resi Zone with Minority Comm Use",
-      "purposeCode": "MLU-RZ",
-      "caseType_id": 1,
-      "description": "Mixed Land use in Resi Zone with Minority Comm Use",
-      "isActive": false,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 2,
-      "isDisableForNewEntry": null,
-      "disableRemarks": null,
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
-    },
+   
 	 {
       "purposeId": 89,
       "name": "New Integrated Licencing Policy (NILP) for Commercial",
@@ -306,17 +286,19 @@
            
       "conversionCharges": 1.75,
            
-      "stateInfrastructureDevelopmentCharges":1.75
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
             
     },
 	
     {
       "purposeId": 86,
-      "name": "New Integrated Licencing Policy (NILP) for Residential",
+      "name": "New Integrated Licencing Policy (NILP) for Residential Use",
       "purposeCode": "NILP",
       "caseType_id": 1,
       "description": "New Integrated Licencing Policy (NILP) for Residential",
-      "isActive": false,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -330,10 +312,10 @@
     },
 	 {
       "purposeId": 73,
-      "name": "Residential GH with minority plotted area",
+      "name": "Residential Group Housing",
       "purposeCode": "RGP",
       "caseType_id": 1,
-      "description": "Residential GH with minority Plotted area",
+      "description": "Group Housing",
       "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
@@ -348,14 +330,16 @@
       
       "conversionCharges": 1.50,
       
-      "stateInfrastructureDevelopmentCharges": 1.50
+      "stateInfrastructureDevelopmentCharges": 1.50,
+      "IDWPerAcreInLakhsForPlottedComponent":0,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	{
       "purposeId": 1,
       "name": "Residential Plotted Colony",
       "purposeCode": "RPL",
       "caseType_id": 1,
-      "description": "Residential",
+      "description": "Plotted",
       "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
@@ -366,15 +350,17 @@
       "licenseFeeCharges":1.75,
       "conversionCharges": 1.75,      
       "externalDevelopmentCharges": 1.75,       
-      "stateInfrastructureDevelopmentCharges":1.75
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
      {
       "purposeId": 113,
-      "name": "Retirement Housing Project",
+      "name": "Retirement Housing",
       "purposeCode": "RHP",
       "caseType_id": 1,
       "description": "Retirement Housing Project",
-      "isActive": false,
+      "isActive": 0,
       "edcPercentage": null,
       "idwPercentage": null,
       "plotTypeId": 2,
@@ -386,53 +372,7 @@
       "conversionCharges": "",
       "stateInfrastructureDevelopmentCharges": ""
     },
-   {
-      "purposeId": 111,
-      "name": "Sectoral Plan Pockets (SPRP)-GH",
-      "purposeCode": "SPRPRGH",
-      "caseType_id": 1,
-      "description": "Sectoral Plan Pockets (SPRP)-GH",
-      "isActive": 1,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 2,
-      "isDisableForNewEntry": 0,
-      "disableRemarks": "",
-      "scrutinyFeeCharges":1.75,
-      
-      "licenseFeeCharges": 1.50,
-            
-      "externalDevelopmentCharges": 1.50,
-           
-      "conversionCharges": 1.50,
-        
-      "stateInfrastructureDevelopmentCharges": 1.50
-           
-    },
-   
-    {
-      "purposeId": 75,
-      "name": "Special Zone GH-cum-comm Project",
-      "purposeCode": "SGC",
-      "caseType_id": 1,
-      "description": "Special Zone GH-cum-comm Project",
-      "isActive": 1,
-      "edcPercentage": 25,
-      "idwPercentage": 25,
-      "plotTypeId": 2,
-      "isDisableForNewEntry": null,
-      "disableRemarks": null,
-      "scrutinyFeeCharges":  1.75,
-      
-      "licenseFeeCharges": 1.50,
-      
-      "externalDevelopmentCharges": 1.50,
-      
-      "conversionCharges": 1.50,
-      
-      "stateInfrastructureDevelopmentCharges": 1.50
-    },          
-   
+ 
     {
       "purposeId": 91,
       "name": "Transit Oriented Development (TOD)-Comm",
@@ -453,7 +393,9 @@
            
       "conversionCharges": 3.5,
           
-      "stateInfrastructureDevelopmentCharges":3.5
+      "stateInfrastructureDevelopmentCharges":3.5,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
              
             },
     {
@@ -468,23 +410,41 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": 150,
+      "scrutinyFeeCharges": "",
       
-      "licenseFeeCharges": 150,
+      "licenseFeeCharges": "",
       
-      "externalDevelopmentCharges":150,
+      "externalDevelopmentCharges":"",
       
-      "conversionCharges": 150,
+      "conversionCharges": "",
       
-      "stateInfrastructureDevelopmentCharges": 150
+      "stateInfrastructureDevelopmentCharges": ""
     },
     {
       "purposeId": 93,
-      "name": "Transit Oriented Development (TOD)-Mix Use Develop",
+      "name": "Transit Oriented Development (TOD)-Mix Use Development with majority Commercial",
       "purposeCode": "TODMUD",
       "caseType_id": 1,
       "description": "Transit Oriented Development (TOD)-Mix Use",
-      "isActive": 1,
+      "isActive": 0,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 2,
+      "isDisableForNewEntry": 0,
+      "disableRemarks": "Transit Oriented Development (TOD)-Mix Use Development",
+      "scrutinyFeeCharges": "",
+      "licenseFeeCharges": "",
+      "externalDevelopmentCharges": "",
+      "conversionCharges": "",
+      "stateInfrastructureDevelopmentCharges": ""
+    },
+    {
+      "purposeId": 93,
+      "name": "Transit Oriented Development (TOD)-Mix Use Development with majority Group Housing",
+      "purposeCode": "TODMGH",
+      "caseType_id": 1,
+      "description": "Transit Oriented Development (TOD)-Mix Use with majority Group Housing",
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -516,7 +476,9 @@
       
       "conversionCharges": 3.5,
       
-      "stateInfrastructureDevelopmentCharges": 3.5
+      "stateInfrastructureDevelopmentCharges": 3.5,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     }
      
   ]

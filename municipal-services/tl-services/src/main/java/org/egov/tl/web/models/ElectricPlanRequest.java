@@ -21,71 +21,92 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ElectricPlanRequest {
 
-	
-	private Long id;
-	private boolean electricalInfra;
-	private boolean elecricDistribution;
-	private boolean electricalCapacity;
-	private boolean switchingStation;
-	private boolean loadSancation;
+	@JsonProperty("id")
+	private String id;
+	@JsonProperty("electricInfra")
+	private String electricInfra;
+	@JsonProperty("electricDistribution")
+	private String electricDistribution;
+	@JsonProperty("electricalCapacity")
+	private String electricalCapacity;
+	@JsonProperty("switchingStation")
+	private String switchingStation;
+	@JsonProperty("LoadSancation")
+	private String LoadSancation;
+	@JsonProperty("environmentalClearance")
 	private String environmentalClearance;
+	@JsonProperty("autoCad")
 	private String autoCad;
+	@JsonProperty("verifiedPlan")
 	private String verifiedPlan;
-	private String loiNumber;    
-	private String selfCenteredDrawings;	       
-	private String pdfFormat;	
+	@JsonProperty("loiNumber")
+	private String loiNumber;
+	@JsonProperty("selfCenteredDrawings")
+	private String selfCenteredDrawings;
+	@JsonProperty("pdfFormat")
+	private String pdfFormat;
+	@JsonProperty("tenantID")
 	private String tenantID;
+	@JsonProperty("applicationNumber")
 	private String applicationNumber;
+	@JsonProperty("businessService")
 	private String businessService;
+	@JsonProperty("action")
 	private String action;
+	@JsonProperty("status")
 	private String status;
+	@JsonProperty("comment")
 	private String comment;
 	@JsonProperty("assignee")
-        private List<String> assignee = null;
-	
+	private List<String> assignee = null;
+	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
+	@JsonProperty("workflowCode")
+    private String workflowCode = null;
+	@JsonProperty("wfDocuments")
+    private List<Document> wfDocuments;
  
-	public ElectricPlanRequest(ElectricPlan electricPlan) {
-		this.id = electricPlan.getId();
-		this.electricalInfra = electricPlan.isElectricalInfra();
-		this.elecricDistribution = electricPlan.isElecricDistribution();
-		this.switchingStation = electricPlan.isSwitchingStation();
-		this.loadSancation = electricPlan.isLoadSancation();
-		this.environmentalClearance = electricPlan.getEnvironmentalClearance();
-		this.autoCad = electricPlan.getAutoCad();
-		this.verifiedPlan = electricPlan.getVerifiedPlan();
-		this.loiNumber = electricPlan.getLoiNumber();
-		this.selfCenteredDrawings = electricPlan.getSelfCentredDrawing();
-		this.tenantID = electricPlan.getTenantID();
-		this.auditDetails = electricPlan.getAuditDetails();
-		this.applicationNumber = electricPlan.getApplicationNumber();
-		this.businessService = electricPlan.getBusinessService();
-		this.action = electricPlan.getAction();
-		this.status = electricPlan.getStatus();
-		this.comment = electricPlan.getComment();
-		this.pdfFormat = electricPlan.getPdfFormat();
-		
+//	public ElectricPlanRequest(ElectricPlan electricPlan) {
+//		this.id = electricPlan.getId();
+//		this.electricalInfra = electricPlan.getElectricalInfra();
+//		this.elecricDistribution = electricPlan.getElecricDistribution();
+//		this.switchingStation = electricPlan.getSwitchingStation();
+//		this.loadSancation = electricPlan.getLoadSancation();
+//		this.environmentalClearance = electricPlan.getEnvironmentalClearance();
+//		this.autoCad = electricPlan.getAutoCad();
+//		this.verifiedPlan = electricPlan.getVerifiedPlan();
+//		this.loiNumber = electricPlan.getLoiNumber();
+//		this.selfCenteredDrawings = electricPlan.getSelfCentredDrawing();
+//		this.tenantID = electricPlan.getTenantID();
+//		this.auditDetails = electricPlan.getAuditDetails();
+//		this.applicationNumber = electricPlan.getApplicationNumber();
+//		this.businessService = electricPlan.getBusinessService();
+//		this.action = electricPlan.getAction();
+//		this.status = electricPlan.getStatus();
+//		this.comment = electricPlan.getComment();
+//		this.pdfFormat = electricPlan.getPdfFormat();
+//		
+//	
+//	}
 	
-	}
-	
-	public ElectricPlan toBuilder() {
-		return ElectricPlan.builder().id(this.id)
-				.electricalInfra(this.electricalInfra)
-				.elecricDistribution(this.elecricDistribution)
-				.switchingStation(this.switchingStation)
-				.loadSancation(this.loadSancation)
-				.environmentalClearance(this.environmentalClearance)
-				.autoCad(this.autoCad)
-				.verifiedPlan(this.verifiedPlan)
-				.loiNumber(this.loiNumber)
-				.selfCentredDrawing(this.selfCenteredDrawings)
-				.tenantID(this.tenantID)
-				.auditDetails(this.auditDetails)
-				.applicationNumber(this.applicationNumber)
-				.businessService(this.businessService)
-				.action(this.action)
-				.status(this.status)
-				.comment(this.comment)
-				.pdfFormat(this.pdfFormat).build();
-	}
+//	public ElectricPlan toBuilder() {
+//		return ElectricPlan.builder().id(this.id)
+//				.electricalInfra(this.electricalInfra)
+//				.elecricDistribution(this.elecricDistribution)
+//				.switchingStation(this.switchingStation)
+//				.loadSancation(this.loadSancation)
+//				.environmentalClearance(this.environmentalClearance)
+//				.autoCad(this.autoCad)
+//				.verifiedPlan(this.verifiedPlan)
+//				.loiNumber(this.loiNumber)
+//				.selfCentredDrawing(this.selfCenteredDrawings)
+//				.tenantID(this.tenantID)
+//				.auditDetails(this.auditDetails)
+//				.applicationNumber(this.applicationNumber)
+//				.businessService(this.businessService)
+//				.action(this.action)
+//				.status(this.status)
+//				.comment(this.comment)
+//				.pdfFormat(this.pdfFormat).build();
+//	}
 }

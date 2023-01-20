@@ -28,16 +28,16 @@ public class EPRowMapper implements ResultSetExtractor<List<ElectricPlanRequest>
 			String loi_number = rs.getString("loi_number");
 			ElectricPlanRequest ElectricPlanRequest = new ElectricPlanRequest();
 			ElectricPlanRequest.setLoiNumber(rs.getString("loi_number"));
-			ElectricPlanRequest.setId(rs.getLong("id"));
+			ElectricPlanRequest.setId(rs.getString("id"));
 			ElectricPlanRequest.setAutoCad(rs.getString("auto_cad"));
-			ElectricPlanRequest.setElecricDistribution(rs.getBoolean("elecric_distribution"));
+			ElectricPlanRequest.setElectricDistribution(rs.getString("elecric_distribution"));
 			ElectricPlanRequest.setEnvironmentalClearance(rs.getString("environmental_clearance"));
-			ElectricPlanRequest.setElectricalCapacity(rs.getBoolean("electrical_capacity"));
+			ElectricPlanRequest.setElectricalCapacity(rs.getString("electrical_capacity"));
 
-			ElectricPlanRequest.setElectricalInfra(rs.getBoolean("electrical_infra"));
-			ElectricPlanRequest.setLoadSancation(rs.getBoolean("load_sancation"));
+			ElectricPlanRequest.setElectricInfra(rs.getString("electrical_infra"));
+			ElectricPlanRequest.setLoadSancation(rs.getString("load_sancation"));
 			ElectricPlanRequest.setStatus(rs.getString("status"));
-			ElectricPlanRequest.setSwitchingStation(rs.getBoolean("switching_station"));
+			ElectricPlanRequest.setSwitchingStation(rs.getString("switching_station"));
 
 			ElectricPlanRequest.setVerifiedPlan(rs.getString("verified_plan"));
 			ElectricPlanRequest.setSelfCenteredDrawings(rs.getString("self_centred_drawing"));

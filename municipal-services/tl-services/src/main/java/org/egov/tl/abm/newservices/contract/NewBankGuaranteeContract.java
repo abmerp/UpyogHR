@@ -1,5 +1,7 @@
 package org.egov.tl.abm.newservices.contract;
 
+import java.util.List;
+
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
 
@@ -23,5 +25,5 @@ public class NewBankGuaranteeContract {
 	
 	
 	@JsonProperty("NewBankGuaranteeRequest")
-	NewBankGuaranteeRequest newBankGuaranteeRequest;
+	List<NewBankGuaranteeRequest> newBankGuaranteeRequest;
 }

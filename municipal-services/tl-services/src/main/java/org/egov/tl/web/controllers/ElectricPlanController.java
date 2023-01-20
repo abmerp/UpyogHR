@@ -36,10 +36,10 @@ public class ElectricPlanController {
 	@PostMapping("/_create")
 	public ResponseEntity<ElectricInfoResponse> create(
 			@RequestBody ElectricPlanContract electricPlanContract) {
-		ElectricPlanRequest createElectricPlan = electricPlanService.create(electricPlanContract);
-		List<ElectricPlanRequest> electricPlanList = new ArrayList<>();
-		electricPlanList.add(createElectricPlan);
-		ElectricInfoResponse electricInfoResponse = ElectricInfoResponse.builder().electricPlanResponse(electricPlanList)
+		 List<ElectricPlanRequest> createElectricPlan = electricPlanService.create(electricPlanContract);
+//		List<ElectricPlanRequest> electricPlanList = new ArrayList<>();
+//		electricPlanList.add(createElectricPlan);
+		ElectricInfoResponse electricInfoResponse = ElectricInfoResponse.builder().electricPlanResponse(createElectricPlan)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(electricPlanContract.getRequestInfo(), true))
 				.build();
@@ -48,10 +48,9 @@ public class ElectricPlanController {
 
 	@PostMapping("/_get")
 	public ResponseEntity<ElectricInfoResponse> getServicePlan(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam(required = false) String loiNumber, @RequestParam(required = false) String applicationNumber,
-			@Valid @ModelAttribute ServicePlanRequest criteria) {
+			@RequestParam(required = false) String loiNumber, @RequestParam(required = false) String applicationNumber) {
 		List<ElectricPlanRequest> searchElectricPlan = electricPlanService.searchElectricPlan(loiNumber,
-				applicationNumber);
+				applicationNumber , requestInfoWrapper.getRequestInfo());
 
 		ElectricInfoResponse servicePlanInfoResponse = ElectricInfoResponse.builder()
 				.electricPlanResponse(searchElectricPlan).responseInfo(responseInfoFactory
@@ -63,11 +62,11 @@ public class ElectricPlanController {
 	@PostMapping("/_update")
 	public ResponseEntity<ElectricInfoResponse> UpdateServicePlan(
 			@RequestBody ElectricPlanContract servicePlanContract) {
-		ElectricPlanRequest update = electricPlanService.Update(servicePlanContract);
-		List<ElectricPlanRequest> servicePlanRequestList = new ArrayList<>();
-		servicePlanRequestList.add(update);
+		 List<ElectricPlanRequest> updateElectricPlan = electricPlanService.Update(servicePlanContract);
+//		List<ElectricPlanRequest> servicePlanRequestList = new ArrayList<>();
+//		servicePlanRequestList.add(update);
 		ElectricInfoResponse servicePlanInfoResponse = ElectricInfoResponse.builder()
-				.electricPlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory
+				.electricPlanResponse(updateElectricPlan).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(servicePlanContract.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(servicePlanInfoResponse, HttpStatus.OK);

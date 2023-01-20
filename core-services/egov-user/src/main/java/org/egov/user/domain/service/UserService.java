@@ -27,6 +27,7 @@ import org.egov.user.persistence.repository.OtpRepository;
 import org.egov.user.persistence.repository.UserRepository;
 import org.egov.user.web.contract.Otp;
 import org.egov.user.web.contract.OtpValidateRequest;
+import org.egov.user.web.contract.TokenResponse;
 import org.egov.user.web.contract.UserSearchRequest;
 import org.egov.user.web.contract.UserSearchResponse;
 import org.egov.user.web.contract.UserSearchResponseContent;
@@ -684,18 +685,18 @@ public class UserService {
 	public Map<String, Object> ssoCitizen(SsoCitizen ssoCitizen, RequestInfo requestInfo) {
 
 		requestInfo = new RequestInfo();
-		 org.egov.common.contract.request.User userInfo = new
-		 org.egov.common.contract.request.User();
+		org.egov.common.contract.request.User userInfo = new org.egov.common.contract.request.User();
 
-		 userInfo.setTenantId("hr");
-		 requestInfo.setUserInfo(userInfo);
+		userInfo.setTenantId("hr");
+
+		requestInfo.setUserInfo(userInfo);
 		Map<String, Object> ssoCitizenMap = new HashMap<String, Object>();
 		ssoCitizenMap.put("UserId", ssoCitizen.getUserId());
 		ssoCitizenMap.put("TokenId", ssoCitizen.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = null;
 		String ssoValue = "no";
-		//requestInfo.getUserInfo().setTenantId("hr");
-		log.info("Data by Request"+ssoCitizenMap);
+		// requestInfo.getUserInfo().setTenantId("hr");
+		log.info("Data by Request" + ssoCitizenMap);
 		try {
 			isExistSSOToken = isExistSSOToken(ssoCitizenMap);
 
@@ -733,6 +734,32 @@ public class UserService {
 				return (Map<String, Object>) ssoCitizenMap;
 
 			} else {
+				user.setUsername(ssoCitizen.getEmailId());
+				user.setTenantId(requestInfo.getUserInfo().getTenantId());
+				user.setOtpReference("123456");
+				Object updateUser = getAccess(user, user.getOtpReference());
+			
+				String data = null;
+				ObjectMapper mapper = new ObjectMapper();
+				try {
+					data = mapper.writeValueAsString(updateUser);
+				} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				TokenResponse tokenResponse=null;
+				ObjectReader reader = mapper.readerFor(new TypeReference<TokenResponse>() {
+				});
+				try {
+					tokenResponse = reader.readValue(data);
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+
+				log.info("tokenResponse" + tokenResponse);
+			    Long id = tokenResponse.getUserRequest().getId();
+			    userInfo.setId(id);
+			    requestInfo.setUserInfo(userInfo);
 				user.setUuid(searchUsers.get(0).getUuid());
 				user.setRoles(searchUsers.get(0).getRoles());
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
@@ -740,8 +767,6 @@ public class UserService {
 				User updatedUser = updateWithoutOtpValidation(user, requestInfo);
 				log.info("updatedUser" + updatedUser);
 
-				updatedUser.setOtpReference("123456");
-				Object updateUser = getAccess(updatedUser, updatedUser.getOtpReference());
 				ssoCitizenMap.put("Token", updateUser);
 				String url = (tcpReturnUrl + citizenNewLicense);
 				ssoCitizenMap.put("ReturnUrl", url);

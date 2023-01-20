@@ -178,5 +178,17 @@ public class LicenseServiceController {
 		return newServiceInfoService.postTransactionDeatil(formData);
 	}
 	/* FLAT JSON CODE END */
+  
+	
+	
+	@PostMapping(value = "/getDeptToken")
+	public ResponseEntity<Map> departmentAuthToken(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,@RequestParam ("applicationNumber") String applicationNo)
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
 
+		ResponseEntity<Map>	dispatchtoken  =  newServiceInfoService.generateLoiNumber(map, requestInfoWrapper,applicationNo);
+		
+		return dispatchtoken;
+		
+	}
 }

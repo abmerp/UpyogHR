@@ -110,4 +110,6 @@ public class NewBankGuarantee {
 	
 	private Map<String,String> additionalDocuments;
 	private List<NewBankGuaranteeRequest> auditEntries = null;
+	private final String businessService = "BG_NEW";
+	private final String workflowCode = "BG_NEW";
 }

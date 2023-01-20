@@ -36,17 +36,18 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 		while (rs.next()) {
 			String loi_number = rs.getString("loi_number");
 			ServicePlanRequest servicePlanRequest = new ServicePlanRequest();
+			servicePlanRequest.setId(rs.getString("id"));
 			servicePlanRequest.setLoiNumber(rs.getString("loi_number"));
 			servicePlanRequest.setAutoCadFile(rs.getString("auto_cad_file"));
 			servicePlanRequest.setCertifieadCopyOfThePlan(rs.getString("certifiead_copy_of_the_plan"));
 			servicePlanRequest.setEnvironmentalClearance(rs.getString("environmental_clearance"));
 			servicePlanRequest.setSelfCertifiedDrawingFromEmpaneledDoc(rs.getString("self_certified_drawing_from_empaneled_doc"));
 			
-			servicePlanRequest.setSelfCertifiedDrawingsFromCharetedEng(rs.getBoolean("self_certified_drawings_from_chareted_eng"));
+			servicePlanRequest.setSelfCertifiedDrawingsFromCharetedEng(rs.getString("self_certified_drawings_from_chareted_eng"));
 			servicePlanRequest.setShapeFileAsPerTemplate(rs.getString("shape_file_as_per_template"));
 			servicePlanRequest.setStatus(rs.getString("status"));
 			servicePlanRequest.setAction(rs.getString("sp_action"));
-			servicePlanRequest.setUndertaking(rs.getBoolean("undertaking"));
+			servicePlanRequest.setUndertaking(rs.getString("undertaking"));
 			
 //			servicePlanRequest.setAssignee(rs.getString("assignee"));
 //			servicePlanRequest.setAutoCadFile(rs.getString("action"));

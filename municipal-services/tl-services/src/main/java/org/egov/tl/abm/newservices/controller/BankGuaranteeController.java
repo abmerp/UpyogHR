@@ -32,22 +32,24 @@ public class BankGuaranteeController {
 	@PostMapping("/guarantee/_create")
 	public ResponseEntity<NewBankGuaranteeResponse> createNewBankGuarantee(@RequestBody NewBankGuaranteeContract newBankGuaranteeContract){
 		
-		NewBankGuarantee newBankguarantee = bankGuaranteeService.createNewBankGuarantee(newBankGuaranteeContract);
-		List<NewBankGuarantee> newBankGuaranteeList = new ArrayList<NewBankGuarantee>();
-		newBankGuaranteeList.add(newBankguarantee);
-		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder().newBankGuaranteeList(newBankGuaranteeList)
-											.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(newBankGuaranteeContract.getRequestInfo(), true))
-											.build();
+		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService
+				.createNewBankGuarantee(newBankGuaranteeContract);
+		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
+				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(newBankGuaranteeContract.getRequestInfo(), true))
+				.build();
 		
 		return new ResponseEntity<>(newBankGuaranteeResponse, HttpStatus.OK);	
 	}
 	
 	@PostMapping("/guarantee/_search")
 	public ResponseEntity<NewBankGuaranteeResponse> searchNewBankGuarantee(@RequestBody RequestInfo requestInfo,
-			@RequestParam("applicationNumber") List<String> applicationNumber) {
+			@RequestParam(value = "applicationNumber", required = false) List<String> applicationNumber,
+			@RequestParam(value = "loiNumber", required = false) String loiNumber,
+			@RequestParam(value = "typeOfBg", required = false) String typeOfBg) {
 		
 		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.searchNewBankGuarantee(requestInfo,
-				applicationNumber);
+				applicationNumber, loiNumber, typeOfBg);
 		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
 				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfo, true))
@@ -59,9 +61,7 @@ public class BankGuaranteeController {
 	@PostMapping("/guarantee/_update")
 	public ResponseEntity<NewBankGuaranteeResponse> updateNewBankGuarantee(
 			@RequestBody NewBankGuaranteeContract newBankGuaranteeContract) {
-		NewBankGuarantee newBankGuarantee = bankGuaranteeService.updateNewBankGuarantee(newBankGuaranteeContract);
-		List<NewBankGuarantee> newBankGuaranteeList = new ArrayList<NewBankGuarantee>();
-		newBankGuaranteeList.add(newBankGuarantee);
+		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.updateNewBankGuarantee(newBankGuaranteeContract);
 		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
 				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(newBankGuaranteeContract.getRequestInfo(), true))

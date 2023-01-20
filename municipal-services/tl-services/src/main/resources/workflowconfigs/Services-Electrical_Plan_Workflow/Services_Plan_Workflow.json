@@ -116,7 +116,7 @@
                     "tenantId": "hr",
                     "sla": 86400000,
                     "state": "SP_PENDING_FROM_DEPARMENT_HQ",
-                    "applicationStatus": "SP_PENDING_FROM_DEPARMENT",
+                    "applicationStatus": "SP_PENDING_FROM_DEPARMENT_HQ",
                     "docUploadRequired": false,
                     "isStartState": false,
                     "isTerminateState": false,

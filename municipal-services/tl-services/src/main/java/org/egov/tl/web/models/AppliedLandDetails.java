@@ -9,6 +9,24 @@ import lombok.Setter;
 @Setter
 public class AppliedLandDetails {
 
+	
+	@JsonProperty("district")
+	private String district;
+	
+	@JsonProperty("potential")
+	private String potential;
+	
+	@JsonProperty("zone")	
+	private String zone;
+	
+	@JsonProperty("developmentPlan")
+	private String developmentPlan;
+	
+	@JsonProperty("sector")	
+	private String sector;
+	
+	private String isChange;
+	
 	@JsonProperty("rowid")
 	private String rowid;
 	@JsonProperty("tehsil")
@@ -87,8 +105,6 @@ public class AppliedLandDetails {
 	@JsonProperty("nonConsolidatedTotal")
 	private String nonConsolidatedTotal;
 	
-	@JsonProperty("changeInInfo")
-	private String changeInInfo;
 	@JsonProperty("editKhewats")
 	private String editKhewats;
 	@JsonProperty("editRectangleNo")

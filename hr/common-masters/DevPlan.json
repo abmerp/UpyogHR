@@ -1,0 +1,426 @@
+{
+    "tenantId": "hr",
+    "moduleName": "common-masters",
+    "DevPlan": [
+        {
+         "distCodeTCP": "YR",
+         "devPlan": "AD Badri",
+         "devPlanCode": "ADB"
+        },
+        {
+         "distCodeTCP": "HR",
+         "devPlan": "Agroha",
+         "devPlanCode": "AGR"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "ALIPUR",
+         "devPlanCode": "ALI"
+        },
+        {
+         "distCodeTCP": "AA",
+         "devPlan": "Ambala",
+         "devPlanCode": "AMB"
+        },
+        {
+         "distCodeTCP": "JR",
+         "devPlan": "Arogya Dham Badsa",
+         "devPlanCode": "BAD"
+        },
+        {
+         "distCodeTCP": "KL",
+         "devPlan": "ASSANDH",
+         "devPlanCode": "ASS"
+        },
+        {
+         "distCodeTCP": "JR",
+         "devPlan": "BAHADURGARH",
+         "devPlanCode": "BAH"
+        },
+        {
+         "distCodeTCP": "RI",
+         "devPlan": "BAWAL",
+         "devPlanCode": "BAW"
+        },
+        {
+         "distCodeTCP": "JR",
+         "devPlan": "BERI",
+         "devPlanCode": "BER"
+        },
+        {
+         "distCodeTCP": "BI",
+         "devPlan": "BHIWANI",
+         "devPlanCode": "BHI"
+        },
+        {
+         "distCodeTCP": "FT",
+         "devPlan": "Bhuna",
+         "devPlanCode": "BHU"
+        },
+        {
+         "distCodeTCP": "SA",
+         "devPlan": "Dabwali",
+         "devPlanCode": "DAB"
+        },
+        {
+         "distCodeTCP": "CD",
+         "devPlan": "DADRI",
+         "devPlanCode": "CAD"
+        },
+        {
+         "distCodeTCP": "BI",
+         "devPlan": "DADRI",
+         "devPlanCode": "DAD"
+        },
+        {
+         "distCodeTCP": "YR",
+         "devPlan": "Dadupur Headworks",
+         "devPlanCode": "DPR"
+        },
+        {
+         "distCodeTCP": "RI",
+         "devPlan": "DHARUHERA",
+         "devPlanCode": "DHA"
+        },
+        {
+         "distCodeTCP": "FD",
+         "devPlan": "FARIDABAD",
+         "devPlanCode": "FAR"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "FARUKHNAGAR",
+         "devPlanCode": "FRK"
+        },
+        {
+         "distCodeTCP": "FT",
+         "devPlan": "Fatehabad",
+         "devPlanCode": "FAT"
+        },
+        {
+         "distCodeTCP": "MT",
+         "devPlan": "Ferozpur Jhirka",
+         "devPlanCode": "FER"
+        },
+        {
+         "distCodeTCP": "ST",
+         "devPlan": "Ganaur",
+         "devPlanCode": "GAN"
+        },
+        {
+         "distCodeTCP": "KL",
+         "devPlan": "GHARAUNDA",
+         "devPlanCode": "GHA"
+        },
+        {
+         "distCodeTCP": "ST",
+         "devPlan": "GOHANA",
+         "devPlanCode": "GOH"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "GURGAON-MANESAR",
+         "devPlanCode": "GUR"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "GWAL PAHARI",
+         "devPlanCode": "GWA"
+        },
+        {
+         "distCodeTCP": "HR ",
+         "devPlan": "HANSI",
+         "devPlanCode": "HAN"
+        },
+        {
+         "distCodeTCP": "PL",
+         "devPlan": "Hathin",
+         "devPlanCode": "HAT"
+        },
+        {
+         "distCodeTCP": "HR",
+         "devPlan": "HISSAR",
+         "devPlanCode": "HIS"
+        },
+        {
+         "distCodeTCP": "PL",
+         "devPlan": "HODAL",
+         "devPlanCode": "HOD"
+        },
+        {
+         "distCodeTCP": "KL",
+         "devPlan": "INDRI",
+         "devPlanCode": "IND"
+        },
+        {
+         "distCodeTCP": "JR",
+         "devPlan": "Jhajjar",
+         "devPlanCode": "JHA"
+        },
+        {
+         "distCodeTCP": "JD",
+         "devPlan": "Jind",
+         "devPlanCode": "JIN"
+        },
+        {
+         "distCodeTCP": "KT",
+         "devPlan": "Kaithal",
+         "devPlanCode": "KAI"
+        },
+        {
+         "distCodeTCP": "RK",
+         "devPlan": "Kalanaur",
+         "devPlanCode": "KAL"
+        },
+        {
+         "distCodeTCP": "YR",
+         "devPlan": "Kapal Mochan",
+         "devPlanCode": "KAP"
+        },
+        {
+         "distCodeTCP": "KL",
+         "devPlan": "KARNAL",
+         "devPlanCode": "KAR"
+        },
+        {
+         "distCodeTCP": "ST",
+         "devPlan": "Kharkhauda",
+         "devPlanCode": "KHA"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "KMP Global Corridor",
+         "devPlanCode": "KMP"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "KOT BEHLA URBAN COMPLEX",
+         "devPlanCode": "KOT"
+        },
+        {
+         "distCodeTCP": "KA",
+         "devPlan": "Kurukshetra",
+         "devPlanCode": "KUR"
+        },
+        {
+         "distCodeTCP": "KA",
+         "devPlan": "Ladwa",
+         "devPlanCode": "LAD"
+        },
+        {
+         "distCodeTCP": "PT",
+         "devPlan": "Madlauda",
+         "devPlanCode": "MAD"
+        },
+        {
+         "distCodeTCP": "MH",
+         "devPlan": "MAHENDRA GARH",
+         "devPlanCode": "MAH"
+        },
+        {
+         "distCodeTCP": "RI",
+         "devPlan": "Manesar-Bawal Investment Region (MBIR)",
+         "devPlanCode": "MBI"
+        },
+        {
+         "distCodeTCP": "FD",
+         "devPlan": "MANGAR",
+         "devPlanCode": "MAN"
+        },
+        {
+         "distCodeTCP": "HR",
+         "devPlan": "Mayyar",
+         "devPlanCode": "MAY"
+        },
+        {
+         "distCodeTCP": "RK",
+         "devPlan": "Meham",
+         "devPlanCode": "MEH"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "NA",
+         "devPlanCode": "NA"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "NA",
+         "devPlanCode": "NAP"
+        },
+        {
+         "distCodeTCP": "AA",
+         "devPlan": "Naraingarh",
+         "devPlanCode": "NRH"
+        },
+        {
+         "distCodeTCP": "MH",
+         "devPlan": "NARNAUL",
+         "devPlanCode": "NAN"
+        },
+        {
+         "distCodeTCP": "JD",
+         "devPlan": "Narwana",
+         "devPlanCode": "NAR"
+        },
+        {
+         "distCodeTCP": "KL",
+         "devPlan": "NILOKHERI AND TARAORI",
+         "devPlanCode": "NIL"
+        },
+        {
+         "distCodeTCP": "JR",
+         "devPlan": "Not Applicable",
+         "devPlanCode": "NAJ"
+        },
+        {
+         "distCodeTCP": "MT",
+         "devPlan": "NUH",
+         "devPlanCode": "NUH"
+        },
+        {
+         "distCodeTCP": "PL",
+         "devPlan": "PALWAL",
+         "devPlanCode": "PAL"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "PANCHKULA EXTENSION",
+         "devPlanCode": "PKE"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "PANCHKULA INTERIM MASTER PLAN",
+         "devPlanCode": "PKL"
+        },
+        {
+         "distCodeTCP": "PT",
+         "devPlan": "Panipat",
+         "devPlanCode": "PAN"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "PATAUDI",
+         "devPlanCode": "PAT"
+        },
+        {
+         "distCodeTCP": "KA",
+         "devPlan": "Pehowa",
+         "devPlanCode": "PEH"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "PINJORE",
+         "devPlanCode": "PIN"
+        },
+        {
+         "distCodeTCP": "PL",
+         "devPlan": "PRITHLA",
+         "devPlanCode": "PRI"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "Raipur Rani",
+         "devPlanCode": "RAI"
+        },
+        {
+         "distCodeTCP": "FT",
+         "devPlan": "RATIA",
+         "devPlanCode": "RAT"
+        },
+        {
+         "distCodeTCP": "RI",
+         "devPlan": "REWARI",
+         "devPlanCode": "REW"
+        },
+        {
+         "distCodeTCP": "RK",
+         "devPlan": "Rohtak",
+         "devPlanCode": "ROH"
+        },
+        {
+         "distCodeTCP": "JD",
+         "devPlan": "Safidon",
+         "devPlanCode": "SAF"
+        },
+        {
+         "distCodeTCP": "AA",
+         "devPlan": "SAHA",
+         "devPlanCode": "SAH"
+        },
+        {
+         "distCodeTCP": "PT",
+         "devPlan": "Samalkha",
+         "devPlanCode": "SAM"
+        },
+        {
+         "distCodeTCP": "RK",
+         "devPlan": "SAMPLA",
+         "devPlanCode": "SAP"
+        },
+        {
+         "distCodeTCP": "JR",
+         "devPlan": "SAMPLA in Jhajjar",
+         "devPlanCode": "SMP"
+        },
+        {
+         "distCodeTCP": "KA",
+         "devPlan": "SHAHABAD",
+         "devPlanCode": "SHA"
+        },
+        {
+         "distCodeTCP": "SA",
+         "devPlan": "SIRSA",
+         "devPlanCode": "SIR"
+        },
+        {
+         "distCodeTCP": "GN",
+         "devPlan": "SOHNA",
+         "devPlanCode": "SOH"
+        },
+        {
+         "distCodeTCP": "MT",
+         "devPlan": "SOHNA IN MEWAT",
+         "devPlanCode": "SHM"
+        },
+        {
+         "distCodeTCP": "ST",
+         "devPlan": "Sonipat",
+         "devPlanCode": "SON"
+        },
+        {
+         "distCodeTCP": "PK",
+         "devPlan": "SRI MATA MANSA DEVI URBAN COMPLEX",
+         "devPlanCode": "MSD"
+        },
+        {
+         "distCodeTCP": "HR",
+         "devPlan": "TALWANDI-RANA",
+         "devPlanCode": "TAL"
+        },
+        {
+         "distCodeTCP": "MT",
+         "devPlan": "TAORU",
+         "devPlanCode": "TAO"
+        },
+        {
+         "distCodeTCP": "FT",
+         "devPlan": "TOHANA",
+         "devPlanCode": "TOH"
+        },
+        {
+         "distCodeTCP": "JD",
+         "devPlan": "Uchana",
+         "devPlanCode": "UCH"
+        },
+        {
+         "distCodeTCP": "HR",
+         "devPlan": "Uklana",
+         "devPlanCode": "UKL"
+        },
+        {
+         "distCodeTCP": "YR",
+         "devPlan": "Yamunanagar-Jagdhari",
+         "devPlanCode": "YAM"
+        }
+       ]
+}

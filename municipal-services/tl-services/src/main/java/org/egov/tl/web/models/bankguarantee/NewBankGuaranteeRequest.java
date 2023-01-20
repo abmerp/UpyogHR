@@ -7,6 +7,7 @@ import java.util.Map;
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,9 +39,10 @@ public class NewBankGuaranteeRequest {
 	//TODO: add the below fields in NewBankGuarantee class-
 	private Object additionalDetails;
 	private AuditDetails auditDetails;
-	private String workflowAction;
-	private String workflowComment;
-	private List<String> workflowAssignee;
+	private String action;
+	private String comment;
+	private List<String> assignee;
+	private List<Document> wfDocuments;
 	private LicenseServiceDao license;
 	
 	private String bankGuaranteeStatus;
@@ -60,6 +62,8 @@ public class NewBankGuaranteeRequest {
 	private String indianBankAdvisedCertificate;
 	private String releaseBankGuarantee;
 	private List<NewBankGuaranteeRequest> auditEntries = null;
+	private final String businessService = "BG_NEW";
+	private final String workflowCode = "BG_NEW";
 
 	public NewBankGuaranteeRequest(NewBankGuarantee newBankGuarantee) {
 		this.id = newBankGuarantee.getId();

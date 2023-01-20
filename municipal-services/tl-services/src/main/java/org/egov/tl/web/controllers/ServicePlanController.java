@@ -29,9 +29,7 @@ public class ServicePlanController {
 	@PostMapping("/_create")
 	public ResponseEntity<ServicePlanInfoResponse> createServicePlan(
 			@RequestBody ServicePlanContract servicePlanContract) {
-		ServicePlanRequest servicePlanRequest = servicePlanService.create(servicePlanContract);
-		List<ServicePlanRequest> servicePlanRequestList = new ArrayList<>();
-		servicePlanRequestList.add(servicePlanRequest);
+		List<ServicePlanRequest> servicePlanRequestList = servicePlanService.create(servicePlanContract);
 		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder()
 				.servicePlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(servicePlanContract.getRequestInfo(), true))
@@ -42,7 +40,7 @@ public class ServicePlanController {
 	@PostMapping("/_get")
 	public ResponseEntity<ServicePlanInfoResponse> getServicePlan(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(required = false) String loiNumber , @RequestParam(required = false) String applicationNumber){
-		List<ServicePlanRequest> servicePlanRequest = servicePlanService.searchServicePlan(loiNumber , applicationNumber);
+		List<ServicePlanRequest> servicePlanRequest = servicePlanService.searchServicePlan(loiNumber , applicationNumber , requestInfoWrapper.getRequestInfo());
 		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder().
 				servicePlanResponse(servicePlanRequest).responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(
 						requestInfoWrapper.getRequestInfo(), true)).build();
@@ -52,9 +50,7 @@ public class ServicePlanController {
 	@PostMapping("/_update")
 	public ResponseEntity<ServicePlanInfoResponse> UpdateServicePlan(
 			@RequestBody ServicePlanContract servicePlanContract) {
-		ServicePlanRequest servicePlanRequest = servicePlanService.Update(servicePlanContract);
-		List<ServicePlanRequest> servicePlanRequestList = new ArrayList<>();
-		servicePlanRequestList.add(servicePlanRequest);
+		 List<ServicePlanRequest> servicePlanRequestList = servicePlanService.Update(servicePlanContract);
 		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder()
 				.servicePlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(servicePlanContract.getRequestInfo(), true))

@@ -1,8 +1,10 @@
 package org.egov.tl.service;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 
+import org.egov.tl.web.models.ResponseTransaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -11,13 +13,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectReader;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
 public class ThirPartyAPiCall {
+
+	@Value("${tcp.dept.auth.token}")
+	private String deptAuthToken;
+	@Value("${tcp.dispatch.number}")
+	private String deptDispatchNumber;
 
 	@Value("${tcp.url}")
 	public String tcpurl;
@@ -183,11 +196,10 @@ public class ThirPartyAPiCall {
 		request.put("CreatedByRoleId", createdByRoleId);
 		request.put("IsConfirmed", isConfirmed);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
-		System.out.println("request-------"+request);
-
+		
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,
 				Map.class);
-		System.out.println("response"+response);
+		
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("application Number\n" + response.getBody().get("Value"));
 		}
@@ -199,6 +211,37 @@ public class ThirPartyAPiCall {
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpExistSSoNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("isexistSSO Number\n" + response.getBody().get("Value"));
+		}
+		return response;
+	}
+	public ResponseEntity<Map> getDepartmenAuthToken(Map<String, Object> map) {
+
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.set("access_key", tcpAccessKey);
+		headers.set("secret_key", tcpSecretKey);
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
+
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + deptAuthToken, entity, Map.class);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("Token No\n" + response.getBody().get("Value"));
+		}
+		return response;
+	}
+	public ResponseEntity<String> getDispatchNumber(Map<String, Object> request,Map<String, Object> depAuthtoken) {
+		
+		request.put("TokenId", getDepartmenAuthToken(depAuthtoken).getBody().get("Value"));
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
+		ResponseEntity<String> response = restTemplate.postForEntity(tcpurl + deptDispatchNumber, entity, String.class);
+        log.info("response"+response);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("dispatch Number\n" + response.getBody());
 		}
 		return response;
 	}

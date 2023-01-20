@@ -2,10 +2,12 @@ package org.egov.tl.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -22,6 +24,7 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ElectricPlan;
 import org.egov.tl.web.models.ElectricPlanContract;
 import org.egov.tl.web.models.ElectricPlanRequest;
+import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -70,38 +73,52 @@ public class ElectricPlanService {
 	@Autowired
 	private WorkflowService workflowService;
 
-	public ElectricPlanRequest create(ElectricPlanContract electricPlanContract) {
+	public List<ElectricPlanRequest> create(ElectricPlanContract electricPlanContract) {
 
 		String uuid = electricPlanContract.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
+  
+		RequestInfo requestInfo = electricPlanContract.getRequestInfo();
+		
+		List<ElectricPlanRequest> electricPlanRequestlist = electricPlanContract.getElectricPlanRequest();
+		
+		for (ElectricPlanRequest electricPlanRequest : electricPlanRequestlist) {
+			List<String> applicationNumbers = null;
+			int count = 1;
+			List<ElectricPlanRequest> searchElectricPlan = searchElectricPlan(electricPlanRequest.getLoiNumber(), 
+					electricPlanRequest.getApplicationNumber(),requestInfo );
+			if (!CollectionUtils.isEmpty(searchElectricPlan) || searchElectricPlan.size() > 1) {
+				throw new CustomException("Already Found  or multiple Electric plan applications with LoiNumber.",
+						"Already Found or multiple Electric plan applications with LoiNumber.");
+			}
 
-		ElectricPlanRequest electricPlanRequest = electricPlanContract.getElectricPlanRequest();
+			electricPlanRequest.setId(UUID.randomUUID().toString());
+			
+			applicationNumbers = getIdList(electricPlanContract.getRequestInfo(), electricPlanRequest.getTenantID(),
+					config.getEPapplicationNumberIdgenNameTL(), config.getEPapplicationNumberIdgenFormatTL(), count);
 
-		List<String> applicationNumbers = null;
-		int count = 1;
+			electricPlanRequest.setAuditDetails(auditDetails);
+			electricPlanRequest.setApplicationNumber(applicationNumbers.get(0));
 
-		applicationNumbers = getIdList(electricPlanContract.getRequestInfo(), electricPlanRequest.getTenantID(),
-				config.getEPapplicationNumberIdgenNameTL(), config.getEPapplicationNumberIdgenFormatTL(), count);
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(electricPlanRequest , requestInfo);
 
-		electricPlanRequest.setAuditDetails(auditDetails);
-		electricPlanRequest.setApplicationNumber(applicationNumbers.get(0));
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(electricPlanContract);
+			electricPlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
-		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			
+		}
 
-		electricPlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-
-		electricPlanContract.setElectricPlanRequest(electricPlanRequest);
+		electricPlanContract.setElectricPlanRequest(electricPlanRequestlist);
 
 		producer.push(config.getEPsaveTopic(), electricPlanContract);
 
-		return electricPlanRequest;
+		return electricPlanRequestlist;
 
 	}
 
-	public List<ElectricPlanRequest> searchElectricPlan(String loiNumber, String applicationNumber) {
+	public List<ElectricPlanRequest> searchElectricPlan(String loiNumber, String applicationNumber, RequestInfo requestInfo) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -129,6 +146,12 @@ public class ElectricPlanService {
 				preparedStatement.add(applicationNumberList);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, epRowMapper);
 			}
+		}else if ((requestInfo.getUserInfo().getUuid() != null) ){
+			builder.append("and created_by= :CB");
+			paramMap.put("CB", requestInfo.getUserInfo().getUuid());
+			preparedStatement.add(requestInfo.getUserInfo().getUuid());
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, epRowMapper);
+
 		}
 
 		return Result;
@@ -144,9 +167,11 @@ public class ElectricPlanService {
 		return idResponses.stream().map(IdResponse::getId).collect(Collectors.toList());
 	}
 
-	private TradeLicenseRequest prepareProcessInstanceRequest(ElectricPlanContract electricPlanContract) {
+	private TradeLicenseRequest prepareProcessInstanceRequest(ElectricPlanRequest electricPlanRequest, RequestInfo requestInfo) {
 
-		ElectricPlanRequest electricPlanRequest = electricPlanContract.getElectricPlanRequest();
+		
+		
+//		ElectricPlanRequest electricPlanRequest = electricPlanContract.getElectricPlanRequest();
 
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
 		TradeLicense tradeLicenseEP = new TradeLicense();
@@ -155,45 +180,54 @@ public class ElectricPlanService {
 		tradeLicenseEP.setAction(electricPlanRequest.getAction());
 		tradeLicenseEP.setAssignee(electricPlanRequest.getAssignee());
 		tradeLicenseEP.setApplicationNumber(electricPlanRequest.getApplicationNumber());
-		tradeLicenseEP.setWorkflowCode(businessService_TL);
+		tradeLicenseEP.setWorkflowCode(electricPlanRequest.getWorkflowCode());
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 		tradeLicenseDetail.setTradeType(businessService_TL);
 		tradeLicenseEP.setTradeLicenseDetail(tradeLicenseDetail);
 		tradeLicenseEP.setComment(electricPlanRequest.getComment());
-		tradeLicenseEP.setWfDocuments(null);
+		tradeLicenseEP.setWfDocuments(electricPlanRequest.getWfDocuments());
 		tradeLicenseEP.setTenantId(electricPlanRequest.getTenantID());
 		tradeLicenseEP.setBusinessService(businessService_TL);
-
-		tradeLicenseRequest.setRequestInfo(electricPlanContract.getRequestInfo());
+//		Map<String, String> uuidMap = new HashMap<>();
+//		uuidMap.put("previousStateUuid", businessService_TL);
+//		uuidMap.put("currentStateUuid", businessService_TL);
+		tradeLicenseRequest.setRequestInfo(requestInfo);
 		tradeLicenseEPlist.add(tradeLicenseEP);
 		tradeLicenseRequest.setLicenses(tradeLicenseEPlist);
 
 		return tradeLicenseRequest;
 	}
 
-	public ElectricPlanRequest Update(ElectricPlanContract electricPlanContract) {
+	public List<ElectricPlanRequest> Update(ElectricPlanContract electricPlanContract) {
 
 		String uuid = electricPlanContract.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, false);
+		
+		
+RequestInfo requestInfo = electricPlanContract.getRequestInfo();
+		
+		List<ElectricPlanRequest> electricPlanRequestlist = electricPlanContract.getElectricPlanRequest();
+		
+		for (ElectricPlanRequest electricPlanRequest : electricPlanRequestlist) {
 
-		ElectricPlanRequest electricPlanRequest = electricPlanContract.getElectricPlanRequest();
+//		ElectricPlanRequest electricPlanRequest = electricPlanContract.getElectricPlanRequest();
 
 		if (Objects.isNull(electricPlanContract) || Objects.isNull(electricPlanContract.getElectricPlanRequest())) {
 			throw new CustomException("ElectricalPlanContract must not be null",
 					"ServicePlanContract must not be null");
 		}
 
-		if (StringUtils.isEmpty(electricPlanContract.getElectricPlanRequest().getApplicationNumber())) {
+		if (StringUtils.isEmpty(electricPlanRequest.getApplicationNumber())) {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
 
 		String loiNumber = null;
-		String applicationNumber = electricPlanContract.getElectricPlanRequest().getApplicationNumber();
-		List<ElectricPlanRequest> searchServicePlan = searchElectricPlan(loiNumber, applicationNumber);
+		String applicationNumber = electricPlanRequest.getApplicationNumber();
+		List<ElectricPlanRequest> searchServicePlan = searchElectricPlan(loiNumber, applicationNumber,requestInfo );
 		if (CollectionUtils.isEmpty(searchServicePlan) || searchServicePlan.size() > 1) {
-			throw new CustomException("Found none or multiple service plan applications with applicationNumber.",
-					"Found none or multiple service plan applications with applicationNumber.");
+			throw new CustomException("Found none or multiple Electric plan applications with applicationNumber.",
+					"Found none or multiple Electric plan applications with applicationNumber.");
 		}
 
 		String currentStatus = searchServicePlan.get(0).getStatus();
@@ -201,29 +235,31 @@ public class ElectricPlanService {
 		BusinessService workflow = workflowService.getBusinessService(electricPlanRequest.getTenantID(),
 				electricPlanContract.getRequestInfo(), businessService_TL);
 
-		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract);
+		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract , electricPlanRequest );
 
 		List<String> applicationNumbers = null;
 		int count = 1;
 
 		electricPlanRequest.setAuditDetails(auditDetails);
 
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(electricPlanContract);
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(electricPlanRequest , requestInfo);
 
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 		electricPlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+		
+		}
 
-		electricPlanContract.setElectricPlanRequest(electricPlanRequest);
+		electricPlanContract.setElectricPlanRequest(electricPlanRequestlist);
 
 		producer.push(config.getEPupdateTopic(), electricPlanContract);
 
-		return electricPlanRequest;
+		return electricPlanRequestlist;
 
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			ElectricPlanContract electricPlanContract) {
+			ElectricPlanContract electricPlanContract, ElectricPlanRequest electricPlanRequest) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
@@ -233,7 +269,7 @@ public class ElectricPlanService {
 		}
 		State currentWorkflowState = currentWorkflowStateOptional.get();
 		List<Action> permissibleActions = currentWorkflowState.getActions();
-		String currentActionFromRequest = electricPlanContract.getElectricPlanRequest().getAction();
+		String currentActionFromRequest = electricPlanRequest.getAction();
 		Optional<Action> currentWorkflowActionOptional = permissibleActions.stream()
 				.filter(action -> action.getAction().equals(currentActionFromRequest)).findFirst();
 		if (!currentWorkflowActionOptional.isPresent()) {
@@ -260,6 +296,6 @@ public class ElectricPlanService {
 		State nextState = nextStateOptional.get();
 		String nextStateName = nextState.getState();
 		// set next state as status-
-		electricPlanContract.getElectricPlanRequest().setStatus(nextStateName);
+		electricPlanRequest.setStatus(nextStateName);
 	}
 }

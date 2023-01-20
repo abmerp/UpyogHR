@@ -69,7 +69,7 @@ public class EgScrutinyController {
 
 	@PostMapping("/_search")
 	public ResponseEntity<EgScrutinyInfoResponse> searchEgScrutiny(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber,@RequestParam("userId") Integer userid) {
+			@RequestParam("applicationNumber") String applicationNumber,@RequestParam(value = "userId", required=false) Integer userid) {
 
 		List<EgScrutiny> egScrutiny = this.egScrutinyService.search(applicationNumber,userid);
 		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutiny)
