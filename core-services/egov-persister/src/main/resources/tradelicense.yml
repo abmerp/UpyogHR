@@ -334,7 +334,7 @@ serviceMaps:
          jsonMaps:
           - jsonPath: $.Licenses.*.id
 
-       - query: UPDATE eg_tl_tradelicense SET tradeName = ?,licenseNumber = ?,licensetype = ?, oldlicensenumber = ?, propertyid = ?, oldpropertyid = ?, applicationdate = ?, commencementdate = ?, issueddate = ?, financialyear = ?, validfrom = ?, validto = ?, action = ?, status = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?, lastmodifiedby = ?,  lastmodifiedtime = ?  WHERE id=?;
+       - query: UPDATE eg_tl_tradelicense SET tradeName = ?,licenseNumber = ?,licensetype = ?, oldlicensenumber = ?, propertyid = ?, oldpropertyid = ?, applicationdate = ?, commencementdate = ?, issueddate = ?, financialyear = ?, validfrom = ?, validto = ?, action = ?, status = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?  WHERE id=?;
          basePath: Licenses.*
          jsonMaps:
           - jsonPath: $.Licenses.*.tradeName
@@ -371,7 +371,7 @@ serviceMaps:
              
           - jsonPath: $.Licenses.*.tcpApplicationNumber 
               
-          - jsonPath: $.Licenses.*.tcploinumber 
+          - jsonPath: $.Licenses.*.loiNumber
 
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
 
@@ -379,7 +379,6 @@ serviceMaps:
 
           - jsonPath: $.Licenses.*.id
           
-
 
 
        - query: INSERT INTO eg_tl_tradelicensedetail_audit SELECT * FROM eg_tl_tradelicensedetail WHERE id = ?;
@@ -423,7 +422,7 @@ serviceMaps:
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
-
+  
 
        - query: INSERT INTO eg_tl_tradeunit(id, tenantid, active, tradetype, uom, uomvalue, tradelicensedetailid, createdby, lastmodifiedby, createdtime, lastmodifiedtime)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET active = ?, tradetype = ?, uom = ?, uomvalue = ?,  lastmodifiedby = ?,  lastmodifiedtime = ?;
          basePath: Licenses.*.tradeLicenseDetail.tradeUnits.*
@@ -767,7 +766,7 @@ serviceMaps:
           - jsonPath: $.Licenses[*][?({id} in @.tradeLicenseDetail.verificationDocuments[*].id)].auditDetails.lastModifiedTime
 
 
-       - query: UPDATE eg_tl_tradelicense SET validfrom = ?, validto = ?, licenseNumber =?, issueddate = ?, action = ?, status = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ?,  lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id=?;
+       - query: UPDATE eg_tl_tradelicense SET validfrom = ?, validto = ?, licenseNumber =?, issueddate = ?, action = ?, status = ?, lastmodifiedby = ?,  lastmodifiedtime = ?, tcpdairynumber = ?, tcpcasenumber = ?, tcpapplicationnumber = ?, tcploinumber = ? WHERE id=?;
          basePath: Licenses.*
          jsonMaps:
           - jsonPath: $.Licenses.*.validFrom
@@ -781,6 +780,10 @@ serviceMaps:
           - jsonPath: $.Licenses.*.action
 
           - jsonPath: $.Licenses.*.status
+          
+          - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
+
+          - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
            
           - jsonPath: $.Licenses.*.tcpDairyNumber 
             
@@ -788,23 +791,20 @@ serviceMaps:
              
           - jsonPath: $.Licenses.*.tcpApplicationNumber 
               
-          - jsonPath: $.Licenses.*.tcploinumber           
-
-          - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
-
-          - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
-
+          - jsonPath: $.Licenses.*.loiNumber   
+          
           - jsonPath: $.Licenses.*.id
 
 
-       - query: UPDATE eg_tl_tradelicensedetail SET currentVersion = ?, additionaldetail = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET currentVersion = ?, additionaldetail = ?, lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
+          
           - jsonPath: $.Licenses.*.tradeLicenseDetail.additionalDetail
             type: JSON
             dbType: JSONB
-
+          
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
 
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
@@ -820,7 +820,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: UPDATE eg_tl_tradelicensedetail SET adhocExemption = ?,adhocPenalty = ?,adhocExemptionReason = ?,adhocPenaltyReason = ?,lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET adhocExemption = ?,adhocPenalty = ?,adhocExemptionReason = ?,adhocPenaltyReason = ?, lastmodifiedby = ?,  lastmodifiedtime = ? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps:
 
@@ -831,7 +831,7 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.adhocExemptionReason
 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.adhocPenaltyReason
-
+          
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
 
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedTime
@@ -1226,5 +1226,38 @@ serviceMaps:
           - jsonPath: $.ElectricPlanRequest.*.pdfFormat
 
           - jsonPath: $.ElectricPlanRequest.*.applicationNumber
-           
-           
+          
+ - version: 1.0
+   description: Update TradeLicense 
+   fromTopic: update-tl-tradelicenses-fee
+   isTransaction: true
+   queryMaps:
+     
+       - query: INSERT INTO eg_tl_tradelicensedetail_audit SELECT * FROM eg_tl_tradelicensedetail WHERE id = ?;
+         basePath: Licenses.*.tradeLicenseDetail
+         jsonMaps:
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.id
+          
+          
+       - query: UPDATE eg_tl_tradelicensedetail SET currentVersion = ?, additionaldetail = ?, scrutinyfeecharges = ?, licensefeecharges = ?, externaldevelopmentcharges = ?, conversioncharges = ?, stateinfrastructuredevelopmentcharges = ? WHERE id = ?;
+         basePath: Licenses.*.tradeLicenseDetail
+         jsonMaps: 
+          
+          
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
+          
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.additionalDetail
+            type: JSON
+            dbType: JSONB
+            
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.scrutinyFeeCharges
+          
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.licenseFeeCharges
+          
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.externalDevelopmentCharges
+          
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.conversionCharges      
+                   
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.stateInfrastructureDevelopmentCharges
+                
+          - jsonPath: $.Licenses.*.tradeLicenseDetail.id

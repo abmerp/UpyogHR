@@ -84,11 +84,12 @@ public class TLRepository {
 	public void update(TradeLicenseRequest tradeLicenseRequest, Map<String, Boolean> idToIsStateUpdatableMap) {
 		RequestInfo requestInfo = tradeLicenseRequest.getRequestInfo();
 		List<TradeLicense> licenses = tradeLicenseRequest.getLicenses();
-
+	//	List<TradeLicenseDetail> tradeLicenseDetail=(List<TradeLicenseDetail>) tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail();
+		
 		List<TradeLicense> licesnsesForStatusUpdate = new LinkedList<>();
 		List<TradeLicense> licensesForUpdate = new LinkedList<>();
 		List<TradeLicense> licensesForAdhocChargeUpdate = new LinkedList<>();
-
+		List<TradeLicense> licensefeecharges = new LinkedList();
 		
 		 for (TradeLicense license : licenses) {
 		  
@@ -96,9 +97,12 @@ public class TLRepository {
 //		  licensesForUpdate.add(license);
 //		  }
 		 if(license.getAction().equalsIgnoreCase(ACTION_ADHOC))
+		 {
 		  licensesForAdhocChargeUpdate.add(license); 
-		  else {
+		 }else{
 		  licesnsesForStatusUpdate.add(license);
+		//  licensefeecharges.add(license);		
+		
 		  }
 		  }
 		 
@@ -113,7 +117,11 @@ public class TLRepository {
 		if (!licensesForAdhocChargeUpdate.isEmpty())
 			producer.push(config.getUpdateAdhocTopic(),
 					new TradeLicenseRequest(requestInfo, licensesForAdhocChargeUpdate));
-
+		
+	
+		if(!CollectionUtils.isEmpty(licesnsesForStatusUpdate))
+			producer.push(config.getTlFeeTopic(),
+					new TradeLicenseRequest(requestInfo, licesnsesForStatusUpdate));
 	}
 
 	/**
