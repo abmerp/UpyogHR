@@ -80,6 +80,7 @@ public class BankGuaranteeService {
 	public static final String BG_STATUS_PRE_SUBMIT = "PRE_SUBMIT";
 	public static final String BG_STATUS_INITIATED = "INITIATED";
 	public static final String BG_ACTION_INITIATE = "INITIATE";
+	public static final String BG_STATUS_PENDING_AT_CAO = "PENDING_AT_CAO";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -214,6 +215,7 @@ public class BankGuaranteeService {
 			setValidBgStatusOnApproval(newBankGuaranteeRequest);
 			setBgStatusOnRelease(newBankGuaranteeRequest);
 			enrichAuditDetailsOnUpdate(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+			enrichAssigneeOnApproval(newBankGuaranteeRequest, newBankGuaranteeSearchResult.get(0));
 
 			// call workflow to insert processinstance-
 			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest,
@@ -227,6 +229,18 @@ public class BankGuaranteeService {
 		}
 		return updatedData;
 		
+	}
+	
+	private void enrichAssigneeOnApproval(NewBankGuaranteeRequest bankGuaranteeRequest,
+			NewBankGuarantee bankGuaranteeInDB) {
+		if (!StringUtils.isEmpty(bankGuaranteeInDB.getStatus())
+				&& bankGuaranteeInDB.getStatus().equalsIgnoreCase(BG_STATUS_PENDING_AT_CAO)
+				&& !StringUtils.isEmpty(bankGuaranteeRequest.getAction())
+				&& bankGuaranteeRequest.getAction().equalsIgnoreCase(BG_NEW_ACTION_APPROVE)) {
+			List<String> assignee = new ArrayList<>();
+			assignee.add(bankGuaranteeInDB.getAuditDetails().getCreatedBy());
+			bankGuaranteeRequest.setAssignee(assignee);
+		}
 	}
 	
 	private List<NewBankGuarantee> validateAndFetchFromDbForUpdate(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
