@@ -71,7 +71,7 @@ public class BankGuaranteeController {
 	}
 	
 	
-	
+	/*
 	@PostMapping("/renew/_create")
 	public ResponseEntity<RenewBankGuaranteeResponse> renewCreate(@RequestBody RenewBankGuaranteeContract renewBankGuaranteeContract){
 		
@@ -85,7 +85,6 @@ public class BankGuaranteeController {
 		return new ResponseEntity<>(renewBankGuaranteeResponse, HttpStatus.OK);	
 	}
 	
-	/*
 	@PostMapping("/renew/_search")
 	public ResponseEntity<RenewBankGuaranteeResponse> renewSearch(@RequestBody RequestInfoWrapper requestInfoWrapper){
 		
