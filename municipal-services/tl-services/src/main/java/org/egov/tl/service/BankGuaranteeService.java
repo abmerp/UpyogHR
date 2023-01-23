@@ -95,7 +95,27 @@ public class BankGuaranteeService {
 					.getAuditDetails(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), true);
 			newBankGuaranteeRequest.setAuditDetails(auditDetails);
 
-			if (!StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
+			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
+					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
+				// basic create with processinstance-
+				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
+						newBankGuaranteeRequest.getTenantId(), tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
+				String applicationNo = idGenIds.get(0);
+				newBankGuaranteeRequest.setApplicationNumber(applicationNo);
+				newBankGuaranteeRequest.setStatus(null);
+				newBankGuaranteeRequest.setId(UUID.randomUUID().toString());
+				newBankGuaranteeRequest.setStatus(BG_STATUS_INITIATED);
+				newBankGuaranteeRequest.setAction(BG_ACTION_INITIATE);
+				validateValidityFormat(newBankGuaranteeRequest.getValidity());
+				NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeRequest.toBuilder();
+				TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(
+						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+				workflowIntegrator.callWorkFlow(processInstanceRequest);
+				newBankGuaranteeRepo.save(newBankGuaranteeContract);
+				insertedData.add(newBankGuaranteeEntity);
+			}
+			else if (!StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& newBankGuaranteeRequest.getAction()
 							.equalsIgnoreCase(BG_STATUS_PRE_SUBMIT)) {
 				// if this is for creation of entries in table without workflow involvement-
@@ -112,7 +132,7 @@ public class BankGuaranteeService {
 				newBankGuaranteeRepo.save(newBankGuaranteeContract);
 				insertedData.add(newBankGuaranteeEntity);
 			} else {
-				// if this is normal create with workflow involvement-
+				// normal update to INITIATED with workflow involvement-
 				List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
 						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
 				// set INITIATED status as not expected from UI-
@@ -349,7 +369,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRequest.setAuditDetails(auditDetails);
 	}
 	
-	
+	/*
 	public RenewBankGuarantee createRenewBankGuarantee(RenewBankGuaranteeContract renewBankGuaranteeContract) {
 		// populate audit details-
 		AuditDetails auditDetails = tradeUtil
@@ -402,7 +422,6 @@ public class BankGuaranteeService {
 		return tradeLicenseRequest;
 	}
 	
-	/*
 	public RenewBankGuarantee searchRenewBankGuarantee(Long renewBankGuaranteeId) {
 		return renewBankGuaranteeRepo.getOne(renewBankGuaranteeId);
 	}
