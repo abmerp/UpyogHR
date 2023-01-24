@@ -21,6 +21,15 @@ public class BankGuaranteeSearchCriteria {
 
 	@JsonProperty("typeOfBg")
 	private String typeOfBg;
+	
+	@JsonProperty("bgNumber")
+	private String bgNumber;
+	
+	@JsonProperty("existingBgNumber")
+	private String existingBgNumber;
+	
+	@JsonProperty("bankName")
+	private String bankName;
 
 	@JsonProperty("tenantId")
 	private String tenantId;

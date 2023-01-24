@@ -148,6 +148,27 @@
             },
             {
               "tenantId": "hr",
+              "action": "APPLY_FOR_RELEASE",
+              "nextState": "APPLIED_FOR_RELEASE",
+              "roles": [
+                "BPA_DEVELOPER",
+                "BPA_BUILDER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "APPLIED_FOR_RELEASE",
+          "applicationStatus": "APPLIED_FOR_RELEASE",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
               "action": "RELEASE",
               "nextState": "RELEASED",
               "roles": [

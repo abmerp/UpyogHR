@@ -46,10 +46,13 @@ public class BankGuaranteeController {
 	public ResponseEntity<NewBankGuaranteeResponse> searchNewBankGuarantee(@RequestBody RequestInfo requestInfo,
 			@RequestParam(value = "applicationNumber", required = false) List<String> applicationNumber,
 			@RequestParam(value = "loiNumber", required = false) String loiNumber,
-			@RequestParam(value = "typeOfBg", required = false) String typeOfBg) {
+			@RequestParam(value = "typeOfBg", required = false) String typeOfBg,
+			@RequestParam(value = "bgNumber", required = false) String bgNumber,
+			@RequestParam(value = "bankName", required = false) String bankName,
+			@RequestParam(value = "existingBgNumber", required = false) String existingBgNumber) {
 		
 		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.searchNewBankGuarantee(requestInfo,
-				applicationNumber, loiNumber, typeOfBg);
+				applicationNumber, loiNumber, typeOfBg, bgNumber, existingBgNumber, bankName);
 		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
 				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfo, true))

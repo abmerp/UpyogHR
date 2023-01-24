@@ -191,9 +191,10 @@ public class BankGuaranteeService {
 	}
 	
 	public List<NewBankGuarantee> searchNewBankGuarantee(RequestInfo requestInfo, List<String> applicationNumber,
-			String loiNumber, String typeOfBg) {
+			String loiNumber, String typeOfBg, String bgNumber, String existingBgNumber, String bankName) {
 		BankGuaranteeSearchCriteria bankGuaranteeSearchCriteria = BankGuaranteeSearchCriteria.builder()
-				.applicationNumber(applicationNumber).loiNumber(loiNumber).typeOfBg(typeOfBg).build();
+				.applicationNumber(applicationNumber).loiNumber(loiNumber).typeOfBg(typeOfBg).bgNumber(bgNumber)
+				.bankName(bankName).existingBgNumber(existingBgNumber).build();
 		List<NewBankGuaranteeRequest> newBankGuaranteeRequestData = newBankGuaranteeRepo
 				.getNewBankGuaranteeData(bankGuaranteeSearchCriteria);
 		//populate audit entries-
@@ -274,7 +275,7 @@ public class BankGuaranteeService {
 		List<String> applicationNos = new ArrayList<>();
 		applicationNos.add(newBankGuaranteeRequest.getApplicationNumber());
 		List<NewBankGuarantee> newBankGuaranteeSearchResult = searchNewBankGuarantee(
-				requestInfo, applicationNos, null, null);
+				requestInfo, applicationNos, null, null, null, null, null);
 		if (CollectionUtils.isEmpty(newBankGuaranteeSearchResult) || newBankGuaranteeSearchResult.size() > 1) {
 			throw new CustomException(
 					"Found none or multiple new bank guarantee applications with applicationNumber:"
