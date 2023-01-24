@@ -126,7 +126,9 @@ public class LicenseService {
 	TradeLicenseService tradeLicenseService;
 	@Autowired
 	ObjectMapper mapper;
-	@Autowired BankGuaranteeService bankGuaranteeService;
+	@Autowired
+	BankGuaranteeService bankGuaranteeService;
+
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
 			throws JsonProcessingException {
@@ -511,7 +513,7 @@ public class LicenseService {
 
 			log.info("transaction" + transaction);
 			String txnId = transaction.getTransaction().get(0).getTxnId();
-			applicationNumber= transaction.getTransaction().get(0).getApplicationNumber();
+			applicationNumber = transaction.getTransaction().get(0).getApplicationNumber();
 
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
@@ -525,8 +527,7 @@ public class LicenseService {
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Sucess")) {
-			
-			
+
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
@@ -577,7 +578,7 @@ public class LicenseService {
 							log.info("purposeId" + purposeId);
 
 						}
-						
+
 						Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 						mapDNo.put("Village",
@@ -781,6 +782,21 @@ public class LicenseService {
 	public List<TradeLicense> generateLoiNumber(Map<String, Object> map, @Valid RequestInfoWrapper requestInfoWrapper,
 			String applicationNo) {
 		TradeLicense tradeLicense = new TradeLicense();
+		String applicationNumber = applicationNo;
+		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
+
+		tradeLicenseRequest.setApplicationNumber(applicationNumber);
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
+				requestInfoWrapper.getRequestInfo());
+
+		tradeLicenses.get(0).getTenantId();
+
+		TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
+		tradeLicenseDetail.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
+
+		// ---------------------loi number start-------------------//
 		String dispatchNumber;
 		Map<String, Object> depAuthtoken = new HashMap<String, Object>();
 		depAuthtoken.put("UserId", "169");
@@ -815,26 +831,11 @@ public class LicenseService {
 		}
 
 		String dispatchNo = generateLoiNumberResponse.get(0).getDispatchNo();
-		
-	//	tradeLicense.setTcpLoiNumber(dispatchNo);
-                //-----------dispatch number finish-----------------------//
-		String applicationNumber = applicationNo;
-		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 
-		tradeLicenseRequest.setApplicationNumber(applicationNumber);
-		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
-				requestInfoWrapper.getRequestInfo());
+		// -----------dispatch number finish-----------------------//
 
-		tradeLicenses.get(0).getTenantId();
-		
-		TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
-		TradeLicenseDetail tradeLicenseDetail= new TradeLicenseDetail();
-		tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
-		tradeLicenseDetail.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
+		// --------------------bank gurantee calculator start-------------------------//
 		JsonNode estimate = tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail();
-	
-		
-	//--------------------bank gurantee calculator start-------------------------//
 		BankGuaranteeCalculationCriteria calculatorRequest = new BankGuaranteeCalculationCriteria();
 
 		calculatorRequest.setApplicationNumber(applicationNo);
@@ -843,17 +844,17 @@ public class LicenseService {
 		calculatorRequest.setTotalLandSize(new BigDecimal("1"));
 		calculatorRequest.setRequestInfo(requestInfoWrapper.getRequestInfo());
 		calculatorRequest.setTenantId(tradeLicenses.get(0).getTenantId());
-		
-		StringBuilder url =new StringBuilder(guranteeHost);
+
+		StringBuilder url = new StringBuilder(guranteeHost);
 		url.append(guranteeEndPoint);
-		Object responseGuranteeEstimate = serviceRequestRepository.fetchResult(url,calculatorRequest);
+		Object responseGuranteeEstimate = serviceRequestRepository.fetchResult(url, calculatorRequest);
 		String data = null;
 		try {
 			data = mapper.writeValueAsString(responseGuranteeEstimate);
 		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		GuranteeCalculatorResponse guranteeCalculatorResponse=null;
+		GuranteeCalculatorResponse guranteeCalculatorResponse = null;
 		ObjectReader reader = mapper.readerFor(new TypeReference<GuranteeCalculatorResponse>() {
 		});
 		try {
@@ -863,23 +864,25 @@ public class LicenseService {
 
 			e.printStackTrace();
 		}
-		String bankGuaranteeForEDC =guranteeCalculatorResponse.getBankGuaranteeForEDC();
-		String bankGuaranteeForIDW=guranteeCalculatorResponse.getBankGuaranteeForIDW();
-		//--------------------bank gurantee calculator end-------------------------//
-		
-		
-		//---------------------create bank gurantee request------------------------//
+		String bankGuaranteeForEDC = guranteeCalculatorResponse.getBankGuaranteeForEDC();
+		String bankGuaranteeForIDW = guranteeCalculatorResponse.getBankGuaranteeForIDW();
+		// --------------------bank gurantee calculator end-------------------------//
+
+		// ---------------------create bank gurantee request------------------------//
 		NewBankGuaranteeContract newBankGuaranteeContract = new NewBankGuaranteeContract();
 		newBankGuaranteeContract.setRequestInfo(requestInfoWrapper.getRequestInfo());
-		List<NewBankGuaranteeRequest> bankGuaranteeRequest =  new ArrayList<>();
+		List<NewBankGuaranteeRequest> bankGuaranteeRequest = new ArrayList<>();
 		NewBankGuaranteeRequest newBankGuaranteeRequest = new NewBankGuaranteeRequest();
 		newBankGuaranteeRequest.setAction("PRE_SUBMIT");
 		newBankGuaranteeRequest.setLoiNumber(dispatchNo);
-		String edcType="EDC";		
-		newBankGuaranteeRequest.setTypeOfBg(edcType);
-		if(edcType=="EDC") {
+		String edcType = "EDC";
+		String idwType = "IDW";
+
+		if (edcType == "EDC") {
+			newBankGuaranteeRequest.setTypeOfBg(edcType);
 			newBankGuaranteeRequest.setAmountInFig(new BigDecimal(bankGuaranteeForEDC));
-		}else {
+		} else {
+			newBankGuaranteeRequest.setTypeOfBg(idwType);
 			newBankGuaranteeRequest.setAmountInFig(new BigDecimal(bankGuaranteeForIDW));
 		}
 
@@ -888,44 +891,40 @@ public class LicenseService {
 		newBankGuaranteeContract.setNewBankGuaranteeRequest(bankGuaranteeRequest);
 		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService
 				.createNewBankGuarantee(newBankGuaranteeContract);
-		log.info("newBankGuaranteeList"+newBankGuaranteeList);
+		log.info("newBankGuaranteeList" + newBankGuaranteeList);
 		String bankGuranteeApplicationNo = newBankGuaranteeList.get(0).getApplicationNumber();
-		
-	//--------------------------crate bank gurantee end---------------------//	
-		
-		
-	//--------------------------calculation--------------------------------//	
-		
-		
 
-		StringBuilder calculatorUrl =new StringBuilder(guranteeHost);
+		// --------------------------crate bank gurantee end---------------------//
+
+		// --------------------------calculation--------------------------------//
+		StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
 		calculatorUrl.append(calculatorEndPoint);
-		
+
 		List<CalulationCriteria> calulationCriteria = new ArrayList<>();
 		CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
 		calulationCriteriaRequest.setTenantId(tradeLicenses.get(0).getTenantId());
 		calulationCriteria.add(calulationCriteriaRequest);
-		
-		CalculatorRequest calculator=new CalculatorRequest();
+
+		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
 		calculator.setPotenialZone(estimate.get(0).get("ApplicantPurpose").get("potential").textValue());
 		calculator.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
 		calculator.setTotalLandSize("1");
 
-		Map<String,Object> calculatorMap = new HashMap<>();
+		Map<String, Object> calculatorMap = new HashMap<>();
 		calculatorMap.put("CalulationCriteria", calulationCriteria);
-		calculatorMap.put("CalculatorRequest",calculator);
-		calculatorMap.put("RequestInfo",requestInfoWrapper.getRequestInfo());
-		Object responseCalculator = serviceRequestRepository.fetchResult(calculatorUrl,calculatorMap);
-		log.info("responseCalculator"+responseCalculator);
-		
+		calculatorMap.put("CalculatorRequest", calculator);
+		calculatorMap.put("RequestInfo", requestInfoWrapper.getRequestInfo());
+		Object responseCalculator = serviceRequestRepository.fetchResult(calculatorUrl, calculatorMap);
+		log.info("responseCalculator" + responseCalculator);
+
 		String data1 = null;
 		try {
 			data = mapper.writeValueAsString(responseCalculator);
 		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CalculationRes calculationRes=null;
+		CalculationRes calculationRes = null;
 		ObjectReader objectReaders = mapper.readerFor(new TypeReference<CalculationRes>() {
 		});
 		try {
@@ -935,27 +934,28 @@ public class LicenseService {
 
 			e.printStackTrace();
 		}
-		FeeAndBillingSlabIds charges=calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
+		FeeAndBillingSlabIds charges = calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
 
 		tradeLicenseDetail.setScrutinyFeeCharges(charges.getScrutinyFeeCharges());
 		tradeLicenseDetail.setLicenseFeeCharges(charges.getLicenseFeeCharges());
 		tradeLicenseDetail.setExternalDevelopmentCharges(charges.getExternalDevelopmentCharges());
 		tradeLicenseDetail.setConversionCharges(charges.getConversionCharges());
 		tradeLicenseDetail.setStateInfrastructureDevelopmentCharges(charges.getStateInfrastructureDevelopmentCharges());
-		
-		//--------------------------calculation end--------------------------------//		
+
+		// --------------------------calculation end--------------------------------//
 		tradeLicense.setId(tradeLicenses.get(0).getId());
 		tradeLicense.setLoiNumber(dispatchNo);
 		tradeLicense.setAction("APPROVE");
 		tradeLicense.setWorkflowCode("NewTL");
 		tradeLicense.setTenantId(tradeLicenses.get(0).getTenantId());
-		tradeLicense.setApplicationNumber(tradeLicenses.get(0).getApplicationNumber());;
+		tradeLicense.setApplicationNumber(tradeLicenses.get(0).getApplicationNumber());
+		;
 		tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
 		tradeLicenseRequests.addLicensesItem(tradeLicense);
 		tradeLicenseRequests.setRequestInfo(requestInfoWrapper.getRequestInfo());
-		
+
 		List<TradeLicense> response = tradeLicenseService.update(tradeLicenseRequests, "TL");
-		
+
 		return response;
 	}
 
