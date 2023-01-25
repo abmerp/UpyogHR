@@ -92,25 +92,61 @@ public class Parapet extends FeatureProcess {
 		BigDecimal minHeight = BigDecimal.ZERO;
 
 		for (Block b : pl.getBlocks()) {
-			if (b.getParapets() != null && !b.getParapets().isEmpty()) {
-				minHeight = b.getParapets().stream().reduce(BigDecimal::min).get();
-
-				if (minHeight.compareTo(new BigDecimal(1.2)) >= 0 && minHeight.compareTo(new BigDecimal(1.5)) <= 0) {
-
-					details.put(REQUIRED, "Height >= 1.2 and height <= 1.5");
-					details.put(PROVIDED, "Height >= " + minHeight + " and height <= " + minHeight);
-					details.put(STATUS, Result.Accepted.getResultVal());
-					scrutinyDetail.getDetail().add(details);
-					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-
-				} else {
-					details.put(REQUIRED, "Height >= 1.2 and height <= 1.5");
-					details.put(PROVIDED, "Height >= " + minHeight + " and height <= " + minHeight);
-					details.put(STATUS, Result.Not_Accepted.getResultVal());
-					scrutinyDetail.getDetail().add(details);
-					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+			if(b.getBuilding().getBuildingHeight().compareTo(new BigDecimal(8)) <= 0) {
+				if (b.getParapets() != null && !b.getParapets().isEmpty()) {
+					minHeight = b.getParapets().stream().reduce(BigDecimal::min).get();
+					if (minHeight.compareTo(new BigDecimal(1.2)) <= 0) {
+						details.put(REQUIRED, "Height <= 1.2");
+						details.put(PROVIDED, "Height is " + minHeight);
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}else {
+						details.put(REQUIRED, "Height <= 1.2");
+						details.put(PROVIDED, "Height is " + minHeight);
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
 				}
+			}else {
+				if (b.getParapets() != null && !b.getParapets().isEmpty()) {
+					minHeight = b.getParapets().stream().reduce(BigDecimal::min).get();
+					if(minHeight.compareTo(new BigDecimal(1.5)) <= 0) {
+						details.put(REQUIRED, "Height <= 1.5");
+						details.put(PROVIDED, "Height is " + minHeight);
+						details.put(STATUS, Result.Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}else {
+						details.put(REQUIRED, "Height <= 1.5");
+						details.put(PROVIDED, "Height is " + minHeight);
+						details.put(STATUS, Result.Not_Accepted.getResultVal());
+						scrutinyDetail.getDetail().add(details);
+						pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+					}
+				}
+					
 			}
+//			if (b.getParapets() != null && !b.getParapets().isEmpty()) {
+//				minHeight = b.getParapets().stream().reduce(BigDecimal::min).get();
+//
+//				if (minHeight.compareTo(new BigDecimal(1.2)) >= 0 && minHeight.compareTo(new BigDecimal(1.5)) <= 0) {
+//
+//					details.put(REQUIRED, "Height >= 1.2 and height <= 1.5");
+//					details.put(PROVIDED, "Height >= " + minHeight + " and height <= " + minHeight);
+//					details.put(STATUS, Result.Accepted.getResultVal());
+//					scrutinyDetail.getDetail().add(details);
+//					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//
+//				} else {
+//					details.put(REQUIRED, "Height >= 1.2 and height <= 1.5");
+//					details.put(PROVIDED, "Height >= " + minHeight + " and height <= " + minHeight);
+//					details.put(STATUS, Result.Not_Accepted.getResultVal());
+//					scrutinyDetail.getDetail().add(details);
+//					pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//				}
+//			}
 		}
 
 		return pl;
