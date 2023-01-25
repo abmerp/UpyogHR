@@ -586,7 +586,7 @@ public class LicenseService {
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", "");
 						mapDNo.put("UserId", "1234");
-						mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
+						mapDNo.put("DistrictCode", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 						mapDNo.put("UserLoginId", "39");
 						dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 								.toString();
@@ -602,7 +602,7 @@ public class LicenseService {
 						mapCNO.put("DeveloperId", 2);
 						mapCNO.put("PurposeId", purposeId);
 						mapCNO.put("StartDate", date);
-						mapCNO.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
+						mapCNO.put("DistrictCode", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 						mapCNO.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
@@ -661,7 +661,7 @@ public class LicenseService {
 						// to do select development plan
 						map3.put("LcDevelopmentPlan",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDevelopmentPlan());
-						map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
+						map3.put("LcDistrict", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 						saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 								.toString();
 						tradeLicense.setTcpSaveTransactionNumber(saveTransaction);
