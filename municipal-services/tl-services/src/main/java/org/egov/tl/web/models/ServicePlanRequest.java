@@ -5,6 +5,7 @@ import java.util.List;
 import org.egov.tl.web.models.ServicePlan;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,66 +19,66 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServicePlanRequest {
-	
+
 	@JsonProperty("id")
 	private String id;
-	
+
 	@JsonProperty("loiNumber")
 	private String loiNumber;
-	
+
 	@JsonProperty("undertaking")
 	private String undertaking;
-	
+
 	@JsonProperty("selfCertifiedDrawingsFromCharetedEng")
 	private String selfCertifiedDrawingsFromCharetedEng;
-	
+
 	@JsonProperty("selfCertifiedDrawingFromEmpaneledDoc")
 	private String selfCertifiedDrawingFromEmpaneledDoc;
-	
+
 	@JsonProperty("environmentalClearance")
 	private String environmentalClearance;
-	
+
 	@JsonProperty("shapeFileAsPerTemplate")
 	private String shapeFileAsPerTemplate;
-	
+
 	@JsonProperty("autoCadFile")
 	private String autoCadFile;
-	
+
 	@JsonProperty("certifieadCopyOfThePlan")
 	private String certifieadCopyOfThePlan;
-	
+
 	@JsonProperty("assignee")
 	private List<String> assignee;
-	
+
 	@JsonProperty("action")
 	private String action;
-	
+
 	@JsonProperty("status")
 	private String status;
-	
+
 	@JsonProperty("businessService")
 	private String businessService;
-	
+
 	@JsonProperty("comment")
 	private String comment;
-	
-	
+
 	@JsonProperty("tenantID")
 	private String tenantID;
-	
-	
+	@JsonProperty("additionalDetail")
+	private JsonNode additionalDetail = null;
+
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
-	
+
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
-	
-    @JsonProperty("workflowCode")
-    private String workflowCode = null;
-    
+
+	@JsonProperty("workflowCode")
+	private String workflowCode = null;
+
 	@JsonProperty("wfDocuments")
-    private List<Document> wfDocuments;
-	
+	private List<Document> wfDocuments;
+
 //	public ServicePlanRequest(ServicePlan servicePlan) {
 //		
 //		this.loiNumber = servicePlan.getLoiNumber();
@@ -97,8 +98,7 @@ public class ServicePlanRequest {
 //		this.applicationNumber = servicePlan.getApplicationNumber();
 //		this.auditDetails = servicePlan.getAuditDetails();
 //	}
-	
-	
+
 //	public ServicePlan toBuilder() {
 //		return ServicePlan.builder().loiNumber(this.loiNumber)
 //														.undertaking(this.undertaking)
