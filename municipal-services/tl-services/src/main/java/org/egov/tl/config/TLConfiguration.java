@@ -391,5 +391,15 @@ public class TLConfiguration {
     
     @Value("${persister.update.tradelicenses.fees.topic}")
     private String tlFeeTopic;
+    
+    //hrms
+    
+    @Value("${egov.hrms.host}")
+    private String hrmsHost;
+    
+    @Value("${egov.hrms.workDir.path}")
+    private String  hrmsContextPath;
+    
+    	
 
 }

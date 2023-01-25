@@ -15,11 +15,14 @@ import org.egov.common.contract.request.Role;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.IdGenRepository;
+import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.repository.rowmapper.SPRowMapper;
 import org.egov.tl.service.repo.ServicePlanRepo;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ElectricPlanRequest;
+import org.egov.tl.web.models.EmployeeResponse;
+import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.ServicePlan;
 import org.egov.tl.web.models.ServicePlanContract;
 import org.egov.tl.web.models.ServicePlanRequest;
@@ -42,6 +45,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
 @Service
@@ -79,6 +87,12 @@ public class ServicePlanService {
 	@Autowired
 	private WorkflowService workflowService;
 
+	@Autowired
+	private ServiceRequestRepository serviceRequestRepository;
+	
+	@Autowired
+	ObjectMapper mapper;
+
 	public List<ServicePlanRequest> create(ServicePlanContract servicePlanContract) {
 
 		String uuid = servicePlanContract.getRequestInfo().getUserInfo().getUuid();
@@ -101,6 +115,8 @@ public class ServicePlanService {
 
 				servicePlanRequest.setId(UUID.randomUUID().toString());
 				
+				servicePlanRequest.setAssignee(Arrays.asList(assignee("CTP_HR" , servicePlanRequest.getTenantID() , true ,requestInfo)));
+				
 				applicationNumbers = getIdList(servicePlanContract.getRequestInfo(), servicePlanRequest.getTenantID(),
 						config.getSPapplicationNumberIdgenNameTL(), config.getSPapplicationNumberIdgenFormatTL(), count);
 
@@ -122,6 +138,46 @@ public class ServicePlanService {
 
 		return servicePlanRequestList;
 
+	}
+	
+	private String assignee(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+
+		StringBuilder uri = new StringBuilder();
+		uri.append(config.getHrmsHost());
+		uri.append(config.getHrmsContextPath());
+		uri.append("?tenantId=" + tenantID);
+		uri.append("&roles=" + role);
+		uri.append("&isActive=" + b);
+
+		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
+
+		EmployeeResponse employeeResponse = null;
+
+		String data = null;
+
+		Object fetchResult = serviceRequestRepository.fetchResult(uri, requestInfoWrapper);
+
+		try {
+			data = mapper.writeValueAsString(fetchResult);
+		} catch (JsonProcessingException e) {
+
+			e.printStackTrace();
+		}
+		ObjectReader reader = mapper.readerFor(new TypeReference<EmployeeResponse>() {
+		});
+
+		try {
+			employeeResponse = reader.readValue(data);
+		} catch (JsonMappingException e) {
+
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+
+			e.printStackTrace();
+		}
+		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+
+		return uuid;
 	}
 
 	private List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
