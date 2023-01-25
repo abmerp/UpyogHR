@@ -16,6 +16,7 @@ import org.egov.common.contract.request.Role;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.IdGenRepository;
+import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.repository.rowmapper.EPRowMapper;
 import org.egov.tl.repository.rowmapper.SPRowMapper;
 import org.egov.tl.service.repo.ElectricPlanRepo;
@@ -24,6 +25,8 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ElectricPlan;
 import org.egov.tl.web.models.ElectricPlanContract;
 import org.egov.tl.web.models.ElectricPlanRequest;
+import org.egov.tl.web.models.EmployeeResponse;
+import org.egov.tl.web.models.GuranteeCalculatorResponse;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
@@ -40,6 +43,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 
 @Service
 public class ElectricPlanService {
@@ -69,6 +78,14 @@ public class ElectricPlanService {
 
 	@Autowired
 	private EPRowMapper epRowMapper;
+	
+	@Autowired
+	private ServiceRequestRepository serviceRequestRepository;
+	
+	@Autowired
+	ObjectMapper mapper;
+	
+	
 
 	@Autowired
 	private WorkflowService workflowService;
@@ -95,6 +112,9 @@ public class ElectricPlanService {
 
 			electricPlanRequest.setId(UUID.randomUUID().toString());
 			
+			
+			electricPlanRequest.setAssignee(Arrays.asList(assignee("CTP_HR" , electricPlanRequest.getTenantID() , true ,requestInfo)));
+
 			applicationNumbers = getIdList(electricPlanContract.getRequestInfo(), electricPlanRequest.getTenantID(),
 					config.getEPapplicationNumberIdgenNameTL(), config.getEPapplicationNumberIdgenFormatTL(), count);
 
@@ -116,6 +136,46 @@ public class ElectricPlanService {
 
 		return electricPlanRequestlist;
 
+	}
+
+	private String assignee(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+
+		StringBuilder uri = new StringBuilder();
+		uri.append(config.getHrmsHost());
+		uri.append(config.getHrmsContextPath());
+		uri.append("?tenantId=" + tenantID);
+		uri.append("&roles=" + role);
+		uri.append("&isActive=" + b);
+
+		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
+
+		EmployeeResponse employeeResponse = null;
+
+		String data = null;
+
+		Object fetchResult = serviceRequestRepository.fetchResult(uri, requestInfoWrapper);
+
+		try {
+			data = mapper.writeValueAsString(fetchResult);
+		} catch (JsonProcessingException e) {
+
+			e.printStackTrace();
+		}
+		ObjectReader reader = mapper.readerFor(new TypeReference<EmployeeResponse>() {
+		});
+
+		try {
+			employeeResponse = reader.readValue(data);
+		} catch (JsonMappingException e) {
+
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+
+			e.printStackTrace();
+		}
+		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+
+		return uuid;
 	}
 
 	public List<ElectricPlanRequest> searchElectricPlan(String loiNumber, String applicationNumber, RequestInfo requestInfo) {

@@ -322,7 +322,7 @@ SearchDefinitions:
           select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from 
           eg_service_plan as tl
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
-          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
           AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
@@ -376,7 +376,7 @@ SearchDefinitions:
           eg_service_plan as tl
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
-          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
           AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
@@ -430,7 +430,7 @@ SearchDefinitions:
           eg_bg_new_bank_guarantee as tl
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
-          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
           AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.createdtime   desc
@@ -483,7 +483,7 @@ SearchDefinitions:
           select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from 
           eg_electric_plan as tl
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
-          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
           AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
@@ -537,7 +537,7 @@ SearchDefinitions:
           eg_electric_plan as tl
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
-          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
           AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
@@ -591,7 +591,7 @@ SearchDefinitions:
           eg_electric_plan as tl
           LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
-          LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
+          INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
           AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.createdtime   desc
