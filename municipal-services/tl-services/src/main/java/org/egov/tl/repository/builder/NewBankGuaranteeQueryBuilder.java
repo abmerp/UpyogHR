@@ -43,6 +43,21 @@ public class NewBankGuaranteeQueryBuilder {
 			builder.append(" ebnbg.type_of_bg=?");
 			preparedStmtList.add(bankGuaranteeSearchCriteria.getTypeOfBg());
 		}
+		if (!StringUtils.isEmpty(bankGuaranteeSearchCriteria.getBgNumber())) {
+			addClauseIfRequired(preparedStmtList, builder);
+			builder.append(" ebnbg.bg_number=?");
+			preparedStmtList.add(bankGuaranteeSearchCriteria.getBgNumber());
+		}
+		if (!StringUtils.isEmpty(bankGuaranteeSearchCriteria.getBankName())) {
+			addClauseIfRequired(preparedStmtList, builder);
+			builder.append(" ebnbg.bank_name=?");
+			preparedStmtList.add(bankGuaranteeSearchCriteria.getBankName());
+		}
+		if (!StringUtils.isEmpty(bankGuaranteeSearchCriteria.getExistingBgNumber())) {
+			addClauseIfRequired(preparedStmtList, builder);
+			builder.append(" ebnbg.existing_Bg_Number=?");
+			preparedStmtList.add(bankGuaranteeSearchCriteria.getExistingBgNumber());
+		}
 		return builder.toString();
 
 	}

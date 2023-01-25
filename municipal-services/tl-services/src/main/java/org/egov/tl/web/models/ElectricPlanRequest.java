@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -61,6 +62,8 @@ public class ElectricPlanRequest {
 	private List<String> assignee = null;
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
+	@JsonProperty("additionalDetail")
+	private JsonNode additionalDetail = null;
 	@JsonProperty("workflowCode")
     private String workflowCode = null;
 	@JsonProperty("wfDocuments")

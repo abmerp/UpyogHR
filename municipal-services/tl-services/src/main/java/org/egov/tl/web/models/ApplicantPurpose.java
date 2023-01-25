@@ -13,12 +13,12 @@ public class ApplicantPurpose {
 
 	@JsonProperty("purpose")
 	private String purpose;
-	@JsonProperty("potential")
-	private String potential;
-	@JsonProperty("district")
-	private String district;
+	
 	@JsonProperty("state")
 	private String state;
+	
+	@JsonProperty("totalArea")
+	private String totalArea;
 	
 	
 	@JsonProperty("AppliedLandDetails")
