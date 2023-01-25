@@ -2,42 +2,67 @@ package org.egov.tl.service;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
+
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.User;
+import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
+import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.config.TLConfiguration;
+import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TLConstants;
 import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.Transaction;
+import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
+import org.egov.tl.web.models.calculation.CalulationCriteria;
+import org.egov.tl.web.models.calculation.FeeAndBillingSlabIds;
+import org.hibernate.internal.build.AllowSysOut;
+import org.egov.tl.web.models.BankGuaranteeCalculationCriteria;
+import org.egov.tl.web.models.CalculationRes;
+import org.egov.tl.web.models.CalculatorRequest;
+import org.egov.tl.web.models.GenerateLoiNumberResponse;
+import org.egov.tl.web.models.GuranteeCalculatorResponse;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.egov.tl.web.models.RequestInfoWrapper;
+import org.egov.tl.web.models.ResponseTransaction;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseResponse;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -48,13 +73,33 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-
+import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
 
 @Service
 @Slf4j
 public class LicenseService {
 
+	@Value("${tcp.payment.host}")
+	private String paymentHost;
+	@Value("${citizen.payment.success}")
+	private String paymentSuccess;
+	@Value("${egov.pg-service.host}")
+	private String pgHost;
+	@Value("${egov.pg-service.path}")
+	private String pgpath;
+	@Value("${egov.pg-service.search.path}")
+	private String pgSearchPath;
+	@Value("${egov.tl.calculator.gurantee.endpoint}")
+	private String guranteeEndPoint;
+	@Value("${egov.tl.calculator.host}")
+	private String guranteeHost;
+	@Value("${egov.tl.calculator.calculate.endpoint}")
+	private String calculatorEndPoint;
 	@Autowired
 	LandUtil landUtil;
 
@@ -68,6 +113,9 @@ public class LicenseService {
 	LandMDMSValidator valid;
 
 	@Autowired
+	ServiceRequestRepository serviceRequestRepository;
+
+	@Autowired
 	private ThirPartyAPiCall thirPartyAPiCall;
 	@Autowired
 	LicenseServiceRepo newServiceInfoRepo;
@@ -78,6 +126,8 @@ public class LicenseService {
 	TradeLicenseService tradeLicenseService;
 	@Autowired
 	ObjectMapper mapper;
+	@Autowired
+	BankGuaranteeService bankGuaranteeService;
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
@@ -147,14 +197,14 @@ public class LicenseService {
 				tradeLicense.getTradeLicenseDetail().setAdditionalDetail(jsonNode);
 				newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
 				newServiceIn.setUpdatedDate(new Date());
-				//newServiceIn.setApplicationStatus(tradeLicense.getStatus());
+				// newServiceIn.setApplicationStatus(tradeLicense.getStatus());
 				newServiceIn.setApplicationNumber(tradeLicense.getApplicationNumber());
 				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 				newServiceIn.setCurrentVersion(cv);
 				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 				tradeLicense.setAction(newServiceInfo.getAction());
 				tradeLicense.setWorkflowCode("NewTL");
-				switch(tradeLicense.getAction()){
+				switch (tradeLicense.getAction()) {
 				case "INITIATE": {
 					tradeLicense.setStatus("INITIATED");
 					break;
@@ -180,7 +230,7 @@ public class LicenseService {
 					break;
 				}
 				}
-					
+
 				// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 
 				TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
@@ -190,7 +240,7 @@ public class LicenseService {
 				tradeLicenseService.update(tradeLicenseRequests, "TL");
 			}
 		}
-		
+
 		// }
 		else {
 			newServiceInfoDatas = new ArrayList<>();
@@ -199,7 +249,7 @@ public class LicenseService {
 			newServiceIn.setCreatedDate(new Date());
 			newServiceIn.setUpdatedDate(new Date());
 			newServiceIn.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
-			
+
 			newServiceInfo.getLicenseDetails().setVer(0.1f);
 			newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 			newServiceInfoDatas.add(newServiceInfo.getLicenseDetails());
@@ -226,8 +276,8 @@ public class LicenseService {
 			// tradeLicense.getFileStoreId();
 			tradeLicense.setFinancialYear("2022-23");
 			tradeLicense.setIssuedDate(new Date().getTime());
-		//	tradeLicense.setStatus("INITIATED");
-			switch(tradeLicense.getAction()){
+			// tradeLicense.setStatus("INITIATED");
+			switch (tradeLicense.getAction()) {
 			case "INITIATE": {
 				tradeLicense.setStatus("INITIATED");
 				break;
@@ -252,15 +302,15 @@ public class LicenseService {
 				tradeLicense.setStatus("PAID");
 				break;
 			}
-				
+
 			}
-			
+
 			// tradeLicense.getLicenseNumber();
 			tradeLicense.setLicenseType(TradeLicense.LicenseTypeEnum.PERMANENT);
 			tradeLicense.setTenantId(newServiceInfo.getRequestInfo().getUserInfo().getTenantId());
-			if(newServiceInfo.getLicenseDetails().getApplicantPurpose()!=null)
-			tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
-		
+			if (newServiceInfo.getLicenseDetails().getApplicantPurpose() != null)
+				tradeLicense.setTradeName(newServiceInfo.getLicenseDetails().getApplicantPurpose().getPurpose());
+
 			tradeLicense.setAccountId(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 
 //			tradeLicense.setValidFrom();
@@ -289,12 +339,12 @@ public class LicenseService {
 			// tradeLicenseService.update(request, TLConstants.businessService_TL);
 			newServiceIn.setApplicationNumber(tradelicenses.get(0).getApplicationNumber());
 			newServiceIn.setApplicationStatus(tradeLicense.getStatus());
-			//objLicenseServiceRequestInfo.setApplication_Status();
+			// objLicenseServiceRequestInfo.setApplication_Status();
 		}
 		// newServiceIn = newServiceInfoRepo.save(newServiceIn);
 		try {
 			BeanUtils.copyProperties(objLicenseServiceRequestInfo, newServiceIn);
-			
+
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -327,7 +377,7 @@ public class LicenseService {
 		return transactionNumber;
 	}
 
-	public LicenseServiceResponseInfo getNewServicesInfoById1(String applicationNumber,RequestInfo info) {
+	public LicenseServiceResponseInfo getNewServicesInfoById1(String applicationNumber, RequestInfo info) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		LicenseServiceDao newServiceInfo = newServiceInfoRepo.getOne(id);
 		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
@@ -348,7 +398,7 @@ public class LicenseService {
 		return licenseServiceResponseInfo;
 	}
 
-	public LicenseServiceResponseInfo getNewServicesInfoById(String applicationNumber,RequestInfo info) {
+	public LicenseServiceResponseInfo getNewServicesInfoById(String applicationNumber, RequestInfo info) {
 		LicenseServiceResponseInfo licenseServiceResponseInfo = new LicenseServiceResponseInfo();
 		// LicenseServiceDao newServiceInfo = new
 		// LicenseServiceDao();//newServiceInfoRepo.findByAppNumber(applicationNumber);
@@ -358,7 +408,7 @@ public class LicenseService {
 
 		List<LicenseDetails> newServiceInfoData = null;
 		List<LicenseDetails> licenseDetails = new ArrayList<LicenseDetails>();
-		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);		
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
 		licenseServiceResponseInfo.setWorkFlowCode(tradeLicenses.get(0).getWorkflowCode());
 		for (TradeLicense tradeLicense : tradeLicenses) {
 
@@ -412,15 +462,16 @@ public class LicenseService {
 	}
 
 	public ResponseEntity<Object> postTransactionDeatil(MultiValueMap<String, String> requestParam) {
-		
+
 		String applicationNumber = requestParam.get(new String("Applicationnumber")).get(0);
-		String grn=requestParam.get(new String("GRN")).get(0);
-		String status=requestParam.get(new String("status")).get(0);
-		String CIN=requestParam.get(new String("CIN")).get(0);
-		String tdate=requestParam.get(new String("tdate")).get(0);
-		String paymentType=requestParam.get(new String("payment_type")).get(0);
-		String bankcode=requestParam.get(new String("bankcode")).get(0);
-		String amount=requestParam.get(new String("amount")).get(0);
+		String transactionId = requestParam.get(new String("Applicationnumber")).get(0);
+		String grn = requestParam.get(new String("GRN")).get(0);
+		String status = requestParam.get(new String("status")).get(0);
+		String CIN = requestParam.get(new String("CIN")).get(0);
+		String tdate = requestParam.get(new String("tdate")).get(0);
+		String paymentType = requestParam.get(new String("payment_type")).get(0);
+		String bankcode = requestParam.get(new String("bankcode")).get(0);
+		String amount = requestParam.get(new String("amount")).get(0);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String date = formatter.format(localDateTime);
@@ -428,13 +479,55 @@ public class LicenseService {
 		String caseNumber;
 		String applicationNmber;
 		String saveTransaction;
-		String returnURL="";
-		RequestInfo info= new RequestInfo();
-		if(!status.isEmpty()&& status.equalsIgnoreCase("Failure"))
-		{
-			
-		}else if(!status.isEmpty()&& status.equalsIgnoreCase("Success"))
-		{
+		String returnURL = "";
+		RequestInfo info = new RequestInfo();
+		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+
+			Map<String, Object> request = new HashMap<>();
+			request.put("txnId", transactionId);
+			HttpHeaders httpHeaders = new HttpHeaders();
+			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
+			Object paymentSearch = null;
+
+			String uri = pgHost + pgSearchPath;
+			paymentSearch = rest.postForObject(uri, entity, Map.class);
+			log.info("search payment data" + paymentSearch);
+
+			String data = null;
+			try {
+				data = mapper.writeValueAsString(paymentSearch);
+			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			ResponseTransaction transaction = null;
+			ObjectReader reader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
+			});
+			try {
+				transaction = reader.readValue(data);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
+			log.info("transaction" + transaction);
+			String txnId = transaction.getTransaction().get(0).getTxnId();
+			applicationNumber = transaction.getTransaction().get(0).getApplicationNumber();
+
+			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+
+			params.put("eg_pg_txnid", Collections.singletonList(txnId));
+
+			String paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
+			String returnPaymentUrl = paymentUrl + "?" + params;
+			log.info("returnPaymentUrl" + returnPaymentUrl);
+			httpHeaders.setLocation(
+					UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
+			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
+
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Sucess")) {
+
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
@@ -488,7 +581,8 @@ public class LicenseService {
 
 						Map<String, Object> mapDNo = new HashMap<String, Object>();
 
-						mapDNo.put("Village", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+						mapDNo.put("Village",
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", "");
 						mapDNo.put("UserId", "1234");
@@ -509,7 +603,8 @@ public class LicenseService {
 						mapCNO.put("PurposeId", purposeId);
 						mapCNO.put("StartDate", date);
 						mapCNO.put("DistrictCode", newobj.getApplicantPurpose().getDistrict());
-						mapCNO.put("Village", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+						mapCNO.put("Village",
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 						mapCNO.put("UserId", "2");
 						mapCNO.put("UserLoginId", "39");
@@ -525,9 +620,11 @@ public class LicenseService {
 						mapANo.put("DiaryNo", dairyNumber);
 						mapANo.put("DiaryDate", date);
 						mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
-						mapANo.put("Village", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+						mapANo.put("Village",
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapANo.put("PurposeId", purposeId);
-						mapANo.put("NameofOwner", 12.5);
+						mapANo.put("NameofOwner",
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						mapANo.put("DateOfHearing", date);
 						mapANo.put("DateForFilingOfReply", date);
 						mapANo.put("UserId", "2");
@@ -548,7 +645,8 @@ public class LicenseService {
 						map3.put("MobNo", "1234567891");
 						map3.put("TxnNo", grn);
 						map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-						map3.put("NameofOwner", newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+						map3.put("NameofOwner",
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 						map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
 						map3.put("UserId", "39");
@@ -561,7 +659,8 @@ public class LicenseService {
 						map3.put("LcApplicantName", "tcp");
 						map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
 						// to do select development plan
-						map3.put("LcDevelopmentPlan", newobj.getApplicantPurpose().getPotential());
+						map3.put("LcDevelopmentPlan",
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDevelopmentPlan());
 						map3.put("LcDistrict", newobj.getApplicantPurpose().getDistrict());
 						saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
 								.toString();
@@ -570,6 +669,7 @@ public class LicenseService {
 						/****************
 						 * End Here
 						 ***********/
+
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
 						tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
@@ -579,41 +679,81 @@ public class LicenseService {
 						tradeLicenseRequests.addLicensesItem(tradeLicense);
 						tradeLicenseRequests.setRequestInfo(info);
 						tradeLicenseService.update(tradeLicenseRequests, "TL");
-						try {
-							String payment = rest.postForObject(config.getPgHost().concat(config.getPgPath()), requestParam,
-									String.class);
-							log.info("responses" + payment);
-						} catch (Exception e) {
 
+						// -----------------payment----------------------//
+						Map<String, Object> request = new HashMap<>();
+						request.put("consumerCode", applicationNumber);
+						HttpHeaders httpHeaders = new HttpHeaders();
+						httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+						HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
+						Object paymentSearch = null;
+
+						String uri = pgHost + pgSearchPath;
+						paymentSearch = rest.postForObject(uri, entity, Map.class);
+						log.info("search payment data" + paymentSearch);
+
+						String data = null;
+						try {
+							data = mapper.writeValueAsString(paymentSearch);
+						} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 
-						break;
+						ResponseTransaction transaction = null;
+						ObjectReader objectReader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
+						});
+						try {
+							transaction = reader.readValue(data);
+						} catch (IOException e) {
+
+							e.printStackTrace();
+						}
+
+						log.info("transaction" + transaction);
+						String txnId = transaction.getTransaction().get(0).getTxnId();
+
+						MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+
+						params.put("eg_pg_txnid", Collections.singletonList(txnId));
+
+						String paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
+								+ applicationNumber + "/" + tradeLicense.getTenantId();
+						String returnPaymentUrl = paymentUrl + "?" + params;
+						log.info("returnPaymentUrl" + returnPaymentUrl);
+						httpHeaders.setLocation(
+								UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
+						return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
+
+						// ------------------finish--------------------//
+						/*
+						 * try { String payment =
+						 * rest.postForObject(config.getPgHost().concat(config.getPgPath()),
+						 * requestParam, String.class); log.info("responses" + payment); } catch
+						 * (Exception e) {
+						 * 
+						 * }
+						 */
 
 					}
 				}
 			}
 
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Error")) {
+
 		}
-		else if(!status.isEmpty()&& status.equalsIgnoreCase("Error"))
-		{
-			
-		}
-			
+
 		MultiValueMap<String, String> params = UriComponentsBuilder.fromUriString(returnURL).build().getQueryParams();
 
-		 HttpHeaders httpHeaders = new HttpHeaders();
-		
-			
+		HttpHeaders httpHeaders = new HttpHeaders();
+
 		StringBuilder redirectURL = new StringBuilder();
-        redirectURL.append(returnURL);
-    
-        httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString())
-                .queryParams(requestParam).build().encode().toUri());
+		redirectURL.append(returnURL);
+
+		httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString()).queryParams(requestParam)
+				.build().encode().toUri());
 		return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 	}
-
-	
 
 	public LicenseServiceDao findNewServicesInfoById(String applicationNumber) {
 
@@ -638,4 +778,185 @@ public class LicenseService {
 	public boolean existsByApplicationNumber(String applicationNumber) {
 		return this.newServiceInfoRepo.existsByApplicationNumber(applicationNumber);
 	}
+
+	public List<TradeLicense> generateLoiNumber(Map<String, Object> map, @Valid RequestInfoWrapper requestInfoWrapper,
+			String applicationNo) {
+		TradeLicense tradeLicense = new TradeLicense();
+		String applicationNumber = applicationNo;
+		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
+
+		tradeLicenseRequest.setApplicationNumber(applicationNumber);
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
+				requestInfoWrapper.getRequestInfo());
+
+		tradeLicenses.get(0).getTenantId();
+
+		TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
+		tradeLicenseDetail.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
+
+		// ---------------------loi number start-------------------//
+		String dispatchNumber;
+		Map<String, Object> depAuthtoken = new HashMap<String, Object>();
+		depAuthtoken.put("UserId", "169");
+		depAuthtoken.put("EmailId", "dtp.panchkula.tcp@gmail.com");
+
+		Map<String, Object> mapDispatchNumber = new HashMap<String, Object>();
+		mapDispatchNumber.put("DispatchID", 0);
+		mapDispatchNumber.put("Subject", "Testing Information");
+		mapDispatchNumber.put("DoctypeID", "220");
+		mapDispatchNumber.put("TblApplicationId", "0");
+		mapDispatchNumber.put("CreatedBy", "169");
+		mapDispatchNumber.put("DispatchedTo", "District-Gurugram, Haryana");
+		mapDispatchNumber.put("Type", "1");
+		mapDispatchNumber.put("FileId", "eOffice_DiaryID-66731");
+		mapDispatchNumber.put("ReceivedFrom", "");
+		mapDispatchNumber.put("RelatedDiaryNo", "");
+		mapDispatchNumber.put("Description", "");
+		dispatchNumber = thirPartyAPiCall.getDispatchNumber(mapDispatchNumber, depAuthtoken).getBody().toString();
+		String loiNumber = dispatchNumber.replaceAll("\\\\", "");
+		log.info("dispatch" + loiNumber);
+		loiNumber = loiNumber.substring(1, loiNumber.length() - 1);
+
+		List<GenerateLoiNumberResponse> generateLoiNumberResponse = null;
+		ObjectReader objectReader = mapper.readerFor(new TypeReference<List<GenerateLoiNumberResponse>>() {
+		});
+		try {
+
+			generateLoiNumberResponse = objectReader.readValue(loiNumber);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		String dispatchNo = generateLoiNumberResponse.get(0).getDispatchNo();
+
+		// -----------dispatch number finish-----------------------//
+
+		// --------------------bank gurantee calculator start-------------------------//
+		JsonNode estimate = tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail();
+		BankGuaranteeCalculationCriteria calculatorRequest = new BankGuaranteeCalculationCriteria();
+
+		calculatorRequest.setApplicationNumber(applicationNo);
+		calculatorRequest.setPotentialZone(estimate.get(0).get("ApplicantPurpose").get("potential").textValue());
+		calculatorRequest.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
+		calculatorRequest.setTotalLandSize(new BigDecimal("1"));
+		calculatorRequest.setRequestInfo(requestInfoWrapper.getRequestInfo());
+		calculatorRequest.setTenantId(tradeLicenses.get(0).getTenantId());
+
+		StringBuilder url = new StringBuilder(guranteeHost);
+		url.append(guranteeEndPoint);
+		Object responseGuranteeEstimate = serviceRequestRepository.fetchResult(url, calculatorRequest);
+		String data = null;
+		try {
+			data = mapper.writeValueAsString(responseGuranteeEstimate);
+		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		GuranteeCalculatorResponse guranteeCalculatorResponse = null;
+		ObjectReader reader = mapper.readerFor(new TypeReference<GuranteeCalculatorResponse>() {
+		});
+		try {
+
+			guranteeCalculatorResponse = reader.readValue(data);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		String bankGuaranteeForEDC = guranteeCalculatorResponse.getBankGuaranteeForEDC();
+		String bankGuaranteeForIDW = guranteeCalculatorResponse.getBankGuaranteeForIDW();
+		// --------------------bank gurantee calculator end-------------------------//
+
+		// ---------------------create bank gurantee request------------------------//
+		NewBankGuaranteeContract newBankGuaranteeContract = new NewBankGuaranteeContract();
+		newBankGuaranteeContract.setRequestInfo(requestInfoWrapper.getRequestInfo());
+		List<NewBankGuaranteeRequest> bankGuaranteeRequest = new ArrayList<>();
+		NewBankGuaranteeRequest newBankGuaranteeRequest = new NewBankGuaranteeRequest();
+		newBankGuaranteeRequest.setAction("PRE_SUBMIT");
+		newBankGuaranteeRequest.setLoiNumber(dispatchNo);
+		String edcType = "EDC";
+		String idwType = "IDW";
+
+		if (edcType == "EDC") {
+			newBankGuaranteeRequest.setTypeOfBg(edcType);
+			newBankGuaranteeRequest.setAmountInFig(new BigDecimal(bankGuaranteeForEDC));
+		} else {
+			newBankGuaranteeRequest.setTypeOfBg(idwType);
+			newBankGuaranteeRequest.setAmountInFig(new BigDecimal(bankGuaranteeForIDW));
+		}
+
+		newBankGuaranteeRequest.setTenantId(tradeLicenses.get(0).getTenantId());
+		bankGuaranteeRequest.add(newBankGuaranteeRequest);
+		newBankGuaranteeContract.setNewBankGuaranteeRequest(bankGuaranteeRequest);
+		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService
+				.createNewBankGuarantee(newBankGuaranteeContract);
+		log.info("newBankGuaranteeList" + newBankGuaranteeList);
+		String bankGuranteeApplicationNo = newBankGuaranteeList.get(0).getApplicationNumber();
+
+		// --------------------------crate bank gurantee end---------------------//
+
+		// --------------------------calculation--------------------------------//
+		StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
+		calculatorUrl.append(calculatorEndPoint);
+
+		List<CalulationCriteria> calulationCriteria = new ArrayList<>();
+		CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
+		calulationCriteriaRequest.setTenantId(tradeLicenses.get(0).getTenantId());
+		calulationCriteria.add(calulationCriteriaRequest);
+
+		CalculatorRequest calculator = new CalculatorRequest();
+		calculator.setApplicationNumber(applicationNo);
+		calculator.setPotenialZone(estimate.get(0).get("ApplicantPurpose").get("potential").textValue());
+		calculator.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
+		calculator.setTotalLandSize("1");
+
+		Map<String, Object> calculatorMap = new HashMap<>();
+		calculatorMap.put("CalulationCriteria", calulationCriteria);
+		calculatorMap.put("CalculatorRequest", calculator);
+		calculatorMap.put("RequestInfo", requestInfoWrapper.getRequestInfo());
+		Object responseCalculator = serviceRequestRepository.fetchResult(calculatorUrl, calculatorMap);
+		log.info("responseCalculator" + responseCalculator);
+
+		String data1 = null;
+		try {
+			data = mapper.writeValueAsString(responseCalculator);
+		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CalculationRes calculationRes = null;
+		ObjectReader objectReaders = mapper.readerFor(new TypeReference<CalculationRes>() {
+		});
+		try {
+
+			calculationRes = objectReaders.readValue(data);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		FeeAndBillingSlabIds charges = calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
+
+		tradeLicenseDetail.setScrutinyFeeCharges(charges.getScrutinyFeeCharges());
+		tradeLicenseDetail.setLicenseFeeCharges(charges.getLicenseFeeCharges());
+		tradeLicenseDetail.setExternalDevelopmentCharges(charges.getExternalDevelopmentCharges());
+		tradeLicenseDetail.setConversionCharges(charges.getConversionCharges());
+		tradeLicenseDetail.setStateInfrastructureDevelopmentCharges(charges.getStateInfrastructureDevelopmentCharges());
+
+		// --------------------------calculation end--------------------------------//
+		tradeLicense.setId(tradeLicenses.get(0).getId());
+		tradeLicense.setLoiNumber(dispatchNo);
+		tradeLicense.setAction("APPROVE");
+		tradeLicense.setWorkflowCode("NewTL");
+		tradeLicense.setTenantId(tradeLicenses.get(0).getTenantId());
+		tradeLicense.setApplicationNumber(tradeLicenses.get(0).getApplicationNumber());
+		;
+		tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicenseRequests.addLicensesItem(tradeLicense);
+		tradeLicenseRequests.setRequestInfo(requestInfoWrapper.getRequestInfo());
+
+		List<TradeLicense> response = tradeLicenseService.update(tradeLicenseRequests, "TL");
+
+		return response;
+	}
+
 }

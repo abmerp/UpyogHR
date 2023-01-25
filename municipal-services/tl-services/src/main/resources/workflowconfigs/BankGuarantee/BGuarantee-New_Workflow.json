@@ -65,7 +65,7 @@
           "applicationStatus": "PENDING_AT_AO_HQ",
           "docUploadRequired": false,
           "isStartState": false,
-          "isTerminateState": true,
+          "isTerminateState": false,
           "isStateUpdatable": true,
           "actions": [
             {
@@ -85,7 +85,7 @@
           "applicationStatus": "PENDING_AT_CAO",
           "docUploadRequired": false,
           "isStartState": false,
-          "isTerminateState": true,
+          "isTerminateState": false,
           "isStateUpdatable": true,
           "actions": [
             {
@@ -93,7 +93,7 @@
               "action": "APPROVE",
               "nextState": "APPROVED",
               "roles": [
-                "CAO"
+                "CAO_HQ"
               ]
             },
             {
@@ -101,7 +101,7 @@
               "action": "SENDBACK_TO_APPLICANT",
               "nextState": "BACK_FROM_CAO",
               "roles": [
-                "CAO"
+                "CAO_HQ"
               ]
             }
           ]
@@ -113,7 +113,7 @@
           "applicationStatus": "BACK_FROM_CAO",
           "docUploadRequired": false,
           "isStartState": false,
-          "isTerminateState": true,
+          "isTerminateState": false,
           "isStateUpdatable": true,
           "actions": [
             {
@@ -148,10 +148,31 @@
             },
             {
               "tenantId": "hr",
+              "action": "APPLY_FOR_RELEASE",
+              "nextState": "APPLIED_FOR_RELEASE",
+              "roles": [
+                "BPA_DEVELOPER",
+                "BPA_BUILDER"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "APPLIED_FOR_RELEASE",
+          "applicationStatus": "APPLIED_FOR_RELEASE",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
               "action": "RELEASE",
               "nextState": "RELEASED",
               "roles": [
-                "CAO"
+                "CAO_HQ"
               ]
             }
           ]

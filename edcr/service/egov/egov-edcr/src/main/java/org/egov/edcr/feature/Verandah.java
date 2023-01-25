@@ -96,50 +96,50 @@ public class Verandah extends FeatureProcess {
 					if (f.getVerandah() != null && f.getVerandah().getMeasurements() != null
 							&& !f.getVerandah().getMeasurements().isEmpty()) {
 
-						BigDecimal minVerandaWidth = f.getVerandah().getMeasurements().stream()
-								.map(Measurement::getWidth).reduce(BigDecimal::min).get();
-						BigDecimal minVerandDepth = f.getVerandah().getHeightOrDepth().stream().reduce(BigDecimal::min)
-								.get();
-
-						if (minVerandaWidth.compareTo(BigDecimal.ZERO) > 0) {
-							Map<String, String> details = new HashMap<>();
-							details.put(RULE_NO, RULE_43);
-							details.put(DESCRIPTION, VERANDAH_DESCRIPTION);
-
-							if (minVerandaWidth.compareTo(BigDecimal.valueOf(1.8)) >= 0) {
-								details.put(REQUIRED, "Minimum width 1.8m   ");
-								details.put(PROVIDED, "Width area " + minVerandaWidth + " at floor " + f.getNumber());
-								details.put(STATUS, Result.Accepted.getResultVal());
-								scrutinyDetail.getDetail().add(details);
-								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-
-							} else {
-								details.put(REQUIRED, "Minimum width 1.8m   ");
-								details.put(PROVIDED, "Width area " + minVerandaWidth + " at floor " + f.getNumber());
-								details.put(STATUS, Result.Not_Accepted.getResultVal());
-								scrutinyDetail.getDetail().add(details);
-								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-							}
-						}
-						if (minVerandDepth.compareTo(BigDecimal.ZERO) > 0) {
-							Map<String, String> details = new HashMap<>();
-							details.put(RULE_NO, RULE_43A);
-							details.put(DESCRIPTION, VERANDAH_DESCRIPTION);
-							if (minVerandDepth.compareTo(BigDecimal.valueOf(3.66)) <= 0) {
-								details.put(REQUIRED, "Minimum depth not more than 3.66 m ");
-								details.put(PROVIDED, " Depth area  " + minVerandDepth + " at floor " + f.getNumber());
-								details.put(STATUS, Result.Accepted.getResultVal());
-								scrutinyDetail.getDetail().add(details);
-								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-
-							} else {
-								details.put(REQUIRED, "Minimum depth not more than 3.66 m ");
-								details.put(PROVIDED, " Depth area  " + minVerandDepth + " at floor " + f.getNumber());
-								details.put(STATUS, Result.Not_Accepted.getResultVal());
-								scrutinyDetail.getDetail().add(details);
-								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-							}
-						}
+//						BigDecimal minVerandaWidth = f.getVerandah().getMeasurements().stream()
+//								.map(Measurement::getWidth).reduce(BigDecimal::min).get();
+//						BigDecimal minVerandDepth = f.getVerandah().getHeightOrDepth().stream().reduce(BigDecimal::min)
+//								.get();
+//
+//						if (minVerandaWidth.compareTo(BigDecimal.ZERO) > 0) {
+//							Map<String, String> details = new HashMap<>();
+//							details.put(RULE_NO, RULE_43);
+//							details.put(DESCRIPTION, VERANDAH_DESCRIPTION);
+//
+//							if (minVerandaWidth.compareTo(BigDecimal.valueOf(1.8)) >= 0) {
+//								details.put(REQUIRED, "Minimum width 1.8m   ");
+//								details.put(PROVIDED, "Width area " + minVerandaWidth + " at floor " + f.getNumber());
+//								details.put(STATUS, Result.Accepted.getResultVal());
+//								scrutinyDetail.getDetail().add(details);
+//								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//
+//							} else {
+//								details.put(REQUIRED, "Minimum width 1.8m   ");
+//								details.put(PROVIDED, "Width area " + minVerandaWidth + " at floor " + f.getNumber());
+//								details.put(STATUS, Result.Not_Accepted.getResultVal());
+//								scrutinyDetail.getDetail().add(details);
+//								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//							}
+//						}
+//						if (minVerandDepth.compareTo(BigDecimal.ZERO) > 0) {
+//							Map<String, String> details = new HashMap<>();
+//							details.put(RULE_NO, RULE_43A);
+//							details.put(DESCRIPTION, VERANDAH_DESCRIPTION);
+//							if (minVerandDepth.compareTo(BigDecimal.valueOf(3.66)) <= 0) {
+//								details.put(REQUIRED, "Minimum depth not more than 3.66 m ");
+//								details.put(PROVIDED, " Depth area  " + minVerandDepth + " at floor " + f.getNumber());
+//								details.put(STATUS, Result.Accepted.getResultVal());
+//								scrutinyDetail.getDetail().add(details);
+//								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//
+//							} else {
+//								details.put(REQUIRED, "Minimum depth not more than 3.66 m ");
+//								details.put(PROVIDED, " Depth area  " + minVerandDepth + " at floor " + f.getNumber());
+//								details.put(STATUS, Result.Not_Accepted.getResultVal());
+//								scrutinyDetail.getDetail().add(details);
+//								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//							}
+//						}
 					}
 
 				}

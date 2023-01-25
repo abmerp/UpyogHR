@@ -80,6 +80,7 @@ public class BankGuaranteeService {
 	public static final String BG_STATUS_PRE_SUBMIT = "PRE_SUBMIT";
 	public static final String BG_STATUS_INITIATED = "INITIATED";
 	public static final String BG_ACTION_INITIATE = "INITIATE";
+	public static final String BG_STATUS_PENDING_AT_CAO = "PENDING_AT_CAO";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -94,7 +95,27 @@ public class BankGuaranteeService {
 					.getAuditDetails(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), true);
 			newBankGuaranteeRequest.setAuditDetails(auditDetails);
 
-			if (!StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
+			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
+					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
+				// basic create with processinstance-
+				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
+						newBankGuaranteeRequest.getTenantId(), tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
+				String applicationNo = idGenIds.get(0);
+				newBankGuaranteeRequest.setApplicationNumber(applicationNo);
+				newBankGuaranteeRequest.setStatus(null);
+				newBankGuaranteeRequest.setId(UUID.randomUUID().toString());
+				newBankGuaranteeRequest.setStatus(BG_STATUS_INITIATED);
+				newBankGuaranteeRequest.setAction(BG_ACTION_INITIATE);
+				validateValidityFormat(newBankGuaranteeRequest.getValidity());
+				NewBankGuarantee newBankGuaranteeEntity = newBankGuaranteeRequest.toBuilder();
+				TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(
+						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+				workflowIntegrator.callWorkFlow(processInstanceRequest);
+				newBankGuaranteeRepo.save(newBankGuaranteeContract);
+				insertedData.add(newBankGuaranteeEntity);
+			}
+			else if (!StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& newBankGuaranteeRequest.getAction()
 							.equalsIgnoreCase(BG_STATUS_PRE_SUBMIT)) {
 				// if this is for creation of entries in table without workflow involvement-
@@ -111,7 +132,7 @@ public class BankGuaranteeService {
 				newBankGuaranteeRepo.save(newBankGuaranteeContract);
 				insertedData.add(newBankGuaranteeEntity);
 			} else {
-				// if this is normal create with workflow involvement-
+				// normal update to INITIATED with workflow involvement-
 				List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
 						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
 				// set INITIATED status as not expected from UI-
@@ -170,9 +191,10 @@ public class BankGuaranteeService {
 	}
 	
 	public List<NewBankGuarantee> searchNewBankGuarantee(RequestInfo requestInfo, List<String> applicationNumber,
-			String loiNumber, String typeOfBg) {
+			String loiNumber, String typeOfBg, String bgNumber, String existingBgNumber, String bankName) {
 		BankGuaranteeSearchCriteria bankGuaranteeSearchCriteria = BankGuaranteeSearchCriteria.builder()
-				.applicationNumber(applicationNumber).loiNumber(loiNumber).typeOfBg(typeOfBg).build();
+				.applicationNumber(applicationNumber).loiNumber(loiNumber).typeOfBg(typeOfBg).bgNumber(bgNumber)
+				.bankName(bankName).existingBgNumber(existingBgNumber).build();
 		List<NewBankGuaranteeRequest> newBankGuaranteeRequestData = newBankGuaranteeRepo
 				.getNewBankGuaranteeData(bankGuaranteeSearchCriteria);
 		//populate audit entries-
@@ -214,6 +236,7 @@ public class BankGuaranteeService {
 			setValidBgStatusOnApproval(newBankGuaranteeRequest);
 			setBgStatusOnRelease(newBankGuaranteeRequest);
 			enrichAuditDetailsOnUpdate(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+			enrichAssigneeOnApproval(newBankGuaranteeRequest, newBankGuaranteeSearchResult.get(0));
 
 			// call workflow to insert processinstance-
 			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest,
@@ -229,6 +252,18 @@ public class BankGuaranteeService {
 		
 	}
 	
+	private void enrichAssigneeOnApproval(NewBankGuaranteeRequest bankGuaranteeRequest,
+			NewBankGuarantee bankGuaranteeInDB) {
+		if (!StringUtils.isEmpty(bankGuaranteeInDB.getStatus())
+				&& bankGuaranteeInDB.getStatus().equalsIgnoreCase(BG_STATUS_PENDING_AT_CAO)
+				&& !StringUtils.isEmpty(bankGuaranteeRequest.getAction())
+				&& bankGuaranteeRequest.getAction().equalsIgnoreCase(BG_NEW_ACTION_APPROVE)) {
+			List<String> assignee = new ArrayList<>();
+			assignee.add(bankGuaranteeInDB.getAuditDetails().getCreatedBy());
+			bankGuaranteeRequest.setAssignee(assignee);
+		}
+	}
+	
 	private List<NewBankGuarantee> validateAndFetchFromDbForUpdate(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
 		if (Objects.isNull(newBankGuaranteeRequest)) {
 			throw new CustomException("NewBankGuaranteeRequest must not be null",
@@ -240,7 +275,7 @@ public class BankGuaranteeService {
 		List<String> applicationNos = new ArrayList<>();
 		applicationNos.add(newBankGuaranteeRequest.getApplicationNumber());
 		List<NewBankGuarantee> newBankGuaranteeSearchResult = searchNewBankGuarantee(
-				requestInfo, applicationNos, null, null);
+				requestInfo, applicationNos, null, null, null, null, null);
 		if (CollectionUtils.isEmpty(newBankGuaranteeSearchResult) || newBankGuaranteeSearchResult.size() > 1) {
 			throw new CustomException(
 					"Found none or multiple new bank guarantee applications with applicationNumber:"
@@ -335,7 +370,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRequest.setAuditDetails(auditDetails);
 	}
 	
-	
+	/*
 	public RenewBankGuarantee createRenewBankGuarantee(RenewBankGuaranteeContract renewBankGuaranteeContract) {
 		// populate audit details-
 		AuditDetails auditDetails = tradeUtil
@@ -388,7 +423,6 @@ public class BankGuaranteeService {
 		return tradeLicenseRequest;
 	}
 	
-	/*
 	public RenewBankGuarantee searchRenewBankGuarantee(Long renewBankGuaranteeId) {
 		return renewBankGuaranteeRepo.getOne(renewBankGuaranteeId);
 	}

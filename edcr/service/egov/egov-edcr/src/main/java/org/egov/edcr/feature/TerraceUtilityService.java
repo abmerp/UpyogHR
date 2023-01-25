@@ -88,34 +88,34 @@ public class TerraceUtilityService extends FeatureProcess {
 
         if (pl.getBlocks() != null) {
             for (Block block : pl.getBlocks()) {
-                ScrutinyDetail scrutinyDetail = new ScrutinyDetail();
-                scrutinyDetail.setKey("Block_" + block.getNumber() + "_" + "Terrace Utility");
-                scrutinyDetail.addColumnHeading(1, RULE_NO);
-                scrutinyDetail.addColumnHeading(2, DESCRIPTION);
-                scrutinyDetail.addColumnHeading(3, PERMITTED);
-                scrutinyDetail.addColumnHeading(4, PROVIDED);
-                scrutinyDetail.addColumnHeading(5, STATUS);
-
-                for (TerraceUtility terraceUtility : block.getTerraceUtilities()) {
-                    Map<String, String> details = new HashMap<>();
-                    details.put(RULE_NO, RULE_34);
-                    BigDecimal minDistance = terraceUtility.getDistances().stream().reduce(BigDecimal::min).get();
-                    details.put(DESCRIPTION, terraceUtility.getName());
-                    if (Util.roundOffTwoDecimal(minDistance).compareTo(THREE) >= 0) {
-                        details.put(PERMITTED, THREE + DcrConstants.IN_METER);
-                        details.put(PROVIDED, minDistance + DcrConstants.IN_METER);
-                        details.put(STATUS, Result.Accepted.getResultVal());
-                        scrutinyDetail.getDetail().add(details);
-                        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-                    } else {
-                        details.put(PERMITTED, THREE + DcrConstants.IN_METER);
-                        details.put(PROVIDED, minDistance + DcrConstants.IN_METER);
-                        details.put(STATUS, Result.Not_Accepted.getResultVal());
-                        scrutinyDetail.getDetail().add(details);
-                        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
-                    }
-
-                }
+//                ScrutinyDetail scrutinyDetail = new ScrutinyDetail();
+//                scrutinyDetail.setKey("Block_" + block.getNumber() + "_" + "Terrace Utility");
+//                scrutinyDetail.addColumnHeading(1, RULE_NO);
+//                scrutinyDetail.addColumnHeading(2, DESCRIPTION);
+//                scrutinyDetail.addColumnHeading(3, PERMITTED);
+//                scrutinyDetail.addColumnHeading(4, PROVIDED);
+//                scrutinyDetail.addColumnHeading(5, STATUS);
+//
+//                for (TerraceUtility terraceUtility : block.getTerraceUtilities()) {
+//                    Map<String, String> details = new HashMap<>();
+//                    details.put(RULE_NO, RULE_34);
+//                    BigDecimal minDistance = terraceUtility.getDistances().stream().reduce(BigDecimal::min).get();
+//                    details.put(DESCRIPTION, terraceUtility.getName());
+//                    if (Util.roundOffTwoDecimal(minDistance).compareTo(THREE) >= 0) {
+//                        details.put(PERMITTED, THREE + DcrConstants.IN_METER);
+//                        details.put(PROVIDED, minDistance + DcrConstants.IN_METER);
+//                        details.put(STATUS, Result.Accepted.getResultVal());
+//                        scrutinyDetail.getDetail().add(details);
+//                        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//                    } else {
+//                        details.put(PERMITTED, THREE + DcrConstants.IN_METER);
+//                        details.put(PROVIDED, minDistance + DcrConstants.IN_METER);
+//                        details.put(STATUS, Result.Not_Accepted.getResultVal());
+//                        scrutinyDetail.getDetail().add(details);
+//                        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+//                    }
+//
+//                }
 
             }
 

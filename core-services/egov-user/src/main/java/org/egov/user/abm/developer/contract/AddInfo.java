@@ -80,6 +80,9 @@ public class AddInfo {
 	@JsonProperty("dob")
 	private String dob;
 	
+	@JsonProperty("gender")
+	private String gender;
+	
 	@JsonProperty("PanNumber")
 	private String PanNumber;
 	

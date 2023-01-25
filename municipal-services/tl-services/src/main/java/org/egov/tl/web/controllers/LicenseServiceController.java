@@ -21,6 +21,8 @@ import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponse;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.RequestInfoWrapper;
+import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseResponse;
 import org.egov.tl.web.models.Transaction;
 import org.egov.tl.web.models.TransactionResponse;
 
@@ -179,4 +181,18 @@ public class LicenseServiceController {
 	}
 	/* FLAT JSON CODE END */
 
+	@PostMapping(value = "/getDeptToken")
+	public ResponseEntity<TradeLicenseResponse> departmentAuthToken(
+			@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationNumber") String applicationNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		 List<TradeLicense> dispatchtoken = newServiceInfoService.generateLoiNumber(map,
+				requestInfoWrapper, applicationNo);
+		  TradeLicenseResponse response = TradeLicenseResponse.builder().licenses(dispatchtoken).responseInfo(
+	                responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+	                .build();
+	        return new ResponseEntity<>(response, HttpStatus.OK);
+
+	}
 }

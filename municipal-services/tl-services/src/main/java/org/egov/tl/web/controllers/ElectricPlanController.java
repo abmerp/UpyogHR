@@ -48,10 +48,9 @@ public class ElectricPlanController {
 
 	@PostMapping("/_get")
 	public ResponseEntity<ElectricInfoResponse> getServicePlan(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam(required = false) String loiNumber, @RequestParam(required = false) String applicationNumber,
-			@Valid @ModelAttribute ServicePlanRequest criteria) {
+			@RequestParam(required = false) String loiNumber, @RequestParam(required = false) String applicationNumber) {
 		List<ElectricPlanRequest> searchElectricPlan = electricPlanService.searchElectricPlan(loiNumber,
-				applicationNumber);
+				applicationNumber , requestInfoWrapper.getRequestInfo());
 
 		ElectricInfoResponse servicePlanInfoResponse = ElectricInfoResponse.builder()
 				.electricPlanResponse(searchElectricPlan).responseInfo(responseInfoFactory

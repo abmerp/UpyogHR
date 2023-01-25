@@ -222,6 +222,9 @@ public class  TradeLicense   {
         
         @JsonProperty("tcpSaveTransactionNumber")
         private String tcpSaveTransactionNumber;
+        
+        @JsonProperty("loiNumber")
+        private String loiNumber;
 
 }
 

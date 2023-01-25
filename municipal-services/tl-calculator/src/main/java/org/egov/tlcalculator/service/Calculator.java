@@ -13,31 +13,29 @@ public interface Calculator {
 	public double PART3 = 0.05;
 	
 	
-	String PURPOSE_RPL = "RPL";
-	String PURPOSE_CIC = "CIC";
-	String PURPOSE_ITP = "ITP";
-	String PURPOSE_ITC = "ITC";
-	String PURPOSE_IPL = "IPL";
-	String PURPOSE_IPA = "IPA";
-	String PURPOSE_RGP = "RGP";
-	String PURPOSE_SGC = "SGC";
+	String PURPOSE_AGH = "AGH";
 	String PURPOSE_DDJAY_APHP = "DDJAY_APHP";
-	String PURPOSE_NILP = "NILP";
-	String PURPOSE_TODGH = "TODGH";
-	String PURPOSE_CIR = "CIR";
-	String PURPOSE_AHP = "AHP";
-	String PURPOSE_CIS = "CIS";
-	String PURPOSE_MLU_CZ = "MLU-CZ";
-	String PURPOSE_MLU_RZ = "MLU-RZ";
+	String PURPOSE_CICS = "CICS";
+	String PURPOSE_CIRS= "CIRS";
+	String PURPOSE_CPCS = "CPCS";
+	String PURPOSE_CPRS = "CPRS";
+	String PURPOSE_IPULP = "IPULP";
+	String PURPOSE_IPA="IPA";
+	String PURPOSE_ITC = "ITC";
+	String PURPOSE_ITP = "ITP";
 	String PURPOSE_LDEF = "LDEF";
+	String PURPOSE_MLU_CZ = "MLU-CZ";
 	String PURPOSE_NILPC = "NILPC";
-	String PURPOSE_TODCOMM = "TODCOMM";
-	String PURPOSE_TODIT = "TODIT";
-	String PURPOSE_TODMUD = "TODMUD";
-	String PURPOSE_CPL = "CPL";
-	String PURPOSE_SPRPRGH = "SPRPRGH";
-	String PURPOSE_DRH = "DRH";
+	String PURPOSE_NILP = "NILP";
+	String PURPOSE_RGP = "RGP";	
+	String PURPOSE_RPL = "RPL";
 	String PURPOSE_RHP = "RHP";
+	String PURPOSE_TODCOMM = "TODCOMM";	
+	String PURPOSE_TODIT = "TODIT";
+	String PURPOSE_TODGH = "TODGH";	
+	String PURPOSE_TODMUD = "TODMUD";	
+	String PURPOSE_TODMGH = "TODMGH";
+	
 	
 	String ZONE_HYPER="HYP";
 	String ZONE_HIG1="HIG1";

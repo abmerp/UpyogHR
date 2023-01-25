@@ -28,4 +28,9 @@ public class LicensesDoc {
     private String status;
 	private ApplicationDocuments applicationDocuments;
 
+	private String articlesOfAssociation;
+	private String memorandumOfArticles;
+	private String registeredIrrevocablePaternshipDeed;
+	private String affidavitAndPancard;
+	private String anyOtherDoc;
 }

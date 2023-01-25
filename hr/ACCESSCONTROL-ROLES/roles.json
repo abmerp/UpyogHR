@@ -838,6 +838,11 @@
       "code": "CAO_HQ",
       "name": "Chief Accountant Officer",
       "description": "Chief Accountant Officer role"
+    },
+    {
+      "code": "PUD",
+      "name": "Electrical Plan Power Utility Department Officer",
+      "description": "Electrical Plan Power Utility Department role"
     }
   ]
 }
