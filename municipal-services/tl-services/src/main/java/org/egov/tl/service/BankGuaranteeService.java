@@ -231,8 +231,8 @@ public class BankGuaranteeService {
 					newBankGuaranteeContract.getRequestInfo(), BUSINESSSERVICE_BG_NEW);
 			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, newBankGuaranteeRequest,
 					newBankGuaranteeContract.getRequestInfo());
-			validateExtendOrRelease(newBankGuaranteeRequest, currentStatus,
-					newBankGuaranteeSearchResult.get(0).getBankGuaranteeStatus());
+			// validateExtendOrRelease(newBankGuaranteeRequest, currentStatus,
+				//	newBankGuaranteeSearchResult.get(0).getBankGuaranteeStatus());
 			setValidBgStatusOnApproval(newBankGuaranteeRequest);
 			setBgStatusOnRelease(newBankGuaranteeRequest);
 			enrichAuditDetailsOnUpdate(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
