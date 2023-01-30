@@ -272,9 +272,7 @@ public class ServicePlanService {
 
 		servicePlanRequest.setAuditDetails(auditDetails);
 		
-		if (servicePlanRequest.getAction().equalsIgnoreCase("SENDBACK_TO_AUTH_USER")) {
-			servicePlanRequest.setAssignee(Arrays.asList(servicePlanRequest.getAuditDetails().getCreatedBy()));
-		}
+
 
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo);
 
