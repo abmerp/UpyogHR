@@ -927,7 +927,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?);
+       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ?);
          basePath: ServicePlanRequest.*
          jsonMaps:
 
@@ -970,6 +970,10 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedBy
 
           - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedTime
+     
+          - jsonPath: $.ServicePlanRequest.*.additionalDetails
+            type: JSON
+            dbType: JSONB
 
 
 
@@ -985,7 +989,7 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
 
-       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=? , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? WHERE application_number=?;
+       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=? , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? WHERE application_number=?;
  
          basePath: ServicePlanRequest.*
          jsonMaps:
@@ -1023,6 +1027,10 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedBy
 
           - jsonPath: $.ServicePlanRequest.*.auditDetails.lastModifiedTime
+          
+          - jsonPath: $.ServicePlanRequest.*.additionalDetails
+            type: JSON
+            dbType: JSONB
 
           - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
@@ -1117,7 +1125,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_electric_plan( id , auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_electric_plan( id , auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format , additionaldetails)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?);
 
          basePath: ElectricPlanRequest.*
          jsonMaps:
@@ -1165,6 +1173,10 @@ serviceMaps:
           - jsonPath: $.ElectricPlanRequest.*.comment
           
           - jsonPath: $.ElectricPlanRequest.*.pdfFormat
+     
+          - jsonPath: $.ElectricPlanRequest.*.additionalDetails
+            type: JSON
+            dbType: JSONB
 
 
 

@@ -64,8 +64,6 @@ public class ServicePlanRequest {
 
 	@JsonProperty("tenantID")
 	private String tenantID;
-	@JsonProperty("additionalDetail")
-	private JsonNode additionalDetail = null;
 
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
@@ -78,6 +76,9 @@ public class ServicePlanRequest {
 
 	@JsonProperty("wfDocuments")
 	private List<Document> wfDocuments;
+	
+	@JsonProperty("additionalDetails")
+	private Object additionalDetails = null;
 
 //	public ServicePlanRequest(ServicePlan servicePlan) {
 //		

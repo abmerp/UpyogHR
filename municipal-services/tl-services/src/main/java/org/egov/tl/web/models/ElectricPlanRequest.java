@@ -62,12 +62,12 @@ public class ElectricPlanRequest {
 	private List<String> assignee = null;
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
-	@JsonProperty("additionalDetail")
-	private JsonNode additionalDetail = null;
 	@JsonProperty("workflowCode")
     private String workflowCode = null;
 	@JsonProperty("wfDocuments")
     private List<Document> wfDocuments;
+	@JsonProperty("additionalDetails")
+	private Object additionalDetails = null;
  
 //	public ElectricPlanRequest(ElectricPlan electricPlan) {
 //		this.id = electricPlan.getId();
