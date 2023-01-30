@@ -11,12 +11,21 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ElectricPlanRequest;
 import org.egov.tl.web.models.ElectricPlanRequest;
 import org.egov.tl.web.models.TradeLicense;
+import org.postgresql.util.PGobject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
 @Component
 public class EPRowMapper implements ResultSetExtractor<List<ElectricPlanRequest>> {
+	
 
 	@Override
 	public List<ElectricPlanRequest> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -48,6 +57,15 @@ public class EPRowMapper implements ResultSetExtractor<List<ElectricPlanRequest>
 			ElectricPlanRequest.setComment(rs.getString("comment"));
 			ElectricPlanRequest.setTenantID(rs.getString("tenantid"));
 			ElectricPlanRequest.setApplicationNumber(rs.getString("application_number"));
+			
+			
+			Object additionalDetails = new Gson().fromJson(rs.getString("additionaldetails").equals("{}")
+					|| rs.getString("additionaldetails").equals("null")  ? null
+							: rs.getString("additionaldetails"),
+					Object.class);
+			ElectricPlanRequest.setAdditionalDetails((additionalDetails));
+			
+		
 
 			AuditDetails auditDetails = new AuditDetails();
 

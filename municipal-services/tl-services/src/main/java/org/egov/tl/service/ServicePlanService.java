@@ -198,7 +198,7 @@ public class ServicePlanService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time\r\n"
+		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , additionaldetails , created_by, created_time, last_modified_by, last_modified_time\r\n"
 				+ "FROM public.eg_service_plan\r\n" + "WHERE business_service = 'SERVICE_PLAN' ";
 
 		builder = new StringBuilder(query);
@@ -271,6 +271,8 @@ public class ServicePlanService {
 
 
 		servicePlanRequest.setAuditDetails(auditDetails);
+		
+
 
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo);
 
