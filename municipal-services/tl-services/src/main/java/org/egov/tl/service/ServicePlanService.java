@@ -57,6 +57,10 @@ public class ServicePlanService {
 
 	private static final String businessService_TL = "SERVICE_PLAN";
 
+	private static final String SENDBACK_STATUS = "SP_SENDBACK_TO_APPLICANT";
+
+	private static final String CITIZEN_UPDATE_ACTION = "UPDATE_APPLICATION_BY_APPLICANT";
+
 	@Autowired
 	ServicePlanRepo servicePlanRepo;
 
@@ -238,6 +242,15 @@ public class ServicePlanService {
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, false);
 
 		RequestInfo requestInfo = servicePlanContract.getRequestInfo();
+		
+//		String roles = requestInfo.getUserInfo().getRoles().toString();
+//		roles.contains(roles);
+//		 ArrayList<String> myList = new ArrayList<String>();
+//		 myList.add(roles);
+//		 myList.contains;
+		 
+		 
+		 
 
 		 List<ServicePlanRequest> servicePlanRequestList = servicePlanContract.getServicePlanRequest();
 		 
@@ -259,15 +272,42 @@ public class ServicePlanService {
 					"Found none or multiple service plan applications with applicationNumber.");
 		}
 
+		
+		//EMPLOYEE RUN THE APPLICATION NORMALLY
+		if (!servicePlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS) &&  !usercheck( requestInfo)) {
+
+			String currentStatus = searchServicePlan.get(0).getStatus();
+
+			BusinessService workflow = workflowService.getBusinessService(servicePlanRequest.getTenantID(),
+					servicePlanContract.getRequestInfo(), businessService_TL);
+
+			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract, servicePlanRequest);
+
+			servicePlanRequest.setAuditDetails(auditDetails);
+
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest,
+					requestInfo);
+
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+			servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+		
+		} 
+		
+		//CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
+		else if ((servicePlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck( requestInfo) ) {
+
 		String currentStatus = searchServicePlan.get(0).getStatus();
+		
+		servicePlanRequest.setAssignee(Arrays.asList(assignee("CTP_HR" , servicePlanRequest.getTenantID() , true ,requestInfo)));
+		
+		servicePlanRequest.setAction(CITIZEN_UPDATE_ACTION);
 
 		BusinessService workflow = workflowService.getBusinessService(servicePlanRequest.getTenantID(),
 				servicePlanContract.getRequestInfo(), businessService_TL);
 
 		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract , servicePlanRequest);
 
-		List<String> applicationNumbers = null;
-		int count = 1;
 
 
 		servicePlanRequest.setAuditDetails(auditDetails);
@@ -279,9 +319,10 @@ public class ServicePlanService {
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 		servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-		
+	
 		
 		 }
+		}
 
 		servicePlanContract.setServicePlanRequest(servicePlanRequestList);
 
@@ -291,6 +332,17 @@ public class ServicePlanService {
 
 	}
 
+	
+	private boolean usercheck(RequestInfo requestInfo) {
+		List<Role> roles = requestInfo.getUserInfo().getRoles();
+		 for (Role role : roles) {
+			if (role.getCode().equalsIgnoreCase("BPA_BUILDER") || role.getCode().equalsIgnoreCase("BPA_DEVELOPER")) {
+				return true ;
+			}
+		}
+		return false;
+	}
+	
 	private TradeLicenseRequest prepareProcessInstanceRequest(ServicePlanRequest servicePlanRequest, RequestInfo requestInfo) {
 
 
