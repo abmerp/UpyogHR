@@ -15,17 +15,12 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.Gson;
+
 
 @Component
 public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>{
 
-	
-//	SELECT loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance,
-//	self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng,
-//	shape_file_as_per_template, status, sp_action, undertaking, assignee, "action", 
-//	business_service, "comment", tenantid, application_number
-//	FROM public.eg_service_plan
-//	WHERE loi_number='111111111111111111137';
 	@Override
 	public List<ServicePlanRequest> extractData(ResultSet rs) throws SQLException, DataAccessException {
 		// TODO Auto-generated method stub
@@ -49,12 +44,6 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 			servicePlanRequest.setAction(rs.getString("sp_action"));
 			servicePlanRequest.setUndertaking(rs.getString("undertaking"));
 			
-//			servicePlanRequest.setAssignee(rs.getString("assignee"));
-//			servicePlanRequest.setAutoCadFile(rs.getString("action"));
-//			servicePlanRequest.setCertifieadCopyOfThePlan(rs.getString("business_service"));
-//			servicePlanRequest.setEnvironmentalClearance(rs.getString("comment"));
-//			servicePlanRequest.setSelfCertifiedDrawingFromEmpaneledDoc(rs.getString("tenantid"));
-//			servicePlanRequest.setSelfCertifiedDrawingFromEmpaneledDoc(rs.getString("application_number"));
 			
 			
 			servicePlanRequest.setAction(rs.getString("action"));
@@ -62,6 +51,12 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 			servicePlanRequest.setComment(rs.getString("comment"));
 			servicePlanRequest.setTenantID(rs.getString("tenantid"));
 			servicePlanRequest.setApplicationNumber(rs.getString("application_number"));
+			
+			Object additionalDetails = new Gson().fromJson(rs.getString("additionaldetails").equals("{}")
+					|| rs.getString("additionaldetails").equals("null")  ? null
+							: rs.getString("additionaldetails"),
+					Object.class);
+			servicePlanRequest.setAdditionalDetails((additionalDetails));
 			
 			AuditDetails auditDetails = new  AuditDetails();
 			
