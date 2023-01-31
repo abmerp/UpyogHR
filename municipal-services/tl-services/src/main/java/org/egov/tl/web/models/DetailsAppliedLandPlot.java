@@ -27,7 +27,7 @@ public class DetailsAppliedLandPlot {
 	private String commercial;
 	private String permissibleSaleableArea;
 	private String requiredGreenArea;
-	private String communitySites;
+	private List<DetailOfCommunitySite> detailOfCommunitySites;
 	private String provided;
 	private String layoutPlanPdf;
 	private String layoutPlanDxf;

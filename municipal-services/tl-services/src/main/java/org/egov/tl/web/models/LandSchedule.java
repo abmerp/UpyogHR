@@ -36,6 +36,7 @@ public class LandSchedule {
 
 	private String encumburance;
 	private String encumburanceOther;
+	private String encumburanceDoc;
 	private String litigation;
 	private String litigationRemark;;
 	private String litigationDoc;
