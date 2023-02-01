@@ -294,53 +294,29 @@ RequestInfo requestInfo = electricPlanContract.getRequestInfo();
 		
 		//EMPLOYEE RUN THE APPLICATION NORMALLY
 				if (!electricPlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS) &&  !usercheck( requestInfo)) {
-
 					String currentStatus = searchServicePlan.get(0).getStatus();
-
 					BusinessService workflow = workflowService.getBusinessService(electricPlanRequest.getTenantID(),
 							electricPlanContract.getRequestInfo(), businessService_TL);
-
-					validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract,
-							electricPlanRequest);
-
+					validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract,electricPlanRequest);
 					electricPlanRequest.setAuditDetails(auditDetails);
-
-					TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-							electricPlanRequest, requestInfo);
-
+					TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(electricPlanRequest, requestInfo);
 					wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
 					electricPlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-				
 				} 
 				
 				//CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
-				else if ((electricPlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck( requestInfo) ) {
-
+				else if ((electricPlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS))
+						&& usercheck(requestInfo)) {
 					String currentStatus = searchServicePlan.get(0).getStatus();
-
-					electricPlanRequest.setAssignee(
-							Arrays.asList(assignee("CTP_HR", electricPlanRequest.getTenantID(), true, requestInfo)));
-
+					electricPlanRequest.setAssignee(Arrays.asList(assignee("STP_HQ", electricPlanRequest.getTenantID(), true, requestInfo)));
 					electricPlanRequest.setAction(CITIZEN_UPDATE_ACTION);
-
-					BusinessService workflow = workflowService.getBusinessService(electricPlanRequest.getTenantID(),
-							electricPlanContract.getRequestInfo(), businessService_TL);
-
-					validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract,
-							electricPlanRequest);
-
+					BusinessService workflow = workflowService.getBusinessService(electricPlanRequest.getTenantID(),electricPlanContract.getRequestInfo(), businessService_TL);
+					validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract,electricPlanRequest);
 					electricPlanRequest.setAuditDetails(auditDetails);
-
-					TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-							electricPlanRequest, requestInfo);
-
+					TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(electricPlanRequest, requestInfo);
 					wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
 					electricPlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-			
-				
-				 }
+			}
 		
 		}
 

@@ -242,13 +242,7 @@ public class ServicePlanService {
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, false);
 
 		RequestInfo requestInfo = servicePlanContract.getRequestInfo();
-		
-//		String roles = requestInfo.getUserInfo().getRoles().toString();
-//		roles.contains(roles);
-//		 ArrayList<String> myList = new ArrayList<String>();
-//		 myList.add(roles);
-//		 myList.contains;
-		 
+			 
 		 
 		 
 
