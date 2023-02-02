@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class DetailsAppliedLandPlot {
 
+	
 	private String totalAreaScheme;
 	private String areaUnderSectorRoad;
 	private String balanceAreaAfterDeduction;
@@ -33,6 +34,14 @@ public class DetailsAppliedLandPlot {
 	private String layoutPlanDxf;
 	private String layoutPlanZip;
 	private String undertaking;
-	
-	
+	// ----add new fields-----//
+	private String totalSiteArea;
+	private String groundCoverage;
+	private String FAR;
+	private String parkingSpace;
+	private String providedArea;
+	private String permissableGroundCoverage;
+	private String permissableFAR;
+	private String permissableCommercial;
+
 }

@@ -3,6 +3,7 @@ package org.egov.tl.web.models;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.validation.annotation.Validated;
 
@@ -107,6 +108,33 @@ public class Address   {
         @Valid
         @JsonProperty("locality")
         private Boundary locality = null;
+
+       
+     
+
+        boolean isInvalid() {
+            return isPinCodeInvalid()
+                    || isCityInvalid()
+                    || isAddressInvalid();
+        }
+
+        boolean isNotEmpty() {
+            return StringUtils.isNotEmpty(pincode)
+                    || StringUtils.isNotEmpty(city)
+                    || StringUtils.isNotEmpty(addressId);
+        }
+
+        boolean isPinCodeInvalid() {
+            return pincode != null && pincode.length() > 10;
+        }
+
+        boolean isCityInvalid() {
+            return city != null && city.length() > 300;
+        }
+
+        boolean isAddressInvalid() {
+            return addressId != null && addressId.length() > 300;
+        }
 
 
 }

@@ -1,6 +1,7 @@
 package org.egov.tl.service;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ import org.springframework.util.MultiValueMap;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.common.contract.request.Role;
 import org.egov.common.contract.request.User;
 import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
@@ -37,6 +39,11 @@ import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TLConstants;
 import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.Transaction;
+
+import org.egov.tl.web.models.UserResponse;
+import org.egov.tl.web.models.UserSearchCriteria;
+
+import org.egov.tl.web.models.UserType;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
 import org.egov.tl.web.models.calculation.FeeAndBillingSlabIds;
@@ -100,6 +107,11 @@ public class LicenseService {
 	private String guranteeHost;
 	@Value("${egov.tl.calculator.calculate.endpoint}")
 	private String calculatorEndPoint;
+	@Value("${egov.user.host}")
+	private String userHost;
+	@Value("${egov.user.search.path}")
+	private String userSearchPath;
+
 	@Autowired
 	LandUtil landUtil;
 
@@ -463,7 +475,8 @@ public class LicenseService {
 
 	public ResponseEntity<Object> postTransactionDeatil(MultiValueMap<String, String> requestParam) {
 
-		String applicationNumber = requestParam.get(new String("Applicationnumber")).get(0);
+		// String applicationNumber = requestParam.get(new
+		// String("Applicationnumber")).get(0);
 		String transactionId = requestParam.get(new String("Applicationnumber")).get(0);
 		String grn = requestParam.get(new String("GRN")).get(0);
 		String status = requestParam.get(new String("status")).get(0);
@@ -481,7 +494,8 @@ public class LicenseService {
 		String saveTransaction;
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
-		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+
+		if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 
 			Map<String, Object> request = new HashMap<>();
 			request.put("txnId", transactionId);
@@ -513,7 +527,7 @@ public class LicenseService {
 
 			log.info("transaction" + transaction);
 			String txnId = transaction.getTransaction().get(0).getTxnId();
-			applicationNumber = transaction.getTransaction().get(0).getApplicationNumber();
+			String applicationNumber = transaction.getTransaction().get(0).getApplicationNumber();
 
 			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
@@ -526,11 +540,105 @@ public class LicenseService {
 					UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
-		} else if (!status.isEmpty() && status.equalsIgnoreCase("Sucess")) {
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
 
+			// --------------payment--------------//
+			Map<String, Object> request = new HashMap<>();
+			request.put("txnId", transactionId);
+			HttpHeaders httpHeaders = new HttpHeaders();
+			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+			HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
+			Object paymentSearch = null;
+
+			String uri = pgHost + pgSearchPath;
+			paymentSearch = rest.postForObject(uri, entity, Map.class);
+			log.info("search payment data" + paymentSearch);
+
+			String data = null;
+			try {
+				data = mapper.writeValueAsString(paymentSearch);
+			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			ResponseTransaction transaction = null;
+			ObjectReader objectReader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
+			});
+			try {
+				transaction = objectReader.readValue(data);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+
+			log.info("transaction" + transaction);
+			String txnId = transaction.getTransaction().get(0).getTxnId();
+			String applicationNumber = transaction.getTransaction().get(0).getConsumerCode();
+			String uuid = transaction.getTransaction().get(0).getUser().getUuid();
+			String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
+			String mobileNumber = transaction.getTransaction().get(0).getUser().getMobileNumber();
+
+			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
+
+			userSearchCriteria.setMobileNumber(mobileNumber);
+			userSearchCriteria.setTenantId(tennatId);
+
+			StringBuilder url = new StringBuilder(userHost);
+			url.append(userSearchPath);
+
+			Object searchUser = serviceRequestRepository.fetchResult(url, userSearchCriteria);
+
+			log.info("searchUsers" + searchUser);
+			String data1 = null;
+
+			try {
+				data1 = mapper.writeValueAsString(searchUser);
+			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			UserResponse userData = null;
+			ObjectReader readerData = mapper.readerFor(new TypeReference<UserResponse>() {
+			});
+			try {
+				userData = readerData.readValue(data1);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+			log.info("userData" + userData);
+
+			String type = userData.getUser().get(0).getType().toString();
+			String email = userData.getUser().get(0).getEmailId();
+			Long userId = userData.getUser().get(0).getId();
+			String mobNo = userData.getUser().get(0).getMobileNumber();
+
+			List<Role> roles = new ArrayList<>();			
+			int length =userData.getUser().get(0).getRoles().size();
+			for (int i = 0; i < length; i++) {
+				Role role = new Role();
+				try {
+				role.setCode(userData.getUser().get(0).getRoles().get(i).getCode());
+				role.setTenantId(userData.getUser().get(0).getRoles().get(i).getTenantId());
+				role.setName(userData.getUser().get(0).getRoles().get(i).getName());
+				}catch(NullPointerException e) {
+					e.printStackTrace();
+				}
+				roles.add(role);
+			}
+
+			User user = new User();
+
+			user.setType(type);
+			user.setUuid(uuid);
+			user.setTenantId(tennatId);
+			user.setRoles(roles);
+			info.setUserInfo(user);
+
+			// ------------------payment end----------------//
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
+
 			for (TradeLicense tradeLicense : tradeLicenses) {
 
 				ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
@@ -538,7 +646,7 @@ public class LicenseService {
 
 				Map<String, Object> authtoken = new HashMap<String, Object>();
 				authtoken.put("UserId", "39");
-				authtoken.put("TpUserId", "12356");
+				authtoken.put("TpUserId", userId);
 				authtoken.put("EmailId", "mkthakur84@gmail.com");
 
 				List<LicenseDetails> newServiceInfoData = null;
@@ -644,7 +752,7 @@ public class LicenseService {
 						Map<String, Object> map3 = new HashMap<String, Object>();
 						map3.put("UserName", "tcp");
 						map3.put("EmailId", "mkthakur84@gmail.com");
-						map3.put("MobNo", "1234567891");
+						map3.put("MobNo", mobNo);
 						map3.put("TxnNo", grn);
 						map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
 						map3.put("NameofOwner",
@@ -684,37 +792,6 @@ public class LicenseService {
 						tradeLicenseService.update(tradeLicenseRequests, "TL");
 
 						// -----------------payment----------------------//
-						Map<String, Object> request = new HashMap<>();
-						request.put("consumerCode", applicationNumber);
-						HttpHeaders httpHeaders = new HttpHeaders();
-						httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-						HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
-						Object paymentSearch = null;
-
-						String uri = pgHost + pgSearchPath;
-						paymentSearch = rest.postForObject(uri, entity, Map.class);
-						log.info("search payment data" + paymentSearch);
-
-						String data = null;
-						try {
-							data = mapper.writeValueAsString(paymentSearch);
-						} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-						ResponseTransaction transaction = null;
-						ObjectReader objectReader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
-						});
-						try {
-							transaction = reader.readValue(data);
-						} catch (IOException e) {
-
-							e.printStackTrace();
-						}
-
-						log.info("transaction" + transaction);
-						String txnId = transaction.getTransaction().get(0).getTxnId();
-
 						MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
 						params.put("eg_pg_txnid", Collections.singletonList(txnId));
@@ -839,10 +916,13 @@ public class LicenseService {
 
 		// --------------------bank gurantee calculator start-------------------------//
 		JsonNode estimate = tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail();
+
 		BankGuaranteeCalculationCriteria calculatorRequest = new BankGuaranteeCalculationCriteria();
 
 		calculatorRequest.setApplicationNumber(applicationNo);
-		calculatorRequest.setPotentialZone(estimate.get(0).get("ApplicantPurpose").get("potential").textValue());
+		calculatorRequest.setPotentialZone(
+				estimate.get(0).get("ApplicantPurpose").get("AppliedLandDetails").get(0).get("potential").textValue());
+		// calculatorRequest.setPotentialZone("HYP");
 		calculatorRequest.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
 		calculatorRequest.setTotalLandSize(new BigDecimal("1"));
 		calculatorRequest.setRequestInfo(requestInfoWrapper.getRequestInfo());
@@ -910,7 +990,9 @@ public class LicenseService {
 
 		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
-		calculator.setPotenialZone(estimate.get(0).get("ApplicantPurpose").get("potential").textValue());
+		calculator.setPotenialZone(
+				estimate.get(0).get("ApplicantPurpose").get("AppliedLandDetails").get(0).get("potential").textValue());
+		// calculator.setPotenialZone("HYP");
 		calculator.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
 		calculator.setTotalLandSize("1");
 
@@ -946,7 +1028,7 @@ public class LicenseService {
 		tradeLicenseDetail.setStateInfrastructureDevelopmentCharges(charges.getStateInfrastructureDevelopmentCharges());
 
 		// --------------------------calculation end--------------------------------//
-		
+
 		tradeLicense.setId(tradeLicenses.get(0).getId());
 		tradeLicense.setLoiNumber(dispatchNo);
 		tradeLicense.setAction("APPROVE");

@@ -90,6 +90,9 @@ public class TradeLicenseSearchCriteria {
 
     @JsonProperty("tradeType")
     private String tradeType = null;
+    
+    @JsonProperty("loiNumber")
+    private String loiNumber;
 
     public boolean isEmpty() {
         return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null
