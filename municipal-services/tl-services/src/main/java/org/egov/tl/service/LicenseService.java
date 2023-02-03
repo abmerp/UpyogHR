@@ -612,15 +612,15 @@ public class LicenseService {
 			Long userId = userData.getUser().get(0).getId();
 			String mobNo = userData.getUser().get(0).getMobileNumber();
 
-			List<Role> roles = new ArrayList<>();			
-			int length =userData.getUser().get(0).getRoles().size();
+			List<Role> roles = new ArrayList<>();
+			int length = userData.getUser().get(0).getRoles().size();
 			for (int i = 0; i < length; i++) {
 				Role role = new Role();
 				try {
-				role.setCode(userData.getUser().get(0).getRoles().get(i).getCode());
-				role.setTenantId(userData.getUser().get(0).getRoles().get(i).getTenantId());
-				role.setName(userData.getUser().get(0).getRoles().get(i).getName());
-				}catch(NullPointerException e) {
+					role.setCode(userData.getUser().get(0).getRoles().get(i).getCode());
+					role.setTenantId(userData.getUser().get(0).getRoles().get(i).getTenantId());
+					role.setName(userData.getUser().get(0).getRoles().get(i).getName());
+				} catch (NullPointerException e) {
 					e.printStackTrace();
 				}
 				roles.add(role);
@@ -693,7 +693,7 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", "");
-						mapDNo.put("UserId", "1234");
+						mapDNo.put("UserId", "1265");
 						mapDNo.put("DistrictCode",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 						mapDNo.put("UserLoginId", "39");
@@ -716,7 +716,7 @@ public class LicenseService {
 						mapCNO.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
-						mapCNO.put("UserId", "2");
+						mapCNO.put("UserId", userId);
 						mapCNO.put("UserLoginId", "39");
 						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
 								.toString();
@@ -737,7 +737,7 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						mapANo.put("DateOfHearing", date);
 						mapANo.put("DateForFilingOfReply", date);
-						mapANo.put("UserId", "2");
+						mapANo.put("UserId", userId);
 						mapANo.put("UserLoginId", "39");
 						applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 								.get("Value").toString();
