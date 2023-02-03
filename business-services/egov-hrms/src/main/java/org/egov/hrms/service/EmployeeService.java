@@ -667,7 +667,7 @@ public class EmployeeService {
 
 			if (searchUsers.getEmployees().size() == 0) {
 
-				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
+				employee.setTenantId("hr");
 				userDetail.setPermanentPincode("123456");
 				userDetail.setCorrespondencePincode("123456");
 				userDetail.setRelationship(GuardianRelation.OTHER);
@@ -679,9 +679,9 @@ public class EmployeeService {
 				userDetail.setPassword("eGov@4321");
 				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
 				roles.setCode(ssoEmployee.getDesignation());
-				roles.setTenantId(requestInfo.getUserInfo().getTenantId());
+				roles.setTenantId("hr");
 				rolesEmployee.setCode("EMPLOYEE");
-				rolesEmployee.setTenantId(requestInfo.getUserInfo().getTenantId());
+				rolesEmployee.setTenantId("hr");
 				rolesList.add(roles);
 				rolesList.add(rolesEmployee);
 
@@ -703,13 +703,13 @@ public class EmployeeService {
 
 				userDetail.setActive(true);
 				userDetail.setUuid(searchUsers.getEmployees().get(0).getUuid());
-				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
+				userDetail.setTenantId("hr");
 				userDetail.setRoles(searchUsers.getEmployees().get(0).getUser().getRoles());
 				userDetail.setPassword("eGov@4321");
 				employee.setIsActive(true);
 				employee.setUuid(searchUsers.getEmployees().get(0).getUuid());
 				employee.setId(searchUsers.getEmployees().get(0).getId());
-				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
+				employee.setTenantId("hr");
 				employee.setCode(searchUsers.getEmployees().get(0).getCode());
 				employee.setUser(userDetail);
 				employeeList.add(employee);
