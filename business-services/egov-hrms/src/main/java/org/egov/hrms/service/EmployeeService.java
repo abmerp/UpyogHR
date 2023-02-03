@@ -652,7 +652,7 @@ public class EmployeeService {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
-			employeeSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
+			employeeSearchCriteria.setTenantId("hr");
 			EmployeeResponse searchUsers = search(employeeSearchCriteria, requestInfo);
 			log.info("searchUsers" + searchUsers);
 
