@@ -248,15 +248,21 @@ public class UserService{
         owner.setUuid(userDetailResponse.getUser().get(0).getUuid());
         owner.setId(userDetailResponse.getUser().get(0).getId());
         owner.setUserName((userDetailResponse.getUser().get(0).getUserName()));
-        owner.setCreatedBy(requestInfo.getUserInfo().getUuid());
-        owner.setLastModifiedBy(requestInfo.getUserInfo().getUuid());
-        owner.setCreatedDate(System.currentTimeMillis());
-        owner.setLastModifiedDate(System.currentTimeMillis());
+        owner.setCreatedBy(parseLong(requestInfo.getUserInfo().getUuid()));
+        owner.setLastModifiedBy(parseLong(requestInfo.getUserInfo().getUuid()));
+        owner.setCreatedDate(String.valueOf(System.currentTimeMillis()));
+        owner.setLastModifiedDate(String.valueOf(System.currentTimeMillis()));
         owner.setActive(userDetailResponse.getUser().get(0).getActive());
     }
 
 
-    /**
+    private Long parseLong(String uuid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	/**
      * Sets the role,type,active and tenantId for a Citizen
      * @param tenantId TenantId of the property
      * @param role The role of the user set in this case to CITIZEN

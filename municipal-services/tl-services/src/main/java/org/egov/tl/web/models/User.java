@@ -1,9 +1,12 @@
 package org.egov.tl.web.models;
 
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import lombok.*;
@@ -100,10 +103,11 @@ public class User {
 	private Boolean active;
 
 	@JsonProperty("dob")
-	private Long dob;
+	private Date dob;
 
 	@JsonProperty("pwdExpiryDate")
-	private Long pwdExpiryDate;
+	@JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss zzz")
+	private String pwdExpiryDate;
 
 	@Size(max = 16)
 	@JsonProperty("locale")
@@ -139,17 +143,18 @@ public class User {
 
 	@Size(max = 64)
 	@JsonProperty("createdBy")
-	private String createdBy;
+	private Long createdBy;
 
-	@JsonProperty("createdDate")
-	private Long createdDate;
+	@JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss zzz")
+	private String createdDate;
 
 	@Size(max = 64)
 	@JsonProperty("lastModifiedBy")
-	private String lastModifiedBy;
+	private Long lastModifiedBy;
 
 	@JsonProperty("lastModifiedDate")
-	private Long lastModifiedDate;
+	@JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss zzz")
+	private String lastModifiedDate;
 
 	@JsonProperty("otpReference")
 	private String otpReference;
