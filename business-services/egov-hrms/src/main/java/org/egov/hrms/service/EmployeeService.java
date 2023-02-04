@@ -614,7 +614,7 @@ public class EmployeeService {
 		}
 	}
 
-	private boolean isEmpty(String password) {		
+	private boolean isEmpty(String password) {
 		return false;
 	}
 
@@ -629,13 +629,20 @@ public class EmployeeService {
 
 	public Map<String, Object> ssoEmployee(SsoEmployee ssoEmployee, RequestInfo requestInfo) {
 
+		requestInfo = new RequestInfo();
+		org.egov.common.contract.request.User userInfo = new org.egov.common.contract.request.User();
+
+		userInfo.setTenantId("hr");
+
+		requestInfo.setUserInfo(userInfo);
+
 		Map<String, Object> ssoEmployeeMap = new HashMap<String, Object>();
-		ssoEmployeeMap.put("UserId", ssoEmployee.getUid());
+		ssoEmployeeMap.put("UserId", "169");
 		ssoEmployeeMap.put("TokenId", ssoEmployee.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = null;
 		String ssoValue = "no";
-		//requestInfo.getUserInfo().setTenantId("hr");
-		log.info("Data by Request"+ssoEmployeeMap);
+		// requestInfo.getUserInfo().setTenantId("hr");
+		log.info("Data by Request" + ssoEmployeeMap);
 		try {
 			isExistSSOToken = isExistSSOToken(ssoEmployeeMap);
 
@@ -652,7 +659,7 @@ public class EmployeeService {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
-			employeeSearchCriteria.setTenantId("hr");
+			employeeSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
 			EmployeeResponse searchUsers = search(employeeSearchCriteria, requestInfo);
 			log.info("searchUsers" + searchUsers);
 
@@ -667,7 +674,7 @@ public class EmployeeService {
 
 			if (searchUsers.getEmployees().size() == 0) {
 
-				employee.setTenantId("hr");
+				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
 				userDetail.setPermanentPincode("123456");
 				userDetail.setCorrespondencePincode("123456");
 				userDetail.setRelationship(GuardianRelation.OTHER);
@@ -677,11 +684,11 @@ public class EmployeeService {
 				userDetail.setOtpReference("123456");
 				userDetail.setGender("female");
 				userDetail.setPassword("eGov@4321");
-				userDetail.setTenantId("hr");
+				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
 				roles.setCode(ssoEmployee.getDesignation());
-				roles.setTenantId("hr");
+				roles.setTenantId(requestInfo.getUserInfo().getTenantId());
 				rolesEmployee.setCode("EMPLOYEE");
-				rolesEmployee.setTenantId("hr");
+				rolesEmployee.setTenantId(requestInfo.getUserInfo().getTenantId());
 				rolesList.add(roles);
 				rolesList.add(rolesEmployee);
 
@@ -703,18 +710,20 @@ public class EmployeeService {
 
 				userDetail.setActive(true);
 				userDetail.setUuid(searchUsers.getEmployees().get(0).getUuid());
-				userDetail.setTenantId("hr");
+				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
 				userDetail.setRoles(searchUsers.getEmployees().get(0).getUser().getRoles());
 				userDetail.setPassword("eGov@4321");
 				employee.setIsActive(true);
 				employee.setUuid(searchUsers.getEmployees().get(0).getUuid());
 				employee.setId(searchUsers.getEmployees().get(0).getId());
-				employee.setTenantId("hr");
+				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
 				employee.setCode(searchUsers.getEmployees().get(0).getCode());
 				employee.setUser(userDetail);
 				employeeList.add(employee);
+
 				employeeRequest.setRequestInfo(requestInfo);
 				employeeRequest.setEmployees(employeeList);
+
 				EmployeeResponse updatedEmployee = update(employeeRequest);
 
 				log.info("updatedEmployee" + updatedEmployee);
