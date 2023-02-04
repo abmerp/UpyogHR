@@ -1,5 +1,7 @@
 package org.egov.tlcalculator.web.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -8,26 +10,36 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DetailsofAppliedLand {
-
-	private String dgps;
 	
-	@JsonProperty("DetailsAppliedLandData1")
-	private DetailsAppliedLandData1 detailsAppliedLandData1;
+	@JsonProperty("dgpsDetails")
+	private List<List<GISDeatils>> dgps;
 	
-	@JsonProperty("DetailsAppliedLandDdjay2")
-	private DetailsAppliedLandDdjay2 detailsAppliedLandDdjay2;
+	@JsonProperty("DetailsAppliedLandPlot")
+	private DetailsAppliedLandPlot detailsAppliedLandPlot;
 	
-	@JsonProperty("DetailsAppliedLandIndustrial3")
-	private DetailsAppliedLandIndustrial3 detailsAppliedLandIndustrial3;
+	@JsonProperty("DetailsAppliedLandDdjay")
+	private DetailsAppliedLandDdjay detailsAppliedLandDdjay;
 	
-	@JsonProperty("DetailsAppliedLandResidential4")
-	private DetailsAppliedLandResidential4 detailsAppliedLandResidential4;
+	@JsonProperty("DetailsAppliedLandIndustrial")
+	private DetailsAppliedLandIndustrial detailsAppliedLandIndustrial;
 	
-	@JsonProperty("DetailsAppliedLandNpnl5")
-	private DetailsAppliedLandNpnl5 detailsAppliedLandNpnl5;
+	@JsonProperty("DetailsAppliedLandResidential")
+	private DetailsAppliedLandResidential detailsAppliedLandResidential;
 	
-	@JsonProperty("DetailsAppliedLand6")
-	private DetailsAppliedLand6 detailsAppliedLand6;
+	@JsonProperty("DetailsAppliedLandNILP")
+	private DetailsAppliedLandNILP detailsAppliedLandNILP;
+	
+	@JsonProperty("DetailsAppliedLand")
+	private DetailsAppliedLand detailsAppliedLand;
+	
+	@JsonProperty("DetailsAppliedLandCommercial")
+	private DetailsAppliedLandCommercial detailsAppliedLandCommercial;
+	
+	@JsonProperty("DetailsAppliedDemarcationPlan")
+	private DetailsAppliedDemarcationPlan DetailsAppliedDemarcationPlan;
+	
+	@JsonProperty("DetailsAppliedLayoutPlan")
+	private DetailsAppliedLayoutPlan DetailsAppliedLayoutPlan;
 
 	
 	

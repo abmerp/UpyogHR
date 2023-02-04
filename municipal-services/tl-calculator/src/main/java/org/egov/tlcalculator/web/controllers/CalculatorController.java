@@ -2,12 +2,16 @@ package org.egov.tlcalculator.web.controllers;
 
 
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.egov.tlcalculator.service.BPACalculationService;
 import org.egov.tlcalculator.service.CalculationService;
 import org.egov.tlcalculator.service.DemandService;
+import org.egov.tlcalculator.service.FeesCalculation;
+
 import org.egov.tlcalculator.utils.ResponseInfoFactory;
 import org.egov.tlcalculator.web.models.*;
 import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationCriteria;
@@ -31,6 +35,8 @@ import static org.egov.tlcalculator.utils.TLCalculatorConstants.businessService_
 @Controller
 @RequestMapping("/v1")
 public class CalculatorController {
+	@Autowired
+	FeesCalculation paymentCalculation;
 
 	private ObjectMapper objectMapper;
 
@@ -160,6 +166,16 @@ public class CalculatorController {
 		bankGuaranteeCalculationResponse.setResponseInfo(responseInfoFactory
 				.createResponseInfoFromRequestInfo(bankGuaranteeCalculationCriteria.getRequestInfo(), true));
 		return new ResponseEntity<>(bankGuaranteeCalculationResponse, HttpStatus.OK);	
+	}
+	
+	
+	@PostMapping("/_testing")
+	public ResponseEntity<Double> testing(@RequestBody @Valid RequestInfoWrapper requestInfoWrapper,@RequestParam String applicationNo){
+		
+//		FeesCalculation paymentCalculation = new FeesCalculation();
+		Double calculationResponse =paymentCalculation.payment(requestInfoWrapper.getRequestInfo(), applicationNo);
+		
+		return new ResponseEntity<>(calculationResponse, HttpStatus.OK);	
 	}
 
 
