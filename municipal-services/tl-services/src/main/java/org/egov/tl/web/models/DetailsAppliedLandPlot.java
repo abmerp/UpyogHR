@@ -30,7 +30,7 @@ public class DetailsAppliedLandPlot {
 	private String commercial;
 	private String permissibleSaleableArea;
 	private String requiredGreenArea;
-	@JsonProperty("detailOfCommunitySites")
+	@JsonProperty("DetailOfCommunitySite")
 	private List<DetailOfCommunitySite> detailOfCommunitySites;
 	private String provided;
 	private String layoutPlanPdf;
@@ -46,5 +46,17 @@ public class DetailsAppliedLandPlot {
 	private String permissableGroundCoverage;
 	private String permissableFAR;
 	private String permissableCommercial;
+	//-----add---fields----//
+	private String maxAreaPlots;
+	private String minPlotSize;
+	private String maxPlotSize;
+	private String totalNoOfPlots;
+	private String residentialAndCommercialPlots;
+	private String areaUnderResidentialUse;
+	private String areaUnderCommercialUse;
+	private String widthOfInternalRoads;
+	private String AreaUnderOrganizedSpace;
+	private String transferredArea;
+	
 
 }
