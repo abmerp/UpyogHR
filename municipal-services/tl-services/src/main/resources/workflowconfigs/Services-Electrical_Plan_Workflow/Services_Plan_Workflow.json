@@ -7,7 +7,7 @@
         "msgId": "20170310130900|en_IN",
         "ts": 0,
         "ver": ".01",
-        "authToken": "66543d17-58ba-4013-a732-d46ca9836238",
+        "authToken": "872de4d8-4375-45c5-aeb1-cdd2b25e6193",
         "userInfo": {
             "id": 185,
             "uuid": "00b17ada-fb49-4a12-b75e-91b38d71d58e",
@@ -254,7 +254,7 @@
                         {
                             "tenantId": "hr",
                             "action": "APPROVED",
-                            "nextState": "SP_REVIEWED",
+                            "nextState": "SP_APPROVED",
                             "roles": [
                                 "DTCP_HR"
                             ]
@@ -349,8 +349,8 @@
                 {
                     "tenantId": "hr",
                     "sla": 86400000,
-                    "state": "SP_REVIEWED",
-                    "applicationStatus": "SP_REVIEWED",
+                    "state": "SP_APPROVED",
+                    "applicationStatus": "SP_APPROVED",
                     "docUploadRequired": false,
                     "isStartState": false,
                     "isTerminateState": true,

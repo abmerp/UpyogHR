@@ -1,0 +1,294 @@
+{
+   "tenantId":"hr",
+   "moduleName":"BPA",
+   "EDCRates": [
+    {
+      "districtName": "Gurgaon",
+      "developmentPlan": "Gurgaon",
+      "zone": "Hyper",
+      "index": 1
+    },
+    {
+      "districtName": "Faridabad",
+      "developmentPlan": "Faridabad",
+      "zone": "High-I",
+      "index": 0.9
+    },
+    {
+      "districtName": "Gurgaon",
+      "developmentPlan": "Sohna",
+      "zone": "High-I",
+      "index": 0.9
+    },
+    {
+      "districtName": "Gurgaon",
+      "developmentPlan": "Gawal Pahari",
+      "zone": "High-I",
+      "index": 0.9
+    },
+    {
+      "districtName": "Sonepat",
+      "developmentPlan": "Sonepat-Kundli",
+      "zone": "High-I",
+      "index": 0.7
+    },
+    {
+      "districtName": "Panipat",
+      "developmentPlan": "Panipat ",
+      "zone": "High-I",
+      "index": 0.7
+    },
+    {
+      "districtName": "Panchkula",
+      "developmentPlan": "Panchkula Extension",
+      "zone": "High-I",
+      "index": 0.7
+    },
+    {
+      "districtName": "Panchkula",
+      "developmentPlan": "MDC (PKL)",
+      "zone": "High-I",
+      "index": 0.7
+    },
+    {
+      "districtName": "Panchkula",
+      "developmentPlan": "Pinjore-Kalka",
+      "zone": "High-I",
+      "index": 0.7
+    },
+    {
+      "districtName": "Ambala",
+      "developmentPlan": "Ambala",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Karnal",
+      "developmentPlan": "Karnal",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Kurukshetra",
+      "developmentPlan": "Kurukshetra",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Jhajjar",
+      "developmentPlan": "Bahadurgarh",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Hisar",
+      "developmentPlan": "Hisar",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Rohtak",
+      "developmentPlan": "Rohtak",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Rewari",
+      "developmentPlan": "Rewari",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Rewari",
+      "developmentPlan": "Bawal",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Palwal",
+      "developmentPlan": "Palwal",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Yamunanagar",
+      "developmentPlan": "Jagadhari/Y. Nagar",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Rewari",
+      "developmentPlan": "Dharuhera",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Palwal",
+      "developmentPlan": "Prithla",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Sonepat",
+      "developmentPlan": "Ganaur",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Palwal",
+      "developmentPlan": "Hodal",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Faridabad",
+      "developmentPlan": "Mangar Bahu",
+      "zone": "Medium",
+      "index": 0.6
+    },
+    {
+      "districtName": "Bhiwani",
+      "developmentPlan": "Bhiwani",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Fatehabad",
+      "developmentPlan": "Fatehabad",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Jind",
+      "developmentPlan": "Jind",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Kaithal",
+      "developmentPlan": "Kaithal",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Mahendergarh",
+      "developmentPlan": "Mahendergarh",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Mahendergarh",
+      "developmentPlan": "Narnaul",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Sirsa",
+      "developmentPlan": "Sirsa",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Jhajjar",
+      "developmentPlan": "Jhajjar",
+      "zone": "Low-I",
+      "index": 0.5
+    },
+    {
+      "districtName": "Palwal",
+      "developmentPlan": "Hathin",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Nuh",
+      "developmentPlan": "Mewat",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Nuh",
+      "developmentPlan": "Nuh",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Nuh",
+      "developmentPlan": "Taoru",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Ambala",
+      "developmentPlan": "Naraingarh",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Karnal",
+      "developmentPlan": "Taraori",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Karnal",
+      "developmentPlan": "Gharuanda",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Karnal",
+      "developmentPlan": "Indri",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Karnal",
+      "developmentPlan": "Assandh",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Kurukshetra",
+      "developmentPlan": "Shahbad",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Hansi",
+      "developmentPlan": "Hansi",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "hisar",
+      "developmentPlan": "Agroha",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Jind",
+      "developmentPlan": "Narwana",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Charkhi Dadri",
+      "developmentPlan": "Dadri",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Fatehabad",
+      "developmentPlan": "Ratia",
+      "zone": "Low-II",
+      "index": 0.4
+    },
+    {
+      "districtName": "Fatehabad",
+      "developmentPlan": "Tohana",
+      "zone": "Low-II",
+      "index": 0.4
+    }
+  ]
+}
