@@ -30,7 +30,7 @@ public class DetailsAppliedLandPlot {
 	private String commercial;
 	private String permissibleSaleableArea;
 	private String requiredGreenArea;
-
+	@JsonProperty("detailOfCommunitySites")
 	private List<DetailOfCommunitySite> detailOfCommunitySites;
 	private String provided;
 	private String layoutPlanPdf;
