@@ -1,0 +1,204 @@
+{
+   "tenantId":"hr",
+   "moduleName":"BPA",
+   "LabourCessRates":[
+      {
+         "use":"Group Housing",
+         "subUse":"The Multi-storey flats have a basement and the construction is of superfine type \"A\"",
+         "labourCessRate":1916,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Group Housing",
+         "subUse":"The Multi-storey flats having is of superfine type \"A\"",
+         "labourCessRate":1916,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"Multi-storey office complex, IT-enabled services industry showroom building having the superfine type of construction \"A\"",
+         "labourCessRate":2586,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"Multi-storey office complex, IT-enabled services industry showroom building having the superfine type of construction \"B\"",
+         "labourCessRate":2490,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"Shopping Malls having multi-storey buildings with basement and multiplex inside & constructed at superfine construction \"A\"",
+         "labourCessRate":2490,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"Shopping Malls having multi-storey buildings with basements, with or without multiplex inside & medium type of construction \"B\"",
+         "labourCessRate":2395,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"The building constructed for social use like an auditorium or Banquette hall has construction superfine type \"A\"",
+         "labourCessRate":2758,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"The building constructed for social use like an auditorium or Banquette hall has construction superfine type \"B\"",
+         "labourCessRate":2490,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"The building constructed for social use like the Banquet Hall having the construction of superfine Type \"A\"",
+         "labourCessRate":2299,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"Building constructed for the all use like the Banquet Hall has construction of superfine Type \"B\"",
+         "labourCessRate":2011,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"The building was constructed for the use of purpose of Educational, Institutional training centre having superfine construction \"A\"",
+         "labourCessRate":1916,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Commercial",
+         "subUse":"The building was constructed for the use of purpose of Educational, Institutional training centre having medium type construction \"B\"",
+         "labourCessRate":1916,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"The building with RCC roofing \"A\"",
+         "labourCessRate":1813,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"The building with ACC/ GI sheets roofing",
+         "labourCessRate":1741,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"The Office block having superfine construction \"A\"",
+         "labourCessRate":1916,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"The Office block having superfine construction \"B\"",
+         "labourCessRate":1916,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"Hotels & Clubs with five-star and above facilities \"A\"",
+         "labourCessRate":2988,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"Hotels & Clubs with 3 star and 4-star facilities \"A\"",
+         "labourCessRate":2490,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Industrial",
+         "subUse":"Hotels & Clubs below 3-star facilities \"A\"",
+         "labourCessRate":2107,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Institutional",
+         "subUse":"The building was constructed with superfine construction \"A\"",
+         "labourCessRate":1200,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Institutional",
+         "subUse":"The building was constructed for hospital with medium or simple construction \"B\"",
+         "labourCessRate":800,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      },
+      {
+         "use":"Religious",
+         "subUse":"The building was constructed for hospital with medium or simple construction \"B\"",
+         "labourCessRate":500,
+         "occupancyType":"",
+         "subOccupancyType":"",
+         "description":"",
+         "orderNumber":null
+      }
+   ]
+}

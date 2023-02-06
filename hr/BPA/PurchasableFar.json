@@ -1,0 +1,390 @@
+{
+   "tenantId":"hr",
+   "moduleName":"BPA",
+   "PurchasableFar":[
+      {
+         "plotSizeCategory":"Up to 75 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Hyper",
+         "purchasableFarRate":0
+      },
+      {
+         "plotSizeCategory":"Up to 75 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"High-I",
+         "purchasableFarRate":0
+      },
+      {
+         "plotSizeCategory":"Up to 75 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"High-II",
+         "purchasableFarRate":0
+      },
+      {
+         "plotSizeCategory":"Up to 75 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Medium",
+         "purchasableFarRate":0
+      },
+      {
+         "plotSizeCategory":"Up to 75 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Low-I",
+         "purchasableFarRate":0
+      },
+      {
+         "plotSizeCategory":"Up to 75 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Low-II",
+         "purchasableFarRate":0
+      },
+      {
+         "plotSizeCategory":"Above 75 Sq. Mtr. & up to 100 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Hyper",
+         "purchasableFarRate":1615
+      },
+      {
+         "plotSizeCategory":"Above 75 Sq. Mtr. & up to 100 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"High-I",
+         "purchasableFarRate":1295
+      },
+      {
+         "plotSizeCategory":"Above 75 Sq. Mtr. & up to 100 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"High-II",
+         "purchasableFarRate":970
+      },
+      {
+         "plotSizeCategory":"Above 75 Sq. Mtr. & up to 100 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Medium",
+         "purchasableFarRate":810
+      },
+      {
+         "plotSizeCategory":"Above 75 Sq. Mtr. & up to 100 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Low-I",
+         "purchasableFarRate":650
+      },
+      {
+         "plotSizeCategory":"Above 75 Sq. Mtr. & up to 100 Sq. Mtr.",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Low-II",
+         "purchasableFarRate":485
+      },
+      {
+         "plotSizeCategory":"Above 100 Sq. Mtr. & up to 150 Sq. Mtr.",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Hyper",
+         "purchasableFarRate":2155
+      },
+      {
+         "plotSizeCategory":"Above 100 Sq. Mtr. & up to 150 Sq. Mtr.",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"High-I",
+         "purchasableFarRate":1725
+      },
+      {
+         "plotSizeCategory":"Above 100 Sq. Mtr. & up to 150 Sq. Mtr.",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"High-II",
+         "purchasableFarRate":1295
+      },
+      {
+         "plotSizeCategory":"Above 100 Sq. Mtr. & up to 150 Sq. Mtr.",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Medium",
+         "purchasableFarRate":1080
+      },
+      {
+         "plotSizeCategory":"Above 100 Sq. Mtr. & up to 150 Sq. Mtr.",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Low-I",
+         "purchasableFarRate":865
+      },
+      {
+         "plotSizeCategory":"Above 100 Sq. Mtr. & up to 150 Sq. Mtr.",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Low-II",
+         "purchasableFarRate":650
+      },
+      {
+         "plotSizeCategory":"Above 150 & up to 200sqm",
+         "existingFar":1.65,
+         "maxAdditionalPurchasableFar":0.99,
+         "newTotalFar":2.64,
+         "zone":"Hyper",
+         "purchasableFarRate":2425
+      },
+      {
+         "plotSizeCategory":"Above 150 & up to 200sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"High-I",
+         "purchasableFarRate":1885
+      },
+      {
+         "plotSizeCategory":"Above 150 & up to 200sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"High-II",
+         "purchasableFarRate":1455
+      },
+      {
+         "plotSizeCategory":"Above 150 & up to 200sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Medium",
+         "purchasableFarRate":1240
+      },
+      {
+         "plotSizeCategory":"Above 150 & up to 200sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Low-I",
+         "purchasableFarRate":970
+      },
+      {
+         "plotSizeCategory":"Above 150 & up to 200sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Low-II",
+         "purchasableFarRate":755
+      },
+      {
+         "plotSizeCategory":"Above 200 & up to 250sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Hyper",
+         "purchasableFarRate":2690
+      },
+      {
+         "plotSizeCategory":"Above 200 & up to 250sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"High-I",
+         "purchasableFarRate":2155
+      },
+      {
+         "plotSizeCategory":"Above 200 & up to 250sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"High-II",
+         "purchasableFarRate":1615
+      },
+      {
+         "plotSizeCategory":"Above 200 & up to 250sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Medium",
+         "purchasableFarRate":1345
+      },
+      {
+         "plotSizeCategory":"Above 200 & up to 250sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Low-I",
+         "purchasableFarRate":1080
+      },
+      {
+         "plotSizeCategory":"Above 200 & up to 250sqm",
+         "existingFar":1.45,
+         "maxAdditionalPurchasableFar":1.19,
+         "newTotalFar":2.64,
+         "zone":"Low-II",
+         "purchasableFarRate":810
+      },
+      {
+         "plotSizeCategory":"Above 250 & up to 350sqm",
+         "existingFar":1.30,
+         "maxAdditionalPurchasableFar":1.10,
+         "newTotalFar":2.40,
+         "zone":"Hyper",
+         "purchasableFarRate":3770
+      },
+      {
+         "plotSizeCategory":"Above 250 & up to 350sqm",
+         "existingFar":1.30,
+         "maxAdditionalPurchasableFar":1.10,
+         "newTotalFar":2.40,
+         "zone":"High-I",
+         "purchasableFarRate":3015
+      },
+      {
+         "plotSizeCategory":"Above 250 & up to 350sqm",
+         "existingFar":1.30,
+         "maxAdditionalPurchasableFar":1.10,
+         "newTotalFar":2.40,
+         "zone":"High-II",
+         "purchasableFarRate":2260
+      },
+      {
+         "plotSizeCategory":"Above 250 & up to 350sqm",
+         "existingFar":1.30,
+         "maxAdditionalPurchasableFar":1.10,
+         "newTotalFar":2.40,
+         "zone":"Medium",
+         "purchasableFarRate":1885
+      },
+      {
+         "plotSizeCategory":"Above 250 & up to 350sqm",
+         "existingFar":1.30,
+         "maxAdditionalPurchasableFar":1.10,
+         "newTotalFar":2.40,
+         "zone":"Low-I",
+         "purchasableFarRate":1510
+      },
+      {
+         "plotSizeCategory":"Above 250 & up to 350sqm",
+         "existingFar":1.30,
+         "maxAdditionalPurchasableFar":1.10,
+         "newTotalFar":2.40,
+         "zone":"Low-II",
+         "purchasableFarRate":1130
+      },
+      {
+         "plotSizeCategory":"Above 350 & up to 500sqm",
+         "existingFar":1.20,
+         "maxAdditionalPurchasableFar":1.20,
+         "newTotalFar":2.40,
+         "zone":"Hyper",
+         "purchasableFarRate":5380
+      },
+      {
+         "plotSizeCategory":"Above 350 & up to 500sqm",
+         "existingFar":1.20,
+         "maxAdditionalPurchasableFar":1.20,
+         "newTotalFar":2.40,
+         "zone":"High-I",
+         "purchasableFarRate":4305
+      },
+      {
+         "plotSizeCategory":"Above 350 & up to 500sqm",
+         "existingFar":1.20,
+         "maxAdditionalPurchasableFar":1.20,
+         "newTotalFar":2.40,
+         "zone":"High-II",
+         "purchasableFarRate":3230
+      },
+      {
+         "plotSizeCategory":"Above 350 & up to 500sqm",
+         "existingFar":1.20,
+         "maxAdditionalPurchasableFar":1.20,
+         "newTotalFar":2.40,
+         "zone":"Medium",
+         "purchasableFarRate":2690
+      },
+      {
+         "plotSizeCategory":"Above 350 & up to 500sqm",
+         "existingFar":1.20,
+         "maxAdditionalPurchasableFar":1.20,
+         "newTotalFar":2.40,
+         "zone":"Low-I",
+         "purchasableFarRate":2155
+      },
+      {
+         "plotSizeCategory":"Above 350 & up to 500sqm",
+         "existingFar":1.20,
+         "maxAdditionalPurchasableFar":1.20,
+         "newTotalFar":2.40,
+         "zone":"Low-II",
+         "purchasableFarRate":1615
+      },
+      {
+         "plotSizeCategory":"Above 500sqm",
+         "existingFar":1.00,
+         "maxAdditionalPurchasableFar":1.40,
+         "newTotalFar":2.40,
+         "zone":"Hyper",
+         "purchasableFarRate":8070
+      },
+      {
+         "plotSizeCategory":"Above 500sqm",
+         "existingFar":1.00,
+         "maxAdditionalPurchasableFar":1.40,
+         "newTotalFar":2.40,
+         "zone":"High-I",
+         "purchasableFarRate":6460
+      },
+      {
+         "plotSizeCategory":"Above 500sqm",
+         "existingFar":1.00,
+         "maxAdditionalPurchasableFar":1.40,
+         "newTotalFar":2.40,
+         "zone":"High-II",
+         "purchasableFarRate":4845
+      },
+      {
+         "plotSizeCategory":"Above 500sqm",
+         "existingFar":1.00,
+         "maxAdditionalPurchasableFar":1.40,
+         "newTotalFar":2.40,
+         "zone":"Medium",
+         "purchasableFarRate":4035
+      },
+      {
+         "plotSizeCategory":"Above 500sqm",
+         "existingFar":1.00,
+         "maxAdditionalPurchasableFar":1.40,
+         "newTotalFar":2.40,
+         "zone":"Low-I",
+         "purchasableFarRate":3230
+      },
+      {
+         "plotSizeCategory":"Above 500sqm",
+         "existingFar":1.00,
+         "maxAdditionalPurchasableFar":1.40,
+         "newTotalFar":2.40,
+         "zone":"Low-II",
+         "purchasableFarRate":2425
+      }
+   ]
+}
