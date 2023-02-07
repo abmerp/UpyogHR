@@ -2005,6 +2005,36 @@
     },
     {
       "category": "FEE",
+      "service": "BPA.NC_SAN_FEE",
+      "name": "BPA Labour Cess",
+      "code": "BPA_LABOUR_CESS",
+      "isDebit": false,
+      "isActualDemand": true,
+      "order": "2",
+      "isRequired": false
+    },
+    {
+      "category": "FEE",
+      "service": "BPA.NC_SAN_FEE",
+      "name": "BPA Purchasable Far",
+      "code": "BPA_PURCHASABLE_FAR",
+      "isDebit": false,
+      "isActualDemand": true,
+      "order": "2",
+      "isRequired": false
+    },
+    {
+      "category": "FEE",
+      "service": "BPA.NC_SAN_FEE",
+      "name": "BPA EDC fees",
+      "code": "BPA_EDC_FEES",
+      "isDebit": false,
+      "isActualDemand": true,
+      "order": "2",
+      "isRequired": false
+    },
+    {
+      "category": "FEE",
       "service": "BPA.LOW_RISK_PERMIT_FEE",
       "name": "BPA Low Risk Appllication Fees",
       "code": "BPA_LOW_APPL_FEES",
