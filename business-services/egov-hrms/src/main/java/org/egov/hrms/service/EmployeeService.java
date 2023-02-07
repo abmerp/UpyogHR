@@ -637,7 +637,7 @@ public class EmployeeService {
 		requestInfo.setUserInfo(userInfo);
 
 		Map<String, Object> ssoEmployeeMap = new HashMap<String, Object>();
-		ssoEmployeeMap.put("UserId", "169");
+		ssoEmployeeMap.put("UserId", ssoEmployee.getUid());
 		ssoEmployeeMap.put("TokenId", ssoEmployee.getTokenId());
 		ResponseEntity<Map> isExistSSOToken = null;
 		String ssoValue = "no";
@@ -704,6 +704,7 @@ public class EmployeeService {
 				Object token = getAccess(newEmployee, userDetail.getPassword());
 				ssoEmployeeMap.put("token", token);
 				ssoEmployeeMap.put("Url", url);
+				ssoEmployeeMap.put("ssoDashboardURL", ssoEmployee.getSsoDashboardURL());
 				return ssoEmployeeMap;
 
 			} else {
@@ -730,6 +731,7 @@ public class EmployeeService {
 				Object token = getAccess(updatedEmployee, userDetail.getPassword());
 				ssoEmployeeMap.put("token", token);
 				ssoEmployeeMap.put("Url", url);
+				ssoEmployeeMap.put("ssoDashboardURL", ssoEmployee.getSsoDashboardURL());
 				return ssoEmployeeMap;
 
 			}
