@@ -3,6 +3,8 @@ package org.egov.tlcalculator.service;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.egov.common.contract.request.RequestInfo;
@@ -32,17 +34,18 @@ public class FeesCalculation implements Calculator {
 
 		String applicationNumber = applicationNo;
 		String tenantId = "hr";
-
+		List<FeesTypeCalculationDto> results = new ArrayList<FeesTypeCalculationDto>();
 		TradeLicense license = utils.getTradeLicense(info, applicationNo, tenantId);
 		log.info("license" + license);
 		JsonNode detailsLand = license.getTradeLicenseDetail().getAdditionalDetail();
-
+		
 		String purpose = detailsLand.get(0).get("ApplicantPurpose").get("purpose").textValue();
 		String totalAreaSchemeLand = detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot")
 				.get("totalAreaScheme").textValue();
 		BigDecimal totalAreaScheme = new BigDecimal(totalAreaSchemeLand);
 		String areaUnderGh = "";
 		String commercial = "";
+		String netPlannedArea="";
 		BigDecimal totalFeeComm = new BigDecimal("0.00");
 		BigDecimal totalFeeGH = new BigDecimal("0.00");
 		BigDecimal totalArea = new BigDecimal("0.00");
@@ -57,6 +60,8 @@ public class FeesCalculation implements Calculator {
 		calculatorGh.setPurposeCode("RGP");
 		areaUnderGh = detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot").get("areaUnderGH")
 				.textValue();
+		netPlannedArea=detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot").get("netPlannedArea")
+				.textValue();
 		if (areaUnderGh != null) {
 			Double areaUnderGhL = Double.valueOf(areaUnderGh);
 		//	areaUnderGhL = areaUnderGhL * 175;
@@ -65,7 +70,7 @@ public class FeesCalculation implements Calculator {
 
 			FeesTypeCalculationDto resultGH = calculatorImpl.feesTypeCalculation(info, calculatorGh);
 			log.info("result" + resultGH);
-
+			results.add(resultGH);
 			Double scruitnyfeeGH = resultGH.getScrutinyFeeChargesCal();
 			BigDecimal scruitnyfeeGHB = new BigDecimal(scruitnyfeeGH);
 			Double licenseFeeGh = resultGH.getLicenseFeeChargesCal();
@@ -96,7 +101,7 @@ public class FeesCalculation implements Calculator {
 
 			FeesTypeCalculationDto resultComm = calculatorImpl.feesTypeCalculation(info, calculatorComm);
 			log.info("resultComm" + resultComm);
-
+			results.add(resultComm);
 			Double scruitnyfeeComm = resultComm.getScrutinyFeeChargesCal();
 			BigDecimal scruitnyfeeCommB = new BigDecimal(scruitnyfeeComm);
 			Double licenseFeeComm = resultComm.getLicenseFeeChargesCal();
@@ -118,10 +123,9 @@ public class FeesCalculation implements Calculator {
 		// -------------residental plotted commercial case-------//
 
 		case PURPOSE_RPL:
-			totalGhCommArea = totalFeeGH.add(totalFeeComm);
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
+			
+			netPlannedArea
+	
 			break;
 		// ------------AGH--------------------//
 		case PURPOSE_AGH:
