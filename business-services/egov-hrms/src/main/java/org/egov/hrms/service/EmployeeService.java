@@ -685,7 +685,7 @@ public class EmployeeService {
 				userDetail.setGender("female");
 				userDetail.setPassword("eGov@4321");
 				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
-				roles.setCode(ssoEmployee.getDesignation());
+				roles.setCode(ssoEmployee.getOfficeName());
 				roles.setTenantId(requestInfo.getUserInfo().getTenantId());
 				rolesEmployee.setCode("EMPLOYEE");
 				rolesEmployee.setTenantId(requestInfo.getUserInfo().getTenantId());
