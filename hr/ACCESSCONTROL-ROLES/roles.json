@@ -848,6 +848,258 @@
       "code": "STP Office-Gurugram",
       "name": "Senior Town Planner Gurugram",
       "description": "Senior Town Planner Gurugram role"
-    }
+    },
+    {
+      "code":"HQ Office",
+      "name":"Head Quarter Office",
+       "description": "Head Quarter Office"
+      },
+      {
+      "code":"DTP Office-Hisar",
+      "name":"District town planer",
+       "description": ""
+      },
+      {
+      "code":"DTPEnforcement Office-Hisar",
+      "name":"District town planer enforcement hisar",
+       "description": "District town planer enforcement hisar role"
+      },
+      {
+      "code":"DTPEnforcement Office-Panipat",
+      "name":"District town planer enforcement panipat",
+       "description": "District town planer enforcement panipat role"
+      },
+      {
+      "code":"DTP Office-Jind",
+      "name":"District town planer jind",
+       "description": "District town planer jind role"
+      },
+      {
+      "code":"DTP Office-Kurukshetra",
+      "name":"District town planer Kurukshetra",
+       "description": "District town planer Kurukshetra"
+      },
+      {
+      "code":"DTP Office-Rewari",
+      "name":"District town planer rewari",
+       "description": "District town planer rewari"
+      },
+      {
+      "code":"DTP Office-Sirsa",
+      "name":"District town planer sirsa",
+       "description": "District town planer sirsa"
+      },
+      {
+      "code":"DTP Office-Sonipat",
+      "name":"District town planer sonipat",
+       "description": "District town planer sonipat"
+      },
+      {
+      "code":"DTP Office-Charkhi Dadri",
+      "name":"District town planer charkhi dadri",
+       "description": "District town planer charkhi dadri"
+      },
+      {
+      "code":"DTPEnforcement Office-Faridabad",
+      "name":"District town planer enforcement faridabad",
+       "description": "District town planer enforcement faridabad"
+      },
+      {
+      "code":"DTPEnforcement Office-Gurugram",
+      "name":"District town planer enforcment gurugram",
+       "description": "District town planer enforcment gurugram"
+      },
+      {
+      "code":"DTP Office-Faridabad",
+      "name":"District town planer faridabad",
+       "description": "District town planer faridabad"
+      },
+      {
+      "code":"STP Office-Faridabad",
+      "name":"Senior town planer faridabad",
+       "description": "Senior town planer faridabad"
+      },
+      {
+      "code":"DTP Office-Fatehabad",
+      "name":"District town planer fatehabad",
+       "description": "District town planer fatehabad"
+      },
+      {
+      "code":"DTP Office-Gurugram",
+      "name":"District town planer gurugram",
+       "description": "District town planer gurugram"
+      },
+      {
+      "code":"DTP Office-Karnal",
+      "name":"District town planer karnal",
+       "description": "District town planer karnal"
+      },
+      {
+      "code":"DTP Office-Kaithal",
+      "name":"District town planer kaithal",
+       "description": "District town planer kaithal"
+      },
+      {
+      "code":"DTP Office-Mewat",
+      "name":"District town planer mewat",
+       "description": "District town planer mewat"
+      },
+      {
+      "code":"DTP Office-Panchkula",
+      "name":"District town planer panchkula",
+       "description": "District town planer panchkula"
+      },
+      {
+      "code":"STP Office-Panchkula",
+      "name":"Senior town planer panchkula",
+       "description": "Senior town planer panchkula"
+      },
+      {
+      "code":"DTP Office-Rohtak",
+      "name":"District town planer rohtak",
+       "description": "District town planer rohtak"
+      },
+      {
+      "code":"STP Office-Rohtak",
+      "name":"Senior town planer rohtak",
+       "description": "Senior town planer rohtak"
+      },
+      {
+      "code":"STP Office-Hisar",
+      "name":"Senior town planer Hisar",
+      "description": "Senior town planer Hisar"
+      },
+      {
+      "code":"DTP Office-Ambala",
+      "name":"District town planer ambala",
+       "description": "District town planer ambala"
+      },
+      {
+      "code":"DTP Office-Panipat",
+      "name":"District town planer panipat",
+       "description": "District town planer panipat"
+      },
+      {
+      "code":"DTP Office-Bhiwani",
+      "name":"District town planer bhiwani",
+       "description": "District town planer bhiwani"
+      },
+      {
+      "code":"DTPEnforcement Office-Yamunanagar",
+      "name":"District town planer enforcement yamunanagar",
+       "description": "District town planer enforcement yamunanagar"
+      },
+      {
+      "code":"STPEnforcement Office HQ",
+      "name":"Senior town planer enforcement head quarter",
+       "description": "Senior town planer enforcement head quarter"
+      },
+      {
+      "code":"DTP Office-Jhajjar",
+      "name":"District town planer jhajjar",
+       "description": "District town planer jhajjar"
+      },
+      {
+      "code":"DTP Office-Mahendragarh",
+      "name":"District town planer mahendragarh",
+       "description": "District town planer mahendragarh"
+      },
+      {
+      "code":"CCPNCR Office",
+      "name":"CCPNCR Office",
+       "description": "CCPNCR Office"
+      },
+      {
+      "code":"DTP Office-Palwal",
+      "name":"District town planer Plawal",
+       "description": "District town planer Plawal"
+      },
+      {
+      "code":"DTP Office-Yamunanagar",
+      "name":"District town planer yamunagar",
+       "description": "District town planer yamunanagar"
+      },
+      {
+      "code":"DTPEnforcement Office-Panchkula",
+      "name":"District town planer enforcement office panchkula",
+       "description": "District town planer enforcement office panchkula"
+      },
+      {
+      "code":"Chairman Tribunal Chandigarh",
+      "name":"Chairman Tribunal Chandigarh",
+       "description": "Chairman Tribunal Chandigarh"
+      },
+      {
+      "code":"DTCP Office",
+      "name":"District town and country planning office",
+       "description": "District town and country planning office"
+      },
+      {
+      "code":"HSIIDC",
+      "name":"HSIIDC",
+       "description": "HSIIDC"
+      },
+      {
+      "code":"GMDA",
+      "name":"Gurugram Metropolitan Development Authority",
+       "description": "Gurugram Metropolitan Development Authority"
+      },
+      {
+      "code":"DULB Panchkula",
+      "name":"DULB Panchkula",
+       "description": "DULB Panchkula"
+      },
+      {
+      "code":"DTPEnforcement Office-Ambala",
+      "name":"District town planer enforcement office ambala",
+       "description": "District town planer enforcement office ambala"
+      },
+      {
+      "code":"DTPEnforcement Office-Karnal",
+      "name":"District town planer enforcement office karnal",
+       "description": "District town planer enforcement office karnal"
+      },
+      {
+      "code":"STPEnforcement Office-Gurugram",
+      "name":"Senior town planer enforcement office gurugram",
+       "description": "Senior town planer enforcement office gurugram"
+      },
+      {
+      "code":"Urban Estates",
+      "name":"Urban Estates",
+       "description": "Urban Estates"
+      },
+      {
+      "code":"LWD",
+      "name":"LWD",
+       "description": "LWD"
+      },
+      {
+      "code":"DTCP Online",
+      "name":"District town and country planning online",
+       "description": "District town and country planning online"
+      },
+      {
+      "code":"SARALTCP Office",
+      "name":"SARALTCP Office",
+       "description": "SARALTCP Office"
+      },
+      {
+      "code":"HSAMB Panchkula",
+      "name":"HSAMB Panchkula",
+       "description": "HSAMB Panchkula"
+      },
+      {
+      "code":"HUDA",
+      "name":"Haryana Urban Development Authority",
+       "description": "Haryana Urban Development Authority"
+      },
+      {
+      "code":"MC Faridabad",
+      "name":"Municipal coummunity faridabad",
+       "description": "Municipal coummunity faridabad"
+      }
+      
+      
   ]
 }
