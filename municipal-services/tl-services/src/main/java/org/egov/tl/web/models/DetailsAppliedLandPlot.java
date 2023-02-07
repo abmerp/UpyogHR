@@ -4,14 +4,16 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class DetailsAppliedLandPlot {
-
-	
 	private String totalAreaScheme;
 	private String areaUnderSectorRoad;
 	private String balanceAreaAfterDeduction;
@@ -30,13 +32,15 @@ public class DetailsAppliedLandPlot {
 	private String commercial;
 	private String permissibleSaleableArea;
 	private String requiredGreenArea;
-
-	private List<DetailOfCommunitySite> detailOfCommunitySites;
+	
 	private String provided;
 	private String layoutPlanPdf;
 	private String layoutPlanDxf;
 	private String layoutPlanZip;
 	private String undertaking;
+	
+	
+	private List<DetailOfCommunitySite> detailOfCommunitySites;
 	// ----add new fields-----//
 	private String totalSiteArea;
 	private String groundCoverage;
@@ -57,6 +61,13 @@ public class DetailsAppliedLandPlot {
 	private String widthOfInternalRoads;
 	private String AreaUnderOrganizedSpace;
 	private String transferredArea;
+	
+	private String totalIndustrialPlots;
+	private String totalResidentialPlots;
+	private String totalSaleableArea;
+	private String areaUnderAffordableIndustrial;
+	private String areaUnderResidentialPlots;
+	private String areaUnderIndustrialUse;
 	
 
 }

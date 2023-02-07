@@ -278,15 +278,15 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": 1.75,
+      "scrutinyFeeCharges": "",
       
-      "licenseFeeCharges": 1.75,
+      "licenseFeeCharges": "",
             
-      "externalDevelopmentCharges": 1.75,
+      "externalDevelopmentCharges": "",
            
-      "conversionCharges": 1.75,
+      "conversionCharges": "",
            
-      "stateInfrastructureDevelopmentCharges":1.75,
+      "stateInfrastructureDevelopmentCharges":"",
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50
             
@@ -304,11 +304,13 @@
       "plotTypeId": 2,
       "isDisableForNewEntry": null,
       "disableRemarks": null,
-      "scrutinyFeeCharges": "",
-      "licenseFeeCharges": "",
-      "externalDevelopmentCharges": "",
-      "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
+      "scrutinyFeeCharges": "1.75",
+      "licenseFeeCharges": "1.75",
+      "externalDevelopmentCharges": "1.75",
+      "conversionCharges": "1.75",
+      "stateInfrastructureDevelopmentCharges": "1.75",
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50
     },
 	 {
       "purposeId": 73,

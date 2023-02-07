@@ -59,7 +59,7 @@ public class ServicePlanService {
 
 	private static final String SENDBACK_STATUS = "SP_SENDBACK_TO_APPLICANT";
 
-	private static final String CITIZEN_UPDATE_ACTION = "UPDATE_APPLICATION_BY_APPLICANT";
+	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 
 	@Autowired
 	ServicePlanRepo servicePlanRepo;

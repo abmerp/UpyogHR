@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 public class DetailsAppliedLand {
 
-	
 	private String demarcationPlan;
 	private String democraticPlan;
 	private String sectoralPlan;
@@ -27,10 +26,4 @@ public class DetailsAppliedLand {
 	private String detailedElectricSupply;
 	private String proposedColony;
 
-	
-
-
-
-	
-	
 }
