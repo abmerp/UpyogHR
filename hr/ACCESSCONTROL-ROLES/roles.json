@@ -843,6 +843,11 @@
       "code": "PUD",
       "name": "Electrical Plan Power Utility Department Officer",
       "description": "Electrical Plan Power Utility Department role"
+    },
+    {
+      "code": "STP Office-Gurugram",
+      "name": "Senior Town Planner Gurugram",
+      "description": "Senior Town Planner Gurugram role"
     }
   ]
 }
