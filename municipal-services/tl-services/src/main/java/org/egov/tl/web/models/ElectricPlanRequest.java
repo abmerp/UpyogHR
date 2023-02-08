@@ -68,6 +68,17 @@ public class ElectricPlanRequest {
     private List<Document> wfDocuments;
 	@JsonProperty("additionalDetails")
 	private Object additionalDetails = null;
+	@JsonProperty("devName")
+    private String devName = null;
+	@JsonProperty("developmentPlan")
+    private String developmentPlan = null;
+	@JsonProperty("purpose")
+    private String purpose = null;
+	@JsonProperty("totalArea")
+    private String totalArea = null;
+	
+
+	
  
 //	public ElectricPlanRequest(ElectricPlan electricPlan) {
 //		this.id = electricPlan.getId();
