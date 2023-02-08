@@ -324,7 +324,7 @@ SearchDefinitions:
           INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number 
           INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid
           $where 
-          AND  assg.assignee IN (:assg.assignee) AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
+          AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid)
           order by tl.created_time  asc
           ) result) TotalCount
     groupBy:
