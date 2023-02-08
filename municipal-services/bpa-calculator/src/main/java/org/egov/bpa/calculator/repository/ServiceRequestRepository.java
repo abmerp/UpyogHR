@@ -4,6 +4,7 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.egov.mdms.model.MdmsResponse;
 import org.egov.tracer.model.ServiceCallException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -45,5 +46,23 @@ public class ServiceRequestRepository {
 
         return response;
     }
+    
+	public MdmsResponse fetchResultForMdms(StringBuilder uri, Object request) {
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		MdmsResponse response = null;
+		log.debug("URI: " + uri.toString());
+		try {
+			log.debug("Request: " + mapper.writeValueAsString(request));
+			response = restTemplate.postForObject(uri.toString(), request, MdmsResponse.class);
+		} catch (HttpClientErrorException e) {
+			log.error("External Service threw an Exception: ", e);
+			throw new ServiceCallException(e.getResponseBodyAsString());
+		} catch (Exception e) {
+			log.error("Exception while fetching from searcher: ", e);
+		}
+
+		return response;
+	}
 
 }

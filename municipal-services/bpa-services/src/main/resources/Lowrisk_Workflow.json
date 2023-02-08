@@ -147,7 +147,7 @@
               "tenantId": "hr",
               "currentState": "INPROGRESS",
               "action": "APPLY",
-              "nextState": "PENDING_FEE_PAYMENT",
+              "nextState": "PENDING_FEE1_PAYMENT",
               "roles": [
                 "BPA_ARCHITECT",
                 "BPA_ENGINEER",
@@ -162,8 +162,8 @@
         {
           "tenantId": "hr",
           "sla": null,
-          "state": "PENDING_FEE_PAYMENT",
-          "applicationStatus": "PENDING_FEE",
+          "state": "PENDING_FEE1_PAYMENT",
+          "applicationStatus": "PENDING_FEE1_PAYMENT",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -171,26 +171,9 @@
           "actions": [
             {
               "tenantId": "hr",
-              "currentState": "PENDING_FEE_PAYMENT",
+              "currentState": "PENDING_FEE1_PAYMENT",
               "action": "PAY",
-              "nextState": "DOC_VERIFICATION_PENDING",
-              "roles": [
-                "CITIZEN",
-                "BPA_ARCHITECT",
-                "BPA_ENGINEER",
-                "BPA_BUILDER",
-                "BPA_STRUCTURALENGINEER",
-                "BPA_TOWNPLANNER",
-                "BPA_SUPERVISOR",
-                "SYSTEM_PAYMENT",
-                "CEMP"
-              ]
-            },
-             {
-              "tenantId": "hr",
-              "currentState": "PENDING_FEE_PAYMENT",
-              "action": "SKIP_PAYMENT",
-              "nextState": "DOC_VERIFICATION_PENDING",
+              "nextState": "PENDING_FEE2_PAYMENT",
               "roles": [
                 "CITIZEN",
                 "BPA_ARCHITECT",
@@ -205,9 +188,9 @@
             },
             {
               "tenantId": "hr",
-              "currentState": "PENDING_FEE_PAYMENT",
+              "currentState": "PENDING_FEE1_PAYMENT",
               "action": "ADHOC",
-              "nextState": "PENDING_FEE_PAYMENT",
+              "nextState": "PENDING_FEE1_PAYMENT",
               "roles": [
                 "CITIZEN",
                 "BPA_ARCHITECT",
@@ -225,8 +208,8 @@
         {
           "tenantId": "hr",
           "sla": null,
-          "state": "DOC_VERIFICATION_PENDING",
-          "applicationStatus": "DOC_VERIFICATION_INPROGRESS",
+          "state": "PENDING_FEE2_PAYMENT",
+          "applicationStatus": "PENDING_FEE2_PAYMENT",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -234,20 +217,36 @@
           "actions": [
             {
               "tenantId": "hr",
-              "currentState": "DOC_VERIFICATION_PENDING",
-              "action": "FORWARD",
-              "nextState": "FIELDINSPECTION_PENDING",
+              "currentState": "PENDING_FEE2_PAYMENT",
+              "action": "PAY",
+              "nextState": "PENDING_FEE3_PAYMENT",
               "roles": [
-                "BPA_VERIFIER"
+                "CITIZEN",
+                "BPA_ARCHITECT",
+                "BPA_ENGINEER",
+                "BPA_BUILDER",
+                "BPA_STRUCTURALENGINEER",
+                "BPA_TOWNPLANNER",
+                "BPA_SUPERVISOR",
+                "SYSTEM_PAYMENT",
+                "CEMP"
               ]
             },
             {
               "tenantId": "hr",
-              "currentState": "DOC_VERIFICATION_PENDING",
-              "action": "REVOCATE",
-              "nextState": "REVOCATED",
+              "currentState": "PENDING_FEE2_PAYMENT",
+              "action": "ADHOC",
+              "nextState": "PENDING_FEE2_PAYMENT",
               "roles": [
-                "BPA_VERIFIER"
+                "CITIZEN",
+                "BPA_ARCHITECT",
+                "BPA_ENGINEER",
+                "BPA_BUILDER",
+                "BPA_STRUCTURALENGINEER",
+                "BPA_TOWNPLANNER",
+                "BPA_SUPERVISOR",
+                "SYSTEM_PAYMENT",
+                "CEMP"
               ]
             }
           ]
@@ -255,8 +254,8 @@
         {
           "tenantId": "hr",
           "sla": null,
-          "state": "FIELDINSPECTION_PENDING",
-          "applicationStatus": "FIELDINSPECTION_INPROGRESS",
+          "state": "PENDING_FEE3_PAYMENT",
+          "applicationStatus": "PENDING_FEE3_PAYMENT",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -264,20 +263,36 @@
           "actions": [
             {
               "tenantId": "hr",
-              "currentState": "FIELDINSPECTION_PENDING",
-              "action": "REVOCATE",
-              "nextState": "REVOCATED",
+              "currentState": "PENDING_FEE3_PAYMENT",
+              "action": "PAY",
+              "nextState": "PENDING_FEE4_PAYMENT",
               "roles": [
-                "BPA_FIELD_INSPECTOR"
+                "CITIZEN",
+                "BPA_ARCHITECT",
+                "BPA_ENGINEER",
+                "BPA_BUILDER",
+                "BPA_STRUCTURALENGINEER",
+                "BPA_TOWNPLANNER",
+                "BPA_SUPERVISOR",
+                "SYSTEM_PAYMENT",
+                "CEMP"
               ]
             },
             {
               "tenantId": "hr",
-              "currentState": "FIELDINSPECTION_PENDING",
-              "action": "FORWARD",
-              "nextState": "NOC_VERIFICATION_PENDING",
+              "currentState": "PENDING_FEE3_PAYMENT",
+              "action": "ADHOC",
+              "nextState": "PENDING_FEE3_PAYMENT",
               "roles": [
-                "BPA_FIELD_INSPECTOR"
+                "CITIZEN",
+                "BPA_ARCHITECT",
+                "BPA_ENGINEER",
+                "BPA_BUILDER",
+                "BPA_STRUCTURALENGINEER",
+                "BPA_TOWNPLANNER",
+                "BPA_SUPERVISOR",
+                "SYSTEM_PAYMENT",
+                "CEMP"
               ]
             }
           ]
@@ -285,8 +300,8 @@
         {
           "tenantId": "hr",
           "sla": null,
-          "state": "NOC_VERIFICATION_PENDING",
-          "applicationStatus": "NOC_VERIFICATION_INPROGRESS",
+          "state": "PENDING_FEE4_PAYMENT",
+          "applicationStatus": "PENDING_FEE4_PAYMENT",
           "docUploadRequired": false,
           "isStartState": false,
           "isTerminateState": false,
@@ -294,20 +309,36 @@
           "actions": [
             {
               "tenantId": "hr",
-              "currentState": "NOC_VERIFICATION_PENDING",
-              "action": "REVOCATE",
-              "nextState": "REVOCATED",
-              "roles": [
-                "BPA_NOC_VERIFIER"
-              ]
-            },
-            {
-              "tenantId": "hr",
-              "currentState": "NOC_VERIFICATION_PENDING",
-              "action": "FORWARD",
+              "currentState": "PENDING_FEE4_PAYMENT",
+              "action": "PAY",
               "nextState": "PENDINGAPPROVAL",
               "roles": [
-                "BPA_NOC_VERIFIER"
+                "CITIZEN",
+                "BPA_ARCHITECT",
+                "BPA_ENGINEER",
+                "BPA_BUILDER",
+                "BPA_STRUCTURALENGINEER",
+                "BPA_TOWNPLANNER",
+                "BPA_SUPERVISOR",
+                "SYSTEM_PAYMENT",
+                "CEMP"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "currentState": "PENDING_FEE4_PAYMENT",
+              "action": "ADHOC",
+              "nextState": "PENDING_FEE4_PAYMENT",
+              "roles": [
+                "CITIZEN",
+                "BPA_ARCHITECT",
+                "BPA_ENGINEER",
+                "BPA_BUILDER",
+                "BPA_STRUCTURALENGINEER",
+                "BPA_TOWNPLANNER",
+                "BPA_SUPERVISOR",
+                "SYSTEM_PAYMENT",
+                "CEMP"
               ]
             }
           ]

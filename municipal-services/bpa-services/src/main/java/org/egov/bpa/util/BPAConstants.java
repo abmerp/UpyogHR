@@ -380,5 +380,12 @@ public class BPAConstants {
 	public static final String CHANNEL = "Channel";
 
 	public static final String BPA_BUSINESSSERVICE = "BPA";
+	
+	public static final String STATE_PENDING_FEE2_PAYMENT = "PENDING_FEE2_PAYMENT";
+	public static final String STATE_PENDING_FEE3_PAYMENT = "PENDING_FEE3_PAYMENT";
+	public static final String STATE_PENDING_FEE4_PAYMENT = "PENDING_FEE4_PAYMENT";
+	public static final String FEE_TYPE_LABOUR_CESS = "labourCess";
+	public static final String FEE_TYPE_PURCHASABLE_FAR = "purchasableFar";
+	public static final String FEE_TYPE_EDC = "edcFee";
 
 }

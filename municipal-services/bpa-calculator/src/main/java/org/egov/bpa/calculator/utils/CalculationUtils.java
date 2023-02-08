@@ -93,6 +93,9 @@ public class CalculationUtils {
 				billingBusinessService = config.getOCApplBusinessservice();
 			}
 			break;
+		case BPACalculatorConstants.FEE_TYPE_PURCHASABLE_FAR:
+		case BPACalculatorConstants.FEE_TYPE_LABOUR_CESS:
+		case BPACalculatorConstants.FEE_TYPE_EDC:
 		case BPACalculatorConstants.MDMS_CALCULATIONTYPE_SANC_FEETYPE:
 			if (businessService.equalsIgnoreCase(BPACalculatorConstants.MDMS_BPA)) {
 				billingBusinessService = config.getSanclFeeBusinessService();

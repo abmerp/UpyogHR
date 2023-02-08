@@ -425,6 +425,8 @@ public class BPAService {
                         && state.equalsIgnoreCase(BPAConstants.PENDING_APPROVAL_STATE)) {
                     calculationService.addCalculation(bpaRequest, BPAConstants.SANCTION_FEE_KEY);
                 }
+                //for calculation of labour cess,purchasable far, and edc fee as separate steps of workflow--
+                callCalculatorOnAppropriateStates(bpaRequest, businessSrvc, state);
                 
                 
                 /*
@@ -458,6 +460,19 @@ public class BPAService {
 		repository.update(bpaRequest, workflowService.isStateUpdatable(bpa.getStatus(), businessService));
 		return bpaRequest.getBPA();
 
+	}
+	
+	private void callCalculatorOnAppropriateStates(BPARequest bpaRequest, String businessSrvc, String state) {
+		if (businessSrvc.equalsIgnoreCase(BPAConstants.BPA_BUSINESSSERVICE)
+				&& state.equalsIgnoreCase(BPAConstants.STATE_PENDING_FEE2_PAYMENT)) {
+			calculationService.addCalculation(bpaRequest, BPAConstants.FEE_TYPE_LABOUR_CESS);
+		} else if (businessSrvc.equalsIgnoreCase(BPAConstants.BPA_BUSINESSSERVICE)
+				&& state.equalsIgnoreCase(BPAConstants.STATE_PENDING_FEE3_PAYMENT)) {
+			calculationService.addCalculation(bpaRequest, BPAConstants.FEE_TYPE_PURCHASABLE_FAR);
+		} else if (businessSrvc.equalsIgnoreCase(BPAConstants.BPA_BUSINESSSERVICE)
+				&& state.equalsIgnoreCase(BPAConstants.STATE_PENDING_FEE4_PAYMENT)) {
+			calculationService.addCalculation(bpaRequest, BPAConstants.FEE_TYPE_EDC);
+		}
 	}
 	
 	/**
