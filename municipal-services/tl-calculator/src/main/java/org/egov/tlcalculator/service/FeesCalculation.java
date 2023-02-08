@@ -144,7 +144,7 @@ public class FeesCalculation implements Calculator {
 				calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
 				calculator.setPurposeCode(purpose);
 				Double totalSiteArea = Double
-						.valueOf(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalSiteArea());
+						.valueOf(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalAreaScheme());
 				totalSiteArea = totalSiteArea - commercialL - areaUnderGhL;
 				calculator.setTotalLandSize(totalSiteArea.toString());
 				FeesTypeCalculationDto resultresid = calculatorImpl.feesTypeCalculation(info, calculator);
