@@ -16,6 +16,7 @@ import org.egov.common.contract.request.RequestInfo;
 import org.egov.mdms.model.MasterDetail;
 import org.egov.mdms.model.MdmsCriteria;
 import org.egov.mdms.model.MdmsCriteriaReq;
+import org.egov.mdms.model.MdmsResponse;
 import org.egov.mdms.model.ModuleDetail;
 import org.egov.tracer.model.CustomException;
 import org.json.JSONObject;
@@ -49,6 +50,32 @@ public class MDMSService {
         StringBuilder url = getMdmsSearchUrl();
         Object result = serviceRequestRepository.fetchResult(url , mdmsCriteriaReq);
         return result;
+    }
+    
+	public MdmsResponse mDMSCustomCall(CalculationReq calculationReq, String tenantId,
+			MdmsCriteriaReq mdmsCriteriaReq) {
+		StringBuilder url = getMdmsSearchUrl();
+		MdmsResponse result = serviceRequestRepository.fetchResultForMdms(url, mdmsCriteriaReq);
+		return result;
+	}
+    
+    public MdmsCriteriaReq prepareMdmsCriteriaReqForBpaModule(CalculationReq calculationReq, String tenantId,List<MasterDetail> bpaMasterDetails) {
+    	RequestInfo requestInfo = 	calculationReq.getRequestInfo();
+        //List<MasterDetail> bpaMasterDetails = new ArrayList<>();
+        
+        //bpaMasterDetails.add(MasterDetail.builder().name(BPACalculatorConstants.MDMS_CALCULATIONTYPE)
+        //		.build());
+        ModuleDetail bpaModuleDtls = ModuleDetail.builder().masterDetails(bpaMasterDetails)
+                .moduleName(BPACalculatorConstants.MDMS_BPA).build();
+
+        List<ModuleDetail> moduleDetails = new ArrayList<>();
+        
+        moduleDetails.add(bpaModuleDtls);
+
+        MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(moduleDetails).tenantId(tenantId)
+                .build();
+
+        return MdmsCriteriaReq.builder().requestInfo(requestInfo).mdmsCriteria(mdmsCriteria).build();
     }
 
     /**
