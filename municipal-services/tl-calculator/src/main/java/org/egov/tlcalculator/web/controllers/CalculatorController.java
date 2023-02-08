@@ -176,9 +176,10 @@ public class CalculatorController {
 	public ResponseEntity<PaymentCalculationResponse> testing(@RequestBody @Valid RequestInfoWrapper requestInfoWrapper,@RequestParam String applicationNo){
 		
 //		FeesCalculation paymentCalculation = new FeesCalculation();
-		PaymentCalculationResponse calculationResponse =paymentCalculation.payment(requestInfoWrapper.getRequestInfo(), applicationNo);
+		PaymentCalculationResponse response = new PaymentCalculationResponse();
+		response.setFeesTypeCalculationDto(paymentCalculation.payment(requestInfoWrapper.getRequestInfo(), applicationNo));
 		
-		return new ResponseEntity<>(calculationResponse, HttpStatus.OK);	
+		return new ResponseEntity<>(response, HttpStatus.OK);	
 	}
 
 

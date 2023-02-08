@@ -25,19 +25,19 @@ public class FeeAndBillingSlabIds {
     private BigDecimal fee;
     
     @JsonProperty("scrutinyFeeCharges")
-    private double scrutinyFeeCharges;
+    private BigDecimal scrutinyFeeCharges;
     
     @JsonProperty("licenseFeeCharges")
-	private double licenseFeeCharges;
+	private BigDecimal licenseFeeCharges;
     
     @JsonProperty("conversionCharges")
-	private double conversionCharges;
+	private BigDecimal conversionCharges;
     
     @JsonProperty("externalDevelopmentCharges")
-	private double externalDevelopmentCharges;
+	private BigDecimal externalDevelopmentCharges;
     
     @JsonProperty("stateInfrastructureDevelopmentCharges")
-	private double stateInfrastructureDevelopmentCharges;
+	private BigDecimal stateInfrastructureDevelopmentCharges;
 
     @JsonProperty("billingSlabIds")
     private List<String> billingSlabIds;

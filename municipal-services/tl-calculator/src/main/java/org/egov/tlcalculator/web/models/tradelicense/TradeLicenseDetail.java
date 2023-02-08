@@ -38,106 +38,110 @@ import lombok.Builder;
 @Builder
 public class TradeLicenseDetail   {
 
-        @JsonProperty("id")
-        @SafeHtml
-        @Size(max=64)
-        private String id;
+	@JsonProperty("id")
+	@SafeHtml
+	@Size(max = 64)
+	private String id;
 
-     
-        @NotNull
-        @JsonProperty("owners")
-        @Valid
-        private List<OwnerInfo> owners = new ArrayList<>();
+	@JsonProperty("owners")
 
-              /**
-   * License can be created from different channels
-   */
-  public enum ChannelEnum {
-    COUNTER("COUNTER"),
-    
-    CITIZEN("CITIZEN"),
-    
-    DATAENTRY("DATAENTRY");
+	private List<OwnerInfo> owners = new ArrayList<>();
 
-    private String value;
+	/**
+	 * License can be created from different channels
+	 */
+	public enum ChannelEnum {
+		COUNTER("COUNTER"),
 
-    ChannelEnum(String value) {
-      this.value = value;
-    }
+		CITIZEN("CITIZEN"),
 
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
+		DATAENTRY("DATAENTRY");
 
-    @JsonCreator
-    public static ChannelEnum fromValue(String text) {
-      for (ChannelEnum b : ChannelEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
+		private String value;
 
-        @JsonProperty("channel")
-        private ChannelEnum channel = null;
+		ChannelEnum(String value) {
+			this.value = value;
+		}
 
-        
+		@Override
+		@JsonValue
+		public String toString() {
+			return String.valueOf(value);
+		}
 
-        @Size(max=64)
-        @SafeHtml
-        @JsonProperty("tradeType")
-        private String tradeType = null;
+		@JsonCreator
+		public static ChannelEnum fromValue(String text) {
+			for (ChannelEnum b : ChannelEnum.values()) {
+				if (String.valueOf(b.value).equals(text)) {
+					return b;
+				}
+			}
+			return null;
+		}
+	}
 
+	@JsonProperty("channel")
+	private ChannelEnum channel = null;
 
-        @JsonProperty("applicationDocuments")
-        @Valid
-        private List<Document> applicationDocuments = null;
+	@Size(max = 64)
+	@SafeHtml
+	@JsonProperty("tradeType")
+	private String tradeType = null;
 
-        @JsonProperty("verificationDocuments")
-        @Valid
-        private List<Document> verificationDocuments = null;
+	@JsonProperty("applicationDocuments")
+	@Valid
+	private List<Document> applicationDocuments = null;
 
-        @JsonProperty("additionalDetail")
-        private JsonNode additionalDetail = null;
+	@JsonProperty("verificationDocuments")
+	@Valid
+	private List<Document> verificationDocuments = null;
 
-    
+	@JsonProperty("additionalDetail")
+	private JsonNode additionalDetail = null;
 
-        @JsonProperty("auditDetails")
-        private AuditDetails auditDetails = null;
+	@JsonProperty("currentVersion")
+	private float currentVersion;
 
+	@JsonProperty("scrutinyFeeCharges")
+	private Double scrutinyFeeCharges;
+	
+	@JsonProperty("conversionCharges")
+	private Double conversionCharges;
+	@JsonProperty("externalDevelopmentCharges")
+	private Double externalDevelopmentCharges;
+	@JsonProperty("stateInfrastructureDevelopmentCharges")
+	private Double stateInfrastructureDevelopmentCharges;
+	@JsonProperty("licenseFeeCharges")
+	private Double licenseFeeCharges;
+	
+	@JsonProperty("auditDetails")
+	private AuditDetails auditDetails = null;
 
-        public TradeLicenseDetail addOwnersItem(OwnerInfo ownersItem) {
-            if(this.owners==null)
-                this.owners = new ArrayList<>();
-            if(!this.owners.contains(ownersItem))
-                this.owners.add(ownersItem);
-            return this;
-        }
+	public TradeLicenseDetail addOwnersItem(OwnerInfo ownersItem) {
+		if (this.owners == null)
+			this.owners = new ArrayList<>();
+		if (!this.owners.contains(ownersItem))
+			this.owners.add(ownersItem);
+		return this;
+	}
 
-   
+	public TradeLicenseDetail addApplicationDocumentsItem(Document applicationDocumentsItem) {
+		if (this.applicationDocuments == null) {
+			this.applicationDocuments = new ArrayList<>();
+		}
+		if (!this.applicationDocuments.contains(applicationDocumentsItem))
+			this.applicationDocuments.add(applicationDocumentsItem);
+		return this;
+	}
 
-
-        public TradeLicenseDetail addApplicationDocumentsItem(Document applicationDocumentsItem) {
-            if (this.applicationDocuments == null) {
-            this.applicationDocuments = new ArrayList<>();
-            }
-            if(!this.applicationDocuments.contains(applicationDocumentsItem))
-                this.applicationDocuments.add(applicationDocumentsItem);
-            return this;
-        }
-
-        public TradeLicenseDetail addVerificationDocumentsItem(Document verificationDocumentsItem) {
-            if (this.verificationDocuments == null) {
-            this.verificationDocuments = new ArrayList<>();
-            }
-            if(!this.verificationDocuments.contains(verificationDocumentsItem))
-                this.verificationDocuments.add(verificationDocumentsItem);
-            return this;
-        }
+	public TradeLicenseDetail addVerificationDocumentsItem(Document verificationDocumentsItem) {
+		if (this.verificationDocuments == null) {
+			this.verificationDocuments = new ArrayList<>();
+		}
+		if (!this.verificationDocuments.contains(verificationDocumentsItem))
+			this.verificationDocuments.add(verificationDocumentsItem);
+		return this;
+	}
 
 }
 

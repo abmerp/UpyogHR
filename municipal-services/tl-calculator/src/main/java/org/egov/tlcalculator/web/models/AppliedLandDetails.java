@@ -1,4 +1,4 @@
-package org.egov.tl.web.models;
+package org.egov.tlcalculator.web.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

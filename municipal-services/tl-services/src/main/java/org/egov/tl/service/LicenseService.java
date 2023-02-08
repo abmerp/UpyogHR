@@ -495,52 +495,11 @@ public class LicenseService {
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
 
-		if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
+		if (!status.isEmpty() && status.equalsIgnoreCase("Faliure")) {
 
-			Map<String, Object> request = new HashMap<>();
-			request.put("txnId", transactionId);
-			HttpHeaders httpHeaders = new HttpHeaders();
-			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-			HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
-			Object paymentSearch = null;
+			
 
-			String uri = pgHost + pgSearchPath;
-			paymentSearch = rest.postForObject(uri, entity, Map.class);
-			log.info("search payment data" + paymentSearch);
-
-			String data = null;
-			try {
-				data = mapper.writeValueAsString(paymentSearch);
-			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			ResponseTransaction transaction = null;
-			ObjectReader reader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
-			});
-			try {
-				transaction = reader.readValue(data);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-
-			log.info("transaction" + transaction);
-			String txnId = transaction.getTransaction().get(0).getTxnId();
-			String applicationNumber = transaction.getTransaction().get(0).getApplicationNumber();
-
-			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-
-			params.put("eg_pg_txnid", Collections.singletonList(txnId));
-
-			String paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
-			String returnPaymentUrl = paymentUrl + "?" + params;
-			log.info("returnPaymentUrl" + returnPaymentUrl);
-			httpHeaders.setLocation(
-					UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
-			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
-
-		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 
 			// --------------payment--------------//
 			Map<String, Object> request = new HashMap<>();
@@ -611,6 +570,7 @@ public class LicenseService {
 			String email = userData.getUser().get(0).getEmailId();
 			Long userId = userData.getUser().get(0).getId();
 			String mobNo = userData.getUser().get(0).getMobileNumber();
+			String userName =userData.getUser().get(0).getUserName();
 
 			List<Role> roles = new ArrayList<>();
 			int length = userData.getUser().get(0).getRoles().size();
@@ -645,9 +605,9 @@ public class LicenseService {
 				});
 
 				Map<String, Object> authtoken = new HashMap<String, Object>();
-				authtoken.put("UserId", "39");
+				authtoken.put("UserId", userId);
 				authtoken.put("TpUserId", userId);
-				authtoken.put("EmailId", "mkthakur84@gmail.com");
+				authtoken.put("EmailId", email);
 
 				List<LicenseDetails> newServiceInfoData = null;
 				try {
@@ -693,7 +653,7 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", "");
-						mapDNo.put("UserId", "1265");
+						mapDNo.put("UserId", userId);
 						mapDNo.put("DistrictCode",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 						mapDNo.put("UserLoginId", "39");
@@ -708,7 +668,7 @@ public class LicenseService {
 						Map<String, Object> mapCNO = new HashMap<String, Object>();
 						mapCNO.put("DiaryNo", dairyNumber);
 						mapCNO.put("DiaryDate", date);
-						mapCNO.put("DeveloperId", 2);
+						mapCNO.put("DeveloperId", userId);
 						mapCNO.put("PurposeId", purposeId);
 						mapCNO.put("StartDate", date);
 						mapCNO.put("DistrictCode",
@@ -717,7 +677,7 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 						mapCNO.put("UserId", userId);
-						mapCNO.put("UserLoginId", "39");
+						mapCNO.put("UserLoginId", userId);
 						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
 								.toString();
 						tradeLicense.setTcpCaseNumber(caseNumber);
@@ -738,7 +698,7 @@ public class LicenseService {
 						mapANo.put("DateOfHearing", date);
 						mapANo.put("DateForFilingOfReply", date);
 						mapANo.put("UserId", userId);
-						mapANo.put("UserLoginId", "39");
+						mapANo.put("UserLoginId", userId);
 						applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 								.get("Value").toString();
 						tradeLicense.setTcpApplicationNumber(applicationNumber);
@@ -750,8 +710,8 @@ public class LicenseService {
 						 * starttransaction data
 						 ********/
 						Map<String, Object> map3 = new HashMap<String, Object>();
-						map3.put("UserName", "tcp");
-						map3.put("EmailId", "mkthakur84@gmail.com");
+						map3.put("UserName", userName);
+						map3.put("EmailId", email);
 						map3.put("MobNo", mobNo);
 						map3.put("TxnNo", grn);
 						map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
@@ -759,14 +719,14 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 						map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
-						map3.put("UserId", "39");
-						map3.put("UserLoginId", "39");
-						map3.put("TpUserId", "12356");
+						map3.put("UserId", userId);
+						map3.put("UserLoginId", userId);
+						map3.put("TpUserId", userId);
 						// TODO Renu to Add these two vaues
 						map3.put("PaymentMode", paymentType);
 						map3.put("PayAgreegator", bankcode);
 
-						map3.put("LcApplicantName", "tcp");
+						map3.put("LcApplicantName", userName);
 						map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
 						// to do select development plan
 						map3.put("LcDevelopmentPlan",
@@ -915,6 +875,7 @@ public class LicenseService {
 		// -----------dispatch number finish-----------------------//
 
 		// --------------------bank gurantee calculator start-------------------------//
+		
 		JsonNode estimate = tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail();
 
 		BankGuaranteeCalculationCriteria calculatorRequest = new BankGuaranteeCalculationCriteria();

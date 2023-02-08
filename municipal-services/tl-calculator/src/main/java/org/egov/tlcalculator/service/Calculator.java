@@ -1,15 +1,17 @@
 package org.egov.tlcalculator.service;
 
+import java.math.BigDecimal;
+
 public interface Calculator {
 
-	public double AREA = 4047;
-	public double PERCENTAGE1 = 0.96;
-	public double PERCENTAGE2 = 0.04;
-	public double RATE = 1250000;
-	public double RATE1 = 34000000;
-	public double PART1 = 0.8;
-	public double PART2 = 0.15;
-	public double PART3 = 0.05;
+	public BigDecimal AREA = new BigDecimal("4047");
+	public BigDecimal PERCENTAGE1 = new BigDecimal(0.96);
+	public BigDecimal PERCENTAGE2 = new BigDecimal(0.04);
+	public BigDecimal RATE = new BigDecimal(1250000);
+	public BigDecimal RATE1 = new BigDecimal(34000000);
+	public BigDecimal PART1 =new BigDecimal( 0.8);
+	public BigDecimal PART2 = new BigDecimal(0.15);
+	public BigDecimal PART3 = new BigDecimal(0.05);
 
 	String PURPOSE_AGH = "AGH";
 	String PURPOSE_DDJAY_APHP = "DDJAY_APHP";

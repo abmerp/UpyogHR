@@ -85,7 +85,7 @@ public class CalculationService {
 
 	@Autowired
 	CalculatorImpl calculatorImpl;
-	
+
 	@Autowired
 	ObjectMapper objectMapper;
 
@@ -128,7 +128,7 @@ public class CalculationService {
 
 	public List<Calculation> calculator(CalculationReq calculationReq) {
 		String tenantId = calculationReq.getRequestInfo().getUserInfo().getTenantId();
-		 Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(),tenantId);
+		Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(), tenantId);
 //		Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(), tenantId,
 //				calculationReq.getCalculatorRequest().getPurposeCode());
 		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getRequestInfo(),
@@ -153,16 +153,13 @@ public class CalculationService {
 			calculation.setTenantId(tenantId);
 
 			calculation.setTradeLicense(criteria.getTradelicense());
-			calculation.setTradeTypeBillingIds(new FeeAndBillingSlabIds("", new BigDecimal(result.getTotalFee()),
-					result.getScrutinyFeeChargesCal(), result.getLicenseFeeChargesCal(),
-					result.getConversionChargesCal(), result.getExternalDevelopmentChargesCal(),
-					result.getStateInfrastructureDevelopmentChargesCal(), bilingSlabId));
+
 			EstimatesAndSlabs estimatesAndSlabs = getTaxHeadEstimates(criteria, calculationReq.getRequestInfo(),
 					mdmsData);
 			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
-			taxHeadEstimates.get(0).setEstimateAmount(new BigDecimal(result.getTotalFee()));
+		//	taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
 			calculation.setTaxHeadEstimates(taxHeadEstimates);
-			taxHeadEstimates.get(0).setEstimateAmount(new BigDecimal(result.getTotalFee()));
+		//	taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
 			calculations.add(calculation);
 		}
 
@@ -206,7 +203,7 @@ public class CalculationService {
 		}
 		return calculations;
 	}
-	
+
 	public BankGuaranteeCalculationResponse getEstimateForBankGuarantee(
 			BankGuaranteeCalculationCriteria bankGuaranteeCalculationCriteria) {
 		try {
@@ -243,8 +240,9 @@ public class CalculationService {
 				throw new CustomException("no calculations found for given criteria",
 						"no calculations found for given criteria");
 			}
-			Double edcCharges = calculations.get(0).getTradeTypeBillingIds().getExternalDevelopmentCharges();
-			BigDecimal bankGuaranteeForEdc = new BigDecimal(0.25 * edcCharges);
+			BigDecimal edcCharges = calculations.get(0).getTradeTypeBillingIds().getExternalDevelopmentCharges();
+			BigDecimal constant=new BigDecimal(0.25);
+			BigDecimal bankGuaranteeForEdc = constant.multiply(edcCharges);
 			Object mdmsData = fetchMasterDataForBankGuaranteeAmountCalculations(bankGuaranteeCalculationCriteria);
 
 			// IDW calculation--
@@ -291,11 +289,11 @@ public class CalculationService {
 			return null;
 		}
 	}
-	
-	private void calculateEdcBankGuarantee(BigDecimal totalLandSizeInSqMtrs, String potentialZone, String purposeCode ) {
-		
+
+	private void calculateEdcBankGuarantee(BigDecimal totalLandSizeInSqMtrs, String potentialZone, String purposeCode) {
+
 	}
-	
+
 	private Object fetchMasterDataForBankGuaranteeAmountCalculations(
 			BankGuaranteeCalculationCriteria bankGuaranteeCalculationCriteria) {
 		Object mdmsData = mdmsService.mDMSCallForBankGuarantee(bankGuaranteeCalculationCriteria.getRequestInfo(),

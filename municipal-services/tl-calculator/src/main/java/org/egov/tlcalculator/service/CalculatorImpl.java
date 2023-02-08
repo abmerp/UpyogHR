@@ -1,7 +1,11 @@
 package org.egov.tlcalculator.service;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.egov.common.contract.request.RequestInfo;
@@ -21,14 +25,14 @@ public class CalculatorImpl implements Calculator {
 	@Autowired
 	Calculator calculator;
 
-	private double areaInSqmtr(String arce) {
-		return (AREA * Double.valueOf(arce));
+	private BigDecimal areaInSqmtr(String arce) {
+		return (AREA.multiply(new BigDecimal(arce)));
 	}
 
 	public FeesTypeCalculationDto feesTypeCalculation(RequestInfo requestInfo, CalculatorRequest calculatorRequest) {
-		double arce = Double.valueOf(calculatorRequest.getTotalLandSize());
-		double area1 = (PERCENTAGE1 * Double.valueOf(calculatorRequest.getTotalLandSize()));
-		double area2 = PERCENTAGE2 * Double.valueOf(calculatorRequest.getTotalLandSize());
+		BigDecimal arce = new BigDecimal(calculatorRequest.getTotalLandSize());
+		BigDecimal AREA1 = (PERCENTAGE1.multiply(new BigDecimal(calculatorRequest.getTotalLandSize())));
+		BigDecimal AREA2 = PERCENTAGE2.multiply(new BigDecimal(calculatorRequest.getTotalLandSize()));
 
 		Map<String, List<String>> mdmsData;
 		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
@@ -38,20 +42,22 @@ public class CalculatorImpl implements Calculator {
 
 		mdmsData = valid.getAttributeValues(mDMSCallPurposeCode);
 		List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
-		Double externalDevelopmentCharges = null;
-		Double scrutinyFeeCharges = null;
-		Double conversionCharges = null;
-		Double licenseFeeCharges = null;
-		Double stateInfrastructureDevelopmentCharges = null;
+		BigDecimal externalDevelopmentCharges = null;
+		BigDecimal scrutinyFeeCharges = null;
+		BigDecimal conversionCharges = null;
+		BigDecimal licenseFeeCharges = null;
+		BigDecimal stateInfrastructureDevelopmentCharges = null;
+		String purposeName = "";
 		for (Map<String, Object> mm : msp) {
-
-			scrutinyFeeCharges = Double.valueOf(String.valueOf(mm.get("scrutinyFeeCharges")));
-			externalDevelopmentCharges = Double.valueOf(String.valueOf(mm.get("externalDevelopmentCharges")));
-			conversionCharges = Double.valueOf(String.valueOf(mm.get("conversionCharges")));
-			licenseFeeCharges = Double.valueOf(String.valueOf(mm.get("licenseFeeCharges")));
-			stateInfrastructureDevelopmentCharges = Double
-					.valueOf(String.valueOf(mm.get("stateInfrastructureDevelopmentCharges")));
+			purposeName = String.valueOf(mm.get("name"));
+			scrutinyFeeCharges = new BigDecimal(String.valueOf(mm.get("scrutinyFeeCharges")));
+			externalDevelopmentCharges = new BigDecimal(String.valueOf(mm.get("externalDevelopmentCharges")));
+			conversionCharges = new BigDecimal(String.valueOf(mm.get("conversionCharges")));
+			licenseFeeCharges = new BigDecimal(String.valueOf(mm.get("licenseFeeCharges")));
+			stateInfrastructureDevelopmentCharges = new BigDecimal(
+					String.valueOf(mm.get("stateInfrastructureDevelopmentCharges")));
 		}
+		feesTypeCalculationDto.setPurpose(purposeName);
 		switch (calculatorRequest.getPotenialZone()) {
 
 		case ZONE_HYPER:
@@ -60,14 +66,14 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_RPL:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((AREA * area1 * 10) + AREA * area2 * scrutinyFeeCharges * 10);
+						.setScrutinyFeeChargesCal((AREA.multiply(AREA1).multiply(new BigDecimal(10))).add(AREA.multiply(AREA2).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
 
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * RATE) + (area2 * RATE1));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(RATE).add(AREA2.multiply(RATE1)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((area1 * 104.096 * 100000) + (area2 * 486.13 * 100000)));
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA * 158)) + (area2 * AREA * 1470));
+						(AREA1.multiply(new BigDecimal(104.096)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(158)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1470))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * AREA * 500) + (area2 * AREA * stateInfrastructureDevelopmentCharges * 1000));
+						(AREA1.multiply(AREA)).multiply(new BigDecimal(500)).add(AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1000))));
 
 				break;
 			case PURPOSE_IPULP:
@@ -76,123 +82,114 @@ public class CalculatorImpl implements Calculator {
 			case PURPOSE_ITC:
 
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((area1 * AREA * 2.5 * 10 + area2 * AREA * scrutinyFeeCharges * 0.1));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 250000 + area2 * 27000000);
+						.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(250000)).add(AREA2).multiply(new BigDecimal(27000000)));
 				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 347.682 * 100000 + area2 * 416.385 * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * AREA * 100) + (area2 * AREA * 1260));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((area1 * AREA * 250 * 2.5f)
-						+ (area2 * AREA * stateInfrastructureDevelopmentCharges * 150 * 10));
+						.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(347.682)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(100)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1260))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(250)).multiply(new BigDecimal(2.5f)).add(AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(150)).multiply(new BigDecimal(10))));
 
 				break;
 			case PURPOSE_ITP:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((area1 * AREA * 2.5 * 10 + area2 * AREA * scrutinyFeeCharges * 0.1));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 250000 + area2 * 27000000);
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 347.682 * 100000 + area2 * 416.385 * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * AREA * 100) + (area2 * AREA * 1260));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((area1 * AREA * 250 * 2.5f)
-						+ (area2 * AREA * stateInfrastructureDevelopmentCharges * 150 * 10));
-				break;
+				.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1))));
+		feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(250000)).add(AREA2.multiply(new BigDecimal(27000000))));
+		feesTypeCalculationDto
+				.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(347.682)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000))));
+		feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(100)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1260))));
+		feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(250)).multiply(new BigDecimal(2.5f)).add(AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(150)).multiply(new BigDecimal(10))));
+		break;
 			case PURPOSE_IPA:
 
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (PART1 * AREA * scrutinyFeeCharges * 10
-						+ PART2 * AREA * 1.75 * 10 + PART3 * AREA * scrutinyFeeCharges * 10));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(PART1.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)) 
+						.add(PART2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10)).add(PART3.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)))));
 				feesTypeCalculationDto
-						.setLicenseFeeChargesCal((double) (PART1 * 250000 + PART2 * 4000000 + PART3 * 27000000));
+						.setLicenseFeeChargesCal(PART1.multiply(new BigDecimal(250000)).add(PART2.multiply(new BigDecimal(4000000))).add(PART3.multiply(new BigDecimal(27000000))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (PART1 * 208.192 * 100000 + PART2 * 416.385 * 100000 + PART3 * 416.385 * 100000));
+						 (PART1.multiply(new BigDecimal(208.192)).multiply(new BigDecimal(100000)).add(PART2.multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000)))).add(PART3.multiply(new BigDecimal(416.38)).multiply(new BigDecimal(100000))));
 				feesTypeCalculationDto.setConversionChargesCal(
-						(double) (PART1 * AREA * 100 + PART2 * AREA * 158 + PART3 * AREA * 1260));
+						(PART1.multiply(AREA).multiply(new BigDecimal(100)).add(PART2.multiply(AREA).multiply(new BigDecimal(158))).add(PART3.multiply(AREA).multiply(new BigDecimal(1260)))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (PART1 * AREA * 250 * stateInfrastructureDevelopmentCharges + PART2 * AREA * 625 * 1.75
-								+ PART3 * AREA * 1000 * stateInfrastructureDevelopmentCharges));
-
+						(PART1.multiply(AREA).multiply(new BigDecimal(250)).multiply(stateInfrastructureDevelopmentCharges).add(PART2.multiply(AREA).multiply(new BigDecimal(625)).multiply(new BigDecimal(1.75)).add(PART3.multiply(AREA).multiply(new BigDecimal(1000)).multiply(stateInfrastructureDevelopmentCharges)))));
 				break;
 
 			case PURPOSE_RGP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA) * scrutinyFeeCharges * 1 * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0.995 * 4000000 + 0.005 * 27000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * 312.289 * 100000 + area2 * 416.385 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (0.995 * AREA * 158 + 0.005 * AREA * 1260));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0.995 * AREA * 625 * 1.75
-						+ 0.005 * AREA * 1000 * stateInfrastructureDevelopmentCharges));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(1)).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(0.995).multiply(new BigDecimal(4000000)).add((new BigDecimal(0.005)).multiply(new BigDecimal(27000000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(new BigDecimal(0.995).multiply(new BigDecimal(312.289)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(0.995).multiply(AREA).multiply(new BigDecimal(58)).add(new BigDecimal(0.005).multiply(AREA).multiply(new BigDecimal(1260))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal (new BigDecimal(0.995).multiply(AREA).multiply(new BigDecimal(625)).multiply(new BigDecimal(1.75)).add(new BigDecimal( 0.005).multiply(AREA).multiply(new BigDecimal(1000)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
 
 			case PURPOSE_DDJAY_APHP:
 
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((area1 * 10 * AREA + area2 * AREA * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * RATE) + (area2 * RATE1));
-
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 104.096 * 100000 + area2 * 486.13 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal(area1 * AREA * 158 + area2 * AREA * 1470);
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * 500 * AREA + area2 * AREA * stateInfrastructureDevelopmentCharges * 1000));
-
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA1.multiply(new BigDecimal(10)).multiply(AREA).add(AREA2.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+	        	feesTypeCalculationDto.setLicenseFeeChargesCal((AREA1.multiply(RATE).add(AREA2.multiply(RATE1))));
+		       feesTypeCalculationDto.setExternalDevelopmentChargesCal((AREA1.multiply(new BigDecimal(104.096)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000)))));
+		       feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(158)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1470))));
+		       feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA1.multiply(new BigDecimal(500)).multiply(AREA).add(AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1000))));
 				break;
+				
 			case PURPOSE_NILPC:
 				break;
+				
 			case PURPOSE_TODGH:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * AREA * 10 * scrutinyFeeCharges));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (4000000 * 0.995 * licenseFeeCharges / 1.75));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * (Double.valueOf(calculatorRequest.getTotalLandSize()) * 416.385 * 100000
-								* licenseFeeCharges / 1.75)));
-				feesTypeCalculationDto.setConversionChargesCal(((double) (0.995 * 158 * AREA * conversionCharges / 1.75
-						+ 0.005 * 1470 * AREA * conversionCharges / 1.75)));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						((double) (0.995 * 625 * AREA * stateInfrastructureDevelopmentCharges
-								+ 0.005 * 1000 * AREA * stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((new BigDecimal(4000000).multiply(new BigDecimal(0.995)).multiply(licenseFeeCharges)).divide(new BigDecimal(1.75)));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal
+						 (new BigDecimal(0.995).multiply((new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000))
+								.multiply(licenseFeeCharges)).divide(new BigDecimal(1.75))));
+				feesTypeCalculationDto.setConversionChargesCal((new BigDecimal(0.995).multiply(new BigDecimal(158)).multiply(AREA).multiply(conversionCharges)).divide(new BigDecimal(1.75)).add(new BigDecimal(0.005).multiply(new BigDecimal(1470)).multiply(AREA).multiply(conversionCharges).divide(new BigDecimal(1.75))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal
+						(new BigDecimal(0.995).multiply(new BigDecimal(625)).multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).add(new BigDecimal(0.005).multiply(new BigDecimal(1000)).multiply(AREA).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
+
 
 			case PURPOSE_MLU_CZ:
 				break;
 
+
 			case PURPOSE_LDEF:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) ((double) 2 * (area1 * AREA * 10 + area2 * AREA * 1.75 * 10)));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal
+						 (new BigDecimal(2).multiply(AREA1).multiply(AREA).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))));
 
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) 2 * (area1 * 1250000 + area2 * 34000000));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(2).multiply(AREA1).multiply(new BigDecimal(1250000)).add(AREA2.multiply(new BigDecimal(34000000))));
 
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.1 * (area1 * 104.096 * 100000 + area2 * 486.13 * 100000)));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal
+						 (new BigDecimal(0.1).multiply(AREA1).multiply(new BigDecimal(104.096)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000)));
 				feesTypeCalculationDto
-						.setConversionChargesCal((double) (2 * (area1 * AREA * 158 + area2 * AREA * 1470)));
+						.setConversionChargesCal(new BigDecimal(2).multiply((AREA1).multiply(AREA).multiply(new BigDecimal(158)).add(AREA2).multiply(AREA).multiply(new BigDecimal(1470))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * AREA * 500) + (area2 * AREA * stateInfrastructureDevelopmentCharges * 1000));
+						(AREA1).multiply(AREA).multiply(new BigDecimal(500)).add((AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1000)))));
 
 				break;
+		
 			case PURPOSE_NILP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) (area1 * AREA * 1.25 * 10 + area2 * AREA * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 4000000 * 5 / 7 + area2 * 34000000));
+						 (AREA1).multiply(AREA).multiply(new BigDecimal(1.25).multiply(new BigDecimal(10)).add(AREA2).multiply(AREA).multiply(scrutinyFeeCharges.multiply(new BigDecimal(10)))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((AREA1).multiply(new BigDecimal(4000000).multiply(new BigDecimal(5)).divide(new BigDecimal(7)).add(AREA2).multiply(new BigDecimal(34000000))));
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 312.289 * 100000 * 5 / 7 + area2 * 486.13 * 100000));
+						 (AREA1.multiply(new BigDecimal(312.289)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000))));
 				feesTypeCalculationDto
-						.setConversionChargesCal((double) (area1 * 158 * 5 / 7 * AREA + area2 * AREA * 1470));
+						.setConversionChargesCal( (AREA1).multiply(new BigDecimal(158)).multiply(new BigDecimal(5)).divide(new BigDecimal(7)).multiply(AREA).add(AREA2.multiply(AREA).multiply(new BigDecimal(1470))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (area1 * 625 * AREA * stateInfrastructureDevelopmentCharges * 5 / 7
-								+ stateInfrastructureDevelopmentCharges * area2 * AREA * 1000));
+						 (AREA1).multiply(new BigDecimal(625)).multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5)).divide(new BigDecimal(7)).add(
+								stateInfrastructureDevelopmentCharges.multiply(AREA2).multiply(AREA).multiply(new BigDecimal(1000))));
 
 				break;
 			case PURPOSE_TODCOMM:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA.multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges)));
 
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * AREA * 10 * scrutinyFeeCharges));
-
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (34000000 * licenseFeeCharges / 1.75));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						((double) ((Double.valueOf(calculatorRequest.getTotalLandSize()) * 486.13 * 100000
-								* externalDevelopmentCharges / 1.75))));
-				feesTypeCalculationDto.setConversionChargesCal(((double) (1470 * AREA * conversionCharges / 1.75)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((new BigDecimal(34000000)).multiply(licenseFeeCharges.divide(new BigDecimal(1.75))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal
+						((new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000))
+								.multiply( externalDevelopmentCharges)).divide(new BigDecimal(1.75)));
+				feesTypeCalculationDto.setConversionChargesCal(( new BigDecimal(1470).multiply(AREA).multiply(conversionCharges)).divide(new BigDecimal(1.75)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						((double) (1000 * AREA * stateInfrastructureDevelopmentCharges)));
+						( new BigDecimal(1000).multiply(AREA).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
 			case PURPOSE_TODIT:
@@ -200,131 +197,118 @@ public class CalculatorImpl implements Calculator {
 			case PURPOSE_TODMUD:
 				break;
 			case PURPOSE_CPCS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(27000000);
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(27000000));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((Double.valueOf(calculatorRequest.getTotalLandSize()) * 416.385 * 100000)));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1260));
+						 ((new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setConversionChargesCal( AREA.multiply(new BigDecimal(1260)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 1000 * stateInfrastructureDevelopmentCharges));
+						AREA.multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges)));
+
 
 				break;
+			
 			case PURPOSE_CPRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(27000000);
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(27000000));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((Double.valueOf(calculatorRequest.getTotalLandSize()) * 416.385 * 100000)));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1260));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 1000 * stateInfrastructureDevelopmentCharges));
+						 ((new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setConversionChargesCal( AREA.multiply(new BigDecimal(1260)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal
+						 (AREA.multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges)));
 				break;
 			case PURPOSE_CICS:
 
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (34000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (arce) * 486.13 * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1470));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( ((new BigDecimal(34000000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( (arce).multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1470))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 1000 * stateInfrastructureDevelopmentCharges));
+						 ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges))));
 				break;
 			case PURPOSE_CIRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (34000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (arce) * 486.13 * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1470));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( ((new BigDecimal(34000000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( (arce).multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(1470)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 1000 * stateInfrastructureDevelopmentCharges));
+						 ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges))));
 				break;
 			case PURPOSE_RHP:
 				break;
 
 			case PURPOSE_AGH:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(1 * AREA * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((new BigDecimal(1)).multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 104.096 * 100000 + area2 * 486.13 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (area1 * AREA * 158 + area2 * AREA * 1470));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0));
+						 (AREA1).multiply(new BigDecimal(104.096)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(486.13)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(158)).add(AREA2).multiply(AREA).multiply(new BigDecimal(1470)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0));
 				break;
 			}
 			break;
 //---------------------------------HIGH 1----------------------------------------------------//
 		case ZONE_HIG1: {
 			switch (calculatorRequest.getPurposeCode()) {
-			case PURPOSE_RPL:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((AREA) * area1 * 10 + (AREA) * area2 * scrutinyFeeCharges * 10);
-
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 950000) + (area2 * 27000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 93.687 * 100000 + area2 * 437.517 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 125) + (area2 * (AREA) * 1225));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 375) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 750));
-
-				break;
 			case PURPOSE_ITP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 125000 + area2 * 23500000);
+						(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(125000)).add(AREA2.multiply(new BigDecimal(23500000))));
 				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 312.914f * 100000 + area2 * 374.747f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 80) + (area2 * (AREA) * 1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((area1 * (AREA) * 190 * 2.5f)
-						+ (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 7.5f));
+						.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(312.914)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(80)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1050))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA1.multiply(AREA).multiply(new BigDecimal(190)).multiply(new BigDecimal(2.5))
+						.add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
 				break;
 			case PURPOSE_IPULP:
 				break;
 
 			case PURPOSE_ITC:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 125000 + area2 * 23500000);
+				feesTypeCalculationDto.setScrutinyFeeChargesCal
+						(AREA1.multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(125000)).add(AREA2.multiply(new BigDecimal(23500000))));
 				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 312.914f * 100000 + area2 * 374.747f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 80) + (area2 * (AREA) * 1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((area1 * (AREA) * 190 * 2.5f)
-						+ (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 7.5f));
+						.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(312.914)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply((AREA)).multiply((new BigDecimal(80))).add((AREA2).multiply((AREA)).multiply(new BigDecimal(1050))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA)).multiply((new BigDecimal(190)).multiply(new BigDecimal(2.5)))
+						.add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
 
 				break;
 			case PURPOSE_IPA:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (PART1 * (AREA) * scrutinyFeeCharges * 10
-						+ PART2 * AREA * 1.75 * 10 + PART3 * AREA * scrutinyFeeCharges * 10));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal( (PART1.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)).add( PART2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))).add(PART3.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)))));
 				feesTypeCalculationDto
-						.setLicenseFeeChargesCal((double) (PART1 * 125000 + PART2 * 1900000 + PART3 * 23500000));
+						.setLicenseFeeChargesCal( PART1.multiply(new BigDecimal(125000)).add(PART2.multiply(new BigDecimal(1900000)).add(PART3.multiply(new BigDecimal(23500000)))));
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (PART1 * 187.374 * 100000 + PART2 * 374.747 * 100000 + PART3 * 374.747 * 100000));
+						 (PART1.multiply(new BigDecimal(187.374)).multiply(new BigDecimal(100000)).add(PART2.multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000))).add(PART3.multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000)))));
 				feesTypeCalculationDto.setConversionChargesCal(
-						(double) (PART1 * (AREA) * 80 + PART2 * (AREA) * 125 + PART3 * (AREA) * 1050));
+						 (PART1.multiply((AREA)).multiply(new BigDecimal(80)).add(PART2.multiply((AREA)).multiply(new BigDecimal(125))).add(PART3.multiply((AREA)).multiply(new BigDecimal(1050)))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (PART1 * (AREA) * 190 * stateInfrastructureDevelopmentCharges
-								+ PART2 * (AREA) * 460 * 1.75
-								+ PART3 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+						 (PART1.multiply((AREA)).multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)
+								.add( PART2.multiply((AREA)).multiply(new BigDecimal(460)).multiply((new BigDecimal(1.75))).add( PART3.multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges))))));
 
 				break;
 			case PURPOSE_RGP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 1 * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0.995 * 1900000 + 0.005 * 23500000));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply((new BigDecimal(1)).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((new BigDecimal(0.995)).multiply(new BigDecimal(1900000)).add(new BigDecimal(0.005).multiply((new BigDecimal(23500000)))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * 281.06 * 100000 + area2 * 374.747 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (0.995 * (AREA) * 125 + 0.005 * (AREA) * 1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0.995 * (AREA) * 460 * 1.75
-						+ 0.005 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+						 (new BigDecimal(0.995).multiply(new BigDecimal(281.06)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setConversionChargesCal( new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(125)).add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(1050))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(460)).multiply(new BigDecimal(1.75)).add(new BigDecimal( 0.005).multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
 
 			case PURPOSE_DDJAY_APHP:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * 10 * (AREA) + area2 * (AREA) * scrutinyFeeCharges * 10);
+						.setScrutinyFeeChargesCal(AREA1.multiply(new BigDecimal(10)).multiply((AREA)).add(AREA2.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(
-						area1 * 950000 * licenseFeeCharges + area2 * 27000000 * licenseFeeCharges);
+						AREA1.multiply(new BigDecimal(950000)).multiply(licenseFeeCharges).add(AREA2.multiply(new BigDecimal(27000000)).multiply(licenseFeeCharges)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((area1 * 93.687 * 100000 + area2 * 437.517 * 100000) * externalDevelopmentCharges));
+						 ((AREA1.multiply(new BigDecimal(93.687)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(437.517).multiply(new BigDecimal(100000))).multiply(externalDevelopmentCharges))));
 				feesTypeCalculationDto.setConversionChargesCal(
-						area1 * 125 * (AREA) * conversionCharges + area2 * (AREA) * conversionCharges * 122);
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (area1 * 375 * (AREA) * 0.75
-						+ area2 * (AREA) * stateInfrastructureDevelopmentCharges * 750 * 0.75));
+						AREA1.multiply(new BigDecimal(125)).multiply((AREA)).multiply(conversionCharges).add(AREA2.multiply((AREA)).multiply(conversionCharges).multiply(new BigDecimal(122))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( (AREA1.multiply(new BigDecimal(375)).multiply((AREA)).multiply(new BigDecimal(0.75))
+						.add( AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750)).multiply(new BigDecimal(0.75)))));
 
 				break;
 			case PURPOSE_NILPC:
@@ -334,12 +318,12 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_AGH:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * AREA * scrutinyFeeCharges * 10 + area2 * AREA * 1.75 * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0));
+						.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( (new BigDecimal(0)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 93.687 * 100000 + area2 * 437.517 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (area1 * AREA * 125 + area2 * AREA * 1225));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0));
+						 (AREA1).multiply(new BigDecimal(93.687)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(437.517).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( (AREA1).multiply(AREA).multiply(new BigDecimal(125)).add(AREA2).multiply(AREA).multiply(new BigDecimal(1225)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
 				break;
 
 			case PURPOSE_MLU_CZ:
@@ -347,32 +331,32 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_LDEF:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) ((double) 2 * (area1 * (AREA) * 10 + area2 * (AREA) * 1.75 * 10)));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) 2 * (area1 * 950000 + area2 * 27000000));
+						 (new BigDecimal( 2).multiply(AREA1).multiply((AREA)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10)))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal( 2).multiply((AREA1).multiply(new BigDecimal(950000)).add(AREA2.multiply(new BigDecimal(27000000)))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.1 * (area1 * 93.687 * 100000 + area2 * 437.517 * 100000)));
+						 new BigDecimal(0.1).multiply((AREA1).multiply(new BigDecimal(93.687)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(437.517)).multiply(new BigDecimal(100000)))));
 				feesTypeCalculationDto
-						.setConversionChargesCal((double) (2 * (area1 * (AREA) * 125 + area2 * (AREA) * 1225)));
+						.setConversionChargesCal (new BigDecimal(2).multiply((AREA1).multiply((AREA)).multiply(new BigDecimal(125)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1225)))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 375) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 750));
+						(AREA1).multiply((AREA)).multiply(new BigDecimal(375)).add((AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750)))));
 
 				break;
 
 			case PURPOSE_NILP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) (area1 * (AREA) * 1.25 * 10 + area2 * (AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 1900000 * 5 / 7 + area2 * 27000000));
+						 (AREA1.multiply((AREA)).multiply(new BigDecimal(1.25)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((AREA1.multiply(new BigDecimal(1900000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2).multiply(new BigDecimal(27000000)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 281.06 * 100000 * 5 / 7 + area2 * 437.517 * 100000));
+						 (AREA1.multiply(new BigDecimal(281.06)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(437.517)).multiply(new BigDecimal(100000))));
 				feesTypeCalculationDto
-						.setConversionChargesCal((double) (area1 * 125 * 5 / 7 * (AREA) + area2 * (AREA) * 1225));
+						.setConversionChargesCal( (AREA1.multiply(new BigDecimal(125)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).multiply((AREA)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1225))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (area1 * 460 * (AREA) * stateInfrastructureDevelopmentCharges * 5 / 7
-								+ stateInfrastructureDevelopmentCharges * area2 * (AREA) * 750));
+						 (AREA1.multiply(new BigDecimal(460)).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))).divide(new BigDecimal(7))
+								.add( stateInfrastructureDevelopmentCharges.multiply(AREA2).multiply((AREA)).multiply(new BigDecimal(750))));
 
 				break;
 			case PURPOSE_TODCOMM:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * (AREA) * 10 * scrutinyFeeCharges));
+				feesTypeCalculationDto.setScrutinyFeeChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges)));
 
 				break;
 			case PURPOSE_TODIT:
@@ -381,46 +365,45 @@ public class CalculatorImpl implements Calculator {
 				break;
 			case PURPOSE_CPCS:
 
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(23500000);
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((new BigDecimal(23500000)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((Double.valueOf(calculatorRequest.getTotalLandSize())) * 374.747 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 1050));
+						 ((new BigDecimal(calculatorRequest.getTotalLandSize())).multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(1050)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+						 ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
 			case PURPOSE_CPRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(23500000);
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((new BigDecimal(23500000)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((Double.valueOf(calculatorRequest.getTotalLandSize())) * 374.747 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 1050));
+						 ((new BigDecimal(calculatorRequest.getTotalLandSize())).multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(1050))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+						 ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
 			case PURPOSE_CICS:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 
-						((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (27000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 437.517 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1225));
+						((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( (new BigDecimal(27000000)));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( ((new BigDecimal(1)).multiply(new BigDecimal(437.517)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1225))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 1.75 * stateInfrastructureDevelopmentCharges));
+						 (new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1.75)).multiply(stateInfrastructureDevelopmentCharges));
 
 				break;
 			case PURPOSE_CIRS:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
 
-						((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (27000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 437.517 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1225));
+						((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( (new BigDecimal(27000000)));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( new BigDecimal(1).multiply(new BigDecimal(437.517)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal( new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(1225)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 1.75 * stateInfrastructureDevelopmentCharges));
-
+						 new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(1.75)).multiply(stateInfrastructureDevelopmentCharges));
 				break;
 			case PURPOSE_RHP:
 				break;
@@ -433,711 +416,711 @@ public class CalculatorImpl implements Calculator {
 			switch (calculatorRequest.getPurposeCode()) {
 
 			case PURPOSE_RPL:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((AREA) * area1 * 10 + (AREA) * area2 * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 950000) + (area2 * 21000000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 72.867 * 100000 + area2 * 340.291 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 125) + (area2 * (AREA) * 1225));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 375) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 750));
+                feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA).multiply(AREA1).multiply(new BigDecimal(10)).add((AREA).multiply(AREA2).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+                feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(950000)).add((AREA2).multiply(new BigDecimal(21000000))));
+                feesTypeCalculationDto.setExternalDevelopmentChargesCal
+               (AREA1.multiply(new BigDecimal(72.867)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))));
+                feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply((AREA)).multiply(new BigDecimal(125)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1225))));
+                feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal
+                (AREA1.multiply((AREA)).multiply(new BigDecimal(375)).add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750))));
+
 
 				break;
 
-			case PURPOSE_ITP:
+				case PURPOSE_ITP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 125000 + area2 * 14000000);
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(125000)).add(AREA2.multiply(new BigDecimal(14000000))));
 
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 243.377f * 100000 + area2 * 291.47f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 80) + (area2 * (AREA) * 1050));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(243.377)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(291.47)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(80)).add((AREA2).multiply((AREA)).multiply(new BigDecimal(1050))));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((area1 * (AREA) * 190 * 2.5f)
-						+ (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 7.5f));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA)).multiply((new BigDecimal(190)).multiply(new BigDecimal(2.5)))
+				.add( (AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
 				break;
-			case PURPOSE_IPULP:
+				case PURPOSE_IPULP:
 				break;
-			case PURPOSE_ITC:
+				case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 125000 + area2 * 14000000);
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1f)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(125000)).add(AREA2).multiply(new BigDecimal(14000000)));
 
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 243.377f * 100000 + area2 * 291.47f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 80) + (area2 * (AREA) * 1050));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(243.377)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(291.47)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply((new BigDecimal(80))).add((AREA2).multiply((AREA)).multiply(new BigDecimal(1050))));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((area1 * (AREA) * 190 * 2.5f)
-						+ (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 7.5f));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA)).multiply((new BigDecimal(190)).multiply(new BigDecimal(2.5)))
+				.add( (AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
 
 				break;
-			case PURPOSE_IPA:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (PART1 * (AREA) * scrutinyFeeCharges * 10
-						+ PART2 * AREA * 1.75 * 10 + PART3 * AREA * scrutinyFeeCharges * 10));
+				case PURPOSE_IPA:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(PART1.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))
+				.add( PART2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))).add(PART3.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
 				feesTypeCalculationDto
-						.setLicenseFeeChargesCal((double) (PART1 * 125000 + PART2 * 1900000 + PART3 * 14000000));
+				.setLicenseFeeChargesCal( PART1.multiply(new BigDecimal(125000)).add(PART2.multiply(new BigDecimal(1900000))).add(PART3.multiply(new BigDecimal(14000000))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (PART1 * 145.734 * 100000 + PART2 * 291.47 * 100000 + PART3 * 291.47 * 100000));
+				(PART1.multiply(new BigDecimal(145.734)).multiply(new BigDecimal(100000)).add(PART2.multiply(new BigDecimal(291.47)).multiply(new BigDecimal(100000))).add(PART3.multiply(new BigDecimal(291.47)).multiply(new BigDecimal(100000)))));
 
-				feesTypeCalculationDto.setConversionChargesCal(
-						(double) (PART1 * (AREA) * 80 + PART2 * (AREA) * 125 + PART3 * (AREA) * 1050));
+				feesTypeCalculationDto.setConversionChargesCal
+				(PART1.multiply((AREA)).multiply(new BigDecimal(80)).add(PART2.multiply((AREA)).multiply(new BigDecimal(125))).add(PART3.multiply((AREA)).multiply(new BigDecimal(1050))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (PART1 * (AREA) * 190 * stateInfrastructureDevelopmentCharges
-								+ PART2 * (AREA) * 460 * 1.75
-								+ PART3 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+				(PART1.multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)
+				.add( PART2.multiply((AREA)).multiply(new BigDecimal(460)).multiply((new BigDecimal(1.75)))
+				.add( PART3.multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)))));
 
 				break;
 
-			case PURPOSE_RGP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 1 * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0.995 * 1900000 + 0.005 * 14000000));
+				case PURPOSE_RGP:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply((new BigDecimal(1)).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(0.995).multiply(new BigDecimal(1900000)).add(new BigDecimal(0.005)).multiply(new BigDecimal(14000000)));
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * 187.373 * 100000 + area2 * 249.831 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (0.995 * (AREA) * 125 + 0.005 * (AREA) * 1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0.995 * (AREA) * 460 * 1.75
-						+ 0.005 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+				(new BigDecimal(0.995).multiply(new BigDecimal(187.373)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setConversionChargesCal( new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(125)).add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(1050))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(460)).multiply((new BigDecimal(1.75))
+				.add( new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges))));
 
 				break;
 
-			case PURPOSE_DDJAY_APHP:
+				case PURPOSE_DDJAY_APHP:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * 10 * (AREA) + area2 * (AREA) * scrutinyFeeCharges * 10);
+				.setScrutinyFeeChargesCal(AREA1.multiply(new BigDecimal(10)).multiply((AREA)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(
-						area1 * 950000 * licenseFeeCharges + area2 * 27000000 * licenseFeeCharges);
+				AREA1.multiply(new BigDecimal(950000)).multiply(licenseFeeCharges.add(AREA2.multiply(new BigDecimal(27000000)).multiply(licenseFeeCharges))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((area1 * 72.867 * 100000 + area2 * 340.291 * 100000) * externalDevelopmentCharges));
+				((AREA1).multiply(new BigDecimal(72.867)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))).multiply(externalDevelopmentCharges));
 				feesTypeCalculationDto.setConversionChargesCal(
-						(area1 * 125 * (AREA) * conversionCharges + area2 * (AREA) * conversionCharges * 1225));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (area1 * 375 * (AREA) * 0.75
-						+ area2 * (AREA) * stateInfrastructureDevelopmentCharges * 750 * 0.75));
+				(AREA1).multiply(new BigDecimal(125)).multiply((AREA)).multiply(conversionCharges).add(AREA2.multiply((AREA)).multiply(conversionCharges).multiply(new BigDecimal(1225))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( (AREA1).multiply(new BigDecimal(375)).multiply((AREA)).multiply(new BigDecimal(0.75))
+				.add( AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750)).multiply(new BigDecimal(0.75))));
 
 				break;
-			case PURPOSE_NILPC:
+				case PURPOSE_NILPC:
 				break;
-			case PURPOSE_TODGH:
+				case PURPOSE_TODGH:
 				break;
 
-			case PURPOSE_AGH:
+				case PURPOSE_AGH:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * AREA * scrutinyFeeCharges * 10 + area2 * AREA * 1.75 * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0));
+				.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply((new BigDecimal(1.75)).multiply(new BigDecimal(10)))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 72.867 * 100000 + area2 * 340.291 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (area1 * AREA * 125 + area2 * AREA * 1225));
+				(AREA1).multiply(new BigDecimal(72.867).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( (AREA1).multiply(AREA).multiply(new BigDecimal(125)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1225))));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0));
 				break;
 
-			case PURPOSE_MLU_CZ:
+				case PURPOSE_MLU_CZ:
 				break;
 
-			case PURPOSE_LDEF:
+				case PURPOSE_LDEF:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal
+				( new BigDecimal(2).multiply(AREA1).multiply((AREA)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply((new BigDecimal(1.75)).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(2).multiply((AREA1).multiply(new BigDecimal(950000)).add(AREA2).multiply(new BigDecimal(21000000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+				(new BigDecimal(0.1)).multiply((AREA1).multiply(new BigDecimal(72.867)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto
+				.setConversionChargesCal(new BigDecimal(2).multiply((AREA1).multiply((AREA)).multiply(new BigDecimal(125)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1225)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(375).add((AREA2).multiply(AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750))));
+
+				break;
+				case PURPOSE_NILP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) ((double) 2 * (area1 * (AREA) * 10 + area2 * (AREA) * 1.75 * 10)));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) 2 * (area1 * 950000 + area2 * 21000000));
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(1.25)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal((AREA1.multiply(new BigDecimal(1900000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2).multiply(new BigDecimal(27000000)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.1 * (area1 * 72.867 * 100000 + area2 * 340.291 * 100000)));
+				(AREA1.multiply(new BigDecimal(218.602)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))));
 				feesTypeCalculationDto
-						.setConversionChargesCal((double) (2 * (area1 * (AREA) * 125 + area2 * (AREA) * 1225)));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 375) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 750));
+				.setConversionChargesCal( (AREA1.multiply(new BigDecimal(125)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).multiply((AREA)).add(AREA2).multiply((AREA)).multiply(new BigDecimal(1225)));
 
 				break;
-			case PURPOSE_NILP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) (area1 * (AREA) * 1.25 * 10 + area2 * (AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 1900000 * 5 / 7 + area2 * 27000000));
+				case PURPOSE_TODCOMM:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges)));
+
+				break;
+				case PURPOSE_TODIT:
+				break;
+				case PURPOSE_TODMUD:
+				break;
+				case PURPOSE_CPCS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(14000000));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 218.602 * 100000 * 5 / 7 + area2 * 340.291 * 100000));
-				feesTypeCalculationDto
-						.setConversionChargesCal((double) (area1 * 125 * 5 / 7 * (AREA) + area2 * (AREA) * 1225));
-
-				break;
-			case PURPOSE_TODCOMM:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * (AREA) * 10 * scrutinyFeeCharges));
-
-				break;
-			case PURPOSE_TODIT:
-				break;
-			case PURPOSE_TODMUD:
-				break;
-			case PURPOSE_CPCS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(14000000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize())) * 291.47 * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 1050));
+				(new BigDecimal(calculatorRequest.getTotalLandSize())).multiply(new BigDecimal(291.47)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(1050))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+				((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
-			case PURPOSE_CPRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(14000000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize())) * 291.47 * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 1050));
+				case PURPOSE_CPRS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(14000000));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(291.47).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(1050)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 750 * stateInfrastructureDevelopmentCharges));
+				((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
-			case PURPOSE_CIRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (21000000));
+				case PURPOSE_CIRS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(21000000));
 
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 340.291 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1225));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( ((new BigDecimal(1)).multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1225))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 750 * stateInfrastructureDevelopmentCharges));
+				((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
-			case PURPOSE_CICS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (21000000));
+				case PURPOSE_CICS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(21000000));
 
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 340.291 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 1225));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( ((new BigDecimal(1)).multiply(new BigDecimal(340.291)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(1225)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 750 * stateInfrastructureDevelopmentCharges));
+				((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
 
-			case PURPOSE_RHP:
+				case PURPOSE_RHP:
 				break;
-			}
-			break;
+				}
+				break;
+
+			
 		}
 
-		// ---------------------medium--------------------///
-		case ZONE_MDM: {
+	// ---------------------medium--------------------///
+	case ZONE_MDM:
+
+	{
+			switch (calculatorRequest.getPurposeCode()) {
+			case PURPOSE_RPL:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(AREA1).multiply(new BigDecimal(10)).add((AREA)).multiply(AREA2).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(625000)).add((AREA2).multiply(new BigDecimal(9500000))));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			(AREA1.multiply(new BigDecimal(62.458)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000))));
+			feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply((new BigDecimal(80))).add((AREA2).multiply((AREA)).multiply(new BigDecimal(700))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			(AREA1.multiply((AREA)).multiply(new BigDecimal(250)).add((AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(500))))));
+
+			break;
+			case PURPOSE_ITP:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(
+			(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1f))));
+
+			feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(62500)).add(AREA2).multiply(new BigDecimal(6250000)));
+			feesTypeCalculationDto
+			.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(208.069)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(249.833)).multiply(new BigDecimal(100000)));
+			feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(50)).add((AREA2).multiply((AREA)).multiply(new BigDecimal(600))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			(AREA1).multiply((AREA)).multiply(new BigDecimal(125)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))));
+
+			break;
+			case PURPOSE_IPULP:
+			break;
+			case PURPOSE_ITC:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(
+			(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1))));
+
+			feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(62500)).add(AREA2.multiply(new BigDecimal(6250000))));
+			feesTypeCalculationDto
+			.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(208.069)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(249.833)).multiply(new BigDecimal(100000)));
+			feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(50)).add((AREA2).multiply((AREA)).multiply(new BigDecimal(600))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			(AREA1).multiply((AREA)).multiply(new BigDecimal(125)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))));
+
+			break;
+			case PURPOSE_IPA:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal( PART1.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))
+			.add( PART2.multiply(AREA).multiply((new BigDecimal(1.75)).multiply(new BigDecimal(10))).add(PART3.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)))));
+			feesTypeCalculationDto
+			.setLicenseFeeChargesCal( (PART1.multiply(new BigDecimal(62500)).add(PART2.multiply(new BigDecimal(950000))).add(PART3.multiply(new BigDecimal(6250000)))));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			(PART1.multiply(new BigDecimal(124.916)).multiply(new BigDecimal(100000)).add(PART2.multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000))).add(PART3.multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000)))));
+			feesTypeCalculationDto.setConversionChargesCal
+			(PART1.multiply((AREA)).multiply(new BigDecimal(50)).add(PART2.multiply((AREA)).multiply(new BigDecimal(80))).add(PART3.multiply((AREA)).multiply(new BigDecimal(600))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			(PART1.multiply((AREA)).multiply(new BigDecimal(125)).multiply(stateInfrastructureDevelopmentCharges)
+			.add( PART2.multiply((AREA)).multiply(new BigDecimal(320)).multiply((new BigDecimal(1.75)))
+			.add( PART3.multiply((AREA)).multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)))));
+
+			break;
+
+			case PURPOSE_RGP:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply((new BigDecimal(1)).multiply(new BigDecimal(10))));
+			feesTypeCalculationDto.setLicenseFeeChargesCal( (new BigDecimal(0.995)).multiply(new BigDecimal(950000)).add(new BigDecimal(0.005).multiply(new BigDecimal(6250000))));
+			feesTypeCalculationDto
+			.setExternalDevelopmentChargesCal( new BigDecimal(0.995).multiply(new BigDecimal(187.373)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000)));
+			
+			feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(80)).add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(600))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(320)).multiply(new BigDecimal(1.75))
+			.add( new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+
+			break;
+
+			case PURPOSE_DDJAY_APHP:
+			feesTypeCalculationDto
+			.setScrutinyFeeChargesCal(AREA1.multiply(new BigDecimal(10)).multiply((AREA)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(10000));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			(new BigDecimal(0.995).multiply(new BigDecimal(62.458)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(0.5))));
+			feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(0));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
+
+			break;
+			case PURPOSE_NILPC:
+			break;
+			case PURPOSE_TODGH:
+			break;
+
+			case PURPOSE_AGH:
+			feesTypeCalculationDto
+			.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)).add(AREA2).multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(0));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			(AREA1).multiply(new BigDecimal(62.458)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000)));
+			feesTypeCalculationDto.setConversionChargesCal( (AREA1).multiply(AREA).multiply(new BigDecimal(80)).add(AREA2.multiply(AREA).multiply(new BigDecimal(700))));
+
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0));
+			break;
+
+			case PURPOSE_MLU_CZ:
+			break;
+
+			case PURPOSE_LDEF:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(
+			(new BigDecimal( 2).multiply(AREA1).multiply((AREA)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10)))));
+			feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(2).multiply((AREA1).multiply(new BigDecimal(625000)).add(AREA2).multiply(new BigDecimal(9500000))));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			new BigDecimal(0.1).multiply((AREA1).multiply(new BigDecimal(62.458)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000))));
+			feesTypeCalculationDto
+			.setConversionChargesCal( new BigDecimal(2).multiply((AREA1).multiply((AREA)).multiply((new BigDecimal(80)).add(AREA2).multiply((AREA)).multiply(new BigDecimal(700)))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			(AREA1).multiply((AREA)).multiply(new BigDecimal(250).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(500)))));
+
+			break;
+			case PURPOSE_NILP:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(
+			(AREA1).multiply((AREA)).multiply(new BigDecimal(1.25)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal(((AREA1).multiply(new BigDecimal(950000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(9500000))));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal((
+			(AREA1).multiply(new BigDecimal(187.373)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000))));
+			feesTypeCalculationDto
+			.setConversionChargesCal( (AREA1).multiply((new BigDecimal(80)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).multiply((AREA)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(700))));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			(AREA1).multiply(new BigDecimal(320)).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5)).divide(new BigDecimal(7))
+			.add( stateInfrastructureDevelopmentCharges.multiply(AREA2).multiply((AREA)).multiply(new BigDecimal(500))));
+
+			break;
+			case PURPOSE_TODCOMM:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges)));
+
+			break;
+			case PURPOSE_TODIT:
+			break;
+			case PURPOSE_TODMUD:
+			break;
+			case PURPOSE_CPCS:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(6250000));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000))));
+
+			feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(600))));
+
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+
+			break;
+			case PURPOSE_CPRS:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(6250000));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+			(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000))));
+
+			feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply((AREA)).multiply(new BigDecimal(600)));
+
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+
+			break;
+			case PURPOSE_CICS:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal( (new BigDecimal(9500000)));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal( (new BigDecimal(1)).multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000)));
+
+			feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(700))));
+
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+
+			break;
+			case PURPOSE_CIRS:
+			feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+			feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(9500000));
+			feesTypeCalculationDto.setExternalDevelopmentChargesCal( ((new BigDecimal(1)).multiply(new BigDecimal(291.678)).multiply(new BigDecimal(100000))));
+
+			feesTypeCalculationDto.setConversionChargesCal( ((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(700))));
+
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+			((new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+
+			break;
+			case PURPOSE_RHP:
+			break;
+			}
+			break;
+			
+		}
+
+	// -----------------low1----------------------//
+	case ZONE_LOW:
+	{
 			switch (calculatorRequest.getPurposeCode()) {
 			case PURPOSE_RPL:
 				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((AREA) * area1 * 10 + (AREA) * area2 * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 625000) + (area2 * 9500000));
+				.setScrutinyFeeChargesCal(AREA.multiply(AREA1).multiply(new BigDecimal(10)).add((AREA).multiply(AREA2).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(125000)).add(AREA2.multiply(new BigDecimal(1900000))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 62.458 * 100000 + area2 * 291.678 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 80) + (area2 * (AREA) * 700));
+				(AREA1).multiply(new BigDecimal(52.048).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(243.065f).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(20)).add((AREA2).multiply((AREA)).multiply(new BigDecimal(175))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 250) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 500));
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190)))));
 
 				break;
 			case PURPOSE_ITP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
+						(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1f)));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(12500)).add(AREA2).multiply(new BigDecimal(1250000)));
+						feesTypeCalculationDto
+						.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(173.841)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply((AREA)).multiply(new BigDecimal(30)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(150))));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA1).multiply((AREA).multiply(new BigDecimal(35)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1.9)))));
+						break;
 
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 62500 + area2 * 6250000);
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 208.069f * 100000 + area2 * 249.833f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 50) + (area2 * (AREA) * 600));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 125 * 2.5f) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 5));
-
-				break;
 			case PURPOSE_IPULP:
 				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
+						(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1f)));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(12500)).add(AREA2.multiply(new BigDecimal(1250000))));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(173.841)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto.setConversionChargesCal(AREA1.multiply((AREA)).multiply(new BigDecimal(30)).add((AREA2.multiply((AREA)).multiply(new BigDecimal(150)))));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA1).multiply((AREA)).multiply(new BigDecimal(35).multiply(new BigDecimal(2.5)).add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1.9)))));
 
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 62500 + area2 * 6250000);
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 208.069f * 100000 + area2 * 249.833f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 50) + (area2 * (AREA) * 600));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 125 * 2.5f) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 5));
+						break;
+						case PURPOSE_IPA:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal( (PART1.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))
+						.add( PART2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))).add(PART3.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)))));
+						feesTypeCalculationDto
+						.setLicenseFeeChargesCal( (PART1.multiply(new BigDecimal(12500)).add(PART2.multiply(new BigDecimal(250000))).add(PART3.multiply(new BigDecimal(1250000)))));
 
-				break;
-			case PURPOSE_IPA:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (PART1 * (AREA) * scrutinyFeeCharges * 10
-						+ PART2 * AREA * 1.75 * 10 + PART3 * AREA * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto
-						.setLicenseFeeChargesCal((double) (PART1 * 62500 + PART2 * 950000 + PART3 * 6250000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (PART1 * 124.916 * 100000 + PART2 * 249.831 * 100000 + PART3 * 249.831 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal(
-						(double) (PART1 * (AREA) * 50 + PART2 * (AREA) * 80 + PART3 * (AREA) * 600));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (PART1 * (AREA) * 125 * stateInfrastructureDevelopmentCharges
-								+ PART2 * (AREA) * 320 * 1.75
-								+ PART3 * (AREA) * 500 * stateInfrastructureDevelopmentCharges));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+						(PART1.multiply(new BigDecimal(104.096)).multiply(new BigDecimal(100000)).add(PART2.multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000))).add(PART3.multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000)))));
+						feesTypeCalculationDto.setConversionChargesCal(
+						(PART1.multiply((AREA)).multiply(new BigDecimal(30)).add(PART2.multiply((AREA)).multiply(new BigDecimal(20))).add(PART3.multiply((AREA)).multiply(new BigDecimal(150)))));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(PART1.multiply((AREA)).multiply(new BigDecimal(35).multiply(stateInfrastructureDevelopmentCharges)
+						.add( PART2.multiply((AREA)).multiply(new BigDecimal(90)).multiply(new BigDecimal(1.75)))
+						.add( PART3.multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)))));
 
-				break;
+						break;
 
-			case PURPOSE_RGP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 1 * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0.995 * 950000 + 0.005 * 6250000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * 187.373 * 100000 + area2 * 249.831 * 100000));
+						case PURPOSE_RGP:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply((new BigDecimal(1)).multiply(new BigDecimal(10))));
+						feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(0.995).multiply(new BigDecimal(250000)).add(new BigDecimal(0.005)).multiply(new BigDecimal(1250000)));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+						new BigDecimal(0.995).multiply(new BigDecimal(156.145)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(20)).add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(150))));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(90).multiply((new BigDecimal(1.75))
+						.add( new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)))));
 
-				feesTypeCalculationDto.setConversionChargesCal((double) (0.995 * (AREA) * 80 + 0.005 * (AREA) * 600));
+						break;
+						case PURPOSE_DDJAY_APHP:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA1.multiply(new BigDecimal(10)).multiply((AREA)).add(AREA2.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(10000));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+						((AREA1).multiply(new BigDecimal(52.048).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(243.065).multiply(new BigDecimal(100000))).multiply(new BigDecimal(0.25)))));
+						feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(0));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0.995 * (AREA) * 320 * 1.75
-						+ 0.005 * (AREA) * 500 * stateInfrastructureDevelopmentCharges));
+						break;
+						case PURPOSE_NILPC:
+						break;
+						case PURPOSE_TODGH:
+						break;
 
-				break;
+						case PURPOSE_AGH:
+						feesTypeCalculationDto
+						.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)).add(AREA2).multiply(AREA).multiply(new BigDecimal(1.75).multiply(new BigDecimal(10))));
+						feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(0));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+						(AREA1).multiply(new BigDecimal(52.048).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(243.065).multiply(new BigDecimal(100000)))));
+						feesTypeCalculationDto.setConversionChargesCal( (AREA1).multiply(AREA).multiply(new BigDecimal(20).add(AREA2).multiply(AREA).multiply(new BigDecimal(175))));
 
-			case PURPOSE_DDJAY_APHP:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * 10 * (AREA) + area2 * (AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(10000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((area1 * 62.458 * 100000 + area2 * 291.678 * 100000) * 0.5));
-				feesTypeCalculationDto.setConversionChargesCal(0);
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(0);
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0));
+						break;
 
-				break;
-			case PURPOSE_NILPC:
-				break;
-			case PURPOSE_TODGH:
-				break;
+						case PURPOSE_MLU_CZ:
+						break;
 
-			case PURPOSE_AGH:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * AREA * scrutinyFeeCharges * 10 + area2 * AREA * 1.75 * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 62.458 * 100000 + area2 * 291.678 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (area1 * AREA * 80 + area2 * AREA * 700));
+						case PURPOSE_LDEF:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(
+						(new BigDecimal( 2)).multiply((AREA1).multiply((AREA)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10)))));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(2).multiply(AREA1).multiply(new BigDecimal(125000)).add(AREA2.multiply(new BigDecimal(1900000))));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+						new BigDecimal(0.1).multiply((AREA1).multiply(new BigDecimal(52.048)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(243.065)).multiply(new BigDecimal(100000)))));
+						feesTypeCalculationDto
+						.setConversionChargesCal(new BigDecimal(2).multiply((AREA1).multiply((AREA)).multiply(new BigDecimal(20)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(175)))));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add((AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190))))));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0));
-				break;
+						break;
+						case PURPOSE_NILP:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(
+						(AREA1).multiply((AREA)).multiply((new BigDecimal(1.25)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+						feesTypeCalculationDto.setLicenseFeeChargesCal((AREA1.multiply(new BigDecimal(250000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2).multiply(new BigDecimal(1900000)));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+						(AREA1.multiply(new BigDecimal(156.145)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(243.065)).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto
+						.setConversionChargesCal( (AREA1.multiply(new BigDecimal(20).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).multiply((AREA)).add(AREA2).multiply((AREA)).multiply(new BigDecimal(175))));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA1).multiply(new BigDecimal(90).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5)).divide(new BigDecimal(7)))
+						.add( stateInfrastructureDevelopmentCharges.multiply(AREA2).multiply((AREA)).multiply((new BigDecimal(190)))));
 
-			case PURPOSE_MLU_CZ:
-				break;
+						break;
+						case PURPOSE_TODCOMM:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges)));
 
-			case PURPOSE_LDEF:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) ((double) 2 * (area1 * (AREA) * 10 + area2 * (AREA) * 1.75 * 10)));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) 2 * (area1 * 625000 + area2 * 9500000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.1 * (area1 * 62.458 * 100000 + area2 * 291.678 * 100000)));
-				feesTypeCalculationDto
-						.setConversionChargesCal((double) (2 * (area1 * (AREA) * 80 + area2 * (AREA) * 700)));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 250) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 500));
+						break;
+						case PURPOSE_TODIT:
+						break;
+						case PURPOSE_TODMUD:
+						break;
+						case PURPOSE_CPCS:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1250000));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal
+						(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(208.193).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply((AREA)).multiply(new BigDecimal(150)));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(new BigDecimal(1)).multiply((AREA)).multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
 
-				break;
-			case PURPOSE_NILP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) (area1 * (AREA) * 1.25 * 10 + area2 * (AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 950000 * 5 / 7 + area2 * 9500000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 187.373 * 100000 * 5 / 7 + area2 * 291.678 * 100000));
-				feesTypeCalculationDto
-						.setConversionChargesCal((double) (area1 * 80 * 5 / 7 * (AREA) + area2 * (AREA) * 700));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (area1 * 320 * (AREA) * stateInfrastructureDevelopmentCharges * 5 / 7
-								+ stateInfrastructureDevelopmentCharges * area2 * (AREA) * 500));
+						break;
+						case PURPOSE_CPRS:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1250000));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal
+						(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000)));
+						feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply((AREA)).multiply(new BigDecimal(150)));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(1).multiply((AREA)).multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
 
-				break;
-			case PURPOSE_TODCOMM:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * (AREA) * 10 * scrutinyFeeCharges));
+						break;
 
-				break;
-			case PURPOSE_TODIT:
-				break;
-			case PURPOSE_TODMUD:
-				break;
-			case PURPOSE_CPCS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(6250000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize()) * 249.831 * 100000));
+						case PURPOSE_RHP:
+						break;
+						case PURPOSE_CIRS:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+						feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1900000));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal( new BigDecimal(1).multiply(new BigDecimal(243.065).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto.setConversionChargesCal( new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(175)));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						new BigDecimal(1).multiply(AREA).multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+						break;
+						case PURPOSE_CICS:
+						feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+						feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(1900000));
+						feesTypeCalculationDto.setExternalDevelopmentChargesCal(new BigDecimal(1).multiply(new BigDecimal(243.065).multiply(new BigDecimal(100000))));
+						feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(175)));
+						feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						new BigDecimal(1).multiply(AREA).multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+						break;
+						}
 
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 600));
+						break;
+						}
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 500 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_CPRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(6250000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize()) * 249.831 * 100000));
-
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 600));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 500 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_CICS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (9500000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 291.678 * 100000));
-
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 700));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 500 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_CIRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (9500000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 291.678 * 100000));
-
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 700));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 500 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_RHP:
-				break;
-			}
-			break;
-		}
-
-		// -----------------low1----------------------//
-		case ZONE_LOW: {
+	/// ------------------low2-------------------------------//
+	case ZONE_LOW2:
+	{
 			switch (calculatorRequest.getPurposeCode()) {
 			case PURPOSE_RPL:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((AREA) * area1 * 10 + (AREA) * area2 * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 125000) + (area2 * 1900000));
+		
+				feesTypeCalculationDto.setScrutinyFeeChargesCal((AREA).multiply(AREA1).multiply(new BigDecimal(10)).add((AREA)).multiply(AREA2).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(125000)).add(AREA2.multiply(new BigDecimal(1900000))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 52.048 * 100000 + area2 * 243.065f * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 20) + (area2 * (AREA) * 175));
+				(AREA1).multiply(new BigDecimal(41.639)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(194.452)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(20)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(175))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 70) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 190));
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190)))));
 
 				break;
-			case PURPOSE_ITP:
+				case PURPOSE_ITP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 12500 + area2 * 1250000);
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1f)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(12500)).add(AREA2.multiply(new BigDecimal(1250000))));
+
 				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 173.841f * 100000 + area2 * 208.193f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 30) + (area2 * (AREA) * 150));
+				.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(139.073)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(30)).add((AREA2).multiply((AREA)).multiply(new BigDecimal(150))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 35 * 2.5f) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 1.9f));
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(35)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(1.9)))));
 				break;
-			case PURPOSE_IPULP:
-				break;
-			case PURPOSE_ITC:
+				case PURPOSE_ITC:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 12500 + area2 * 1250000);
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(2.5)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(0.1f)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(AREA1.multiply(new BigDecimal(12500)).add(AREA2.multiply(new BigDecimal(1250000))));
+
 				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 173.841f * 100000 + area2 * 208.193f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 30) + (area2 * (AREA) * 150));
+				.setExternalDevelopmentChargesCal(AREA1.multiply(new BigDecimal(139.073)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal((AREA1).multiply((AREA)).multiply(new BigDecimal(30)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(150))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 35 * 2.5f) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 1.9f));
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(35)).multiply(new BigDecimal(2.5)).add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(1.9)))));
 
 				break;
-			case PURPOSE_IPA:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (PART1 * (AREA) * scrutinyFeeCharges * 10
-						+ PART2 * AREA * 1.75 * 10 + PART3 * AREA * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto
-						.setLicenseFeeChargesCal((double) (PART1 * 12500 + PART2 * 250000 + PART3 * 1250000));
+				case PURPOSE_IPULP:
+				break;
 
+				case PURPOSE_IPA:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal( (PART1.multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))
+				.add( PART2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))).add(PART3.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)))));
+				feesTypeCalculationDto
+				.setLicenseFeeChargesCal(PART1.multiply(new BigDecimal(12500)).add(PART2.multiply(new BigDecimal(250000))).add(PART3.multiply(new BigDecimal(1250000))));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (PART1 * 104.096 * 100000 + PART2 * 208.193 * 100000 + PART3 * 208.193 * 100000));
+				(PART1.multiply(new BigDecimal(83.278)).multiply(new BigDecimal(100000)).add(PART2.multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000))).add(PART3.multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000)))));
 				feesTypeCalculationDto.setConversionChargesCal(
-						(double) (PART1 * (AREA) * 30 + PART2 * (AREA) * 20 + PART3 * (AREA) * 150));
+				(PART1.multiply((AREA)).multiply(new BigDecimal(30)).add(PART2.multiply((AREA)).multiply(new BigDecimal(20))).add(PART3.multiply((AREA)).multiply(new BigDecimal(150)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal
+				(PART1.multiply((AREA)).multiply(new BigDecimal(35).multiply(stateInfrastructureDevelopmentCharges)
+				.add( PART2.multiply((AREA)).multiply(new BigDecimal(90)).multiply(new BigDecimal(1.75)))
+				.add( PART3.multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges))));
+
+				break;
+
+				case PURPOSE_RGP:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply((new BigDecimal(1)).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(0.995).multiply(new BigDecimal(250000).add(new BigDecimal(0.005).multiply(new BigDecimal(1250000)))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal
+				(new BigDecimal(0.995).multiply(new BigDecimal(124.916)).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( (new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(20)).add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(150)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(90).multiply((new BigDecimal(1.75))
+				.add( new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)))));
+
+				break;
+
+				case PURPOSE_DDJAY_APHP:
+				feesTypeCalculationDto
+				.setScrutinyFeeChargesCal(AREA1.multiply(new BigDecimal(10)).multiply((AREA)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(10000));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal
+				((AREA1).multiply(new BigDecimal(41.639).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(194.452)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(0.25)))));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(0));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
+
+				break;
+				case PURPOSE_NILPC:
+				break;
+				case PURPOSE_TODGH:
+				break;
+
+				case PURPOSE_AGH:
+				feesTypeCalculationDto
+				.setScrutinyFeeChargesCal(AREA1.multiply(AREA).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)).add(AREA2.multiply(AREA).multiply(new BigDecimal(1.75)).multiply(new BigDecimal(10))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal( new BigDecimal(0));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+				(AREA1).multiply(new BigDecimal(41.639)).multiply(new BigDecimal(100000)).add(AREA2).multiply(new BigDecimal(194.452).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal( (AREA1).multiply(AREA).multiply(new BigDecimal(20).add(AREA2).multiply(AREA).multiply(new BigDecimal(175))));
+
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal( new BigDecimal(0));
+				break;
+
+				case PURPOSE_MLU_CZ:
+				break;
+
+				case PURPOSE_LDEF:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal
+				( new BigDecimal(2).multiply(AREA1).multiply((AREA)).multiply(new BigDecimal(10)).add(AREA2.multiply((AREA)).multiply((new BigDecimal(1.75)).multiply(new BigDecimal(10)))));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal( 2).multiply(AREA1).multiply(new BigDecimal(125000).add(AREA2.multiply(new BigDecimal(1900000)))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
+				new BigDecimal(0.1).multiply(AREA1).multiply(new BigDecimal(41.639).multiply(new BigDecimal(100000)).add(AREA2.multiply(new BigDecimal(194.452)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto
+				.setConversionChargesCal(new BigDecimal(2).multiply(AREA1).multiply((AREA)).multiply(new BigDecimal(20)).add(AREA2.multiply((AREA)).multiply(new BigDecimal(175))));
+
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (PART1 * (AREA) * 35 * stateInfrastructureDevelopmentCharges
-								+ PART2 * (AREA) * 90 * 1.75
-								+ PART3 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
+				(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190)))));
 
 				break;
-
-			case PURPOSE_RGP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 1 * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0.995 * 250000 + 0.005 * 1250000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * 156.145 * 100000 + area2 * 208.193 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (0.995 * (AREA) * 20 + 0.005 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0.995 * (AREA) * 90 * 1.75
-						+ 0.005 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_DDJAY_APHP:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * 10 * (AREA) + area2 * (AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(10000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((area1 * 52.048 * 100000 + area2 * 243.065 * 100000) * 0.25));
-				feesTypeCalculationDto.setConversionChargesCal(0);
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(0);
-
-				break;
-			case PURPOSE_NILPC:
-				break;
-			case PURPOSE_TODGH:
-				break;
-
-			case PURPOSE_AGH:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * AREA * scrutinyFeeCharges * 10 + area2 * AREA * 1.75 * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 52.048 * 100000 + area2 * 243.065 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (area1 * AREA * 20 + area2 * AREA * 175));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0));
-				break;
-
-			case PURPOSE_MLU_CZ:
-				break;
-
-			case PURPOSE_LDEF:
+				case PURPOSE_NILP:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) ((double) 2 * (area1 * (AREA) * 10 + area2 * (AREA) * 1.75 * 10)));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) 2 * (area1 * 125000 + area2 * 1900000));
+				(AREA1).multiply((AREA)).multiply((new BigDecimal(1.25)).multiply(new BigDecimal(10)).add(AREA2).multiply((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10))));
+
+				feesTypeCalculationDto.setLicenseFeeChargesCal((AREA1.multiply(new BigDecimal(250000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2).multiply(new BigDecimal(1900000)));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.1 * (area1 * 52.048 * 100000 + area2 * 243.065 * 100000)));
+				(AREA1.multiply(new BigDecimal(124.916)).multiply(new BigDecimal(100000)).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).add(AREA2.multiply(new BigDecimal(194.452).multiply(new BigDecimal(100000)))));
 				feesTypeCalculationDto
-						.setConversionChargesCal((double) (2 * (area1 * (AREA) * 20 + area2 * (AREA) * 175)));
+				.setConversionChargesCal( (AREA1.multiply(new BigDecimal(20).multiply(new BigDecimal(5))).divide(new BigDecimal(7)).multiply((AREA)).add(AREA2).multiply((AREA)).multiply(new BigDecimal(175))));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 70) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 190));
+				(AREA1).multiply(new BigDecimal(90).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))).divide(new BigDecimal(7))
+				.add( stateInfrastructureDevelopmentCharges.multiply(AREA2).multiply((AREA)).multiply(new BigDecimal(190))));
 
 				break;
-			case PURPOSE_NILP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) (area1 * (AREA) * 1.25 * 10 + area2 * (AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 250000 * 5 / 7 + area2 * 1900000));
+				case PURPOSE_TODCOMM:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal( ((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(10)).multiply(scrutinyFeeCharges)));
+
+				break;
+				case PURPOSE_TODIT:
+				break;
+				case PURPOSE_TODMUD:
+				break;
+				case PURPOSE_CPCS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA)).multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1250000));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 156.145 * 100000 * 5 / 7 + area2 * 243.065 * 100000));
-				feesTypeCalculationDto
-						.setConversionChargesCal((double) (area1 * 20 * 5 / 7 * (AREA) + area2 * (AREA) * 175));
+				(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply((AREA)).multiply(new BigDecimal(150)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (area1 * 90 * (AREA) * stateInfrastructureDevelopmentCharges * 5 / 7
-								+ stateInfrastructureDevelopmentCharges * area2 * (AREA) * 190));
+				((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
-			case PURPOSE_TODCOMM:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * (AREA) * 10 * scrutinyFeeCharges));
-
-				break;
-			case PURPOSE_TODIT:
-				break;
-			case PURPOSE_TODMUD:
-				break;
-			case PURPOSE_CPCS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(1250000);
+				case PURPOSE_CPRS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1250000));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize()) * 208.193 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 150));
+				(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply((AREA)).multiply(new BigDecimal(150)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
+				((new BigDecimal(1)).multiply((AREA)).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
 
 				break;
-			case PURPOSE_CPRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(1250000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize()) * 208.193 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 150));
+				case PURPOSE_RHP:
+				break;
+				case PURPOSE_CIRS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1900000));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( new BigDecimal(1).multiply(new BigDecimal(194.452).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setConversionChargesCal(new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(175)));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
+				new BigDecimal(1).multiply(AREA).multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				break;
+				case PURPOSE_CICS:
+				feesTypeCalculationDto.setScrutinyFeeChargesCal(AREA.multiply(scrutinyFeeCharges).multiply(new BigDecimal(10)));
+				feesTypeCalculationDto.setLicenseFeeChargesCal(new BigDecimal(1900000));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal( (new BigDecimal(1)).multiply(new BigDecimal(194.452)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setConversionChargesCal( (new BigDecimal(1)).multiply(AREA).multiply(new BigDecimal(175)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((new BigDecimal(1).multiply(AREA).multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				break;
+				}
 
 				break;
-
-			case PURPOSE_RHP:
-				break;
-			case PURPOSE_CIRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 243.065 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 175));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 190 * stateInfrastructureDevelopmentCharges));
-				break;
-			case PURPOSE_CICS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 243.065 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 175));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 190 * stateInfrastructureDevelopmentCharges));
-				break;
-			}
-
-			break;
 		}
+}
 
-		/// ------------------low2-------------------------------//
-		case ZONE_LOW2: {
-			switch (calculatorRequest.getPurposeCode()) {
-			case PURPOSE_RPL:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal((AREA) * area1 * 10 + (AREA) * area2 * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 125000) + (area2 * 1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 41.639 * 100000 + area2 * 194.452 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 20) + (area2 * (AREA) * 175));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 70) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 190));
+return feesTypeCalculationDto;
 
-				break;
-			case PURPOSE_ITP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 12500 + area2 * 1250000);
+}
 
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 139.073f * 100000 + area2 * 166.554f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 30) + (area2 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 35 * 2.5f) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 1.9f));
-				break;
-			case PURPOSE_ITC:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(area1 * (AREA) * 2.5f * 10 + area2 * (AREA) * scrutinyFeeCharges * 0.1f));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(area1 * 12500 + area2 * 1250000);
-
-				feesTypeCalculationDto
-						.setExternalDevelopmentChargesCal(area1 * 139.073f * 100000 + area2 * 166.554f * 100000);
-				feesTypeCalculationDto.setConversionChargesCal((area1 * (AREA) * 30) + (area2 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 35 * 2.5f) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 1.9f));
-
-				break;
-			case PURPOSE_IPULP:
-				break;
-
-			case PURPOSE_IPA:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (PART1 * (AREA) * scrutinyFeeCharges * 10
-						+ PART2 * AREA * 1.75 * 10 + PART3 * AREA * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto
-						.setLicenseFeeChargesCal((double) (PART1 * 12500 + PART2 * 250000 + PART3 * 1250000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (PART1 * 83.278 * 100000 + PART2 * 166.554 * 100000 + PART3 * 166.554 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal(
-						(double) (PART1 * (AREA) * 30 + PART2 * (AREA) * 20 + PART3 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (PART1 * (AREA) * 35 * stateInfrastructureDevelopmentCharges
-								+ PART2 * (AREA) * 90 * 1.75
-								+ PART3 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
-
-				break;
-
-			case PURPOSE_RGP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 1 * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0.995 * 250000 + 0.005 * 1250000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.995 * 124.916 * 100000 + area2 * 166.554 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (0.995 * (AREA) * 20 + 0.005 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0.995 * (AREA) * 90 * 1.75
-						+ 0.005 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
-
-				break;
-
-			case PURPOSE_DDJAY_APHP:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * 10 * (AREA) + area2 * (AREA) * scrutinyFeeCharges * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal(10000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) ((area1 * 41.639 * 100000 + area2 * 194.452 * 100000) * 0.25));
-				feesTypeCalculationDto.setConversionChargesCal(0);
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(0);
-
-				break;
-			case PURPOSE_NILPC:
-				break;
-			case PURPOSE_TODGH:
-				break;
-
-			case PURPOSE_AGH:
-				feesTypeCalculationDto
-						.setScrutinyFeeChargesCal(area1 * AREA * scrutinyFeeCharges * 10 + area2 * AREA * 1.75 * 10);
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (0));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 41.639 * 100000 + area2 * 194.452 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (area1 * AREA * 20 + area2 * AREA * 175));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((double) (0));
-				break;
-
-			case PURPOSE_MLU_CZ:
-				break;
-
-			case PURPOSE_LDEF:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) ((double) 2 * (area1 * (AREA) * 10 + area2 * (AREA) * 1.75 * 10)));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) 2 * (area1 * 125000 + area2 * 1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (0.1 * (area1 * 41.639 * 100000 + area2 * 194.452 * 100000)));
-				feesTypeCalculationDto
-						.setConversionChargesCal((double) (2 * (area1 * (AREA) * 20 + area2 * (AREA) * 175)));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(area1 * (AREA) * 70) + (area2 * (AREA) * stateInfrastructureDevelopmentCharges * 190));
-
-				break;
-			case PURPOSE_NILP:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(
-						(double) (area1 * (AREA) * 1.25 * 10 + area2 * (AREA) * scrutinyFeeCharges * 10));
-
-				feesTypeCalculationDto.setLicenseFeeChargesCal((area1 * 250000 * 5 / 7 + area2 * 1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (area1 * 124.916 * 100000 * 5 / 7 + area2 * 194.452 * 100000));
-				feesTypeCalculationDto
-						.setConversionChargesCal((double) (area1 * 20 * 5 / 7 * (AREA) + area2 * (AREA) * 175));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (area1 * 90 * (AREA) * stateInfrastructureDevelopmentCharges * 5 / 7
-								+ stateInfrastructureDevelopmentCharges * area2 * (AREA) * 190));
-
-				break;
-			case PURPOSE_TODCOMM:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal((double) (1 * (AREA) * 10 * scrutinyFeeCharges));
-
-				break;
-			case PURPOSE_TODIT:
-				break;
-			case PURPOSE_TODMUD:
-				break;
-			case PURPOSE_CPCS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(1250000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize()) * 166.554 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_CPRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal(1250000);
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(double) (Double.valueOf(calculatorRequest.getTotalLandSize()) * 166.554 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * (AREA) * 150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * (AREA) * 190 * stateInfrastructureDevelopmentCharges));
-
-				break;
-			case PURPOSE_RHP:
-				break;
-			case PURPOSE_CIRS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 194.452 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 175));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 190 * stateInfrastructureDevelopmentCharges));
-				break;
-			case PURPOSE_CICS:
-				feesTypeCalculationDto.setScrutinyFeeChargesCal(((AREA) * scrutinyFeeCharges * 10));
-				feesTypeCalculationDto.setLicenseFeeChargesCal((double) (1900000));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal((double) (1 * 194.452 * 100000));
-				feesTypeCalculationDto.setConversionChargesCal((double) (1 * AREA * 175));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(double) (1 * AREA * 190 * stateInfrastructureDevelopmentCharges));
-				break;
-			}
-
-			break;
-		}
-		}
-
-		return feesTypeCalculationDto;
-
-	}
 }

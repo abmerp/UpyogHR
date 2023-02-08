@@ -1,5 +1,9 @@
 package org.egov.tlcalculator.web.models;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,12 +11,15 @@ import lombok.Setter;
 @Setter
 public class ApplicantPurpose {
 
-	private String purposeDd;
-	private String potential;
-	private String district;
-	private Integer state;
-	ApplicationPurposeData1 applicationPurposeData1;
-	
-	
+	@JsonProperty("purpose")
+	private String purpose;
 
+	@JsonProperty("state")
+	private String state;
+
+	@JsonProperty("totalArea")
+	private String totalArea;
+
+	@JsonProperty("AppliedLandDetails")
+	List<AppliedLandDetails> appliedLandDetails;
 }

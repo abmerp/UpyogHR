@@ -1,265 +1,159 @@
 package org.egov.tlcalculator.service;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.egov.common.contract.request.RequestInfo;
-
 import org.egov.tlcalculator.utils.CalculationUtils;
+import org.egov.tlcalculator.utils.LandUtil;
+import org.egov.tlcalculator.validator.LandMDMSValidator;
 import org.egov.tlcalculator.web.models.CalculatorRequest;
+import org.egov.tlcalculator.web.models.LicenseDetails;
 import org.egov.tlcalculator.web.models.tradelicense.TradeLicense;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class FeesCalculation implements Calculator {
-
+	@Autowired
+	LandMDMSValidator valid;
+	@Autowired
+	ObjectMapper mapper;
+	@Autowired
+	LandUtil landUtil;
 	@Autowired
 	CalculationUtils utils;
 
 	@Autowired
 	CalculatorImpl calculatorImpl;
 
-	public PaymentCalculationResponse payment(RequestInfo info, String applicationNo) {
+	public List<FeesTypeCalculationDto> payment(RequestInfo info, String applicationNo) {
 
 		String applicationNumber = applicationNo;
 		String tenantId = "hr";
 		List<FeesTypeCalculationDto> results = new ArrayList<FeesTypeCalculationDto>();
-		TradeLicense license = utils.getTradeLicense(info, applicationNo, tenantId);
-		log.info("license" + license);
-		JsonNode detailsLand = license.getTradeLicenseDetail().getAdditionalDetail();
+		TradeLicense tradeLicense =  utils.getTradeLicense(info, applicationNo, tenantId);
+		log.info("license" + tradeLicense);
+
 		
-		String purpose = detailsLand.get(0).get("ApplicantPurpose").get("purpose").textValue();
-		String totalAreaSchemeLand = detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot")
-				.get("totalAreaScheme").textValue();
-		BigDecimal totalAreaScheme = new BigDecimal(totalAreaSchemeLand);
-		String areaUnderGh = "";
-		String commercial = "";
-		String netPlannedArea="";
-		BigDecimal totalFeeComm = new BigDecimal("0.00");
-		BigDecimal totalFeeGH = new BigDecimal("0.00");
-		BigDecimal totalArea = new BigDecimal("0.00");
-		BigDecimal totalGhCommArea = new BigDecimal("0.00");
-		PaymentCalculationResponse paymentCalculationResponse = new PaymentCalculationResponse();
 
-		// ---------------group housing--------------------//
-		CalculatorRequest calculatorGh = new CalculatorRequest();
-		calculatorGh.setApplicationNumber(applicationNo);
-		calculatorGh.setPotenialZone(detailsLand.get(0).get("ApplicantPurpose").get("AppliedLandDetails").get(0)
-				.get("potential").textValue());
-		calculatorGh.setPurposeCode("RGP");
-		areaUnderGh = detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot").get("areaUnderGH")
-				.textValue();
-		netPlannedArea=detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot").get("netPlannedArea")
-				.textValue();
-		if (areaUnderGh != null) {
-			Double areaUnderGhL = Double.valueOf(areaUnderGh);
-		//	areaUnderGhL = areaUnderGhL * 175;
+			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
+			});
+			List<LicenseDetails> newServiceInfoData = null;
+			try {
+				newServiceInfoData = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-			calculatorGh.setTotalLandSize(areaUnderGhL.toString());
+			for (LicenseDetails newobj : newServiceInfoData) {
 
-			FeesTypeCalculationDto resultGH = calculatorImpl.feesTypeCalculation(info, calculatorGh);
-			log.info("result" + resultGH);
-			results.add(resultGH);
-			Double scruitnyfeeGH = resultGH.getScrutinyFeeChargesCal();
-			BigDecimal scruitnyfeeGHB = new BigDecimal(scruitnyfeeGH);
-			Double licenseFeeGh = resultGH.getLicenseFeeChargesCal();
-			BigDecimal licenseFeeGhB = new BigDecimal(licenseFeeGh);
-			Double externalChargesFeeGh = resultGH.getExternalDevelopmentChargesCal();
-			BigDecimal externalFeeGhB = new BigDecimal(externalChargesFeeGh);
-			Double conversionFeeGh = resultGH.getConversionChargesCal();
-			BigDecimal conversionFeeGhB = new BigDecimal(conversionFeeGh);
-			Double stateInfraStructureFeeGh = resultGH.getStateInfrastructureDevelopmentChargesCal();
-			BigDecimal stateInfraStructureFeeGhB = new BigDecimal(stateInfraStructureFeeGh);
-			totalFeeGH = (scruitnyfeeGHB.add(licenseFeeGhB).add(externalFeeGhB).add(conversionFeeGhB)
-					.add(stateInfraStructureFeeGhB));
-			paymentCalculationResponse.setTotalFeeGH(totalFeeGH);
-		}
-		// --------------------commercial-----------------------//
-		CalculatorRequest calculatorComm = new CalculatorRequest();
-		calculatorComm.setApplicationNumber(applicationNo);
-		calculatorComm.setPotenialZone(detailsLand.get(0).get("ApplicantPurpose").get("AppliedLandDetails").get(0)
-				.get("potential").textValue());
-		calculatorComm.setPurposeCode("CPRS");
-		commercial = detailsLand.get(0).get("DetailsofAppliedLand").get("DetailsAppliedLandPlot").get("commercial")
-				.textValue();
-		if (commercial != null) {
+				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
-			Double commercialL = Double.valueOf(commercial);
-		//	commercialL = commercialL * 150;
-			calculatorComm.setTotalLandSize(commercialL.toString());
+					LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
+							.mDMSCallPurposeCode(info, tradeLicense.getTenantId(),
+									newobj.getApplicantPurpose().getPurpose());
 
-			FeesTypeCalculationDto resultComm = calculatorImpl.feesTypeCalculation(info, calculatorComm);
-			log.info("resultComm" + resultComm);
-			results.add(resultComm);
-			Double scruitnyfeeComm = resultComm.getScrutinyFeeChargesCal();
-			BigDecimal scruitnyfeeCommB = new BigDecimal(scruitnyfeeComm);
-			Double licenseFeeComm = resultComm.getLicenseFeeChargesCal();
-			BigDecimal licenseFeeCommB = new BigDecimal(licenseFeeComm);
-			Double externalChargesFeeComm = resultComm.getExternalDevelopmentChargesCal();
-			BigDecimal externalChargesFeeCommB = new BigDecimal(externalChargesFeeComm);
-			Double conversionFeeComm = resultComm.getConversionChargesCal();
-			BigDecimal conversionFeeCommB = new BigDecimal(conversionFeeComm);
-			Double stateInfraStructureFeeComm = resultComm.getStateInfrastructureDevelopmentChargesCal();
-			BigDecimal stateInfraStructureFeeCommB = new BigDecimal(stateInfraStructureFeeComm);
-			totalFeeComm = (scruitnyfeeCommB.add(licenseFeeCommB).add(stateInfraStructureFeeCommB)
-					.add(externalChargesFeeCommB).add(conversionFeeCommB));
-			paymentCalculationResponse.setTotalFeeComm(totalFeeComm);
+					Map<String, List<String>> mdmsData;
+					mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
 
-		}
+					List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
 
-		switch (purpose) {
+					int purposeId = 0;
 
-		// -------------residental plotted commercial case-------//
+					for (Map<String, Object> mm : msp) {
 
-		case PURPOSE_RPL:
-			
-			netPlannedArea
-	
-			break;
-		// ------------AGH--------------------//
-		case PURPOSE_AGH:
+						purposeId = Integer.valueOf(String.valueOf(mm.get("purposeId")));
+						log.info("purposeId" + purposeId);
 
-			totalGhCommArea = (totalFeeGH.add(totalFeeComm));
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
+					}
+				
 
-		// -----------------------ddjay------------//
-		case PURPOSE_DDJAY_APHP:
+				String purpose = newobj.getApplicantPurpose().getPurpose();
+//				String totalAreaSchemeLand = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+//						.getTotalAreaScheme();
+			//	BigDecimal totalAreaScheme = new BigDecimal(totalAreaSchemeLand);
+				String areaUnderGh = "";
+				String commercial = "";
+				String netPlannedArea = "";
 
-			totalGhCommArea = (totalFeeGH.add(totalFeeComm));
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
+				PaymentCalculationResponse paymentCalculationResponse = new PaymentCalculationResponse();
+				CalculatorRequest calculator = new CalculatorRequest();
 
-		// -------------------------commercial integrated----------------//
-		case PURPOSE_CICS:
+				// ---------------group housing--------------------//
+				CalculatorRequest calculatorGh = new CalculatorRequest();
+				calculatorGh.setApplicationNumber(applicationNo);
+				calculatorGh
+						.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+				calculatorGh.setPurposeCode("RGP");
+				areaUnderGh = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getAreaUnderGH();
+				netPlannedArea = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getNetPlannedArea();
+				Double areaUnderGhL = new Double("0");
+				if (areaUnderGh != null) {
+					areaUnderGhL = Double.valueOf(areaUnderGh);
+				
+					calculatorGh.setTotalLandSize(areaUnderGhL.toString());
 
-			totalArea = (totalAreaScheme);
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
+					FeesTypeCalculationDto resultGH = calculatorImpl.feesTypeCalculation(info, calculatorGh);
+					log.info("result" + resultGH);
+					results.add(resultGH);
+				
+					
+				}
+				// --------------------commercial-----------------------//
+				CalculatorRequest calculatorComm = new CalculatorRequest();
+				calculatorComm.setApplicationNumber(applicationNo);
+				calculatorComm
+						.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+				calculatorComm.setPurposeCode("CPRS");
+				Double commercialL = new Double("0");
+				commercial = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getCommercial();
 
-			break;
-		// -------------------------commercial integrated----------------//
-		case PURPOSE_CIRS:
+				if (commercial != null) {
 
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
+					commercialL = Double.valueOf(commercial);
+					
+					calculatorComm.setTotalLandSize(commercialL.toString());
 
-			// -------------commercial plotted------//
-		case PURPOSE_CPCS:
+					FeesTypeCalculationDto resultComm = calculatorImpl.feesTypeCalculation(info, calculatorComm);
+					log.info("resultComm" + resultComm);
+					results.add(resultComm);
+					
 
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
+				}
+				//----------different purposes----------//
+				calculator.setApplicationNumber(applicationNo);
+				calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+				calculator.setPurposeCode(purpose);
+				Double totalSiteArea = Double
+						.valueOf(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalSiteArea());
+				totalSiteArea = totalSiteArea - commercialL - areaUnderGhL;
+				calculator.setTotalLandSize(totalSiteArea.toString());
+				FeesTypeCalculationDto resultresid = calculatorImpl.feesTypeCalculation(info, calculator);
+				log.info("resultComm" + resultresid);
+				results.add(resultresid);
 
-			break;
-		// -------------commercial plotted------//
-		case PURPOSE_CPRS:
-
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		case PURPOSE_IPULP:
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		// ---------industrial colony-----//
-		case PURPOSE_IPA:
-
-			totalGhCommArea = (totalFeeGH.add(totalFeeComm));
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		// ----------it colony----//
-		case PURPOSE_ITC:
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		// ----------it colony----//
-		case PURPOSE_ITP:
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		// ---low density-----//
-		// --it is not in excel----//
-		case PURPOSE_LDEF:
-
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		case PURPOSE_MLU_CZ:
-
-			totalGhCommArea = (totalFeeGH.add(totalFeeComm));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			log.info("totalArea" + totalArea);
-			break;
-
-		case PURPOSE_NILPC:
-			break;
-		// -------------NILP--------//
-		case PURPOSE_NILP:
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		// -----------group housing----------------//
-		case PURPOSE_RGP:
-
-			totalGhCommArea = (totalFeeGH.add(totalFeeComm));
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-
-			break;
-		case PURPOSE_RHP:
-			totalGhCommArea = (totalFeeGH.add(totalFeeComm));
-			totalArea = (totalAreaScheme.subtract(totalGhCommArea));
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-
-		/// -----------------tod commercial------//
-		case PURPOSE_TODCOMM:
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		case PURPOSE_TODIT:
-			break;
-		// -----------------Tod group housing---//
-		case PURPOSE_TODGH:
-			totalArea = totalAreaScheme;
-			paymentCalculationResponse.setTotalArea(totalArea);
-			log.info("totalArea" + totalArea);
-			break;
-		case PURPOSE_TODMUD:
-			break;
-		case PURPOSE_TODMGH:
-			break;
-		}
-		return paymentCalculationResponse;
+			}
+			}
+		
+		return results;
 	}
-
 }

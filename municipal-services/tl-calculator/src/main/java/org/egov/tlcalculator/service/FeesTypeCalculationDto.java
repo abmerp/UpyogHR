@@ -1,24 +1,30 @@
 package org.egov.tlcalculator.service;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 class FeesTypeCalculationDto {
-	private double totalFee;
-	private double scrutinyFeeChargesCal;
-	private double licenseFeeChargesCal;
-	private double conversionChargesCal;
-	private double externalDevelopmentChargesCal;
-	private double stateInfrastructureDevelopmentChargesCal;
 
-	public double getTotalFee() {
-		this.totalFee = this.scrutinyFeeChargesCal + this.conversionChargesCal + this.licenseFeeChargesCal
-				+ this.externalDevelopmentChargesCal + this.stateInfrastructureDevelopmentChargesCal;
-		return this.totalFee;
+	private String purpose;
+	private BigDecimal scrutinyFeeChargesCal;
+	private BigDecimal licenseFeeChargesCal;
+	private BigDecimal conversionChargesCal;
+	private BigDecimal externalDevelopmentChargesCal;
+	private BigDecimal stateInfrastructureDevelopmentChargesCal;
+
+	public BigDecimal getLicenseFee() {
+		return this.licenseFeeChargesCal.multiply(new BigDecimal(0.25));
+
 	}
 
 }
