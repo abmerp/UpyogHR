@@ -88,6 +88,8 @@ public class CalculationService {
 
 	@Autowired
 	ObjectMapper objectMapper;
+	@Autowired
+	FeesCalculation feesCalculation;
 
 	/**
 	 * Calculates tax estimates and creates demand
@@ -131,8 +133,8 @@ public class CalculationService {
 		Object mdmsData = mdmsService.mDMSCall(calculationReq.getRequestInfo(), tenantId);
 //		Object mdmsData = util.mDMSCallPurposeCode(calculationReq.getRequestInfo(), tenantId,
 //				calculationReq.getCalculatorRequest().getPurposeCode());
-		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(calculationReq.getRequestInfo(),
-				calculationReq.getCalculatorRequest());
+		List<FeesTypeCalculationDto> results = feesCalculation.payment(calculationReq.getRequestInfo(),
+				calculationReq.getCalculatorRequest().getApplicationNumber());
 //     
 //       List<Calculation> calculations = getCalculation(calculationReq.getRequestInfo(),
 //               calculationReq.getCalulationCriteria(),mdmsData);
@@ -141,6 +143,20 @@ public class CalculationService {
 		Calculation calculation = null;
 
 		List<String> bilingSlabId = new ArrayList<String>();
+		BigDecimal scrutinyFee = new BigDecimal(0);
+		BigDecimal licenseFeeCharges = new BigDecimal(0);
+		BigDecimal conversionCharges = new BigDecimal(0);
+		BigDecimal stateInfrastructure = new BigDecimal(0);
+		BigDecimal externalDevelopment = new BigDecimal(0);
+		for (FeesTypeCalculationDto result : results) {
+			scrutinyFee = scrutinyFee.add(result.getScrutinyFeeChargesCal());
+			licenseFeeCharges = licenseFeeCharges.add(result.getLicenseFee());
+			externalDevelopment = externalDevelopment.add(result.getExternalDevelopmentChargesCal());
+			stateInfrastructure = stateInfrastructure.add(result.getStateInfrastructureDevelopmentChargesCal());
+			conversionCharges = conversionCharges.add(result.getConversionChargesCal());
+
+		}
+
 		for (CalulationCriteria criteria : calculationReq.getCalulationCriteria()) {
 			TradeLicense license;
 			if (criteria.getTradelicense() == null && criteria.getApplicationNumber() != null) {
@@ -151,15 +167,17 @@ public class CalculationService {
 			calculation = new Calculation();
 			calculation.setApplicationNumber(calculationReq.getCalculatorRequest().getApplicationNumber());
 			calculation.setTenantId(tenantId);
-
+			calculation.setTradeTypeBillingIds(
+					new FeeAndBillingSlabIds("", scrutinyFee.add(licenseFeeCharges), scrutinyFee, licenseFeeCharges,
+							conversionCharges, externalDevelopment, stateInfrastructure, bilingSlabId));
 			calculation.setTradeLicense(criteria.getTradelicense());
 
 			EstimatesAndSlabs estimatesAndSlabs = getTaxHeadEstimates(criteria, calculationReq.getRequestInfo(),
 					mdmsData);
 			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
-		//	taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
+			taxHeadEstimates.get(0).setEstimateAmount(scrutinyFee.add(licenseFeeCharges));
 			calculation.setTaxHeadEstimates(taxHeadEstimates);
-		//	taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
+			// taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
 			calculations.add(calculation);
 		}
 
@@ -240,8 +258,9 @@ public class CalculationService {
 				throw new CustomException("no calculations found for given criteria",
 						"no calculations found for given criteria");
 			}
+
 			BigDecimal edcCharges = calculations.get(0).getTradeTypeBillingIds().getExternalDevelopmentCharges();
-			BigDecimal constant=new BigDecimal(0.25);
+			BigDecimal constant = new BigDecimal(0.25);
 			BigDecimal bankGuaranteeForEdc = constant.multiply(edcCharges);
 			Object mdmsData = fetchMasterDataForBankGuaranteeAmountCalculations(bankGuaranteeCalculationCriteria);
 

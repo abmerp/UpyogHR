@@ -34,5 +34,7 @@ public class CalculatorRequest {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;	
 	
+	@JsonProperty("far")
+	private String far;
 	
 }

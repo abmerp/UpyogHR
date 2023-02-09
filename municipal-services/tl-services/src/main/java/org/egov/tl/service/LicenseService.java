@@ -497,8 +497,6 @@ public class LicenseService {
 
 		if (!status.isEmpty() && status.equalsIgnoreCase("Faliure")) {
 
-			
-
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 
 			// --------------payment--------------//
@@ -570,7 +568,7 @@ public class LicenseService {
 			String email = userData.getUser().get(0).getEmailId();
 			Long userId = userData.getUser().get(0).getId();
 			String mobNo = userData.getUser().get(0).getMobileNumber();
-			String userName =userData.getUser().get(0).getUserName();
+			String userName = userData.getUser().get(0).getUserName();
 
 			List<Role> roles = new ArrayList<>();
 			int length = userData.getUser().get(0).getRoles().size();
@@ -617,10 +615,6 @@ public class LicenseService {
 					e.printStackTrace();
 				}
 
-				// LicenseServiceDao newServiceIn = em.find(LicenseServiceDao.class,
-				// applicationNumber);
-
-				// newServiceInfoData = newServiceIn.getNewServiceInfoData();
 
 				for (LicenseDetails newobj : newServiceInfoData) {
 
@@ -821,7 +815,7 @@ public class LicenseService {
 
 	public List<TradeLicense> generateLoiNumber(Map<String, Object> map, @Valid RequestInfoWrapper requestInfoWrapper,
 			String applicationNo) {
-		TradeLicense tradeLicense = new TradeLicense();
+		
 		String applicationNumber = applicationNo;
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 
@@ -830,12 +824,47 @@ public class LicenseService {
 				requestInfoWrapper.getRequestInfo());
 
 		tradeLicenses.get(0).getTenantId();
+		for (TradeLicense tradeLicense : tradeLicenses) {
 
-		TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
-		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-		tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
-		tradeLicenseDetail.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
+			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
+			});
 
+			List<LicenseDetails> newServiceInfoData = null;
+			try {
+				newServiceInfoData = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+			for (LicenseDetails newobj : newServiceInfoData) {
+
+				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
+					
+					LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
+							.mDMSCallPurposeCode(requestInfoWrapper.getRequestInfo(), tradeLicense.getTenantId(),newobj.getApplicantPurpose().getPurpose());
+
+					Map<String, List<String>> mdmsData;
+					mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
+
+					List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
+
+					int purposeId = 0;
+
+					for (Map<String, Object> mm : msp) {
+
+						purposeId = Integer.valueOf(String.valueOf(mm.get("purposeId")));
+						log.info("purposeId" + purposeId);
+
+					}
+				
+			
+				String email = newobj.getApplicantInfo().getEmail();
+				TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+				TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+				tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
+				tradeLicenseDetail.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
 		// ---------------------loi number start-------------------//
 		String dispatchNumber;
 		Map<String, Object> depAuthtoken = new HashMap<String, Object>();
@@ -876,16 +905,14 @@ public class LicenseService {
 
 		// --------------------bank gurantee calculator start-------------------------//
 		
-		JsonNode estimate = tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail();
+	
 
 		BankGuaranteeCalculationCriteria calculatorRequest = new BankGuaranteeCalculationCriteria();
 
 		calculatorRequest.setApplicationNumber(applicationNo);
-		calculatorRequest.setPotentialZone(
-				estimate.get(0).get("ApplicantPurpose").get("AppliedLandDetails").get(0).get("potential").textValue());
-		// calculatorRequest.setPotentialZone("HYP");
-		calculatorRequest.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
-		calculatorRequest.setTotalLandSize(new BigDecimal("1"));
+		calculatorRequest.setPotentialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+		calculatorRequest.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
+		calculatorRequest.setTotalLandSize(new BigDecimal(newobj.getApplicantPurpose().getTotalArea()));
 		calculatorRequest.setRequestInfo(requestInfoWrapper.getRequestInfo());
 		calculatorRequest.setTenantId(tradeLicenses.get(0).getTenantId());
 
@@ -899,11 +926,11 @@ public class LicenseService {
 			e.printStackTrace();
 		}
 		GuranteeCalculatorResponse guranteeCalculatorResponse = null;
-		ObjectReader reader = mapper.readerFor(new TypeReference<GuranteeCalculatorResponse>() {
+		ObjectReader readerValue = mapper.readerFor(new TypeReference<GuranteeCalculatorResponse>() {
 		});
 		try {
 
-			guranteeCalculatorResponse = reader.readValue(data);
+			guranteeCalculatorResponse = readerValue.readValue(data);
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -951,12 +978,9 @@ public class LicenseService {
 
 		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
-		calculator.setPotenialZone(
-				estimate.get(0).get("ApplicantPurpose").get("AppliedLandDetails").get(0).get("potential").textValue());
-		// calculator.setPotenialZone("HYP");
-		calculator.setPurposeCode(estimate.get(0).get("ApplicantPurpose").get("purpose").textValue());
-		calculator.setTotalLandSize("1");
-
+		calculatorRequest.setPotentialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+		calculatorRequest.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
+		calculatorRequest.setTotalLandSize(new BigDecimal(newobj.getApplicantPurpose().getTotalArea()));
 		Map<String, Object> calculatorMap = new HashMap<>();
 		calculatorMap.put("CalulationCriteria", calulationCriteria);
 		calculatorMap.put("CalculatorRequest", calculator);
@@ -1004,5 +1028,8 @@ public class LicenseService {
 
 		return response;
 	}
-
+		}
+			}
+		return tradeLicenses;
+		}
 }
