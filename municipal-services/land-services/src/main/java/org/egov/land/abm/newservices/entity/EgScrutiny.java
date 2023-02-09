@@ -51,7 +51,7 @@ public class EgScrutiny implements Serializable {
 	private String fieldIdL;
 
 	@Column(name="is_approved")
-	private Boolean isApproved;
+	private String isApproved;
 
 	private Integer userid;
 	
