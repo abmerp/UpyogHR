@@ -104,10 +104,11 @@ public class FeesCalculation implements Calculator {
 				calculatorGh
 						.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
 				calculatorGh.setPurposeCode("RGP");
+				calculatorGh.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
 				areaUnderGh = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getAreaUnderGH();
 				netPlannedArea = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getNetPlannedArea();
 				Double areaUnderGhL = new Double("0");
-				if (areaUnderGh != null) {
+				if (areaUnderGh!=null) {
 					areaUnderGhL = Double.valueOf(areaUnderGh);
 				
 					calculatorGh.setTotalLandSize(areaUnderGhL.toString());
@@ -124,10 +125,11 @@ public class FeesCalculation implements Calculator {
 				calculatorComm
 						.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
 				calculatorComm.setPurposeCode("CPRS");
+				calculatorComm.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
 				Double commercialL = new Double("0");
 				commercial = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getCommercial();
 
-				if (commercial != null) {
+				if (commercial!= null) {
 
 					commercialL = Double.valueOf(commercial);
 					
@@ -143,6 +145,7 @@ public class FeesCalculation implements Calculator {
 				calculator.setApplicationNumber(applicationNo);
 				calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
 				calculator.setPurposeCode(purpose);
+				calculator.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
 				Double totalSiteArea = Double
 						.valueOf(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalAreaScheme());
 				totalSiteArea = totalSiteArea - commercialL - areaUnderGhL;

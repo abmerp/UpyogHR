@@ -103,16 +103,16 @@ public class TradeLicenseDetail   {
 	private float currentVersion;
 
 	@JsonProperty("scrutinyFeeCharges")
-	private Double scrutinyFeeCharges;
+	private BigDecimal scrutinyFeeCharges;
 	
 	@JsonProperty("conversionCharges")
-	private Double conversionCharges;
+	private BigDecimal conversionCharges;
 	@JsonProperty("externalDevelopmentCharges")
-	private Double externalDevelopmentCharges;
+	private BigDecimal externalDevelopmentCharges;
 	@JsonProperty("stateInfrastructureDevelopmentCharges")
-	private Double stateInfrastructureDevelopmentCharges;
+	private BigDecimal stateInfrastructureDevelopmentCharges;
 	@JsonProperty("licenseFeeCharges")
-	private Double licenseFeeCharges;
+	private BigDecimal licenseFeeCharges;
 	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;

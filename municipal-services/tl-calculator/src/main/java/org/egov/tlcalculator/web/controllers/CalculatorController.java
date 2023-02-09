@@ -172,7 +172,7 @@ public class CalculatorController {
 	}
 	
 	
-	@PostMapping("/_testing")
+	@PostMapping("/_getPaymentEstimate")
 	public ResponseEntity<PaymentCalculationResponse> testing(@RequestBody @Valid RequestInfoWrapper requestInfoWrapper,@RequestParam String applicationNo){
 		
 //		FeesCalculation paymentCalculation = new FeesCalculation();

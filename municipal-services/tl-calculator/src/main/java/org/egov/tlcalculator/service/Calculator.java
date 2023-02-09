@@ -7,9 +7,36 @@ public interface Calculator {
 	public BigDecimal AREA = new BigDecimal("4047");
 	public BigDecimal PERCENTAGE1 = new BigDecimal(0.96);
 	public BigDecimal PERCENTAGE2 = new BigDecimal(0.04);
+	public BigDecimal PERCENTAGE0995 = new BigDecimal(0.995);
+	public BigDecimal PERCENTAGE5 = new BigDecimal(0.005);
+	public BigDecimal PERCENTAGE25 = new BigDecimal(2.5);
+	public BigDecimal PERCENTAGE125 = new BigDecimal(1.25);
+	public BigDecimal PERCENTAGE175 = new BigDecimal(1.75);
+	public BigDecimal PERCENTAGE075 = new BigDecimal(0.75);
+	public BigDecimal RATE2 = new BigDecimal(2);
+	public BigDecimal RATE5 = new BigDecimal(5);
+	public BigDecimal RATE7 = new BigDecimal(7);
+	public BigDecimal RATE100000 = new BigDecimal(100000);
+	public BigDecimal RATE10000 = new BigDecimal(10000);
 	public BigDecimal RATE = new BigDecimal(1250000);
+	public BigDecimal RATE95 = new BigDecimal(9500000);
+	public BigDecimal RATE950 = new BigDecimal(950000);
+	public BigDecimal RATE250 = new BigDecimal(2500000);
+	public BigDecimal RATE625 = new BigDecimal(625000);
+	public BigDecimal RATE125 = new BigDecimal(125000);
+	public BigDecimal RATE270 = new BigDecimal(27000000);
+	public BigDecimal RATE210 = new BigDecimal(21000000);
+	public BigDecimal RATE19 = new BigDecimal(1900000);
 	public BigDecimal RATE1 = new BigDecimal(34000000);
-	public BigDecimal PART1 =new BigDecimal( 0.8);
+	public BigDecimal RATE10 = new BigDecimal(10);
+	public BigDecimal RATE40 = new BigDecimal(4000000);
+	public BigDecimal RATE25 = new BigDecimal(250000);
+	public BigDecimal RATE0 = new BigDecimal(0);
+	public BigDecimal RATE62500 = new BigDecimal(62500);
+	public BigDecimal RATE12500 = new BigDecimal(12500);
+	
+	
+	public BigDecimal PART1 = new BigDecimal(0.8);
 	public BigDecimal PART2 = new BigDecimal(0.15);
 	public BigDecimal PART3 = new BigDecimal(0.05);
 
