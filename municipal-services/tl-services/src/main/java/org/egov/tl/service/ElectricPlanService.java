@@ -190,7 +190,7 @@ public class ElectricPlanService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing, shap_file_template, tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format , additionaldetails \r\n"
+		String query = "SELECT id, auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing, shap_file_template, tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format , additionaldetails , devName , developmentPlan , purpose , totalArea \r\n"
 				+ "FROM public.eg_electric_plan" + " WHERE business_service = 'ELECTRICAL_PLAN' ";
 
 		builder = new StringBuilder(query);

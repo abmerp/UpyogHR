@@ -58,6 +58,11 @@ public class EPRowMapper implements ResultSetExtractor<List<ElectricPlanRequest>
 			ElectricPlanRequest.setTenantID(rs.getString("tenantid"));
 			ElectricPlanRequest.setApplicationNumber(rs.getString("application_number"));
 			
+			ElectricPlanRequest.setDevName(rs.getString("devname"));
+			ElectricPlanRequest.setDevelopmentPlan(rs.getString("developmentPlan"));
+			ElectricPlanRequest.setPurpose(rs.getString("purpose"));
+			ElectricPlanRequest.setTotalArea(rs.getString("totalArea"));
+			
 			
 			Object additionalDetails = new Gson().fromJson(rs.getString("additionaldetails").equals("{}")
 					|| rs.getString("additionaldetails").equals("null")  ? null

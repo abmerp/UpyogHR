@@ -927,7 +927,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ?);
+       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, devName , developmentPlan ,purpose , totalArea , business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ? ,?, ?, ? , ?);
          basePath: ServicePlanRequest.*
          jsonMaps:
 
@@ -954,6 +954,14 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.undertaking
 
           - jsonPath: $.ServicePlanRequest.*.action
+          
+          - jsonPath: $.ServicePlanRequest.*.devName
+
+          - jsonPath: $.ServicePlanRequest.*.developmentPlan
+
+          - jsonPath: $.ServicePlanRequest.*.purpose
+
+          - jsonPath: $.ServicePlanRequest.*.totalArea
 
           - jsonPath: $.ServicePlanRequest.*.businessService
 
@@ -989,7 +997,7 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
 
-       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=? , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? WHERE application_number=?;
+       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=?,  devName=? , developmentPlan=? , purpose=? , totalArea=?  , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? WHERE application_number=?;
  
          basePath: ServicePlanRequest.*
          jsonMaps:
@@ -1015,6 +1023,14 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.status
 
           - jsonPath: $.ServicePlanRequest.*.action
+          
+          - jsonPath: $.ServicePlanRequest.*.devName
+
+          - jsonPath: $.ServicePlanRequest.*.developmentPlan
+
+          - jsonPath: $.ServicePlanRequest.*.purpose
+
+          - jsonPath: $.ServicePlanRequest.*.totalArea
 
           - jsonPath: $.ServicePlanRequest.*.businessService
 
@@ -1125,7 +1141,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_electric_plan( id , auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action, status, comment, pdf_format , additionaldetails)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ?);
+       - query: INSERT INTO public.eg_electric_plan( id , auto_cad, elecric_distribution, electrical_capacity, electrical_infra, environmental_clearance, load_sancation, switching_station, verified_plan, loi_number, self_centred_drawing,  tenantid, created_by, created_time, last_modified_by, last_modified_time, application_number, business_service, action ,  devName , developmentPlan , purpose , totalArea , status, comment, pdf_format , additionaldetails)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? , ? , ?, ?, ? , ?);
 
          basePath: ElectricPlanRequest.*
          jsonMaps:
@@ -1168,6 +1184,14 @@ serviceMaps:
           
           - jsonPath: $.ElectricPlanRequest.*.action
           
+          - jsonPath: $.ServicePlanRequest.*.devName
+
+          - jsonPath: $.ServicePlanRequest.*.developmentPlan
+
+          - jsonPath: $.ServicePlanRequest.*.purpose
+
+          - jsonPath: $.ServicePlanRequest.*.totalArea
+          
           - jsonPath: $.ElectricPlanRequest.*.status
           
           - jsonPath: $.ElectricPlanRequest.*.comment
@@ -1192,7 +1216,7 @@ serviceMaps:
           - jsonPath: $.ElectricPlanRequest.*.applicationNumber
 
 
-       - query: UPDATE public.eg_electric_plan SET id=? , auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?,  last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?, status=?, comment=?, pdf_format=?  , additionaldetails=? WHERE application_number=?;
+       - query: UPDATE public.eg_electric_plan SET id=? , auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?,  last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?,  devName=? , developmentPlan=? , purpose=? , totalArea=? , status=?, comment=?, pdf_format=?  , additionaldetails=? WHERE application_number=?;
  
          basePath: ElectricPlanRequest.*
          jsonMaps:
@@ -1230,6 +1254,14 @@ serviceMaps:
           - jsonPath: $.ElectricPlanRequest.*.businessService
           
           - jsonPath: $.ElectricPlanRequest.*.action
+          
+          - jsonPath: $.ServicePlanRequest.*.devName
+
+          - jsonPath: $.ServicePlanRequest.*.developmentPlan
+
+          - jsonPath: $.ServicePlanRequest.*.purpose
+
+          - jsonPath: $.ServicePlanRequest.*.totalArea
           
           - jsonPath: $.ElectricPlanRequest.*.status
           
