@@ -71,7 +71,6 @@ public class AppliedLandDetails {
 	@JsonProperty("landOwnerRegistry")
 	private String landOwnerRegistry;
 
-
 	@JsonProperty("collaboration")
 	private String collaboration;
 
@@ -110,9 +109,13 @@ public class AppliedLandDetails {
 	
 	@JsonProperty("editKhewats")
 	private String editKhewats;
+	
 	@JsonProperty("editRectangleNo")
 	private String editRectangleNo;
 	
 	@JsonProperty("typeLand")
 	private String typeLand;
+	
+	@JsonProperty("rectangleNo")
+	private String rectangleNo;
 }
