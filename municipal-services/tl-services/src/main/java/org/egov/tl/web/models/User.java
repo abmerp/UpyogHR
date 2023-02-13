@@ -105,9 +105,8 @@ public class User {
 	@JsonProperty("dob")
 	private Date dob;
 
-	@JsonProperty("pwdExpiryDate")
-	@JsonFormat(pattern = "EEE, dd MMM yyyy HH:mm:ss zzz")
-	private String pwdExpiryDate;
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private Date pwdExpiryDate;
 
 	@Size(max = 16)
 	@JsonProperty("locale")

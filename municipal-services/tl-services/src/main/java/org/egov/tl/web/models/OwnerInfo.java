@@ -86,7 +86,7 @@ public class OwnerInfo extends User  {
                          String gender, String mobileNumber, String emailId, String altContactNumber,
                          String pan, String aadhaarNumber, String permanentAddress, String permanentCity,
                          String permanentPincode, String correspondenceCity, String correspondencePincode,
-                         String correspondenceAddress, Boolean active, Date dob, String pwdExpiryDate,
+                         String correspondenceAddress, Boolean active, Date dob, Date pwdExpiryDate,
                          String locale, String type, String signature, Boolean accountLocked,
                          List<Role> roles, String fatherOrHusbandName, String bloodGroup,
                          String identificationMark, String photo, Long createdBy, String createdDate,
