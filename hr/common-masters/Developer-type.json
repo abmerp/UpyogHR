@@ -12,80 +12,31 @@
   {
     "categoryiId": 2,
     "code": "Individual",
-
-
     "isActive": 1,
     "Type": "BPA_INDIVIDUAL"
   },
-  {
-    "categoryiId": 3,
-    "code": "Society",
 
-
-    "isActive": 1,
-    "Type": "BPA_SOCIETY"
-  },
-  {
-    "categoryiId": 4,
-    "code": "Trust",
-
-
-    "isActive": 1,
-    "Type": "BPA_TRUST"
-  },
-  {
-    "categoryiId": 5,
-    "code": "Others",
-
-
-    "isActive": 1,
-    "Type": "BPA_OTHERS"
-  },
-  {
-    "categoryiId": 6,
-    "code": "Institution",
-
-
-    "isActive": 1,
-    "Type": "BPA_INSTITUTION"
-  },
-  {
-    "categoryiId": 7,
-    "code": "Firm",
-
-
-    "isActive": 1,
-    "Type": "BPA_FIRM"
-  },
   {
     "categoryiId": 8,
     "code": "Limited Liability Partnership",
-
-
     "isActive": 1,
     "Type": "BPA_LIMITED_LIABILITY_PATRTNERSHIP"
   },
   {
     "categoryiId": 9,
     "code": "Hindu Undivided Family",
-
-
     "isActive": 1,
     "Type": "BPA_HINDU_UNDIVIDED_FAMILY"
   },
   {
     "categoryiId": 10,
     "code": "Partnership Firm",
-
-
     "isActive": 1,
     "Type": "BPA_PATRTNERSHIP_FIRM"
   },
   {
     "categoryiId": 11,
     "code": "Proprietorship Firm",
-
-
     "isActive": 1,
     "Type": "BPA_PROPRIETORSHIP_FIRM"
   }
