@@ -495,90 +495,66 @@ public class LicenseService {
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
 
+		// --------------payment-----------//
+		Map<String, Object> request = new HashMap<>();
+		request.put("txnId", transactionId);
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
+		Object paymentSearch = null;
+
+		String uri = pgHost + pgSearchPath;
+		paymentSearch = rest.postForObject(uri, entity, Map.class);
+		log.info("search payment data" + paymentSearch);
+
+		String data = null;
+		try {
+			data = mapper.writeValueAsString(paymentSearch);
+		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		ResponseTransaction transaction = null;
+		ObjectReader objectReader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
+		});
+		try {
+			transaction = objectReader.readValue(data);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		log.info("transaction" + transaction);
+		String txnId = transaction.getTransaction().get(0).getTxnId();
+		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode();
+		String uuid = transaction.getTransaction().get(0).getUser().getUuid();
+		String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
+		String userName = transaction.getTransaction().get(0).getUser().getUserName();
+
+		String paymentUrl;
+		String returnPaymentUrl;
+		MultiValueMap<String, String> params1 = new LinkedMultiValueMap<>();
+
+		params1.put("eg_pg_txnid", Collections.singletonList(txnId));
+		
+		
+		// ------------failure----------------//
 		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
-			Map<String, Object> request = new HashMap<>();
-			request.put("txnId", transactionId);
-			HttpHeaders httpHeaders = new HttpHeaders();
-			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-			HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
-			Object paymentSearch = null;
 
-			String uri = pgHost + pgSearchPath;
-			paymentSearch = rest.postForObject(uri, entity, Map.class);
-			log.info("search payment data" + paymentSearch);
-
-			String data = null;
-			try {
-				data = mapper.writeValueAsString(paymentSearch);
-			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			ResponseTransaction transaction = null;
-			ObjectReader objectReader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
-			});
-			try {
-				transaction = objectReader.readValue(data);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-
-			log.info("transaction" + transaction);
-			String txnId = transaction.getTransaction().get(0).getTxnId();
-			String applicationNumber = transaction.getTransaction().get(0).getConsumerCode();
-			MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-
-			params.put("eg_pg_txnid", Collections.singletonList(txnId));
-
-			String paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
-			String returnPaymentUrl = paymentUrl + "?" + params;
+			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
+			returnPaymentUrl = paymentUrl + "?" + params1;
 			log.info("returnPaymentUrl" + returnPaymentUrl);
 			httpHeaders.setLocation(
 					UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
-
+			
+			
+			// --------------success------------------------//
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
-
-			// --------------payment--------------//
-			Map<String, Object> request = new HashMap<>();
-			request.put("txnId", transactionId);
-			HttpHeaders httpHeaders = new HttpHeaders();
-			httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-			HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, httpHeaders);
-			Object paymentSearch = null;
-
-			String uri = pgHost + pgSearchPath;
-			paymentSearch = rest.postForObject(uri, entity, Map.class);
-			log.info("search payment data" + paymentSearch);
-
-			String data = null;
-			try {
-				data = mapper.writeValueAsString(paymentSearch);
-			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			ResponseTransaction transaction = null;
-			ObjectReader objectReader = mapper.readerFor(new TypeReference<ResponseTransaction>() {
-			});
-			try {
-				transaction = objectReader.readValue(data);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-
-			log.info("transaction" + transaction);
-			String txnId = transaction.getTransaction().get(0).getTxnId();
-			String applicationNumber = transaction.getTransaction().get(0).getConsumerCode();
-			String uuid = transaction.getTransaction().get(0).getUser().getUuid();
-			String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
-			String mobileNumber = transaction.getTransaction().get(0).getUser().getMobileNumber();
-
+           //------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 
-			userSearchCriteria.setMobileNumber(mobileNumber);
+			userSearchCriteria.setUserName(userName);
 			userSearchCriteria.setTenantId(tennatId);
 
 			StringBuilder url = new StringBuilder(userHost);
@@ -609,7 +585,7 @@ public class LicenseService {
 			String email = userData.getUser().get(0).getEmailId();
 			Long userId = userData.getUser().get(0).getId();
 			String mobNo = userData.getUser().get(0).getMobileNumber();
-			String userName = userData.getUser().get(0).getUserName();
+			
 
 			List<Role> roles = new ArrayList<>();
 			int length = userData.getUser().get(0).getRoles().size();
@@ -633,7 +609,7 @@ public class LicenseService {
 			user.setRoles(roles);
 			info.setUserInfo(user);
 
-			// ------------------payment end----------------//
+			// ------------------user search end----------------//
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
@@ -661,7 +637,7 @@ public class LicenseService {
 					if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
 						/****************
-						 * Dairy Number End Here
+						 * Dairy Number
 						 ***********/
 						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 								.mDMSCallPurposeCode(info, tradeLicense.getTenantId(),
@@ -786,13 +762,10 @@ public class LicenseService {
 						tradeLicenseService.update(tradeLicenseRequests, "TL");
 
 						// -----------------payment----------------------//
-						MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 
-						params.put("eg_pg_txnid", Collections.singletonList(txnId));
-
-						String paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
+						paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
 								+ applicationNumber + "/" + tradeLicense.getTenantId();
-						String returnPaymentUrl = paymentUrl + "?" + params;
+						returnPaymentUrl = paymentUrl + "?" + params1;
 						log.info("returnPaymentUrl" + returnPaymentUrl);
 						httpHeaders.setLocation(
 								UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
@@ -818,14 +791,14 @@ public class LicenseService {
 
 		MultiValueMap<String, String> params = UriComponentsBuilder.fromUriString(returnURL).build().getQueryParams();
 
-		HttpHeaders httpHeaders = new HttpHeaders();
+		HttpHeaders httpHeaders1 = new HttpHeaders();
 
 		StringBuilder redirectURL = new StringBuilder();
 		redirectURL.append(returnURL);
 
-		httpHeaders.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString()).queryParams(requestParam)
+		httpHeaders1.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString()).queryParams(requestParam)
 				.build().encode().toUri());
-		return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
+		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 
 	}
 
