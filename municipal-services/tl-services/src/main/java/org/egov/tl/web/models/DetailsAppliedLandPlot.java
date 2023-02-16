@@ -14,6 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DetailsAppliedLandPlot {
+	
+
+	private PurposeDetails purposeDetails;
 	private String totalAreaScheme;
 	private String areaUnderSectorRoad;
 	private String balanceAreaAfterDeduction;

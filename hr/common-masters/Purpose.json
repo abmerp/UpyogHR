@@ -19,7 +19,7 @@
       "externalDevelopmentCharges": "1.75",
       "conversionCharges": "1.75",
       "stateInfrastructureDevelopmentCharges": "1.75"
-    },
+     },
     {
       "purposeId": 83,
       "name": "Affordable residential plotted under DDJAY policy",
@@ -334,7 +334,14 @@
       
       "stateInfrastructureDevelopmentCharges": 1.50,
       "IDWPerAcreInLakhsForPlottedComponent":0,
-      "IDWPerAcreInLakhsForCommercialComponent":50
+      "IDWPerAcreInLakhsForCommercialComponent":50,
+      "purposes":[{
+        
+          "purposeCode":"CPRS",
+          "maximunPermissible":"5"
+        }
+         
+      ]
     },
 	{
       "purposeId": 1,
@@ -354,7 +361,19 @@
       "externalDevelopmentCharges": 1.75,       
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
-      "IDWPerAcreInLakhsForCommercialComponent":50
+      "IDWPerAcreInLakhsForCommercialComponent":50,
+      "purposes":[
+        {
+          "purposeCode":"CPRS",
+          "maximunPermissible":"5"
+        },
+          {
+            "purposeCode":"RGP",
+            "maximunPermissible":"10"
+          }
+         
+      ]
+    
     },
      {
       "purposeId": 113,

@@ -51,11 +51,14 @@ import org.hibernate.internal.build.AllowSysOut;
 import org.egov.tl.web.models.BankGuaranteeCalculationCriteria;
 import org.egov.tl.web.models.CalculationRes;
 import org.egov.tl.web.models.CalculatorRequest;
+import org.egov.tl.web.models.DetailsAppliedLandPlot;
+import org.egov.tl.web.models.DetailsofAppliedLand;
 import org.egov.tl.web.models.GenerateLoiNumberResponse;
 import org.egov.tl.web.models.GuranteeCalculatorResponse;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.egov.tl.web.models.PurposeDetails;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.ResponseTransaction;
 import org.egov.tl.web.models.TradeLicense;
@@ -149,6 +152,7 @@ public class LicenseService {
 		LicenseServiceDao newServiceIn = new LicenseServiceDao();
 		List<LicenseDetails> newServiceInfoDatas = null;
 		User user = newServiceInfo.getRequestInfo().getUserInfo();
+
 		// if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		if (!StringUtils.isEmpty(newServiceInfo.getApplicationNumber())) {
@@ -176,10 +180,23 @@ public class LicenseService {
 						switch (newServiceInfo.getPageName()) {
 						case "ApplicantInfo": {
 							newobj.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
+
 							break;
 						}
 						case "ApplicantPurpose": {
 							newobj.setApplicantPurpose(newServiceInfo.getLicenseDetails().getApplicantPurpose());
+							List<PurposeDetails> purposeDetailList = new ArrayList<PurposeDetails>();
+							PurposeDetails purposeDetail = new PurposeDetails();
+							purposeDetail.setPurposeDetail(purposeDetailList);
+							purposeDetail = recursionMethod(newServiceInfo.getRequestInfo(),
+									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(),
+									newobj.getApplicantPurpose().getPurpose(),
+									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail);
+							 DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
+							 DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
+							 detailsAppliedLandPlot.setPurposeDetails(purposeDetail);	
+							 detailsofAppliedLand.setDetailsAppliedLandPlot(detailsAppliedLandPlot);
+							 newobj.setDetailsofAppliedLand(detailsofAppliedLand);
 							break;
 						}
 						case "LandSchedule": {
@@ -536,8 +553,7 @@ public class LicenseService {
 		MultiValueMap<String, String> params1 = new LinkedMultiValueMap<>();
 
 		params1.put("eg_pg_txnid", Collections.singletonList(txnId));
-		
-		
+
 		// ------------failure----------------//
 		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
 
@@ -547,11 +563,10 @@ public class LicenseService {
 			httpHeaders.setLocation(
 					UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
-			
-			
+
 			// --------------success------------------------//
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
-           //------------user search---------------//
+			// ------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 
 			userSearchCriteria.setUserName(userName);
@@ -585,7 +600,6 @@ public class LicenseService {
 			String email = userData.getUser().get(0).getEmailId();
 			Long userId = userData.getUser().get(0).getId();
 			String mobNo = userData.getUser().get(0).getMobileNumber();
-			
 
 			List<Role> roles = new ArrayList<>();
 			int length = userData.getUser().get(0).getRoles().size();
@@ -882,7 +896,7 @@ public class LicenseService {
 					String dispatchNumber;
 					Map<String, Object> depAuthtoken = new HashMap<String, Object>();
 					depAuthtoken.put("UserId", "169");
-					depAuthtoken.put("EmailId", "dtp.panchkula.tcp@gmail.com");
+					depAuthtoken.put("EmailId", email);
 
 					Map<String, Object> mapDispatchNumber = new HashMap<String, Object>();
 					mapDispatchNumber.put("DispatchID", 0);
@@ -1046,5 +1060,47 @@ public class LicenseService {
 			}
 		}
 		return tradeLicenses;
+	}
+
+	public PurposeDetails recursionMethod(RequestInfo info, String tenantId, String purposeCode, BigDecimal totalArea,
+			PurposeDetails purposeDetailm) {
+
+		LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId1 = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
+				.mDMSCallPurposeCode(info, tenantId, purposeCode);
+
+		Map<String, List<String>> mdmsData1 = null;
+		mdmsData1 = valid.getAttributeValues(mDMSCallPurposeId1);
+
+		List<Map<String, Object>> msp = (List) mdmsData1.get("Purpose");
+		for (Map<String, Object> mm : msp) {
+			String code = String.valueOf(mm.get("purposeCode"));
+			String nameRes = String.valueOf(mm.get("name"));
+			log.info("code:\t" + code);
+
+			purposeDetailm.setCode(code);
+			purposeDetailm.setName(nameRes);
+
+			List<Map<String, Object>> purpose = (List<Map<String, Object>>) (mm.get("purposes"));
+			if (purpose != null)
+				for (Map<String, Object> mmm : purpose) {
+					PurposeDetails purposeDetail = new PurposeDetails();
+					List<PurposeDetails> purposeDetailList = new ArrayList<PurposeDetails>();
+					purposeDetail.setPurposeDetail(purposeDetailList);
+					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
+					String maximunPermissible = String.valueOf(mmm.get("maximunPermissible"));
+					log.info("purpose" + purposeCodes);
+					if (maximunPermissible != null) {
+						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
+						log.info("total area" + purposeDetail.getArea());
+						recursionMethod(info, tenantId, purposeCodes, new BigDecimal(purposeDetail.getArea()),
+								purposeDetail);
+					} else {
+						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail);
+					}
+					purposeDetailm.getPurposeDetail().add(purposeDetail);
+				}
+
+		}
+		return purposeDetailm;
 	}
 }
