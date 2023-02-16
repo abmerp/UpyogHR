@@ -17,8 +17,8 @@ public class DetailsofAppliedLand {
 	@JsonProperty("DetailsAppliedLandPlot")
 	private DetailsAppliedLandPlot detailsAppliedLandPlot;
 	
-//	@JsonProperty("DetailsAppliedLandDdjay")
-//	private DetailsAppliedLandDdjay detailsAppliedLandDdjay;
+	@JsonProperty("DetailsAppliedLandDdjay")
+	private DetailsAppliedLandDdjay detailsAppliedLandDdjay;
 	
 	@JsonProperty("DetailsAppliedLandIndustrial")
 	private DetailsAppliedLandIndustrial detailsAppliedLandIndustrial;
