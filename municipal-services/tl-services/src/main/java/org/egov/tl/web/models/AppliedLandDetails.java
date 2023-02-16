@@ -118,4 +118,9 @@ public class AppliedLandDetails {
 	
 	@JsonProperty("rectangleNo")
 	private String rectangleNo;
+	
+	@JsonProperty("nonConsolidationType")
+	private String nonConsolidationType;
+	
+	
 }
