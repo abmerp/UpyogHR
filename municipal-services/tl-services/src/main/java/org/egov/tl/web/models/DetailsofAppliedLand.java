@@ -40,7 +40,8 @@ public class DetailsofAppliedLand {
 	
 	@JsonProperty("DetailsAppliedLayoutPlan")
 	private DetailsAppliedLayoutPlan DetailsAppliedLayoutPlan;
-
 	
+	@JsonProperty("PurposeDetails")
+	private PurposeDetails purposeDetails;
 	
 }
