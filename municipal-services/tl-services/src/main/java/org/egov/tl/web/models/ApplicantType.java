@@ -12,4 +12,6 @@ public class ApplicantType {
 	private String licenceType;
 	@JsonProperty("developerType")
 	private String developerType;
+	@JsonProperty("licenceTypeSelected")
+	private String licenceTypeSelected;
 }
