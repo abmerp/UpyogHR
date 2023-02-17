@@ -350,11 +350,11 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":""
+          "maximunPermissible":"0.7"
         },
           {
             "purposeCode":"RPL",
-            "maximunPermissible":""
+            "maximunPermissible":"0.3"
           }
          
       ]
