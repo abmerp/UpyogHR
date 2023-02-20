@@ -27,4 +27,6 @@ public class Documents {
 	private String fullyConvertibleDebenture;
 	private String permissionLetterDoc;
 	private String hrDetailAnyDoc;
+	private String networthPartners;
+	private String networthFirm;
 }
