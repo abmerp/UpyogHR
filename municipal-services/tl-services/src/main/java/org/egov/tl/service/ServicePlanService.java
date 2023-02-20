@@ -293,7 +293,7 @@ public class ServicePlanService {
 
 		String currentStatus = searchServicePlan.get(0).getStatus();
 		
-		servicePlanRequest.setAssignee(Arrays.asList(assignee("CTP_HR" , servicePlanRequest.getTenantID() , true ,requestInfo)));
+		servicePlanRequest.setAssignee(Arrays.asList(assignee("STP_HQ" , servicePlanRequest.getTenantID() , true ,requestInfo)));
 		
 		servicePlanRequest.setAction(CITIZEN_UPDATE_ACTION);
 
