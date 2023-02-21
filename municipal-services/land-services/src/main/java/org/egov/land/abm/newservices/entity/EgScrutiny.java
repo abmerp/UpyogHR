@@ -72,5 +72,7 @@ public class EgScrutiny implements Serializable {
 	private String bussinessServiceName;
 	
 	private String designation;
+	private String employeeName;
+	
 
 }
