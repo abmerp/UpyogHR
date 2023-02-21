@@ -71,5 +71,6 @@ public class EgScrutiny implements Serializable {
 	@Column(name="bussiness_service_name")
 	private String bussinessServiceName;
 	
+	private String designation;
 
 }
