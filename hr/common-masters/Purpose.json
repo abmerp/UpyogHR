@@ -218,7 +218,11 @@
           "maximunPermissible":""
         },
           {
-            "purposeCode":"RPL",
+            "purposeCode":"DDJAY_APHP",
+            "maximunPermissible":""
+          },
+          {
+            "purposeCode":"AGH",
             "maximunPermissible":""
           }
            

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.egov.tlcalculator.service.BPACalculationService;
+import org.egov.tlcalculator.service.CalculationPurpose;
 import org.egov.tlcalculator.service.CalculationService;
 import org.egov.tlcalculator.service.DemandService;
 import org.egov.tlcalculator.service.FeesCalculation;
@@ -51,6 +52,8 @@ public class CalculatorController {
 	
 	private ResponseInfoFactory responseInfoFactory;
 	
+	@Autowired
+	CalculationPurpose calculationPurpose;
 
 
 	@Autowired
@@ -182,5 +185,13 @@ public class CalculatorController {
 		return new ResponseEntity<>(response, HttpStatus.OK);	
 	}
 
-
+	@PostMapping("/_getPaymentPurpose")
+	public ResponseEntity<PaymentCalculationResponse> testing1(@RequestBody @Valid RequestInfoWrapper requestInfoWrapper,@RequestParam String applicationNo){
+		
+//		FeesCalculation paymentCalculation = new FeesCalculation();
+		PaymentCalculationResponse response = new PaymentCalculationResponse();
+		response.setFeesTypeCalculationDto(calculationPurpose.paymentPurpose(requestInfoWrapper.getRequestInfo(), applicationNo));
+		
+		return new ResponseEntity<>(response, HttpStatus.OK);	
+	}
 }

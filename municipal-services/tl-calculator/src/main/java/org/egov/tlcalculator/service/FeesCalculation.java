@@ -1,6 +1,7 @@
 package org.egov.tlcalculator.service;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -17,6 +18,7 @@ import org.egov.tlcalculator.utils.LandUtil;
 import org.egov.tlcalculator.validator.LandMDMSValidator;
 import org.egov.tlcalculator.web.models.CalculatorRequest;
 import org.egov.tlcalculator.web.models.LicenseDetails;
+import org.egov.tlcalculator.web.models.PurposeDetails;
 import org.egov.tlcalculator.web.models.tradelicense.TradeLicense;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -62,6 +64,10 @@ public class FeesCalculation implements Calculator {
 			e.printStackTrace();
 		}
 
+		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
+		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
+		feesTypeCalculationDto.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
+
 		for (LicenseDetails newobj : newServiceInfoData) {
 
 			if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
@@ -83,72 +89,49 @@ public class FeesCalculation implements Calculator {
 					log.info("purposeId" + purposeId);
 
 				}
-
-				String purpose = newobj.getApplicantPurpose().getPurpose();
-				String areaUnderGh = "";
-				String commercial = "";
-				String netPlannedArea = "";
-
-				PaymentCalculationResponse paymentCalculationResponse = new PaymentCalculationResponse();
-				CalculatorRequest calculator = new CalculatorRequest();
-
-				// ---------------group housing--------------------//
-				CalculatorRequest calculatorGh = new CalculatorRequest();
-				calculatorGh.setApplicationNumber(applicationNo);
-				calculatorGh
-						.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
-				calculatorGh.setPurposeCode("RGP");
-				calculatorGh.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
-				areaUnderGh = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getAreaUnderGH();
-				netPlannedArea = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getNetPlannedArea();
-				Double areaUnderGhL = new Double("0");
-				if (areaUnderGh != null) {
-					areaUnderGhL = Double.valueOf(areaUnderGh);
-
-					calculatorGh.setTotalLandSize(areaUnderGhL.toString());
-
-					FeesTypeCalculationDto resultGH = calculatorImpl.feesTypeCalculation(info, calculatorGh);
-					log.info("result" + resultGH);
-					results.add(resultGH);
-
-				}
-				// --------------------commercial-----------------------//
-				CalculatorRequest calculatorComm = new CalculatorRequest();
-				calculatorComm.setApplicationNumber(applicationNo);
-				calculatorComm
-						.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
-				calculatorComm.setPurposeCode("CPRS");
-				calculatorComm.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
-				Double commercialL = new Double("0");
-				commercial = newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getCommercial();
-
-				if (commercial != null) {
-
-					commercialL = Double.valueOf(commercial);
-
-					calculatorComm.setTotalLandSize(commercialL.toString());
-
-					FeesTypeCalculationDto resultComm = calculatorImpl.feesTypeCalculation(info, calculatorComm);
-					log.info("resultComm" + resultComm);
-					results.add(resultComm);
-
-				}
-				// ----------different purposes----------//
-				calculator.setApplicationNumber(applicationNo);
-				calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
-				calculator.setPurposeCode(purpose);
-				calculator.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
-				Double totalSchemeArea = Double
-						.valueOf(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalAreaScheme());
-				totalSchemeArea = totalSchemeArea - commercialL - areaUnderGhL;
-				calculator.setTotalLandSize(totalSchemeArea.toString());
-				FeesTypeCalculationDto resultresid = calculatorImpl.feesTypeCalculation(info, calculator);
-				log.info("resultComm" + resultresid);
-				results.add(resultresid);
-
 			}
+			// String purpose = newobj.getApplicantPurpose().getPurpose();
+			String zone = newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential();
+			String totalArea = newobj.getApplicantPurpose().getTotalArea();
+			PurposeDetails purposeDetail = newobj.getDetailsofAppliedLand().getPurposeDetails();
+			log.info("purposeDetail" + purposeDetail);
+
+			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail);
+			log.info("FeesTypeCalculationDto" + feesTypeCalculationDto);
+
+			results.add(feesTypeCalculationDto);
+
+
+		}
+		return results;
+	}
+
+	public FeesTypeCalculationDto recursionMethod(RequestInfo info, String applicationNo, String totalArea, String zone,
+			PurposeDetails purposeDetailm) {
+
+		CalculatorRequest calculator = new CalculatorRequest();
+		calculator.setApplicationNumber(applicationNo);
+		calculator.setPotenialZone(zone);
+		calculator.setPurposeCode(purposeDetailm.getCode());
+		calculator.setFar(purposeDetailm.getFar());
+		if (purposeDetailm.getArea() != null) {
+			calculator.setTotalLandSize(purposeDetailm.getArea());
+		} else {
+			calculator.setTotalLandSize(totalArea);
 		}
 
-		return results;
+		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(info, calculator);
+		FeesTypeCalculationDto feesTypeCalculation = new FeesTypeCalculationDto();
+		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
+		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
+		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
+			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
+			feesTypeCalculationDtoList.add(newResult);
+			result.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
+
+		}
+		log.info("result" + result);
+
+		return result;
 	}
 }
