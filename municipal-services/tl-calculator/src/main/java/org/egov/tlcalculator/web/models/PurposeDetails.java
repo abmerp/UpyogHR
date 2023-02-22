@@ -13,6 +13,7 @@ public class PurposeDetails {
 	private String code;
 	private String area;
 	private String far;
+	private String percentage;
 	private List<PurposeDetails> purposeDetail;
 
 }
