@@ -1074,6 +1074,7 @@ public class LicenseService {
 		for (Map<String, Object> mm : msp) {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
+			
 			log.info("code:\t" + code);
 
 			purposeDetailm.setCode(code);
@@ -1087,6 +1088,7 @@ public class LicenseService {
 					purposeDetail.setPurposeDetail(purposeDetailList);
 					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
 					String maximunPermissible = String.valueOf(mmm.get("maximunPermissible"));
+					purposeDetailm.setPercentage(maximunPermissible);
 					log.info("purpose" + purposeCodes);
 					if (maximunPermissible != null) {
 						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());

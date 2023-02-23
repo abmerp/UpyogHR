@@ -64,9 +64,10 @@ public class FeesCalculation implements Calculator {
 			e.printStackTrace();
 		}
 
-		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
+		// List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new
+		// ArrayList<FeesTypeCalculationDto>();
 		FeesTypeCalculationDto feesTypeCalculationDto = new FeesTypeCalculationDto();
-		feesTypeCalculationDto.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
+		feesTypeCalculationDto.setFeesTypeCalculationDto(results);
 
 		for (LicenseDetails newobj : newServiceInfoData) {
 
@@ -100,7 +101,6 @@ public class FeesCalculation implements Calculator {
 			log.info("FeesTypeCalculationDto" + feesTypeCalculationDto);
 
 			results.add(feesTypeCalculationDto);
-
 
 		}
 		return results;
