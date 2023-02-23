@@ -22,6 +22,9 @@
       "far":[
         {
           "value1":1.75
+        },
+        {
+          "value2":2.25
         }
       ],
       "purposes":[
@@ -465,6 +468,7 @@
          
       ]
     },
+    
 	{
       "purposeId": 1,
       "name": "Residential Plotted Colony",
@@ -484,6 +488,7 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
+    
       "far":[{
         "value1":"1.5"
       },{
@@ -492,7 +497,7 @@
     ],
       "purposes":[
         {
-          "purposeCode":"CPRS",
+          "purposeCode":"CGRPL",
           "maximunPermissible":"4"
         },
           {
@@ -644,6 +649,45 @@
       "stateInfrastructureDevelopmentCharges": 3.5,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50
+    },
+    {
+      "purposeId": 91,
+      "name": "Commercial group",
+      "purposeCode": "CGRPL",
+      "caseType_id": 1,
+      "description": "Plotted",
+      "isActive": 0,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 1,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges":1.75,
+      "licenseFeeCharges":1.75,
+      "conversionCharges": 1.75,      
+      "externalDevelopmentCharges": 1.75,       
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50,
+      "maximunPermissible":"4",
+      "far":[{
+        "value1":"1.5"
+      },{
+        "value2":"1.75" 
+      }
+    ],
+      "purposes":[
+        {
+          "purposeCode":"CPRS",
+          "maximunPermissible":"0"
+        },
+          {
+            "purposeCode":"CIRS",
+            "maximunPermissible":"0"
+          }
+         
+      ]
+    
     }
      
   ]

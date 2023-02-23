@@ -192,10 +192,10 @@ public class LicenseService {
 									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(),
 									newobj.getApplicantPurpose().getPurpose(),
 									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail);
-							 DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
-							 DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
-							 detailsofAppliedLand.setPurposeDetails(purposeDetail);	
-							 newobj.setDetailsofAppliedLand(detailsofAppliedLand);
+							DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
+							DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
+							detailsofAppliedLand.setPurposeDetails(purposeDetail);
+							newobj.setDetailsofAppliedLand(detailsofAppliedLand);
 							break;
 						}
 						case "LandSchedule": {
@@ -1074,7 +1074,7 @@ public class LicenseService {
 		for (Map<String, Object> mm : msp) {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
-			
+
 			log.info("code:\t" + code);
 
 			purposeDetailm.setCode(code);
@@ -1088,16 +1088,21 @@ public class LicenseService {
 					purposeDetail.setPurposeDetail(purposeDetailList);
 					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
 					String maximunPermissible = String.valueOf(mmm.get("maximunPermissible"));
-					purposeDetailm.setPercentage(maximunPermissible);
+
 					log.info("purpose" + purposeCodes);
+					log.info(maximunPermissible);
 					if (maximunPermissible != null) {
 						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
 						log.info("total area" + purposeDetail.getArea());
+						purposeDetail.setPercentage(maximunPermissible);
 						recursionMethod(info, tenantId, purposeCodes, new BigDecimal(purposeDetail.getArea()),
 								purposeDetail);
+
 					} else {
 						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail);
+
 					}
+
 					purposeDetailm.getPurposeDetail().add(purposeDetail);
 				}
 
