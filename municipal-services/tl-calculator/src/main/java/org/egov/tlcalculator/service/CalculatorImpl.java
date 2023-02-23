@@ -62,6 +62,7 @@ public class CalculatorImpl implements Calculator {
 		licenseFeeCharges = far;
 		conversionCharges = far;
 		externalDevelopmentCharges = far;
+		stateInfrastructureDevelopmentCharges = far;
 		for (Map<String, Object> mm : msp) {
 			purposeName = String.valueOf(mm.get("name"));
 			// scrutinyFeeCharges = new
@@ -72,8 +73,8 @@ public class CalculatorImpl implements Calculator {
 			// BigDecimal(String.valueOf(mm.get("conversionCharges")));
 			// licenseFeeCharges = new
 			// BigDecimal(String.valueOf(mm.get("licenseFeeCharges")));
-			stateInfrastructureDevelopmentCharges = new BigDecimal(
-					String.valueOf(mm.get("stateInfrastructureDevelopmentCharges")));
+//			stateInfrastructureDevelopmentCharges = new BigDecimal(
+//					String.valueOf(mm.get("stateInfrastructureDevelopmentCharges")));
 		}
 		feesTypeCalculationDto.setPurpose(purposeName);
 		switch (calculatorRequest.getPotenialZone()) {
@@ -84,13 +85,10 @@ public class CalculatorImpl implements Calculator {
 
 			case PURPOSE_RPL:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(new BigDecimal(10)));
-
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104);
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_158));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1.multiply(AREA)).multiply(new BigDecimal(500)).add(AREA2.multiply(AREA)
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1000))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE500));
 
 				break;
 			case PURPOSE_IPULP:
@@ -104,9 +102,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1260));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA1.multiply(AREA).multiply(new BigDecimal(250)).multiply(new BigDecimal(2.5f))
-								.add(AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges)
-										.multiply(new BigDecimal(150)).multiply(new BigDecimal(10))));
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_250));
 
 				break;
 			case PURPOSE_ITP:
@@ -116,9 +112,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1260));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA1.multiply(AREA).multiply(new BigDecimal(250)).multiply(new BigDecimal(2.5f))
-								.add(AREA2.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges)
-										.multiply(new BigDecimal(150)).multiply(new BigDecimal(10))));
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_250));
 				break;
 			case PURPOSE_IPA:
 
@@ -126,25 +120,18 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE167));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_100));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((PART1.multiply(AREA)
-						.multiply(new BigDecimal(250)).multiply(stateInfrastructureDevelopmentCharges)
-						.add(PART2.multiply(AREA).multiply(new BigDecimal(625)).multiply(new BigDecimal(1.75))
-								.add(PART3.multiply(AREA).multiply(new BigDecimal(1000))
-										.multiply(stateInfrastructureDevelopmentCharges)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE_250));
+
 				break;
 
 			case PURPOSE_RGP:
 				feesTypeCalculationDto
 						.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(PERCENTAGE0995).multiply(RATE40));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						new BigDecimal(0.995).multiply(new BigDecimal(312.289)).multiply(new BigDecimal(100000))
-								.add(AREA2.multiply(new BigDecimal(416.385)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_158));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995).multiply(AREA)
-						.multiply(new BigDecimal(625)).multiply(new BigDecimal(1.75))
-						.add(new BigDecimal(0.005).multiply(AREA).multiply(new BigDecimal(1000))
-								.multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_625));
 
 				break;
 
@@ -155,9 +142,7 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104);
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_158));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA1.multiply(new BigDecimal(500)).multiply(AREA).add(AREA2.multiply(AREA)
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1000))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE500));
 				break;
 
 			case PURPOSE_NILPC:
@@ -208,9 +193,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE250));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE01));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_158));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply(AREA).multiply(new BigDecimal(500)).add((AREA2.multiply(AREA)
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1000)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE500).multiply(RATE2));
 
 				break;
 
@@ -221,10 +204,8 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_158));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply(new BigDecimal(625))
-						.multiply(AREA).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))
-						.divide(new BigDecimal(7), 0).add(stateInfrastructureDevelopmentCharges.multiply(AREA2)
-								.multiply(AREA).multiply(new BigDecimal(1000))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_625).multiply(RATE5)).divide(RATE7));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -239,7 +220,7 @@ public class CalculatorImpl implements Calculator {
 						(new BigDecimal(calculatorRequest.getTotalLandSize()).multiply(new BigDecimal(486.13))
 								.multiply(new BigDecimal(100000)).multiply(externalDevelopmentCharges))
 								.divide(new BigDecimal(1.75), 0));
-				// feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_158));
+				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_158));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 						(new BigDecimal(1000).multiply(AREA).multiply(stateInfrastructureDevelopmentCharges)));
 
@@ -255,7 +236,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1260));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA.multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges)));
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
 
 				break;
 
@@ -266,7 +247,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1260));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA.multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges)));
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
 				break;
 			case PURPOSE_CICS:
 
@@ -275,8 +256,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE1));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1260));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
+
 				break;
 			case PURPOSE_CIRS:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
@@ -284,8 +266,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE1));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1260));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(1000).multiply(stateInfrastructureDevelopmentCharges))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
 				break;
 			case PURPOSE_RHP:
 				break;
@@ -310,9 +292,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA1.multiply((AREA)).multiply(new BigDecimal(375)).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE375));
 
 				break;
 			case PURPOSE_ITP:
@@ -321,9 +301,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA1.multiply(AREA)
-						.multiply(new BigDecimal(190)).multiply(new BigDecimal(2.5)).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
+
 				break;
 			case PURPOSE_IPULP:
 				break;
@@ -334,9 +314,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply((new BigDecimal(190)).multiply(new BigDecimal(2.5))).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 
 				break;
 			case PURPOSE_IPA:
@@ -345,26 +324,17 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE167));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((PART1.multiply((AREA))
-						.multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)
-								.add(PART2.multiply((AREA)).multiply(new BigDecimal(460))
-										.multiply((new BigDecimal(1.75)))
-										.add(PART3.multiply((AREA)).multiply(new BigDecimal(750))
-												.multiply(stateInfrastructureDevelopmentCharges))))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE_190));
 
 				break;
 			case PURPOSE_RGP:
 				feesTypeCalculationDto
 						.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(PERCENTAGE0995).multiply(RATE40));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(new BigDecimal(0.995).multiply(new BigDecimal(281.06)).multiply(new BigDecimal(100000))
-								.add(AREA2.multiply(new BigDecimal(374.747)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995)
-						.multiply((AREA)).multiply(new BigDecimal(460)).multiply(new BigDecimal(1.75))
-						.add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(750))
-								.multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE460));
 
 				break;
 
@@ -374,10 +344,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(PERCENTAGE075));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1.multiply(new BigDecimal(375)).multiply((AREA)).multiply(new BigDecimal(0.75))
-								.add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges)
-										.multiply(new BigDecimal(750)).multiply(new BigDecimal(0.75)))));
+				feesTypeCalculationDto
+						.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE375).multiply(PERCENTAGE075));
 
 				break;
 			case PURPOSE_NILPC:
@@ -403,9 +371,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE250));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE01));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(375)).add((AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE375).multiply(RATE2));
 
 				break;
 
@@ -415,10 +381,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19).multiply(RATE5).divide(RATE7, 0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1.multiply(new BigDecimal(460))
-						.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5)))
-						.divide(new BigDecimal(7), 0).add(stateInfrastructureDevelopmentCharges.multiply(AREA2)
-								.multiply((AREA)).multiply(new BigDecimal(750))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE460).multiply(RATE5)).divide(RATE7));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -440,8 +404,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE270));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 			case PURPOSE_CPRS:
@@ -450,8 +414,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE270));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 			case PURPOSE_CICS:
@@ -460,8 +424,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE270));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(1.75)).multiply(stateInfrastructureDevelopmentCharges));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 			case PURPOSE_CIRS:
@@ -470,8 +434,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE270));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE09).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(1).multiply(AREA)
-						.multiply(new BigDecimal(1.75)).multiply(stateInfrastructureDevelopmentCharges));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
+
 				break;
 			case PURPOSE_RHP:
 				break;
@@ -489,9 +454,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE95));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						AREA1.multiply((AREA)).multiply(new BigDecimal(375)).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE375));
 
 				break;
 
@@ -503,9 +466,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply((new BigDecimal(190)).multiply(new BigDecimal(2.5))).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
+
 				break;
 			case PURPOSE_IPULP:
 				break;
@@ -516,9 +479,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply((new BigDecimal(190)).multiply(new BigDecimal(2.5))).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(7.5)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 
 				break;
 			case PURPOSE_IPA:
@@ -527,11 +489,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE167));
 
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((PART1.multiply((AREA))
-						.multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)
-						.add(PART2.multiply((AREA)).multiply(new BigDecimal(460)).multiply((new BigDecimal(1.75)))
-								.add(PART3.multiply((AREA)).multiply(new BigDecimal(750))
-										.multiply(stateInfrastructureDevelopmentCharges)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE_190));
 
 				break;
 
@@ -540,15 +498,10 @@ public class CalculatorImpl implements Calculator {
 						.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(PERCENTAGE0995).multiply(RATE19));
 
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						(new BigDecimal(0.995).multiply(new BigDecimal(187.373)).multiply(new BigDecimal(100000))
-								.add(AREA2.multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000)))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_125));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						new BigDecimal(0.995).multiply((AREA)).multiply(new BigDecimal(460))
-								.multiply((new BigDecimal(1.75))
-										.add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(750))
-												.multiply(stateInfrastructureDevelopmentCharges))));
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE460));
 
 				break;
 
@@ -558,10 +511,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(PERCENTAGE075));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply(new BigDecimal(375)).multiply((AREA)).multiply(new BigDecimal(0.75))
-								.add(AREA2.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges)
-										.multiply(new BigDecimal(750)).multiply(new BigDecimal(0.75))));
+				feesTypeCalculationDto
+						.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE375).multiply(PERCENTAGE075));
 
 				break;
 			case PURPOSE_NILPC:
@@ -588,9 +539,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE01));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(375).add((AREA2).multiply(AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(750))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE375).multiply(RATE2));
 
 				break;
 			case PURPOSE_NILP:
@@ -599,7 +548,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19).multiply(RATE5).divide(RATE7, 0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
-
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE460).multiply(RATE5)).divide(RATE7));
 				break;
 			case PURPOSE_TODCOMM:
 				feesTypeCalculationDto
@@ -619,8 +569,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE210));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 			case PURPOSE_CPRS:
@@ -629,8 +579,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE210));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 			case PURPOSE_CIRS:
@@ -639,8 +589,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE210));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 			case PURPOSE_CICS:
@@ -650,8 +600,8 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE07).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_1050));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(750)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 
 				break;
 
@@ -662,7 +612,7 @@ public class CalculatorImpl implements Calculator {
 
 		}
 
-		//---------------------medium--------------------///
+		// ---------------------medium--------------------///
 		case ZONE_MDM:
 
 		{
@@ -673,9 +623,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE625));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1.multiply((AREA)).multiply(new BigDecimal(250)).add((AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(500))))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE_250));
 
 				break;
 			case PURPOSE_ITP:
@@ -685,9 +633,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE62500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_600));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply(new BigDecimal(125)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_125));
 
 				break;
 			case PURPOSE_IPULP:
@@ -699,9 +646,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE62500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_600));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply(new BigDecimal(125)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_125));
 
 				break;
 			case PURPOSE_IPA:
@@ -709,11 +655,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE62500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE167));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_50));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((PART1.multiply((AREA))
-						.multiply(new BigDecimal(125)).multiply(stateInfrastructureDevelopmentCharges)
-						.add(PART2.multiply((AREA)).multiply(new BigDecimal(320)).multiply((new BigDecimal(1.75)))
-								.add(PART3.multiply((AREA)).multiply(new BigDecimal(500))
-										.multiply(stateInfrastructureDevelopmentCharges)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE_125));
 
 				break;
 
@@ -721,15 +663,11 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(PERCENTAGE0995).multiply(RATE95));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						new BigDecimal(0.995).multiply(new BigDecimal(187.373)).multiply(new BigDecimal(100000))
-								.add(AREA2).multiply(new BigDecimal(249.831)).multiply(new BigDecimal(100000)));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE4));
 
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995)
-						.multiply((AREA)).multiply(new BigDecimal(320)).multiply(new BigDecimal(1.75))
-						.add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(500))
-								.multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE320));
 
 				break;
 
@@ -739,7 +677,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(PERCENTAGE075));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(RATE0);
 
 				break;
 			case PURPOSE_NILPC:
@@ -765,9 +703,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE01));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(250).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(500)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE_250).multiply(RATE2));
 
 				break;
 			case PURPOSE_NILP:
@@ -776,10 +712,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE95).multiply(RATE5).divide(RATE7, 0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_80));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply(new BigDecimal(320))
-						.multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(5))
-						.divide(new BigDecimal(7), 0).add(stateInfrastructureDevelopmentCharges.multiply(AREA2)
-								.multiply((AREA)).multiply(new BigDecimal(500))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE320).multiply(RATE5)).divide(RATE7));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -802,8 +736,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE4));
 
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_600));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 
 				break;
 			case PURPOSE_CPRS:
@@ -814,8 +748,8 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_600));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 
 				break;
 			case PURPOSE_CICS:
@@ -824,9 +758,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE95));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_600));
-
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 
 				break;
 			case PURPOSE_CIRS:
@@ -836,8 +769,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE06).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_600));
 
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply(AREA)
-						.multiply(new BigDecimal(500)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 
 				break;
 			case PURPOSE_RHP:
@@ -856,9 +789,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE125));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE70));
 
 				break;
 			case PURPOSE_ITP:
@@ -867,9 +798,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE12500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply(
-						(AREA).multiply(new BigDecimal(35)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1.9)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE35));
+
 				break;
 
 			case PURPOSE_IPULP:
@@ -880,9 +811,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE12500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply(new BigDecimal(35).multiply(new BigDecimal(2.5)).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply(new BigDecimal(1.9)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE35));
 
 				break;
 			case PURPOSE_IPA:
@@ -890,11 +820,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE12500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE167));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_30));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((PART1.multiply((AREA))
-						.multiply(new BigDecimal(35).multiply(stateInfrastructureDevelopmentCharges)
-								.add(PART2.multiply((AREA)).multiply(new BigDecimal(90)).multiply(new BigDecimal(1.75)))
-								.add(PART3.multiply((AREA)).multiply(new BigDecimal(190))
-										.multiply(stateInfrastructureDevelopmentCharges)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE35));
 
 				break;
 
@@ -902,15 +828,10 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(PERCENTAGE0995).multiply(RATE25));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						new BigDecimal(0.995).multiply(new BigDecimal(156.145)).multiply(new BigDecimal(100000))
-								.add(AREA2.multiply(new BigDecimal(208.193)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_20));
-				feesTypeCalculationDto
-						.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995).multiply((AREA))
-								.multiply(new BigDecimal(90).multiply((new BigDecimal(1.75))
-										.add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(190))
-												.multiply(stateInfrastructureDevelopmentCharges)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE90));
 
 				break;
 			case PURPOSE_DDJAY_APHP:
@@ -919,7 +840,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(PERCENTAGE075));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(RATE0);
 
 				break;
 			case PURPOSE_NILPC:
@@ -945,9 +866,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE01));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add((AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190))))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE70).multiply(RATE2));
 
 				break;
 			case PURPOSE_NILP:
@@ -957,11 +876,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25).multiply(RATE5).divide(RATE7, 0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1)
-						.multiply(new BigDecimal(90).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges)
-								.multiply(new BigDecimal(5)).divide(new BigDecimal(7), 0))
-						.add(stateInfrastructureDevelopmentCharges.multiply(AREA2).multiply((AREA))
-								.multiply((new BigDecimal(190)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE90).multiply(RATE5)).divide(RATE7));
+
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -983,8 +900,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((new BigDecimal(1)).multiply((AREA))
-						.multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 
 				break;
 			case PURPOSE_CPRS:
@@ -993,8 +910,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(1).multiply((AREA))
-						.multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 
 				break;
 
@@ -1006,8 +923,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(1).multiply(AREA)
-						.multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
+
 				break;
 			case PURPOSE_CICS:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
@@ -1015,8 +933,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE05).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(1).multiply(AREA)
-						.multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
+
 				break;
 			}
 
@@ -1033,9 +952,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE125));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE70));
 
 				break;
 			case PURPOSE_ITP:
@@ -1045,9 +962,9 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply(new BigDecimal(35)).multiply(new BigDecimal(2.5)).add((AREA2).multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(1.9)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE35));
+
 				break;
 			case PURPOSE_ITC:
 				feesTypeCalculationDto
@@ -1056,9 +973,8 @@ public class CalculatorImpl implements Calculator {
 
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE334));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1).multiply((AREA))
-						.multiply(new BigDecimal(35)).multiply(new BigDecimal(2.5)).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(1.9)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE35));
 
 				break;
 			case PURPOSE_IPULP:
@@ -1069,11 +985,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE12500));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE167));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_30));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(PART1.multiply((AREA))
-						.multiply(new BigDecimal(35).multiply(stateInfrastructureDevelopmentCharges)
-								.add(PART2.multiply((AREA)).multiply(new BigDecimal(90)).multiply(new BigDecimal(1.75)))
-								.add(PART3.multiply((AREA)).multiply(new BigDecimal(190))
-										.multiply(stateInfrastructureDevelopmentCharges))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE35));
 
 				break;
 
@@ -1081,15 +993,10 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(PERCENTAGE0995).multiply(RATE25));
-				feesTypeCalculationDto.setExternalDevelopmentChargesCal(
-						new BigDecimal(0.995).multiply(new BigDecimal(124.916)).multiply(new BigDecimal(100000))
-								.add(AREA2.multiply(new BigDecimal(166.554)).multiply(new BigDecimal(100000))));
+				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_20));
-				feesTypeCalculationDto
-						.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0.995).multiply((AREA))
-								.multiply(new BigDecimal(90).multiply((new BigDecimal(1.75))
-										.add(new BigDecimal(0.005).multiply((AREA)).multiply(new BigDecimal(190))
-												.multiply(stateInfrastructureDevelopmentCharges)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE90));
 
 				break;
 
@@ -1099,7 +1006,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto
 						.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(PERCENTAGE075));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(0));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(RATE0);
 
 				break;
 			case PURPOSE_NILPC:
@@ -1125,9 +1032,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE01));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(AREA1).multiply((AREA)).multiply(new BigDecimal(70)).add(AREA2.multiply((AREA))
-								.multiply(stateInfrastructureDevelopmentCharges).multiply((new BigDecimal(190)))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(AREA.multiply(RATE70).multiply(RATE2));
 
 				break;
 			case PURPOSE_NILP:
@@ -1136,11 +1041,9 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE25).multiply(RATE5).divide(RATE7, 0));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((AREA1)
-						.multiply(new BigDecimal(90).multiply((AREA)).multiply(stateInfrastructureDevelopmentCharges)
-								.multiply(new BigDecimal(5)))
-						.divide(new BigDecimal(7), 0).add(stateInfrastructureDevelopmentCharges.multiply(AREA2)
-								.multiply((AREA)).multiply(new BigDecimal(190))));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						(AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE90).multiply(RATE5)).divide(RATE7));
+
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -1162,8 +1065,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 
 				break;
 			case PURPOSE_CPRS:
@@ -1172,8 +1075,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE4));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(((new BigDecimal(1)).multiply((AREA))
-						.multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 
 				break;
 			case PURPOSE_RHP:
@@ -1184,8 +1087,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(new BigDecimal(1).multiply(AREA)
-						.multiply((new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 				break;
 			case PURPOSE_CICS:
 				feesTypeCalculationDto.setScrutinyFeeChargesCal(
@@ -1193,8 +1096,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE19));
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(RATE104.multiply(RATE04).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_150));
-				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal((new BigDecimal(1).multiply(AREA)
-						.multiply(new BigDecimal(190)).multiply(stateInfrastructureDevelopmentCharges)));
+				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+						AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 				break;
 			}
 
