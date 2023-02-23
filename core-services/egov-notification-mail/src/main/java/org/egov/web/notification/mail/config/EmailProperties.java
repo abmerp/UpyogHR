@@ -78,4 +78,23 @@ public class EmailProperties {
     @Value("${mail.smtps.debug}")
     @Getter
     private String mailSmtpsDebug;
+    
+	@Value("${tcp.url}")
+	public String tcpurl;
+	@Value("${tcp.auth.token}")
+	public String tcpAuthToken;
+	@Value("${tcp.access.key}")
+	public String tcpAccessKey;
+	@Value("${tcp.secret.key}")
+	public String tcpSecretKey;
+	@Value("${tcp.userId}")
+	public String tpUserId;
+	@Value("${tcp.genrate.moduleId}")
+	public String moduleId;
+	@Value("${tcp.tpUserId}")
+	public String tcptpUserId;
+	@Value("${tcp.emailId}")
+	public String tcpEmailId;
+	@Value("${tcp.genrate.smsurl}")
+	public String emailurl;
 }
