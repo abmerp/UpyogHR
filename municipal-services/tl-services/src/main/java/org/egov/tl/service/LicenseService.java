@@ -633,9 +633,9 @@ public class LicenseService {
 				});
 
 				Map<String, Object> authtoken = new HashMap<String, Object>();
-				authtoken.put("UserId", userId);
+				authtoken.put("UserId", "39");
 				authtoken.put("TpUserId", userId);
-				authtoken.put("EmailId", email);
+				authtoken.put("EmailId", "mkthakur84@gmail.com");
 
 				List<LicenseDetails> newServiceInfoData = null;
 				try {
@@ -675,11 +675,11 @@ public class LicenseService {
 						mapDNo.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapDNo.put("DiaryDate", date);
-						mapDNo.put("ReceivedFrom", "");
-						mapDNo.put("UserId", userId);
+						mapDNo.put("ReceivedFrom", userName);
+						mapDNo.put("UserId", "1265");
 						mapDNo.put("DistrictCode",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-						mapDNo.put("UserLoginId", userId);
+						mapDNo.put("UserLoginId", "39");
 						dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 								.toString();
 						tradeLicense.setTcpDairyNumber(dairyNumber);
@@ -691,7 +691,7 @@ public class LicenseService {
 						Map<String, Object> mapCNO = new HashMap<String, Object>();
 						mapCNO.put("DiaryNo", dairyNumber);
 						mapCNO.put("DiaryDate", date);
-						mapCNO.put("DeveloperId", userId);
+						mapCNO.put("DeveloperId", "2");
 						mapCNO.put("PurposeId", purposeId);
 						mapCNO.put("StartDate", date);
 						mapCNO.put("DistrictCode",
@@ -699,8 +699,8 @@ public class LicenseService {
 						mapCNO.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
-						mapCNO.put("UserId", userId);
-						mapCNO.put("UserLoginId", userId);
+						mapCNO.put("UserId", "2");
+						mapCNO.put("UserLoginId", "39");
 						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
 								.toString();
 						tradeLicense.setTcpCaseNumber(caseNumber);
@@ -720,8 +720,8 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						mapANo.put("DateOfHearing", date);
 						mapANo.put("DateForFilingOfReply", date);
-						mapANo.put("UserId", userId);
-						mapANo.put("UserLoginId", userId);
+						mapANo.put("UserId", "2");
+						mapANo.put("UserLoginId", "39");
 						applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 								.get("Value").toString();
 						tradeLicense.setTcpApplicationNumber(applicationNumber);
@@ -742,8 +742,8 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
 						map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
-						map3.put("UserId", userId);
-						map3.put("UserLoginId", userId);
+						map3.put("UserId", "2");
+						map3.put("UserLoginId", "39");
 						map3.put("TpUserId", userId);
 						// TODO Renu to Add these two vaues
 						map3.put("PaymentMode", paymentType);
