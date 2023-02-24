@@ -417,17 +417,13 @@
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
       "far":[{
-        "value1":"1.75"
+        "value1":"1.25"
       }],
       "purposes":[
         {
           "purposeCode":"CIRS",
           "maximunPermissible":"4"
-        },
-        {
-          "purposeCode":"RGP",
-          "maximunPermissible":"2"
-        }     
+        }    
                 
       ]
     },
@@ -498,11 +494,13 @@
       "purposes":[
         {
           "purposeCode":"CGRPL",
-          "maximunPermissible":"4"
+          "maximunPermissible":"4",
+          "isActive": 0
         },
           {
             "purposeCode":"RGP",
-            "maximunPermissible":"10"
+            "maximunPermissible":"10",
+            "isActive": 1
           }
          
       ]
@@ -524,7 +522,18 @@
       "licenseFeeCharges": "",
       "externalDevelopmentCharges": "",
       "conversionCharges": "",
-      "stateInfrastructureDevelopmentCharges": ""
+      "stateInfrastructureDevelopmentCharges": "",
+      "far":[{
+        "value1":"2.25"
+      }
+    ],
+      "purposes":[
+        {
+          "purposeCode":"CICS",
+          "maximunPermissible":"4"
+        }
+         
+      ]
     },
  
     {
