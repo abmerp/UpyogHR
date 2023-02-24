@@ -203,10 +203,10 @@ public class LicenseService {
 							break;
 						}
 						case "DetailsofAppliedLand": {
-							PurposeDetails purposeDetail = newServiceInfo.getLicenseDetails().getDetailsofAppliedLand()
-									.getPurposeDetails();
-							BigDecimal area = new BigDecimal(purposeDetail.getArea());
-							BigDecimal areaPercent = new BigDecimal(purposeDetail.getPercentage());
+//							PurposeDetails purposeDetail = newServiceInfo.getLicenseDetails().getDetailsofAppliedLand()
+//									.getPurposeDetails();
+//							BigDecimal area = new BigDecimal(purposeDetail.getArea());
+//							BigDecimal areaPercent = new BigDecimal(purposeDetail.getPercentage());
 
 							newobj.setDetailsofAppliedLand(
 									newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
