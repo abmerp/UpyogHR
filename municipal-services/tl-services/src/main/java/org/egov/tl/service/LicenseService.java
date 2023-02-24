@@ -203,10 +203,11 @@ public class LicenseService {
 							break;
 						}
 						case "DetailsofAppliedLand": {
-							PurposeDetails purposeDetail =newServiceInfo.getLicenseDetails().getDetailsofAppliedLand().getPurposeDetails();
+							PurposeDetails purposeDetail = newServiceInfo.getLicenseDetails().getDetailsofAppliedLand()
+									.getPurposeDetails();
 							BigDecimal area = new BigDecimal(purposeDetail.getArea());
 							BigDecimal areaPercent = new BigDecimal(purposeDetail.getPercentage());
-							
+
 							newobj.setDetailsofAppliedLand(
 									newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
 							break;
@@ -1078,13 +1079,15 @@ public class LicenseService {
 		for (Map<String, Object> mm : msp) {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
-			String minimumPermissible  = String.valueOf(mm.get("minimumPermissible"));
-			
-			log.info("code:\t" + code+"\t"+nameRes+"\t"+minimumPermissible);
+			String minimumPermissible = String.valueOf(mm.get("minimumPermissible"));
+
+			log.info("code:\t" + code + "\t" + nameRes + "\t" + minimumPermissible);
 			purposeDetailm.setCode(code);
 			purposeDetailm.setName(nameRes);
-			purposeDetailm.setPercentage(minimumPermissible);
-			purposeDetailm.setArea(totalArea.multiply(new BigDecimal(minimumPermissible)).toString());
+			if (purposeDetailm.getArea()==null || purposeDetailm.getArea().isEmpty() ) {
+				purposeDetailm.setPercentage(minimumPermissible);
+				purposeDetailm.setArea(totalArea.multiply(new BigDecimal(minimumPermissible)).toString());
+			}
 			List<Map<String, Object>> purpose = (List<Map<String, Object>>) (mm.get("purposes"));
 			if (purpose != null)
 				for (Map<String, Object> mmm : purpose) {
@@ -1092,7 +1095,7 @@ public class LicenseService {
 					List<PurposeDetails> purposeDetailList = new ArrayList<PurposeDetails>();
 					purposeDetail.setPurposeDetail(purposeDetailList);
 					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
-					String maximunPermissible = String.valueOf(mmm.get("maximunPermissible"));
+					String maximunPermissible = String.valueOf(mmm.get("maximumPermissible"));
 
 					log.info("purpose" + purposeCodes);
 					log.info(maximunPermissible);

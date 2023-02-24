@@ -28,7 +28,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.08"
+          "maximumPermissible":"0.08"
         }
          
       ]
@@ -56,11 +56,11 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.02"
+          "maximumPermissible":"0.02"
         },
         {
           "purposeCode":"CICS",
-          "maximunPermissible":"0.02"
+          "maximumPermissible":"0.02"
         }
          
       ]
@@ -210,19 +210,19 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.025"
+          "maximumPermissible":"0.025"
         },
         {
           "purposeCode":"CIRS",
-          "maximunPermissible":"0.025"
+          "maximumPermissible":"0.025"
         },
           {
             "purposeCode":"DDJAY_APHP",
-            "maximunPermissible":"0.10"
+            "maximumPermissible":"0.10"
           },
           {
             "purposeCode":"AGH",
-            "maximunPermissible":"0.10"
+            "maximumPermissible":"0.10"
           }
            
                 
@@ -258,7 +258,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.04"
+          "maximumPermissible":"0.04"
         }         
                 
       ]
@@ -292,7 +292,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.04"
+          "maximumPermissible":"0.04"
         }         
                 
       ]
@@ -353,11 +353,11 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.7"
+          "maximumPermissible":"0.7"
         },
           {
             "purposeCode":"RPL",
-            "maximunPermissible":"0.3"
+            "maximumPermissible":"0.3"
           }
          
       ]
@@ -414,7 +414,7 @@
       "purposes":[
         {
           "purposeCode":"CIRS",
-          "maximunPermissible":"0.04"
+          "maximumPermissible":"0.04"
         }    
                 
       ]
@@ -448,7 +448,7 @@
       "purposes":[{
         
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.005"
+          "maximumPermissible":"0.005"
         }
          
       ]
@@ -518,7 +518,7 @@
       "purposes":[
         {
           "purposeCode":"CICS",
-          "maximunPermissible":"0.04"
+          "maximumPermissible":"0.04"
         }
          
       ]
@@ -555,11 +555,11 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":""
+          "maximumPermissible":""
         },
         {
           "purposeCode":"MLU-CZ",
-          "maximunPermissible":""
+          "maximumPermissible":""
         }
          
       ]
@@ -666,7 +666,7 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "maximunPermissible":"4",
+      "maximumPermissible":"4",
       "far":[{
         "value1":"1.5"
       },{
@@ -676,11 +676,11 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"0"
+          "maximumPermissible":"0.5"
         },
           {
             "purposeCode":"CIRS",
-            "maximunPermissible":"0"
+            "maximumPermissible":"0.5"
           }
          
       ]
