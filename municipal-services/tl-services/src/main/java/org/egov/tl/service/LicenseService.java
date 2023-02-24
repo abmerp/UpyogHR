@@ -203,6 +203,10 @@ public class LicenseService {
 							break;
 						}
 						case "DetailsofAppliedLand": {
+							PurposeDetails purposeDetail =newServiceInfo.getLicenseDetails().getDetailsofAppliedLand().getPurposeDetails();
+							BigDecimal area = new BigDecimal(purposeDetail.getArea());
+							BigDecimal areaPercent = new BigDecimal(purposeDetail.getPercentage());
+							
 							newobj.setDetailsofAppliedLand(
 									newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
 							break;
@@ -1074,12 +1078,13 @@ public class LicenseService {
 		for (Map<String, Object> mm : msp) {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
-
-			log.info("code:\t" + code);
-
+			String minimumPermissible  = String.valueOf(mm.get("minimumPermissible"));
+			
+			log.info("code:\t" + code+"\t"+nameRes+"\t"+minimumPermissible);
 			purposeDetailm.setCode(code);
 			purposeDetailm.setName(nameRes);
-
+			purposeDetailm.setPercentage(minimumPermissible);
+			purposeDetailm.setArea(totalArea.multiply(new BigDecimal(minimumPermissible)).toString());
 			List<Map<String, Object>> purpose = (List<Map<String, Object>>) (mm.get("purposes"));
 			if (purpose != null)
 				for (Map<String, Object> mmm : purpose) {

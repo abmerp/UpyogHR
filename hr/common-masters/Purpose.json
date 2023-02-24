@@ -473,13 +473,13 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,   
+      "minimumPermissible":"0.86",
    
       "purposes":[
-	  {
-          "purposeCode":"RPL",
-          "minimumPermissible":"0.86",
-          "isActive": 1
-        },
+		
+		
+        
+        
         {
           "purposeCode":"CGRPL",
           "maximumPermissible":"0.04",
