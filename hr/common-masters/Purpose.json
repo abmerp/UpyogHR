@@ -475,14 +475,19 @@
       "IDWPerAcreInLakhsForCommercialComponent":50,   
    
       "purposes":[
+	  {
+          "purposeCode":"RPL",
+          "minimumPermissible":"0.86",
+          "isActive": 1
+        },
         {
           "purposeCode":"CGRPL",
-          "maximunPermissible":"0.04",
-          "isActive": 0
+          "maximumPermissible":"0.04",
+          "isActive": 1
         },
           {
             "purposeCode":"RGP",
-            "maximunPermissible":"0.10",
+            "maximumPermissible":"0.10",
             "isActive": 1
           }
          
