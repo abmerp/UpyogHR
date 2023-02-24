@@ -191,7 +191,7 @@ public class LicenseService {
 							purposeDetail = recursionMethod(newServiceInfo.getRequestInfo(),
 									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(),
 									newobj.getApplicantPurpose().getPurpose(),
-									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail);
+									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail,1);
 							DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
 							DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
 							detailsofAppliedLand.setPurposeDetails(purposeDetail);
@@ -1067,11 +1067,11 @@ public class LicenseService {
 	}
 
 	public PurposeDetails recursionMethod(RequestInfo info, String tenantId, String purposeCode, BigDecimal totalArea,
-			PurposeDetails purposeDetailm) {
+			PurposeDetails purposeDetailm,int i) {
 
 		LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId1 = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 				.mDMSCallPurposeCode(info, tenantId, purposeCode);
-
+			i++;
 		Map<String, List<String>> mdmsData1 = null;
 		mdmsData1 = valid.getAttributeValues(mDMSCallPurposeId1);
 
@@ -1084,6 +1084,7 @@ public class LicenseService {
 			log.info("code:\t" + code + "\t" + nameRes + "\t" + minimumPermissible);
 			purposeDetailm.setCode(code);
 			purposeDetailm.setName(nameRes);
+			purposeDetailm.setId(code+i);
 			if (purposeDetailm.getArea()==null || purposeDetailm.getArea().isEmpty() ) {
 				purposeDetailm.setPercentage(minimumPermissible);
 				purposeDetailm.setArea(totalArea.multiply(new BigDecimal(minimumPermissible)).toString());
@@ -1098,16 +1099,16 @@ public class LicenseService {
 					String maximunPermissible = String.valueOf(mmm.get("maximumPermissible"));
 
 					log.info("purpose" + purposeCodes);
-					log.info(maximunPermissible);
+					log.info(maximunPermissible);i++;
 					if (maximunPermissible != null) {
 						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
 						log.info("total area" + purposeDetail.getArea());
 						purposeDetail.setPercentage(maximunPermissible);
 						recursionMethod(info, tenantId, purposeCodes, new BigDecimal(purposeDetail.getArea()),
-								purposeDetail);
+								purposeDetail,i);
 
 					} else {
-						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail);
+						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail,i);
 
 					}
 
