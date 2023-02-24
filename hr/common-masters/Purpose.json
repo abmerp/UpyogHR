@@ -30,7 +30,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"8"
+          "maximunPermissible":"0.08"
         }
          
       ]
@@ -62,11 +62,11 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"2"
+          "maximunPermissible":"0.02"
         },
         {
           "purposeCode":"CICS",
-          "maximunPermissible":"2"
+          "maximunPermissible":"0.02"
         }
          
       ]
@@ -218,19 +218,19 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"2.5"
+          "maximunPermissible":"0.025"
         },
         {
           "purposeCode":"CIRS",
-          "maximunPermissible":"2.5"
+          "maximunPermissible":"0.025"
         },
           {
             "purposeCode":"DDJAY_APHP",
-            "maximunPermissible":"10"
+            "maximunPermissible":"0.10"
           },
           {
             "purposeCode":"AGH",
-            "maximunPermissible":"10"
+            "maximunPermissible":"0.10"
           }
            
                 
@@ -266,7 +266,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"4"
+          "maximunPermissible":"0.04"
         }         
                 
       ]
@@ -300,7 +300,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximunPermissible":"4"
+          "maximunPermissible":"0.04"
         }         
                 
       ]
@@ -422,7 +422,7 @@
       "purposes":[
         {
           "purposeCode":"CIRS",
-          "maximunPermissible":"4"
+          "maximunPermissible":"0.04"
         }    
                 
       ]
@@ -459,7 +459,7 @@
       "purposes":[{
         
           "purposeCode":"CPRS",
-          "maximunPermissible":"0.5"
+          "maximunPermissible":"0.005"
         }
          
       ]
@@ -489,12 +489,12 @@
       "purposes":[
         {
           "purposeCode":"CGRPL",
-          "maximunPermissible":"4",
+          "maximunPermissible":"0.04",
           "isActive": 0
         },
           {
             "purposeCode":"RGP",
-            "maximunPermissible":"10",
+            "maximunPermissible":"0.10",
             "isActive": 1
           }
          
@@ -525,7 +525,7 @@
       "purposes":[
         {
           "purposeCode":"CICS",
-          "maximunPermissible":"4"
+          "maximunPermissible":"0.04"
         }
          
       ]
