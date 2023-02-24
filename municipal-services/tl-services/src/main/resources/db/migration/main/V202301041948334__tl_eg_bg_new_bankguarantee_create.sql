@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS public.eg_tl_bank_guarantee(
     tcp_submission_received character varying(200),
     indian_bank_advised_certificate character varying(200),
     release_bank_guarantee character varying(200),
+    businessservice character varying(32),
     
     createdby character varying(64),
     lastmodifiedby character varying(64),
@@ -65,6 +66,7 @@ CREATE TABLE IF NOT EXISTS public.eg_tl_bank_guarantee_auditdetails(
     tcp_submission_received character varying(200),
     indian_bank_advised_certificate character varying(200),
     release_bank_guarantee character varying(200),
+    businessservice character varying(32),
     
     createdby character varying(64),
     lastmodifiedby character varying(64),

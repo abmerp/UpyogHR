@@ -62,6 +62,7 @@ public class BankGuaranteeAuditRowMapper implements ResultSetExtractor<List<NewB
 					.hardcopySubmittedDocument(rs.getString("ebnbg_hardcopy_Submitted"))
 					.fullCertificate(rs.getString("ebnbg_full_Certificate"))
 					.partialCertificate(rs.getString("ebnbg_partial_Certificate"))
+					.businessService(rs.getString("businessservice"))
 					.additionalDocuments(additionalDocuments).build();
 			auditData.add(newBankGuaranteeRequest);
 
