@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class PurposeDetails {
 
+	private String id;
 	private String name;
 	private String code;
 	private String area;
