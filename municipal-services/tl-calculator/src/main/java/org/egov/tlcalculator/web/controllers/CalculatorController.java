@@ -176,11 +176,11 @@ public class CalculatorController {
 	
 	
 	@PostMapping("/_getPaymentEstimate")
-	public ResponseEntity<PaymentCalculationResponse> testing(@RequestBody @Valid RequestInfoWrapper requestInfoWrapper,@RequestParam String applicationNo){
+	public ResponseEntity<PaymentCalculationResponse> testing(@RequestBody @Valid RequestInfoWrapper requestInfoWrapper){
 		
 //		FeesCalculation paymentCalculation = new FeesCalculation();
 		PaymentCalculationResponse response = new PaymentCalculationResponse();
-		response.setFeesTypeCalculationDto(paymentCalculation.payment(requestInfoWrapper.getRequestInfo(), applicationNo));
+		response.setFeesTypeCalculationDto(paymentCalculation.payment(requestInfoWrapper.getRequestInfo(), requestInfoWrapper.getApplicationNo()));
 		
 		return new ResponseEntity<>(response, HttpStatus.OK);	
 	}
