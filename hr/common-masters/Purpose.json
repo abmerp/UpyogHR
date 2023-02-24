@@ -485,12 +485,7 @@
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
     
-      "far":[{
-        "value1":"1.5"
-      },{
-        "value2":"1.75" 
-      }
-    ],
+   
       "purposes":[
         {
           "purposeCode":"CGRPL",
