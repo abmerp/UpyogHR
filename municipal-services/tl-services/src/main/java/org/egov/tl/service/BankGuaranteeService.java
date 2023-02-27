@@ -104,6 +104,10 @@ public class BankGuaranteeService {
 				insertedData.add(mortgageBGService
 						.createBankGuarantee(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo())
 						.toBuilder());
+				continue;
+			} else {
+				// default set businessservice as BG_NEW as of now-
+				newBankGuaranteeRequest.setBusinessService(BUSINESSSERVICE_BG_NEW);
 			}
 			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
