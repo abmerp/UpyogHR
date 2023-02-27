@@ -25812,6 +25812,17 @@
          "serviceCode":"tl-calculator",
          "code":"null",
          "path":"null"
+      },
+      {
+         "id": 2732,
+         "name": "get khasra details",
+         "url": "/tl-services/bank/khasraDetails",
+         "displayName": "get khasra details",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
       }
       
 

@@ -58,7 +58,7 @@ public class MortgageBGService {
 		return newBankGuaranteeRequest;
 	}
 	
-	private TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
+	public TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
 		List<TradeLicense> licenses = new ArrayList<>();
 		TradeLicense tradeLicense = new TradeLicense();
@@ -80,5 +80,9 @@ public class MortgageBGService {
 		tradeLicenseRequest.setLicenses(licenses);
 		tradeLicenseRequest.setRequestInfo(requestInfo);
 		return tradeLicenseRequest;
+	}
+	
+	public void updateBankGuarantee(NewBankGuaranteeRequest newBankGuaranteeRequest) {
+		
 	}
 }

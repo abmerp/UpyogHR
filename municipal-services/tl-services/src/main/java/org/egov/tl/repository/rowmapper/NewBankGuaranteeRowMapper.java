@@ -75,7 +75,7 @@ public class NewBankGuaranteeRowMapper implements ResultSetExtractor<List<NewBan
 						.fullCertificate(rs.getString("ebnbg_full_Certificate"))
 						.partialCertificate(rs.getString("ebnbg_partial_Certificate"))
 						.additionalDocuments(additionalDocuments)
-						.businessService(rs.getString("businessservice"))
+						.businessService(rs.getString("ebnbg_businessservice"))
 						.build();
 				newBankGuaranteeRequestMap.put(id, currentNewBankGuaranteeRequest);
 			}

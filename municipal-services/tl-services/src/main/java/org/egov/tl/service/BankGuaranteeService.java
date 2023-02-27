@@ -178,6 +178,15 @@ public class BankGuaranteeService {
 		});
 	}
 	
+	private TradeLicenseRequest prepareProcessInstanceRequestForUpdate(NewBankGuaranteeRequest newBankGuaranteeRequest,
+			RequestInfo requestInfo) {
+		if (!StringUtils.isEmpty(newBankGuaranteeRequest.getBusinessService())
+				&& newBankGuaranteeRequest.getBusinessService().equalsIgnoreCase(BUSINESSSERVICE_BG_MORTGAGE)) {
+			return mortgageBGService.prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
+		} else
+			return prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
+	}
+	
 	private TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
 		List<TradeLicense> licenses = new ArrayList<>();
@@ -251,22 +260,25 @@ public class BankGuaranteeService {
 		for(NewBankGuaranteeRequest newBankGuaranteeRequest:newBankGuaranteeContract.getNewBankGuaranteeRequest()) {
 			List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
 					newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+			String businessService = getBusinessServiceName(newBankGuaranteeRequest);
 			String currentStatus = newBankGuaranteeSearchResult.get(0).getStatus();
 			BusinessService workflow = workflowService.getBusinessService(BUSINESSSERVICE_TENANTID,
-					newBankGuaranteeContract.getRequestInfo(), BUSINESSSERVICE_BG_NEW);
+					newBankGuaranteeContract.getRequestInfo(), businessService);
 			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, newBankGuaranteeRequest,
 					newBankGuaranteeContract.getRequestInfo());
-			// validateExtendOrRelease(newBankGuaranteeRequest, currentStatus,
-				//	newBankGuaranteeSearchResult.get(0).getBankGuaranteeStatus());
 			setValidBgStatusOnApproval(newBankGuaranteeRequest);
 			setBgStatusOnRelease(newBankGuaranteeRequest);
 			enrichAuditDetailsOnUpdate(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
 			enrichAssigneeOnApproval(newBankGuaranteeRequest, newBankGuaranteeSearchResult.get(0));
 
 			// call workflow to insert processinstance-
-			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest,
-					newBankGuaranteeContract.getRequestInfo());
-			workflowIntegrator.callWorkFlow(processInstanceRequest);
+			boolean isWorkflowBasedUpdate = StringUtils.isEmpty(newBankGuaranteeRequest.getAction()) ? false : true;
+			if (isWorkflowBasedUpdate) {
+				TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForUpdate(
+						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+				workflowIntegrator.callWorkFlow(processInstanceRequest);
+			}
+
 
 			// push to update-
 			newBankGuaranteeRepo.update(newBankGuaranteeContract);
@@ -275,6 +287,19 @@ public class BankGuaranteeService {
 		}
 		return updatedData;
 		
+	}
+	
+	public void getKhasraDetails(String loiNumber) {
+		LicenseServiceDao license = licenseService.findByLoiNumber(loiNumber);
+	}
+	
+	private String getBusinessServiceName(NewBankGuaranteeRequest newBankGuaranteeRequest) {
+		if (!StringUtils.isEmpty(newBankGuaranteeRequest.getBusinessService())
+				&& newBankGuaranteeRequest.getBusinessService().equalsIgnoreCase(BUSINESSSERVICE_BG_MORTGAGE)) {
+			return BUSINESSSERVICE_BG_MORTGAGE;
+		} else {
+			return BUSINESSSERVICE_BG_NEW;
+		}
 	}
 	
 	private void enrichAssigneeOnApproval(NewBankGuaranteeRequest bankGuaranteeRequest,
@@ -346,7 +371,13 @@ public class BankGuaranteeService {
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
 			NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
+		if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())) {
+			// support action less update without workflow involvement
+			log.info("action is null in update call. Allowing update without workflow involvement");
+			return;
+		}
 		// validate Action-
+		String currentActionFromRequest = newBankGuaranteeRequest.getAction();
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
 		if (!currentWorkflowStateOptional.isPresent()) {
@@ -355,7 +386,6 @@ public class BankGuaranteeService {
 		}
 		State currentWorkflowState = currentWorkflowStateOptional.get();
 		List<Action> permissibleActions = currentWorkflowState.getActions();
-		String currentActionFromRequest = newBankGuaranteeRequest.getAction();
 		Optional<Action> currentWorkflowActionOptional = permissibleActions.stream()
 				.filter(action -> action.getAction().equals(currentActionFromRequest)).findFirst();
 		if (!currentWorkflowActionOptional.isPresent()) {
