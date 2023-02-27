@@ -87,6 +87,8 @@ public class TLInboxFilterService {
     
     private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
 
+	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
+
     public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria, HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo){
         List<String> acknowledgementNumbers = new ArrayList<>();
         HashMap moduleSearchCriteria = criteria.getModuleSearchCriteria();
@@ -169,6 +171,11 @@ public class TLInboxFilterService {
 					break;
 					
 				case BUSINESSSERVICE_SERVICE_PLAN:
+					tlInboxSearcherDescEndpoint = servicePlaneSearcherDescEndpoint;
+					tlInboxSearcherEndpoint = servicePlanSearcherEndpoint;
+					break;
+					
+				case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
 					tlInboxSearcherDescEndpoint = servicePlaneSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = servicePlanSearcherEndpoint;
 					break;
@@ -280,6 +287,10 @@ public class TLInboxFilterService {
 					break;
 					
 				case BUSINESSSERVICE_SERVICE_PLAN:
+					tlInboxSearcherCountEndpoint = servicePlanSearcherCountEndpoint;
+					break;
+					
+				case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
 					tlInboxSearcherCountEndpoint = servicePlanSearcherCountEndpoint;
 					break;
 					
