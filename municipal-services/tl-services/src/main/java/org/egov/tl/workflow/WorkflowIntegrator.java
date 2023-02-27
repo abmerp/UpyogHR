@@ -55,6 +55,8 @@ public class WorkflowIntegrator {
 	
 	private static final String SPNAMEVALUE = "SERVICE_PLAN";
 	
+	private static final String SPNAMEVALUE_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
+	
 	private static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
 
 	private static final String BPAMODULENAMEVALUE = "BPAREG";
@@ -125,6 +127,11 @@ public class WorkflowIntegrator {
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, SPNAMEVALUE);
 						break;
+						
+					case SPNAMEVALUE_DEMARCATION:
+							obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+							obj.put(MODULENAMEKEY, SPNAMEVALUE_DEMARCATION);
+							break;
 						
 					case EPNAMEVALUE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());

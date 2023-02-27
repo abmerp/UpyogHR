@@ -56,6 +56,8 @@ import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 public class ServicePlanService {
 
 	private static final String businessService_TL = "SERVICE_PLAN";
+	
+	private static final String businessService_TL_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
 
 	private static final String SENDBACK_STATUS = "SP_SENDBACK_TO_APPLICANT";
 
@@ -123,11 +125,15 @@ public class ServicePlanService {
 				
 				applicationNumbers = getIdList(servicePlanContract.getRequestInfo(), servicePlanRequest.getTenantID(),
 						config.getSPapplicationNumberIdgenNameTL(), config.getSPapplicationNumberIdgenFormatTL(), count);
+				
+			String bussinessServicename = bussinessServicename(servicePlanRequest.getPurpose());
+			servicePlanRequest.setBusinessService(bussinessServicename);
+			servicePlanRequest.setWorkflowCode(bussinessServicename);
 
 				servicePlanRequest.setAuditDetails(auditDetails);
 				servicePlanRequest.setApplicationNumber(applicationNumbers.get(0));
 
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo);
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo , bussinessServicename);
 
 				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
@@ -144,6 +150,38 @@ public class ServicePlanService {
 
 	}
 	
+	private String bussinessServicename(String purpose) {
+		String result ;  
+		
+		switch (purpose) {
+		case "RPL":
+			result = businessService_TL_DEMARCATION;
+			break;
+		case "DDJAY_APHP":
+			result = businessService_TL_DEMARCATION;
+			break;
+		case "CICS":
+			result = businessService_TL_DEMARCATION;
+			break;
+		case "CPRS":
+			result = businessService_TL_DEMARCATION;
+			break;
+		case "IPA":
+			result = businessService_TL_DEMARCATION;
+			break;
+		case "NILPC":
+			result = businessService_TL_DEMARCATION;
+			break;
+		case "NILP":
+			result = businessService_TL_DEMARCATION;
+			break;
+
+		default:
+			result = businessService_TL;
+		}
+		return result;
+	}
+
 	private String assignee(String role, String tenantID, boolean b, RequestInfo requestInfo) {
 
 		StringBuilder uri = new StringBuilder();
@@ -202,14 +240,14 @@ public class ServicePlanService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , additionaldetails , devName , developmentPlan , purpose , totalArea , created_by, created_time, last_modified_by, last_modified_time\r\n"
-				+ "FROM public.eg_service_plan\r\n" + "WHERE business_service = 'SERVICE_PLAN' ";
+		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , additionaldetails , devName , developmentPlan , purpose , totalArea , layoutplan, revisedlayout, demarcation, demarcationgis, layoutexcel , anyotherdoc , created_by, created_time, last_modified_by, last_modified_time\r\n"
+				+ "FROM public.eg_service_plan\r\n" + "WHERE  ";
 
 		builder = new StringBuilder(query);
 
 		List<ServicePlanRequest> Result = null;
 		if (loiNumber != null) {
-			builder.append("and loi_number= :LN");
+			builder.append(" loi_number= :LN");
 			paramMap.put("LN", loiNumber);
 			preparedStatement.add(loiNumber);
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, spRowMapper);
@@ -217,7 +255,7 @@ public class ServicePlanService {
 		} else if (applicationNumber != null) {
 			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
 			if (applicationNumberList != null) {
-				builder.append("and application_number in ( :AN )");
+				builder.append(" application_number in ( :AN )");
 				paramMapList.put("AN", applicationNumberList);
 				preparedStatement.add(applicationNumberList);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, spRowMapper);
@@ -225,7 +263,7 @@ public class ServicePlanService {
 			
 		}
 		else if ((requestInfo.getUserInfo().getUuid() != null) ){
-			builder.append("and created_by= :CB");
+			builder.append(" created_by= :CB");
 			paramMap.put("CB", requestInfo.getUserInfo().getUuid());
 			preparedStatement.add(requestInfo.getUserInfo().getUuid());
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, spRowMapper);
@@ -267,20 +305,23 @@ public class ServicePlanService {
 		}
 
 		
+		servicePlanRequest.setBusinessService(servicePlanRequest.getBusinessService());
+		servicePlanRequest.setWorkflowCode(servicePlanRequest.getBusinessService());
+		
 		//EMPLOYEE RUN THE APPLICATION NORMALLY
 		if (!servicePlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS) &&  !usercheck( requestInfo)) {
 
 			String currentStatus = searchServicePlan.get(0).getStatus();
 
 			BusinessService workflow = workflowService.getBusinessService(servicePlanRequest.getTenantID(),
-					servicePlanContract.getRequestInfo(), businessService_TL);
+					servicePlanContract.getRequestInfo(), servicePlanRequest.getBusinessService());
 
 			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract, servicePlanRequest);
 
 			servicePlanRequest.setAuditDetails(auditDetails);
 
 			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest,
-					requestInfo);
+					requestInfo,  servicePlanRequest.getBusinessService());
 
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
@@ -298,7 +339,7 @@ public class ServicePlanService {
 		servicePlanRequest.setAction(CITIZEN_UPDATE_ACTION);
 
 		BusinessService workflow = workflowService.getBusinessService(servicePlanRequest.getTenantID(),
-				servicePlanContract.getRequestInfo(), businessService_TL);
+				servicePlanContract.getRequestInfo(), servicePlanRequest.getBusinessService());
 
 		validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract , servicePlanRequest);
 
@@ -308,7 +349,7 @@ public class ServicePlanService {
 		
 
 
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo);
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo , servicePlanRequest.getBusinessService());
 
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
@@ -337,7 +378,7 @@ public class ServicePlanService {
 		return false;
 	}
 	
-	private TradeLicenseRequest prepareProcessInstanceRequest(ServicePlanRequest servicePlanRequest, RequestInfo requestInfo) {
+	private TradeLicenseRequest prepareProcessInstanceRequest(ServicePlanRequest servicePlanRequest, RequestInfo requestInfo, String bussinessServicename) {
 
 
 		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
@@ -349,12 +390,12 @@ public class ServicePlanService {
 		tradeLicenseSP.setApplicationNumber(servicePlanRequest.getApplicationNumber());
 		tradeLicenseSP.setWorkflowCode(servicePlanRequest.getWorkflowCode());
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-		tradeLicenseDetail.setTradeType(businessService_TL);
+		tradeLicenseDetail.setTradeType(bussinessServicename);
 		tradeLicenseSP.setTradeLicenseDetail(tradeLicenseDetail);
 		tradeLicenseSP.setComment(servicePlanRequest.getComment());
 		tradeLicenseSP.setWfDocuments(servicePlanRequest.getWfDocuments());
 		tradeLicenseSP.setTenantId(servicePlanRequest.getTenantID());
-		tradeLicenseSP.setBusinessService(businessService_TL);
+		tradeLicenseSP.setBusinessService(bussinessServicename);
 
 		tradeLicenseRequest.setRequestInfo(requestInfo);
 		tradeLicenseSPlist.add(tradeLicenseSP);

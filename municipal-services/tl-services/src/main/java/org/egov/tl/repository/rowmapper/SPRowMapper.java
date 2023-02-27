@@ -58,6 +58,15 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 			servicePlanRequest.setTotalArea(rs.getString("totalArea"));
 			
 			
+			servicePlanRequest.setLayoutPlan(rs.getString("layoutplan"));
+			servicePlanRequest.setRevisedLayout(rs.getString("revisedlayout"));
+			servicePlanRequest.setDemarcation(rs.getString("demarcation"));
+			servicePlanRequest.setDemarcationgis(rs.getString("demarcationgis"));
+			servicePlanRequest.setLayoutExcel(rs.getString("layoutexcel"));
+			servicePlanRequest.setAnyOtherdoc(rs.getString("anyotherdoc"));
+			
+			
+			
 			Object additionalDetails = new Gson().fromJson(rs.getString("additionaldetails").equals("{}")
 					|| rs.getString("additionaldetails").equals("null")  ? null
 							: rs.getString("additionaldetails"),
