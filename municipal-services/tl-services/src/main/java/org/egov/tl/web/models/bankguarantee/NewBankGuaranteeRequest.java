@@ -62,8 +62,21 @@ public class NewBankGuaranteeRequest {
 	private String indianBankAdvisedCertificate;
 	private String releaseBankGuarantee;
 	private List<NewBankGuaranteeRequest> auditEntries = null;
-	private final String businessService = "BG_NEW";
-	private final String workflowCode = "BG_NEW";
+
+	/*
+	// mortgage related fields-
+	List<MortgageKhasraDetails> mortgageKhasraDetails;
+	BigDecimal totalKhasraAreaToMortgage;
+	List<MortgagePlotDetails> mortgagePlotDetails;
+	BigDecimal totalPlotAreaToMortgage;
+	// Documents for mortgage-
+	private String mortgageLayoutPlan;
+	private String mortgageDeed;
+	private String mortgageLandScheduleAndPlotNumbersDoc;
+	private String mortgageDeedAfterBPApproval;
+	*/
+	private String businessService;
+	private String workflowCode = businessService;
 
 	public NewBankGuaranteeRequest(NewBankGuarantee newBankGuarantee) {
 		this.id = newBankGuarantee.getId();
@@ -96,6 +109,16 @@ public class NewBankGuaranteeRequest {
 		this.tcpSubmissionReceived = newBankGuarantee.getTcpSubmissionReceived();
 		this.indianBankAdvisedCertificate = newBankGuarantee.getIndianBankAdvisedCertificate();
 		this.releaseBankGuarantee = newBankGuarantee.getReleaseBankGuarantee();
+		/*
+		this.mortgageKhasraDetails = newBankGuarantee.getMortgageKhasraDetails();
+		this.totalKhasraAreaToMortgage = newBankGuarantee.getTotalKhasraAreaToMortgage();
+		this.mortgagePlotDetails = newBankGuarantee.getMortgagePlotDetails();
+		this.totalPlotAreaToMortgage = newBankGuarantee.getTotalPlotAreaToMortgage();
+		this.mortgageLayoutPlan = newBankGuarantee.getMortgageLayoutPlan();
+		this.mortgageDeed = newBankGuarantee.getMortgageDeed();
+		this.mortgageLandScheduleAndPlotNumbersDoc = newBankGuarantee.getMortgageLandScheduleAndPlotNumbersDoc();
+		this.mortgageDeedAfterBPApproval = newBankGuarantee.getMortgageDeedAfterBPApproval();
+		*/
 
 	}
 	
@@ -131,6 +154,16 @@ public class NewBankGuaranteeRequest {
 				.tcpSubmissionReceived(this.tcpSubmissionReceived)
 				.indianBankAdvisedCertificate(this.indianBankAdvisedCertificate)
 				.releaseBankGuarantee(this.releaseBankGuarantee)
+				/*
+				.mortgageKhasraDetails(this.mortgageKhasraDetails)
+				.totalKhasraAreaToMortgage(this.totalKhasraAreaToMortgage)
+				.mortgagePlotDetails(this.mortgagePlotDetails)
+				.totalPlotAreaToMortgage(this.totalPlotAreaToMortgage)
+				.mortgageLayoutPlan(this.mortgageLayoutPlan)
+				.mortgageDeed(this.mortgageDeed)
+				.mortgageLandScheduleAndPlotNumbersDoc(this.mortgageLandScheduleAndPlotNumbersDoc)
+				.mortgageDeedAfterBPApproval(this.mortgageDeedAfterBPApproval)
+				*/
 				.build();
 	}
 }

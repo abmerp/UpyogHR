@@ -67,8 +67,11 @@ public class BankGuaranteeService {
 	private RenewBankGuaranteeRepo renewBankGuaranteeRepo;
 	@Autowired
 	private ObjectMapper objectMapper;
+	@Autowired
+	private MortgageBGService mortgageBGService;
 	
 	public static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
+	public static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
 	public static final String BUSINESSSERVICE_TENANTID = "hr";
 	public static final String BUSINESSSERVICE_BG_RENEW = "BG_RENEW";
 	public static final String BG_NEW_ACTION_EXTEND = "EXTEND";
@@ -87,14 +90,25 @@ public class BankGuaranteeService {
 	//@Autowired ReplaceBankGuaranteeRepo replaceBankGuaranteeRepo;
 
 	public List<NewBankGuarantee> createNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
-
+		setDefaultBusinessServiceIfNull(newBankGuaranteeContract);
 		List<NewBankGuarantee> insertedData = new ArrayList<>();
+		
 		for (NewBankGuaranteeRequest newBankGuaranteeRequest : newBankGuaranteeContract.getNewBankGuaranteeRequest()) {
 			// populate audit details-
 			AuditDetails auditDetails = tradeUtil
 					.getAuditDetails(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid(), true);
 			newBankGuaranteeRequest.setAuditDetails(auditDetails);
 
+			if (!StringUtils.isEmpty(newBankGuaranteeRequest.getBusinessService())
+					&& newBankGuaranteeRequest.getBusinessService().equalsIgnoreCase(BUSINESSSERVICE_BG_MORTGAGE)) {
+				insertedData.add(mortgageBGService
+						.createBankGuarantee(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo())
+						.toBuilder());
+				continue;
+			} else {
+				// default set businessservice as BG_NEW as of now-
+				newBankGuaranteeRequest.setBusinessService(BUSINESSSERVICE_BG_NEW);
+			}
 			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
 				// basic create with processinstance-
@@ -151,6 +165,17 @@ public class BankGuaranteeService {
 		}
 		return insertedData;
 
+	}
+	
+	private void setDefaultBusinessServiceIfNull(NewBankGuaranteeContract newBankGuaranteeContract) {
+		// set businessservice and workflowCode as BG_NEW by default to support existing
+		// flow without sending BG_NEW from UI.TODO:ask UI to send BG_NEW for usual and
+		// BG_MORTGAGE for specific
+		newBankGuaranteeContract.getNewBankGuaranteeRequest().stream().forEach(bankGuarantee -> {
+			if (StringUtils.isEmpty(bankGuarantee.getBusinessService())) {
+				bankGuarantee.setBusinessService(BUSINESSSERVICE_BG_NEW);
+			}
+		});
 	}
 	
 	private TradeLicenseRequest prepareProcessInstanceRequestForNewBG(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {

@@ -1,0 +1,176 @@
+{
+  "RequestInfo": {
+    "apiId": "Rainmaker",
+    "action": "",
+    "did": 1,
+    "key": "",
+    "msgId": "20170310130900|en_IN",
+    "requesterId": "",
+    "ts": 1513579888683,
+    "ver": ".01",
+    "authToken": "66543d17-58ba-4013-a732-d46ca9836238"
+  },
+  "BusinessServices": [
+    {
+      "tenantId": "hr",
+      "businessService": "BG_MORTGAGE",
+      "business": "tl-services",
+      "businessServiceSla": 172800000,
+      "states": [
+        {
+          "tenantId": "hr",
+          "sla": "",
+          "state": "",
+          "applicationStatus": "",
+          "docUploadRequired": false,
+          "isStartState": true,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "INITIATE",
+              "nextState": "INITIATED",
+              "roles": [
+                "BPA_DEVELOPER",
+                "BPA_BUILDER"
+              ]
+            }
+          ]
+        },
+		{
+          "tenantId": "hr",
+          "sla": "",
+          "state": "INITIATED",
+          "applicationStatus": "INITIATED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_DEPT",
+              "nextState": "PENDING_DEPT_VERIFICATION",
+              "roles": [
+                "DTP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "PENDING_DEPT_VERIFICATION",
+          "applicationStatus": "PENDING_DEPT_VERIFICATION",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD",
+              "nextState": "PENDING_AT_NAIB_TEHSILDAR",
+              "roles": [
+                "Patwari_HQ",
+                "AD_HQ",
+                "JD_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "PENDING_AT_NAIB_TEHSILDAR",
+          "applicationStatus": "PENDING_AT_NAIB_TEHSILDAR",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_ATP_HQ",
+              "nextState": "PENDING_AT_ATP_HQ",
+              "roles": [
+                "NAIB_TEHSILDAR"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "PENDING_AT_ATP_HQ",
+          "applicationStatus": "PENDING_AT_ATP_HQ",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "FORWARD_TO_DTP_HQ",
+              "nextState": "PENDING_AT_DTP_HQ",
+              "roles": [
+                "ATP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "PENDING_AT_DTP_HQ",
+          "applicationStatus": "PENDING_AT_DTP_HQ",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": false,
+          "isStateUpdatable": true,
+          "actions": [
+            {
+              "tenantId": "hr",
+              "action": "APPROVE",
+              "nextState": "APPROVED",
+              "roles": [
+                "DTP_HQ"
+              ]
+            },
+            {
+              "tenantId": "hr",
+              "action": "REJECT",
+              "nextState": "REJECTED",
+              "roles": [
+                "DTP_HQ"
+              ]
+            }
+          ]
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "APPROVED",
+          "applicationStatus": "APPROVED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": true,
+          "isStateUpdatable": false,
+          "actions": null
+        },
+        {
+          "tenantId": "hr",
+          "sla": 86400000,
+          "state": "REJECTED",
+          "applicationStatus": "REJECTED",
+          "docUploadRequired": false,
+          "isStartState": false,
+          "isTerminateState": true,
+          "isStateUpdatable": false,
+          "actions": null
+        }
+      ]
+    }
+  ]
+}

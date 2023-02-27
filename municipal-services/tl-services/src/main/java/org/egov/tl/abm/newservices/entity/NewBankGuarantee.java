@@ -12,6 +12,8 @@ import javax.persistence.Id;
 
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.bankguarantee.MortgageKhasraDetails;
+import org.egov.tl.web.models.bankguarantee.MortgagePlotDetails;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
 
 import lombok.AllArgsConstructor;
@@ -110,6 +112,20 @@ public class NewBankGuarantee {
 	
 	private Map<String,String> additionalDocuments;
 	private List<NewBankGuaranteeRequest> auditEntries = null;
-	private final String businessService = "BG_NEW";
-	private final String workflowCode = "BG_NEW";
+	
+	/*
+	// mortgage related fields-
+	List<MortgageKhasraDetails> mortgageKhasraDetails;
+	BigDecimal totalKhasraAreaToMortgage;
+	List<MortgagePlotDetails> mortgagePlotDetails;
+	BigDecimal totalPlotAreaToMortgage;
+	// Documents for mortgage-
+	private String mortgageLayoutPlan;
+	private String mortgageDeed;
+	private String mortgageLandScheduleAndPlotNumbersDoc;
+	private String mortgageDeedAfterBPApproval;
+	*/
+	
+	private String businessService;
+	private String workflowCode = businessService;
 }
