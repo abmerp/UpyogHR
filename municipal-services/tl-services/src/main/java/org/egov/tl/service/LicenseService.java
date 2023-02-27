@@ -900,7 +900,7 @@ public class LicenseService {
 					String dispatchNumber;
 					Map<String, Object> depAuthtoken = new HashMap<String, Object>();
 					depAuthtoken.put("UserId", "169");
-					depAuthtoken.put("EmailId", email);
+					depAuthtoken.put("EmailId", "dtp.panchkula.tcp@gmail.com");
 
 					Map<String, Object> mapDispatchNumber = new HashMap<String, Object>();
 					mapDispatchNumber.put("DispatchID", 0);
@@ -968,6 +968,8 @@ public class LicenseService {
 					}
 					String bankGuaranteeForEDC = guranteeCalculatorResponse.getBankGuaranteeForEDC();
 					String bankGuaranteeForIDW = guranteeCalculatorResponse.getBankGuaranteeForIDW();
+					tradeLicenseDetail.setEDC(Double.valueOf(bankGuaranteeForEDC));
+					tradeLicenseDetail.setIDW(Double.valueOf(bankGuaranteeForIDW));
 					// --------------------bank gurantee calculator end-------------------------//
 
 					// ---------------------create bank gurantee request------------------------//

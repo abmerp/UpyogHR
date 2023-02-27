@@ -116,6 +116,10 @@ public class TradeLicenseDetail {
 	private Double stateInfrastructureDevelopmentCharges;
 	@JsonProperty("licenseFeeCharges")
 	private Double licenseFeeCharges;
+	@JsonProperty("EDC")
+	private Double EDC;
+	@JsonProperty("IDW")
+	private Double IDW;
 	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
