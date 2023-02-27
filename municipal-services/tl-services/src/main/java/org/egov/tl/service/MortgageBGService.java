@@ -41,6 +41,7 @@ public class MortgageBGService {
 		List<String> idGenIds = enrichmentService.getIdList(requestInfo, newBankGuaranteeRequest.getTenantId(),
 				tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
 				tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
+		newBankGuaranteeRequest.setBusinessService(BankGuaranteeService.BUSINESSSERVICE_BG_MORTGAGE);
 		String applicationNo = idGenIds.get(0);
 		newBankGuaranteeRequest.setApplicationNumber(applicationNo);
 		newBankGuaranteeRequest.setId(UUID.randomUUID().toString());
