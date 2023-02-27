@@ -91,6 +91,24 @@ public class ServicePlanRequest {
 	
 	@JsonProperty("totalArea")
     private String totalArea = null;
+	
+	@JsonProperty("layoutPlan")
+    private String layoutPlan = null;
+	
+	@JsonProperty("revisedLayout")
+    private String revisedLayout = null;
+	
+	@JsonProperty("demarcation")
+    private String demarcation = null;
+	
+	@JsonProperty("demarcationgis")
+    private String demarcationgis = null;
+	
+	@JsonProperty("layoutExcel")
+    private String layoutExcel = null;
+	
+	@JsonProperty("anyOtherdoc")
+    private String anyOtherdoc = null;
 
 //	public ServicePlanRequest(ServicePlan servicePlan) {
 //		

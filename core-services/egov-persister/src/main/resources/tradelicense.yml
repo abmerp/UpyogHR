@@ -927,7 +927,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, devname , developmentplan ,purpose , totalarea , business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ? ,?, ?, ? , ?);
+       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, devname , developmentplan ,purpose , totalarea , business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails , layoutplan, revisedlayout, demarcation, demarcationgis, layoutexcel , anyotherdoc) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ? ,?, ?, ? , ?, ? ,?, ?, ? , ? , ?);
          basePath: ServicePlanRequest.*
          jsonMaps:
 
@@ -982,6 +982,18 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.additionalDetails
             type: JSON
             dbType: JSONB
+            
+          - jsonPath: $.ServicePlanRequest.*.layoutPlan
+
+          - jsonPath: $.ServicePlanRequest.*.revisedLayout
+
+          - jsonPath: $.ServicePlanRequest.*.demarcation
+
+          - jsonPath: $.ServicePlanRequest.*.demarcationgis
+
+          - jsonPath: $.ServicePlanRequest.*.layoutExcel
+          
+          - jsonPath: $.ServicePlanRequest.*.anyOtherdoc 
 
 
 
@@ -997,7 +1009,7 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
 
-       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=?,  devname=? , developmentplan=? , purpose=? , totalarea=?  , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? WHERE application_number=?;
+       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=?,  devname=? , developmentplan=? , purpose=? , totalarea=?  , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? , layoutplan = ?, revisedlayout= ?, demarcation= ?, demarcationgis= ?, layoutexcel= ? , anyotherdoc= ? WHERE application_number=?;
  
          basePath: ServicePlanRequest.*
          jsonMaps:
@@ -1047,6 +1059,18 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.additionalDetails
             type: JSON
             dbType: JSONB
+            
+          - jsonPath: $.ServicePlanRequest.*.layoutPlan
+
+          - jsonPath: $.ServicePlanRequest.*.revisedLayout
+
+          - jsonPath: $.ServicePlanRequest.*.demarcation
+
+          - jsonPath: $.ServicePlanRequest.*.demarcationgis
+
+          - jsonPath: $.ServicePlanRequest.*.layoutExcel 
+          
+          - jsonPath: $.ServicePlanRequest.*.anyOtherdoc 
 
           - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
