@@ -60,6 +60,8 @@ public class ServicePlanService {
 	private static final String businessService_TL_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
 
 	private static final String SENDBACK_STATUS = "SP_SENDBACK_TO_APPLICANT";
+	
+	private static final String SENDBACK_STATUS_DEMARCATION = "SPD_SENDBACK_TO_APPLICANT";
 
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 
@@ -357,6 +359,34 @@ public class ServicePlanService {
 	
 		
 		 }
+		//CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN AT DEMARCATION PROCESS
+				else if ((servicePlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS_DEMARCATION)) && usercheck( requestInfo) ) {
+
+				String currentStatus = searchServicePlan.get(0).getStatus();
+				
+				servicePlanRequest.setAssignee(Arrays.asList(assignee("CTP_HR" , servicePlanRequest.getTenantID() , true ,requestInfo)));
+				
+				servicePlanRequest.setAction(CITIZEN_UPDATE_ACTION);
+
+				BusinessService workflow = workflowService.getBusinessService(servicePlanRequest.getTenantID(),
+						servicePlanContract.getRequestInfo(), servicePlanRequest.getBusinessService());
+
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, servicePlanContract , servicePlanRequest);
+
+
+
+				servicePlanRequest.setAuditDetails(auditDetails);
+				
+
+
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(servicePlanRequest , requestInfo , servicePlanRequest.getBusinessService());
+
+				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+				servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+			
+				
+				 }
 		}
 
 		servicePlanContract.setServicePlanRequest(servicePlanRequestList);
