@@ -19,10 +19,10 @@
       "externalDevelopmentCharges": "1.75",
       "conversionCharges": "1.75",
       "stateInfrastructureDevelopmentCharges": "1.75",
-      "far":[
+      "fars":[
 
         {
-          "value2":2.25
+          "far":2.25
         }
       ],
       "purposes":[
@@ -82,9 +82,9 @@
       "externalDevelopmentCharges": "1.75",
       "conversionCharges": "1.75",
       "stateInfrastructureDevelopmentCharges": "1.75",
-      "far":[
+      "fars":[
       {
-        "value2":"1.75" 
+        "far":"1.75" 
       
       }]
     },
@@ -105,9 +105,9 @@
       "externalDevelopmentCharges": "1.75",
       "conversionCharges": "1.75",
       "stateInfrastructureDevelopmentCharges": "1.75",
-      "far":[
+      "fars":[
       {
-        "value2":"1.75" 
+        "far":"1.75" 
       
       }]
     },
@@ -128,8 +128,8 @@
       "externalDevelopmentCharges": "1.50",
       "conversionCharges": "1.50",
       "stateInfrastructureDevelopmentCharges": "1.50",
-      "far":[{
-        "value1":"1.5"
+      "fars":[{
+        "far":"1.5"
       }]
     },
 	  {
@@ -155,8 +155,8 @@
       "stateInfrastructureDevelopmentCharges":1.50,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "far":[{
-        "value1":"1.5"
+      "fars":[{
+        "far":"1.5"
       }] 
     },
     {
@@ -252,8 +252,8 @@
       "stateInfrastructureDevelopmentCharges": 150,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "far":[{
-        "value1":"2.5"
+      "fars":[{
+        "far":"2.5"
       }],
       "purposes":[
         {
@@ -286,8 +286,8 @@
       "stateInfrastructureDevelopmentCharges": 150,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "far":[{
-        "value1":"2.5"
+      "fars":[{
+        "far":"2.5"
       }],
       "purposes":[
         {
@@ -340,11 +340,11 @@
       "externalDevelopmentCharges": "",
       "conversionCharges": "",
       "stateInfrastructureDevelopmentCharges": "",
-      "far":[{
-        "value1":"2.50"
+      "fars":[{
+        "far":"2.50"
       },
       {
-        "value2":"1.75" 
+        "far":"1.75" 
       },      
       {
         "value3":"3.50" 
@@ -408,8 +408,8 @@
       "stateInfrastructureDevelopmentCharges": "1.75",
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "far":[{
-        "value1":"1.25"
+      "fars":[{
+        "far":"1.25"
       }],
       "purposes":[
         {
@@ -442,8 +442,8 @@
       "stateInfrastructureDevelopmentCharges": 1.50,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "far":[{
-        "value1":"1.75"
+      "fars":[{
+        "far":"1.75"
       }],
       "purposes":[{
         
@@ -511,8 +511,8 @@
       "externalDevelopmentCharges": "",
       "conversionCharges": "",
       "stateInfrastructureDevelopmentCharges": "",
-      "far":[{
-        "value1":"2.25"
+      "fars":[{
+        "far":"2.25"
       }
     ],
       "purposes":[
@@ -547,9 +547,9 @@
       "stateInfrastructureDevelopmentCharges":3.5,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "far":[
+      "fars":[
         {
-          "value1":1.75
+          "far":1.75
         }
       ],
       "purposes":[
@@ -667,10 +667,10 @@
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
       "maximumPermissible":"4",
-      "far":[{
-        "value1":"1.5"
+      "fars":[{
+        "far":"1.5"
       },{
-        "value2":"1.75" 
+        "far":"1.75" 
       }
     ],
       "purposes":[

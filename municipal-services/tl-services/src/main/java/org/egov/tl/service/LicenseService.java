@@ -114,7 +114,9 @@ public class LicenseService {
 	private String userHost;
 	@Value("${egov.user.search.path}")
 	private String userSearchPath;
-
+	
+	@Value("${egov.pg-service.path}")
+	private String updatePath;
 	@Autowired
 	LandUtil landUtil;
 
@@ -191,7 +193,7 @@ public class LicenseService {
 							purposeDetail = recursionMethod(newServiceInfo.getRequestInfo(),
 									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(),
 									newobj.getApplicantPurpose().getPurpose(),
-									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail,1);
+									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail, 1);
 							DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
 							DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
 							detailsofAppliedLand.setPurposeDetails(purposeDetail);
@@ -570,6 +572,9 @@ public class LicenseService {
 
 			// --------------success------------------------//
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
+			
+		
+			
 			// ------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 
@@ -772,7 +777,7 @@ public class LicenseService {
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
 						tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-					//	f9b7acaf-c1fb-4df2-ac10-83b55238a724
+						// f9b7acaf-c1fb-4df2-ac10-83b55238a724
 
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 
@@ -788,17 +793,10 @@ public class LicenseService {
 						log.info("returnPaymentUrl" + returnPaymentUrl);
 						httpHeaders.setLocation(
 								UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
+						
 						return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 						// ------------------finish--------------------//
-						/*
-						 * try { String payment =
-						 * rest.postForObject(config.getPgHost().concat(config.getPgPath()),
-						 * requestParam, String.class); log.info("responses" + payment); } catch
-						 * (Exception e) {
-						 * 
-						 * }
-						 */
 
 					}
 				}
@@ -1012,7 +1010,8 @@ public class LicenseService {
 
 					CalculatorRequest calculator = new CalculatorRequest();
 					calculator.setApplicationNumber(applicationNo);
-					calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+					calculator.setPotenialZone(
+							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
 					calculator.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
 					calculator.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
 					calculator.setTotalLandSize(newobj.getApplicantPurpose().getTotalArea());
@@ -1070,11 +1069,12 @@ public class LicenseService {
 	}
 
 	public PurposeDetails recursionMethod(RequestInfo info, String tenantId, String purposeCode, BigDecimal totalArea,
-			PurposeDetails purposeDetailm,int i) {
+			PurposeDetails purposeDetailm, int i) {
 
 		LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId1 = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 				.mDMSCallPurposeCode(info, tenantId, purposeCode);
-			i++;
+		i++;
+		List<String> fars = new ArrayList<String>();
 		Map<String, List<String>> mdmsData1 = null;
 		mdmsData1 = valid.getAttributeValues(mDMSCallPurposeId1);
 
@@ -1083,35 +1083,46 @@ public class LicenseService {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
 			String minimumPermissible = String.valueOf(mm.get("minimumPermissible"));
+			//String far = String.valueOf(mm.get("far"));
+			
 
 			log.info("code:\t" + code + "\t" + nameRes + "\t" + minimumPermissible);
 			purposeDetailm.setCode(code);
 			purposeDetailm.setName(nameRes);
-			purposeDetailm.setId(code+i);
-			if (purposeDetailm.getArea()==null || purposeDetailm.getArea().isEmpty() ) {
+			purposeDetailm.setId(code + i);
+			if (purposeDetailm.getArea() == null || purposeDetailm.getArea().isEmpty()) {
 				purposeDetailm.setPercentage(minimumPermissible);
 				purposeDetailm.setArea(totalArea.multiply(new BigDecimal(minimumPermissible)).toString());
 			}
+			
+			List<Map<String, Object>> far = (List<Map<String, Object>>) (mm.get("fars"));
+			if(far!= null)
+			for (Map<String, Object> farss : far) {
+				fars.add(String.valueOf(farss.get("far")));
+			}
+			purposeDetailm.setFars(fars);
 			List<Map<String, Object>> purpose = (List<Map<String, Object>>) (mm.get("purposes"));
 			if (purpose != null)
 				for (Map<String, Object> mmm : purpose) {
 					PurposeDetails purposeDetail = new PurposeDetails();
 					List<PurposeDetails> purposeDetailList = new ArrayList<PurposeDetails>();
 					purposeDetail.setPurposeDetail(purposeDetailList);
+					
 					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
 					String maximunPermissible = String.valueOf(mmm.get("maximumPermissible"));
 
 					log.info("purpose" + purposeCodes);
-					log.info(maximunPermissible);i++;
+					log.info(maximunPermissible);
+					i++;
 					if (maximunPermissible != null) {
 						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
 						log.info("total area" + purposeDetail.getArea());
 						purposeDetail.setPercentage(maximunPermissible);
 						recursionMethod(info, tenantId, purposeCodes, new BigDecimal(purposeDetail.getArea()),
-								purposeDetail,i);
+								purposeDetail, i);
 
 					} else {
-						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail,i);
+						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail, i);
 
 					}
 
