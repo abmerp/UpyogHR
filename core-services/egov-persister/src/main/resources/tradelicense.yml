@@ -843,7 +843,7 @@ serviceMaps:
    fromTopic: save-new-bankguarantee
    isTransaction: true
    queryMaps:
-       - query: INSERT INTO eg_tl_bank_guarantee(id,application_number, status,loi_number,bg_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, bank_Guarantee_Status, licence_Number, hardcopy_Submitted, full_Certificate, partial_Certificate, additional_Documents, hardcopy_Submitted_Document, existing_Bg_Number, claim_Period, origin_Country, tcp_submission_received, indian_bank_advised_certificate, release_bank_guarantee) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO eg_tl_bank_guarantee(id,application_number, status,loi_number,bg_number, type_of_bg, upload_bg, bank_name, amount_In_Fig, amount_in_words, license_applied, validity, tenantId, additionalDetails, createdby, lastmodifiedby, createdtime, lastmodifiedtime, bank_Guarantee_Status, licence_Number, hardcopy_Submitted, full_Certificate, partial_Certificate, additional_Documents, hardcopy_Submitted_Document, existing_Bg_Number, claim_Period, origin_Country, tcp_submission_received, indian_bank_advised_certificate, release_bank_guarantee, businessservice) VALUES (?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?::date, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: NewBankGuaranteeRequest.*
          jsonMaps:
           - jsonPath: $.NewBankGuaranteeRequest.*.id
@@ -911,6 +911,8 @@ serviceMaps:
           - jsonPath: $.NewBankGuaranteeRequest.*.indianBankAdvisedCertificate
 
           - jsonPath: $.NewBankGuaranteeRequest.*.releaseBankGuarantee
+
+          - jsonPath: $.NewBankGuaranteeRequest.*.businessService
 
        - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
          basePath: NewBankGuaranteeRequest.*
