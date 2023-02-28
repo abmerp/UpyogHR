@@ -19,6 +19,8 @@
       "externalDevelopmentCharges": "1.75",
       "conversionCharges": "1.75",
       "stateInfrastructureDevelopmentCharges": "1.75",
+	  "minimumPermissible":"0.92",
+      "maximumPermissible":"0.98",
       "fars":[
 
         {
@@ -28,6 +30,7 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
+		  "minimumPermissible":"0.02",
           "maximumPermissible":"0.08"
         }
          
@@ -52,15 +55,14 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-    
+      "minimumPermissible":"0.96",
+	  "maximumPermissible":"0.98",
       "purposes":[
         {
-          "purposeCode":"CPRS",
-          "maximumPermissible":"0.02"
-        },
-        {
-          "purposeCode":"CICS",
-          "maximumPermissible":"0.02"
+          "purposeCode":"CGRPL",
+		  "minimumPermissible":"0.02",
+          "maximumPermissible":"0.04",
+          "isActive": 1
         }
          
       ]
@@ -206,23 +208,19 @@
       "stateInfrastructureDevelopmentCharges": 1.50,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-
+	  "minimumPermissible":"0.080",
+	  "maximumPermissible":"1.0",
       "purposes":[
         {
-          "purposeCode":"CPRS",
-          "maximumPermissible":"0.025"
-        },
-        {
-          "purposeCode":"CIRS",
-          "maximumPermissible":"0.025"
+          "purposeCode":"CGRPL",
+		  "minimumPermissible":"0.00",
+          "maximumPermissible":"0.05",
+          "isActive": 1
         },
           {
-            "purposeCode":"DDJAY_APHP",
-            "maximumPermissible":"0.10"
-          },
-          {
-            "purposeCode":"AGH",
-            "maximumPermissible":"0.10"
+            "purposeCode":"RGPL",
+			"maximumPermissible":"0.0",
+            "maximumPermissible":"0.02"
           }
            
                 
@@ -252,12 +250,15 @@
       "stateInfrastructureDevelopmentCharges": 150,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
+	   "minimumPermissible":"0.96",
+          "maximumPermissible":"1.0",
       "fars":[{
         "far":"2.5"
       }],
       "purposes":[
         {
-          "purposeCode":"CPRS",
+          "purposeCode":"CIRS",
+		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.04"
         }         
                 
@@ -286,12 +287,15 @@
       "stateInfrastructureDevelopmentCharges": 150,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
+	  "minimumPermissible":"0.96",
+          "maximumPermissible":"1.0",
       "fars":[{
         "far":"2.5"
       }],
       "purposes":[
         {
-          "purposeCode":"CPRS",
+          "purposeCode":"CIRS",
+		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.04"
         }         
                 
@@ -386,7 +390,19 @@
       "stateInfrastructureDevelopmentCharges":"",
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50
-            
+      "minimumPermissible":"0.96"
+      "maximumPermissible":"1.0",
+      "fars":[{
+        "far":"1.25"
+      }],
+      "purposes":[
+        {
+          "purposeCode":"CIRS",
+		  "minimumPermissible":"0.0",
+          "maximumPermissible":"0.04"
+        }    
+                
+      ]      
     },
 	
     {
@@ -408,12 +424,15 @@
       "stateInfrastructureDevelopmentCharges": "1.75",
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
+	  "minimumPermissible":"0.96"
+      "maximumPermissible":"1.0",
       "fars":[{
         "far":"1.25"
       }],
       "purposes":[
         {
           "purposeCode":"CIRS",
+		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.04"
         }    
                 
@@ -442,12 +461,15 @@
       "stateInfrastructureDevelopmentCharges": 1.50,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
+	  "maximumPermissible":"1.0",
+	  "minimumPermissible":"0.995",
       "fars":[{
         "far":"1.75"
       }],
       "purposes":[{
         
           "purposeCode":"CPRS",
+		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.005"
         }
          
@@ -474,7 +496,7 @@
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,   
       "minimumPermissible":"0.86",
-   
+	  "maximumPermissible":"1.0",
       "purposes":[
 		
 		
@@ -482,6 +504,7 @@
         
         {
           "purposeCode":"CGRPL",
+		  "minimumPermissible":"0",
           "maximumPermissible":"0.04",
           "isActive": 1
         },
@@ -511,6 +534,8 @@
       "externalDevelopmentCharges": "",
       "conversionCharges": "",
       "stateInfrastructureDevelopmentCharges": "",
+	  "minimumPermissible":"0.96",
+      "maximumPermissible":"1.0",
       "fars":[{
         "far":"2.25"
       }
@@ -518,6 +543,7 @@
       "purposes":[
         {
           "purposeCode":"CICS",
+		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.04"
         }
          
@@ -666,26 +692,61 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-      "maximumPermissible":"4",
-      "fars":[{
-        "far":"1.5"
-      },{
-        "far":"1.75" 
-      }
-    ],
+     
+   
       "purposes":[
         {
           "purposeCode":"CPRS",
-          "maximumPermissible":"0.5"
+		  "minimumPermissible":"0",
+          "maximumPermissible":"1.0"
         },
           {
             "purposeCode":"CIRS",
-            "maximumPermissible":"0.5"
+            "minimumPermissible":"0",
+			"maximumPermissible":"1.0"
+          }
+         
+      ]
+    
+    },
+     
+  {
+      "purposeId": 91,
+      "name": "Residential group",
+      "purposeCode": "RGPL",
+      "caseType_id": 1,
+      "description": "Plotted",
+      "isActive": 0,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 1,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges":1.75,
+      "licenseFeeCharges":1.75,
+      "conversionCharges": 1.75,      
+      "externalDevelopmentCharges": 1.75,       
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50,
+     
+   
+      "purposes":[
+        {
+          "purposeCode":"AGH",
+		  "minimumPermissible":"0",
+          "maximumPermissible":"1.0"
+        },
+          {
+            "purposeCode":"DDJAY_APHP",
+            "minimumPermissible":"0",
+			"maximumPermissible":"1.0"
           }
          
       ]
     
     }
      
+  
   ]
 }
