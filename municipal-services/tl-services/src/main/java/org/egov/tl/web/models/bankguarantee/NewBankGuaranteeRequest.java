@@ -109,6 +109,7 @@ public class NewBankGuaranteeRequest {
 		this.tcpSubmissionReceived = newBankGuarantee.getTcpSubmissionReceived();
 		this.indianBankAdvisedCertificate = newBankGuarantee.getIndianBankAdvisedCertificate();
 		this.releaseBankGuarantee = newBankGuarantee.getReleaseBankGuarantee();
+		this.businessService = newBankGuarantee.getBusinessService();
 		/*
 		this.mortgageKhasraDetails = newBankGuarantee.getMortgageKhasraDetails();
 		this.totalKhasraAreaToMortgage = newBankGuarantee.getTotalKhasraAreaToMortgage();
@@ -154,6 +155,7 @@ public class NewBankGuaranteeRequest {
 				.tcpSubmissionReceived(this.tcpSubmissionReceived)
 				.indianBankAdvisedCertificate(this.indianBankAdvisedCertificate)
 				.releaseBankGuarantee(this.releaseBankGuarantee)
+				.businessService(this.businessService)
 				/*
 				.mortgageKhasraDetails(this.mortgageKhasraDetails)
 				.totalKhasraAreaToMortgage(this.totalKhasraAreaToMortgage)
