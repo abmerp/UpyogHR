@@ -772,6 +772,7 @@ public class LicenseService {
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
 						tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+					//	f9b7acaf-c1fb-4df2-ac10-83b55238a724
 
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 
@@ -1011,10 +1012,10 @@ public class LicenseService {
 
 					CalculatorRequest calculator = new CalculatorRequest();
 					calculator.setApplicationNumber(applicationNo);
-					calculatorRequest.setPotentialZone(
-							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
-					calculatorRequest.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
-					calculatorRequest.setTotalLandSize(new BigDecimal(newobj.getApplicantPurpose().getTotalArea()));
+					calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+					calculator.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
+					calculator.setFar(newobj.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getFAR());
+					calculator.setTotalLandSize(newobj.getApplicantPurpose().getTotalArea());
 					Map<String, Object> calculatorMap = new HashMap<>();
 					calculatorMap.put("CalulationCriteria", calulationCriteria);
 					calculatorMap.put("CalculatorRequest", calculator);

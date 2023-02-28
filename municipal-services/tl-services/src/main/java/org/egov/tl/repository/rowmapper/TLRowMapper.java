@@ -29,7 +29,6 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
 
     public List<TradeLicense> extractData(ResultSet rs) throws SQLException, DataAccessException {
         Map<String, TradeLicense> tradeLicenseMap = new LinkedHashMap<>();
-
         while (rs.next()) {
             String id = rs.getString("tl_id");
             TradeLicense currentTradeLicense = tradeLicenseMap.get(id);
@@ -73,6 +72,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
                         .tcpCaseNumber(rs.getString("tcpcasenumber"))
                         .tcpDairyNumber(rs.getString("tcpdairynumber"))
+                       
                        // .tcpDairyNumber(tcploinumber
                         //.tcpSaveTransactionNumber(tenantId)
                      //   .oldPropertyId(rs.getString("oldpropertyid"))
@@ -160,6 +160,13 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                       //  .address(address)
                         .auditDetails(auditdetails)
                         .currentVersion(rs.getFloat("currentversion"))
+                        .EDC(rs.getDouble("edc"))
+                        .IDW(rs.getDouble("idw"))
+                        .scrutinyFeeCharges(rs.getDouble("scrutinyfeecharges"))
+                        .licenseFeeCharges(rs.getDouble("licensefeecharges"))
+                        .conversionCharges(rs.getDouble("conversioncharges"))
+                        .externalDevelopmentCharges(rs.getDouble("externaldevelopmentcharges"))
+                        .stateInfrastructureDevelopmentCharges(rs.getDouble("stateinfrastructuredevelopmentcharges"))
                        // .structureType(rs.getString("structureType"))
                       //  .operationalArea(operationalArea)
                       //  .noOfEmployees(noOfEmployees)
