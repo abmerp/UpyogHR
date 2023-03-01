@@ -23,9 +23,6 @@ class FeesTypeCalculationDto {
 	private BigDecimal stateInfrastructureDevelopmentChargesCal;
 	private List<FeesTypeCalculationDto> feesTypeCalculationDto;
 
-//	public BigDecimal getLicenseFee() {
-//		return this.licenseFeeChargesCal.multiply(new BigDecimal(0.25));
-//
-//	}
+	
 
 }
