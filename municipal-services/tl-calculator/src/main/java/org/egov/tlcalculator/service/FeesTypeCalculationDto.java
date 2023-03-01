@@ -23,6 +23,4 @@ class FeesTypeCalculationDto {
 	private BigDecimal stateInfrastructureDevelopmentChargesCal;
 	private List<FeesTypeCalculationDto> feesTypeCalculationDto;
 
-	
-
 }

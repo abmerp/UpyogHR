@@ -47,7 +47,7 @@ public interface Calculator {
 	public BigDecimal RATE_50= new BigDecimal(50);
 	public BigDecimal RATE_30= new BigDecimal(30);
 	
-	public BigDecimal RATE104 =new BigDecimal(104);
+	public BigDecimal RATE104 =new BigDecimal(10410000);
 	public BigDecimal RATE09 =new BigDecimal(0.9);
 	public BigDecimal RATE07 =new BigDecimal(0.7);
 	public BigDecimal RATE06 =new BigDecimal(0.6);

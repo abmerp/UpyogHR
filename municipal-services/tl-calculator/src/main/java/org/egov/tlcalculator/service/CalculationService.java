@@ -150,7 +150,7 @@ public class CalculationService {
 		BigDecimal externalDevelopment = new BigDecimal(0);
 		for (FeesTypeCalculationDto result : results) {
 			scrutinyFee = scrutinyFee.add(result.getScrutinyFeeChargesCal());
-			licenseFeeCharges = licenseFeeCharges.add(result.getLicenseFeeChargesCal());
+			licenseFeeCharges = licenseFeeCharges.add(result.getLicenseFeeChargesCal().multiply(new BigDecimal(0.25)));
 			externalDevelopment = externalDevelopment.add(result.getExternalDevelopmentChargesCal());
 			stateInfrastructure = stateInfrastructure.add(result.getStateInfrastructureDevelopmentChargesCal());
 			conversionCharges = conversionCharges.add(result.getConversionChargesCal());
