@@ -38,7 +38,7 @@ public class CalculatorImpl implements Calculator {
 		BigDecimal arce = new BigDecimal(calculatorRequest.getTotalLandSize());
 		BigDecimal AREA1 = (PERCENTAGE1.multiply(new BigDecimal(calculatorRequest.getTotalLandSize())));
 		BigDecimal AREA2 = PERCENTAGE2.multiply(new BigDecimal(calculatorRequest.getTotalLandSize()));
-		BigDecimal far = new BigDecimal(0.0);
+		BigDecimal far = new BigDecimal(1.0);
 		if (calculatorRequest.getFar()!=null)
 			far = new BigDecimal(calculatorRequest.getFar());
 

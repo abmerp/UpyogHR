@@ -94,9 +94,10 @@ public class FeesCalculation implements Calculator {
 			// String purpose = newobj.getApplicantPurpose().getPurpose();
 			String zone = newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential();
 			String totalArea = newobj.getApplicantPurpose().getTotalArea();
-			PurposeDetails purposeDetail = newobj.getDetailsofAppliedLand().getPurposeDetails();
+			List<PurposeDetails> purposeDetail = newobj.getDetailsofAppliedLand().getPurposeDetails();
+			
 			log.info("purposeDetail" + purposeDetail);
-
+			
 			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail);
 			log.info("FeesTypeCalculationDto" + feesTypeCalculationDto);
 
@@ -107,15 +108,15 @@ public class FeesCalculation implements Calculator {
 	}
 
 	public FeesTypeCalculationDto recursionMethod(RequestInfo info, String applicationNo, String totalArea, String zone,
-			PurposeDetails purposeDetailm) {
+			List<PurposeDetails> purposeDetailm) {
 
 		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
 		calculator.setPotenialZone(zone);
-		calculator.setPurposeCode(purposeDetailm.getCode());
-		calculator.setFar(purposeDetailm.getFar());
-		if (purposeDetailm.getArea() != null) {
-			calculator.setTotalLandSize(purposeDetailm.getArea());
+		calculator.setPurposeCode(purposeDetailm.get(0).getCode());
+		calculator.setFar(purposeDetailm.get(0).getFar());
+		if (purposeDetailm.get(0).getArea() != null) {
+			calculator.setTotalLandSize(purposeDetailm.get(0).getArea());
 		} else {
 			calculator.setTotalLandSize(totalArea);
 		}
@@ -123,9 +124,12 @@ public class FeesCalculation implements Calculator {
 		FeesTypeCalculationDto result = calculatorImpl.feesTypeCalculation(info, calculator);
 		FeesTypeCalculationDto feesTypeCalculation = new FeesTypeCalculationDto();
 		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
-		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
-		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
-			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
+		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);	
+		
+		for (PurposeDetails purpose :  purposeDetailm.get(0).getPurposeDetail()) {
+			List<PurposeDetails> purposeDetail = new ArrayList<>();
+			purposeDetail.add(purpose);
+			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail);
 			feesTypeCalculationDtoList.add(newResult);
 			result.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
 
