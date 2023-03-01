@@ -389,8 +389,8 @@
            
       "stateInfrastructureDevelopmentCharges":"",
       "IDWPerAcreInLakhsForPlottedComponent":20,
-      "IDWPerAcreInLakhsForCommercialComponent":50
-      "minimumPermissible":"0.96"
+      "IDWPerAcreInLakhsForCommercialComponent":50,
+      "minimumPermissible":"0.96",
       "maximumPermissible":"1.0",
       "fars":[{
         "far":"1.25"
@@ -424,7 +424,7 @@
       "stateInfrastructureDevelopmentCharges": "1.75",
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-	  "minimumPermissible":"0.96"
+	  "minimumPermissible":"0.96",
       "maximumPermissible":"1.0",
       "fars":[{
         "far":"1.25"

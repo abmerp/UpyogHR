@@ -196,7 +196,9 @@ public class LicenseService {
 									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail, 1);
 							DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
 							DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
-							detailsofAppliedLand.setPurposeDetails(purposeDetail);
+							List<PurposeDetails> newPurposeDetailList = new ArrayList<PurposeDetails>();
+							newPurposeDetailList.add(purposeDetail);
+							detailsofAppliedLand.setPurposeDetails(newPurposeDetailList);
 							newobj.setDetailsofAppliedLand(detailsofAppliedLand);
 							break;
 						}
