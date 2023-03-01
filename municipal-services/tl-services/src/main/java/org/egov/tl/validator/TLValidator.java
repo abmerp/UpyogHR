@@ -481,13 +481,13 @@ public class TLValidator {
             throw new CustomException("INVALID SEARCH", "Search not allowed on this business service");
         }
 
-        if(!requestInfo.getUserInfo().getType().equalsIgnoreCase("CITIZEN" )&& criteria.isEmpty())
+        if(!(requestInfo.getUserInfo().getType().equalsIgnoreCase("CITIZEN" )||requestInfo.getUserInfo().getType().equalsIgnoreCase("EMPLOYEE" )) && criteria.isEmpty())
             throw new CustomException("INVALID SEARCH","Search without any paramters is not allowed");
 
-        if(!requestInfo.getUserInfo().getType().equalsIgnoreCase("CITIZEN" )&& criteria.tenantIdOnly())
+        if(!(requestInfo.getUserInfo().getType().equalsIgnoreCase("CITIZEN" )||requestInfo.getUserInfo().getType().equalsIgnoreCase("EMPLOYEE" ))&& criteria.tenantIdOnly())
             throw new CustomException("INVALID SEARCH","Search based only on tenantId is not allowed");
 
-        if(requestInfo.getUserInfo().getType().equalsIgnoreCase("CITIZEN" )&& criteria.tenantIdOnly())
+        if((requestInfo.getUserInfo().getType().equalsIgnoreCase("CITIZEN" )||requestInfo.getUserInfo().getType().equalsIgnoreCase("EMPLOYEE" ))&& criteria.tenantIdOnly())
             throw new CustomException("INVALID SEARCH","Search only on tenantId is not allowed");
 
         String allowedParamStr = null;
