@@ -1149,7 +1149,7 @@ serviceMaps:
 
           - jsonPath: $.NewBankGuaranteeRequest.*.releaseBankGuarantee
 
-          - jsonPath: $.NewBankGuaranteeRequest.*.businessservice
+          - jsonPath: $.NewBankGuaranteeRequest.*.businessService
 
           - jsonPath: $.NewBankGuaranteeRequest.*.id
 
