@@ -770,6 +770,11 @@
       "description": "Junior Engineer Field role"
     },
     {
+      "code": "NAYAB_TEHSILDAR",
+      "name": "Nayab Tehsildar",
+      "description": "Nayab Tehsildar role"
+    },
+    {
       "code": "JD_FIELD",
       "name": "Junior Draftsman Field",
       "description": "JD Field role"
