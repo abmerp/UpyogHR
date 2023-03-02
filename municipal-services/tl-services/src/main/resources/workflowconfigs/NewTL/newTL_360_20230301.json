@@ -689,8 +689,7 @@
               "action": "SENDBACK_TO_APPLICANT",
               "nextState": "PENDING_AT_APPLICANT_PRELIM",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             }
           ]
         },
@@ -709,8 +708,7 @@
               "action": "FORWARD_TO_DTCP",
               "nextState": "PENDING_AT_DTCP_ISSUELICENSE",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             }
           ]
         },
@@ -1215,64 +1213,56 @@
               "action": "APPROVE_SITE_VERIFICATION",
               "nextState": "PENDING_COMPLIANCES",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_APPLICANT",
               "nextState": "PENDING_AT_CTP_HR_FOR_APPLICANT_SITEVERIF",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "CANCEL",
               "nextState": "CANCELLED",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_STP_CIRCLE",
               "nextState": "PENDING_AT_STP_CIRCLE_SITEVERIF",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_DTP_FIELD",
               "nextState": "PENDING_AT_DTP_FIELD_SITEVERIF",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_DTP_HQ",
               "nextState": "PENDING_AT_DTP_HQ_SITEVERIF",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_STP_HQ",
               "nextState": "PENDING_AT_STP_HQ_SITEVERIF",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
               "action": "SENDBACK_TO_CTP_HR",
               "nextState": "PENDING_AT_CTP_HR_SITEVERIF",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             }
           ]
         },
@@ -1528,8 +1518,7 @@
               "action": "SENDBACK_TO_APPLICANT",
               "nextState": "PENDING_AT_APPLICANT_ISSUELICENSE",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             },
             {
               "tenantId": "hr",
@@ -1556,8 +1545,7 @@
               "action": "FORWARD_TO_DTCP",
               "nextState": "PENDING_AT_DTCP_ISSUELICENSE",
               "roles": [
-                "DTCP"
-              ]
+                "DTCP_HR"              ]
             }
           ]
         },
