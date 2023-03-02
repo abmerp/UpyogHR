@@ -262,10 +262,10 @@ public class Util {
 			rolesTenantList.add(role.getTenantId());
 		}
 		
-		if (Constants.EMPLOYEE_TYPE_CODE.equalsIgnoreCase(userType) && rolesTenantList.contains(tenantSplitArray[0])
-				&& tenantSplitArray.length == 1) {
-			throw new CustomException("EG_BS_INVALID_TENANTID", "Employees cannot search based on state level tenantid");
-		}
+//		if (Constants.EMPLOYEE_TYPE_CODE.equalsIgnoreCase(userType) || rolesTenantList.contains(tenantSplitArray[0])
+//				&& tenantSplitArray.length == 1) {
+//			throw new CustomException("EG_BS_INVALID_TENANTID", "Employees cannot search based on state level tenantid");
+//		}
 	}
 	
 	/**
