@@ -4642,7 +4642,7 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 				this.MY_FILE = env.getProperty("egov.loireport");
 				File file = new File(MY_FILE);
 				if (!file.exists()) {
-					file.mkdirs();
+					file.mkdir();
 				}
 				
 				User user=getUserInfo(userId).getUser().get(0);
