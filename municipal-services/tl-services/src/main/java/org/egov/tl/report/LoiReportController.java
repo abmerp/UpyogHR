@@ -109,9 +109,9 @@ public class LoiReportController {
 	
 
 	@RequestMapping(value = "/loi/report/_create", method = RequestMethod.POST)
-	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("userId") String userId, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
+	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("userId") String userId,@RequestParam("hqUserId") String hqUserId, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
 		
-		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport);
+		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport,hqUserId);
 		this.MY_FILE = env.getProperty("egov.loireport");
 		File file = new File(MY_FILE+"loi-report-"+applicationNumber+".pdf");
 		if (file.exists()) {

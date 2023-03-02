@@ -163,6 +163,7 @@ public class LoiReportService {
 	
 	private PdfWriter writer=null;
 	private String dtcpUserName="";
+	private String hqUserName="";;
 	private String disticName="";
 	
 	private String comericalComponent="0.0";
@@ -178,11 +179,11 @@ public class LoiReportService {
 	 * 1: LOI Purpose : Group Housing start *
 	 ***************************************/
 
-	private void getLoiReportGroupHousing(String applicationNumber, String userId, RequestLOIReport requestLOIReport) {
+	private void getLoiReportGroupHousing(String applicationNumber, String userId,String hqUserId, RequestLOIReport requestLOIReport) {
 
 		
 
-	  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+	  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 	  if(licenseServiceResponceInfo==null) {
 		return;
 	   }else {
@@ -454,7 +455,7 @@ public class LoiReportService {
 				subList1.add(new ListItem("District Town Planner, Gurugram.", normal));
 				doc.add(subList1);
 
-				Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+				Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 						normal);
 				preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -502,10 +503,10 @@ public class LoiReportService {
 	 * 2: LOI Purpose : Affordable Group Housing start  *
 	 ***************************************************/
 
-	private void getLoiReportAffordableGroupHousing(String applicationNumber, String userId,
+	private void getLoiReportAffordableGroupHousing(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
 
-		LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		if(licenseServiceResponceInfo==null) {
 			return;
 		}else {
@@ -761,7 +762,7 @@ public class LoiReportService {
 				subList1.add(new ListItem("District Town Planner, Gurugram.", normal));
 				doc.add(subList1);
 
-				Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+				Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 						normal);
 				preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -806,9 +807,9 @@ public class LoiReportService {
 	/*********************************************************
 	 * 3: LOI Purpose : Group Housing under TOD policy start *
 	 *********************************************************/
-	private void getLoiReportGroupHousingUnderTODPolicy(String applicationNumber, String userId,
+	private void getLoiReportGroupHousingUnderTODPolicy(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
-		LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		if(licenseServiceResponceInfo==null) {
 			return;
 		}else {
@@ -1123,7 +1124,7 @@ public class LoiReportService {
 				subList1.add(new ListItem("District Town Planner, Gurugram.", normal));
 				doc.add(subList1);
 
-				Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+				Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 						normal);
 				preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -1167,9 +1168,9 @@ public class LoiReportService {
 	/*********************************************************************
 	 * 4: LOI Purpose : Affordable Plotted Colony under Deen Dayal start *
 	 *********************************************************************/
-	private void getLoiReportGAffordablePlottedDeenDayal(String applicationNumber, String userId,
+	private void getLoiReportGAffordablePlottedDeenDayal(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
- 	LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+ 	LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		if(licenseServiceResponceInfo==null) {
 			return;
 		}else {
@@ -1467,7 +1468,7 @@ public class LoiReportService {
 				subList1.add(new ListItem("District Town Planner, Gurugram. ", normal));
 				doc.add(subList1);
 
-				Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+				Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 						normal);
 				preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -1511,9 +1512,9 @@ public class LoiReportService {
 	 * 5: LOI Purpose : Commercial Plotted colony start *
 	 ****************************************************/
 
-	private void getLoiReportCommercialPlottedColony(String applicationNumber, String userId,
+	private void getLoiReportCommercialPlottedColony(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
-        LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+        LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		if(licenseServiceResponceInfo==null) {
 			return;
 		}else {
@@ -1796,7 +1797,7 @@ public class LoiReportService {
 
 				doc.add(subList1);
 
-				Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+				Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 						normal);
 				preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -1840,11 +1841,11 @@ public class LoiReportService {
 	 * 7: LOI Purpose : Industrial Plotted Colony  start *
 	 *****************************************************/
 	
-	private void getLoiReportIndustrialPlottedColony(String applicationNumber, String userId, RequestLOIReport requestLOIReport) {
+	private void getLoiReportIndustrialPlottedColony(String applicationNumber, String userId,String hqUserId, RequestLOIReport requestLOIReport) {
 
 		
 
-		  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		  if(licenseServiceResponceInfo==null) {
 			return;
 		   }else {
@@ -2237,7 +2238,7 @@ public class LoiReportService {
 					subList1.add(new ListItem("District Town Planner, Gurugram.", normal));
 					doc.add(subList1);
 
-					Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+					Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 							normal);
 					preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -2285,11 +2286,11 @@ public class LoiReportService {
 	 * 8: LOI Purpose : IT Park/Cyber Park   start *
 	 *****************************************************/
 	
-	private void getLoiReportITCyberCity(String applicationNumber, String userId, RequestLOIReport requestLOIReport) {
+	private void getLoiReportITCyberCity(String applicationNumber, String userId,String hqUserId, RequestLOIReport requestLOIReport) {
 
 		
 
-		  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		  if(licenseServiceResponceInfo==null) {
 			return;
 		   }else {
@@ -2585,7 +2586,7 @@ public class LoiReportService {
 					subList1.add(new ListItem("Project Manager (IT) with the request to update the status on website.", normal));
 					doc.add(subList1);
 
-					Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+					Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 							normal);
 					preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -2630,11 +2631,11 @@ public class LoiReportService {
 	 * 9: LOI Purpose : Industrial colony  start *
 	 *****************************************************/
 	
-	private void getLoiReportIndustrialColony(String applicationNumber, String userId, RequestLOIReport requestLOIReport) {
+	private void getLoiReportIndustrialColony(String applicationNumber, String userId,String hqUserId, RequestLOIReport requestLOIReport) {
 
 		
 
-		  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		  LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		  if(licenseServiceResponceInfo==null) {
 			return;
 		   }else {
@@ -2926,7 +2927,7 @@ public class LoiReportService {
 					subList1.add(new ListItem("District Town Planner, Panipat.", normal));
 					doc.add(subList1);
 
-					Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+					Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 							normal);
 					preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -2975,9 +2976,9 @@ public class LoiReportService {
 	 * 10: LOI Purpose : Develop Mixed Land Use Colony  start *
 	 *****************************************************/
 	
-	private void getLoiReportDevelopMixedLandUseColony(String applicationNumber, String userId,
+	private void getLoiReportDevelopMixedLandUseColony(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
-        LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+        LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 		if(licenseServiceResponceInfo==null) {
 			return;
 		}else {
@@ -3315,7 +3316,7 @@ public class LoiReportService {
 				subList1.add(new ListItem("Nodal Officer (Website) O/o DGTCP, Hr.", normal));
 				doc.add(subList1);
 
-				Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+				Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 						normal);
 				preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -3360,11 +3361,11 @@ public class LoiReportService {
 	 * 11: LOI Purpose : New Residential Plotted colony start *
 	 **********************************************************/
 
-	private void getLoiReportNewResidentialPlottedColony(String applicationNumber, String userId,
+	private void getLoiReportNewResidentialPlottedColony(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
          String licenseNo=null;
          StringJoiner applicationDated=new StringJoiner("&");
-		 LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		 LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 			if(licenseServiceResponceInfo==null) {
 				return;
 			}else {
@@ -3736,7 +3737,7 @@ public class LoiReportService {
 					subList1.add(new ListItem("Nodal Officer (Website) O/o DGTCP, Hr.", normal));
 					doc.add(subList1);
 
-					Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+					Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 							normal);
 					preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -3781,11 +3782,11 @@ public class LoiReportService {
 	 * 12: LOI Purpose : Integrated Residential Plotted Colony start *
 	 *****************************************************************/
 	
-	private void getLoiReportIntegratedResidentialPlottedColony(String applicationNumber, String userId,
+	private void getLoiReportIntegratedResidentialPlottedColony(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
          String licenseNo="";
          StringJoiner applicationDated=new StringJoiner("&");
-		 LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		 LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 			if(licenseServiceResponceInfo==null) {
 				return;
 			}else {
@@ -4126,7 +4127,7 @@ public class LoiReportService {
 					subList1.add(new ListItem("Project Manager (IT) with the request to update the status on website.", normal));
 					doc.add(subList1);
 
-					Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+					Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 							normal);
 					preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -4173,11 +4174,11 @@ public class LoiReportService {
 	 **********************************************************/
 	
 
-	private void getLoiReportCommercialIntegratedColony(String applicationNumber, String userId,
+	private void getLoiReportCommercialIntegratedColony(String applicationNumber, String userId,String hqUserId,
 			RequestLOIReport requestLOIReport) {
          String licenseNo=null;
          StringJoiner applicationDated=new StringJoiner("&");
-		 LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId);
+		 LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport, applicationNumber,userId,hqUserId);
 			if(licenseServiceResponceInfo==null) {
 				return;
 			}else {
@@ -4503,7 +4504,7 @@ public class LoiReportService {
 					subList1.add(new ListItem("Nodal Officer (Website) O/o DGTCP, Haryana.", normal));
 					doc.add(subList1);
 
-					Paragraph preface001 = new Paragraph("(" + getUserInfo(userId).getUser().get(0).getName() + ")",
+					Paragraph preface001 = new Paragraph("(" +hqUserName+ ")",
 							normal);
 					preface001.setAlignment(Element.ALIGN_RIGHT);
 
@@ -4633,7 +4634,7 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 		// --------------------------calculation end--------------------------------//
 	}
 	
-	private LicenseServiceResponseInfo checkApplicationIsValid(RequestLOIReport requestLOIReport, String applicationNumber,String userId) {
+	private LicenseServiceResponseInfo checkApplicationIsValid(RequestLOIReport requestLOIReport, String applicationNumber,String userId,String hqUserId) {
 		try {
 			LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber, requestLOIReport.getRequestInfo());
 			if(licenseServiceResponceInfo!=null&&licenseServiceResponceInfo.getNewServiceInfoData()!=null&&!licenseServiceResponceInfo.getNewServiceInfoData().isEmpty()) {
@@ -4661,7 +4662,10 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 				disticName=appliedLandDetails.getDistrict()!=null?appliedLandDetails.getDistrict():"";
 				collaborationCompanyName=appliedLandDetails.getDeveloperCompany()!=null?(appliedLandDetails.getDeveloperCompany()):("N/A");
 //				loiNumber=Optional.ofNullable(licenseServiceResponceInfo.getLoiNumber().toString()).isPresent()?licenseServiceResponceInfo.getLoiNumber():null;
-				dtcpUserName=getUserInfo().getUser().get(0).getName().contains("DTCP")?("T.L. Satyaprakash"):(getUserInfo().getUser().get(0).getName());
+				dtcpUserName=getUserInfo(userId).getUser().get(0).getName();
+				hqUserName=getUserInfo(hqUserId).getUser().get(0).getName();
+				
+				
 				writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(MY_FILE + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
@@ -4765,61 +4769,61 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 	}
 	
 
-	public void createLoiReport(String applicationNumber, String userId, RequestLOIReport requestLOIReport) {
+	public void createLoiReport(String applicationNumber, String userId,RequestLOIReport requestLOIReport,String hqUserId) {
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
 				requestLOIReport.getRequestInfo());
 		String purpose = licenseServiceResponceInfo.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose();
 		System.out.println("purpose:----" + purpose);
 		switch (purpose) {
 		case "RGP": { // 1
-	        getLoiReportGroupHousing(applicationNumber, userId, requestLOIReport);
+	        getLoiReportGroupHousing(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "AGH": { // 2
-			getLoiReportAffordableGroupHousing(applicationNumber, userId, requestLOIReport);
+			getLoiReportAffordableGroupHousing(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "TODMGH": { // 3
-			getLoiReportGroupHousingUnderTODPolicy(applicationNumber, userId, requestLOIReport);
+			getLoiReportGroupHousingUnderTODPolicy(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "DDJAY_APHP": { // 4
-			getLoiReportGAffordablePlottedDeenDayal(applicationNumber, userId, requestLOIReport);
+			getLoiReportGAffordablePlottedDeenDayal(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "CPRS": {// 5
-			getLoiReportCommercialPlottedColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportCommercialPlottedColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "RPL": {  // 6
-			getLoiReportNewResidentialPlottedColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportNewResidentialPlottedColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "IPA": { // 7
-			getLoiReportIndustrialPlottedColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportIndustrialPlottedColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}case "ITC": { // 8
-			getLoiReportITCyberCity(applicationNumber, userId, requestLOIReport);
+			getLoiReportITCyberCity(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}case "ITP": { // 9
-			getLoiReportITCyberCity(applicationNumber, userId, requestLOIReport);
+			getLoiReportITCyberCity(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}case "IPULP": { // 10
-	       	getLoiReportIndustrialColony(applicationNumber, userId, requestLOIReport);
+	       	getLoiReportIndustrialColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}case "MLU-CZ": { //11
-			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		case "UNKNOWANAN": { // 12 Integrated Residential Plotted Colony
-			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}case "CICS": {  // 13
-			getLoiReportCommercialIntegratedColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportCommercialIntegratedColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 		default:
-			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, requestLOIReport);
+			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, hqUserId,requestLOIReport);
 			break;
 		}
 
@@ -4852,7 +4856,7 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 			HttpEntity<RequestInfo> entity = new HttpEntity<RequestInfo>(requestLOIReport.getRequestInfo(), headers);
 			Map<String, String> param = new HashMap<>();
 			param.put("applicationNumber", applicationNumber);
-			param.put("userId", userId);
+//			param.put("userId", userId);
 			String urlParameter = param.toString().replace("{", "").replace("}", "").replaceAll(",", "&")
 					.replaceAll("\\s+", "");
 			Map<String, Object> rest1 = restTemplate
@@ -4947,7 +4951,9 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 /// dtcp:--usersid:-- 1775
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 
-		userSearchCriteria.setId(Arrays.asList(Long.parseLong(userId.length == 0 ? "1775" : userId[0])));
+//		userSearchCriteria.setId(Arrays.asList(Long.parseLong(userId.length == 0 ? "2247" : userId[0])));
+		userSearchCriteria.setId(Arrays.asList(Long.parseLong(userId[0])));
+		
 		userSearchCriteria.setTenantId("hr");
 
 		StringBuilder url = new StringBuilder(userHost);
