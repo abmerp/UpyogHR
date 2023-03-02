@@ -4640,7 +4640,7 @@ public void getCalculatorData(String applicationNumber,LicenseDetails newobj,Req
 			if(licenseServiceResponceInfo!=null&&licenseServiceResponceInfo.getNewServiceInfoData()!=null&&!licenseServiceResponceInfo.getNewServiceInfoData().isEmpty()) {
 				
 				doc= new Document(PageSize.A4);
-			//	this.MY_FILE = env.getProperty("egov.loireport");
+				this.MY_FILE = env.getProperty("egov.loireport");
 				File file = new File(env.getProperty("egov.loireport"));
 				if (!file.exists()) {
 					file.mkdirs();
