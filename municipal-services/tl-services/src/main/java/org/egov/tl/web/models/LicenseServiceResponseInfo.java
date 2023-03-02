@@ -54,6 +54,9 @@ public class LicenseServiceResponseInfo {
 	@JsonProperty("workFlowCode")
 	private String workFlowCode;
 	
+	@JsonProperty("applicationDate")
+	private String applicationDate;
+	
 	@JsonProperty("LicenseDetails")
 	private List<LicenseDetails> newServiceInfoData;
 
