@@ -563,7 +563,7 @@ public class LicenseService {
 		params1.put("eg_pg_txnid", Collections.singletonList(txnId));
 
 		// ------------failure----------------//
-		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+		if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 
 			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
 			returnPaymentUrl = paymentUrl + "?" + params1;
@@ -573,7 +573,7 @@ public class LicenseService {
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 			// --------------success------------------------//
-		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
 			
 //			String paymentupdate = null;
 //			
@@ -1066,7 +1066,7 @@ public class LicenseService {
 
 					tradeLicense.setId(tradeLicenses.get(0).getId());
 					tradeLicense.setLoiNumber(dispatchNo);
-					tradeLicense.setAction("APPROVE");
+					tradeLicense.setAction("");
 					tradeLicense.setWorkflowCode("NewTL");
 					tradeLicense.setTenantId(tradeLicenses.get(0).getTenantId());
 					tradeLicense.setApplicationNumber(tradeLicenses.get(0).getApplicationNumber());

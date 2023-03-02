@@ -417,6 +417,8 @@ public class TradeLicenseService {
             List<String> endStates = Collections.nCopies(tradeLicenseRequest.getLicenses().size(),STATUS_APPROVED);
             switch (businessServicefromPath) {
                 case businessService_TL:
+                	
+                	if(tradeLicenseRequest.getLicenses().get(0).getAction()!=null && !tradeLicenseRequest.getLicenses().get(0).getAction().isEmpty())
                     if (config.getIsExternalWorkFlowEnabled()) {
                         wfIntegrator.callWorkFlow(tradeLicenseRequest);
                     } else {
