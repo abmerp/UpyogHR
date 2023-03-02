@@ -19,7 +19,7 @@ public interface Calculator {
 	public BigDecimal RATE100000 = new BigDecimal(100000);
 	public BigDecimal RATE10000 = new BigDecimal(10000);
 	public BigDecimal RATE = new BigDecimal(1250000);
-	public BigDecimal RATE95 = new BigDecimal(9500000);
+	public BigDecimal RATE95 = new BigDecimal(950000);
 	public BigDecimal RATE950 = new BigDecimal(950000);
 	public BigDecimal RATE250 = new BigDecimal(2500000);
 	public BigDecimal RATE625 = new BigDecimal(625000);
