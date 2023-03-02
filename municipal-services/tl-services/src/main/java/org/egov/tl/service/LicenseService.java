@@ -575,7 +575,20 @@ public class LicenseService {
 			// --------------success------------------------//
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 			
-		
+//			String paymentupdate = null;
+//			
+//			Map<String, Object> requestPayment = new HashMap<>();
+//			requestPayment.put("transactionId", transactionId);
+//			requestPayment.put("RequestInfo", info);
+////			HttpHeaders httpHeaders1 = new HttpHeaders();
+////			httpHeaders1.setContentType(MediaType.APPLICATION_JSON);
+////			HttpEntity<Map<String, Object>> entity1 = new HttpEntity<>(requestPayment, httpHeaders1);
+//		//	paymentupdate = rest.postForObject(config.getPgHost().concat(config.getPgPath()),entity1, String.class);
+//			StringBuilder url1 = new StringBuilder(pgHost);
+//			url1.append(updatePath);
+//			
+//			Object paymentUpdtae = serviceRequestRepository.fetchResult(url1, requestPayment);
+//			log.info("responses" + paymentupdate);
 			
 			// ------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
@@ -901,7 +914,7 @@ public class LicenseService {
 					String dispatchNumber;
 					Map<String, Object> depAuthtoken = new HashMap<String, Object>();
 					depAuthtoken.put("UserId", "169");
-					depAuthtoken.put("EmailId", "dtp.panchkula.tcp@gmail.com");
+					depAuthtoken.put("EmailId", "kharb.jaideep@gmail.com");
 
 					Map<String, Object> mapDispatchNumber = new HashMap<String, Object>();
 					mapDispatchNumber.put("DispatchID", 0);
@@ -1134,4 +1147,5 @@ public class LicenseService {
 		}
 		return purposeDetailm;
 	}
+	
 }
