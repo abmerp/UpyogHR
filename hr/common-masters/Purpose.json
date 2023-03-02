@@ -468,7 +468,7 @@
       }],
       "purposes":[{
         
-          "purposeCode":"CPRS",
+          "purposeCode":"CIRS",
 		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.005"
         }
@@ -498,9 +498,6 @@
       "minimumPermissible":"0.86",
 	  "maximumPermissible":"1.0",
       "purposes":[
-		
-		
-        
         
         {
           "purposeCode":"CGRPL",
@@ -697,13 +694,13 @@
       "purposes":[
         {
           "purposeCode":"CPRS",
-		  "minimumPermissible":"0",
+		      "minimumPermissible":"0",
           "maximumPermissible":"1.0"
         },
           {
             "purposeCode":"CIRS",
             "minimumPermissible":"0",
-			"maximumPermissible":"1.0"
+			      "maximumPermissible":"1.0"
           }
          
       ]
