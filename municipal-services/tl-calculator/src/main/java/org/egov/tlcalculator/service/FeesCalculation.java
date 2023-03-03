@@ -128,8 +128,8 @@ public class FeesCalculation implements Calculator {
 		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
 		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
 		if(result.getScrutinyFeeChargesCal()!=null)
-		totalFee = totalFee.add(totalFee).add(result.getScrutinyFeeChargesCal()).add(result.getLicenseFeeChargesCal().multiply(new BigDecimal(0.25)));
-	//	result.setTotalFee(totalFee);
+		totalFee = new BigDecimal((totalFee.add(totalFee).add(result.getScrutinyFeeChargesCal()).add(result.getLicenseFeeChargesCal().multiply(new BigDecimal(0.25)))).toString());
+		result.setTotalFee(totalFee);
 		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
 			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
 			feesTypeCalculationDtoList.add(newResult);
