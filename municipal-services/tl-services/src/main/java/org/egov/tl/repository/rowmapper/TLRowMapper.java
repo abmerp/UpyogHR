@@ -167,6 +167,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .conversionCharges(rs.getDouble("conversioncharges"))
                         .externalDevelopmentCharges(rs.getDouble("externaldevelopmentcharges"))
                         .stateInfrastructureDevelopmentCharges(rs.getDouble("stateinfrastructuredevelopmentcharges"))
+                        .currentVersion(rs.getFloat("currentVersion"))
                        // .structureType(rs.getString("structureType"))
                       //  .operationalArea(operationalArea)
                       //  .noOfEmployees(noOfEmployees)

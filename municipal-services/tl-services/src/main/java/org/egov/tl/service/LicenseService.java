@@ -890,7 +890,7 @@ public class LicenseService {
 					String email = newobj.getApplicantInfo().getEmail();
 					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 					TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-					tradeLicenseDetail.setCurrentVersion(tradeLicense.getTradeLicenseDetail().getCurrentVersion());
+					tradeLicenseDetail.setCurrentVersion(newobj.getVer());
 					tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
 					tradeLicenseDetail
 							.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
