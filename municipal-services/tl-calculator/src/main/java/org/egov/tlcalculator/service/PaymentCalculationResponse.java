@@ -21,7 +21,7 @@ public class PaymentCalculationResponse {
     private List<FeesTypeCalculationDto> feesTypeCalculationDto;
     private BigDecimal totalFee;
 	public BigDecimal getTotalFee() {
-		return feesTypeCalculationDto.get(feesTypeCalculationDto.size()-1).getTotalFee();
+		return feesTypeCalculationDto.get(0).getTotalFee();
 		//return this.totalFee;
 	}
 

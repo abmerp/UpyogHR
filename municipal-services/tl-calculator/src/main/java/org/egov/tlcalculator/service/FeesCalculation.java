@@ -45,12 +45,12 @@ public class FeesCalculation implements Calculator {
 
 	@Autowired
 	CalculatorImpl calculatorImpl;
-
+	BigDecimal totalFee = new BigDecimal(0);
 	public List<FeesTypeCalculationDto> payment(RequestInfo info, String applicationNo) {
 
 		String applicationNumber = applicationNo;
 		String tenantId = "hr";
-		BigDecimal totalFee = new BigDecimal(0);
+		
 		List<FeesTypeCalculationDto> results = new ArrayList<FeesTypeCalculationDto>();
 		TradeLicense tradeLicense = utils.getTradeLicense(info, applicationNo, tenantId);
 		log.info("license" + tradeLicense);
@@ -99,9 +99,9 @@ public class FeesCalculation implements Calculator {
 			
 			log.info("purposeDetail" + purposeDetail);
 			
-			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0),totalFee);
+			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
 			log.info("totalFee" + totalFee);
-		
+			feesTypeCalculationDto.setTotalFee(totalFee);
 			results.add(feesTypeCalculationDto);
 			}
 		}
@@ -109,7 +109,7 @@ public class FeesCalculation implements Calculator {
 	}
 
 	public FeesTypeCalculationDto recursionMethod(RequestInfo info, String applicationNo, String totalArea, String zone,
-			PurposeDetails purposeDetailm, BigDecimal totalFee) {
+			PurposeDetails purposeDetailm) {
 
 		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
@@ -130,7 +130,7 @@ public class FeesCalculation implements Calculator {
 		totalFee = totalFee.add(totalFee).add(result.getScrutinyFeeChargesCal()).add(result.getLicenseFeeChargesCal().multiply(new BigDecimal(0.25)));
 		result.setTotalFee(totalFee);
 		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
-			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose,totalFee);
+			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
 			feesTypeCalculationDtoList.add(newResult);
 			result.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
 
