@@ -115,7 +115,6 @@ public class LoiReportController {
 		String myFile = env.getProperty("egov.loireport");
 		File file = new File(myFile+"loi-report-"+applicationNumber+".pdf");
 		if (file.exists()) {
-			System.out.println("file existing");
 			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
 			if (mimeType == null) {
 				mimeType = "application/octet-stream";
