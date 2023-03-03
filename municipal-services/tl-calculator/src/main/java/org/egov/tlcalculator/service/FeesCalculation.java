@@ -102,6 +102,7 @@ public class FeesCalculation implements Calculator {
 			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
 			log.info("totalFee" + totalFee);
 			feesTypeCalculationDto.setTotalFee(totalFee);
+			
 			results.add(feesTypeCalculationDto);
 			}
 		}
