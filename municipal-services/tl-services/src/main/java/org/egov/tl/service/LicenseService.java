@@ -480,7 +480,7 @@ public class LicenseService {
 					licenseServiceResponseInfo.setBusinessService(tradeLicense.getBusinessService());
 					licenseServiceResponseInfo.setCaseNumber(tradeLicense.getTcpCaseNumber());
 					licenseServiceResponseInfo.setDairyNumber(tradeLicense.getTcpDairyNumber());
-					licenseServiceResponseInfo.setApplicationDate(tradeLicense.getApplicationDate().toString());
+					licenseServiceResponseInfo.setApplicationDate(String.valueOf(tradeLicense.getApplicationDate()));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}
