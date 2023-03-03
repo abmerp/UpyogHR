@@ -113,7 +113,8 @@ public class LoiReportController {
 		
 		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport,hqUserId);
 		String myFile = env.getProperty("egov.loireport");
-		File file = new File(myFile+"loi-report-"+applicationNumber+".pdf");
+		String flocation="loi-report-"+applicationNumber+".pdf";
+		File file = new File(flocation);
 		if (file.exists()) {
 			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
 			if (mimeType == null) {

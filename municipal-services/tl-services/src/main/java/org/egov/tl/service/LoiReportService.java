@@ -3510,9 +3510,8 @@ public class LoiReportService {
 			try {
 				String myFile = loireportPath;
 				Document doc = new Document(PageSize.A4);
-				
-				PdfWriter writer = PdfWriter.getInstance(doc,
-						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				String filename="loi-report-" + applicationNumber + ".pdf";
+				PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(filename));
 				doc.open();
 				addTitlePage(doc, 1);
 //				String mm=licenseServiceResponceInfo.getCaseNumber() ;
