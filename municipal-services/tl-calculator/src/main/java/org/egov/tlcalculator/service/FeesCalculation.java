@@ -98,7 +98,7 @@ public class FeesCalculation implements Calculator {
 			List<PurposeDetails> purposeDetail = newobj.getDetailsofAppliedLand().getPurposeDetails();
 			
 			log.info("purposeDetail" + purposeDetail);
-			
+			totalFee = new BigDecimal(0);
 			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
 			log.info("totalFee" + totalFee);
 			feesTypeCalculationDto.setTotalFee(totalFee);
