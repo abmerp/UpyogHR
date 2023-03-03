@@ -1315,13 +1315,11 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
           
           
-       - query: UPDATE eg_tl_tradelicensedetail SET currentVersion = ?, additionaldetail = ?, scrutinyfeecharges = ?, licensefeecharges = ?, externaldevelopmentcharges = ?, conversioncharges = ?, stateinfrastructuredevelopmentcharges = ? ,edc = ?, idw =? WHERE id = ?;
+       - query: UPDATE eg_tl_tradelicensedetail SET additionaldetail = ?, scrutinyfeecharges = ?, licensefeecharges = ?, externaldevelopmentcharges = ?, conversioncharges = ?, stateinfrastructuredevelopmentcharges = ? ,edc = ?, idw =? WHERE id = ?;
          basePath: Licenses.*.tradeLicenseDetail
          jsonMaps: 
           
-          
-          - jsonPath: $.Licenses.*.tradeLicenseDetail.currentVersion
-          
+ 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.additionalDetail
             type: JSON
             dbType: JSONB
