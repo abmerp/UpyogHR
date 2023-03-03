@@ -100,7 +100,7 @@ import com.itextpdf.text.pdf.PdfTemplate;
 @RestController
 public class LoiReportController {
 
-	private String MY_FILE ;
+	//private String MY_FILE ;
 	
 	@Autowired Environment env;
 	
@@ -112,8 +112,8 @@ public class LoiReportController {
 	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("userId") String userId,@RequestParam("hqUserId") String hqUserId, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
 		
 		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport,hqUserId);
-		this.MY_FILE = env.getProperty("egov.loireport");
-		File file = new File(MY_FILE+"loi-report-"+applicationNumber+".pdf");
+		String myFile = env.getProperty("egov.loireport");
+		File file = new File(myFile+"loi-report-"+applicationNumber+".pdf");
 		if (file.exists()) {
 			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
 			if (mimeType == null) {
