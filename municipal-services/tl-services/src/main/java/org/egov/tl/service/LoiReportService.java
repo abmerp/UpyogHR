@@ -87,7 +87,12 @@ public class LoiReportService {
 	private String guranteeHost;
 	@Value("${egov.tl.calculator.calculate.endpoint}")
 	private String calculatorEndPoint;
+	
+	@Value("${egov.loireport}")
+	private String loireportPath;
 
+
+	
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 
@@ -128,7 +133,7 @@ public class LoiReportService {
 	private String memoNumber = null;
 	private String loiNumber = null;
 	String khasraNo = "N/A";
-	private Document doc = null;
+//	private Document doc = null;
 //	doc.setMargins(10f, 10f, 100f, 0f);
 //	doc doc = new doc();
 	private LicenseServiceDao newServiceInfo = null;
@@ -160,7 +165,7 @@ public class LoiReportService {
 	private String edcAmount = "0";
 	private String edcAmountInWord = "0";
 
-	private PdfWriter writer = null;
+//	private PdfWriter writer = null;
 	private String dtcpUserName = "";
 	private String hqUserName = "";;
 	private String disticName = "";
@@ -188,7 +193,11 @@ public class LoiReportService {
 		} else {
 
 			try {
-
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC-", "")
@@ -513,7 +522,11 @@ public class LoiReportService {
 			return;
 		} else {
 			try {
-
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -824,7 +837,11 @@ public class LoiReportService {
 		} else {
 
 			try {
-
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				String far = null;
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
@@ -1195,6 +1212,11 @@ public class LoiReportService {
 		} else {
 
 			try {
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -1547,7 +1569,11 @@ public class LoiReportService {
 			return;
 		} else {
 			try {
-
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -1889,6 +1915,11 @@ public class LoiReportService {
 				licenseServiceResponceInfo.getNewServiceInfoData().stream().forEach(license -> {
 					applicationDated.add(applicationDate.split("\\s+")[0]);
 				});
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -2341,6 +2372,11 @@ public class LoiReportService {
 		} else {
 
 			try {
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -2697,7 +2733,11 @@ public class LoiReportService {
 		} else {
 
 			try {
-
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 0);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -3050,6 +3090,11 @@ public class LoiReportService {
 			return;
 		} else {
 			try {
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				String residentialPercentage = "70";
 				String comericialPercentage = "30";
 
@@ -3463,6 +3508,12 @@ public class LoiReportService {
 			return;
 		} else {
 			try {
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 //				String mm=licenseServiceResponceInfo.getCaseNumber() ;
 //				System.out.println("mm:---------"+mm);
@@ -3937,6 +3988,11 @@ public class LoiReportService {
 			return;
 		} else {
 			try {
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -4350,6 +4406,11 @@ public class LoiReportService {
 			return;
 		} else {
 			try {
+				String myFile = loireportPath;
+				Document doc = new Document(PageSize.A4);
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
+				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
@@ -4832,7 +4893,7 @@ public class LoiReportService {
 			if (licenseServiceResponceInfo != null && licenseServiceResponceInfo.getNewServiceInfoData() != null
 					&& !licenseServiceResponceInfo.getNewServiceInfoData().isEmpty()) {
 
-				doc = new Document(PageSize.A4);
+				
 				String myFile = env.getProperty("egov.loireport");
 				File file = new File(myFile);
 				if (!file.exists()) {
@@ -4865,9 +4926,7 @@ public class LoiReportService {
 				dtcpUserName = getUserInfo(userId).getUser().get(0).getName();
 				hqUserName = getUserInfo(hqUserId).getUser().get(0).getName();
 
-				writer = PdfWriter.getInstance(doc,
-						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
-				doc.open();
+				
 //				externalFigureAmmount = getBankGarenteeData(requestLOIReport.getRequestInfo(), applicationNumber,
 //						"PK/DTP-P/227/2023", "EDC");
 //			
@@ -4875,21 +4934,21 @@ public class LoiReportService {
 //						"12", "IDW");
 				khasraNo = appliedLandDetails.getKhewats();
 				String licenseFee = "0";
-				String edcAmounts = "0";
-				String adjustFee = "0";
+//				String edcAmounts = "0";
+//				String adjustFee = "0";
 				try {
 					FeesAndCharges feesAndCharges = licenseDetails.getFeesAndCharges();
 
-					scrutinyFee = Optional.ofNullable(feesAndCharges.getScrutinyFee())
-							.orElseThrow(RuntimeException::new);
+//					scrutinyFee = Optional.ofNullable(feesAndCharges.getScrutinyFee())
+//							.orElseThrow(RuntimeException::new);
 					licenseFee = Optional.ofNullable(feesAndCharges.getLicenseFee()).orElseThrow(RuntimeException::new);
-					adjustFee = Optional.ofNullable(feesAndCharges.getAdjustFee()).orElseThrow(RuntimeException::new);
+//					adjustFee = Optional.ofNullable(feesAndCharges.getAdjustFee()).orElseThrow(RuntimeException::new);
 //					edcAmounts=Optional.ofNullable(feesAndCharges.getExternalDevelopmentCharges()).orElseThrow(RuntimeException::new);
 					conversionCharges = Optional.ofNullable(feesAndCharges.getConversionCharges())
 							.orElseThrow(RuntimeException::new);
-					stateInfrastructureDevelopmentCharges = Optional
-							.ofNullable(feesAndCharges.getStateInfrastructureDevelopmentCharges())
-							.orElseThrow(RuntimeException::new);
+//					stateInfrastructureDevelopmentCharges = Optional
+//							.ofNullable(feesAndCharges.getStateInfrastructureDevelopmentCharges())
+//							.orElseThrow(RuntimeException::new);
 
 //					scrutinyFee = feesAndCharges.getScrutinyFee();
 //					licenseFee = feesAndCharges.getLicenseFee();
@@ -4903,26 +4962,26 @@ public class LoiReportService {
 //					conversionCharges=!conversionCharges.equals(null)?conversionCharges.toString().trim():"0";
 //					stateInfrastructureDevelopmentCharges=!stateInfrastructureDevelopmentCharges.equals(null)?stateInfrastructureDevelopmentCharges.toString().trim():"0";
 //					edcAmounts=!edcAmounts.equals(null)?edcAmounts.toString().trim():"0";
-
-					if (ConvertUtil.isNumeric(scrutinyFee)) {
-						totalFees += Double.parseDouble(scrutinyFee);
-					}
-					if (ConvertUtil.isNumeric(licenseFee)) {
-						totalFees += Double.parseDouble(licenseFee);
-					}
-					if (ConvertUtil.isNumeric(adjustFee)) {
-						totalFees += Double.parseDouble(adjustFee);
-					}
-
-					if (ConvertUtil.isNumeric(conversionCharges)) {
-						totalFees += Double.parseDouble(conversionCharges);
-					}
-
-					if (ConvertUtil.isNumeric(stateInfrastructureDevelopmentCharges)) {
-						totalFees += Double.parseDouble(stateInfrastructureDevelopmentCharges);
-					}
-					totalFeeInWord = ConvertUtil.numberToWords(totalFees.toString());
-					totalFee = ConvertUtil.numberToComa(totalFees.toString());
+//
+//					if (ConvertUtil.isNumeric(scrutinyFee)) {
+//						totalFees += Double.parseDouble(scrutinyFee);
+//					}
+//					if (ConvertUtil.isNumeric(licenseFee)) {
+//						totalFees += Double.parseDouble(licenseFee);
+//					}
+//					if (ConvertUtil.isNumeric(adjustFee)) {
+//						totalFees += Double.parseDouble(adjustFee);
+//					}
+//
+//					if (ConvertUtil.isNumeric(conversionCharges)) {
+//						totalFees += Double.parseDouble(conversionCharges);
+//					}
+//
+//					if (ConvertUtil.isNumeric(stateInfrastructureDevelopmentCharges)) {
+//						totalFees += Double.parseDouble(stateInfrastructureDevelopmentCharges);
+//					}
+//					totalFeeInWord = ConvertUtil.numberToWords(totalFees.toString());
+//					totalFee = ConvertUtil.numberToComa(totalFees.toString());
 				} catch (Exception e) {
 
 				e.printStackTrace();
@@ -4938,8 +4997,8 @@ public class LoiReportService {
 					comericalComponent = Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
 							.orElseThrow(RuntimeException::new);
 
-					String efA = externalFigureAmmount;
-					String ifA = internalFigureAmmount;
+//					String efA = externalFigureAmmount;
+//					String ifA = internalFigureAmmount;
 					licenseFees = ConvertUtil.numberToComa(licenseFee);
 					licenseFeesInWord = ConvertUtil.numberToWords(licenseFee);
 					conversionChargesInWord = ConvertUtil.numberToWords(conversionCharges.toString());
