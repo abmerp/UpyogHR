@@ -4942,11 +4942,11 @@ public class LoiReportService {
 
 //					scrutinyFee = Optional.ofNullable(feesAndCharges.getScrutinyFee())
 //							.orElseThrow(RuntimeException::new);
-					licenseFee = Optional.ofNullable(feesAndCharges.getLicenseFee()).orElseThrow(RuntimeException::new);
+					licenseFee ="346543";// Optional.ofNullable(feesAndCharges.getLicenseFee()).orElseThrow(RuntimeException::new);
 //					adjustFee = Optional.ofNullable(feesAndCharges.getAdjustFee()).orElseThrow(RuntimeException::new);
 //					edcAmounts=Optional.ofNullable(feesAndCharges.getExternalDevelopmentCharges()).orElseThrow(RuntimeException::new);
-					conversionCharges = Optional.ofNullable(feesAndCharges.getConversionCharges())
-							.orElseThrow(RuntimeException::new);
+					conversionCharges = "3423422";//Optional.ofNullable(feesAndCharges.getConversionCharges())
+//							.orElseThrow(RuntimeException::new);
 //					stateInfrastructureDevelopmentCharges = Optional
 //							.ofNullable(feesAndCharges.getStateInfrastructureDevelopmentCharges())
 //							.orElseThrow(RuntimeException::new);
@@ -4992,11 +4992,11 @@ public class LoiReportService {
 					DetailsofAppliedLand detailsofAppliedLand = Optional
 							.ofNullable(licenseDetails.getDetailsofAppliedLand()).orElseThrow(RuntimeException::new);
 					DetailsAppliedLandPlot detailsAppliedLandPlot = detailsofAppliedLand.getDetailsAppliedLandPlot();
-					farAmount = Optional.ofNullable(detailsAppliedLandPlot.getFAR()).orElseThrow(RuntimeException::new);
-					plottedComponent = Optional.ofNullable(detailsAppliedLandPlot.getUnderPlot())
-							.orElseThrow(RuntimeException::new);
-					comericalComponent = Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
-							.orElseThrow(RuntimeException::new);
+					farAmount = "1.8";//Optional.ofNullable(detailsAppliedLandPlot.getFAR()).orElseThrow(RuntimeException::new);
+					plottedComponent ="12";// Optional.ofNullable(detailsAppliedLandPlot.getUnderPlot())
+//							.orElseThrow(RuntimeException::new);
+					comericalComponent = "22";//Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
+//							.orElseThrow(RuntimeException::new);
 
 //					String efA = externalFigureAmmount;
 //					String ifA = internalFigureAmmount;
