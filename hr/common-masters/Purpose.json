@@ -468,7 +468,7 @@
       }],
       "purposes":[{
         
-          "purposeCode":"CICS",
+          "purposeCode":"CIRS",
 		  "minimumPermissible":"0.0",
           "maximumPermissible":"0.005"
         }
@@ -507,7 +507,6 @@
         },
           {
             "purposeCode":"RGP",
-            "minimumPermissible":"0",
             "maximumPermissible":"0.10",
             "isActive": 1
           }
