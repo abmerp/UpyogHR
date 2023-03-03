@@ -15,6 +15,10 @@ public class ConvertNumberToWord {
 		try {
 			double d = Double.parseDouble(strNum);
 		} catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+			return false;
+		}catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -34,8 +38,8 @@ public class ConvertNumberToWord {
 //			currencyFormate+= uno+".00";
 //	    }else 
 	   if(isNumeric(num)) {	
-			Format format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en", "in"));
-			String dd=format.format(new BigDecimal(num)).replace("₹", "");
+//			Format format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en", "in"));
+			String dd=num;//format.format(new BigDecimal(num)).replace("₹", "");
 //			int index=dd.lastIndexOf(",");
 //			String fs=dd.substring(0,index);
 //			String[] ls=dd.substring(index+1).split("\\.");
