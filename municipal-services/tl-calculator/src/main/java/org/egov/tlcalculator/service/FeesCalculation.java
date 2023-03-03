@@ -50,6 +50,7 @@ public class FeesCalculation implements Calculator {
 
 		String applicationNumber = applicationNo;
 		String tenantId = "hr";
+		BigDecimal totalFee = new BigDecimal(0);
 		List<FeesTypeCalculationDto> results = new ArrayList<FeesTypeCalculationDto>();
 		TradeLicense tradeLicense = utils.getTradeLicense(info, applicationNo, tenantId);
 		log.info("license" + tradeLicense);
@@ -98,9 +99,9 @@ public class FeesCalculation implements Calculator {
 			
 			log.info("purposeDetail" + purposeDetail);
 			
-			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
-			log.info("FeesTypeCalculationDto" + feesTypeCalculationDto);
-
+			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0),totalFee);
+			log.info("totalFee" + totalFee);
+		
 			results.add(feesTypeCalculationDto);
 			}
 		}
@@ -108,7 +109,7 @@ public class FeesCalculation implements Calculator {
 	}
 
 	public FeesTypeCalculationDto recursionMethod(RequestInfo info, String applicationNo, String totalArea, String zone,
-			PurposeDetails purposeDetailm) {
+			PurposeDetails purposeDetailm, BigDecimal totalFee) {
 
 		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
@@ -125,8 +126,11 @@ public class FeesCalculation implements Calculator {
 		FeesTypeCalculationDto feesTypeCalculation = new FeesTypeCalculationDto();
 		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
 		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
+		if(result.getScrutinyFeeChargesCal()!=null)
+		totalFee = result.getScrutinyFeeChargesCal().add(result.getLicenseFeeChargesCal().multiply(new BigDecimal(0.25)));
+		result.setTotalFee(totalFee);
 		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
-			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
+			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose,totalFee);
 			feesTypeCalculationDtoList.add(newResult);
 			result.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
 

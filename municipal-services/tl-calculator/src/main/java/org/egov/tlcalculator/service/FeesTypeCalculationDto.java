@@ -21,6 +21,7 @@ class FeesTypeCalculationDto {
 	private BigDecimal conversionChargesCal;
 	private BigDecimal externalDevelopmentChargesCal;
 	private BigDecimal stateInfrastructureDevelopmentChargesCal;
+	private BigDecimal totalFee;
 	private List<FeesTypeCalculationDto> feesTypeCalculationDto;
 
 }

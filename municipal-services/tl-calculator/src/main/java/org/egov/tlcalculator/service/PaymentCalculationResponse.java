@@ -20,12 +20,18 @@ public class PaymentCalculationResponse {
     private ResponseInfo responseInfo;
     private List<FeesTypeCalculationDto> feesTypeCalculationDto;
     private BigDecimal totalFee;
-	public BigDecimal getTotalFee() {
-		for(FeesTypeCalculationDto feesTypeCalculationDto:feesTypeCalculationDto ) {
-		this.totalFee = feesTypeCalculationDto.getScrutinyFeeChargesCal().add(feesTypeCalculationDto.getLicenseFeeChargesCal());
-		
-	}
-		return this.totalFee;
-	}
+//	public BigDecimal getTotalFee() {
+//		BigDecimal scrutinyFee = new BigDecimal(0);
+//		BigDecimal licenseFeeCharges = new BigDecimal(0);
+//		for(FeesTypeCalculationDto feesTypeCalculationDto:feesTypeCalculationDto ) {
+//			
+//			scrutinyFee = scrutinyFee.add(feesTypeCalculationDto.getScrutinyFeeChargesCal());
+//			licenseFeeCharges = licenseFeeCharges.add(feesTypeCalculationDto.getLicenseFeeChargesCal());
+//		}
+//		this.totalFee = scrutinyFee.add(licenseFeeCharges.multiply(new BigDecimal(0.25)));
+//		
+//	
+//		return this.totalFee;
+//	}
 
 }
