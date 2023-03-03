@@ -53,10 +53,8 @@ public class ConvertUtil {
 //			currencyFormate+= uno+".00";
 //	    }else 
 	   if(isNumeric(num)) {	
-//			Format format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en", "in"));
-			String dd=num;
-//			format.format(new BigDecimal(num)).replace("₹", "");
-			
+			Format format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en", "in"));
+			String dd=format.format(new BigDecimal(num)).replace("₹", "");
 //			int index=dd.lastIndexOf(",");
 //			String fs=dd.substring(0,index);
 //			String[] ls=dd.substring(index+1).split("\\.");

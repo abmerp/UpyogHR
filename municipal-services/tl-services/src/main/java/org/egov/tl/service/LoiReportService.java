@@ -90,6 +90,8 @@ public class LoiReportService {
 	
 	@Value("${egov.loireport}")
 	private String loireportPath;
+	@Value("${egov.timeZoneName}")
+	private String timeZoneName;
 
 
 	
@@ -4893,7 +4895,7 @@ public class LoiReportService {
 					&& !licenseServiceResponceInfo.getNewServiceInfoData().isEmpty()) {
 
 				
-				String myFile = env.getProperty("egov.loireport");
+				String myFile = loireportPath;
 				File file = new File(myFile);
 				if (!file.exists()) {
 					file.mkdirs();
@@ -4905,11 +4907,11 @@ public class LoiReportService {
 						.type(user.getType()).uuid(user.getUuid()).build();
 				requestLOIReport.getRequestInfo().setUserInfo(reqUser);
 
-				currentDate = ConvertUtil.getCurrentDate(env.getProperty("egov.timeZoneName"), null);
+				currentDate = ConvertUtil.getCurrentDate(timeZoneName, null);
 				licenseDetails = licenseServiceResponceInfo.getNewServiceInfoData().get(0);
 				getCalculatorData(applicationNumber, licenseDetails, requestLOIReport);
 
-				applicationDate = ConvertUtil.getCurrentDate(env.getProperty("egov.timeZoneName"),
+				applicationDate = ConvertUtil.getCurrentDate(timeZoneName,
 						Long.parseLong(String.valueOf(licenseServiceResponceInfo.getApplicationDate())));
 				totalArea = licenseDetails.getApplicantPurpose().getTotalArea();
 				AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails()

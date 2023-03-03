@@ -107,12 +107,14 @@ public class LoiReportController {
 	@Autowired
 	LoiReportService loiReportService;
 	
+	@Value("${egov.loireport}")
+	private String loireportPath;
+	
 
 	@RequestMapping(value = "/loi/report/_create", method = RequestMethod.POST)
 	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("userId") String userId,@RequestParam("hqUserId") String hqUserId, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
 		
 		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport,hqUserId);
-		String myFile = env.getProperty("egov.loireport");
 		String flocation="loi-report-"+applicationNumber+".pdf";
 		File file = new File(flocation);
 		if (file.exists()) {
