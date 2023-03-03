@@ -115,7 +115,7 @@ public class LoiReportController {
 	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("userId") String userId,@RequestParam("hqUserId") String hqUserId, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
 		
 		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport,hqUserId);
-		String flocation="loi-report-"+applicationNumber+".pdf";
+		String flocation=loireportPath+"loi-report-"+applicationNumber+".pdf";
 		File file = new File(flocation);
 		if (file.exists()) {
 			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
