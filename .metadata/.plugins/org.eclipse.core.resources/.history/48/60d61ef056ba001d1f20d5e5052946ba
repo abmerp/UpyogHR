@@ -3620,7 +3620,6 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
 				Paragraph loiNumberParagraph = new Paragraph(
 						"LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
