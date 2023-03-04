@@ -238,7 +238,7 @@ public class LicenseService {
 				newServiceIn.setApplicationNumber(tradeLicense.getApplicationNumber());
 				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 				newServiceIn.setCurrentVersion(cv);
-				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
+				//tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 				tradeLicense.setAction(newServiceInfo.getAction());
 				tradeLicense.setWorkflowCode("NewTL");
 				switch (tradeLicense.getAction()) {
