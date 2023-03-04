@@ -5097,32 +5097,11 @@ public class LoiReportService {
 
 	}
 
-	private String getFeesByPurposeAndZone(String applicationNumber, RequestInfo requestInfo) {
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<RequestInfo> entity = new HttpEntity<RequestInfo>(requestInfo, headers);
-		Map<String, String> param = new HashMap<>();
-		param.put("applicationNo", applicationNumber);
-		String urlParameter = param.toString().replace("{", "").replace("}", "").replaceAll(",", "&").replaceAll("\\s+",
-				"");
-		Map<String, Object> rest1 = restTemplate
-				.exchange(
-						env.getProperty("egov.tl.calculator.host")
-								+ env.getProperty("egov.tl.calculator.purposeZone.endpoint") + "?" + urlParameter,
-						HttpMethod.POST, entity, HashMap.class)
-				.getBody();
-		System.out.println("rest1:-------------------------------" + rest1);
-
-		return null;
-	}
-
 	private void loiTableReportData(Document doc, String userId, String applicationNumber,
 			RequestLOIReport requestLOIReport) {
-
-//		getFeesByPurposeAndZone(applicationNumber, requestLOIReport.getRequestInfo());
 		try {
-			float[] columnWidths = { 1, 11 };
+			float[] columnWidths = { 1, 3,8 };
+			String remarks="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 			PdfPTable table = new PdfPTable(columnWidths);
 			table.setWidthPercentage(100);
 			HttpHeaders headers = new HttpHeaders();
@@ -5140,7 +5119,7 @@ public class LoiReportService {
 			java.util.List<Map<String, Object>> rest2 = (java.util.List<Map<String, Object>>) rest1.get("egScrutiny");
 			System.out.println("rest2:---" + rest2);
 			int colIndex = 0;
-			java.util.List<String> hList = Arrays.asList("Sr No", "Description");
+			java.util.List<String> hList = Arrays.asList("Sr No", "Description","Remarks");
 			for (String columnTitle : hList) {
 				colIndex = colIndex + 1;
 
@@ -5159,6 +5138,7 @@ public class LoiReportService {
 				if (map.get("isLOIPart") != null ? (map.get("isLOIPart").toString().contains("true")) : (false)) {
 					table.addCell(index + "");
 					table.addCell(map.get("fieldIdL") != null ? map.get("fieldIdL") + "" : "N/A");
+					table.addCell(map.get("comment") != null ? map.get("comment") + "" : "N/A");
 					index++;
 				}
 
