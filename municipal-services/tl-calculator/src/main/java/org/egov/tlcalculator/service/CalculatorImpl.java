@@ -58,6 +58,7 @@ public class CalculatorImpl implements Calculator {
 		BigDecimal licenseFeeCharges = null;
 		BigDecimal stateInfrastructureDevelopmentCharges = null;
 		String purposeName = "";
+		String active="";
 		scrutinyFeeCharges = far;
 		licenseFeeCharges = far;
 		conversionCharges = far;
@@ -65,6 +66,7 @@ public class CalculatorImpl implements Calculator {
 		stateInfrastructureDevelopmentCharges = far;
 		for (Map<String, Object> mm : msp) {
 			purposeName = String.valueOf(mm.get("name"));
+			 active =String.valueOf(mm.get("isActive"));
 			// scrutinyFeeCharges = new
 			// BigDecimal(String.valueOf(mm.get("scrutinyFeeCharges")));
 			// externalDevelopmentCharges = new
@@ -77,6 +79,7 @@ public class CalculatorImpl implements Calculator {
 //					String.valueOf(mm.get("stateInfrastructureDevelopmentCharges")));
 		}
 		feesTypeCalculationDto.setPurpose(purposeName);
+		if(active.equals("1"))
 		switch (calculatorRequest.getPotenialZone()) {
 //--//----------hyper----------//
 		case ZONE_HYPER:
