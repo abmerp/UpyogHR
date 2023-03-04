@@ -87,14 +87,12 @@ public class LoiReportService {
 	private String guranteeHost;
 	@Value("${egov.tl.calculator.calculate.endpoint}")
 	private String calculatorEndPoint;
-	
+
 	@Value("${egov.loireport}")
 	private String loireportPath;
 	@Value("${egov.timeZoneName}")
 	private String timeZoneName;
 
-
-	
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 
@@ -180,7 +178,6 @@ public class LoiReportService {
 	private String zonePurposeWizeEDCAmountInWord = "";
 	Double zoneWiseEdcAmount = 0.0;
 	Double stateInfarastractorCharge = 0.0;
-	
 
 	/****************************************
 	 * 1: LOI Purpose : Group Housing start *
@@ -224,13 +221,12 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph(
 						"Memo No. " + memoNumber + "/                 Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -561,15 +557,14 @@ public class LoiReportService {
 					preface2.add(new Paragraph("---------------."));
 					e.printStackTrace();
 				}
-				
+
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -870,13 +865,12 @@ public class LoiReportService {
 				Paragraph preface1 = new Paragraph();
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -1267,13 +1261,12 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -1631,13 +1624,12 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -1917,7 +1909,7 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle 
+					// TODO: handle
 					e.printStackTrace();
 				}
 
@@ -1967,13 +1959,12 @@ public class LoiReportService {
 				Paragraph preface1 = new Paragraph();
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -2431,13 +2422,12 @@ public class LoiReportService {
 				Paragraph preface1 = new Paragraph();
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -2814,13 +2804,12 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -3167,13 +3156,12 @@ public class LoiReportService {
 				Paragraph preface1 = new Paragraph();
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -3577,7 +3565,8 @@ public class LoiReportService {
 			try {
 				String myFile = loireportPath;
 				Document doc = new Document(PageSize.A4);
-				PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(myFile+"loi-report-" + applicationNumber + ".pdf"));
+				PdfWriter writer = PdfWriter.getInstance(doc,
+						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
 				addTitlePage(doc, 1);
 //				String mm=licenseServiceResponceInfo.getCaseNumber() ;
@@ -3620,18 +3609,16 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
-				
+
 				Paragraph paragraph = new Paragraph(
 						"Memo No. " + memoNumber + "/                 Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
 				paragraph.setSpacingBefore(15f);
-				
+
 				doc.add(paragraph);
 				addEmptyLine(paragraph, 1);
 
@@ -4107,13 +4094,12 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -4530,13 +4516,12 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
+
+				Paragraph loiNumberParagraph = new Paragraph("LOI Number : " + loiNumber);
 				loiNumberParagraph.setIndentationLeft(leftMarg);
 				loiNumberParagraph.setSpacingBefore(15f);
 				doc.add(loiNumberParagraph);
-				
+
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -4980,7 +4965,6 @@ public class LoiReportService {
 			if (licenseServiceResponceInfo != null && licenseServiceResponceInfo.getNewServiceInfoData() != null
 					&& !licenseServiceResponceInfo.getNewServiceInfoData().isEmpty()) {
 
-				
 				String myFile = loireportPath;
 				File file = new File(myFile);
 				if (!file.exists()) {
@@ -4999,8 +4983,8 @@ public class LoiReportService {
 
 				applicationDate = ConvertUtil.getCurrentDate(timeZoneName,
 						Long.parseLong(String.valueOf(licenseServiceResponceInfo.getApplicationDate())));
-				loiNumber=licenseServiceResponceInfo.getLoiNumber();
-				
+				loiNumber = licenseServiceResponceInfo.getLoiNumber();
+
 				totalArea = licenseDetails.getApplicantPurpose().getTotalArea();
 				AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails()
 						.get(0);
@@ -5015,7 +4999,6 @@ public class LoiReportService {
 				dtcpUserName = getUserInfo(userId).getUser().get(0).getName();
 				hqUserName = getUserInfo(hqUserId).getUser().get(0).getName();
 
-				
 //				externalFigureAmmount = getBankGarenteeData(requestLOIReport.getRequestInfo(), applicationNumber,
 //						"PK/DTP-P/227/2023", "EDC");
 //			
@@ -5073,8 +5056,8 @@ public class LoiReportService {
 //					totalFee = ConvertUtil.numberToComa(totalFees.toString());
 				} catch (Exception e) {
 
-				e.printStackTrace();
-				
+					e.printStackTrace();
+
 				}
 				try {
 					DetailsofAppliedLand detailsofAppliedLand = Optional
@@ -5189,8 +5172,8 @@ public class LoiReportService {
 	private void loiTableReportData(Document doc, String userId, String applicationNumber,
 			RequestLOIReport requestLOIReport) {
 		try {
-			float[] columnWidths = { 1, 3,8 };
-			String remarks="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+			float[] columnWidths = { 1, 3, 8 };
+			String remarks = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 			PdfPTable table = new PdfPTable(columnWidths);
 			table.setWidthPercentage(100);
 			HttpHeaders headers = new HttpHeaders();
@@ -5208,7 +5191,7 @@ public class LoiReportService {
 			java.util.List<Map<String, Object>> rest2 = (java.util.List<Map<String, Object>>) rest1.get("egScrutiny");
 			System.out.println("rest2:---" + rest2);
 			int colIndex = 0;
-			java.util.List<String> hList = Arrays.asList("Sr No", "Description","Remarks");
+			java.util.List<String> hList = Arrays.asList("Sr No", "Description", "Remarks");
 			for (String columnTitle : hList) {
 				colIndex = colIndex + 1;
 

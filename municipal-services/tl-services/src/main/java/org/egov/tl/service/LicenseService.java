@@ -481,6 +481,7 @@ public class LicenseService {
 					licenseServiceResponseInfo.setCaseNumber(tradeLicense.getTcpCaseNumber());
 					licenseServiceResponseInfo.setDairyNumber(tradeLicense.getTcpDairyNumber());
 					licenseServiceResponseInfo.setApplicationDate(String.valueOf(tradeLicense.getApplicationDate()));
+					licenseServiceResponseInfo.setLoiNumber(tradeLicense.getLoiNumber()!=null?(String.valueOf(tradeLicense.getLoiNumber())):("N/A"));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}
