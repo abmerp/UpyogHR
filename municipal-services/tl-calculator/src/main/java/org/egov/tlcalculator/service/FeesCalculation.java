@@ -127,9 +127,22 @@ public class FeesCalculation implements Calculator {
 		FeesTypeCalculationDto feesTypeCalculation = new FeesTypeCalculationDto();
 		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
 		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
-		if(result.getScrutinyFeeChargesCal()!=null)
-		totalFee = new BigDecimal((totalFee.add(totalFee).add(result.getScrutinyFeeChargesCal()).add(result.getLicenseFeeChargesCal().multiply(new BigDecimal(0.25)))).toString());
-		result.setTotalFee(totalFee);
+		if(result.getScrutinyFeeChargesCal()!=null) {
+			
+			log.info("ScrutinyFee\t" + result.getScrutinyFeeChargesCal());
+			
+			BigDecimal licenseFee=result.getLicenseFeeChargesCal().multiply(new BigDecimal(.25));
+			log.info("LicenseFee\t" + licenseFee);
+			BigDecimal amount = result.getScrutinyFeeChargesCal().add(licenseFee);
+			BigDecimal amounttmep = totalFee.add(amount);
+			
+			totalFee = new BigDecimal(amounttmep.setScale(0, BigDecimal.ROUND_UP).toString());
+			//log.info("ScrutinyFee" + result.getScrutinyFeeChargesCal());
+			
+			result.setTotalFee(amount);
+			log.info(purposeDetailm.getName()+"\t"+amount);
+			log.info("Total "+"\t"+totalFee);
+		}
 		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
 			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
 			feesTypeCalculationDtoList.add(newResult);
