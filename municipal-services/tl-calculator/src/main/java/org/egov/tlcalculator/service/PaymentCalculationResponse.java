@@ -21,11 +21,8 @@ public class PaymentCalculationResponse {
     private List<FeesTypeCalculationDto> feesTypeCalculationDto;
     private BigDecimal totalFee;
 	public BigDecimal getTotalFee() {
-		for(FeesTypeCalculationDto feesTypeCalculationDto:feesTypeCalculationDto ) {
-		this.totalFee = feesTypeCalculationDto.getScrutinyFeeChargesCal().add(feesTypeCalculationDto.getLicenseFeeChargesCal());
-		
-	}
-		return this.totalFee;
+		return feesTypeCalculationDto.get(0).getTotalFee();
+		//return this.totalFee;
 	}
 
 }

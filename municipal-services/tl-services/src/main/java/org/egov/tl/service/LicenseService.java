@@ -886,27 +886,11 @@ public class LicenseService {
 
 				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
-					LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
-							.mDMSCallPurposeCode(requestInfoWrapper.getRequestInfo(), tradeLicense.getTenantId(),
-									newobj.getApplicantPurpose().getPurpose());
-
-					Map<String, List<String>> mdmsData;
-					mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
-
-					List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
-
-					int purposeId = 0;
-
-					for (Map<String, Object> mm : msp) {
-
-						purposeId = Integer.valueOf(String.valueOf(mm.get("purposeId")));
-						log.info("purposeId" + purposeId);
-
-					}
 
 					String email = newobj.getApplicantInfo().getEmail();
 					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 					TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+					tradeLicenseDetail.setCurrentVersion(tradeLicense.getTradeLicenseDetail().getCurrentVersion());
 					tradeLicenseDetail.setId(tradeLicenses.get(0).getTradeLicenseDetail().getId());
 					tradeLicenseDetail
 							.setAdditionalDetail(tradeLicenses.get(0).getTradeLicenseDetail().getAdditionalDetail());
@@ -1077,6 +1061,7 @@ public class LicenseService {
 					List<TradeLicense> response = tradeLicenseService.update(tradeLicenseRequests, "TL");
 
 					return response;
+				
 				}
 			}
 		}

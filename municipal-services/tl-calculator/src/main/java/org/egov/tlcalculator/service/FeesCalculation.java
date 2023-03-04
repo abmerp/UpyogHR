@@ -45,11 +45,12 @@ public class FeesCalculation implements Calculator {
 
 	@Autowired
 	CalculatorImpl calculatorImpl;
-
+	BigDecimal totalFee = new BigDecimal(0);
 	public List<FeesTypeCalculationDto> payment(RequestInfo info, String applicationNo) {
 
 		String applicationNumber = applicationNo;
 		String tenantId = "hr";
+		
 		List<FeesTypeCalculationDto> results = new ArrayList<FeesTypeCalculationDto>();
 		TradeLicense tradeLicense = utils.getTradeLicense(info, applicationNo, tenantId);
 		log.info("license" + tradeLicense);
@@ -97,10 +98,11 @@ public class FeesCalculation implements Calculator {
 			List<PurposeDetails> purposeDetail = newobj.getDetailsofAppliedLand().getPurposeDetails();
 			
 			log.info("purposeDetail" + purposeDetail);
-			
+			totalFee = new BigDecimal(0);
 			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
-			log.info("FeesTypeCalculationDto" + feesTypeCalculationDto);
-
+			log.info("totalFee" + totalFee);
+			feesTypeCalculationDto.setTotalFee(totalFee);
+			
 			results.add(feesTypeCalculationDto);
 			}
 		}
@@ -125,6 +127,22 @@ public class FeesCalculation implements Calculator {
 		FeesTypeCalculationDto feesTypeCalculation = new FeesTypeCalculationDto();
 		List<FeesTypeCalculationDto> feesTypeCalculationDtoList = new ArrayList<FeesTypeCalculationDto>();
 		feesTypeCalculation.setFeesTypeCalculationDto(feesTypeCalculationDtoList);
+		if(result.getScrutinyFeeChargesCal()!=null) {
+			
+			log.info("ScrutinyFee\t" + result.getScrutinyFeeChargesCal());
+			
+			BigDecimal licenseFee=result.getLicenseFeeChargesCal().multiply(new BigDecimal(.25));
+			log.info("LicenseFee\t" + licenseFee);
+			BigDecimal amount = result.getScrutinyFeeChargesCal().add(licenseFee);
+			BigDecimal amounttmep = totalFee.add(amount);
+			
+			totalFee = new BigDecimal(amounttmep.setScale(0, BigDecimal.ROUND_UP).toString());
+			//log.info("ScrutinyFee" + result.getScrutinyFeeChargesCal());
+			
+			result.setTotalFee(amount);
+			log.info(purposeDetailm.getName()+"\t"+amount);
+			log.info("Total "+"\t"+totalFee);
+		}
 		for (PurposeDetails purpose : purposeDetailm.getPurposeDetail()) {
 			FeesTypeCalculationDto newResult = recursionMethod(info, applicationNo, totalArea, zone, purpose);
 			feesTypeCalculationDtoList.add(newResult);
