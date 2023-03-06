@@ -154,7 +154,7 @@ public class LicenseService {
 		LicenseServiceDao newServiceIn = new LicenseServiceDao();
 		List<LicenseDetails> newServiceInfoDatas = null;
 		User user = newServiceInfo.getRequestInfo().getUserInfo();
-
+		LicenseDetails newData=null;
 		// if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		if (!StringUtils.isEmpty(newServiceInfo.getApplicationNumber())) {
@@ -178,7 +178,16 @@ public class LicenseService {
 				for (LicenseDetails newobj : newServiceInfoDatas) {
 
 					if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
-
+						newData = new LicenseDetails();
+					try {
+						BeanUtils.copyProperties(newData, newobj);
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InvocationTargetException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 						switch (newServiceInfo.getPageName()) {
 						case "ApplicantInfo": {
 							newobj.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
@@ -238,7 +247,7 @@ public class LicenseService {
 				newServiceIn.setApplicationNumber(tradeLicense.getApplicationNumber());
 				newServiceIn.setUpdateddBy(newServiceInfo.getRequestInfo().getUserInfo().getUuid());
 				newServiceIn.setCurrentVersion(cv);
-				//tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
+				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 				tradeLicense.setAction(newServiceInfo.getAction());
 				tradeLicense.setWorkflowCode("NewTL");
 				switch (tradeLicense.getAction()) {
@@ -481,7 +490,6 @@ public class LicenseService {
 					licenseServiceResponseInfo.setCaseNumber(tradeLicense.getTcpCaseNumber());
 					licenseServiceResponseInfo.setDairyNumber(tradeLicense.getTcpDairyNumber());
 					licenseServiceResponseInfo.setApplicationDate(String.valueOf(tradeLicense.getApplicationDate()));
-					licenseServiceResponseInfo.setLoiNumber(tradeLicense.getLoiNumber()!=null?(String.valueOf(tradeLicense.getLoiNumber())):("N/A"));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}
