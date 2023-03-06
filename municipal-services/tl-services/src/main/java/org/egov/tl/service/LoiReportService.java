@@ -75,7 +75,11 @@ import com.itextpdf.text.pdf.PdfDiv.FloatType;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.text.pdf.interfaces.IAccessibleElement;
 
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+
 @Service
+@Log4j2
 public class LoiReportService {
 
 	@Value("${egov.user.host}")
@@ -502,21 +506,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
-
-//		} catch (FileNotFoundException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -827,19 +826,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
-
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 
@@ -1227,19 +1223,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					e.printStackTrace();
-					// TODO: handle exception
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
-
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -1591,18 +1584,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -1951,18 +1942,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle 
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -2438,23 +2427,20 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
-
-//			} catch (FileNotFoundException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
+			} catch (FileNotFoundException e1) {
+				log.error("FileNotFoundException : "+e1.getMessage());
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
+
 		}
 	}
 
@@ -2834,18 +2820,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -3206,22 +3190,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
-
-//			} catch (FileNotFoundException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -3358,25 +3336,41 @@ public class LoiReportService {
 						normal));
 
 				doc.add(para1);
+				
+				
+				Double plottedInternalCost=20*Double.parseDouble(farAmount)*Double.parseDouble(plottedComponent);
+				Double comericalInternalCost=50*Double.parseDouble(farAmount)*Double.parseDouble(comericalComponent);;
+				Double totalEdc=plottedInternalCost+comericalInternalCost;
+				Double bg25InternalPercentage = totalEdc * 0.25;
+				
+			
+				
+				
+				Double plottedExternalCost = Double.parseDouble(plottedComponent)*Double.parseDouble(farAmount)*1.75;
+				Double comericalExternalCost = Double.parseDouble(comericalComponent)*Double.parseDouble(farAmount)*1.75;
+				Double totalExternalCost = plottedExternalCost + comericalExternalCost;
+				Double bg25ExternalPercentage = totalExternalCost * 0.25;
+			
+				
 
-				subListI.add(new ListItem(" Area under RGH Component 5.840625 acres		= Rs. 116.8125 lacs \r\n"
-						+ "@ Rs. 20.00 Lac per acre (250 FAR)", normal));
+				subListI.add(new ListItem(" Area under RGH Component "+plottedComponent+" acres		= Rs. "+plottedInternalCost+" lacs \r\n"
+						+ "@ Rs. 20.00 Lac per acre ("+farAmount+" FAR)", normal));
 				subListI.add(
-						new ListItem("Area under Commercial Component 2.503125 acres	= Rs. 125.15625 lacs	 \r\n"
-								+ "@ Rs. 50.00 Lac per acre (250 FAR)", normal));
-				subListI.add(new ListItem("Total Cost of development 				= Rs. 241.96875 Lacs", normal));
+						new ListItem("Area under Commercial Component "+comericalComponent+" acres	= Rs. "+comericalInternalCost+" lacs	 \r\n"
+								+ "@ Rs. 50.00 Lac per acre ("+farAmount+" FAR)", normal));
+				subListI.add(new ListItem("Total Cost of development 				= Rs. "+totalEdc+" Lacs", normal));
 				subListI.add(new ListItem(
-						"25% BG, which is required 				= Rs. 60.50 Lacs \r\n" + "(validity for five years)",
+						"25% BG, which is required 				= Rs. "+bg25InternalPercentage+" Lacs \r\n" + "(validity for five years)",
 						normal));
 
-				subListE.add(new ListItem("Area under RGH Component 5.840625 acres		= Rs. 2605.6614 lacs \r\n"
-						+ "@ Rs. 312.289 x 2.5/1.75 per acre (250 FAR)", normal));
+				subListE.add(new ListItem("Area under RGH Component "+plottedComponent+" acres		= Rs. "+plottedExternalCost+" lacs \r\n"
+						+ "@ Rs. "+plottedComponent+" x "+farAmount+"/1.75 per acre ("+farAmount+" FAR)", normal));
 				subListE.add(
-						new ListItem("Area under Commercial Component 2.503125 acres	= Rs. 1738.3488 lacs	 \r\n"
-								+ "@ Rs. 486.130 x 2.5/1.75 Lac per acre (250 FAR)", normal));
-				subListE.add(new ListItem("Total Cost of development 				= Rs. 4344.0102 Lacs", normal));
+						new ListItem("Area under Commercial Component "+comericalComponent+" acres	= Rs. "+comericalExternalCost+" lacs	 \r\n"
+								+ "@ Rs. "+comericalComponent+" x "+farAmount+"/1.75 Lac per acre ("+farAmount+" FAR)", normal));
+				subListE.add(new ListItem("Total Cost of development 				= Rs. "+totalExternalCost+" Lacs", normal));
 				subListE.add(new ListItem(
-						"25% BG, which is required 				= Rs. 1086.003 Lacs \r\n" + "(validity for five years)",
+						"25% BG, which is required 				= Rs. "+bg25ExternalPercentage+" Lacs \r\n" + "(validity for five years)",
 						normal));
 
 				subList.add(new ListItem(new ListItem("INTERNAL DEVELOPMENT WORKS (IDW):")));
@@ -3424,7 +3418,7 @@ public class LoiReportService {
 				subList3.add(new ListItem(new ListItem(
 						"That you will pay the Infrastructure Development Charges amounting to "
 								+ stateInfrastructureDevelopmentCharges
-								+ "/-@ (Rs. 625 x 2.5 per sq. mtr for RGH component and Rs. 1000 x 2.5 per sq. mtr for commercial component) in two equal installments. First Installment will be due within 60 days of grant of license and second Installment within six months of grant of license failing which 18% PA interest will be liable for the delayed period.",
+								+ "/-@ (Rs. "+plottedComponent+" x "+farAmount+" per sq. mtr for RGH component and Rs. "+comericalComponent+" x "+farAmount+" per sq. mtr for commercial component) in two equal installments. First Installment will be due within 60 days of grant of license and second Installment within six months of grant of license failing which 18% PA interest will be liable for the delayed period.",
 						normal)));
 				subList3.add(new ListItem(new ListItem(
 						"That area coming under the sector roads and restricted belt/ green belt, if any, which forms part of licensed area and in lieu of which benefit to the extent permissible as per policy towards FAR is being granted, shall be transferred free of cost to the Govt.",
@@ -3633,18 +3627,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 	}
@@ -4119,18 +4111,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 
@@ -4285,25 +4275,36 @@ public class LoiReportService {
 						normal));
 
 				doc.add(para1);
+				
+				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
+				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
+				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
+				Double bg25InternalPercentage = totalInternalCost * 0.25;
+				
+				Double plottedExternalCost = zoneWiseEdcAmount * Double.parseDouble(plottedComponent)* 5/7;
+				Double comericalExternalCost = zoneWiseEdcAmount * Double.parseDouble(comericalComponent);
+				Double totalExternalCost = plottedExternalCost + comericalExternalCost;
+				Double bg25ExternalPercentage = totalExternalCost * 0.25;
 
-				subListI.add(new ListItem(" Plotted component				= 21.96425 acres", normal));
+
+				subListI.add(new ListItem(" Plotted component				= "+plottedComponent+" acres", normal));
 				subListI.add(new ListItem(" Rate per acre					= Rs. 20.00 lacs per acre", normal));
-				subListI.add(new ListItem(" Cost of Plotted Component			= Rs. 439.285 Lacs", normal));
-				subListI.add(new ListItem(" Area under Commercial component		= 0.44825 acre ", normal));
+				subListI.add(new ListItem(" Cost of Plotted Component			= Rs. "+plottedInternalCost+" Lacs", normal));
+				subListI.add(new ListItem(" Area under Commercial component		= "+comericalComponent+" acre ", normal));
 				subListI.add(new ListItem(" Rate per acre					= Rs. 50.00 lacs per acre", normal));
-				subListI.add(new ListItem(" Cost of commercial component		= Rs. 22.4125 Lacs", normal));
-				subListI.add(new ListItem(" Total Cost of development			= Rs. 461.70 Lacs", normal));
-				subListI.add(new ListItem(" 25% BG, which is required 			= Rs. 115.43 Lacs (valid for 5 years)",
+				subListI.add(new ListItem(" Cost of commercial component		= Rs."+comericalInternalCost+" Lacs", normal));
+				subListI.add(new ListItem(" Total Cost of development			= Rs. "+totalInternalCost+" Lacs", normal));
+				subListI.add(new ListItem(" 25% BG, which is required 			= Rs. "+bg25InternalPercentage+" Lacs (valid for 5 years)",
 						normal));
 
-				subListE.add(new ListItem("Total Area under Plotted component		= 21.96425 acres \r\n"
-						+ "Interim rate for EDC @ Rs 95.70 (EDC) Lac x 5/7 per acres ", normal));
-				subListE.add(new ListItem("EDC Amount for Plotted component		= Rs. 2286.40 Lacs", normal));
-				subListE.add(new ListItem("Area under commercial component		= 0.44825 acres\n"
-						+ "Interim rate for EDC @ Rs 66 (EDC) Lac per acres ", normal));
-				subListE.add(new ListItem("EDC Amount for Commercial component	= Rs. 217.908 Lacs", normal));
-				subListE.add(new ListItem("Total cost of development			= Rs. 2504.308 Lacs", normal));
-				subListE.add(new ListItem("25% bank guarantee required			=Rs. 626.08 Lacs (valid for 5 years)",
+				subListE.add(new ListItem("Total Area under Plotted component		= "+plottedComponent+" acres \r\n"
+						+ "Interim rate for EDC @ Rs "+zonePurposeWizeEDCAmount+" (EDC) Lac x 5/7 per acres ", normal));
+				subListE.add(new ListItem("EDC Amount for Plotted component		= Rs. "+plottedExternalCost+" Lacs", normal));
+				subListE.add(new ListItem("Area under commercial component		= "+comericalComponent+" acres\n"
+						+ "Interim rate for EDC @ Rs "+zonePurposeWizeEDCAmount+" (EDC) Lac per acres ", normal));
+				subListE.add(new ListItem("EDC Amount for Commercial component	= Rs. "+comericalExternalCost+" Lacs", normal));
+				subListE.add(new ListItem("Total cost of development			= Rs. "+totalExternalCost+" Lacs", normal));
+				subListE.add(new ListItem("25% bank guarantee required			=Rs. "+bg25ExternalPercentage+" Lacs (valid for 5 years)",
 						normal));
 
 				subList.add(new ListItem(new ListItem("INTERNAL DEVELOPMENT WORKS:")));
@@ -4544,18 +4545,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 
@@ -4705,17 +4704,26 @@ public class LoiReportService {
 						normal));
 
 				doc.add(para1);
+				
+				
+				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
+				Double bg25InternalPercentage = comericalInternalCost * 0.25;
+				
+				Double comericalExternalCost = zoneWiseEdcAmount * Double.parseDouble(comericalComponent);
+				Double bg25ExternalPercentage = comericalExternalCost * 0.25;
 
-				subListI.add(new ListItem(" Commercial Area				= 2.2812 acres", normal));
+				
+
+				subListI.add(new ListItem(" Commercial Area				= "+comericalComponent+" acres", normal));
 				subListI.add(new ListItem(" Interim rate for development			= Rs. 50.00 Lac per acre", normal));
-				subListI.add(new ListItem(" Total cost of development 			= Rs. 114.06 Lac", normal));
-				subListI.add(new ListItem(" 25% bank guarantee required			= Rs. 28.515 Lacs \r\n"
+				subListI.add(new ListItem(" Total cost of development 			= Rs. "+comericalInternalCost+" Lac", normal));
+				subListI.add(new ListItem(" 25% bank guarantee required			= Rs. "+bg25InternalPercentage+" Lacs \r\n"
 						+ "							(valid for 5 years)", normal));
 
-				subListE.add(new ListItem("Total Commercial Area 			= 2.2812 acres", normal));
-				subListE.add(new ListItem("Interim rate for EDC				= Rs. 486.130 Lac per acre", normal));
-				subListE.add(new ListItem("Total EDC 					= Rs. 1108.96 Lac", normal));
-				subListE.add(new ListItem("25% Bank Guarantee required			= Rs. 227.24 lacs\r\n"
+				subListE.add(new ListItem("Total Commercial Area 			= "+comericalComponent+" acres", normal));
+				subListE.add(new ListItem("Interim rate for EDC				= Rs. "+zonePurposeWizeEDCAmount+" Lac per acre", normal));
+				subListE.add(new ListItem("Total EDC 					= Rs. "+comericalExternalCost+" Lac", normal));
+				subListE.add(new ListItem("25% Bank Guarantee required			= Rs. "+bg25ExternalPercentage+" lacs\r\n"
 						+ " 							    			 (valid for 5 years)", normal));
 
 				subList.add(new ListItem(new ListItem(" Internal Development Works: ")));
@@ -4734,17 +4742,14 @@ public class LoiReportService {
 						+ ") on account of conversion charges to be deposited online at website i.e. www.tcpharyana.gov.in.",
 						normal));
 				list.add(new ListItem(
-						"To furnish BG amounting Rs. 227.24 lac against External Development Charges amounting "
-								+ externalFigureAmmount + "/-(" + externalFigureAmmountInWord
-								+ "). You have an option to mortgage 10% saleable area against submission of above said BG and in case, said option is adopted, then the area to be mortgaged may be indicated on the layout plan to be issued alongwith the license alongwith the revenue details thereof. The mortgage deed in this regard shall be executed as per the directions of the Department.",
+						"To furnish BG amounting Rs. "+bg25ExternalPercentage+" lac against External Development Charges amounting "
+								+ comericalExternalCost + " lac. You have an option to mortgage 10% saleable area against submission of above said BG and in case, said option is adopted, then the area to be mortgaged may be indicated on the layout plan to be issued alongwith the license alongwith the revenue details thereof. The mortgage deed in this regard shall be executed as per the directions of the Department.",
 						normal));
 				subList5.add(new ListItem(
 						"*It is made clear that rate of EDC has been calculated on the basis of EDC Indexation Mechanism Policy dated 11.02.2016, which stands approved by cabinet. If there will be any change and delay in the amendment in the Act/Rules w.r.t. the said rates, then differential amount from the original calculation will required to be deposited as per demand.",
 						normalItalic));
 				list.add(subList5);
-				list.add(new ListItem("To furnish the Bank Guarantee of " + internalFigureAmmount + "/-("
-						+ internalFigureAmmountInWord
-						+ ") on account of Internal Development works to be deposited online at website i.e. www.tcpharyana.gov.in. You have an option to mortgage 10% saleable area against submission of above said BG and in case, said option is adopted, then the area to be mortgaged may be indicated on the layout plan to be issued alongwith the license alongwith the revenue details thereof. The mortgage deed in this regard shall be executed as per the directions of the Department.",
+				list.add(new ListItem("To furnish the Bank Guarantee of " + bg25InternalPercentage + "lac on account of Internal Development works to be deposited online at website i.e. www.tcpharyana.gov.in. You have an option to mortgage 10% saleable area against submission of above said BG and in case, said option is adopted, then the area to be mortgaged may be indicated on the layout plan to be issued alongwith the license alongwith the revenue details thereof. The mortgage deed in this regard shall be executed as per the directions of the Department.",
 						normal));
 
 				list.add(new ListItem(
@@ -4956,18 +4961,16 @@ public class LoiReportService {
 					div2.setFloatType(FloatType.RIGHT);
 					doc.add(div2);
 				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				doc.close();
 				writer.close();
 			} catch (DocumentException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Exception : "+e.getMessage());
+				
 			}
 		}
 
@@ -4990,15 +4993,6 @@ public class LoiReportService {
 
 	public void getCalculatorData(String applicationNumber, LicenseDetails newobj, RequestLOIReport requestLOIReport) {
 		decfor.setRoundingMode(RoundingMode.DOWN);
-//		BankGuaranteeCalculationCriteria calculatorRequest = new BankGuaranteeCalculationCriteria();
-
-//		calculatorRequest.setApplicationNumber(applicationNo);
-//		calculatorRequest.setPotentialZone(
-//				newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
-//		calculatorRequest.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
-//		calculatorRequest.setTotalLandSize(new BigDecimal(newobj.getApplicantPurpose().getTotalArea()));
-//		calculatorRequest.setRequestInfo(requestInfoWrapper.getRequestInfo());
-//		calculatorRequest.setTenantId(tradeLicenses.get(0).getTenantId());
 
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		tradeLicenseRequest.setApplicationNumber(applicationNumber);
@@ -5030,7 +5024,7 @@ public class LoiReportService {
 		try {
 			data = mapper.writeValueAsString(responseCalculator);
 		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error("JsonProcessingException : "+e.getMessage());
 		}
 		CalculationRes calculationRes = null;
 		ObjectReader objectReaders = mapper.readerFor(new TypeReference<CalculationRes>() {
@@ -5039,8 +5033,7 @@ public class LoiReportService {
 
 			calculationRes = objectReaders.readValue(data);
 		} catch (IOException e) {
-
-			e.printStackTrace();
+			log.error("IOException : "+e.getMessage());
 		}
 		FeeAndBillingSlabIds charges = calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
 		try {
@@ -5054,13 +5047,10 @@ public class LoiReportService {
 					.parseDouble(String.valueOf(stateInfarastractorCharge).toString().replace("E", ""));
 			stateInfarastractorCharge = Double.parseDouble(decfor.format(stateInfarastractorCharge));
 		} catch (Exception e) {
-			// TODO: handle exception
+			log.error("Exception : "+e.getMessage());
 		}
 		zonePurposeWizeEDCAmount = ConvertUtil.numberToComa(String.valueOf(zoneWiseEdcAmount));
 		zonePurposeWizeEDCAmountInWord = ConvertUtil.numberToWords(String.valueOf(zoneWiseEdcAmount));
-//		stateInfrastructureDevelopmentCharges = ConvertUtil.numberToComa(String.valueOf(stateInfarastractorCharge));
-//		stateInfrastructureDevelopmentChargesInWord = ConvertUtil
-//				.numberToWords(String.valueOf(stateInfarastractorCharge));
 
 		// --------------------------calculation end--------------------------------//
 	}
@@ -5165,8 +5155,7 @@ public class LoiReportService {
 //					totalFeeInWord = ConvertUtil.numberToWords(totalFees.toString());
 //					totalFee = ConvertUtil.numberToComa(totalFees.toString());
 				} catch (Exception e) {
-
-				e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				
 				}
 				try {
@@ -5200,7 +5189,7 @@ public class LoiReportService {
 //					edcAmountInWord=ConvertUtil.numberToWords(edcAmounts);
 
 				} catch (Exception e) {
-					e.printStackTrace();
+					log.error("Exception : "+e.getMessage());
 				}
 
 				return licenseServiceResponceInfo;
@@ -5208,17 +5197,18 @@ public class LoiReportService {
 				return null;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception : "+e.getMessage());
 			return null;
 		}
 	}
 
 	public void createLoiReport(String applicationNumber, String userId, RequestLOIReport requestLOIReport,
 			String hqUserId) {
-		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
+	    LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
 				requestLOIReport.getRequestInfo());
 		String purpose = licenseServiceResponceInfo.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose();
-		System.out.println("purpose:----" + purpose);
+		log.info("LOI Report creation method called for Purpose : "+purpose);
+		
 		switch (purpose) {
 		case "RGP": { // 1 done
 			getLoiReportGroupHousing(applicationNumber, userId, hqUserId, requestLOIReport);
@@ -5260,15 +5250,15 @@ public class LoiReportService {
 			getLoiReportIndustrialColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "MLU-CZ": { // 11 
+		case "MLU-CZ": { // 11 done
 			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "UNKNOWANAN": { // 12 Integrated Residential Plotted Colony
+		case "UNKNOWANAN": { // 12 Integrated Residential Plotted Colony   done
 			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "CICS": { // 13
+		case "CICS": { // 13 done
 			getLoiReportCommercialIntegratedColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
@@ -5276,7 +5266,8 @@ public class LoiReportService {
 			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-
+		log.info("Created LOI Report for Purpose : "+purpose);
+		
 	}
 
 	private void loiTableReportData(Document doc, String userId, String applicationNumber,
@@ -5336,9 +5327,9 @@ public class LoiReportService {
 			}
 			doc.add(table);
 		} catch (DocumentException e1) {
-			e1.printStackTrace();
+			log.error("DocumentException : "+e1.getMessage());
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception : "+e.getMessage());
 		}
 	}
 
@@ -5384,10 +5375,7 @@ public class LoiReportService {
 	}
 
 	private UserResponse getUserInfo(String... userId) {
-/// dtcp:--usersid:-- 1775
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
-
-//		userSearchCriteria.setId(Arrays.asList(Long.parseLong(userId.length == 0 ? "2247" : userId[0])));
 		userSearchCriteria.setId(Arrays.asList(Long.parseLong(userId[0])));
 
 		userSearchCriteria.setTenantId("hr");
@@ -5401,7 +5389,7 @@ public class LoiReportService {
 		try {
 			data1 = mapper.writeValueAsString(searchUser);
 		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-			e.printStackTrace();
+			 log.error("JsonProcessingException : "+e.getMessage());
 		}
 		UserResponse userData = null;
 		ObjectReader readerData = mapper.readerFor(new TypeReference<UserResponse>() {
@@ -5409,9 +5397,10 @@ public class LoiReportService {
 		try {
 			userData = readerData.readValue(data1);
 		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+		    log.error("IOException : "+e.getMessage());
+		}catch (Exception e) {
+			log.error("IOException : "+e.getMessage());
+    	}
 		return userData;
 
 	}
@@ -5422,18 +5411,6 @@ public class LoiReportService {
 		}
 	}
 
-//	public LicenseServiceDao getLatestNewServicesInfo(String loiNumber) {
-//
-//		LicenseServiceDao newServiceInfo = newServiceInfoService.findByLoiNumber(loiNumber);
-//		System.out.println("new service info size : " + newServiceInfo.getNewServiceInfoData().size());
-//		for (int i = 0; i < newServiceInfo.getNewServiceInfoData().size(); i++) {
-//			if (newServiceInfo.getCurrentVersion() == newServiceInfo.getNewServiceInfoData().get(i).getVer()) {
-//				newServiceInfo.setNewServiceInfoData(Arrays.asList(newServiceInfo.getNewServiceInfoData().get(i)));
-//			}
-//		}
-//		return newServiceInfo;
-//
-//	}
 
 	/***************************************
 	 * LOI Purpose : Common method end *
