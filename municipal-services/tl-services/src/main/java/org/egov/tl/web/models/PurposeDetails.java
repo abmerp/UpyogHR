@@ -15,7 +15,8 @@ public class PurposeDetails {
 	private String area;
 	private List<String> fars;
 	private String far;
-	private String percentage;
+	private String maxPercentage;
+	private String minPercentage;
 	private List<PurposeDetails> purposeDetail;
 
 }
