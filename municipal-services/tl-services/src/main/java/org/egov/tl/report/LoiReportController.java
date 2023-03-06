@@ -95,9 +95,13 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfDiv.FloatType;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+
+import lombok.extern.log4j.Log4j2;
+
 import com.itextpdf.text.pdf.PdfTemplate;
 
 @RestController
+@Log4j2
 public class LoiReportController {
 
 	//private String MY_FILE ;
@@ -115,6 +119,7 @@ public class LoiReportController {
 	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("userId") String userId,@RequestParam("hqUserId") String hqUserId, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
 		
 		loiReportService.createLoiReport(applicationNumber, userId, requestLOIReport,hqUserId);
+		log.info("Loi Report has been generated successfully for ApplicationNumber : "+applicationNumber);
 		String flocation=loireportPath+"loi-report-"+applicationNumber+".pdf";
 		File file = new File(flocation);
 		if (file.exists()) {
@@ -128,8 +133,10 @@ public class LoiReportController {
 			response.setContentLength((int) file.length());
 			InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
 			FileCopyUtils.copy(inputStream, response.getOutputStream());
+			log.info("Loi Report has been view successfully for ApplicationNumber : "+applicationNumber);
+		}else {
+		    log.warn("Loi Report has not found for ApplicationNumber : "+applicationNumber);
 		}
-
 	}
 	
 
