@@ -190,29 +190,29 @@ public class LicenseService {
 					}
 						switch (newServiceInfo.getPageName()) {
 						case "ApplicantInfo": {
-							newobj.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
+							newData.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
 
 							break;
 						}
 						case "ApplicantPurpose": {
-							newobj.setApplicantPurpose(newServiceInfo.getLicenseDetails().getApplicantPurpose());
+							newData.setApplicantPurpose(newServiceInfo.getLicenseDetails().getApplicantPurpose());
 							List<PurposeDetails> purposeDetailList = new ArrayList<PurposeDetails>();
 							PurposeDetails purposeDetail = new PurposeDetails();
 							purposeDetail.setPurposeDetail(purposeDetailList);
 							purposeDetail = recursionMethod(newServiceInfo.getRequestInfo(),
 									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(),
-									newobj.getApplicantPurpose().getPurpose(),
-									new BigDecimal(newobj.getApplicantPurpose().getTotalArea()), purposeDetail, 1);
+									newData.getApplicantPurpose().getPurpose(),
+									new BigDecimal(newData.getApplicantPurpose().getTotalArea()), purposeDetail, 1);
 							DetailsofAppliedLand detailsofAppliedLand = new DetailsofAppliedLand();
 							DetailsAppliedLandPlot detailsAppliedLandPlot = new DetailsAppliedLandPlot();
 							List<PurposeDetails> newPurposeDetailList = new ArrayList<PurposeDetails>();
 							newPurposeDetailList.add(purposeDetail);
 							detailsofAppliedLand.setPurposeDetails(newPurposeDetailList);
-							newobj.setDetailsofAppliedLand(detailsofAppliedLand);
+							newData.setDetailsofAppliedLand(detailsofAppliedLand);
 							break;
 						}
 						case "LandSchedule": {
-							newobj.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
+							newData.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
 							break;
 						}
 						case "DetailsofAppliedLand": {
@@ -221,18 +221,18 @@ public class LicenseService {
 //							BigDecimal area = new BigDecimal(purposeDetail.getArea());
 //							BigDecimal areaPercent = new BigDecimal(purposeDetail.getPercentage());
 
-							newobj.setDetailsofAppliedLand(
+							newData.setDetailsofAppliedLand(
 									newServiceInfo.getLicenseDetails().getDetailsofAppliedLand());
 							break;
 						}
 						case "FeesAndCharges": {
-							newobj.setFeesAndCharges(newServiceInfo.getLicenseDetails().getFeesAndCharges());
+							newData.setFeesAndCharges(newServiceInfo.getLicenseDetails().getFeesAndCharges());
 							break;
 						}
 						}
 
-						newobj.setVer(cv);
-						newServiceInfoDatas.add(newobj);
+						newData.setVer(cv);
+						newServiceInfoDatas.add(newData);
 						newServiceIn.setNewServiceInfoData(newServiceInfoDatas);
 						break;
 					}
