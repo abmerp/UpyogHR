@@ -185,6 +185,7 @@ public class InboxService {
 		// Map<String,String> srvMap = (Map<String, String>)
 		// config.getServiceSearchMapping().get(businessServiceName.get(0));
 		Map<String, String> srvMap = fetchAppropriateServiceMap(businessServiceName, moduleName);
+		log.info("srvMap\t"+srvMap);
 		if (CollectionUtils.isEmpty(businessServiceName)) {
 			throw new CustomException(ErrorConstants.MODULE_SEARCH_INVLAID,
 					"Bussiness Service is mandatory for module search");
@@ -198,12 +199,13 @@ public class InboxService {
 			for (String businessSrv : businessServiceName) {
 				BusinessService businessService = workflowService.getBusinessService(criteria.getTenantId(),
 						requestInfo, businessSrv);
+				log.info("businessService\t"+businessService);
 				if (businessService != null)
 					bussinessSrvs.add(businessService);
 			}
 			HashMap<String, String> StatusIdNameMap = workflowService.getActionableStatusesForRole(requestInfo,
 					bussinessSrvs, processCriteria);
-			log.info("StatusIdNameMap" + StatusIdNameMap);
+			log.info("StatusIdNameMap\t" + StatusIdNameMap);
 			String applicationStatusParam = srvMap.get("applsStatusParam");
 			String businessIdParam = srvMap.get("businessIdProperty");
 			if (StringUtils.isEmpty(applicationStatusParam)) {
@@ -298,6 +300,7 @@ public class InboxService {
 						criteria.getProcessSearchCriteria().setStatus(statusList);
 						Integer count = bpaInboxFilterService.fetchApplicationCountFromSearcher(criteria,
 								StatusIdNameMap, requestInfo);
+						log.info("count\t"+count);
 						if (count == 0) {
 							statusWiseCount.clear();
 						} else {
@@ -323,9 +326,10 @@ public class InboxService {
 			if (!ObjectUtils.isEmpty(processCriteria.getModuleName()) && processCriteria.getModuleName().equals(PT)) {
 				totalCount = ptInboxFilterService.fetchAcknowledgementIdsCountFromSearcher(criteria, StatusIdNameMap,
 						requestInfo);
-				log.info("totalCount", +totalCount);
+				log.info("totalCount\t", +totalCount);
 				List<String> acknowledgementNumbers = ptInboxFilterService.fetchAcknowledgementIdsFromSearcher(criteria,
 						StatusIdNameMap, requestInfo);
+				log.info("acknowledgementNumbers\t"+acknowledgementNumbers);		
 				if (!CollectionUtils.isEmpty(acknowledgementNumbers)) {
 					moduleSearchCriteria.put(ACKNOWLEDGEMENT_IDS_PARAM, acknowledgementNumbers);
 					businessKeys.addAll(acknowledgementNumbers);
@@ -339,6 +343,7 @@ public class InboxService {
 					&& (processCriteria.getModuleName().equals(TL) || processCriteria.getModuleName().equals(BPAREG))) {
 				totalCount = tlInboxFilterService.fetchApplicationCountFromSearcher(criteria, StatusIdNameMap,
 						requestInfo);
+				log.info("totalCount TL\t"+totalCount);
 				List<String> applicationNumbers = tlInboxFilterService.fetchApplicationNumbersFromSearcher(criteria,
 						StatusIdNameMap, requestInfo);
 				if (!CollectionUtils.isEmpty(applicationNumbers)) {
@@ -364,6 +369,7 @@ public class InboxService {
 					&& processCriteria.getModuleName().equals(BPA)) {
 				totalCount = bpaInboxFilterService.fetchApplicationCountFromSearcher(criteria, StatusIdNameMap,
 						requestInfo);
+				log.info("totalCountbpa\t"+totalCount);
 				List<String> applicationNumbers = bpaInboxFilterService.fetchApplicationNumbersFromSearcher(criteria,
 						StatusIdNameMap, requestInfo);
 				if (!CollectionUtils.isEmpty(applicationNumbers)) {
@@ -382,6 +388,7 @@ public class InboxService {
 					&& processCriteria.getModuleName().equals(NOC)) {
 				totalCount = nocInboxFilterService.fetchApplicationCountFromSearcher(criteria, StatusIdNameMap,
 						requestInfo);
+				log.info("totalCountnoc\t"+totalCount);
 				List<String> applicationNumbers = nocInboxFilterService.fetchApplicationNumbersFromSearcher(criteria,
 						StatusIdNameMap, requestInfo);
 				if (!CollectionUtils.isEmpty(applicationNumbers)) {
@@ -480,6 +487,7 @@ public class InboxService {
 			ProcessInstanceResponse processInstanceResponse = workflowService.getProcessInstance(processCriteria,
 					requestInfo);
 			List<ProcessInstance> processInstances = processInstanceResponse.getProcessInstances();
+			log.info("processInstances"+processInstances);
 			HashMap<String, List<String>> businessSrvIdsMap = new HashMap<String, List<String>>();
 			Map<String, ProcessInstance> processInstanceMap = processInstances.stream()
 					.collect(Collectors.toMap(ProcessInstance::getBusinessId, Function.identity()));
@@ -496,6 +504,7 @@ public class InboxService {
 			moduleSearchCriteria.put("limit", -1);
 			businessObjects = fetchModuleObjects(moduleSearchCriteria, businessServiceName, criteria.getTenantId(),
 					requestInfo, srvMap);
+			log.info("businessObjects\t"+businessObjects);
 			Map<String, Object> businessMap = StreamSupport.stream(businessObjects.spliterator(), false)
 					.collect(Collectors.toMap(s1 -> ((JSONObject) s1).get(businessIdParam).toString(), s1 -> s1));
 
