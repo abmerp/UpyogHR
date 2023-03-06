@@ -56,10 +56,7 @@ public class LicenseServiceResponseInfo {
 	
 	@JsonProperty("loiNumber")
 	private String loiNumber;
-	
-	@JsonProperty("tcpLoiNumber")
-	private String tcpLoiNumber;
-	
+		
 	@JsonProperty("applicationDate")
 	private String applicationDate;
 	

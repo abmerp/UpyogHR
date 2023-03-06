@@ -78,6 +78,7 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                      //   .oldPropertyId(rs.getString("oldpropertyid"))
                         .businessService(rs.getString("businessservice"))
                         .fileStoreId(rs.getString("tl_fileStoreId"))
+                        .tcpLoiNumber(rs.getString("tcploinumber"))
                         .loiNumber(rs.getString("loi_number"))
                         .id(id)
                         .build();
