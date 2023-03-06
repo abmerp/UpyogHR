@@ -82,6 +82,7 @@ public class TLInboxFilterService {
     private ServiceRequestRepository serviceRequestRepository;
     
     private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
+    private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
     
     private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
     
@@ -166,6 +167,7 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
 				switch(businessService) {
 				case BUSINESSSERVICE_BG_NEW:
+				case BUSINESSSERVICE_BG_MORTGAGE:
 					tlInboxSearcherDescEndpoint = newBankGuaranteeSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = newBankGuaranteeSearcherEndpoint;
 					break;
@@ -283,6 +285,7 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
 				switch(businessService) {
 				case BUSINESSSERVICE_BG_NEW:
+				case BUSINESSSERVICE_BG_MORTGAGE:
 					tlInboxSearcherCountEndpoint = newBankGuaranteeSearcherCountEndpoint;
 					break;
 					
