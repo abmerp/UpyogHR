@@ -5092,7 +5092,7 @@ public class LoiReportService {
 
 				applicationDate = ConvertUtil.getCurrentDate(timeZoneName,
 						Long.parseLong(String.valueOf(licenseServiceResponceInfo.getApplicationDate())));
-				loiNumber=licenseServiceResponceInfo.getTcpLoiNumber();
+				loiNumber=licenseServiceResponceInfo.getLoiNumber();
 				
 				totalArea = licenseDetails.getApplicantPurpose().getTotalArea();
 				AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails()
