@@ -26,5 +26,7 @@ public class FeesAndCharges {
 	private String belongsDeveloper;
 	private String consentLetter;
 	private String stateInfrastructureDevelopmentCharges;
+	private String IDW;
+	private String EDC;
 	
 }

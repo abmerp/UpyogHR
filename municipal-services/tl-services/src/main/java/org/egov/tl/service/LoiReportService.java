@@ -15,14 +15,10 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import org.egov.common.contract.request.RequestInfo;
-import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.repository.ServiceRequestRepository;
-import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.ConvertNumberToWord;
 import org.egov.tl.util.ConvertUtil;
-import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.ApplicantInfo;
-import org.egov.tl.web.models.ApplicantPurpose;
 import org.egov.tl.web.models.AppliedLandDetails;
 import org.egov.tl.web.models.CalculatorRequest;
 import org.egov.tl.web.models.DetailsAppliedLandPlot;
@@ -36,7 +32,6 @@ import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.User;
 import org.egov.tl.web.models.UserResponse;
 import org.egov.tl.web.models.UserSearchCriteria;
-import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeResponse;
 import org.egov.tl.web.models.calculation.CalculationRes;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
 import org.egov.tl.web.models.calculation.FeeAndBillingSlabIds;
@@ -54,7 +49,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.itextpdf.text.AccessibleElementId;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -73,9 +67,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfDiv.FloatType;
 import com.itextpdf.text.pdf.draw.LineSeparator;
-import com.itextpdf.text.pdf.interfaces.IAccessibleElement;
 
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -96,29 +88,18 @@ public class LoiReportService {
 	private String loireportPath;
 	@Value("${egov.timeZoneName}")
 	private String timeZoneName;
-
-
 	
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 
-	@Autowired
-	private ResponseInfoFactory responseInfoFactory;
-	@Autowired
-	private BankGuaranteeService bankGuaranteeService;
-
-//	private String MY_FILE;
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
 	private static Font normal = new Font(Font.FontFamily.TIMES_ROMAN, 12);
 	private static Font small = new Font(Font.FontFamily.TIMES_ROMAN, 9);
 	private static Font normalBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-	private static Font normalUnderLine = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.UNDEFINED);
 	private static Font normalItalic = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.ITALIC);
 	private static final DecimalFormat decfor = new DecimalFormat("0.000");
 
-	@Autowired
-	private LicenseService newServiceInfoService;
 	@Autowired
 	private Environment env;
 	@Autowired
@@ -138,22 +119,15 @@ public class LoiReportService {
 	private String currentDate = null;
 	private String memoNumber = null;
 	private String loiNumber = "N/A";
+	
 	String khasraNo = "N/A";
-//	private Document doc = null;
-//	doc.setMargins(10f, 10f, 100f, 0f);
-//	doc doc = new doc();
-	private LicenseServiceDao newServiceInfo = null;
 	private LicenseDetails licenseDetails = null;
 
-	private Double totalFees = 0.0;
 	private String licenseFees = "0";
 	private String licenseFeesInWord = "N/A";
 
 	private String scrutinyFee = "0";
 	private String scrutinyFeeInWord = "N/A";
-
-	private String totalFee = "0";
-	private String totalFeeInWord = "N/A";
 
 	private String conversionCharges = "0";
 	private String conversionChargesInWord = "N/A";
@@ -163,15 +137,6 @@ public class LoiReportService {
 
 	private String collaborationCompanyName = "N/A";
 
-	private String externalFigureAmmount = null;
-	private String externalFigureAmmountInWord = "N/A";
-	private String internalFigureAmmount = null;
-	private String internalFigureAmmountInWord = "N/A";
-
-	private String edcAmount = "0";
-	private String edcAmountInWord = "0";
-
-//	private PdfWriter writer = null;
 	private String dtcpUserName = "";
 	private String hqUserName = "";;
 	private String disticName = "";
@@ -180,13 +145,9 @@ public class LoiReportService {
 	private String plottedComponent = "0.0";
 	private String farAmount = "0.0";
 
-	private String zonePurposeWizeEDCAmount = "";
-	private String zonePurposeWizeEDCAmountInWord = "";
 	Double zoneWiseEdcAmount = 0.0;
-	Double stateInfarastractorCharge = 0.0;
-	
 	Double amountIDW=0.0;
-	Double amountEDW=0.0;
+	Double amountEDC=0.0;
 	Double communityFacultyCost=0.0;
 	
 	
@@ -291,8 +252,8 @@ public class LoiReportService {
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting "+amountEDW*0.25+" /- lac against the amount of External Development Charges amounting "
-								+ amountEDW + "/-.",
+						"To submit BG amounting "+amountEDC*0.25+" /- lac against the amount of External Development Charges amounting "
+								+ amountEDC + "/-.",
 						normal));
 				List subList01 = new List();
 				subList01.setIndentationLeft(15f);
@@ -623,8 +584,8 @@ public class LoiReportService {
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode.",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting ₹ "+amountEDW*0.25+" lac against the amount of External Development Charges amounting "
-								+ amountEDW + "/-.",
+						"To submit BG amounting ₹ "+amountEDC*0.25+" lac against the amount of External Development Charges amounting "
+								+ amountEDC + "/-.",
 						normal));
 				List subList01 = new List();
 				subList01.setIndentationLeft(15f);
@@ -974,11 +935,11 @@ public class LoiReportService {
 				
 				subListE.add(new ListItem("A)	EDC for area GH Component: ", normal));
 				subListE.add(new ListItem(
-						"     "+plottedComponent+" x "+zonePurposeWizeEDCAmount+" (zone) x 2.5/"+farAmount+" (far) 				= ₹ "+plottedExternalCost+" Lacs          ",
+						"     "+plottedComponent+" x "+zoneWiseEdcAmount+" (zone) x 2.5/"+farAmount+" (far) 				= ₹ "+plottedExternalCost+" Lacs          ",
 						normal));
 				subListE.add(new ListItem("B)	EDC for Commercial Component: ", normal));
 				subListE.add(new ListItem(
-						"     "+comericalComponent+" x "+zonePurposeWizeEDCAmount+"(zone) x 2.5/"+farAmount+"(far)		  		= ₹ "+comericalExternalCost+" Lacs      ", normal));
+						"     "+comericalComponent+" x "+zoneWiseEdcAmount+"(zone) x 2.5/"+farAmount+"(far)		  		= ₹ "+comericalExternalCost+" Lacs      ", normal));
 				subListE.add(new ListItem("C)	Total cost of EDC                    				= ₹ "+totalExternalCost+" Lacs",
 						normal));
 				subListE.add(
@@ -1338,11 +1299,11 @@ public class LoiReportService {
 						+ conversionChargesInWord
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode.",
 						normal));
-				list.add(new ListItem("To deposit an amount of " + amountEDW + "/- on account of EDC in favour of the Director, Town & Country Planning, Haryana through online mode.\n(Note: The above demanded fee & charges are subject to audit and reconciliation of accounts).",
+				list.add(new ListItem("To deposit an amount of " + amountEDC + "/- on account of EDC in favour of the Director, Town & Country Planning, Haryana through online mode.\n(Note: The above demanded fee & charges are subject to audit and reconciliation of accounts).",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting Rs. "+amountEDW*0.25+" lac against the balance amount of External Development Charges amounting "
-								+ amountEDW + "/-. ",
+						"To submit BG amounting Rs. "+amountEDC*0.25+" lac against the balance amount of External Development Charges amounting "
+								+ amountEDC + "/-. ",
 						normal));
 				List subList00 = new List();
 				subList00.setIndentationLeft(15f);
@@ -1352,7 +1313,7 @@ public class LoiReportService {
 				list.add(subList00);
 
 				list.add(new ListItem(
-						"To furnish bank guarantee amounting Rs. "+amountEDW*0.25+" lac against the total cost of Internal Development Works amounting "
+						"To furnish bank guarantee amounting Rs. "+amountEDC*0.25+" lac against the total cost of Internal Development Works amounting "
 								+ amountIDW + "/-.",
 						normal));
 
@@ -1720,7 +1681,7 @@ public class LoiReportService {
 //				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
 				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
 //				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
-				Double bg25InternalPercentage = amountEDW * 0.25;
+				Double bg25InternalPercentage = amountEDC * 0.25;
 				
 //				Double plottedExternalCost = zoneWiseEdcAmount * Double.parseDouble(plottedComponent);
 				Double comericalExternalCost = zoneWiseEdcAmount * Double.parseDouble(comericalComponent);
@@ -2117,10 +2078,10 @@ public class LoiReportService {
 					etable.addCell(header);
 				}
 				etable.addCell("1");
-				String edcRecorde = "Industrial component= "+totalArea+"x "+zonePurposeWizeEDCAmount+" (EDC rate) = "+industrialComponent+" lacs\n"
+				String edcRecorde = "Industrial component= "+totalArea+"x "+zoneWiseEdcAmount+" (EDC rate) = "+industrialComponent+" lacs\n"
 						+ "\n50% EDC Required = "+industrialComponent50Percentage+" lacs ……… (A)\n"
-						+ "\nPlotted component = "+plottedComponent+" x "+zonePurposeWizeEDCAmount+" (EDC rate) = "+plottedComponentCost+" lacs…..(B)\n"
-						+ "\nCommercial component = "+comericalComponent+" x "+zonePurposeWizeEDCAmount+" (EDC rate) = "+comericalComponentCost+" lacs…… (C)\n"
+						+ "\nPlotted component = "+plottedComponent+" x "+zoneWiseEdcAmount+" (EDC rate) = "+plottedComponentCost+" lacs…..(B)\n"
+						+ "\nCommercial component = "+comericalComponent+" x "+zoneWiseEdcAmount+" (EDC rate) = "+comericalComponentCost+" lacs…… (C)\n"
 						+ "\nTotal (B+C)= Rs. "+BCcomponentCost+" lacs……….. (D)\n"
 						+ "\nTotal EDC required (A+D)= Rs. "+ADcomponentCost+" lacs\n"
 						+ "\n25% BG required  = Rs. "+ADcomponentCost25Percentage+" lacs ";
@@ -2557,8 +2518,8 @@ public class LoiReportService {
 				
 				
 					
-				Double totalItCost=Double.parseDouble(totalArea)*Double.parseDouble(zonePurposeWizeEDCAmount);
-				Double totalComericalCost=Double.parseDouble(comericalComponent)*(Double.parseDouble(zonePurposeWizeEDCAmount));
+				Double totalItCost=Double.parseDouble(totalArea)*zoneWiseEdcAmount;
+				Double totalComericalCost=Double.parseDouble(comericalComponent)*(zoneWiseEdcAmount);
 				Double totalEdc=totalComericalCost+totalItCost;
 				Double bg25ExternalPercentage = totalEdc * 0.25;
 				
@@ -2579,10 +2540,10 @@ public class LoiReportService {
 				
 				preface12.setSpacingBefore(15f);
 				String externalRecord = "" + "i)\t    Total Area under IT				= "+totalArea+" acres\r\n"
-						+ "ii)\t   Interim rate for EDC				= ₹ "+zonePurposeWizeEDCAmount+" Lac per acres\r\n"
+						+ "ii)\t   Interim rate for EDC				= ₹ "+zoneWiseEdcAmount+" Lac per acres\r\n"
 						+ "iii)\t  Total cost for IT Component			= ₹ "+totalItCost+" Lac\r\n"
 						+ "iv)\t   Area under commercial component		= "+comericalComponent+" acre\r\n"
-						+ "v)\t    Interim rate of EDC				= ₹ "+zonePurposeWizeEDCAmount+" Lac per acre\r\n"
+						+ "v)\t    Interim rate of EDC				= ₹ "+zoneWiseEdcAmount+" Lac per acre\r\n"
 						+ "vi)\t   Total cost of Comm. Component		= ₹ "+totalComericalCost+" Lac\r\n"
 						+ "vii\t   Total EDC 					= ₹ "+totalEdc+" Lac\r\n"
 						+ "viii)\t Bank Guarantee required			= ₹ "+bg25ExternalPercentage+" lacs\r\n"
@@ -3826,13 +3787,13 @@ public class LoiReportService {
 
 				subListE.add(new ListItem(
 						"Total Area under Plotted component		= " + plottedComponent + " acres \r\n"
-								+ "Interim rate for EDC @ " + zonePurposeWizeEDCAmount + " Lacs per acres(Zone) ",
+								+ "Interim rate for EDC @ " + zoneWiseEdcAmount + " Lacs per acres(Zone) ",
 						normal));
 				subListE.add(new ListItem("EDC Amount for Plotted component		= "
 						+ ConvertUtil.numberToComa(decfor.format(plottedExternalCost)) + " Lacs ", normal));
 				subListE.add(new ListItem(
 						"Area under commercial component		= " + comericalComponent + "  acres\n"
-								+ "Interim rate for EDC @ " + zonePurposeWizeEDCAmount + " Lacs per acres(Zone) ",
+								+ "Interim rate for EDC @ " + zoneWiseEdcAmount + " Lacs per acres(Zone) ",
 						normal));
 				subListE.add(new ListItem("EDC Amount for Commercial component	= "
 						+ ConvertUtil.numberToComa(decfor.format(comericalExternalCost)) + " Lacs ", normal));
@@ -4298,10 +4259,10 @@ public class LoiReportService {
 						normal));
 
 				subListE.add(new ListItem("Total Area under Plotted component		= "+plottedComponent+" acres \r\n"
-						+ "Interim rate for EDC @ Rs "+zonePurposeWizeEDCAmount+" (EDC) Lac x 5/7 per acres ", normal));
+						+ "Interim rate for EDC @ Rs "+zoneWiseEdcAmount+" (EDC) Lac x 5/7 per acres ", normal));
 				subListE.add(new ListItem("EDC Amount for Plotted component		= Rs. "+plottedExternalCost+" Lacs", normal));
 				subListE.add(new ListItem("Area under commercial component		= "+comericalComponent+" acres\n"
-						+ "Interim rate for EDC @ Rs "+zonePurposeWizeEDCAmount+" (EDC) Lac per acres ", normal));
+						+ "Interim rate for EDC @ Rs "+zoneWiseEdcAmount+" (EDC) Lac per acres ", normal));
 				subListE.add(new ListItem("EDC Amount for Commercial component	= Rs. "+comericalExternalCost+" Lacs", normal));
 				subListE.add(new ListItem("Total cost of development			= Rs. "+totalExternalCost+" Lacs", normal));
 				subListE.add(new ListItem("25% bank guarantee required			=Rs. "+bg25ExternalPercentage+" Lacs (valid for 5 years)",
@@ -4570,7 +4531,7 @@ public class LoiReportService {
 
 	private void getLoiReportCommercialIntegratedColony(String applicationNumber, String userId, String hqUserId,
 			RequestLOIReport requestLOIReport) {
-		String licenseNo = null;
+//		String licenseNo = null;
 		StringJoiner applicationDated = new StringJoiner("&");
 		LicenseServiceResponseInfo licenseServiceResponceInfo = checkApplicationIsValid(requestLOIReport,
 				applicationNumber, userId, hqUserId);
@@ -4587,14 +4548,14 @@ public class LoiReportService {
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "/JE(SB) 2023";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
-				int licenseList = licenseServiceResponceInfo.getNewServiceInfoData().size();
-				if (licenseList > 1) {
-					licenseNo = licenseServiceResponceInfo.getNewServiceInfoData().stream().map(license -> {
-						return "License No. " + applicationNumber.substring(12) + " of "
-								+ applicationNumber.substring(4, 8) + " dated " + applicationDate.split("\\s+")[0];
-					}).collect(Collectors.toList()).stream().collect(Collectors.joining(" & "));
-
-				}
+//				int licenseList = licenseServiceResponceInfo.getNewServiceInfoData().size();
+//				if (licenseList > 1) {
+//					licenseNo = licenseServiceResponceInfo.getNewServiceInfoData().stream().map(license -> {
+//						return "License No. " + applicationNumber.substring(12) + " of "
+//								+ applicationNumber.substring(4, 8) + " dated " + applicationDate.split("\\s+")[0];
+//					}).collect(Collectors.toList()).stream().collect(Collectors.joining(" & "));
+//
+//				}
 
 				licenseServiceResponceInfo.getNewServiceInfoData().stream().forEach(license -> {
 					applicationDated.add(applicationDate.split("\\s+")[0]);
@@ -4721,7 +4682,7 @@ public class LoiReportService {
 						+ "							(valid for 5 years)", normal));
 
 				subListE.add(new ListItem("Total Commercial Area 			= "+comericalComponent+" acres", normal));
-				subListE.add(new ListItem("Interim rate for EDC				= Rs. "+zonePurposeWizeEDCAmount+" Lac per acre", normal));
+				subListE.add(new ListItem("Interim rate for EDC				= Rs. "+zoneWiseEdcAmount+" Lac per acre", normal));
 				subListE.add(new ListItem("Total EDC 					= Rs. "+comericalExternalCost+" Lac", normal));
 				subListE.add(new ListItem("25% Bank Guarantee required			= Rs. "+bg25ExternalPercentage+" lacs\r\n"
 						+ " 							    			 (valid for 5 years)", normal));
@@ -5041,17 +5002,10 @@ public class LoiReportService {
 					.orElseThrow(RuntimeException::new);
 			zoneWiseEdcAmount = Double.parseDouble(String.valueOf(zoneWiseEdcAmount).toString().replace("E", ""));
 			zoneWiseEdcAmount = Double.parseDouble(decfor.format(zoneWiseEdcAmount));
-			stateInfarastractorCharge = Optional.ofNullable(charges.getStateInfrastructureDevelopmentCharges())
-					.orElseThrow(RuntimeException::new);
-			stateInfarastractorCharge = Double
-					.parseDouble(String.valueOf(stateInfarastractorCharge).toString().replace("E", ""));
-			stateInfarastractorCharge = Double.parseDouble(decfor.format(stateInfarastractorCharge));
 		} catch (Exception e) {
 			log.error("Exception : "+e.getMessage());
 		}
-		zonePurposeWizeEDCAmount = ConvertUtil.numberToComa(String.valueOf(zoneWiseEdcAmount));
-		zonePurposeWizeEDCAmountInWord = ConvertUtil.numberToWords(String.valueOf(zoneWiseEdcAmount));
-
+	
 		// --------------------------calculation end--------------------------------//
 	}
 
@@ -5094,66 +5048,35 @@ public class LoiReportService {
 				collaborationCompanyName = appliedLandDetails.getDeveloperCompany() != null
 						? (appliedLandDetails.getDeveloperCompany())
 						: ("N/A");
-//				loiNumber=Optional.ofNullable(licenseServiceResponceInfo.getLoiNumber().toString()).isPresent()?licenseServiceResponceInfo.getLoiNumber():null;
 				dtcpUserName = getUserInfo(userId).getUser().get(0).getName();
 				hqUserName = getUserInfo(hqUserId).getUser().get(0).getName();
 
 				
-//				externalFigureAmmount = getBankGarenteeData(requestLOIReport.getRequestInfo(), applicationNumber,
-//						"PK/DTP-P/227/2023", "EDC");
-//			
-//				internalFigureAmmount = getBankGarenteeData(requestLOIReport.getRequestInfo(), applicationNumber,
-//						"12", "IDW");
+				
 				khasraNo = appliedLandDetails.getKhewats();
 				String licenseFee = "0";
-//				String edcAmounts = "0";
-//				String adjustFee = "0";
+				String edc="0";
+				String idw="0";
+				String scrutinyFees="0";
 				try {
 					FeesAndCharges feesAndCharges = licenseDetails.getFeesAndCharges();
 
-//					scrutinyFee = Optional.ofNullable(feesAndCharges.getScrutinyFee())
-//							.orElseThrow(RuntimeException::new);
 					licenseFee = Optional.ofNullable(feesAndCharges.getLicenseFee()).orElseThrow(RuntimeException::new);
-//					adjustFee = Optional.ofNullable(feesAndCharges.getAdjustFee()).orElseThrow(RuntimeException::new);
-//					edcAmounts=Optional.ofNullable(feesAndCharges.getExternalDevelopmentCharges()).orElseThrow(RuntimeException::new);
+					scrutinyFees = Optional.ofNullable(feesAndCharges.getScrutinyFee())
+							.orElseThrow(RuntimeException::new);
+					
 					conversionCharges = Optional.ofNullable(feesAndCharges.getConversionCharges())
 							.orElseThrow(RuntimeException::new);
 					stateInfrastructureDevelopmentCharges = Optional
 							.ofNullable(feesAndCharges.getStateInfrastructureDevelopmentCharges())
 							.orElseThrow(RuntimeException::new);
-
-//					scrutinyFee = feesAndCharges.getScrutinyFee();
-//					licenseFee = feesAndCharges.getLicenseFee();
-//					adjustFee = feesAndCharges.getAdjustFee();
-//					edcAmounts=feesAndCharges.getExternalDevelopmentCharges();
-//					conversionCharges = feesAndCharges.getConversionCharges();
-//					stateInfrastructureDevelopmentCharges = feesAndCharges.getStateInfrastructureDevelopmentCharges();
-//					
-//					licenseFee=!licenseFee.equals(null)?licenseFee.toString().trim():"0";
-//					scrutinyFee=!scrutinyFee.equals(null)?scrutinyFee.toString().trim():"0";
-//					conversionCharges=!conversionCharges.equals(null)?conversionCharges.toString().trim():"0";
-//					stateInfrastructureDevelopmentCharges=!stateInfrastructureDevelopmentCharges.equals(null)?stateInfrastructureDevelopmentCharges.toString().trim():"0";
-//					edcAmounts=!edcAmounts.equals(null)?edcAmounts.toString().trim():"0";
-//
-//					if (ConvertUtil.isNumeric(scrutinyFee)) {
-//						totalFees += Double.parseDouble(scrutinyFee);
-//					}
-//					if (ConvertUtil.isNumeric(licenseFee)) {
-//						totalFees += Double.parseDouble(licenseFee);
-//					}
-//					if (ConvertUtil.isNumeric(adjustFee)) {
-//						totalFees += Double.parseDouble(adjustFee);
-//					}
-//
-//					if (ConvertUtil.isNumeric(conversionCharges)) {
-//						totalFees += Double.parseDouble(conversionCharges);
-//					}
-//
-//					if (ConvertUtil.isNumeric(stateInfrastructureDevelopmentCharges)) {
-//						totalFees += Double.parseDouble(stateInfrastructureDevelopmentCharges);
-//					}
-//					totalFeeInWord = ConvertUtil.numberToWords(totalFees.toString());
-//					totalFee = ConvertUtil.numberToComa(totalFees.toString());
+					
+					edc = Optional.ofNullable(feesAndCharges.getEDC())
+							.orElseThrow(RuntimeException::new);
+					idw = Optional.ofNullable(feesAndCharges.getIDW())
+							.orElseThrow(RuntimeException::new);
+					amountIDW=Double.parseDouble(idw);
+					amountEDC=Double.parseDouble(edc);
 				} catch (Exception e) {
 					log.error("Exception : "+e.getMessage());
 				
@@ -5168,8 +5091,6 @@ public class LoiReportService {
 					comericalComponent = Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
 							.orElseThrow(RuntimeException::new);
 
-//					String efA = externalFigureAmmount;
-//					String ifA = internalFigureAmmount;
 					licenseFees = ConvertUtil.numberToComa(licenseFee);
 					licenseFeesInWord = ConvertUtil.numberToWords(licenseFee);
 					conversionChargesInWord = ConvertUtil.numberToWords(conversionCharges.toString());
@@ -5178,15 +5099,8 @@ public class LoiReportService {
 							.numberToWords(stateInfrastructureDevelopmentCharges.toString());
 					stateInfrastructureDevelopmentCharges = ConvertUtil
 							.numberToComa(stateInfrastructureDevelopmentCharges.toString());
-//					externalFigureAmmount = ConvertUtil.numberToComa(efA);
-//					externalFigureAmmountInWord = ConvertUtil.numberToWords(efA);
-//					internalFigureAmmount = ConvertUtil.numberToComa(ifA);
-//					internalFigureAmmountInWord = ConvertUtil.numberToWords(ifA);
-//					String scrutinyFees=scrutinyFee;
-//					scrutinyFee=ConvertUtil.numberToComa(scrutinyFees);
-//					scrutinyFeeInWord=ConvertUtil.numberToWords(scrutinyFees);
-//					edcAmount=ConvertUtil.numberToComa(edcAmounts);
-//					edcAmountInWord=ConvertUtil.numberToWords(edcAmounts);
+					scrutinyFee=ConvertUtil.numberToComa(scrutinyFees);
+					scrutinyFeeInWord=ConvertUtil.numberToWords(scrutinyFees);
 
 				} catch (Exception e) {
 					log.error("Exception : "+e.getMessage());
