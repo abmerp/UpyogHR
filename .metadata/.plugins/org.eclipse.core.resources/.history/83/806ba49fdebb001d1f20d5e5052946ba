@@ -1345,11 +1345,12 @@ public class LoiReportService {
 						+ conversionChargesInWord
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode.",
 						normal));
-				list.add(new ListItem("To deposit an amount of " + amountEDW + "/- on account of EDC in favour of the Director, Town & Country Planning, Haryana through online mode.\n(Note: The above demanded fee & charges are subject to audit and reconciliation of accounts).",
+				list.add(new ListItem("To deposit an amount of " + edcAmount + "/-(" + edcAmountInWord
+						+ ") on account of EDC in favour of the Director, Town & Country Planning, Haryana through online mode.\n(Note: The above demanded fee & charges are subject to audit and reconciliation of accounts).",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting Rs. "+amountEDW*0.25+" lac against the balance amount of External Development Charges amounting "
-								+ amountEDW + "/-. ",
+						"To submit BG amounting Rs. 163.8365 lac against the balance amount of External Development Charges amounting "
+								+ externalFigureAmmount + "/-(" + externalFigureAmmountInWord + "). ",
 						normal));
 				List subList00 = new List();
 				subList00.setIndentationLeft(15f);
@@ -1359,8 +1360,8 @@ public class LoiReportService {
 				list.add(subList00);
 
 				list.add(new ListItem(
-						"To furnish bank guarantee amounting Rs. "+amountEDW*0.25+" lac against the total cost of Internal Development Works amounting "
-								+ amountIDW + "/-.",
+						"To furnish bank guarantee amounting Rs. 38.79125 lac against the total cost of Internal Development Works amounting "
+								+ internalFigureAmmount + "/-(" + internalFigureAmmountInWord + ").",
 						normal));
 
 				List subList03 = new List();
@@ -2967,16 +2968,6 @@ public class LoiReportService {
 				underline.setUnderline(0.1f, -1f);
 				underline.setFont(normalBold);
 				doc.add(underline);
-				
-				
-		
-				
-				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
-				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
-				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
-				Double bg25InternalPercentage = totalInternalCost * 0.25;
-
-				
 
 				float[] icolumnWidths = { 2, 3, 2, 2, 3 };
 				PdfPTable itable = new PdfPTable(icolumnWidths);
@@ -2994,23 +2985,23 @@ public class LoiReportService {
 					itable.addCell(header);
 				}
 				itable.addCell("Plotted");
-				itable.addCell(""+plottedComponent+"");
+				itable.addCell("56.56825");
 				itable.addCell("20");
-				itable.addCell(""+plottedInternalCost+"");
-				PdfPCell cell23 = new PdfPCell(new Phrase(""+bg25InternalPercentage+""));
+				itable.addCell("1131.365");
+				PdfPCell cell23 = new PdfPCell(new Phrase("314.25"));
 				cell23.setColspan(1);
 				cell23.setRowspan(3);
 				itable.addCell(cell23);
 
 				itable.addCell("Commercial  ");
-				itable.addCell(""+comericalComponent+"");
+				itable.addCell("2.513");
 				itable.addCell("50");
-				itable.addCell(""+comericalInternalCost+"");
+				itable.addCell("125.65");
 
 				itable.addCell(" ");
 				itable.addCell(" ");
 				itable.addCell("Total");
-				itable.addCell(""+totalInternalCost+"");
+				itable.addCell("1257.015");
 				doc.add(itable);
 
 				doc.add(new Paragraph(
@@ -5232,7 +5223,7 @@ public class LoiReportService {
 			getLoiReportGroupHousingUnderTODPolicy(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "DDJAY_APHP": { // 4 done
+		case "DDJAY_APHP": { // 4
 			getLoiReportGAffordablePlottedDeenDayal(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
@@ -5256,11 +5247,11 @@ public class LoiReportService {
 			getLoiReportITCyberCity(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "IPULP": { // 10 done
+		case "IPULP": { // 10
 			getLoiReportIndustrialColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "MLU-CZ": { // 11 
+		case "MLU-CZ": { // 11
 			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}

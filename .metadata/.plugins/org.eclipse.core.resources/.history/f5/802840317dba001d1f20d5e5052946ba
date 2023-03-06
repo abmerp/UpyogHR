@@ -183,8 +183,6 @@ public class LoiReportService {
 	
 	Double amountIDW=0.0;
 	Double amountEDW=0.0;
-	Double communityFacultyCost=0.0;
-	
 	
 	
 
@@ -287,8 +285,8 @@ public class LoiReportService {
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting "+amountEDW*0.25+" /- lac against the amount of External Development Charges amounting "
-								+ amountEDW + "/-.",
+						"To submit BG amounting 00.00 /-(N/A) lac against the amount of External Development Charges amounting "
+								+ externalFigureAmmount + "/-(" + externalFigureAmmountInWord + ").",
 						normal));
 				List subList01 = new List();
 				subList01.setIndentationLeft(15f);
@@ -298,8 +296,8 @@ public class LoiReportService {
 				list.add(subList01);
 
 				list.add(new ListItem(
-						"To furnish bank guarantee amounting "+(amountIDW*0.25)+" /- lacs  against the total cost of Internal Development Works amounting "
-								+ amountIDW + "/- lacs",
+						"To furnish bank guarantee amounting 00.00 /-(N/A)  against the total cost of Internal Development Works amounting "
+								+ internalFigureAmmount + "/-(" + internalFigureAmmountInWord + ")",
 						normal));
 				List subList02 = new List();
 				subList02.setIndentationLeft(15f);
@@ -624,8 +622,8 @@ public class LoiReportService {
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode.",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting ₹ "+amountEDW*0.25+" lac against the amount of External Development Charges amounting "
-								+ amountEDW + "/-.",
+						"To submit BG amounting ₹ 482.9 lac against the amount of External Development Charges amounting "
+								+ externalFigureAmmount + "/-(" + externalFigureAmmountInWord + ").",
 						normal));
 				List subList01 = new List();
 				subList01.setIndentationLeft(15f);
@@ -635,8 +633,8 @@ public class LoiReportService {
 				list.add(subList01);
 
 				list.add(new ListItem(
-						"To furnish bank guarantee amounting ₹ "+amountIDW*0.25+" lac against the total cost of Internal Development Works amounting "
-								+ amountIDW + "/-",
+						"To furnish bank guarantee amounting ₹ 77.1875 lac against the total cost of Internal Development Works amounting "
+								+ internalFigureAmmount + "/-(" + internalFigureAmmountInWord + ")",
 						normal));
 				List subList02 = new List();
 				subList02.setIndentationLeft(15f);
@@ -913,7 +911,7 @@ public class LoiReportService {
 				preface12.setSpacingBefore(15f);
 				doc.add(preface12);
 				Paragraph preface13 = new Paragraph();
-				preface13.add(new Paragraph("(with "+farAmount+" FAR) over an area measuring " + totalArea
+				preface13.add(new Paragraph("(with 2.5 FAR) over an area measuring " + totalArea
 						+ " acres in the revenue estate of " + address + " – Issuance of LOI.", smallBold));
 				preface13.setIndentationLeft(leftMarg);
 				doc.add(preface13);
@@ -951,42 +949,25 @@ public class LoiReportService {
 				List subListE = new List();
 				subListI.setIndentationLeft(30f);
 				subListE.setIndentationLeft(30f);
-				
-				
-//				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
-				
-				Double comericalInternalCost = 50 * amountIDW;
-				Double totalInternalCost = communityFacultyCost + comericalInternalCost;
-				Double bg25InternalPercentage = totalInternalCost * 0.25;
-				
-				Double plottedExternalCost = (Double.parseDouble(plottedComponent)*zoneWiseEdcAmount*2.5)/Double.parseDouble(farAmount);
-				Double comericalExternalCost = (Double.parseDouble(comericalComponent)*zoneWiseEdcAmount*2.5)/Double.parseDouble(farAmount);
-				Double totalExternalCost = plottedExternalCost + comericalExternalCost;
-				Double bg25ExternalPercentage = totalExternalCost * 0.25;
-
-				
-				
 				subListI.add(
-						new ListItem("A)	Tentative rates for GH@ ₹ 50.00 Lac per acre 	= ₹ "+comericalInternalCost+" Lacs", normal));
-				subListI.add(new ListItem("B)	Cost of Community Facilities				= "+communityFacultyCost+" ", normal));
+						new ListItem("A)	Tentative rates for GH@ ₹ 50.00 Lac per acre 	= ₹ 5.785 Lacs", normal));
+				subListI.add(new ListItem("B)	Cost of Community Facilities				= Nil", normal));
 				subListI.add(
-						new ListItem("C)	Total cost of Internal Development Works		= ₹ "+totalInternalCost+" Lacs ", normal));
-				subListI.add(new ListItem("D)	25% B.G. on account of IDW				= ₹ "+bg25InternalPercentage+" Lacs", normal));
+						new ListItem("C)	Total cost of Internal Development Works		= ₹ 289.25 Lacs ", normal));
+				subListI.add(new ListItem("D)	25% B.G. on account of IDW				= ₹ 73.3125 Lacs", normal));
 				subListI.add(new ListItem("     (valid for 5 years in favour of DTCP)", normalBold));
 
-				
-				
 				subListE.add(new ListItem("A)	EDC for area GH Component: ", normal));
 				subListE.add(new ListItem(
-						"     "+plottedComponent+" x "+zonePurposeWizeEDCAmount+" (zone) x 2.5/"+farAmount+" (far) 				= ₹ "+plottedExternalCost+" Lacs          ",
+						"     5.756 x 312.3 (zone) x 2.5/1.75 (far) 				= ₹ 2567.91 Lacs          ",
 						normal));
 				subListE.add(new ListItem("B)	EDC for Commercial Component: ", normal));
 				subListE.add(new ListItem(
-						"     "+comericalComponent+" x "+zonePurposeWizeEDCAmount+"(zone) x 2.5/"+farAmount+"(far)		  		= ₹ "+comericalExternalCost+" Lacs      ", normal));
-				subListE.add(new ListItem("C)	Total cost of EDC                    				= ₹ "+totalExternalCost+" Lacs",
+						"     0.029 x 416.385(zone) x 2.5/1.5(far)		  		= ₹ 20.1252 Lacs      ", normal));
+				subListE.add(new ListItem("C)	Total cost of EDC                    				= ₹ 2588.04 Lacs",
 						normal));
 				subListE.add(
-						new ListItem("D)	BG required equivalent to 25% of total EDC     	= ₹ "+bg25ExternalPercentage+" Lacs", normal));
+						new ListItem("D)	BG required equivalent to 25% of total EDC     	= ₹ 647.01 Lacs", normal));
 				subListE.add(new ListItem("     (valid for 5 years in favour of DTCP)", normalBold));
 
 				subList.add(new ListItem(new ListItem("INTERNAL DEVELOPMENT WORKS:")));
@@ -1345,11 +1326,12 @@ public class LoiReportService {
 						+ conversionChargesInWord
 						+ ") on account of conversion charges in favour of the Director, Town & Country Planning, Haryana through online mode.",
 						normal));
-				list.add(new ListItem("To deposit an amount of " + amountEDW + "/- on account of EDC in favour of the Director, Town & Country Planning, Haryana through online mode.\n(Note: The above demanded fee & charges are subject to audit and reconciliation of accounts).",
+				list.add(new ListItem("To deposit an amount of " + edcAmount + "/-(" + edcAmountInWord
+						+ ") on account of EDC in favour of the Director, Town & Country Planning, Haryana through online mode.\n(Note: The above demanded fee & charges are subject to audit and reconciliation of accounts).",
 						normal));
 				list.add(new ListItem(
-						"To submit BG amounting Rs. "+amountEDW*0.25+" lac against the balance amount of External Development Charges amounting "
-								+ amountEDW + "/-. ",
+						"To submit BG amounting Rs. 163.8365 lac against the balance amount of External Development Charges amounting "
+								+ externalFigureAmmount + "/-(" + externalFigureAmmountInWord + "). ",
 						normal));
 				List subList00 = new List();
 				subList00.setIndentationLeft(15f);
@@ -1359,8 +1341,8 @@ public class LoiReportService {
 				list.add(subList00);
 
 				list.add(new ListItem(
-						"To furnish bank guarantee amounting Rs. "+amountEDW*0.25+" lac against the total cost of Internal Development Works amounting "
-								+ amountIDW + "/-.",
+						"To furnish bank guarantee amounting Rs. 38.79125 lac against the total cost of Internal Development Works amounting "
+								+ internalFigureAmmount + "/-(" + internalFigureAmmountInWord + ").",
 						normal));
 
 				List subList03 = new List();
@@ -2084,30 +2066,6 @@ public class LoiReportService {
 				doc.add(new Paragraph(
 						"1.  To furnish bank guarantees on account of External Development Charges and Internal Development Works  for the amount calculated as under:-",
 						normal));
-				
-				
-				
-				
-				
-				
-				Double industrialComponent = zoneWiseEdcAmount * Double.parseDouble(totalArea);
-				Double industrialComponent50Percentage = industrialComponent*0.50; //A
-				Double plottedComponentCost = zoneWiseEdcAmount * Double.parseDouble(plottedComponent); // B
-				Double comericalComponentCost = zoneWiseEdcAmount * Double.parseDouble(comericalComponent); // C
-				Double BCcomponentCost=plottedComponentCost+comericalComponentCost;//D
-				Double ADcomponentCost=BCcomponentCost+industrialComponent50Percentage; // 
-				Double ADcomponentCost25Percentage=ADcomponentCost*0.25; // 
-				
-				
-				
-				Double internalIndestrialComponentCost=50*Double.parseDouble(totalArea);
-				Double internalPottedComponentCost=20*Double.parseDouble(plottedComponent);
-				Double internalComericalComponentCost=50*Double.parseDouble(comericalComponent);
-				Double totalIntrnalCost=internalIndestrialComponentCost+internalPottedComponentCost+internalComericalComponentCost;
-				Double totalInternalCost25percentage=(totalIntrnalCost)*0.25;
-				
-				
-				
 				Chunk underline = new Chunk("External Development Charges:-");
 				underline.setUnderline(0.1f, -1f);
 				underline.setFont(normalBold);
@@ -2128,13 +2086,13 @@ public class LoiReportService {
 					etable.addCell(header);
 				}
 				etable.addCell("1");
-				String edcRecorde = "Industrial component= "+totalArea+"x "+zonePurposeWizeEDCAmount+" (EDC rate) = "+industrialComponent+" lacs\n"
-						+ "\n50% EDC Required = "+industrialComponent50Percentage+" lacs ……… (A)\n"
-						+ "\nPlotted component = "+plottedComponent+" x "+zonePurposeWizeEDCAmount+" (EDC rate) = "+plottedComponentCost+" lacs…..(B)\n"
-						+ "\nCommercial component = "+comericalComponent+" x "+zonePurposeWizeEDCAmount+" (EDC rate) = "+comericalComponentCost+" lacs…… (C)\n"
-						+ "\nTotal (B+C)= Rs. "+BCcomponentCost+" lacs……….. (D)\n"
-						+ "\nTotal EDC required (A+D)= Rs. "+ADcomponentCost+" lacs\n"
-						+ "\n25% BG required  = Rs. "+ADcomponentCost25Percentage+" lacs ";
+				String edcRecorde = "Industrial component= 95.831x 173.841 (EDC rate) = 16659.356871 lacs\n"
+						+ "\n50% EDC Required = 8329.6784 lacs ……… (A)\n"
+						+ "\nPlotted component = 21.42624 x 104.096 (EDC rate) = 2230.3859 lacs…..(B)\n"
+						+ "\nCommercial component = 0.89276 x 486.130 (EDC rate) = 433.9974 lacs…… (C)\n"
+						+ "\nTotal (B+C)= Rs. 2664.3833 lacs……….. (D)\n"
+						+ "\nTotal EDC required (A+D)= Rs. 10994.0617 lacs\n"
+						+ "\n25% BG required  = Rs. 2748.515425 lacs ";
 				etable.addCell(edcRecorde);
 				doc.add(etable);
 
@@ -2161,16 +2119,16 @@ public class LoiReportService {
 
 				itable.addCell("1");
 				itable.addCell("IDW BG");
-				String idcRecorde = "Industrial=  "+totalArea+"x 50 lakh = Rs. "+internalIndestrialComponentCost+" lakh\n"
-						+ "\nPlotted = "+plottedComponent+" x 20 lakh = Rs. "+internalPottedComponentCost+" lakh\n"
-						+ "\nComm.= "+comericalComponent+" x 50 lakh = Rs. "+internalComericalComponentCost+" lakh";
+				String idcRecorde = "Industrial=  95.813x 50 lakh = Rs. 4790.65 lakh\n"
+						+ "\nPlotted = 21.42624 x 20 lakh = Rs. 428.5248 lakh\n"
+						+ "\nComm.= 0.89276 x 50 lakh = Rs. 44.638 lakh";
 				itable.addCell(idcRecorde);
-				itable.addCell("Rs. "+totalInternalCost25percentage+" lacs");
+				itable.addCell("Rs. 1315.9532 lacs");
 
 				itable.addCell("");
 				itable.addCell("Total");
-				itable.addCell("Rs. "+totalIntrnalCost+" lakh");
-				itable.addCell("Rs. "+totalInternalCost25percentage+" lacs");
+				itable.addCell("Rs. 5263.8128 lakh");
+				itable.addCell("Rs. 1315.9532 lacs");
 				doc.add(itable);
 
 				doc.add(new Paragraph(
@@ -2581,6 +2539,7 @@ public class LoiReportService {
 				
 				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
 				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
+				Double communityFacultyCost=0.0;
 				Double grandTotal=communityFacultyCost+totalInternalCost;
 				Double bg25InternalPercentage = grandTotal * 0.25;
 				
@@ -2967,16 +2926,6 @@ public class LoiReportService {
 				underline.setUnderline(0.1f, -1f);
 				underline.setFont(normalBold);
 				doc.add(underline);
-				
-				
-		
-				
-				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
-				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
-				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
-				Double bg25InternalPercentage = totalInternalCost * 0.25;
-
-				
 
 				float[] icolumnWidths = { 2, 3, 2, 2, 3 };
 				PdfPTable itable = new PdfPTable(icolumnWidths);
@@ -2994,23 +2943,23 @@ public class LoiReportService {
 					itable.addCell(header);
 				}
 				itable.addCell("Plotted");
-				itable.addCell(""+plottedComponent+"");
+				itable.addCell("56.56825");
 				itable.addCell("20");
-				itable.addCell(""+plottedInternalCost+"");
-				PdfPCell cell23 = new PdfPCell(new Phrase(""+bg25InternalPercentage+""));
+				itable.addCell("1131.365");
+				PdfPCell cell23 = new PdfPCell(new Phrase("314.25"));
 				cell23.setColspan(1);
 				cell23.setRowspan(3);
 				itable.addCell(cell23);
 
 				itable.addCell("Commercial  ");
-				itable.addCell(""+comericalComponent+"");
+				itable.addCell("2.513");
 				itable.addCell("50");
-				itable.addCell(""+comericalInternalCost+"");
+				itable.addCell("125.65");
 
 				itable.addCell(" ");
 				itable.addCell(" ");
 				itable.addCell("Total");
-				itable.addCell(""+totalInternalCost+"");
+				itable.addCell("1257.015");
 				doc.add(itable);
 
 				doc.add(new Paragraph(
@@ -5220,19 +5169,19 @@ public class LoiReportService {
 		String purpose = licenseServiceResponceInfo.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose();
 		System.out.println("purpose:----" + purpose);
 		switch (purpose) {
-		case "RGP": { // 1 done
+		case "RGP": { // 1
 			getLoiReportGroupHousing(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "AGH": { // 2  done
+		case "AGH": { // 2
 			getLoiReportAffordableGroupHousing(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "TODMGH": { // 3 done
+		case "TODMGH": { // 3
 			getLoiReportGroupHousingUnderTODPolicy(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "DDJAY_APHP": { // 4 done
+		case "DDJAY_APHP": { // 4
 			getLoiReportGAffordablePlottedDeenDayal(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
@@ -5244,23 +5193,23 @@ public class LoiReportService {
 			getLoiReportNewResidentialPlottedColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "IPA": { // 7 done
+		case "IPA": { // 7
 			getLoiReportIndustrialPlottedColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "ITC": { // 8 done
+		case "ITC": { // 8
 			getLoiReportITCyberCity(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "ITP": { // 9 done
+		case "ITP": { // 9
 			getLoiReportITCyberCity(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "IPULP": { // 10 done
+		case "IPULP": { // 10
 			getLoiReportIndustrialColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "MLU-CZ": { // 11 
+		case "MLU-CZ": { // 11
 			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}

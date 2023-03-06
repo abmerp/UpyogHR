@@ -2967,16 +2967,6 @@ public class LoiReportService {
 				underline.setUnderline(0.1f, -1f);
 				underline.setFont(normalBold);
 				doc.add(underline);
-				
-				
-		
-				
-				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
-				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
-				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
-				Double bg25InternalPercentage = totalInternalCost * 0.25;
-
-				
 
 				float[] icolumnWidths = { 2, 3, 2, 2, 3 };
 				PdfPTable itable = new PdfPTable(icolumnWidths);
@@ -2994,23 +2984,23 @@ public class LoiReportService {
 					itable.addCell(header);
 				}
 				itable.addCell("Plotted");
-				itable.addCell(""+plottedComponent+"");
+				itable.addCell("56.56825");
 				itable.addCell("20");
-				itable.addCell(""+plottedInternalCost+"");
-				PdfPCell cell23 = new PdfPCell(new Phrase(""+bg25InternalPercentage+""));
+				itable.addCell("1131.365");
+				PdfPCell cell23 = new PdfPCell(new Phrase("314.25"));
 				cell23.setColspan(1);
 				cell23.setRowspan(3);
 				itable.addCell(cell23);
 
 				itable.addCell("Commercial  ");
-				itable.addCell(""+comericalComponent+"");
+				itable.addCell("2.513");
 				itable.addCell("50");
-				itable.addCell(""+comericalInternalCost+"");
+				itable.addCell("125.65");
 
 				itable.addCell(" ");
 				itable.addCell(" ");
 				itable.addCell("Total");
-				itable.addCell(""+totalInternalCost+"");
+				itable.addCell("1257.015");
 				doc.add(itable);
 
 				doc.add(new Paragraph(
@@ -5232,7 +5222,7 @@ public class LoiReportService {
 			getLoiReportGroupHousingUnderTODPolicy(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "DDJAY_APHP": { // 4 done
+		case "DDJAY_APHP": { // 4
 			getLoiReportGAffordablePlottedDeenDayal(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
@@ -5256,11 +5246,11 @@ public class LoiReportService {
 			getLoiReportITCyberCity(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "IPULP": { // 10 done
+		case "IPULP": { // 10
 			getLoiReportIndustrialColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "MLU-CZ": { // 11 
+		case "MLU-CZ": { // 11
 			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}

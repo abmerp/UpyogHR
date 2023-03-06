@@ -2974,7 +2974,13 @@ public class LoiReportService {
 				Double plottedInternalCost = 20 * Double.parseDouble(plottedComponent);
 				Double comericalInternalCost = 50 * Double.parseDouble(comericalComponent);
 				Double totalInternalCost = plottedInternalCost + comericalInternalCost;
-				Double bg25InternalPercentage = totalInternalCost * 0.25;
+				Double bg25InternalPercentage = amountEDW * 0.25;
+//				
+////				Double plottedExternalCost = zoneWiseEdcAmount * Double.parseDouble(plottedComponent);
+//				Double comericalExternalCost = zoneWiseEdcAmount * Double.parseDouble(comericalComponent);
+////				Double totalExternalCost = plottedExternalCost + comericalExternalCost;
+//				Double bg25ExternalPercentage = comericalExternalCost * 0.25;
+//				
 
 				
 
@@ -5256,11 +5262,11 @@ public class LoiReportService {
 			getLoiReportITCyberCity(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "IPULP": { // 10 done
+		case "IPULP": { // 10
 			getLoiReportIndustrialColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		case "MLU-CZ": { // 11 
+		case "MLU-CZ": { // 11
 			getLoiReportDevelopMixedLandUseColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
