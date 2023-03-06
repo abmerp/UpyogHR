@@ -225,9 +225,6 @@ public class  TradeLicense   {
         
         @JsonProperty("loiNumber")
         private String loiNumber;
-        
-        @JsonProperty("tcpLoiNumber")
-        private String tcpLoiNumber;
 
 }
 

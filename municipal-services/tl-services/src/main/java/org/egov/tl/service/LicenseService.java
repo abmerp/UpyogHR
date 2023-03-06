@@ -457,6 +457,7 @@ public class LicenseService {
 		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
 		licenseServiceResponseInfo.setWorkFlowCode(tradeLicenses.get(0).getWorkflowCode());
 		for (TradeLicense tradeLicense : tradeLicenses) {
+
 			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
 			});
 
@@ -489,7 +490,6 @@ public class LicenseService {
 					licenseServiceResponseInfo.setCaseNumber(tradeLicense.getTcpCaseNumber());
 					licenseServiceResponseInfo.setDairyNumber(tradeLicense.getTcpDairyNumber());
 					licenseServiceResponseInfo.setApplicationDate(String.valueOf(tradeLicense.getApplicationDate()));
-					licenseServiceResponseInfo.setLoiNumber(String.valueOf(tradeLicense.getTcpLoiNumber()));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}
