@@ -19,6 +19,7 @@ import org.egov.tl.web.models.AddRemoveAuthoizedUsers;
 import org.egov.tl.web.models.AppliedLandDetails;
 import org.egov.tl.web.models.DirectorsInformation;
 import org.egov.tl.web.models.DirectorsInformationMCA;
+import org.egov.tl.web.models.LandScheduleDetails;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.ShareholdingPattens;
@@ -45,7 +46,6 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,8 +58,9 @@ public class NewLicensePDF {
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD,BaseColor.BLACK);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
-	//private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+//	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
+	
 
 	@Autowired BPANotificationUtil bPANotificationUtil;
 	@Autowired LicenseService licenseService;
@@ -96,9 +97,9 @@ public class NewLicensePDF {
 	private void createNewLicensePDF(RequestInfo requestInfo, String applicationNumber) 
 			throws MalformedURLException, IOException, DocumentException {
 		
-		System.out.println(applicationNumber);
+		
 		boolean flag = true;
-		System.out.println(requestInfo);
+		
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber, requestInfo);
 		
 		System.out.println(licenseServiceResponceInfo);
@@ -191,11 +192,13 @@ public class NewLicensePDF {
 
 
 		//doc.add(table);
-		if(licenseServiceResponceInfo.getNewServiceInfoData()!=null&&licenseServiceResponceInfo.getNewServiceInfoData().size()>0) {
+		if(licenseServiceResponceInfo.getNewServiceInfoData()!=null && licenseServiceResponceInfo.getNewServiceInfoData().size()>0) {
 			doc.add(p1);
+			
 			for(int i=0;i<licenseServiceResponceInfo.getNewServiceInfoData().size();i++) {
 				
 				LicenseDetails licenseDetails = licenseServiceResponceInfo.getNewServiceInfoData().get(i);
+				
 				Paragraph pversion = new Paragraph();
 				pversion.add("version :"+licenseDetails.getVer());
 				doc.add(pversion);
@@ -445,6 +448,10 @@ public class NewLicensePDF {
 						//Applied Land Details
 						if(licenseDetails.getApplicantPurpose().getAppliedLandDetails()!=null && licenseDetails.getApplicantPurpose().getAppliedLandDetails().size()>0) {
 							
+							
+							
+						for(int j=0;j<licenseDetails.getApplicantPurpose().getAppliedLandDetails().size();j++) {
+							
 							Paragraph pald = new Paragraph();
 							pald.setFont(blackFont1);
 							pald.add("Applied Land Details");
@@ -454,8 +461,6 @@ public class NewLicensePDF {
 							table.setSpacingBefore(5f);
 							table.setSpacingAfter(5f);
 							table.setWidthPercentage(100f);
-							
-						for(int j=0;j<licenseDetails.getApplicantPurpose().getAppliedLandDetails().size();j++) {
 							
 							System.out.println(licenseDetails.getApplicantPurpose().getAppliedLandDetails().size());							
 							AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j);
@@ -658,12 +663,25 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("License Applied");
+							  table.addCell("NULL");
+							
+						}
+						
 						
 						if(licenseDetails.getLandSchedule().getLicenseNumber()!= null) {
 							
 							  table.addCell("License Number");
 							  table.addCell(licenseDetails.getLandSchedule().getLicenseNumber());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("License Number");
+							  table.addCell("NULL");
 							
 						}
 						
@@ -674,12 +692,24 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Potential");
+							  table.addCell("NULL");
+							
+						}
 						
 						if(licenseDetails.getLandSchedule().getSiteLoc()!= null) {
 							
 							  table.addCell("SiteLoc");
 							  table.addCell(licenseDetails.getLandSchedule().getSiteLoc());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("SiteLoc");
+							  table.addCell("NULL");
 							
 						}
 
@@ -691,6 +721,12 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Approach Type");
+							  table.addCell("NULL");
+							
+						}
 
 						
 						if(licenseDetails.getLandSchedule().getApproachRoadWidth()!= null) {
@@ -698,6 +734,12 @@ public class NewLicensePDF {
 							  table.addCell("Approach RoadWidth");
 							  table.addCell(licenseDetails.getLandSchedule().getApproachRoadWidth());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Approach RoadWidth");
+							  table.addCell("NULL");
 							
 						}
 						
@@ -708,12 +750,24 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Specify");
+							  table.addCell("NULL");
+							
+						}
 
 						if(licenseDetails.getLandSchedule().getTypeLand()!= null) {
 							
 							  table.addCell("TypeLand");
 							  table.addCell(licenseDetails.getLandSchedule().getTypeLand());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("TypeLand");
+							  table.addCell("NULL");
 							
 						}
 
@@ -724,6 +778,12 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Third Party");
+							  table.addCell("NULL");
+							
+						}
 
 						if(licenseDetails.getLandSchedule().getThirdPartyRemark()!= null) {
 							
@@ -732,14 +792,27 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Third Party Remark");
+							  table.addCell("NULL");
+							
+						}
 
 						if(licenseDetails.getLandSchedule().getThirdPartyDoc()!= null) {
 							
-							  table.addCell("ThirdPartyDoc");
+							  table.addCell("Third PartyDoc");
 							  table.addCell(licenseDetails.getLandSchedule().getThirdPartyDoc());
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Third PartyDoc");
+							  table.addCell("NULL");
+							
+						}
+
 						
 						if(licenseDetails.getLandSchedule().getMigrationLic()!= null) {
 							
@@ -748,6 +821,13 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("MigrationLic");
+							  table.addCell("NULL");
+							
+						}
+
 						
 						if(licenseDetails.getLandSchedule().getAreaUnderMigration()!= null) {
 							
@@ -756,6 +836,13 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("AreaUnder Migration");
+							  table.addCell("NULL");
+							
+						}
+
 
 						if(licenseDetails.getLandSchedule().getPurposeParentLic()!= null) {
 							
@@ -764,42 +851,95 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("PurposeParentLic");
+							  table.addCell("NULL");
+							
+						}
 
 						if(licenseDetails.getLandSchedule().getLicNo()!= null) {
 							
-							  table.addCell("LicNo");
+							  table.addCell("Lic No");
 							  table.addCell(licenseDetails.getLandSchedule().getLicNo());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Lic No");
+							  table.addCell("NULL");
 							
 						}
 
 						if(licenseDetails.getLandSchedule().getAreaofParentLic()!= null) {
 							
-							  table.addCell("AreaofParentLic");
+							  table.addCell("Area of ParentLic");
 							  table.addCell(licenseDetails.getLandSchedule().getAreaofParentLic());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Area of ParentLic");
+							  table.addCell("NULL");
 							
 						}
 						
 						if(licenseDetails.getLandSchedule().getValidityOfParentLic()!= null) {
 							
-							  table.addCell("ValidityOfParentLic");
+							  table.addCell("Validity Of ParentLic");
 							  table.addCell(licenseDetails.getLandSchedule().getValidityOfParentLic());
 						        
 							
 						}
+						
+						else {
+							
+							 table.addCell("Validity Of ParentLic");
+							  table.addCell("NULL");
+							
+						}
+						
 						if(licenseDetails.getLandSchedule().getRenewalFee()!= null) {
 							
-							  table.addCell("RenewalFee");
+							  table.addCell("Renewal Fee");
 							  table.addCell(licenseDetails.getLandSchedule().getRenewalFee());
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Renewal Fee");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getFreshlyApplied()!= null) {
+							
+							  table.addCell("Freshly Applied");
+							  table.addCell(licenseDetails.getLandSchedule().getFreshlyApplied());
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Freshly Applied");
+							  table.addCell("NULL");
+							
+						}
+						
 						if(licenseDetails.getLandSchedule().getApprovedLayoutPlan()!= null) {
 							
 							  table.addCell("Approved LayoutPlan");
 							  table.addCell(licenseDetails.getLandSchedule().getApprovedLayoutPlan());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Approved LayoutPlan");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getUploadPreviouslyLayoutPlan()!= null) {
@@ -809,6 +949,12 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("UploadPreviously LayoutPlan");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getEncumburance()!= null) {
 							
 							  table.addCell("Encumburance");
@@ -816,12 +962,37 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Encumburance");
+							  table.addCell("NULL");
+							
+						}
 						
 						if(licenseDetails.getLandSchedule().getEncumburanceOther()!= null) {
 							
-							  table.addCell("EncumburanceOther");
+							  table.addCell("Encumburance Other");
 							  table.addCell(licenseDetails.getLandSchedule().getEncumburanceOther());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Encumburance Other");
+							  table.addCell("NULL");
+							
+						}
+						if(licenseDetails.getLandSchedule().getEncumburanceDoc()!= null) {
+							
+							  table.addCell("Encumburance Doc");
+							  table.addCell(licenseDetails.getLandSchedule().getEncumburanceDoc());
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Encumburance Doc");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getLitigation()!= null) {
@@ -831,11 +1002,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Litigation");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getLitigationRemark()!= null) {
 							
 							  table.addCell("Litigation Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getLitigationRemark());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Litigation Remark");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getLitigationDoc()!= null) {
@@ -845,6 +1028,12 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Litigation Doc");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getCourt()!= null) {
 							
 							  table.addCell("Court");
@@ -852,18 +1041,36 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Court");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getCourtyCaseNo()!= null) {
 							
-							  table.addCell("CourtyCaseNo");
+							  table.addCell("Courty CaseNo");
 							  table.addCell(licenseDetails.getLandSchedule().getCourtyCaseNo());
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Courty CaseNo");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getCourtDoc()!= null) {
 							
-							  table.addCell("CourtDoc");
+							  table.addCell("Court Doc");
 							  table.addCell(licenseDetails.getLandSchedule().getCourtDoc());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Court Doc");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getInsolvency()!= null) {
@@ -873,6 +1080,12 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Insolvency");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getInsolvencyRemark()!= null) {
 							
 							  table.addCell("Insolvency Remark");
@@ -880,11 +1093,38 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Insolvency Remark");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getInsolvencyDoc()!= null) {
+							
+							  table.addCell("Insolvency Doc");
+							  table.addCell(licenseDetails.getLandSchedule().getInsolvencyDoc());
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Insolvency Doc");
+							  table.addCell("NULL");
+							
+						}
+						
 						if(licenseDetails.getLandSchedule().getAppliedLand()!= null) {
 							
 							  table.addCell("Applied Land");
 							  table.addCell(licenseDetails.getLandSchedule().getAppliedLand());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Applied Land");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getAppliedLandDoc()!= null) {
@@ -894,6 +1134,12 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("AppliedLandDoc");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getRevenueRasta()!= null) {
 							
 							  table.addCell("Revenue Rasta");
@@ -901,11 +1147,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Revenue Rasta");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getRevenueRastaWidth()!= null) {
 							
-							  table.addCell("RevenueRastaWidth");
+							  table.addCell("RevenueRasta Width");
 							  table.addCell(licenseDetails.getLandSchedule().getRevenueRastaWidth());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("RevenueRasta Width");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getWaterCourse()!= null) {
@@ -915,11 +1173,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("WaterCourse");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getWaterCourseRemark()!= null) {
 							
 							  table.addCell("WaterCourse Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getWaterCourseRemark());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("WaterCourse Remark");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getCompactBlock()!= null) {
@@ -929,11 +1199,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("CompactBlock");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getCompactBlockRemark()!= null) {
 							
 							  table.addCell("CompactBlock Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getCompactBlockRemark());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("CompactBlock Remark");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getLandSandwiched()!= null) {
@@ -943,11 +1225,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("LandSandwiched");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getLandSandwichedRemark()!= null) {
 							
 							  table.addCell("LandSandwiched Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getLandSandwichedRemark());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("LandSandwiched Remark");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getAcquistion()!= null) {
@@ -957,11 +1251,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Acquistion");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getAcquistionRemark()!= null) {
 							
 							  table.addCell("Acquistion Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getAcquistionRemark());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Acquistion Remark");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getSectionFour()!= null) {
@@ -971,11 +1277,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("SectionFour");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getSectionSix()!= null) {
 							
 							  table.addCell("SectionSix");
 							  table.addCell(licenseDetails.getLandSchedule().getSectionSix());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("SectionSix");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getOrderUpload()!= null) {
@@ -985,11 +1303,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Order Upload");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getLandCompensation()!= null) {
 							
 							  table.addCell("Land Compensation");
 							  table.addCell(licenseDetails.getLandSchedule().getLandCompensation());
 						        
+							
+						}	
+						else {
+							
+							 table.addCell("Land Compensation");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getReleaseStatus()!= null) {
@@ -999,11 +1329,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Release Status");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getAwardDate()!= null) {
 							
 							  table.addCell("Award Date");
 							  table.addCell(licenseDetails.getLandSchedule().getAwardDate());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Award Date");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getReleaseDate()!= null) {
@@ -1013,11 +1355,23 @@ public class NewLicensePDF {
 						        
 							
 						}
+						else {
+							
+							 table.addCell("Release Date");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getSiteDetail()!= null) {
 							
 							  table.addCell("Site Detail");
 							  table.addCell(licenseDetails.getLandSchedule().getSiteDetail());
 						        
+							
+						}
+						else {
+							
+							 table.addCell("Site Detail");
+							  table.addCell("NULL");
 							
 						}
 						if(licenseDetails.getLandSchedule().getSiteApproachable()!= null) {
@@ -1026,11 +1380,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getSiteApproachable());
 						      
 						}
+						else {
+							
+							 table.addCell("Site Approachable");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getVacant()!= null) {
 							
 							  table.addCell("Vacant");
 							  table.addCell(licenseDetails.getLandSchedule().getVacant());
 						      
+						}
+						else {
+							
+							 table.addCell("Vacant");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getVacantRemark()!= null) {
 							
@@ -1038,11 +1404,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getVacantRemark());
 						      
 						}
+						else {
+							
+							 table.addCell("Vacant Remark");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getConstruction()!= null) {
 							
 							  table.addCell("Construction");
 							  table.addCell(licenseDetails.getLandSchedule().getConstruction());
 						      
+						}
+						else {
+							
+							 table.addCell("Construction");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getTypeOfConstruction()!= null) {
 							
@@ -1050,11 +1428,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getTypeOfConstruction());
 						      
 						}
+						else {
+							
+							 table.addCell("Type Of Construction");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getConstructionRemark()!= null) {
 							
 							  table.addCell("Construction Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getConstructionRemark());
 						      
+						}
+						else {
+							
+							 table.addCell("Construction Remark");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getHt()!= null) {
 							
@@ -1062,11 +1452,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getHt());
 						      
 						}
+						else {
+							
+							 table.addCell("Ht");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getHtRemark()!= null) {
 							
 							  table.addCell("Ht Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getHtRemark());
 						      
+						}
+						else {
+							
+							 table.addCell("Ht Remark");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getGasRemark()!= null) {
 							
@@ -1074,11 +1476,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getGasRemark());
 						      
 						}
+						else {
+							
+							 table.addCell("Gas Remark");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getGas()!= null) {
 							
 							  table.addCell("Gas");
 							  table.addCell(licenseDetails.getLandSchedule().getGas());
 						      
+						}
+						else {
+							
+							 table.addCell("Gas");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getNallah()!= null) {
 							
@@ -1086,11 +1500,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getNallah());
 						      
 						}
+						else {
+							
+							 table.addCell("Nallah");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getNallahRemark()!= null) {
 							
 							  table.addCell("Nallah Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getNallahRemark());
 						      
+						}
+						else {
+							
+							 table.addCell("Nallah Remark");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getRoad()!= null) {
 							
@@ -1098,11 +1524,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getRoad());
 						      
 						}
+						else {
+							
+							 table.addCell("Road");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getRoadWidth()!= null) {
 							
 							  table.addCell("Road Width");
 							  table.addCell(licenseDetails.getLandSchedule().getRoadWidth());
 						      
+						}
+						else {
+							
+							 table.addCell("Road Width");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getRoadRemark()!= null) {
 							
@@ -1110,11 +1548,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getRoadRemark());
 						      
 						}
+						else {
+							
+							 table.addCell("Road Remark");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getMarginalLand()!= null) {
 							
 							  table.addCell("MarginalLand");
 							  table.addCell(licenseDetails.getLandSchedule().getMarginalLand());
 						      
+						}
+						else {
+							
+							 table.addCell("MarginalLand");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getMarginalLandRemark()!= null) {
 							
@@ -1122,11 +1572,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getMarginalLandRemark());
 						      
 						}
+						else {
+							
+							 table.addCell("MarginalLand Remark");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getUtilityLine()!= null) {
 							
 							  table.addCell("Utility Line");
 							  table.addCell(licenseDetails.getLandSchedule().getUtilityLine());
 						      
+						}
+						else {
+							
+							 table.addCell("Utility Line");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getUtilityWidth()!= null) {
 							
@@ -1134,41 +1596,406 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getUtilityWidth());
 						      
 						}
+						else {
+							
+							 table.addCell("Utility Width");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getUtilityRemark()!= null) {
 							
 							  table.addCell("Utility Remark");
 							  table.addCell(licenseDetails.getLandSchedule().getUtilityRemark());
 						      
 						}
+						else {
+							
+							 table.addCell("Utility Remark");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getMinimumApproachFour()!= null) {
+							
+							  table.addCell("MinimumApproachFour");
+							  table.addCell(licenseDetails.getLandSchedule().getMinimumApproachFour());
+						      
+						}
+						else {
+							
+							 table.addCell("MinimumApproachFour");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getMinimumApproachEleven()!= null) {
+							
+							  table.addCell("MinimumApproachEleven");
+							  table.addCell(licenseDetails.getLandSchedule().getMinimumApproachEleven());
+						      
+						}
+						else {
+							
+							 table.addCell("MinimumApproachEleven");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getAlreadyConstructedSectorad()!= null) {
+							
+							  table.addCell("Already Constructed Sectorad");
+							  table.addCell(licenseDetails.getLandSchedule().getAlreadyConstructedSectorad());
+						      
+						}
+						else {
+							
+							 table.addCell("Already Constructed Sectorad");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getJoiningOwnLand()!= null) {
+							
+							  table.addCell("Joining OwnLand");
+							  table.addCell(licenseDetails.getLandSchedule().getJoiningOwnLand());
+						      
+						}
+						else {
+							
+							 table.addCell("Joining OwnLand");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getApplicantHasDonated()!= null) {
+							
+							  table.addCell("Applicant Has Donated");
+							  table.addCell(licenseDetails.getLandSchedule().getApplicantHasDonated());
+						      
+						}
+						else {
+							
+							 table.addCell("Applicant Has Donated");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getGiftDeedHibbanama()!= null) {
+							
+							  table.addCell("GiftDeedHibbanama");
+							  table.addCell(licenseDetails.getLandSchedule().getGiftDeedHibbanama());
+						      
+						}
+						else {
+							
+							 table.addCell("GiftDeedHibbanama");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getAdjoiningOthersLand()!= null) {
+							
+							  table.addCell("Adjoining OthersLand");
+							  table.addCell(licenseDetails.getLandSchedule().getAdjoiningOthersLand());
+						      
+						}
+						else {
+							
+							 table.addCell("Adjoining OthersLand");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getLandOwnerDonated()!= null) {
+							
+							  table.addCell("LandOwner Donated");
+							  table.addCell(licenseDetails.getLandSchedule().getLandOwnerDonated());
+						      
+						}
+						else {
+							
+							 table.addCell("LandOwner Donated");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getConstructedRowWidth()!= null) {
+							
+							  table.addCell("Constructed RowWidth");
+							  table.addCell(licenseDetails.getLandSchedule().getConstructedRowWidth());
+						      
+						}
+						else {
+							
+							 table.addCell("Constructed RowWidth");
+							  table.addCell("NULL");
+							
+						}
+						
+
+						if(licenseDetails.getLandSchedule().getIrrevocableConsent()!= null) {
+							
+							  table.addCell("IrrevocableConsent");
+							  table.addCell(licenseDetails.getLandSchedule().getIrrevocableConsent());
+						      
+						}
+						else {
+							
+							 table.addCell("IrrevocableConsent");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getUploadRrrevocableConsent()!= null) {
+							
+							  table.addCell("Upload RrrevocableConsent");
+							  table.addCell(licenseDetails.getLandSchedule().getUploadRrrevocableConsent());
+						      
+						}
+						else {
+							
+							 table.addCell("Upload RrrevocableConsent");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getApproachFromProposedSector()!= null) {
+							
+							  table.addCell("ApproachFromProposedSector");
+							  table.addCell(licenseDetails.getLandSchedule().getApproachFromProposedSector());
+						      
+						}
+						else {
+							
+							 table.addCell("ApproachFromProposedSector");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getSectorAndDevelopmentWidth()!= null) {
+							
+							  table.addCell("Sector And Development Width");
+							  table.addCell(licenseDetails.getLandSchedule().getSectorAndDevelopmentWidth());
+						      
+						}
+						else {
+							
+							 table.addCell("Sector And Development Width");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getWhetherAcquired()!= null) {
+							
+							  table.addCell("Whether Acquired");
+							  table.addCell(licenseDetails.getLandSchedule().getWhetherAcquired());
+						      
+						}
+						else {
+							
+							 table.addCell("Whether Acquired");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getWhetherConstructed()!= null) {
+							
+							  table.addCell("WhetherConstructed");
+							  table.addCell(licenseDetails.getLandSchedule().getWhetherConstructed());
+						      
+						}
+						else {
+							
+							 table.addCell("WhetherConstructed");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getServiceSectorRoadAcquired()!= null) {
+							
+							  table.addCell("Service Sector RoadAcquired");
+							  table.addCell(licenseDetails.getLandSchedule().getServiceSectorRoadAcquired());
+						      
+						}
+						else {
+							
+							 table.addCell("Service SectorRoad Acquired");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getServiceSectorRoadConstructed()!= null) {
+							
+							  table.addCell("Service Sector RoadConstructed");
+							  table.addCell(licenseDetails.getLandSchedule().getServiceSectorRoadConstructed());
+						      
+						}
+						else {
+							
+							 table.addCell("Service Sector RoadConstructed");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getApproachFromInternalCirculation()!= null) {
+							
+							  table.addCell("Approach From InternalCirculation");
+							  table.addCell(licenseDetails.getLandSchedule().getApproachFromInternalCirculation());
+						      
+						}
+						else {
+							
+							 table.addCell("Approach From InternalCirculation");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getInternalAndSectoralWidth()!= null) {
+							
+							  table.addCell("Internal And SectoralWidth");
+							  table.addCell(licenseDetails.getLandSchedule().getInternalAndSectoralWidth());
+						      
+						}
+						else {
+							
+							 table.addCell("Internal And SectoralWidth");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getParentLicenceApproach()!= null) {
+							
+							  table.addCell("Parent LicenceApproach");
+							  table.addCell(licenseDetails.getLandSchedule().getParentLicenceApproach());
+						      
+						}
+						else {
+							
+							 table.addCell("Parent LicenceApproach");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getAvailableExistingApproach()!= null) {
+							
+							  table.addCell("Available Existing Approach");
+							  table.addCell(licenseDetails.getLandSchedule().getAvailableExistingApproach());
+						      
+						}
+						else {
+							
+							 table.addCell("Available Existing Approach");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getAvailableExistingApproachDoc()!= null) {
+							
+							  table.addCell("Available Existing ApproachDoc");
+							  table.addCell(licenseDetails.getLandSchedule().getAvailableExistingApproachDoc());
+						      
+						}
+						else {
+							
+							 table.addCell("Available Existing ApproachDoc");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getWhetherAcquiredForInternalCirculation()!= null) {
+							
+							  table.addCell("Whether Acquired For InternalCirculation");
+							  table.addCell(licenseDetails.getLandSchedule().getWhetherAcquiredForInternalCirculation());
+						      
+						}
+						else {
+							
+							 table.addCell("Whether Acquired For InternalCirculation");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getWhetherConstructedForInternalCirculation()!= null) {
+							
+							  table.addCell("Whether Constructed For InternalCirculation");
+							  table.addCell(licenseDetails.getLandSchedule().getWhetherConstructedForInternalCirculation());
+						      
+						}
+						else {
+							
+							 table.addCell("Whether Constructed For InternalCirculation");
+							  table.addCell("NULL");
+							
+						}
+						
+						
 						if(licenseDetails.getLandSchedule().getLandSchedule()!= null) {
 							
 							  table.addCell("LandSchedule");
-							  table.addCell(licenseDetails.getLandSchedule().getLandSchedule());
+							  table.addCell("ATTACHED");
 						      
 						}
+						else {
+							
+							 table.addCell("LandSchedule");
+							  table.addCell("NULL");
+							
+						}
+						
+						
 						if(licenseDetails.getLandSchedule().getMutation()!= null) {
 							
 							  table.addCell("Mutation");
-							  table.addCell(licenseDetails.getLandSchedule().getMutation());
+							  table.addCell("ATTACHED");
 						      
+						}
+						else {
+							
+							 table.addCell("Mutation");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getJambandhi()!= null) {
 							
 							  table.addCell("Jambandhi");
-							  table.addCell(licenseDetails.getLandSchedule().getJambandhi());
+							  table.addCell("ATTACHED");
 						      
+						}
+						else {
+							
+							 table.addCell("Jambandhi");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getDetailsOfLease()!= null) {
 							
 							  table.addCell("Details Of Lease");
-							  table.addCell(licenseDetails.getLandSchedule().getDetailsOfLease());
+							  table.addCell("ATTACHED");
 						      
+						}
+						else {
+							
+							 table.addCell("Details Of Lease");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getAddSalesDeed()!= null) {
 							
 							  table.addCell("Add SalesDeed");
-							  table.addCell(licenseDetails.getLandSchedule().getAddSalesDeed());
+							  table.addCell("ATTACHED");
 						      
+						}
+						else {
+							
+							 table.addCell("Add SalesDeed");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getRevisedLandSchedule()!= null) {
 							
@@ -1176,17 +2003,35 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getRevisedLandSchedule());
 						      
 						}
+						else {
+							
+							 table.addCell("Revised LandSchedule");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getCopyofSpaBoard()!= null) {
 							
 							  table.addCell("Copy of SpaBoard");
-							  table.addCell(licenseDetails.getLandSchedule().getCopyofSpaBoard());
+							  table.addCell("ATTACHED");
 						      
+						}
+						else {
+							
+							 table.addCell("Copy of SpaBoard");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getCopyOfShajraPlan()!= null) {
 							
 							  table.addCell("Copy Of ShajraPlan");
-							  table.addCell(licenseDetails.getLandSchedule().getCopyOfShajraPlan());
+							  table.addCell("ATTACHED");
 						      
+						}
+						else {
+							
+							 table.addCell("Copy Of ShajraPlan");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getProposedLayoutPlan()!= null) {
 							
@@ -1194,11 +2039,23 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getProposedLayoutPlan());
 						      
 						}
+						else {
+							
+							 table.addCell("Proposed LayoutPlan");
+							  table.addCell("NULL");
+							
+						}
 						if(licenseDetails.getLandSchedule().getRevisedLansSchedule()!= null) {
 							
 							  table.addCell("Revised LansSchedule");
 							  table.addCell(licenseDetails.getLandSchedule().getRevisedLansSchedule());
 						      
+						}
+						else {
+							
+							 table.addCell("Revised LansSchedule");
+							  table.addCell("NULL");
+							
 						}
 						if(licenseDetails.getLandSchedule().getAreaOfParentLicence()!= null) {
 							
@@ -1206,9 +2063,218 @@ public class NewLicensePDF {
 							  table.addCell(licenseDetails.getLandSchedule().getAreaOfParentLicence());
 						      
 						}
-
-						doc.add(table);
+						else {
+							
+							 table.addCell("Area Of ParentLicence");
+							  table.addCell("NULL");
+							
+						}
 						
+						if(licenseDetails.getLandSchedule().getReraRegistered()!= null) {
+							
+							  table.addCell("Rera Registered");
+							  table.addCell(licenseDetails.getLandSchedule().getReraRegistered());
+						      
+						}
+						else {
+							
+							 table.addCell("Rera Registered");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getReraDocUpload()!= null) {
+							
+							  table.addCell("Rera DocUpload");
+							  table.addCell(licenseDetails.getLandSchedule().getReraDocUpload());
+						      
+						}
+						else {
+							
+							 table.addCell("Rera DocUpload");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getReraNonRegistrationDoc()!= null) {
+							
+							  table.addCell("Rera Non RegistrationDoc");
+							  table.addCell(licenseDetails.getLandSchedule().getReraNonRegistrationDoc());
+						      
+						}
+						else {
+							
+							 table.addCell("Rera Non RegistrationDoc");
+							  table.addCell("NULL");
+							
+						}
+						
+					/**	List value
+					   if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null) {
+							
+							  table.addCell("LandScheduleDetails");
+							  table.addCell(licenseDetails.getLandSchedule().getLandScheduleDetails());
+						      
+						}
+						else {
+							
+							 table.addCell("LandScheduleDetails");
+							  table.addCell("NULL");
+							
+						}*/
+						
+						if(licenseDetails.getLandSchedule().getAnyOther()!= null) {
+							
+							  table.addCell("AnyOther");
+							  table.addCell(licenseDetails.getLandSchedule().getAnyOther());
+						      
+						}
+						else {
+							
+							 table.addCell("AnyOther");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getAnyOtherRemark()!= null) {
+							
+							  table.addCell("AnyOtherRemark");
+							  table.addCell(licenseDetails.getLandSchedule().getAnyOtherRemark());
+						      
+						}
+						else {
+							
+							 table.addCell("AnyOtherRemark");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getNone()!= null) {
+							
+							  table.addCell("None");
+							  table.addCell(licenseDetails.getLandSchedule().getNone());
+						      
+						}
+						else {
+							
+							 table.addCell("None");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getNoneRemark()!= null) {
+							
+							  table.addCell("NoneRemark");
+							  table.addCell(licenseDetails.getLandSchedule().getNoneRemark());
+						      
+						}
+						else {
+							
+							 table.addCell("NoneRemark");
+							  table.addCell("NULL");
+							
+						}
+						
+						if(licenseDetails.getLandSchedule().getAdjoiningOwnLand()!= null) {
+							
+							  table.addCell("AdjoiningOwnLand");
+							  table.addCell(licenseDetails.getLandSchedule().getAdjoiningOwnLand());
+						      
+						}
+						else {
+							
+							 table.addCell("AdjoiningOwnLand");
+							  table.addCell("NULL");
+							
+						}
+						
+						
+						
+						doc.add(table);
+											
+					}
+					
+					
+					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {
+						
+						List<LandScheduleDetails> z= licenseDetails.getLandSchedule().getLandScheduleDetails();
+						
+						System.out.println(z);		                   
+						Paragraph pald1 = new Paragraph();
+						pald1.add("LandSchedule Details");
+						doc.add(pald1);
+						
+						table = new PdfPTable(9);
+						table.setSpacingBefore(10f);
+						table.setSpacingAfter(10f);
+						table.setWidthPercentage(100f);
+						
+						PdfPCell c3 = new PdfPCell(new Phrase("Previous Licensenumber"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("AreaOfParentLicence"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("PurposeOfParentLicence"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+
+				        c3 = new PdfPCell(new Phrase("Validity"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("Date"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("AreaAppliedmigration"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("KhasraNumber"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("Area"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        c3 = new PdfPCell(new Phrase("BalanceOfParentLicence"));
+				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c3);
+				        
+				        
+						
+						for(int j=0;j<z.size();j++) {
+							LandScheduleDetails g =  z.get(j);
+						
+						  table.addCell(g.getPreviousLicensenumber());
+						  
+						 
+						  table.addCell(g.getAreaOfParentLicence());
+						  
+						
+						  table.addCell(g.getPurposeOfParentLicence());
+						  
+						  table.addCell(g.getValidity());
+						  
+						  table.addCell(g.getDate());
+						  
+						  table.addCell(g.getAreaAppliedmigration());
+						  
+						  table.addCell(g.getKhasraNumber());
+						  
+						  table.addCell(g.getArea());
+						  
+						  table.addCell(g.getBalanceOfParentLicence());
+						  
+					
+						
+		                  
+		                   }
+		                   doc.add(table);
 					}
 			
 			
