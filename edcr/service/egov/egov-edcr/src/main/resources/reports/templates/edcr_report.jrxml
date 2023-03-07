@@ -101,6 +101,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Bottom">
 					<font size="12" isBold="true" isUnderline="false"/>
 				</textElement>
+				<!-- <text><![CDATA[$F{planInformation}.getOccupancy().equals("RESIDENTIAL")? <![CDATA[Declaration in drawings]]> : null]]></text> -->
 				<text><![CDATA[Declaration in drawings]]></text>
 			</staticText>
 			<staticText>

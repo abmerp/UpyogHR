@@ -40,6 +40,7 @@ public class GeneralStair extends FeatureProcess {
 	private static final String FLIGHT_WIDTH_DEFINED_DESCRIPTION = "Flight polyline width is not defined in layer ";
 	private static final String WIDTH_LANDING_DESCRIPTION = "Minimum width for general stair %s mid landing %s";
 	private static final String FLIGHT_NOT_DEFINED_DESCRIPTION = "General stair flight is not defined in block %s floor %s";
+	private static final String RISER_HEIGHT_DESCRIPTION = "Minimum Riser Height for general stair %s flight %s";
 
 	@Override
 	public Plan validate(Plan plan) {
@@ -86,6 +87,15 @@ public class GeneralStair extends FeatureProcess {
 				scrutinyDetailRise.addColumnHeading(6, STATUS);
 				scrutinyDetailRise.setKey("Block_" + block.getNumber() + "_" + "General Stair - Number of risers");
 
+				ScrutinyDetail scrutinyDetailRiserHt = new ScrutinyDetail();
+				scrutinyDetailRiserHt.addColumnHeading(1, RULE_NO);
+				scrutinyDetailRiserHt.addColumnHeading(2, FLOOR);
+				scrutinyDetailRiserHt.addColumnHeading(3, DESCRIPTION);
+				scrutinyDetailRiserHt.addColumnHeading(4, PERMISSIBLE);
+				scrutinyDetailRiserHt.addColumnHeading(5, PROVIDED);
+				scrutinyDetailRiserHt.addColumnHeading(6, STATUS);
+				scrutinyDetailRiserHt.setKey("Block_" + block.getNumber() + "_" + "General Stair - Risers Height");
+				
 				ScrutinyDetail scrutinyDetailLanding = new ScrutinyDetail();
 				scrutinyDetailLanding.addColumnHeading(1, RULE_NO);
 				scrutinyDetailLanding.addColumnHeading(2, FLOOR);
@@ -123,7 +133,7 @@ public class GeneralStair extends FeatureProcess {
 							for (org.egov.common.entity.edcr.GeneralStair generalStair : generalStairs) {
 								{
 									validateFlight(plan, errors, block, scrutinyDetail2, scrutinyDetail3,
-											scrutinyDetailRise, mostRestrictiveOccupancyType, floor, typicalFloorValues,
+											scrutinyDetailRise, scrutinyDetailRiserHt, mostRestrictiveOccupancyType, floor, typicalFloorValues,
 											generalStair);
 
 									List<StairLanding> landings = generalStair.getLandings();
@@ -214,7 +224,7 @@ public class GeneralStair extends FeatureProcess {
 	}
 
 	private void validateFlight(Plan plan, HashMap<String, String> errors, Block block, ScrutinyDetail scrutinyDetail2,
-			ScrutinyDetail scrutinyDetail3, ScrutinyDetail scrutinyDetailRise,
+			ScrutinyDetail scrutinyDetail3, ScrutinyDetail scrutinyDetailRise, ScrutinyDetail scrutinyDetailRiserHt,
 			OccupancyTypeHelper mostRestrictiveOccupancyType, Floor floor, Map<String, Object> typicalFloorValues,
 			org.egov.common.entity.edcr.GeneralStair generalStair) {
 		if (!generalStair.getFlights().isEmpty()) {

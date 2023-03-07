@@ -113,8 +113,8 @@ public class SideYardService extends GeneralRule {
     private static final String RULE_37_TWO_H = "37-2-H";
     private static final String RULE_37_TWO_I = "37-2-I";
     private static final String RULE_47 = "47";
-    private static final String SIDE_YARD_2_NOTDEFINED = "side2yardNodeDefined";
-    private static final String SIDE_YARD_1_NOTDEFINED = "side1yardNodeDefined";
+//    private static final String SIDE_YARD_2_NOTDEFINED = "side2yardNodeDefined";
+//    private static final String SIDE_YARD_1_NOTDEFINED = "side1yardNodeDefined";
 
     public static final String BSMT_SIDE_YARD_DESC = "Basement Side Yard";
     private static final int PLOTAREA_300 = 300;
@@ -315,7 +315,7 @@ public class SideYardService extends GeneralRule {
                 details.put(STATUS, Result.Not_Accepted.getResultVal());
             }
 
-            scrutinyDetail.getDetail().add(details);
+//            scrutinyDetail.getDetail().add(details);
             pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
         }
 
@@ -338,7 +338,7 @@ public class SideYardService extends GeneralRule {
                     detailsSideYard2.put(STATUS, Result.Not_Accepted.getResultVal());
                 }
 
-                scrutinyDetail.getDetail().add(detailsSideYard2);
+//                scrutinyDetail.getDetail().add(detailsSideYard2);
                 pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
             }
         }
@@ -351,21 +351,21 @@ public class SideYardService extends GeneralRule {
             if (occupancy.getTypeHelper().getType() != null
                     && A.equalsIgnoreCase(occupancy.getTypeHelper().getType().getCode())
                     || F.equalsIgnoreCase(occupancy.getTypeHelper().getType().getCode())) {
-                if (pl.getErrors().containsKey(SIDE_YARD_2_NOTDEFINED)) {
-                    pl.getErrors().remove(SIDE_YARD_2_NOTDEFINED);
-                }
-                if (pl.getErrors().containsKey(SIDE_YARD_1_NOTDEFINED)) {
-                    pl.getErrors().remove(SIDE_YARD_1_NOTDEFINED);
-                }
+//                if (pl.getErrors().containsKey(SIDE_YARD_2_NOTDEFINED)) {
+//                    pl.getErrors().remove(SIDE_YARD_2_NOTDEFINED);
+//                }
+//                if (pl.getErrors().containsKey(SIDE_YARD_1_NOTDEFINED)) {
+//                    pl.getErrors().remove(SIDE_YARD_1_NOTDEFINED);
+//                }
                 if (pl.getErrors().containsKey(SIDE_YARD_DESC)) {
                     pl.getErrors().remove(SIDE_YARD_DESC);
                 }
-                if (pl.getErrors().containsValue("BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK1 not defined in the plan.")) {
-                    pl.getErrors().remove("", "BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK1 not defined in the plan.");
-                }
-                if (pl.getErrors().containsValue("BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK2 not defined in the plan.")) {
-                    pl.getErrors().remove("", "BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK2 not defined in the plan.");
-                }
+//                if (pl.getErrors().containsValue("BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK1 not defined in the plan.")) {
+//                    pl.getErrors().remove("", "BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK1 not defined in the plan.");
+//                }
+//                if (pl.getErrors().containsValue("BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK2 not defined in the plan.")) {
+//                    pl.getErrors().remove("", "BLK_" + block.getNumber() + "_LVL_0_SIDE_SETBACK2 not defined in the plan.");
+//                }
 
             }
 
@@ -419,12 +419,12 @@ public class SideYardService extends GeneralRule {
             SideYardResult sideYard1Result, SideYardResult sideYard2Result, String rule, String subRule, Boolean valid2,
             Boolean valid1, BigDecimal side2val, BigDecimal side1val, BigDecimal widthOfPlot) {
         if (widthOfPlot.compareTo(BigDecimal.valueOf(10)) <= 0) {
-            if (pl.getErrors().containsKey(SIDE_YARD_2_NOTDEFINED)) {
-                pl.getErrors().remove(SIDE_YARD_2_NOTDEFINED);
-            }
-            if (pl.getErrors().containsKey(SIDE_YARD_1_NOTDEFINED)) {
-                pl.getErrors().remove(SIDE_YARD_1_NOTDEFINED);
-            }
+//            if (pl.getErrors().containsKey(SIDE_YARD_2_NOTDEFINED)) {
+//                pl.getErrors().remove(SIDE_YARD_2_NOTDEFINED);
+//            }
+//            if (pl.getErrors().containsKey(SIDE_YARD_1_NOTDEFINED)) {
+//                pl.getErrors().remove(SIDE_YARD_1_NOTDEFINED);
+//            }
         } else if (widthOfPlot.compareTo(BigDecimal.valueOf(10)) > 0
                 && widthOfPlot.compareTo(BigDecimal.valueOf(15)) <= 0) {
             side2val = SIDEVALUE_SEVENTYFIVE;
@@ -979,12 +979,12 @@ public class SideYardService extends GeneralRule {
                         sideYardDefined = true;
                     }
                 }
-                if (!sideYardDefined) {
-                    HashMap<String, String> errors = new HashMap<>();
-                    errors.put(SIDE_YARD_DESC,
-                            prepareMessage(OBJECTNOTDEFINED, SIDE_YARD_DESC + " for Block " + block.getName()));
-                    pl.addErrors(errors);
-                }
+//                if (!sideYardDefined) {
+//                    HashMap<String, String> errors = new HashMap<>();
+//                    errors.put(SIDE_YARD_DESC,
+//                            prepareMessage(OBJECTNOTDEFINED, SIDE_YARD_DESC + " for Block " + block.getName()));
+//                    pl.addErrors(errors);
+//                }
             }
 
         }
