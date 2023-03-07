@@ -685,7 +685,7 @@
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
      "minimumPermissible":"0",
-          "maximumPermissible":"1.0"
+          "maximumPermissible":"1.0",
    
       "purposes":[
         {
@@ -723,7 +723,7 @@
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
 		"minimumPermissible":"0",
-       "maximumPermissible":"1.0"
+       "maximumPermissible":"1.0",
    
       "purposes":[
         {
