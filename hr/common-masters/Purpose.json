@@ -208,19 +208,14 @@
       "stateInfrastructureDevelopmentCharges": 1.50,
       "IDWPerAcreInLakhsForPlottedComponent":0,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-	  "minimumPermissible":"0.080",
+	  "minimumPermissible":"0.80",
 	  "maximumPermissible":"1.0",
       "purposes":[
-        {
-          "purposeCode":"CGRPL",
-		  "minimumPermissible":"0.00",
-          "maximumPermissible":"0.05",
-          "isActive": 1
-        },
+        
           {
-            "purposeCode":"RGPL",
+            "purposeCode":"IRGPL",
 			"maximumPermissible":"0.0",
-            "maximumPermissible":"0.02"
+            "maximumPermissible":"0.2"
           }
            
                 
@@ -689,7 +684,8 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-     
+     "minimumPermissible":"0",
+          "maximumPermissible":"1.0"
    
       "purposes":[
         {
@@ -726,7 +722,8 @@
       "stateInfrastructureDevelopmentCharges":1.75,
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
-     
+		"minimumPermissible":"0",
+       "maximumPermissible":"1.0"
    
       "purposes":[
         {
@@ -738,6 +735,46 @@
             "purposeCode":"DDJAY_APHP",
             "minimumPermissible":"0",
 			"maximumPermissible":"1.0"
+          }
+         
+      ]
+    
+    }
+	,
+     
+  {
+      "purposeId": 91,
+      "name": "Industrial group",
+      "purposeCode": "IRGPL",
+      "caseType_id": 1,
+      "description": "Plotted",
+      "isActive": 0,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 1,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges":1.75,
+      "licenseFeeCharges":1.75,
+      "conversionCharges": 1.75,      
+      "externalDevelopmentCharges": 1.75,       
+      "stateInfrastructureDevelopmentCharges":1.75,
+      "IDWPerAcreInLakhsForPlottedComponent":20,
+      "IDWPerAcreInLakhsForCommercialComponent":50,
+     "minimumPermissible":"0.0",
+	  "maximumPermissible":"1.0",
+   
+      "purposes":[
+        {
+          "purposeCode":"CGRPL",
+		  "minimumPermissible":"0.00",
+          "maximumPermissible":"0.25",
+          "isActive": 1
+        },
+          {
+            "purposeCode":"RGPL",
+			"maximumPermissible":"0.0",
+            "maximumPermissible":"1.0"
           }
          
       ]
