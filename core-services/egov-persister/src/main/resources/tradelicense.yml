@@ -371,7 +371,7 @@ serviceMaps:
              
           - jsonPath: $.Licenses.*.tcpApplicationNumber 
               
-          - jsonPath: $.Licenses.*.loiNumber
+          - jsonPath: $.Licenses.*.tcpLoiNumber
 
           - jsonPath: $.Licenses.*.auditDetails.lastModifiedBy
 
@@ -791,7 +791,7 @@ serviceMaps:
              
           - jsonPath: $.Licenses.*.tcpApplicationNumber 
               
-          - jsonPath: $.Licenses.*.loiNumber   
+          - jsonPath: $.Licenses.*.tcpLoiNumber   
           
           - jsonPath: $.Licenses.*.id
 
