@@ -786,8 +786,7 @@ public class LicenseService {
 
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
-				//		tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-						tradeLicense.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR" , tradeLicense.getTenantId() , true ,info)));
+						tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 						
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 
