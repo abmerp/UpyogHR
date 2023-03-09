@@ -148,6 +148,7 @@ public class CalculationService {
 		BigDecimal conversionCharges = new BigDecimal(0);
 		BigDecimal stateInfrastructure = new BigDecimal(0);
 		BigDecimal externalDevelopment = new BigDecimal(0);
+		
 		for (FeesTypeCalculationDto result : results) {
 			scrutinyFee = scrutinyFee.add(result.getScrutinyFeeChargesCal());
 			licenseFeeCharges = licenseFeeCharges.add(result.getLicenseFeeChargesCal());
@@ -175,7 +176,8 @@ public class CalculationService {
 			EstimatesAndSlabs estimatesAndSlabs = getTaxHeadEstimates(criteria, calculationReq.getRequestInfo(),
 					mdmsData);
 			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
-			taxHeadEstimates.get(0).setEstimateAmount(scrutinyFee.add(licenseFeeCharges.multiply(new BigDecimal(0.25))));
+		//	taxHeadEstimates.get(0).setEstimateAmount(scrutinyFee.add(licenseFeeCharges.multiply(new BigDecimal(0.25))));
+			taxHeadEstimates.get(0).setEstimateAmount(results.get(0).getTotalFee());
 			calculation.setTaxHeadEstimates(taxHeadEstimates);
 			// taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
 			calculations.add(calculation);
