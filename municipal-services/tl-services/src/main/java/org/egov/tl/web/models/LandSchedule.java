@@ -172,4 +172,7 @@ public class LandSchedule {
 	private String noneRemark;
 	@JsonProperty("adjoiningOwnLand")
 	private String adjoiningOwnLand;
+
+	@JsonProperty("renewalLicenceFee")
+	private String renewalLicenceFee;
 }
