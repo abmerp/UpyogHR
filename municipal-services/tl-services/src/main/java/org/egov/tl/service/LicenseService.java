@@ -37,6 +37,7 @@ import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TLConstants;
+import org.egov.tl.util.TradeUtil;
 import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.Transaction;
 
@@ -149,6 +150,10 @@ public class LicenseService {
 	BankGuaranteeService bankGuaranteeService;
 	@Autowired
 	ServicePlanService servicePlanService;
+	@Autowired
+	private TradeUtil tradeUtil;
+	
+	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
@@ -277,6 +282,11 @@ public class LicenseService {
 				}
 				case "PAID": {
 					tradeLicense.setStatus("PAID");
+					// set landing point employee assignee as not visible in any inbox currently-
+					tradeLicense
+							.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(TL_NEW_LANDING_EMPLOYEE_ROLE,
+									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(), true,
+									newServiceInfo.getRequestInfo())));
 					break;
 				}
 				}
