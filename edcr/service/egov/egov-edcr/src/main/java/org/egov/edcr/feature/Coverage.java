@@ -57,6 +57,7 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.egov.common.entity.edcr.Block;
+import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Measurement;
 import org.egov.common.entity.edcr.OccupancyType;
 import org.egov.common.entity.edcr.Plan;
@@ -118,13 +119,15 @@ public class Coverage extends FeatureProcess {
         String expectedResult = StringUtils.EMPTY;
 
         for (Block block : pl.getBlocks()) {
+        	for(Floor floor : block.getBuilding().getFloors())
+        	{
             BigDecimal coverageAreaWithoutDeduction = BigDecimal.ZERO;
             BigDecimal coverageDeductionArea = BigDecimal.ZERO;
 
             for (Measurement coverage : block.getCoverage()) {
                 coverageAreaWithoutDeduction = coverageAreaWithoutDeduction.add(coverage.getArea());
             }
-            for (Measurement deduct : block.getCoverageDeductions()) {
+            for (Measurement deduct : floor.getCoverageDeduct()) {
                 coverageDeductionArea = coverageDeductionArea.add(deduct.getArea());
             }
             if (block.getBuilding() != null) {
@@ -143,7 +146,7 @@ public class Coverage extends FeatureProcess {
             }
 
         }
-
+       }
       //  pl.setCoverageArea(totalCoverageArea);
         // use plotBoundaryArea
         if (pl.getPlot() != null && pl.getPlot().getArea().doubleValue() > 0)

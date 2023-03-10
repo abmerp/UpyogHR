@@ -143,6 +143,12 @@ public class TLQueryBuilder {
                 builder.append(" LOWER(tl.applicationnumber) IN (").append(createQuery(applicationNumber)).append(")");
                 addToPreparedStatement(preparedStmtList, applicationNumber);
             }
+            if (criteria.getLoiNumber() != null) {
+                List<String> loiNumber = Arrays.asList(criteria.getLoiNumber().split(","));
+                addClauseIfRequired(preparedStmtList, builder);
+                builder.append(" LOWER(tl.tcploinumber) IN (").append(createQuery(loiNumber)).append(")");
+                addToPreparedStatement(preparedStmtList, loiNumber);
+            }
 
             List<String> status = criteria.getStatus();
             if (!CollectionUtils.isEmpty(status)) {

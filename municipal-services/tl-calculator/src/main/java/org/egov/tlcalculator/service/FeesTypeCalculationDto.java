@@ -58,7 +58,10 @@ class FeesTypeCalculationDto {
 	}
 
 	public BigDecimal getTotalFee() {
-		return totalFee;
+		if (totalFee != null)
+			return totalFee.setScale(0, BigDecimal.ROUND_UP);
+		else
+			return totalFee;
 	}
 
 	public List<FeesTypeCalculationDto> getFeesTypeCalculationDto() {

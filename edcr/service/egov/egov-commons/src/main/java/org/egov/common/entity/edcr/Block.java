@@ -204,10 +204,12 @@ public class Block extends Measurement {
             level--;
             for (SetBack setback : getSetBacks()) {
                 if (setback.getLevel() == level && yardDesc.equalsIgnoreCase(SIDE_YARD1_DESC)
-                        && setback.getSideYard1() != null)
+                        && setback.getSideYard1() != null
+                        )
                     return setback;
                 else if (setback.getLevel() == level && yardDesc.equalsIgnoreCase(SIDE_YARD2_DESC)
-                        && setback.getSideYard2() != null)
+                        && setback.getSideYard2() != null
+                        )
                     return setback;
             }
 

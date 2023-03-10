@@ -37,6 +37,7 @@ import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TLConstants;
+import org.egov.tl.util.TradeUtil;
 import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.Transaction;
 
@@ -53,6 +54,7 @@ import org.egov.tl.web.models.CalculationRes;
 import org.egov.tl.web.models.CalculatorRequest;
 import org.egov.tl.web.models.DetailsAppliedLandPlot;
 import org.egov.tl.web.models.DetailsofAppliedLand;
+import org.egov.tl.web.models.EmployeeResponse;
 import org.egov.tl.web.models.GenerateLoiNumberResponse;
 import org.egov.tl.web.models.GuranteeCalculatorResponse;
 import org.egov.tl.web.models.LicenseDetails;
@@ -80,6 +82,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
@@ -114,7 +117,7 @@ public class LicenseService {
 	private String userHost;
 	@Value("${egov.user.search.path}")
 	private String userSearchPath;
-	
+
 	@Value("${egov.pg-service.path}")
 	private String updatePath;
 	@Autowired
@@ -145,6 +148,12 @@ public class LicenseService {
 	ObjectMapper mapper;
 	@Autowired
 	BankGuaranteeService bankGuaranteeService;
+	@Autowired
+	ServicePlanService servicePlanService;
+	@Autowired
+	private TradeUtil tradeUtil;
+	
+	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
@@ -154,7 +163,7 @@ public class LicenseService {
 		LicenseServiceDao newServiceIn = new LicenseServiceDao();
 		List<LicenseDetails> newServiceInfoDatas = null;
 		User user = newServiceInfo.getRequestInfo().getUserInfo();
-		LicenseDetails newData=null;
+		LicenseDetails newData = null;
 		// if (newServiceInfo.getId() != null && newServiceInfo.getId() > 0) {
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		if (!StringUtils.isEmpty(newServiceInfo.getApplicationNumber())) {
@@ -179,15 +188,15 @@ public class LicenseService {
 
 					if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 						newData = new LicenseDetails();
-					try {
-						BeanUtils.copyProperties(newData, newobj);
-					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+						try {
+							BeanUtils.copyProperties(newData, newobj);
+						} catch (IllegalAccessException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (InvocationTargetException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						switch (newServiceInfo.getPageName()) {
 						case "ApplicantInfo": {
 							newData.setApplicantInfo(newServiceInfo.getLicenseDetails().getApplicantInfo());
@@ -273,6 +282,11 @@ public class LicenseService {
 				}
 				case "PAID": {
 					tradeLicense.setStatus("PAID");
+					// set landing point employee assignee as not visible in any inbox currently-
+					tradeLicense
+							.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(TL_NEW_LANDING_EMPLOYEE_ROLE,
+									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(), true,
+									newServiceInfo.getRequestInfo())));
 					break;
 				}
 				}
@@ -584,22 +598,9 @@ public class LicenseService {
 
 			// --------------success------------------------//
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+
 			
-//			String paymentupdate = null;
-//			
-//			Map<String, Object> requestPayment = new HashMap<>();
-//			requestPayment.put("transactionId", transactionId);
-//			requestPayment.put("RequestInfo", info);
-////			HttpHeaders httpHeaders1 = new HttpHeaders();
-////			httpHeaders1.setContentType(MediaType.APPLICATION_JSON);
-////			HttpEntity<Map<String, Object>> entity1 = new HttpEntity<>(requestPayment, httpHeaders1);
-//		//	paymentupdate = rest.postForObject(config.getPgHost().concat(config.getPgPath()),entity1, String.class);
-//			StringBuilder url1 = new StringBuilder(pgHost);
-//			url1.append(updatePath);
-//			
-//			Object paymentUpdtae = serviceRequestRepository.fetchResult(url1, requestPayment);
-//			log.info("responses" + paymentupdate);
-			
+
 			// ------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
 
@@ -684,9 +685,6 @@ public class LicenseService {
 
 					if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
-						/****************
-						 * Dairy Number
-						 ***********/
 						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 								.mDMSCallPurposeCode(info, tradeLicense.getTenantId(),
 										newobj.getApplicantPurpose().getPurpose());
@@ -780,13 +778,10 @@ public class LicenseService {
 						map3.put("UserId", "2");
 						map3.put("UserLoginId", "39");
 						map3.put("TpUserId", userId);
-						// TODO Renu to Add these two vaues
 						map3.put("PaymentMode", paymentType);
 						map3.put("PayAgreegator", bankcode);
-
 						map3.put("LcApplicantName", userName);
 						map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
-						// to do select development plan
 						map3.put("LcDevelopmentPlan",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDevelopmentPlan());
 						map3.put("LcDistrict",
@@ -801,9 +796,9 @@ public class LicenseService {
 
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
-						tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-						// f9b7acaf-c1fb-4df2-ac10-83b55238a724
-
+				//		tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+						tradeLicense.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR" , tradeLicense.getTenantId() , true ,info)));
+						
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 
 						tradeLicenseRequests.addLicensesItem(tradeLicense);
@@ -811,17 +806,28 @@ public class LicenseService {
 						tradeLicenseService.update(tradeLicenseRequests, "TL");
 
 						// -----------------payment----------------------//
-
+						//----------payment update--------//
+						
+						Map<String, Object> rP = new HashMap<>();
+						rP.put("RequestInfo", info);
+						StringBuilder url1 = new StringBuilder(pgHost);
+						url1.append(updatePath);
+						url1.append("?txnId="+transactionId);						
+						url1.append("&txnStatus="+status);
+						Object paymentUpdate = serviceRequestRepository.fetchResult(url1, rP);
+						log.info("paymentUpdate\t" + paymentUpdate);
+						//-------------------payment update end-----------//
 						paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
 								+ applicationNumber + "/" + tradeLicense.getTenantId();
 						returnPaymentUrl = paymentUrl + "?" + params1;
 						log.info("returnPaymentUrl" + returnPaymentUrl);
 						httpHeaders.setLocation(
 								UriComponentsBuilder.fromHttpUrl(returnPaymentUrl.toString()).build().encode().toUri());
-						
+
 						return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 						// ------------------finish--------------------//
+					
 
 					}
 				}
@@ -895,7 +901,6 @@ public class LicenseService {
 			for (LicenseDetails newobj : newServiceInfoData) {
 
 				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
-
 
 					String email = newobj.getApplicantInfo().getEmail();
 					TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
@@ -1059,7 +1064,7 @@ public class LicenseService {
 					// --------------------------calculation end--------------------------------//
 
 					tradeLicense.setId(tradeLicenses.get(0).getId());
-					tradeLicense.setLoiNumber(dispatchNo);
+					tradeLicense.setTcpLoiNumber(dispatchNo);
 					tradeLicense.setAction("");
 					tradeLicense.setWorkflowCode("NewTL");
 					tradeLicense.setTenantId(tradeLicenses.get(0).getTenantId());
@@ -1071,7 +1076,7 @@ public class LicenseService {
 					List<TradeLicense> response = tradeLicenseService.update(tradeLicenseRequests, "TL");
 
 					return response;
-				
+
 				}
 			}
 		}
@@ -1104,7 +1109,8 @@ public class LicenseService {
 			if (purposeDetailm.getArea() == null || purposeDetailm.getArea().isEmpty()) {
 				purposeDetailm.setMinPercentage(minimumPermissible);
 				purposeDetailm.setMaxPercentage(maximunPermissible);
-				purposeDetailm.setArea(totalArea.multiply(new BigDecimal(minimumPermissible)).toString());
+				purposeDetailm.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
+				totalArea=new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
 			}
 			
 			List<Map<String, Object>> far = (List<Map<String, Object>>) (mm.get("fars"));
@@ -1130,7 +1136,9 @@ public class LicenseService {
 						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
 						log.info("total area" + purposeDetail.getArea());
 						purposeDetail.setMaxPercentage(maximunPermissible);
-						recursionMethod(info, tenantId, purposeCodes, new BigDecimal(purposeDetail.getArea()),
+						purposeDetail.setMinPercentage(minimumPermissible);
+						totalArea=new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetail.getArea())).toString());
+						recursionMethod(info, tenantId, purposeCodes, totalArea,
 								purposeDetail, i);
 
 					} else {
@@ -1144,5 +1152,5 @@ public class LicenseService {
 		}
 		return purposeDetailm;
 	}
-	
+
 }

@@ -184,7 +184,7 @@ public class ServicePlanService {
 		return result;
 	}
 
-	private String assignee(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+	String assignee(String role, String tenantID, boolean b, RequestInfo requestInfo) {
 
 		StringBuilder uri = new StringBuilder();
 		uri.append(config.getHrmsHost());

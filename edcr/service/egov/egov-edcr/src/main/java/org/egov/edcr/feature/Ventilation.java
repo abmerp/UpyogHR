@@ -53,6 +53,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.measure.Measure;
+
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.egov.common.entity.edcr.Block;
@@ -61,6 +63,7 @@ import org.egov.common.entity.edcr.Measurement;
 import org.egov.common.entity.edcr.Occupancy;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
+import org.egov.common.entity.edcr.Room;
 import org.egov.common.entity.edcr.ScrutinyDetail;
 import org.springframework.stereotype.Service;
 
@@ -83,40 +86,76 @@ public class Ventilation extends FeatureProcess {
 			scrutinyDetail.setKey("Common_Ventilation");
 			scrutinyDetail.addColumnHeading(1, RULE_NO);
 			scrutinyDetail.addColumnHeading(2, DESCRIPTION);
-			scrutinyDetail.addColumnHeading(3, REQUIRED);
-			scrutinyDetail.addColumnHeading(4, PROVIDED);
-			scrutinyDetail.addColumnHeading(5, STATUS);
+			scrutinyDetail.addColumnHeading(3, FLOOR);
+			scrutinyDetail.addColumnHeading(4, ROOM_NAME);
+			scrutinyDetail.addColumnHeading(5, REQUIRED);
+			scrutinyDetail.addColumnHeading(6, PROVIDED);
+			scrutinyDetail.addColumnHeading(7, STATUS);
 
 			if (b.getBuilding() != null && b.getBuilding().getFloors() != null
 					&& !b.getBuilding().getFloors().isEmpty()) {
 
 				for (Floor f : b.getBuilding().getFloors()) {
+					for (Room r : f.getRegularRooms()) {
 					Map<String, String> details = new HashMap<>();
 					details.put(RULE_NO, RULE_43);
 					details.put(DESCRIPTION, LIGHT_VENTILATION_DESCRIPTION);
 
-					if (f.getLightAndVentilation() != null && f.getLightAndVentilation().getMeasurements() != null
-							&& !f.getLightAndVentilation().getMeasurements().isEmpty()) {
+					if (r.getLightAndVentilation() != null && r.getLightAndVentilation().getMeasurements() != null
+							&& !r.getLightAndVentilation().getMeasurements().isEmpty()) {
 
-						BigDecimal totalVentilationArea = f.getLightAndVentilation().getMeasurements().stream()
+						BigDecimal totalVentilationArea = r.getLightAndVentilation().getMeasurements().stream()
 								.map(Measurement::getArea).reduce(BigDecimal.ZERO, BigDecimal::add);
-						BigDecimal totalCarpetArea = f.getOccupancies().stream().map(Occupancy::getCarpetArea)
+						BigDecimal totalRoomFloorArea = r.getRooms().stream().map(Measurement::getArea)
 								.reduce(BigDecimal.ZERO, BigDecimal::add);
-
 						if (totalVentilationArea.compareTo(BigDecimal.ZERO) > 0) {
-							if (totalVentilationArea.compareTo(totalCarpetArea.divide(BigDecimal.valueOf(8)).setScale(2,
+							if (totalVentilationArea.compareTo(totalRoomFloorArea.divide(BigDecimal.valueOf(8)).setScale(2,
 									BigDecimal.ROUND_HALF_UP)) >= 0) {
-								details.put(REQUIRED, "Minimum 1/8th of the floor area ");
-								details.put(PROVIDED, "Ventilation area " + totalVentilationArea + " of Carpet Area   "
-										+ totalCarpetArea + " at floor " + f.getNumber());
+								details.put(FLOOR, " floor " + f.getNumber());
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 0) {
+								 details.put(ROOM_NAME, "Regular Room");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 1) {
+									 details.put(ROOM_NAME, "Bedroom");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 2) {
+									 details.put(ROOM_NAME, "Bedroom with attached bathroom");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 3) {
+									 details.put(ROOM_NAME, "Drawing room");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 4) {
+								     details.put(ROOM_NAME, "Child bedroom");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 5) {
+									 details.put(ROOM_NAME, "Safe deposit vault room");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 6) {
+									 details.put(ROOM_NAME, "A.C. Plant room");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 7) {
+									 details.put(ROOM_NAME, "Storage room other than inflammable material");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 8) {
+									 details.put(ROOM_NAME, "Other utilities room");
+								}
+								if(f.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 41) {
+									 details.put(ROOM_NAME, "Convenience Shop");
+								}
+								
+								details.put(REQUIRED, "Minimum 1/8th of the Room floor area ");
+								details.put(PROVIDED, "Ventilation area " + totalVentilationArea + " of Room Floor Area "
+										+ totalRoomFloorArea);
 								details.put(STATUS, Result.Accepted.getResultVal());
 								scrutinyDetail.getDetail().add(details);
 								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
 
 							} else {
-								details.put(REQUIRED, "Minimum 1/8th of the floor area ");
-								details.put(PROVIDED, "Ventilation area " + totalVentilationArea + " of Carpet Area   "
-										+ totalCarpetArea + " at floor " + f.getNumber());
+								details.put(FLOOR, " floor " + f.getNumber());
+								details.put(ROOM_NAME, "" + f.getRegularRooms().get(0).getRooms().get(0).getColorCode());
+								details.put(REQUIRED, "Minimum 1/8th of the Room floor area ");
+								details.put(PROVIDED, "Ventilation area " + totalVentilationArea + " of Room Floor Area "
+										+ totalRoomFloorArea);
 								details.put(STATUS, Result.Not_Accepted.getResultVal());
 								scrutinyDetail.getDetail().add(details);
 								pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
@@ -145,6 +184,7 @@ public class Ventilation extends FeatureProcess {
 						 */
 
 				}
+			}
 			}
 
 		}
