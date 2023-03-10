@@ -1,10 +1,13 @@
 package org.egov.land.abm.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
+import org.egov.land.abm.newservices.entity.SecurityReport;
+import org.egov.land.abm.newservices.entity.UserComments;
 import org.egov.land.abm.repo.EgScrutinyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +53,41 @@ public class EgScrutinyService {
 		} else {
 			return this.egScrutinyRepo.findByApplicationId(applicationNumber);
 		}
+
+	}
+
+	public List<SecurityReport> search2(String applicationNumber, Integer userId) {
+
+		List<EgScrutiny> egScrutiny=this.egScrutinyRepo.findByApplication(applicationNumber);
+		List<SecurityReport> securityReport = new ArrayList<SecurityReport>();
+		SecurityReport object=null;
+		List<UserComments>  comments=new ArrayList<UserComments>();
+			for (EgScrutiny egScrutiny2 :egScrutiny) {
+				
+				object  = new SecurityReport();
+				object.setName("Palam");
+				comments=new ArrayList<UserComments>();
+				object.setName(egScrutiny2.getFieldIdL());
+				object.setValue(egScrutiny2.getFieldValue());
+				for (EgScrutiny egScrutiny3 :egScrutiny) {
+			if(egScrutiny3.getFieldIdL().equalsIgnoreCase(object.getName()))
+					{
+				UserComments comments2 = new UserComments();
+				comments2.setEmployeeName(egScrutiny3.getEmployeeName());
+				comments2.setDesignation(egScrutiny3.getDesignation());
+				comments2.setRemarks(egScrutiny3.getComment());
+				comments2.setIsApproved(egScrutiny3.getIsApproved());
+				comments.add(comments2);
+					}
+				}
+				
+				object.setEmployees(comments);
+				securityReport.add(object);
+				
+			}
+			
+			return securityReport;
+		
 
 	}
 

@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EgScrutinyInfoResponse;
+import org.egov.land.abm.models.EgScrutinyReportResponse;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
+import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.service.EgScrutinyService;
 import org.egov.land.abm.service.ThirPartyAPiCall;
 import org.egov.land.util.ResponseInfoFactory;
@@ -73,6 +75,20 @@ public class EgScrutinyController {
 
 		List<EgScrutiny> egScrutiny = this.egScrutinyService.search(applicationNumber,userid);
 		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutiny)
+				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
+						true))
+				.build();
+
+		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/_search2")
+	public ResponseEntity<EgScrutinyReportResponse> searchEgScrutiny2(@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationNumber") String applicationNumber,@RequestParam(value = "userId", required=false) Integer userid) {
+
+		List<SecurityReport> egScrutiny = this.egScrutinyService.search2(applicationNumber,userid);
+		EgScrutinyReportResponse egScrutinyInfoResponse = EgScrutinyReportResponse.builder().egScrutiny(egScrutiny)
 				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
 						true))
 				.build();
