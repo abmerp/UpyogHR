@@ -1,6 +1,7 @@
 package org.egov.tl.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
 import org.egov.tl.abm.repo.NewBankGuaranteeRepo;
 import org.egov.tl.config.TLConfiguration;
+import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -34,6 +36,10 @@ public class MortgageBGService {
 	private WorkflowIntegrator workflowIntegrator;
 	@Autowired
 	private ObjectMapper objectMapper;
+	@Autowired
+	private TradeUtil tradeUtil;
+	
+	public static final String BG_MORTGAGE_LANDING_EMPLOYEE_ROLE = "DTP_HQ";
 
 	public NewBankGuaranteeRequest createBankGuarantee(NewBankGuaranteeRequest newBankGuaranteeRequest,
 			RequestInfo requestInfo) {
@@ -42,6 +48,9 @@ public class MortgageBGService {
 				tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
 				tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
 		newBankGuaranteeRequest.setBusinessService(BankGuaranteeService.BUSINESSSERVICE_BG_MORTGAGE);
+		newBankGuaranteeRequest
+				.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(BG_MORTGAGE_LANDING_EMPLOYEE_ROLE,
+						newBankGuaranteeRequest.getTenantId(), true, requestInfo)));
 		String applicationNo = idGenIds.get(0);
 		newBankGuaranteeRequest.setApplicationNumber(applicationNo);
 		newBankGuaranteeRequest.setId(UUID.randomUUID().toString());

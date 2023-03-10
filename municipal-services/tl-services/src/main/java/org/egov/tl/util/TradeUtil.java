@@ -1,5 +1,10 @@
 package org.egov.tl.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +16,8 @@ import org.egov.mdms.model.ModuleDetail;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.EmployeeResponse;
+import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.web.models.workflow.BusinessService;
@@ -33,13 +40,16 @@ public class TradeUtil {
 	private ServiceRequestRepository serviceRequestRepository;
 
 	private WorkflowService workflowService;
+	
+	private ObjectMapper mapper;
 
 	@Autowired
 	public TradeUtil(TLConfiguration config, ServiceRequestRepository serviceRequestRepository,
-			WorkflowService workflowService) {
+			WorkflowService workflowService, ObjectMapper mapper) {
 		this.config = config;
 		this.serviceRequestRepository = serviceRequestRepository;
 		this.workflowService = workflowService;
+		this.mapper = mapper;
 	}
 
 	/**
@@ -365,4 +375,35 @@ public class TradeUtil {
 		return tenantIdToReminderPeriod;
 
 	}
+	
+	public String getFirstAssigneeByRole(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+		StringBuilder uri = new StringBuilder();
+		uri.append(config.getHrmsHost());
+		uri.append(config.getHrmsContextPath());
+		uri.append("?tenantId=" + tenantID);
+		uri.append("&roles=" + role);
+		uri.append("&isActive=" + b);
+		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
+		EmployeeResponse employeeResponse = null;
+		String data = null;
+		Object fetchResult = serviceRequestRepository.fetchResult(uri, requestInfoWrapper);
+		try {
+			data = mapper.writeValueAsString(fetchResult);
+		} catch (JsonProcessingException e) {
+			log.error("exception inside method getFirstAssigneeByRole", e);
+		}
+		ObjectReader reader = mapper.readerFor(new TypeReference<EmployeeResponse>() {
+		});
+		try {
+			employeeResponse = reader.readValue(data);
+		} catch (JsonMappingException em) {
+
+			log.error("exception inside method getFirstAssigneeByRole", em);
+		} catch (JsonProcessingException ep) {
+			log.error("exception inside method getFirstAssigneeByRole", ep);
+		}
+		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+		return uuid;
+	}
+	
 }
