@@ -109,7 +109,7 @@
       "stateInfrastructureDevelopmentCharges": "1.75",
       "fars":[
       {
-        "far":"1.75" 
+        "far":"1.5" 
       
       }]
     },
@@ -667,7 +667,7 @@
     },
     {
       "purposeId": 91,
-      "name": "Commercial group",
+      "name": "Commercial Component",
       "purposeCode": "CGRPL",
       "caseType_id": 1,
       "description": "Plotted",
