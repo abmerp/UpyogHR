@@ -174,7 +174,7 @@ public class LoiReportService {
 				doc.open();
 				addTitlePage(doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
-						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC-", "")
+						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC-", "").split("~")[0]
 						: "N/A") + "-JE (VA)- " + (applicationDate.split("\\s+")[0].split("\\.")[2]);
 				int leftMarg = 70;
 				Paragraph preface1 = new Paragraph();
@@ -382,11 +382,12 @@ public class LoiReportService {
 						+ disticName
 						+ " stating that there is no further sale of the land applied for license till date and applicant companies/individual are owners of the land.",
 						normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -401,9 +402,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
 					preface0.setIndentationLeft(10);
@@ -702,11 +703,12 @@ public class LoiReportService {
 				list.add(new ListItem(
 						"That you shall complete the demarcation at site within 7 days and will submit the demarcation plan in the office of District Town Planner, Gurugram within 15 days of issuance of this letter for verification. ",
 						normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you shall intimate their official Email ID and the correspondence on this email ID by     	the Deptt. will be treated receipt of such correspondence.";
@@ -721,9 +723,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
 					preface0.setIndentationLeft(10);
@@ -1099,11 +1101,12 @@ public class LoiReportService {
 						+ disticName
 						+ " stating that there is no further sale of the land applied for license till date and applicant companies/individual are owners of the land.",
 						normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -1118,10 +1121,10 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
@@ -1460,11 +1463,12 @@ public class LoiReportService {
 						"That you shall submit a certificate from the Deputy Commissioner/District Revenue Authority stating that there is no further sale of the land applied for licence till date and applicant companies/individual are owners of the land.",
 						normal));
 
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -1479,9 +1483,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
 					preface0.setIndentationLeft(10);
@@ -1823,11 +1827,12 @@ public class LoiReportService {
 				list.add(new ListItem(
 						"The above demanded fee and charges are subject to audit and reconciliation of accounts.",
 						normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/schedule of land.", normal));
 				addEmptyLine(para1, 1);
@@ -1836,9 +1841,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
@@ -2303,11 +2308,12 @@ public class LoiReportService {
 //				
 //				list.add(new ListItem(
 //						"That you shall submit the non-encumbrance certificate issued by the revenue authority.", normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 
 				addEmptyLine(para1, 1);
@@ -2323,9 +2329,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
 					preface0.setIndentationLeft(10);
@@ -2693,11 +2699,12 @@ public class LoiReportService {
 				list.add(new ListItem(
 						"That certificate from DRO/Deputy Commissioner, Gurugram will be submitted certifying that the applied land is still under ownership of applicant company.",
 						normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 //				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -2712,9 +2719,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
 					preface0.setIndentationLeft(10);
@@ -3068,11 +3075,12 @@ public class LoiReportService {
 						"That company will intimate your official Email ID and the correspondence on this email ID by the Department will be treated receipt of such correspondence.",
 						normal));
 
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 
 				addEmptyLine(para1, 1);
@@ -3088,9 +3096,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
 					preface0.setIndentationLeft(10);
@@ -3503,11 +3511,12 @@ public class LoiReportService {
 						"That you shall intimate their official Email ID and the correspondence made to this email ID by the Department shall be treated legal",
 						normal));
 
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/schedule of land.", normal));
 				addEmptyLine(para1, 1);
@@ -3516,9 +3525,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
@@ -3628,7 +3637,7 @@ public class LoiReportService {
 //				String mm=licenseServiceResponceInfo.getCaseNumber() ;
 //				System.out.println("mm:---------"+mm);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
-						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC-", "")
+						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC-", "").split("~")[0]
 						: "N/A") + "-C/JE(SB)/-2022";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
 				int licenseList = licenseServiceResponceInfo.getNewServiceInfoData().size();
 				if (licenseList > 1) {
@@ -3987,11 +3996,12 @@ public class LoiReportService {
 				list.add(new ListItem(
 						"That you shall intimate their official Email ID and the correspondence made to this email ID by the Department shall be treated legal.",
 						normal));
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/as above ", normal));
 				addEmptyLine(para1, 1);
@@ -4000,9 +4010,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
@@ -4420,11 +4430,12 @@ public class LoiReportService {
 						"The you shall intimate your official Email ID and the correspondence on this email ID by the Deptt. will be treated receipt of such correspondence.",
 						normal));
 
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/as above ", normal));
 				addEmptyLine(para1, 1);
@@ -4433,9 +4444,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
@@ -4837,11 +4848,12 @@ public class LoiReportService {
 						"That you shall intimate their official Email ID and the correspondence made to this email ID by the Department shall be treated legal.",
 						normal));
 
-				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
-					requestLOIReport.getAddedContent().stream().forEach(cd -> {
-						list.add(new ListItem(cd, normal));
-					});
-				}
+//				if (requestLOIReport.getAddedContent() != null && !requestLOIReport.getAddedContent().isEmpty()) {
+//					requestLOIReport.getAddedContent().stream().forEach(cd -> {
+//						list.add(new ListItem(cd, normal));
+//					});
+//				}
+				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/schedule of land.", normal));
 				addEmptyLine(para1, 1);
@@ -4850,9 +4862,9 @@ public class LoiReportService {
 				para12.setSpacingBefore(10f);
 				Paragraph para13 = new Paragraph("".toUpperCase(), normal);
 				para13.setSpacingBefore(10f);
-				doc.add(para12);
-				doc.add(para13);
-				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
+//				doc.add(para12);
+//				doc.add(para13);
+//				loiTableReportData(doc, userId, applicationNumber, requestLOIReport);
 
 				try {
 					Paragraph preface0 = new Paragraph("(" + dtcpUserName + ", I.A.S)    ", smallBold);
@@ -5226,13 +5238,14 @@ public class LoiReportService {
 		
 	}
 
-	private void loiTableReportData(Document doc, String userId, String applicationNumber,
+//	private void loiTableReportData(Document doc, String userId, String applicationNumber,
+//			RequestLOIReport requestLOIReport) {
+	private void loiTableReportData(List list, String userId, String applicationNumber,
 			RequestLOIReport requestLOIReport) {
 		try {
-			float[] columnWidths = { 1, 3,8 };
-			String remarks="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-			PdfPTable table = new PdfPTable(columnWidths);
-			table.setWidthPercentage(100);
+//			float[] columnWidths = { 1, 3,8 };
+//			PdfPTable table = new PdfPTable(columnWidths);
+//			table.setWidthPercentage(100);
 			HttpHeaders headers = new HttpHeaders();
 			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 			HttpEntity<RequestInfo> entity = new HttpEntity<RequestInfo>(requestLOIReport.getRequestInfo(), headers);
@@ -5246,44 +5259,57 @@ public class LoiReportService {
 							+ "?" + urlParameter, HttpMethod.POST, entity, HashMap.class)
 					.getBody();
 			java.util.List<Map<String, Object>> rest2 = (java.util.List<Map<String, Object>>) rest1.get("egScrutiny");
-			System.out.println("rest2:---" + rest2);
-			int colIndex = 0;
-			java.util.List<String> hList = Arrays.asList("Sr No", "Description","Remarks");
-			for (String columnTitle : hList) {
-				colIndex = colIndex + 1;
 
-				PdfPCell header = new PdfPCell();
-				header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-				header.setBorderWidth(2);
-				header.setPaddingBottom(5f);
-				header.setPhrase(new Phrase(columnTitle));
-				table.addCell(header);
-			}
-
-			int index = 1;
 			for (Iterator iterator = rest2.iterator(); iterator.hasNext();) {
 				Map<String, Object> map = (Map<String, Object>) iterator.next();
 				System.out.println(map);
 				if (map.get("isLOIPart") != null ? (map.get("isLOIPart").toString().contains("true")) : (false)) {
-					table.addCell(index + "");
-					table.addCell(map.get("fieldIdL") != null ? map.get("fieldIdL") + "" : "N/A");
-					table.addCell(map.get("comment") != null ? map.get("comment") + "" : "N/A");
-					index++;
-				}
+					if(map.get("comment") != null) {
+						 list.add(new ListItem(String.valueOf(map.get("comment")),normal));
+					}
+				 }
+			}
 
-			}
-			if (rest2.size() < 1) {
-				PdfPCell cell23 = new PdfPCell(new Phrase("Record Not Found"));
-				cell23.setHorizontalAlignment(Element.ALIGN_CENTER);
-				cell23.setPaddingBottom(5f);
-				cell23.setPaddingTop(5f);
-				cell23.setColspan(2);
-				cell23.setRowspan(1);
-				table.addCell(cell23);
-			}
-			doc.add(table);
-		} catch (DocumentException e1) {
-			log.error("DocumentException : "+e1.getMessage());
+				
+			
+//			System.out.println("rest2:---" + rest2);
+//			int colIndex = 0;
+//			java.util.List<String> hList = Arrays.asList("Sr No", "Description","Remarks");
+//			for (String columnTitle : hList) {
+//				colIndex = colIndex + 1;
+//
+//				PdfPCell header = new PdfPCell();
+//				header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+//				header.setBorderWidth(2);
+//				header.setPaddingBottom(5f);
+//				header.setPhrase(new Phrase(columnTitle));
+//				table.addCell(header);
+//			}
+//
+//			int index = 1;
+//			for (Iterator iterator = rest2.iterator(); iterator.hasNext();) {
+//				Map<String, Object> map = (Map<String, Object>) iterator.next();
+//				System.out.println(map);
+//				if (map.get("isLOIPart") != null ? (map.get("isLOIPart").toString().contains("true")) : (false)) {
+//					table.addCell(index + "");
+//					table.addCell(map.get("fieldIdL") != null ? map.get("fieldIdL") + "" : "N/A");
+//					table.addCell(map.get("comment") != null ? map.get("comment") + "" : "N/A");
+//					index++;
+//				}
+//
+//			}
+//			if (rest2.size() < 1) {
+//				PdfPCell cell23 = new PdfPCell(new Phrase("Record Not Found"));
+//				cell23.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				cell23.setPaddingBottom(5f);
+//				cell23.setPaddingTop(5f);
+//				cell23.setColspan(2);
+//				cell23.setRowspan(1);
+//				table.addCell(cell23);
+//			}
+//			doc.add(table);
+//		} catch (DocumentException e1) {
+//			log.error("DocumentException : "+e1.getMessage());
 		} catch (Exception e) {
 			log.error("Exception : "+e.getMessage());
 		}
