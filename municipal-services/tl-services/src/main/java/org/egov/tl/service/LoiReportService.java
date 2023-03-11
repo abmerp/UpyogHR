@@ -5293,7 +5293,7 @@ public class LoiReportService {
 		String dctpFormTitleAddress = "SCO-71-75, 2nd Floor, Sector 17 C, Chandigarh";
 		String dctpFormTitleContacrInfo = "Phone: 0172-2549349 e-mail:tcpharyana7@gmail.com";
 		if (addressType == 1) {
-			dctpFormTitleAddress = "Aayojna Bhawan, Plot No. 3, Block-A, Madhya Marg, Sector 18A, Chandigarh.";
+			dctpFormTitleAddress = "Nagar Yojna Bhawan, Plot No. 3, Block-A, Madhya Marg, Sector 18A, Chandigarh.";
 			dctpFormTitleContacrInfo = "Phone : 0172-2549349  Email: tcpharyana7@gmail.com  ";
 		}
 
