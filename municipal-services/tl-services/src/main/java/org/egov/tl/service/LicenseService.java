@@ -506,6 +506,8 @@ public class LicenseService {
 					licenseServiceResponseInfo.setDairyNumber(tradeLicense.getTcpDairyNumber());
 					licenseServiceResponseInfo.setApplicationDate(String.valueOf(tradeLicense.getApplicationDate()));
 					licenseServiceResponseInfo.setTcpLoiNumber(String.valueOf(tradeLicense.getTcpLoiNumber()));
+					licenseServiceResponseInfo.setIdw(String.valueOf(tradeLicense.getTradeLicenseDetail().getIDW()));
+					licenseServiceResponseInfo.setEdc(String.valueOf(tradeLicense.getTradeLicenseDetail().getEDC()));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}

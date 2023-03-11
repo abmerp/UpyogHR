@@ -65,5 +65,11 @@ public class LicenseServiceResponseInfo {
 	
 	@JsonProperty("LicenseDetails")
 	private List<LicenseDetails> newServiceInfoData;
+	
+	@JsonProperty("edc")
+	private String edc;
+	
+	@JsonProperty("idw")
+	private String idw;
 
 }

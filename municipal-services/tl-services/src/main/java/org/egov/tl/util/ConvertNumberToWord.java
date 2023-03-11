@@ -1,61 +1,61 @@
-package org.egov.tl.util;
-
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.Format;
-import java.text.NumberFormat;
-import java.util.*;
-
-public class ConvertNumberToWord {
-
-	public static boolean isNumeric(String strNum) {
-		if (strNum == null) {
-			return false;
-		}
-		try {
-			double d = Double.parseDouble(strNum);
-		} catch (NumberFormatException nfe) {
-			nfe.printStackTrace();
-			return false;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
-
-	public static String numberToComa(String num) {
-		String currencyFormate="Rs ";
-//		if (isNumeric(num)&&num.contains(".")&&num.split("\\.")[0].length()<4) {
-//			String uno="";
-//			String no=num.split("\\.")[0];
-//			uno=no.charAt(0)+","+no.charAt(1)+no.charAt(2);
-//			currencyFormate+=uno;
-//		}else if(isNumeric(num)&&!num.contains(".")&&num.length()<4) {
-//			String uno="";
-//			String no=num;
-//			uno=no.charAt(0)+","+no.charAt(1)+no.charAt(2);
-//			currencyFormate+= uno+".00";
-//	    }else 
-	   if(isNumeric(num)) {	
-//			Format format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en", "in"));
-			String dd=num;//format.format(new BigDecimal(num)).replace("₹", "");
-//			int index=dd.lastIndexOf(",");
-//			String fs=dd.substring(0,index);
-//			String[] ls=dd.substring(index+1).split("\\.");
-//			String no=ls[0];
-//			no = no.charAt(0)+","+no.charAt(1)+no.charAt(2)+"."+ls[1];
-//			fs=fs+","+no;
-//			System.out.println(fs+" , "+ls.length+","+dd.substring(index+1).split("\\.")[0]);	
-			currencyFormate+= dd;
-		}else {
-			currencyFormate="Wrong Input";	
-		}
-		
-		return currencyFormate;
-		
-	}
-
+//package org.egov.tl.util;
+//
+//import java.math.BigDecimal;
+//import java.text.DecimalFormat;
+//import java.text.Format;
+//import java.text.NumberFormat;
+//import java.util.*;
+//
+//public class ConvertNumberToWord {
+//
+//	public static boolean isNumeric(String strNum) {
+//		if (strNum == null) {
+//			return false;
+//		}
+//		try {
+//			double d = Double.parseDouble(strNum);
+//		} catch (NumberFormatException nfe) {
+//			nfe.printStackTrace();
+//			return false;
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//		return true;
+//	}
+//
+//	public static String numberToComa(String num) {
+//		String currencyFormate="Rs ";
+////		if (isNumeric(num)&&num.contains(".")&&num.split("\\.")[0].length()<4) {
+////			String uno="";
+////			String no=num.split("\\.")[0];
+////			uno=no.charAt(0)+","+no.charAt(1)+no.charAt(2);
+////			currencyFormate+=uno;
+////		}else if(isNumeric(num)&&!num.contains(".")&&num.length()<4) {
+////			String uno="";
+////			String no=num;
+////			uno=no.charAt(0)+","+no.charAt(1)+no.charAt(2);
+////			currencyFormate+= uno+".00";
+////	    }else 
+//	   if(isNumeric(num)) {	
+////			Format format = com.ibm.icu.text.NumberFormat.getCurrencyInstance(new Locale("en", "in"));
+//			String dd=num;//format.format(new BigDecimal(num)).replace("₹", "");
+////			int index=dd.lastIndexOf(",");
+////			String fs=dd.substring(0,index);
+////			String[] ls=dd.substring(index+1).split("\\.");
+////			String no=ls[0];
+////			no = no.charAt(0)+","+no.charAt(1)+no.charAt(2)+"."+ls[1];
+////			fs=fs+","+no;
+////			System.out.println(fs+" , "+ls.length+","+dd.substring(index+1).split("\\.")[0]);	
+//			currencyFormate+= dd;
+//		}else {
+//			currencyFormate="Wrong Input";	
+//		}
+//		
+//		return currencyFormate;
+//		
+//	}
+//
 //	public static String numberToWords(String num) {
 //		return num;
 ////	  if(isNumeric(num)) {
@@ -128,4 +128,4 @@ public class ConvertNumberToWord {
 //	public static void main(String[] args) {
 //		System.out.println(ConvertNumberToWord.numberToComa("1323"));
 //	}
-}
+//}
