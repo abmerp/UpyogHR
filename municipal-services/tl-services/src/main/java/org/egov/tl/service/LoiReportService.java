@@ -5095,9 +5095,10 @@ public class LoiReportService {
 				try {
 			
 					edc = Optional.ofNullable(String.valueOf(licenseServiceResponceInfo.getEdc())).orElseThrow(RuntimeException::new);
+					amountEDC=Double.parseDouble(decfor.format(Double.parseDouble(edc!="0"?(edc.replace("E", "")):("0.0"))));
+					
 					idw = Optional.ofNullable(String.valueOf(licenseServiceResponceInfo.getIdw())).orElseThrow(RuntimeException::new);
-					amountIDW=Double.parseDouble(decfor.format(Double.parseDouble(idw)));
-					amountEDC=Double.parseDouble(decfor.format(Double.parseDouble(edc)));
+					amountIDW=Double.parseDouble(decfor.format(Double.parseDouble(idw!="0"?(idw.replace("E", "")):("0.0"))));
 						
 //					FeesAndCharges feesAndCharges = licenseDetails.getFeesAndCharges();
 //
