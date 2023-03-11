@@ -152,7 +152,7 @@ public class LicenseService {
 	ServicePlanService servicePlanService;
 	@Autowired
 	private TradeUtil tradeUtil;
-	
+
 	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
 
 	@Transactional
@@ -168,6 +168,7 @@ public class LicenseService {
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		if (!StringUtils.isEmpty(newServiceInfo.getApplicationNumber())) {
 			tradeLicenseRequest.setApplicationNumber(newServiceInfo.getApplicationNumber());
+
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
 					newServiceInfo.getRequestInfo());
 			for (TradeLicense tradeLicense : tradeLicenses) {
@@ -539,7 +540,7 @@ public class LicenseService {
 		String date = formatter.format(localDateTime);
 		String dairyNumber;
 		String caseNumber;
-		String applicationNmber;
+		String tcpApplicationNmber;
 		String saveTransaction;
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
@@ -598,8 +599,6 @@ public class LicenseService {
 
 			// --------------success------------------------//
 		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
-
-			
 
 			// ------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
@@ -745,7 +744,7 @@ public class LicenseService {
 						Map<String, Object> mapANo = new HashMap<String, Object>();
 						mapANo.put("DiaryNo", dairyNumber);
 						mapANo.put("DiaryDate", date);
-						mapANo.put("TotalArea", newobj.getFeesAndCharges().getTotalArea());
+						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
 						mapANo.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapANo.put("PurposeId", purposeId);
@@ -755,9 +754,9 @@ public class LicenseService {
 						mapANo.put("DateForFilingOfReply", date);
 						mapANo.put("UserId", "2");
 						mapANo.put("UserLoginId", "39");
-						applicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
+						tcpApplicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 								.get("Value").toString();
-						tradeLicense.setTcpApplicationNumber(applicationNumber);
+						tradeLicense.setTcpApplicationNumber(tcpApplicationNmber);
 
 						/****************
 						 * End Here
@@ -796,9 +795,10 @@ public class LicenseService {
 
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
-				//		tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-						tradeLicense.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR" , tradeLicense.getTenantId() , true ,info)));
-						
+						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+						tradeLicense.setAssignee(Arrays
+								.asList(servicePlanService.assignee("CTP_HR", tradeLicense.getTenantId(), true, info)));
+
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 
 						tradeLicenseRequests.addLicensesItem(tradeLicense);
@@ -806,17 +806,17 @@ public class LicenseService {
 						tradeLicenseService.update(tradeLicenseRequests, "TL");
 
 						// -----------------payment----------------------//
-						//----------payment update--------//
-						
+						// ----------payment update--------//
+
 						Map<String, Object> rP = new HashMap<>();
 						rP.put("RequestInfo", info);
 						StringBuilder url1 = new StringBuilder(pgHost);
 						url1.append(updatePath);
-						url1.append("?txnId="+transactionId);						
-						url1.append("&txnStatus="+status);
+						url1.append("?txnId=" + transactionId);
+						url1.append("&txnStatus=" + status);
 						Object paymentUpdate = serviceRequestRepository.fetchResult(url1, rP);
 						log.info("paymentUpdate\t" + paymentUpdate);
-						//-------------------payment update end-----------//
+						// -------------------payment update end-----------//
 						paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
 								+ applicationNumber + "/" + tradeLicense.getTenantId();
 						returnPaymentUrl = paymentUrl + "?" + params1;
@@ -827,7 +827,6 @@ public class LicenseService {
 						return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 						// ------------------finish--------------------//
-					
 
 					}
 				}
@@ -1092,32 +1091,32 @@ public class LicenseService {
 		List<String> fars = new ArrayList<String>();
 		Map<String, List<String>> mdmsData1 = null;
 		mdmsData1 = valid.getAttributeValues(mDMSCallPurposeId1);
-
+		BigDecimal rate100 = new BigDecimal(100);
 		List<Map<String, Object>> msp = (List) mdmsData1.get("Purpose");
 		for (Map<String, Object> mm : msp) {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
-			String minimumPermissible = String.valueOf(mm.get("minimumPermissible"));
-			String maximunPermissible = String.valueOf(mm.get("maximumPermissible"));
-			//String far = String.valueOf(mm.get("far"));
-			
+			String minimumPermissibles = String.valueOf(mm.get("minimumPermissible"));
+			String maximunPermissibles = String.valueOf(mm.get("maximumPermissible"));
+			// String far = String.valueOf(mm.get("far"));
+			BigDecimal minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
+			BigDecimal maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
 
 			log.info("code:\t" + code + "\t" + nameRes + "\t" + minimumPermissible);
 			purposeDetailm.setCode(code);
 			purposeDetailm.setName(nameRes);
 			purposeDetailm.setId(code + i);
 			if (purposeDetailm.getArea() == null || purposeDetailm.getArea().isEmpty()) {
-				purposeDetailm.setMinPercentage(minimumPermissible);
-				purposeDetailm.setMaxPercentage(maximunPermissible);
-				purposeDetailm.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
-				totalArea=new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
+				purposeDetailm.setMinPercentage(minimumPermissible.toString());
+				purposeDetailm.setArea(totalArea.multiply(maximunPermissible).toString());
+				totalArea = new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
 			}
-			
+
 			List<Map<String, Object>> far = (List<Map<String, Object>>) (mm.get("fars"));
-			if(far!= null)
-			for (Map<String, Object> farss : far) {
-				fars.add(String.valueOf(farss.get("far")));
-			}
+			if (far != null)
+				for (Map<String, Object> farss : far) {
+					fars.add(String.valueOf(farss.get("far")));
+				}
 			purposeDetailm.setFars(fars);
 			List<Map<String, Object>> purpose = (List<Map<String, Object>>) (mm.get("purposes"));
 			if (purpose != null)
@@ -1125,21 +1124,24 @@ public class LicenseService {
 					PurposeDetails purposeDetail = new PurposeDetails();
 					List<PurposeDetails> purposeDetailList = new ArrayList<PurposeDetails>();
 					purposeDetail.setPurposeDetail(purposeDetailList);
-					
+
 					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
-					 maximunPermissible = String.valueOf(mmm.get("maximumPermissible"));
-					 minimumPermissible = String.valueOf(mm.get("minimumPermissible"));
+					maximunPermissibles = String.valueOf(mmm.get("maximumPermissible"));
+					minimumPermissibles = String.valueOf(mm.get("minimumPermissible"));
+					minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
+					maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
 					log.info("purpose" + purposeCodes);
-					log.info(maximunPermissible+"\t"+minimumPermissible);
+					log.info(maximunPermissible + "\t" + minimumPermissible);
 					i++;
 					if (maximunPermissible != null) {
-						purposeDetail.setArea(totalArea.multiply(new BigDecimal(maximunPermissible)).toString());
+
+						purposeDetail.setArea(totalArea.multiply(maximunPermissible).toString());
 						log.info("total area" + purposeDetail.getArea());
-						purposeDetail.setMaxPercentage(maximunPermissible);
-						purposeDetail.setMinPercentage(minimumPermissible);
-						totalArea=new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetail.getArea())).toString());
-						recursionMethod(info, tenantId, purposeCodes, totalArea,
-								purposeDetail, i);
+						purposeDetail.setMaxPercentage(maximunPermissible.toString());
+						purposeDetail.setMinPercentage(minimumPermissible.toString());
+						totalArea = new BigDecimal(
+								totalArea.subtract(new BigDecimal(purposeDetail.getArea())).toString());
+						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail, i);
 
 					} else {
 						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail, i);
