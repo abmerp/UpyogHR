@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.repository.ServiceRequestRepository;
-import org.egov.tl.util.ConvertNumberToWord;
 import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.ApplicantInfo;
 import org.egov.tl.web.models.AppliedLandDetails;
@@ -28,6 +27,7 @@ import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.RequestLOIReport;
 import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.User;
 import org.egov.tl.web.models.UserResponse;
@@ -3763,21 +3763,21 @@ public class LoiReportService {
 				subListI.add(new ListItem(" Rate per acre					= Rs. 20.00 lacs per acre", normal));
 				subListI.add(new ListItem(
 						" Cost of Plotted Component			= "
-								+ ConvertNumberToWord.numberToComa(decfor.format(plottedInternalCost)) + " Lacs ",
+								+ ConvertUtil.numberToComa(decfor.format(plottedInternalCost)) + " Lacs ",
 						normal));
 				subListI.add(new ListItem(" Area under Commercial component		= " + comericalComponent + " acre ",
 						normal));
 				subListI.add(new ListItem(" Rate per acre					= Rs. 50.00 lacs per acre", normal));
 				subListI.add(new ListItem(
 						" Cost of commercial component		= "
-								+ ConvertNumberToWord.numberToComa(decfor.format(comericalInternalCost)) + " Lacs ",
+								+ ConvertUtil.numberToComa(decfor.format(comericalInternalCost)) + " Lacs ",
 						normal));
 				subListI.add(new ListItem(
 						" Total Cost of development			= "
-								+ ConvertNumberToWord.numberToComa(decfor.format(totalInternalCost)) + " Lacs ",
+								+ ConvertUtil.numberToComa(decfor.format(totalInternalCost)) + " Lacs ",
 						normal));
 				subListI.add(new ListItem(" 25% BG, which is required 			= "
-						+ ConvertNumberToWord.numberToComa(decfor.format(bg25InternalPercentage))
+						+ ConvertUtil.numberToComa(decfor.format(bg25InternalPercentage))
 						+ " Lacs  (valid for 5 years)", normal));
 
 				Double plottedExternalCost = zoneWiseEdcAmount * Double.parseDouble(plottedComponent);
@@ -3832,7 +3832,7 @@ public class LoiReportService {
 						normalItalic));
 				list.add(subList5);
 				list.add(new ListItem("To furnish the Bank Guarantee of "
-						+ ConvertNumberToWord.numberToComa(decfor.format(bg25InternalPercentage))
+						+ ConvertUtil.numberToComa(decfor.format(bg25InternalPercentage))
 						+ " Lacs on account of Internal Development works to be deposited online at website i.e. www.tcpharyana.gov.in. You have an option to mortgage 10% saleable area against submission of above said BG and in case, said option is adopted, then the area to be mortgaged may be indicated on the layout plan to be issued alongwith the license alongwith the revenue details thereof. The mortgage deed in this regard shall be executed as per the directions of the Department.",
 						normal));
 				list.add(new ListItem(
@@ -4953,7 +4953,7 @@ public class LoiReportService {
 	 ************************************/
 
 	public void getCalculatorData(String applicationNumber, LicenseDetails newobj, RequestLOIReport requestLOIReport) {
-		decfor.setRoundingMode(RoundingMode.DOWN);
+		decfor.setRoundingMode(RoundingMode.UP);
 
 		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 		tradeLicenseRequest.setApplicationNumber(applicationNumber);
@@ -4997,11 +4997,45 @@ public class LoiReportService {
 			log.error("IOException : "+e.getMessage());
 		}
 		FeeAndBillingSlabIds charges = calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
+		double dblicenseFees=0.0;
+		double dbscrutinyFees=0.0;
+		double dbconversionCharges=0.0;
+		double dbstateInfrastructureDevelopmentCharges=0.0;
 		try {
-			zoneWiseEdcAmount = Optional.ofNullable(charges.getExternalDevelopmentCharges())
-					.orElseThrow(RuntimeException::new);
+			
+			zoneWiseEdcAmount = Optional.ofNullable(charges.getExternalDevelopmentCharges()).orElseThrow(RuntimeException::new);
 			zoneWiseEdcAmount = Double.parseDouble(String.valueOf(zoneWiseEdcAmount).toString().replace("E", ""));
 			zoneWiseEdcAmount = Double.parseDouble(decfor.format(zoneWiseEdcAmount));
+			
+			dblicenseFees=Optional.ofNullable(charges.getLicenseFeeCharges()).orElseThrow(RuntimeException::new);
+			dblicenseFees = Double.parseDouble(String.valueOf(dblicenseFees).toString().replace("E", ""));
+			dblicenseFees = Double.parseDouble(decfor.format(dblicenseFees));
+			licenseFees = ConvertUtil.numberToComa(String.valueOf(dblicenseFees));
+			licenseFeesInWord = ConvertUtil.numberToWords(String.valueOf(dblicenseFees));
+			
+			
+			dbscrutinyFees=Optional.ofNullable(charges.getScrutinyFeeCharges()).orElseThrow(RuntimeException::new);
+			dbscrutinyFees = Double.parseDouble(String.valueOf(dbscrutinyFees).toString().replace("E", ""));
+			dbscrutinyFees = Double.parseDouble(decfor.format(dbscrutinyFees));
+			scrutinyFee=ConvertUtil.numberToComa(String.valueOf(dbscrutinyFees));
+			scrutinyFeeInWord=ConvertUtil.numberToWords(String.valueOf(dbscrutinyFees));
+
+			
+			dbconversionCharges=Optional.ofNullable(charges.getConversionCharges()).orElseThrow(RuntimeException::new);
+			dbconversionCharges = Double.parseDouble(String.valueOf(dbconversionCharges).toString().replace("E", ""));
+			dbconversionCharges = Double.parseDouble(decfor.format(dbconversionCharges));
+			conversionCharges = ConvertUtil.numberToComa(String.valueOf(dbconversionCharges));
+			conversionChargesInWord = ConvertUtil.numberToWords(String.valueOf(dbconversionCharges));
+			
+			
+			
+			dbstateInfrastructureDevelopmentCharges=Optional.ofNullable(charges.getStateInfrastructureDevelopmentCharges()).orElseThrow(RuntimeException::new);
+			dbstateInfrastructureDevelopmentCharges = Double.parseDouble(String.valueOf(dbstateInfrastructureDevelopmentCharges).toString().replace("E", ""));
+			dbstateInfrastructureDevelopmentCharges = Double.parseDouble(decfor.format(dbstateInfrastructureDevelopmentCharges));
+			stateInfrastructureDevelopmentChargesInWord = ConvertUtil.numberToWords(String.valueOf(dbstateInfrastructureDevelopmentCharges));
+			stateInfrastructureDevelopmentCharges = ConvertUtil.numberToComa(String.valueOf(dbstateInfrastructureDevelopmentCharges));
+			
+			
 		} catch (Exception e) {
 			log.error("Exception : "+e.getMessage());
 		}
@@ -5054,34 +5088,41 @@ public class LoiReportService {
 				
 				
 				khasraNo = appliedLandDetails.getKhewats();
-				String licenseFee = "0";
+//				String licenseFee = "0";
 				String edc="0";
 				String idw="0";
-				String scrutinyFees="0";
+//				String scrutinyFees="0";
 				try {
-					FeesAndCharges feesAndCharges = licenseDetails.getFeesAndCharges();
-
-					licenseFee = Optional.ofNullable(feesAndCharges.getLicenseFee()).orElseThrow(RuntimeException::new);
-					scrutinyFees = Optional.ofNullable(feesAndCharges.getScrutinyFee())
-							.orElseThrow(RuntimeException::new);
-					
-					conversionCharges = Optional.ofNullable(feesAndCharges.getConversionCharges())
-							.orElseThrow(RuntimeException::new);
-					stateInfrastructureDevelopmentCharges = Optional
-							.ofNullable(feesAndCharges.getStateInfrastructureDevelopmentCharges())
-							.orElseThrow(RuntimeException::new);
-					
-					edc = Optional.ofNullable(feesAndCharges.getEDC())
-							.orElseThrow(RuntimeException::new);
-					idw = Optional.ofNullable(feesAndCharges.getIDW())
-							.orElseThrow(RuntimeException::new);
-					amountIDW=Double.parseDouble(idw);
-					amountEDC=Double.parseDouble(edc);
+			
+					edc = Optional.ofNullable(String.valueOf(licenseServiceResponceInfo.getEdc())).orElseThrow(RuntimeException::new);
+					idw = Optional.ofNullable(String.valueOf(licenseServiceResponceInfo.getIdw())).orElseThrow(RuntimeException::new);
+					amountIDW=Double.parseDouble(decfor.format(Double.parseDouble(idw)));
+					amountEDC=Double.parseDouble(decfor.format(Double.parseDouble(edc)));
+						
+//					FeesAndCharges feesAndCharges = licenseDetails.getFeesAndCharges();
+//
+//					licenseFee = Optional.ofNullable(feesAndCharges.getLicenseFee()).orElseThrow(RuntimeException::new);
+//					scrutinyFees = Optional.ofNullable(feesAndCharges.getScrutinyFee())
+//							.orElseThrow(RuntimeException::new);
+//					
+//					conversionCharges = Optional.ofNullable(feesAndCharges.getConversionCharges())
+//							.orElseThrow(RuntimeException::new);
+//					stateInfrastructureDevelopmentCharges = Optional
+//							.ofNullable(feesAndCharges.getStateInfrastructureDevelopmentCharges())
+//							.orElseThrow(RuntimeException::new);
+//					
+//					edc = Optional.ofNullable(feesAndCharges.getEDC())
+//							.orElseThrow(RuntimeException::new);
+//					idw = Optional.ofNullable(feesAndCharges.getIDW())
+//							.orElseThrow(RuntimeException::new);
+//					amountIDW=Double.parseDouble(idw);
+//					amountEDC=Double.parseDouble(edc);
 				} catch (Exception e) {
 					log.error("Exception : "+e.getMessage());
 				
 				}
 				try {
+					
 					DetailsofAppliedLand detailsofAppliedLand = Optional
 							.ofNullable(licenseDetails.getDetailsofAppliedLand()).orElseThrow(RuntimeException::new);
 					DetailsAppliedLandPlot detailsAppliedLandPlot = detailsofAppliedLand.getDetailsAppliedLandPlot();
@@ -5091,16 +5132,16 @@ public class LoiReportService {
 					comericalComponent = Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
 							.orElseThrow(RuntimeException::new);
 
-					licenseFees = ConvertUtil.numberToComa(licenseFee);
-					licenseFeesInWord = ConvertUtil.numberToWords(licenseFee);
-					conversionChargesInWord = ConvertUtil.numberToWords(conversionCharges.toString());
-					conversionCharges = ConvertUtil.numberToComa(conversionCharges.toString());
-					stateInfrastructureDevelopmentChargesInWord = ConvertUtil
-							.numberToWords(stateInfrastructureDevelopmentCharges.toString());
-					stateInfrastructureDevelopmentCharges = ConvertUtil
-							.numberToComa(stateInfrastructureDevelopmentCharges.toString());
-					scrutinyFee=ConvertUtil.numberToComa(scrutinyFees);
-					scrutinyFeeInWord=ConvertUtil.numberToWords(scrutinyFees);
+//					licenseFees = ConvertUtil.numberToComa(licenseFee);
+//					licenseFeesInWord = ConvertUtil.numberToWords(licenseFee);
+//					conversionChargesInWord = ConvertUtil.numberToWords(conversionCharges.toString());
+//					conversionCharges = ConvertUtil.numberToComa(conversionCharges.toString());
+//					stateInfrastructureDevelopmentChargesInWord = ConvertUtil
+//							.numberToWords(stateInfrastructureDevelopmentCharges.toString());
+//					stateInfrastructureDevelopmentCharges = ConvertUtil
+//							.numberToComa(stateInfrastructureDevelopmentCharges.toString());
+//					scrutinyFee=ConvertUtil.numberToComa(scrutinyFees);
+//					scrutinyFeeInWord=ConvertUtil.numberToWords(scrutinyFees);
 
 				} catch (Exception e) {
 					log.error("Exception : "+e.getMessage());

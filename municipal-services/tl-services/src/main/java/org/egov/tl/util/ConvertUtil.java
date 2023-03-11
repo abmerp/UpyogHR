@@ -39,7 +39,7 @@ public class ConvertUtil {
 			return "0";
 		}
 		num=num.replaceAll("\\s+", "");
-		String currencyFormate="Rs";
+		String currencyFormate="Rs ";
 		try {
 //		if (isNumeric(num)&&num.contains(".")&&num.split("\\.")[0].length()<4) {
 //			String uno="";
@@ -154,6 +154,6 @@ public class ConvertUtil {
 	}
 	}
 //	public static void main(String[] args) {
-//		System.out.println(ConvertNumberToWord.numberToWords("2984434.00"));
+//		System.out.println(ConvertUtil.numberToWords(String.valueOf(6094912.0)));
 //	}
 }
