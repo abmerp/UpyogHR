@@ -76,6 +76,7 @@ public class EgScrutinyService {
 				comments2.setEmployeeName(egScrutiny3.getEmployeeName());
 				comments2.setDesignation(egScrutiny3.getDesignation());
 				comments2.setRole(egScrutiny3.getRole());
+				comments2.setCreatedOn(egScrutiny3.getCreatedOn());
 				comments2.setRemarks(egScrutiny3.getComment());
 				comments2.setIsApproved(egScrutiny3.getIsApproved());
 				comments.add(comments2);
