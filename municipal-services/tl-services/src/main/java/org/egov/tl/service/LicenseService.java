@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
@@ -1112,6 +1113,11 @@ public class LicenseService {
 				purposeDetailm.setMinPercentage(minimumPermissible.toString());
 				purposeDetailm.setArea(totalArea.multiply(maximunPermissible).toString());
 				totalArea = new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
+				
+		//		totalArea = new BigDecimal(totalArea.setScale(2, BigDecimal.ROUND_UP).stripTrailingZeros().toString());
+				totalArea = totalArea.setScale(2, RoundingMode.HALF_UP).stripTrailingZeros();
+				log.info("totalArea"+totalArea);
+				
 			}
 
 			List<Map<String, Object>> far = (List<Map<String, Object>>) (mm.get("fars"));
@@ -1132,6 +1138,7 @@ public class LicenseService {
 					minimumPermissibles = String.valueOf(mm.get("minimumPermissible"));
 					minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
 					maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
+					
 					log.info("purpose" + purposeCodes);
 					log.info(maximunPermissible + "\t" + minimumPermissible);
 					i++;
@@ -1143,6 +1150,7 @@ public class LicenseService {
 						purposeDetail.setMinPercentage(minimumPermissible.toString());
 						totalArea = new BigDecimal(
 								totalArea.subtract(new BigDecimal(purposeDetail.getArea())).toString());
+						totalArea = totalArea.setScale(2, RoundingMode.HALF_UP).stripTrailingZeros();
 						recursionMethod(info, tenantId, purposeCodes, totalArea, purposeDetail, i);
 
 					} else {

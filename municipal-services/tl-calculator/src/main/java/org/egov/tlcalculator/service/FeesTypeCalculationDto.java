@@ -67,12 +67,25 @@ class FeesTypeCalculationDto {
 	public List<FeesTypeCalculationDto> getFeesTypeCalculationDto() {
 		return feesTypeCalculationDto;
 	}
-
+	public BigDecimal getTotalScruitnyFee() {
+		if (totalScruitnyFee != null)
+			return totalScruitnyFee.setScale(0, BigDecimal.ROUND_UP);
+		else
+			return totalScruitnyFee;
+	}
+	public BigDecimal getTotalLicenceFee() {
+		if (totalLicenceFee != null)
+			return totalLicenceFee.setScale(0, BigDecimal.ROUND_UP);
+		else
+			return totalLicenceFee;
+	}
 	private BigDecimal licenseFeeChargesCal;
 	private BigDecimal conversionChargesCal;
 	private BigDecimal externalDevelopmentChargesCal;
 	private BigDecimal stateInfrastructureDevelopmentChargesCal;
 	private BigDecimal totalFee;
 	private List<FeesTypeCalculationDto> feesTypeCalculationDto;
+	private BigDecimal totalScruitnyFee;
+	private BigDecimal totalLicenceFee;
 
 }

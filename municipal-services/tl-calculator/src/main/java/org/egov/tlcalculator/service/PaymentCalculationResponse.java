@@ -20,8 +20,18 @@ public class PaymentCalculationResponse {
     private ResponseInfo responseInfo;
     private List<FeesTypeCalculationDto> feesTypeCalculationDto;
     private BigDecimal totalFee;
+    private BigDecimal totalScruitnyFee;
+	private BigDecimal totalLicenceFee;
 	public BigDecimal getTotalFee() {
 		return feesTypeCalculationDto.get(0).getTotalFee();
+		//return this.totalFee;
+	}
+	public BigDecimal getTotalScruitnyFee() {
+		return feesTypeCalculationDto.get(0).getTotalScruitnyFee();
+		//return this.totalFee;
+	}
+	public BigDecimal getTotalLicenceFee() {
+		return feesTypeCalculationDto.get(0).getTotalLicenceFee();
 		//return this.totalFee;
 	}
 

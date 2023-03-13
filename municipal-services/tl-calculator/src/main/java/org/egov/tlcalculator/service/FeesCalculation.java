@@ -46,6 +46,9 @@ public class FeesCalculation implements Calculator {
 	@Autowired
 	CalculatorImpl calculatorImpl;
 	BigDecimal totalFee = new BigDecimal(0);
+	BigDecimal totalScruitnyFee = new BigDecimal(0);
+	BigDecimal totalLicenceFee = new BigDecimal(0);
+	
 	public List<FeesTypeCalculationDto> payment(RequestInfo info, String applicationNo) {
 
 		String applicationNumber = applicationNo;
@@ -99,9 +102,14 @@ public class FeesCalculation implements Calculator {
 			
 			log.info("purposeDetail" + purposeDetail);
 			totalFee = new BigDecimal(0);
+			totalScruitnyFee= new BigDecimal(0);
+			totalLicenceFee= new BigDecimal(0);
 			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
+		
 			log.info("totalFee" + totalFee);
 			feesTypeCalculationDto.setTotalFee(totalFee);
+			feesTypeCalculationDto.setTotalScruitnyFee(totalScruitnyFee);
+			feesTypeCalculationDto.setTotalLicenceFee(totalLicenceFee);
 			
 			results.add(feesTypeCalculationDto);
 			}
@@ -111,7 +119,7 @@ public class FeesCalculation implements Calculator {
 
 	public FeesTypeCalculationDto recursionMethod(RequestInfo info, String applicationNo, String totalArea, String zone,
 			PurposeDetails purposeDetailm) {
-
+		
 		CalculatorRequest calculator = new CalculatorRequest();
 		calculator.setApplicationNumber(applicationNo);
 		calculator.setPotenialZone(zone);
@@ -131,15 +139,20 @@ public class FeesCalculation implements Calculator {
 			
 			log.info("ScrutinyFee\t" + result.getScrutinyFeeChargesCal());
 			
+			 totalScruitnyFee = totalScruitnyFee.add(result.getScrutinyFeeChargesCal());
 			BigDecimal licenseFee=result.getLicenseFeeChargesCal().multiply(new BigDecimal(.25));
+			
+			totalLicenceFee=totalLicenceFee.add(licenseFee);
 			log.info("LicenseFee\t" + licenseFee);
 			BigDecimal amount = result.getScrutinyFeeChargesCal().add(licenseFee);
 			BigDecimal amounttmep = totalFee.add(amount);
 			
 			totalFee = new BigDecimal(amounttmep.setScale(0, BigDecimal.ROUND_UP).toString());
 			//log.info("ScrutinyFee" + result.getScrutinyFeeChargesCal());
-			
+		
 			result.setTotalFee(amount);
+			result.setTotalScruitnyFee(totalScruitnyFee);
+			result.setTotalLicenceFee(totalLicenceFee);
 			log.info(purposeDetailm.getName()+"\t"+amount);
 			log.info("Total "+"\t"+totalFee);
 		}
