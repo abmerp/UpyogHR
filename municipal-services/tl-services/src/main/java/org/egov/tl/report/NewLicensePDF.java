@@ -23,6 +23,7 @@ import org.egov.tl.web.models.GISDeatils;
 import org.egov.tl.web.models.LandScheduleDetails;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.egov.tl.web.models.PurposeDetails;
 import org.egov.tl.web.models.ShareholdingPattens;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -56,12 +57,13 @@ import javax.servlet.http.HttpServletResponse;
 public class NewLicensePDF {
 	
 	
-	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD,BaseColor.BLACK);
+	private static Font catFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC,BaseColor.DARK_GRAY);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
+
+  //  private static String hindifont = "D:\\new Upyog\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 //	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
-	
 
 	@Autowired BPANotificationUtil bPANotificationUtil;
 	@Autowired LicenseService licenseService;
@@ -119,6 +121,15 @@ public class NewLicensePDF {
 		 final ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Kolkata"));
 		 Paragraph p3 = new Paragraph(now.toString());
 		Paragraph p1 = new Paragraph();
+		Paragraph p = new Paragraph();
+		Paragraph l = new Paragraph();
+		l.setFont(blackFont);
+		l.add("Service ID:-");
+		l.add("Licences");
+	//	l.add(licenseServiceResponceInfo.getBusinessService());
+		p.setFont(blackFont);
+		p.add("Application Number:-");
+		p.add(applicationNumber);
 		p1.setFont(blackFont);
 		p1.add("License Detail");
 		img.setAlignment(Element.ALIGN_CENTER);
@@ -127,6 +138,8 @@ public class NewLicensePDF {
 		p3.setAlignment(Element.ALIGN_RIGHT);
 		doc.add(img);
 		doc.add(p2);
+		doc.add(p);
+		doc.add(l);
 		doc.add(p3);
 		
 	
@@ -392,15 +405,13 @@ public class NewLicensePDF {
 						//Applied Land Details
 						if(licenseDetails.getApplicantPurpose().getAppliedLandDetails()!=null && licenseDetails.getApplicantPurpose().getAppliedLandDetails().size()>0) {
 							
-							
-							
-						for(int j=0;j<licenseDetails.getApplicantPurpose().getAppliedLandDetails().size();j++) {
-							
 							Paragraph pald = new Paragraph();
 							pald.setFont(blackFont1);
 							pald.add("Applied Land Details");
 							doc.add(pald);
 							
+						for(int j=0;j<licenseDetails.getApplicantPurpose().getAppliedLandDetails().size();j++) {
+																				
 							table = new PdfPTable(26);
 							table.setSpacingBefore(5f);
 							table.setSpacingAfter(5f);
@@ -420,7 +431,6 @@ public class NewLicensePDF {
 							 lo.add("Name of Land Owner:");
 							 doc.add(lo);
 							 Paragraph p6 = new Paragraph(s1, font);
-							 System.out.println(s1);
 							 
 						     doc.add(p6);
 							
@@ -592,7 +602,11 @@ public class NewLicensePDF {
 						Paragraph pls = new Paragraph();
 						pls.setFont(blackFont1);
 						pls.add("Land Schedule");
+						Paragraph pls1 = new Paragraph();
+						pls1.setFont(catFont);
+						pls1.add("(1) Applied additional Area");
 						doc.add(pls);
+						doc.add(pls1);
 						
 						table = new PdfPTable(2);
 						table.setSpacingBefore(10f);
@@ -2221,9 +2235,7 @@ public class NewLicensePDF {
 					}
 					
 					if(licenseDetails.getDetailsofAppliedLand()!= null) {
-	                	Paragraph doal = new Paragraph();
-	                	doal.add("Details of AppliedLand");
-	                 	doc.add(doal);
+	                	
 		                
 	                  	table = new PdfPTable(2);
 	                 	table.setSpacingBefore(10f);
@@ -2231,6 +2243,10 @@ public class NewLicensePDF {
 		                table.setWidthPercentage(100f);
 		                
 		                if(licenseDetails.getDetailsofAppliedLand().getDgps()!=null && licenseDetails.getDetailsofAppliedLand().getDgps().size()>0) {
+		                	  Paragraph doal = new Paragraph();
+      	                	   doal.add("Details of AppliedLand");
+      	                 	   doc.add(doal);
+                       	   
 		                	List<List<GISDeatils>> f= licenseDetails.getDetailsofAppliedLand().getDgps();
 	                           for(int j=0;j<f.size();j++) {
 	                        	   List<GISDeatils> g =  f.get(j);
@@ -2238,6 +2254,7 @@ public class NewLicensePDF {
 
 	                        	   GISDeatils h = g.get(k);
 	                        	   
+	                        	 
 	                        	   
 	                        	   table.addCell("Latitude");
 								   table.addCell(h.getLatitude());
@@ -2287,9 +2304,71 @@ public class NewLicensePDF {
 		  
 		           doc.add(table);
 	}
+					
+  if(licenseDetails.getDetailsofAppliedLand()!= null) {
+	                	
+		                
+	                  	table = new PdfPTable(2);
+	                 	table.setSpacingBefore(10f);
+	                  	table.setSpacingAfter(10f);
+		                table.setWidthPercentage(100f);
+		            
+					
+					if(licenseDetails.getDetailsofAppliedLand().getPurposeDetails()!=null && licenseDetails.getDetailsofAppliedLand().getPurposeDetails().size()>0) {
+						List<PurposeDetails> f= licenseDetails.getDetailsofAppliedLand().getPurposeDetails();
+                           for(int j=0;j<f.size();j++) {
+                        	   
+                        	   
+                        	   PurposeDetails h = f.get(j);
+                        	   
+                        	   Paragraph pl = new Paragraph();
+       	                	   pl.add("Purpose Details");
+       	                 	   doc.add(pl);
+                        	   
+                        	   
+                        	   table.addCell("ID");
+							   table.addCell(h.getId());
+							   
+							   System.out.println(h.getId());
+							   
+							   table.addCell("Name");
+							   table.addCell(h.getName());
+							   
+							   table.addCell("Code");
+							   table.addCell(h.getCode());
+							
+							   
+							   table.addCell("Area");
+							   table.addCell(h.getArea());
+							   
+							   table.addCell("fars");
+							   table.addCell(h.getFar());
+							   
+							   
+							   table.addCell("MaxPercentage");
+							   table.addCell(h.getMaxPercentage());
+							   
+
+							   table.addCell("MinPercentage");
+							   table.addCell(h.getMinPercentage());
+							   
+							   table.addCell("MinPercentage");
+							   table.addCell(h.getMinPercentage());
+		
+							   System.out.println(h.getPurposeDetail());
+								
+                        	   
+                        	   
 	
 					
+                           }
+                           
+//                       	if(licenseDetails.getDetailsofAppliedLand().getPurposeDetails()!=null && licenseDetails.getDetailsofAppliedLand().getPurposeDetails().size()>0) {}
+                    
+					}
 					
+					doc.add(table);
+  }
 					
 					
 			
