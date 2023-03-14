@@ -58,38 +58,51 @@ public class EgScrutinyService {
 
 	public List<SecurityReport> search2(String applicationNumber, Integer userId) {
 
-		List<EgScrutiny> egScrutiny=this.egScrutinyRepo.findByApplication(applicationNumber);
+		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplication(applicationNumber);
 		List<SecurityReport> securityReport = new ArrayList<SecurityReport>();
-		SecurityReport object=null;
-		List<UserComments>  comments=new ArrayList<UserComments>();
-			for (EgScrutiny egScrutiny2 :egScrutiny) {
+		SecurityReport object = null;
+		List<UserComments> comments = new ArrayList<UserComments>();
+		boolean isExisting=false;
+		for (EgScrutiny egScrutiny2 : egScrutiny) {
+
+			object = new SecurityReport();
+			object.setName("Palam");
+			comments = new ArrayList<UserComments>();
+			object.setName(egScrutiny2.getFieldIdL());
+			object.setValue(egScrutiny2.getFieldValue());
+			for (EgScrutiny egScrutiny3 : egScrutiny) {
+				if (egScrutiny3.getFieldIdL().equalsIgnoreCase(object.getName())) {
+					UserComments comments2 = new UserComments();
+					comments2.setEmployeeName(egScrutiny3.getEmployeeName());
+					comments2.setDesignation(egScrutiny3.getDesignation());
+					comments2.setRole(egScrutiny3.getRole());
+					comments2.setCreatedOn(egScrutiny3.getCreatedOn());
+					comments2.setRemarks(egScrutiny3.getComment());
+					comments2.setIsApproved(egScrutiny3.getIsApproved());
+					comments.add(comments2);
 				
-				object  = new SecurityReport();
-				object.setName("Palam");
-				comments=new ArrayList<UserComments>();
-				object.setName(egScrutiny2.getFieldIdL());
-				object.setValue(egScrutiny2.getFieldValue());
-				for (EgScrutiny egScrutiny3 :egScrutiny) {
-			if(egScrutiny3.getFieldIdL().equalsIgnoreCase(object.getName()))
-					{
-				UserComments comments2 = new UserComments();
-				comments2.setEmployeeName(egScrutiny3.getEmployeeName());
-				comments2.setDesignation(egScrutiny3.getDesignation());
-				comments2.setRole(egScrutiny3.getRole());
-				comments2.setCreatedOn(egScrutiny3.getCreatedOn());
-				comments2.setRemarks(egScrutiny3.getComment());
-				comments2.setIsApproved(egScrutiny3.getIsApproved());
-				comments.add(comments2);
-					}
+					
 				}
-				
-				object.setEmployees(comments);
-				securityReport.add(object);
-				
 			}
 			
-			return securityReport;
-		
+			  for (SecurityReport securityReportt : securityReport) { if
+			  (securityReportt.getName().equalsIgnoreCase(object.getName())) {
+			  //securityReportt.getEmployees().add(comments.get(comments.size()-1));
+			  isExisting=true; break; } 
+			  }
+			
+
+			
+			
+				object.setEmployees(comments);
+				if(!isExisting)
+		    	securityReport.add(object);
+			
+			
+
+		}
+
+		return securityReport;
 
 	}
 

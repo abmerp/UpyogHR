@@ -22,7 +22,7 @@ public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long>{
 	public EgScrutiny findById(Integer id);
 	
 	
-	@Query(value="select s from EgScrutiny s where s.applicationId=?1  order by name,created_on")
+	@Query(value="select s from EgScrutiny s where s.applicationId=?1  order by created_on")
 	public List<EgScrutiny> findByApplication(String applicationNumber);
 	
 	
