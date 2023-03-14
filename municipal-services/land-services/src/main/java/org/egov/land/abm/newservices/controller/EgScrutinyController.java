@@ -8,9 +8,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.egov.land.abm.models.EgScrutinyEmployeeReportResponse;
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EgScrutinyInfoResponse;
 import org.egov.land.abm.models.EgScrutinyReportResponse;
+import org.egov.land.abm.models.EmployeeSecurtinyReport;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
 import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.service.EgScrutinyService;
@@ -89,6 +91,18 @@ public class EgScrutinyController {
 
 		List<SecurityReport> egScrutiny = this.egScrutinyService.search2(applicationNumber,userid);
 		EgScrutinyReportResponse egScrutinyInfoResponse = EgScrutinyReportResponse.builder().egScrutiny(egScrutiny)
+				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
+						true))
+				.build();
+
+		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
+	}
+	@PostMapping("/_search3")
+	public ResponseEntity<EgScrutinyEmployeeReportResponse> searchEgScrutiny3(@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationNumber") String applicationNumber,@RequestParam(value = "userId", required=false) Integer userid) {
+
+		List<EmployeeSecurtinyReport> egScrutiny = this.egScrutinyService.search3(applicationNumber,userid);
+		EgScrutinyEmployeeReportResponse egScrutinyInfoResponse = EgScrutinyEmployeeReportResponse.builder().egScrutiny(egScrutiny)
 				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
 						true))
 				.build();
