@@ -7,6 +7,8 @@ import org.egov.tl.service.notification.PaymentNotificationService;
 import org.egov.tl.service.notification.TLNotificationService;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.*;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +71,7 @@ import static org.egov.tl.util.TLConstants.businessService_TL;
     public ResponseEntity<TradeLicenseResponse> search(@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,
                                                        @Valid @ModelAttribute TradeLicenseSearchCriteria criteria,
                                                        @PathVariable(required = false) String servicename
-            , @RequestHeader HttpHeaders headers) {
+            , @RequestHeader HttpHeaders headers) throws JsonProcessingException {
         List<TradeLicense> licenses = tradeLicenseService.search(criteria, requestInfoWrapper.getRequestInfo(), servicename, headers);
         
         int count = tradeLicenseService.countLicenses(criteria, requestInfoWrapper.getRequestInfo(), servicename, headers);
