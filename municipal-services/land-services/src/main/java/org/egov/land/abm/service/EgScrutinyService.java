@@ -128,12 +128,18 @@ public class EgScrutinyService {
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
 						&& egScrutiny3.getDesignation().equalsIgnoreCase(object.getDesignation())
-						&& egScrutiny3.getRole().equalsIgnoreCase(object.getRole())) {
+						&& egScrutiny3.getRole().equalsIgnoreCase(object.getRole())&& !egScrutiny3.getFieldIdL().equalsIgnoreCase(egScrutiny2.getFieldIdL()) ) {
 					FiledDetails comments2 = new FiledDetails();
 					comments2.setName(egScrutiny3.getFieldIdL());
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
+					if(egScrutiny3.getIsApproved().equalsIgnoreCase("In Order"))
 					approvedfiledDetails.add(comments2);
+					else if(egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
+							disApprovedfiledDetails.add(comments2);
+					else
+						if(egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
+								condApprovedfiledDetails.add(comments2);
 
 				}
 			}
@@ -149,9 +155,14 @@ public class EgScrutinyService {
 			}
 
 			object.setApprovedfiledDetails(approvedfiledDetails);
+			object.setDisApprovedfiledDetails(disApprovedfiledDetails);
+			object.setCondApprovedfiledDetails(condApprovedfiledDetails);
+			
 			if (!isExisting)
+			{
 				securityReport.add(object);
 
+			}
 		}
 
 		return securityReport;
