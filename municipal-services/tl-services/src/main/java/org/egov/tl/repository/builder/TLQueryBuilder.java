@@ -143,6 +143,24 @@ public class TLQueryBuilder {
                 builder.append(" LOWER(tl.applicationnumber) IN (").append(createQuery(applicationNumber)).append(")");
                 addToPreparedStatement(preparedStmtList, applicationNumber);
             }
+            if (criteria.getTcpDairyNumber() != null) {
+                List<String> dairyNumber = Arrays.asList(criteria.getTcpDairyNumber().split(","));
+                addClauseIfRequired(preparedStmtList, builder);
+                builder.append(" LOWER(tl.tcpdairynumber) IN (").append(createQuery(dairyNumber)).append(")");
+                addToPreparedStatement(preparedStmtList, dairyNumber);
+            }
+            if (criteria.getTcpCaseNumber() != null) {
+                List<String> caseNumber = Arrays.asList(criteria.getTcpCaseNumber().split(","));
+                addClauseIfRequired(preparedStmtList, builder);
+                builder.append(" LOWER(tl.tcpcasenumber) IN (").append(createQuery(caseNumber)).append(")");
+                addToPreparedStatement(preparedStmtList, caseNumber);
+            }
+            if (criteria.getTcpApplicationNumber() != null) {
+                List<String> tcpApplicationNumber = Arrays.asList(criteria.getTcpApplicationNumber().split(","));
+                addClauseIfRequired(preparedStmtList, builder);
+                builder.append(" LOWER(tl.tcpapplicationnumber) IN (").append(createQuery(tcpApplicationNumber)).append(")");
+                addToPreparedStatement(preparedStmtList, tcpApplicationNumber);
+            }
             if (criteria.getLoiNumber() != null) {
                 List<String> loiNumber = Arrays.asList(criteria.getLoiNumber().split(","));
                 addClauseIfRequired(preparedStmtList, builder);

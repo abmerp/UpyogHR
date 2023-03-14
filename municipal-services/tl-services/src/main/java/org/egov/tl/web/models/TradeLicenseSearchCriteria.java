@@ -93,6 +93,15 @@ public class TradeLicenseSearchCriteria {
     
     @JsonProperty("loiNumber")
     private String loiNumber;
+    
+    @JsonProperty("tcpDairyNumber")
+    private String tcpDairyNumber;
+    
+    @JsonProperty("tcpCaseNumber")
+    private String tcpCaseNumber;
+        
+    @JsonProperty("tcpApplicationNumber")
+    private String tcpApplicationNumber;
 
     public boolean isEmpty() {
         return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null
