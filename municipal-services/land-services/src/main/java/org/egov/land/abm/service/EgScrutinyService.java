@@ -128,7 +128,7 @@ public class EgScrutinyService {
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
 						&& egScrutiny3.getDesignation().equalsIgnoreCase(object.getDesignation())
-						&& egScrutiny3.getRole().equalsIgnoreCase(object.getRole())&& !egScrutiny3.getFieldIdL().equalsIgnoreCase(egScrutiny2.getFieldIdL()) ) {
+						&& egScrutiny3.getRole().equalsIgnoreCase(object.getRole()) ) {
 					FiledDetails comments2 = new FiledDetails();
 					comments2.setName(egScrutiny3.getFieldIdL());
 					comments2.setRemarks(egScrutiny3.getComment());
