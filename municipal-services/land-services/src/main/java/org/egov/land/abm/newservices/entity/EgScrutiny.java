@@ -81,5 +81,6 @@ public class EgScrutiny implements Serializable {
 	private String designation;	
 	@Column(name = "employee_name")
 	private String employeeName;
-
+	@Column(name = "application_status")
+	private String applicationStatus;
 }

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
+import org.egov.land.abm.models.EmployeeSecurtinyReport;
+import org.egov.land.abm.models.FiledDetails;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
 import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.newservices.entity.UserComments;
@@ -62,11 +64,11 @@ public class EgScrutinyService {
 		List<SecurityReport> securityReport = new ArrayList<SecurityReport>();
 		SecurityReport object = null;
 		List<UserComments> comments = new ArrayList<UserComments>();
-		boolean isExisting=false;
+		boolean isExisting = false;
 		for (EgScrutiny egScrutiny2 : egScrutiny) {
 
 			object = new SecurityReport();
-			object.setName("Palam");
+
 			comments = new ArrayList<UserComments>();
 			object.setName(egScrutiny2.getFieldIdL());
 			object.setValue(egScrutiny2.getFieldValue());
@@ -80,25 +82,75 @@ public class EgScrutinyService {
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
 					comments.add(comments2);
-				
-					
+
 				}
 			}
-			
-			  for (SecurityReport securityReportt : securityReport) { if
-			  (securityReportt.getName().equalsIgnoreCase(object.getName())) {
-			  //securityReportt.getEmployees().add(comments.get(comments.size()-1));
-			  isExisting=true; break; } 
-			  }
-			
 
-			
-			
-				object.setEmployees(comments);
-				if(!isExisting)
-		    	securityReport.add(object);
-			
-			
+			for (SecurityReport securityReportt : securityReport) {
+				if (securityReportt.getName().equalsIgnoreCase(object.getName())) {
+					// securityReportt.getEmployees().add(comments.get(comments.size()-1));
+					isExisting = true;
+					break;
+				}
+			}
+
+			object.setEmployees(comments);
+			if (!isExisting)
+				securityReport.add(object);
+
+		}
+
+		return securityReport;
+
+	}
+
+	public List<EmployeeSecurtinyReport> search3(String applicationNumber, Integer userId) {
+
+		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplication(applicationNumber);
+		List<EmployeeSecurtinyReport> securityReport = new ArrayList<EmployeeSecurtinyReport>();
+		EmployeeSecurtinyReport object = null;
+		List<FiledDetails> approvedfiledDetails = new ArrayList<FiledDetails>();
+		List<FiledDetails> disApprovedfiledDetails = new ArrayList<FiledDetails>();
+		List<FiledDetails> condApprovedfiledDetails = new ArrayList<FiledDetails>();
+
+		boolean isExisting = false;
+		for (EgScrutiny egScrutiny2 : egScrutiny) {
+
+			object = new EmployeeSecurtinyReport();
+
+			approvedfiledDetails = new ArrayList<FiledDetails>();
+			object.setEmployeeName(egScrutiny2.getEmployeeName());
+			object.setRole(egScrutiny2.getRole());
+			object.setDesignation(egScrutiny2.getDesignation());
+			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
+
+			for (EgScrutiny egScrutiny3 : egScrutiny) {
+				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
+						&& egScrutiny3.getDesignation().equalsIgnoreCase(object.getDesignation())
+						&& egScrutiny3.getRole().equalsIgnoreCase(object.getRole())) {
+					FiledDetails comments2 = new FiledDetails();
+					comments2.setName(egScrutiny3.getFieldIdL());
+					comments2.setRemarks(egScrutiny3.getComment());
+					comments2.setIsApproved(egScrutiny3.getIsApproved());
+					approvedfiledDetails.add(comments2);
+
+				}
+			}
+
+			for (EmployeeSecurtinyReport securityReportt : securityReport) {
+				if (securityReportt.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
+						&& securityReportt.getDesignation().equalsIgnoreCase(object.getDesignation())
+						&& securityReportt.getRole().equalsIgnoreCase(object.getRole())) {
+					// securityReportt.getEmployees().add(comments.get(comments.size()-1));
+					isExisting = true;
+					break;
+				}
+			}
+
+			object.setApprovedfiledDetails(approvedfiledDetails);
+			if (!isExisting)
+				securityReport.add(object);
 
 		}
 
