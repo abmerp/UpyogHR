@@ -1,5 +1,6 @@
 package org.egov.tl.service;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,6 +31,9 @@ import static org.egov.tracer.http.HttpUtils.isInterServiceCall;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.jayway.jsonpath.JsonPath;
 
 @Service
@@ -149,6 +153,7 @@ public class TradeLicenseService {
      */
     public List<TradeLicense> search(TradeLicenseSearchCriteria criteria, RequestInfo requestInfo, String serviceFromPath, HttpHeaders headers){
         List<TradeLicense> licenses;
+       
         // allow mobileNumber based search by citizen if interserviceCall
         boolean isInterServiceCall = isInterServiceCall(headers);
         tlValidator.validateSearch(requestInfo,criteria,serviceFromPath, isInterServiceCall);
@@ -186,9 +191,13 @@ public class TradeLicenseService {
          }
          else {
              licenses = getLicensesWithOwnerInfo(criteria,requestInfo);
+             
          }
-        
-         return licenses;       
+                                       
+         JsonNode node = licenses.get(0).getTradeLicenseDetail().getAdditionalDetail().
+        		 get(licenses.get(0).getTradeLicenseDetail().getAdditionalDetail().size()-1);
+         licenses.get(0).getTradeLicenseDetail().setAdditionalDetail(node);
+        return licenses;       
     }
     
     private void getLatestRejectedApplication(RequestInfo requestInfo, List<TradeLicense> licenses) {
@@ -315,6 +324,7 @@ public class TradeLicenseService {
      */
     public List<TradeLicense> getLicensesWithOwnerInfo(TradeLicenseSearchCriteria criteria,RequestInfo requestInfo){
         List<TradeLicense> licenses = repository.getLicenses(criteria);
+        log.info("licenses"+licenses);       
         if(licenses.isEmpty())
             return Collections.emptyList();
         if(licenses.get(0).getBusinessService().equalsIgnoreCase(TLConstants.businessService_BPA)) 
