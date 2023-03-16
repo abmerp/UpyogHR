@@ -48,6 +48,13 @@ public class ApplicantInfo {
 	private String email;
 	@JsonProperty("authorized")
 	private String authorized;
+	
+	@JsonProperty("engineerDegreeCertificate")
+	private String engineerDegreeCertificate;
+	@JsonProperty("architectDegreeCertificate")
+	private String architectDegreeCertificate;
+	@JsonProperty("boardResolutionDoc")
+	private String boardResolutionDoc;
 
 
 }
