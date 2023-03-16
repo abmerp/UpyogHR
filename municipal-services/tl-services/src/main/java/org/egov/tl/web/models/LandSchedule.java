@@ -175,4 +175,19 @@ public class LandSchedule {
 
 	@JsonProperty("renewalLicenceFee")
 	private String renewalLicenceFee;
+	
+	
+	private String releaseOrderCopyDoc;
+	private String litigationRegardingLandRelease;
+	private String CWPSLPNumber;
+	private String accessPermissionAuthority;
+	private String NHSRAccess;
+	private String othersLandFall;
+	private String othersLandFallRemark;
+	private String northSurroundings;
+	private String southSurroundings;
+	private String eastSurroundings;
+	private String westSurroundings;
+	private String passingOtherFeature;
+	private String detailsThereof;
 }

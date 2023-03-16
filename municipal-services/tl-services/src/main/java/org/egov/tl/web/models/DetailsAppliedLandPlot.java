@@ -72,5 +72,11 @@ public class DetailsAppliedLandPlot {
 	private String areaUnderResidentialPlots;
 	private String areaUnderIndustrialUse;
 	
-
+	
+	private String guideMap;
+	private String explanatoryNote;
+	private String sectoralPlan;
+	private String developmentPlan;
+	private String idemnityBondDoc;
+	
 }

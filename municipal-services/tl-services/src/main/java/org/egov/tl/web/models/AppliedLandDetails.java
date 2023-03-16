@@ -122,5 +122,10 @@ public class AppliedLandDetails {
 	@JsonProperty("nonConsolidationType")
 	private String nonConsolidationType;
 	
+	@JsonProperty("landOwnerSPAGPADoc")
+	private String landOwnerSPAGPADoc;
+	
+	@JsonProperty("developerSPAGPADoc")
+	private String developerSPAGPADoc;
 	
 }
