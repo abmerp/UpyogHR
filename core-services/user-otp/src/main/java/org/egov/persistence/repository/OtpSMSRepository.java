@@ -6,13 +6,17 @@ import org.egov.domain.model.OtpRequest;
 import org.egov.domain.service.LocalizationService;
 import org.egov.persistence.contract.SMSRequest;
 import org.egov.tracer.kafka.CustomKafkaTemplate;
+import org.egov.web.contract.Email;
+import org.egov.web.contract.EmailRequest;
+import org.egov.web.contract.MessageOnEmailMobileRequest;
+//import org.egov.web.contract.RequestInfo;
+import org.egov.common.contract.request.RequestInfo;
+import org.egov.common.contract.request.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-
-import javax.validation.constraints.NotNull;
-import java.util.Map;
+import java.util.*;
 
 import static java.lang.String.format;
 
@@ -30,18 +34,30 @@ public class OtpSMSRepository {
 
     @Value("${egov.localisation.tenantid.strip.suffix.count}")
     private int tenantIdStripSuffixCount;
-
+    
+    private CustomKafkaTemplate<String, EmailRequest> kafkaEmailTemplate;
+    
     private CustomKafkaTemplate<String, SMSRequest> kafkaTemplate;
+    
     private String smsTopic;
+    
+    private String emailTopic;
+   
+    @Autowired
+    Environment environment;
 
     @Autowired
     private LocalizationService localizationService;
 
     @Autowired
     public OtpSMSRepository(CustomKafkaTemplate<String, SMSRequest> kafkaTemplate,
-                            @Value("${sms.topic}") String smsTopic) {
+    		CustomKafkaTemplate<String, EmailRequest> kafkaEmailTemplate,
+                            @Value("${sms.topic}") String smsTopic
+                            ,@Value("${email.topic}") String emailTopic) {
         this.kafkaTemplate = kafkaTemplate;
+        this.kafkaEmailTemplate=kafkaEmailTemplate;
         this.smsTopic = smsTopic;
+        this.emailTopic = emailTopic;
     }
 
 
@@ -114,4 +130,23 @@ public class OtpSMSRepository {
             return tenantId;                                                              // handled case if tenantIdStripSuffixCount    
                                                                                           // is less than or equal to 0
         }
+    
+    /******************************* send message on email and mobile code start *********************************/
+    public void sendMessage(MessageOnEmailMobileRequest messageOnEmailMobileRequest,String message) {
+		Long currentTime = System.currentTimeMillis() + maxExecutionTime;
+		Map<String,Object> messageParameter=new HashMap<>();
+		messageParameter.put("otp", messageOnEmailMobileRequest.getMessageParameter().get("otp"));
+		if(Arrays.asList("1","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
+			kafkaTemplate.send(smsTopic, new SMSRequest(messageOnEmailMobileRequest.getMobileNumber(), message, Category.OTHERS, currentTime,messageOnEmailMobileRequest.getTemplateId()));
+		}else if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
+			RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date().getTime(), "action", "did", "key", "msgId", "requesterId", "authToken",new User());
+		    Set<String> emailList=new HashSet<>();
+			emailList.add(messageOnEmailMobileRequest.getEmailId());
+			Email email=Email.builder().emailTo(emailList).isHTML(false).subject(messageOnEmailMobileRequest.getEmailSubject()).category(Category.OTHERS).body(message).build();
+			kafkaEmailTemplate.send(emailTopic, new EmailRequest(requestInfo,email));
+		}
+	   }
+       /******************************* send message on email and mobile code end *********************************/
+    
+    
 }
