@@ -2,7 +2,9 @@ package org.egov.land.abm.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EmployeeSecurtinyReport;
@@ -11,10 +13,14 @@ import org.egov.land.abm.newservices.entity.EgScrutiny;
 import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.newservices.entity.UserComments;
 import org.egov.land.abm.repo.EgScrutinyRepo;
+import org.egov.land.service.LandEnrichmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class EgScrutinyService {
 
 	@Autowired
@@ -42,6 +48,7 @@ public class EgScrutinyService {
 			return egScrutinyRepo.save(egScrutiny);
 		} else {
 			egScrutinyInfoRequest.getEgScrutiny().setTs(new Date());
+			egScrutinyInfoRequest.getEgScrutiny().setCreatedOn(new java.sql.Time(new Date().getTime()));
 			return egScrutinyRepo.save(egScrutinyInfoRequest.getEgScrutiny());
 		}
 
@@ -97,7 +104,7 @@ public class EgScrutinyService {
 			object.setEmployees(comments);
 			if (!isExisting)
 				securityReport.add(object);
-
+			log.info("\t" + securityReport.size() + "\t");
 		}
 
 		return securityReport;
@@ -109,58 +116,64 @@ public class EgScrutinyService {
 		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplication(applicationNumber);
 		List<EmployeeSecurtinyReport> securityReport = new ArrayList<EmployeeSecurtinyReport>();
 		EmployeeSecurtinyReport object = null;
-		List<FiledDetails> approvedfiledDetails = new ArrayList<FiledDetails>();
-		List<FiledDetails> disApprovedfiledDetails = new ArrayList<FiledDetails>();
-		List<FiledDetails> condApprovedfiledDetails = new ArrayList<FiledDetails>();
-
-		boolean isExisting = false;
+		List<FiledDetails> approvedfiledDetails = null;
+		List<FiledDetails> disApprovedfiledDetails = null;
+		List<FiledDetails> condApprovedfiledDetails = null;
+		List<EmployeeSecurtinyReport> securityReportf = new ArrayList<EmployeeSecurtinyReport>();
+		
 		for (EgScrutiny egScrutiny2 : egScrutiny) {
-
+			// securityReport = new ArrayList<EmployeeSecurtinyReport>();
 			object = new EmployeeSecurtinyReport();
-
+			boolean isExisting = false;
 			approvedfiledDetails = new ArrayList<FiledDetails>();
+			disApprovedfiledDetails = new ArrayList<FiledDetails>();
+			condApprovedfiledDetails = new ArrayList<FiledDetails>();
 			object.setEmployeeName(egScrutiny2.getEmployeeName());
+			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
 			object.setCreatedOn(egScrutiny2.getCreatedOn());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 
+			int i = 0;
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
-						&& egScrutiny3.getDesignation().equalsIgnoreCase(object.getDesignation())
-						&& egScrutiny3.getRole().equalsIgnoreCase(object.getRole()) ) {
+						&& egScrutiny3.getUserid().toString().equalsIgnoreCase(object.getUserID())) {
+
 					FiledDetails comments2 = new FiledDetails();
 					comments2.setName(egScrutiny3.getFieldIdL());
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
-					if(egScrutiny3.getIsApproved().equalsIgnoreCase("In Order"))
-					approvedfiledDetails.add(comments2);
-					else if(egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
-							disApprovedfiledDetails.add(comments2);
-					else
-						if(egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
-								condApprovedfiledDetails.add(comments2);
 
+					if (egScrutiny3.getIsApproved().equalsIgnoreCase("In Order"))
+						approvedfiledDetails.add(comments2);
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
+						disApprovedfiledDetails.add(comments2);
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
+						condApprovedfiledDetails.add(comments2);
+					// egScrutiny.remove(i);
 				}
+				i++;
+
 			}
 
-			for (EmployeeSecurtinyReport securityReportt : securityReport) {
-				if (securityReportt.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
-						&& securityReportt.getDesignation().equalsIgnoreCase(object.getDesignation())
-						&& securityReportt.getRole().equalsIgnoreCase(object.getRole())) {
-					// securityReportt.getEmployees().add(comments.get(comments.size()-1));
-					isExisting = true;
-					break;
+			if (securityReport.size() > 0)
+				for (EmployeeSecurtinyReport objecttmp : securityReport) {
+					if ((objecttmp.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
+							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID()))) {
+						isExisting = true;
+						break;
+					}
 				}
-			}
 
-			object.setApprovedfiledDetails(approvedfiledDetails);
-			object.setDisApprovedfiledDetails(disApprovedfiledDetails);
-			object.setCondApprovedfiledDetails(condApprovedfiledDetails);
-			
-			if (!isExisting)
-			{
+			if (!isExisting) {
+				object.setApprovedfiledDetails(approvedfiledDetails);
+				object.setDisApprovedfiledDetails(disApprovedfiledDetails);
+				object.setCondApprovedfiledDetails(condApprovedfiledDetails);
+
 				securityReport.add(object);
+				// securityReportf.addAll(securityReport);
+				log.info("\t" + securityReport.size() + "\t");
 
 			}
 		}
