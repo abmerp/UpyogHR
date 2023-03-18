@@ -147,6 +147,11 @@ public class OtpSMSRepository {
 			}
 			
 			if(Arrays.asList("1","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
+				log.info("Template Id:"+messageOnEmailMobileRequest.getTemplateId());
+				log.info("Temmessage:"+message);
+				log.info("Category : "+ctg);
+				log.info("MobileNo:"+messageOnEmailMobileRequest.getMobileNumber());
+				
 				kafkaTemplate.send(smsTopic, new SMSRequest(messageOnEmailMobileRequest.getMobileNumber(), message, ctg, currentTime,messageOnEmailMobileRequest.getTemplateId()));
 			}else if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
 				RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date().getTime(), "action", "did", "key", "msgId", "requesterId", "authToken",new User());
