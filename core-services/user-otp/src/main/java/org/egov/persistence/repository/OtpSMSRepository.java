@@ -148,15 +148,15 @@ public class OtpSMSRepository {
 			
 			if(Arrays.asList("1","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
 				String template=messageOnEmailMobileRequest.getTemplateId();
-				message=message+" #"+template;
-				
+				message=message+" Please check your mail box. #"+template;
 				log.info("Template Id:"+template);
 				log.info("message:"+message);
 				log.info("Category : "+ctg);
 				log.info("MobileNo:"+messageOnEmailMobileRequest.getMobileNumber());
 			    kafkaTemplate.send(smsTopic, new SMSRequest(messageOnEmailMobileRequest.getMobileNumber(), message, ctg, currentTime,template));
-//			    kafkaTemplate.send(smsTopic, new SMSRequest(messageOnEmailMobileRequest.getMobileNumber(), message, ctg, currentTime,template));
-			}else if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
+			}
+			
+			if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
 				RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date().getTime(), "action", "did", "key", "msgId", "requesterId", "authToken",new User());
 			    Set<String> emailList=new HashSet<>();
 				emailList.add(messageOnEmailMobileRequest.getEmailId());

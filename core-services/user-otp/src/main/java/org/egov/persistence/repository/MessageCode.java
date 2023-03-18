@@ -8,7 +8,7 @@ public class MessageCode {
 	enum MsgCode {
 		
 		APPROVAL("TCPMSG0001:approval"),
-		PASSWORD_FORGOT_SSO_SERVICE("TCPMSG0002:forgotPassowordSSOService"),
+		PASSWORD_FORGOT_SSO_SERVICE("TCPMSG0002:forgotPassoword"),
 		GRANT("TCPMSG0003:grant"),
 		LOI("TCPMSG0004:loi"),
 		OBSERVATION_REPLAY("TCPMSG0005:observationReplay"),
