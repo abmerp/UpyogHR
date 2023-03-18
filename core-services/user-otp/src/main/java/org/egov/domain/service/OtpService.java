@@ -150,7 +150,7 @@ public class OtpService {
 		    	    });
 	    	    }
 	    	    if(localisedMsgs.isEmpty()||localisedMsgs.get("message")==null||localisedMsgs.get("msgCode")==null){
-	 	    	   errors.put("msgCode", "Invalid msgCode");
+	 	    	   errors.put("msgCode", "Invalid messsage type");
 	 	    	}else {
 	 	    		message=keepAllParemeterInMessage(localisedMsgs.get("message").toString(),parameter,localisedMsgs.get("msgCode").toString());
 	 	    	}
