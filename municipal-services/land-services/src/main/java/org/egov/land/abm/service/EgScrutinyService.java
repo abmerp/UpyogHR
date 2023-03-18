@@ -120,7 +120,7 @@ public class EgScrutinyService {
 		List<FiledDetails> disApprovedfiledDetails = null;
 		List<FiledDetails> condApprovedfiledDetails = null;
 		List<EmployeeSecurtinyReport> securityReportf = new ArrayList<EmployeeSecurtinyReport>();
-		
+
 		for (EgScrutiny egScrutiny2 : egScrutiny) {
 			// securityReport = new ArrayList<EmployeeSecurtinyReport>();
 			object = new EmployeeSecurtinyReport();
@@ -160,7 +160,8 @@ public class EgScrutinyService {
 			if (securityReport.size() > 0)
 				for (EmployeeSecurtinyReport objecttmp : securityReport) {
 					if ((objecttmp.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
-							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID()))) {
+							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID())
+							&& objecttmp.getEmployeeName().equalsIgnoreCase(object.getEmployeeName()))) {
 						isExisting = true;
 						break;
 					}
