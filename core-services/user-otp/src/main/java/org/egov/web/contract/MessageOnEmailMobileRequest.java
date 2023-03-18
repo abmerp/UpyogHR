@@ -34,14 +34,14 @@ public class MessageOnEmailMobileRequest {
     private String tenantId;
     
     @NotNull
-    @Pattern(regexp = "^[1-5]{1,1}$",message="Invalid Input ,  Note: 1 for OTP, 2 for TRANSACTION, 3 for PROMOTION,4 for  NOTIFICATION,5 for OTHERS")
+    @Pattern(regexp = "^[0-4]{1,1}$",message="Invalid Input ,  Note: 0 for OTP, 1 for TRANSACTION, 2 for PROMOTION,3 for  NOTIFICATION,4 for OTHERS")
     private String category;
     
     @NotNull
     private String templateId;
     
     @NotNull
-    private String msgCode;
+    private String type;
     
     @NotNull
     @Pattern(regexp = "^[1-3]{1,1}$",message="Invalid Input ,  Note: Message send on ,1 for Email, 2 for Mobile, 3 for Both")

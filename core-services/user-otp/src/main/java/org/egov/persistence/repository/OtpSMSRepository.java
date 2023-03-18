@@ -132,19 +132,32 @@ public class OtpSMSRepository {
         }
     
     /******************************* send message on email and mobile code start *********************************/
-    public void sendMessage(MessageOnEmailMobileRequest messageOnEmailMobileRequest,String message) {
-		Long currentTime = System.currentTimeMillis() + maxExecutionTime;
-		Map<String,Object> messageParameter=new HashMap<>();
-		messageParameter.put("otp", messageOnEmailMobileRequest.getMessageParameter().get("otp"));
-		if(Arrays.asList("1","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
-			kafkaTemplate.send(smsTopic, new SMSRequest(messageOnEmailMobileRequest.getMobileNumber(), message, Category.OTHERS, currentTime,messageOnEmailMobileRequest.getTemplateId()));
-		}else if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
-			RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date().getTime(), "action", "did", "key", "msgId", "requesterId", "authToken",new User());
-		    Set<String> emailList=new HashSet<>();
-			emailList.add(messageOnEmailMobileRequest.getEmailId());
-			Email email=Email.builder().emailTo(emailList).isHTML(false).subject(messageOnEmailMobileRequest.getEmailSubject()).category(Category.OTHERS).body(message).build();
-			kafkaEmailTemplate.send(emailTopic, new EmailRequest(requestInfo,email));
-		}
+   public void sendMessage(MessageOnEmailMobileRequest messageOnEmailMobileRequest,String message) {
+	   try {
+			Long currentTime = System.currentTimeMillis() + maxExecutionTime;
+			Map<String,Object> messageParameter=new HashMap<>();
+			messageParameter.put("otp", messageOnEmailMobileRequest.getMessageParameter().get("otp"));
+			Category ctg=Category.OTHERS;
+			for(Category category:Category.values()) {
+				int catIndex=category.ordinal();
+				if(messageOnEmailMobileRequest.getCategory().equals(""+catIndex)) {
+					ctg=category;
+			    break;
+				}
+			}
+			
+			if(Arrays.asList("1","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
+				kafkaTemplate.send(smsTopic, new SMSRequest(messageOnEmailMobileRequest.getMobileNumber(), message, ctg, currentTime,messageOnEmailMobileRequest.getTemplateId()));
+			}else if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
+				RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date().getTime(), "action", "did", "key", "msgId", "requesterId", "authToken",new User());
+			    Set<String> emailList=new HashSet<>();
+				emailList.add(messageOnEmailMobileRequest.getEmailId());
+				Email email=Email.builder().emailTo(emailList).isHTML(false).subject(messageOnEmailMobileRequest.getEmailSubject()).category(ctg).body(message).build();
+				kafkaEmailTemplate.send(emailTopic, new EmailRequest(requestInfo,email));
+			}
+	   }catch (Exception e) {
+		   log.error("Exception : "+e.getMessage());
+	   }
 	   }
        /******************************* send message on email and mobile code end *********************************/
     
