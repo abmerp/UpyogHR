@@ -56,11 +56,10 @@ public class EgScrutiny implements Serializable {
 
 	@Column(name = "is_approved")
 	private String isApproved;
-
+	@Column(name = "userid")
 	private Integer userid;
 	@Column(name = "role")
 	private String role;
-	
 
 	private Integer serviceId;
 	@Column(name = "IsLOIPart")
@@ -78,7 +77,7 @@ public class EgScrutiny implements Serializable {
 	@Column(name = "bussiness_service_name")
 	private String bussinessServiceName;
 	@Column(name = "designation")
-	private String designation;	
+	private String designation;
 	@Column(name = "employee_name")
 	private String employeeName;
 	@Column(name = "application_status")

@@ -22,7 +22,7 @@ public class LocalizationService {
 
     @Value("${egov.localisation.search.endpoint}")
     private String localizationSearchEndpoint;
-
+  
     /**
      * Populates the localized msg cache
      *
@@ -56,5 +56,36 @@ public class LocalizationService {
 
         return mapOfCodesAndMessages;
     }
+    
+    public Map<String, Object> getLocalisedMsg(String tenantId, String locale, String module,String msgCode) {
+    	   RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date(), "action", "did", "key", "msgId", "requesterId", "authToken");
+           Map<String, Object> mapOfCodesAndMessages = new HashMap<>();
+           StringBuilder uri = new StringBuilder();
+           Map<String, Object> request = new HashMap<>();
+           request.put("RequestInfo", requestInfo);
+           uri.append(localizationHost).append(localizationSearchEndpoint).append("?tenantId=" + tenantId).append("&module=" + module).append("&locale=" + locale);
+           Optional<Object> response = repository.fetchResult(uri, request);
+           try {
+               if (response.isPresent()) {
+                   List<Object> locMessages = (List) ((Map) response.get()).get("messages");
+                   if (!CollectionUtils.isEmpty(locMessages)) {
+                       for (Object message : locMessages) {
+                           String code = ((Map<String, String>) message).get("code");
+                           String messsage = ((Map<String, String>) message).get("message");
+                          if(msgCode.equals(code)) {
+	                           mapOfCodesAndMessages.put("message", messsage);
+	                           mapOfCodesAndMessages.put("msgCode", code);
+                           break;
+                          }
+                       }
+                   }
+               }
+           } catch (Exception e) {
+               log.error("Exception while fetching from localization: " + e);
+           }
+
+           return mapOfCodesAndMessages;
+    }
+
 
 }
