@@ -1,138 +1,332 @@
 {
-    "tenantId": "hr",
+   "tenantId": "hr",
     "moduleName": "common-masters",
-    "District":[
-        {
-         "name": "Ambala",
-         "distCodeNIC": "0602",
-         "distCodeTCP": "AA",
-         "districtCode": "01"
-        },
-        {
-         "name": "Bhiwani",
-         "distCodeNIC": "0613",
-         "distCodeTCP": "BI",
-         "districtCode": "02"
-        },
-        {
-         "name": "Charkhi Dadri",
-         "distCodeNIC": "0624",
-         "distCodeTCP": "CD",
-         "districtCode": "22"
-        },
-        {
-         "name": "Faridabad",
-         "distCodeNIC": "0619",
-         "distCodeTCP": "FD",
-         "districtCode": "03"
-        },
-        {
-         "name": "Fatehabad",
-         "distCodeNIC": "0610",
-         "distCodeTCP": "FT",
-         "districtCode": "04"
-        },
-        {
-         "name": "Gurugram",
-         "distCodeNIC": "0618",
-         "distCodeTCP": "GN",
-         "districtCode": "05"
-        },
-        {
-         "name": "Hissar",
-         "distCodeNIC": "0612",
-         "distCodeTCP": "HR",
-         "districtCode": "06"
-        },
-        {
-         "name": "Jhajjar",
-         "distCodeNIC": "0615",
-         "distCodeTCP": "JR",
-         "districtCode": "07"
-        },
-        {
-         "name": "Jind",
-         "distCodeNIC": "0609",
-         "distCodeTCP": "JD",
-         "districtCode": "08"
-        },
-        {
-         "name": "Kaithal",
-         "distCodeNIC": "0605",
-         "distCodeTCP": "KT",
-         "districtCode": "09"
-        },
-        {
-         "name": "Karnal",
-         "distCodeNIC": "0606",
-         "distCodeTCP": "KL",
-         "districtCode": "10"
-        },
-        {
-         "name": "Kurukshetra",
-         "distCodeNIC": "0604",
-         "distCodeTCP": "KA",
-         "districtCode": "11"
-        },
-        {
-         "name": "Mahindergarh",
-         "distCodeNIC": "0616",
-         "distCodeTCP": "MH",
-         "districtCode": "12"
-        },
-        {
-         "name": "Mewat",
-         "distCodeNIC": "0620",
-         "distCodeTCP": "MT",
-         "districtCode": "20"
-        },
-        {
-         "name": "Palwal",
-         "distCodeNIC": "0621",
-         "distCodeTCP": "PL",
-         "districtCode": "21"
-        },
-        {
-         "name": "Panchkula",
-         "distCodeNIC": "0601",
-         "distCodeTCP": "PK",
-         "districtCode": "13"
-        },
-        {
-         "name": "Panipat",
-         "distCodeNIC": "0607",
-         "distCodeTCP": "PT",
-         "districtCode": "14"
-        },
-        {
-         "name": "Rewari",
-         "distCodeNIC": "0617",
-         "distCodeTCP": "RI",
-         "districtCode": "15"
-        },
-        {
-         "name": "Rohtak",
-         "distCodeNIC": "0614",
-         "distCodeTCP": "RK",
-         "districtCode": "16"
-        },
-        {
-         "name": "Sirsa",
-         "distCodeNIC": "0611",
-         "distCodeTCP": "SA",
-         "districtCode": "17"
-        },
-        {
-         "name": "Sonipat",
-         "distCodeNIC": "0608",
-         "distCodeTCP": "ST",
-         "districtCode": "18"
-        },
-        {
-         "name": "Yamunanagar",
-         "distCodeNIC": "0603",
-         "distCodeTCP": "YR",
-         "districtCode": "19"
-        }
-       ]   
-     }
+    "District": [
+      {
+         "disName":"Ambala",
+         "distCodeNIC":"0602",
+         "distCodeTCP":"AA",
+         "disCode":"01",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerAmbala"
+            },
+            {
+               "tenantIds":"DCOfficeAmbala"
+            }
+         ]
+      },
+      {
+         "disName":"Bhiwani",
+         "distCodeNIC":"0613",
+         "distCodeTCP":"BI",
+         "disCode":"02",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerBhiwani"
+            },
+            {
+               "tenantIds":"DCOfficeBhiwani"
+            }
+         ]
+      },
+      {
+         "disName":"Charkhi Dadri",
+         "distCodeNIC":"0624",
+         "distCodeTCP":"CD",
+         "disCode":"22",
+         "tenantId":[
+            {
+               "tenantIds":"DTPOfficeCharkhiDadri"
+            },
+            {
+               "tenantIds":"DCOfficeCharkhi Dadri"
+            }
+         ]
+      },
+      {
+         "disName":"Faridabad",
+         "distCodeNIC":"0619",
+         "distCodeTCP":"FD",
+         "disCode":"03",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerFaridabad"
+            },
+            {
+               "tenantIds":"DCOfficeFaridabad"
+            },
+            {
+               "tenantIds":"SeniorTownPlannerFaridabad"
+            },
+            {
+               "tenantIds":"DistrictTownPlannerEnforcementFaridabad"
+            }
+         ]
+      },
+      {
+         "disName":"Fatehabad",
+         "distCodeNIC":"0610",
+         "distCodeTCP":"FT",
+         "disCode":"04",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerFatehabad"
+            },
+            {
+               "tenantIds":"DCOfficeFatehabad"
+            }
+         ]
+      },
+      {
+         "disName":"Gurugram",
+         "distCodeNIC":"0618",
+         "distCodeTCP":"GN",
+         "disCode":"05",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerGurugram"
+            },
+            {
+               "tenantIds":"DCOfficeGurugram"
+            },
+            {
+               "tenantIds":"SeniorTownPlannerGurugram"
+            },
+            {
+               "tenantIds":"DistrictTownPlannerEnforcementGurugram"
+            }
+         ]
+      },
+      {
+         "disName":"Hissar",
+         "distCodeNIC":"0612",
+         "distCodeTCP":"HR",
+         "disCode":"06",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerHisar"
+            },
+            {
+               "tenantIds":"DCOfficeHisar"
+            },
+            {
+               "tenantIds":"SeniorTownPlannerHisar"
+            }
+         ]
+      },
+      {
+         "disName":"Jhajjar",
+         "distCodeNIC":"0615",
+         "distCodeTCP":"JR",
+         "disCode":"07",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerJhajjar"
+            },
+            {
+               "tenantIds":"DCOfficeJhajjar"
+            }
+         ]
+      },
+      {
+         "disName":"Jind",
+         "distCodeNIC":"0609",
+         "distCodeTCP":"JD",
+         "disCode":"08",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerJind"
+            },
+            {
+               "tenantIds":"DCOfficeJind"
+            }
+         ]
+      },
+      {
+         "disName":"Kaithal",
+         "distCodeNIC":"0605",
+         "distCodeTCP":"KT",
+         "disCode":"09",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerKaithal"
+            },
+            {
+               "tenantIds":"DCOfficeKaithal"
+            }
+         ]
+      },
+      {
+         "disName":"Karnal",
+         "distCodeNIC":"0606",
+         "distCodeTCP":"KL",
+         "disCode":"10",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerKarnal"
+            },
+            {
+               "tenantIds":"DCOfficeKarnal"
+            }
+         ]
+      },
+      {
+         "disName":"Kurukshetra",
+         "distCodeNIC":"0604",
+         "distCodeTCP":"KA",
+         "disCode":"11",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerKuruksetra"
+            },
+            {
+               "tenantIds":"DCOfficeKurukshetra"
+            }
+         ]
+      },
+      {
+         "disName":"Mahindergarh",
+         "distCodeNIC":"0616",
+         "distCodeTCP":"MH",
+         "disCode":"12",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerMahindergarh"
+            },
+            {
+               "tenantIds":"DCOfficeMahendragarh"
+            }
+         ]
+      },
+      {
+         "disName":"Mewat",
+         "distCodeNIC":"0620",
+         "distCodeTCP":"MT",
+         "disCode":"20",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerMewat"
+            },
+            {
+               "tenantIds":"DCOfficeMewat"
+            }
+         ]
+      },
+      {
+         "disName":"Palwal",
+         "distCodeNIC":"0621",
+         "distCodeTCP":"PL",
+         "disCode":"21",
+         "tenantId":[
+            "DistrictTownPlannerPalwal",
+            "DCOfficePalwal"
+         ]
+      },
+      {
+         "disName":"Panchkula",
+         "distCodeNIC":"0601",
+         "distCodeTCP":"PK",
+         "disCode":"13",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerPanchkula"
+            },
+            {
+               "tenantIds":"DCOfficePanchkula"
+            },
+            {
+               "tenantIds":"SeniorTownPlannerPanchkula"
+            }
+         ]
+      },
+      {
+         "disName":"Panipat",
+         "distCodeNIC":"0607",
+         "distCodeTCP":"PT",
+         "disCode":"14",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerPanipat"
+            },
+            {
+               "tenantIds":"DCOfficePanipat"
+            }
+         ]
+      },
+      {
+         "disName":"Rewari",
+         "distCodeNIC":"0617",
+         "distCodeTCP":"RI",
+         "disCode":"15",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerRewari"
+            },
+            {
+               "tenantIds":"DCOfficeRewari"
+            }
+         ]
+      },
+      {
+         "disName":"Rohtak",
+         "distCodeNIC":"0614",
+         "distCodeTCP":"RK",
+         "disCode":"16",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerRohtak"
+            },
+            {
+               "tenantIds":"DCOfficeRohtak"
+            },
+            {
+               "tenantIds":"SeniorTownPlannerRohtak"
+            }
+         ]
+      },
+      {
+         "disName":"Sirsa",
+         "distCodeNIC":"0611",
+         "distCodeTCP":"SA",
+         "disCode":"17",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerSirsa"
+            },
+            {
+               "tenantIds":"DCOfficeSirsa"
+            }
+         ]
+      },
+      {
+         "disName":"Sonipat",
+         "distCodeNIC":"0608",
+         "distCodeTCP":"ST",
+         "disCode":"18",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerSonipat"
+            },
+            {
+               "tenantIds":"DeputyCommissionerSonipat"
+            }
+         ]
+      },
+      {
+         "disName":"Yamunanagar",
+         "distCodeNIC":"0603",
+         "distCodeTCP":"YR",
+         "disCode":"19",
+         "tenantId":[
+            {
+               "tenantIds":"DistrictTownPlannerYamunanagar"
+            },
+            {
+               "tenantIds":"DCOfficeYamunanagar"
+            }
+         ]
+      }
+   
+   ] 
+}
