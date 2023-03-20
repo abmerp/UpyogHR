@@ -1,6 +1,6 @@
 
 {
-  "tenantId": "hr",
+  "tenantId": "DistrictTownPlannerPanchkula",
   "moduleName": "ACCESSCONTROL-ROLES",
   "roles": [
     {

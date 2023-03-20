@@ -1,6 +1,6 @@
 
 {
-  "tenantId": "hr",
+ "tenantId":"DistrictTownPlannerAmbala",
   "moduleName": "ACCESSCONTROL-ROLES",
   "roles": [
     {

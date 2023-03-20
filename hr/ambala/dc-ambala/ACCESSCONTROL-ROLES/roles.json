@@ -1,6 +1,6 @@
 
 {
-  "tenantId": "hr",
+ "tenantId":"DCOfficeAmbala",
   "moduleName": "ACCESSCONTROL-ROLES",
   "roles": [
     {

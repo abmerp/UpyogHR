@@ -1,6 +1,6 @@
 
 {
-  "tenantId": "hr",
+  "tenantId": "DistrictTownPlannerEnforcementGurugram",
   "moduleName": "ACCESSCONTROL-ROLES",
   "roles": [
     {
