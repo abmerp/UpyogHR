@@ -164,45 +164,73 @@ public class OtpService {
     
     	
     	 public String keepAllParemeterInMessage(String msg,Map<String,Object> parameter,String msgCode) {
-    	    	
-    	    	if(msgCode.equals("TCPMSG0001")) {
-    	    	  msg= msg.replaceAll("#grant", parameter.get("grant").toString());
-    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString());
-    	        }else if(msgCode.equals("TCPMSG0002")) {
-    	          msg= msg.replaceAll("#userName", parameter.get("userName").toString());
-    	        }else if(msgCode.equals("TCPMSG0003")) {
-    	          msg= msg.replace("#grant", parameter.get("grant").toString());
-    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    	          msg= msg.replace("#dated", parameter.get("dated").toString());
-    	        }else if(msgCode.equals("TCPMSG0004")) {
-    	    	  msg= msg.replace("#grant", parameter.get("grant").toString());
-    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    	          msg= msg.replace("#dated", parameter.get("dated").toString());
-    	        }else if(msgCode.equals("TCPMSG0005")) {
-    	    	  msg= msg.replace("#diaryNo", parameter.get("diaryNo").toString());
-    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    	          msg= msg.replace("#dated", parameter.get("dated").toString());
-    	    	}else if(msgCode.equals("TCPMSG0006")) {
-    			  msg= msg.replace("#diaryNo", parameter.get("diaryNo").toString());
-    		      msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    		      msg= msg.replace("#userEmailId", parameter.get("userEmailId").toString());
-    	        }else if(msgCode.equals("TCPMSG0007")) {
-    	 	      msg= msg.replace("#userName", parameter.get("userName").toString());
-    	 	    }else if(msgCode.equals("TCPMSG0008")) {
-    	 	      msg= msg.replace("#transactionNo", parameter.get("transactionNo").toString());
-    	 	      msg= msg.replace("#grNo", parameter.get("grNo").toString());
-    	    	}else if(msgCode.equals("TCPMSG0009")) {
-    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    	        }else if(msgCode.equals("TCPMSG0010")) {
-    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    	        }else if(msgCode.equals("TCPMSG0011")) {
-    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
-    	        }else if(msgCode.equals("TCPMSG0012")) {
     	    
-    	        }else if(msgCode.equals("TCPMSG0013")) {
-    	    	  msg= msg.replace("#otp", parameter.get("otp").toString());
-    	    	}	
-    	    	return msg;
+    		   switch (msgCode) {
+			      case "TCPMSG0001": {
+	    	    	  msg= msg.replaceAll("#grant", parameter.get("grant").toString());
+	    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString()); 
+	    	          break;
+			      }
+			      case  "TCPMSG0002": {
+	    	          msg= msg.replaceAll("#userName", parameter.get("userName").toString());
+	    	          break;
+			      }
+			      case  "TCPMSG0003": {
+	    	          msg= msg.replace("#grant", parameter.get("grant").toString());
+	    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	          msg= msg.replace("#dated", parameter.get("dated").toString());
+	    	          break;
+			      }
+			      case "TCPMSG0004": {
+	    	    	  msg= msg.replace("#grant", parameter.get("grant").toString());
+	    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	          msg= msg.replace("#dated", parameter.get("dated").toString());
+	    	          break;
+			      }
+			      case "TCPMSG0005": {
+	    	    	  msg= msg.replace("#diaryNo", parameter.get("diaryNo").toString());
+	    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	          msg= msg.replace("#dated", parameter.get("dated").toString());
+	    	          break;
+			      }
+			      case "TCPMSG0006": {
+	    			  msg= msg.replace("#diaryNo", parameter.get("diaryNo").toString());
+	    		      msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    		      msg= msg.replace("#userEmailId", parameter.get("userEmailId").toString());
+				      break;
+    		      }
+			      case "TCPMSG0007": {
+	    	 	      msg= msg.replace("#userName", parameter.get("userName").toString());
+	    	 	      break;
+			      }
+			      case "TCPMSG0008": {
+	    	 	      msg= msg.replace("#transactionNo", parameter.get("transactionNo").toString());
+	    	 	      msg= msg.replace("#grNo", parameter.get("grNo").toString());
+	    	 	      break;
+			      }
+			      case "TCPMSG0009": {
+	    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	    	  msg= msg.replace("#dated", parameter.get("dated").toString());
+		    	      break;
+			      }
+			      case "TCPMSG0010": {
+	    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	    	  break;
+			      }
+			      case "TCPMSG0011": {
+	    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	    	  break;
+			      }
+//			      case "TCPMSG0012": {
+//			      }
+			      case "TCPMSG0013": {
+	    	    	  msg= msg.replace("#otp", parameter.get("otp").toString());
+	    	    	  break;
+			      }
+			      default:
+			    	  break;
+		     }
+    	  	return msg;
     	    }
     
     

@@ -37,8 +37,8 @@ public class MessageOnEmailMobileRequest {
     @Pattern(regexp = "^[0-4]{1,1}$",message="Invalid Input ,  Note: 0 for OTP, 1 for TRANSACTION, 2 for PROMOTION,3 for  NOTIFICATION,4 for OTHERS")
     private String category;
     
-    @NotNull
-    private String templateId;
+//    @NotNull
+//    private String templateId;
     
     @NotNull
     private String type;
