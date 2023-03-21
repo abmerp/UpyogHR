@@ -96,6 +96,32 @@ public class CalculatorController {
 		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/access/_calculator", method = RequestMethod.POST)
+	public ResponseEntity<CalculationRes> accessCalculator(@Valid @RequestBody CalculationReq calculationReq
+			,@RequestParam(value="apiServiceName",required = false) String apiServiceName
+			,@RequestParam(value="calculationServiceName",required = false) String calculationServiceName
+			,@RequestParam(value="calculationType",required = false) String calculationType
+			,@RequestParam(value="isIntialCalculation",required = false) int isIntialCalculation
+			) {
+		if(apiServiceName==null)
+			apiServiceName = businessService_TL;
+		List<Calculation> calculations = null;
+		switch(apiServiceName)
+		{
+			case businessService_TL:
+				calculations = calculationService.accessCalculation(calculationReq,apiServiceName,calculationServiceName,calculationType,isIntialCalculation);
+				break;
+
+//			case businessService_BPA:
+//				calculations = bpaCalculationService.accessCalculation(calculationReq,apiServiceName,calculationServiceName,calculationType,isIntialCalculation);
+//			break;
+		default:
+				throw new CustomException("UNKNOWN_BUSINESSSERVICE", " Business Service not supported");
+		}
+
+		CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
+		return new ResponseEntity<CalculationRes>(calculationRes, HttpStatus.OK);
+	}
 
 	/**
 	 * Generates Bill for the given criteria

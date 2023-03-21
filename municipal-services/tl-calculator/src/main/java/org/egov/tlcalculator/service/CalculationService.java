@@ -4,12 +4,14 @@ import static org.egov.tlcalculator.utils.TLCalculatorConstants.businessService_
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tlcalculator.config.TLCalculatorConfigs;
@@ -31,6 +33,7 @@ import org.egov.tlcalculator.web.models.FeeAndBillingSlabIds;
 import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationCriteria;
 import org.egov.tlcalculator.web.models.bankguarantee.BankGuaranteeCalculationResponse;
 import org.egov.tlcalculator.web.models.demand.Category;
+import org.egov.tlcalculator.web.models.demand.DemandRequiredParamater;
 import org.egov.tlcalculator.web.models.demand.TaxHeadEstimate;
 import org.egov.tlcalculator.web.models.enums.CalculationType;
 import org.egov.tlcalculator.web.models.tradelicense.EstimatesAndSlabs;
@@ -91,6 +94,9 @@ public class CalculationService {
 	@Autowired
 	FeesCalculation feesCalculation;
 
+	@Autowired
+	AccessDemandService accessDemandService;
+	
 	/**
 	 * Calculates tax estimates and creates demand
 	 * 
@@ -591,5 +597,123 @@ public class CalculationService {
 
 		return totalFee;
 	}
+	
+/*********************************************** access payment service start ***********************************************/
+	
+	public List<Calculation> accessCalculation(CalculationReq calculationReq,String apiServiceName,String calculationServiceName,String calculationType,int isIntialCalculation){
+		String tenantId = calculationReq.getCalulationCriteria().get(0).getTenantId();
+		DemandRequiredParamater demandRequiredParamater=null;
+		Long taxPeriodFrom = System.currentTimeMillis();
+		Long taxPeriodTo = System.currentTimeMillis();
+		
+	
+		
+		String consumerCode = calculationReq.getCalculatorRequest().getApplicationNumber();
+		
+		
+		Calculation.builder().build();
+		List<Calculation> calculations = new ArrayList<>();
+		
+		TradeLicense tradeLicense = utils.getTradeLicense(calculationReq.getRequestInfo(),
+				calculationReq.getCalculatorRequest().getApplicationNumber(),
+				calculationReq.getRequestInfo().getUserInfo().getTenantId());
+		
+		List<CalulationCriteria> calulationCriteria = new ArrayList<>();
+		CalulationCriteria objectCalulationCriteria = new CalulationCriteria(tradeLicense,
+				calculationReq.getCalculatorRequest().getApplicationNumber(),
+				calculationReq.getRequestInfo().getUserInfo().getTenantId());
+		calulationCriteria.add(objectCalulationCriteria);
+		calculationReq.setCalulationCriteria(calulationCriteria);
+		
+		calculations=Arrays.asList(Calculation.builder().tradeLicense(tradeLicense).applicationNumber(consumerCode).tenantId(tenantId).build());
+		
+	    try {
+		  if(calculationType.equals("1")){
+			  calculations=calculationAllType(calculationReq.getRequestInfo(), calculations,isIntialCalculation,calculationServiceName, calculationType);
+			  BigDecimal amount=calculations.get(0).getTaxHeadEstimates().get(0).getEstimateAmount();
+			  demandRequiredParamater=DemandRequiredParamater.builder()
+						.businessService(apiServiceName)
+						.consumerCode(consumerCode)
+						.taxPeriodFrom(taxPeriodFrom)
+						.taxPeriodTo(taxPeriodTo)
+						.consumerType("eg_tl_change_beneficial")
+						.taxAmount(amount)
+						.tenantId(tenantId)
+						.build();
+		  }
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(validateDemandParameter(demandRequiredParamater)) {
+			CalculationRes calculationRes = CalculationRes.builder().calculations(null).build();
+			accessDemandService.generateDemand(calculationReq.getRequestInfo(), calculations, demandRequiredParamater);
+			producer.push(config.getSaveTopic(), calculationRes);
+		}else {
+			throw new CustomException("400",
+					"Some required parameter are null for demand and  bill creation");
+	    }
+		return calculations;
+	}
+	
+	private boolean validateDemandParameter(DemandRequiredParamater demandRequiredParamater) {
+		boolean isValid=false;
+		if(demandRequiredParamater!=null
+				&&demandRequiredParamater.getBusinessService()!=null
+				&&demandRequiredParamater.getConsumerCode()!=null
+				&&demandRequiredParamater.getConsumerType()!=null
+				&&demandRequiredParamater.getTenantId()!=null
+				&&demandRequiredParamater.getTaxAmount()!=null) {
+			isValid=true;
+		}
+		
+		return isValid;
+	}
+	
+	private List<Calculation> calculationAllType(RequestInfo requestInfo,List<Calculation> calculations,int isIntial,String developerServiceCode,String calculationType) {
+		BigDecimal licenseFee=new BigDecimal(0);	
+		  
+		if(calculationType.equals("1")){
+			    BigDecimal administrativeCharge=new BigDecimal(0);
+			    licenseFee=calculations.get(0).getTradeLicense().getTradeLicenseDetail().getLicenseFeeCharges();
+			    Boolean isIntials=(isIntial==1?true:false);   
+			    try { //COD , JDAMR, CISP, TOL
+			    	  	switch (developerServiceCode) {
+						
+							case "COD":
+								administrativeCharge=licenseFee.multiply(new BigDecimal(0.25)).multiply(new BigDecimal(isIntials?(0.4):(0.6)));
+								break;
+							case "JDAMR":
+									// adminestrive charge has levied	
+							    break;
+							case "CISP":
+								administrativeCharge=licenseFee.multiply(new BigDecimal(0.25)).multiply(new BigDecimal(isIntials?(0.4):(0.6)));
+								break;
+							case "TOL":
+								administrativeCharge=licenseFee.multiply(new BigDecimal(0.25)).multiply(new BigDecimal(isIntials?(0.4):(0.6))).add(isIntials?(licenseFee.multiply(new BigDecimal(0.1))):(new BigDecimal(0)));
+					        	break;
+							default:
+								break;
+						}
+			  			
+			    	  	log.info("licenseFee Charge for change beneficial : "+licenseFee);
+					    log.info("Administrative Charge for change beneficial : "+administrativeCharge);
+					}catch (Exception e) {
+						e.printStackTrace();
+					  log.error("Exception : "+e.getMessage());
+					}
+				TaxHeadEstimate taxHeadEstimate=TaxHeadEstimate.builder().estimateAmount(administrativeCharge).category(Category.CHARGES).taxHeadCode("TL_TAX").build(); //CB_Charges :--change beneficial Charges
+				calculations=calculations.stream().map(calculation ->{
+					calculation.setTaxHeadEstimates(Arrays.asList(taxHeadEstimate));
+					 return calculation;
+				}).collect(Collectors.toList());
+					
+			}
+		
+			return calculations;
+		
+		}
+	
+	/*********************************************** access payment service end ***********************************************/
+	
 
 }
