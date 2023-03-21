@@ -15,6 +15,9 @@ public class TLCalculatorConfigs {
 
     @Value("${egov.billingservice.host}")
     private String billingHost;
+    
+    @Value("${egov.bill.create.endpoint}")
+    private String billCreateEndpoint;
 
     @Value("${egov.taxhead.search.endpoint}")
     private String taxHeadSearchEndpoint;
