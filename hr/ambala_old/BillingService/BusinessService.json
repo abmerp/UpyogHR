@@ -1,0 +1,17 @@
+{
+  "tenantId": "hr.ambala",
+  "moduleName": "BillingService",
+  "BusinessService": [
+    {
+      "businessService": "TradeLicense",
+      "code":"TL",
+      "collectionModesNotAllowed": [
+        "DD"
+      ],
+      "partPaymentAllowed": false,
+      "isAdvanceAllowed": false,
+      "demandUpdateTime": 604800000,
+      "isVoucherCreationEnabled": true
+    }
+  ]
+}

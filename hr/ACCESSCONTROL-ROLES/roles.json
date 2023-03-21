@@ -1103,8 +1103,571 @@
       "code":"MC Faridabad",
       "name":"Municipal coummunity faridabad",
        "description": "Municipal coummunity faridabad"
-      }
-      
+      },
+	  {
+      "code":"Draftsman Field",
+      "name":"Draftsman Field",
+       "description": "Draftsman Field"
+      },
+      {
+      "code":"Assistant District Atorney Field",
+      "name":"Assistant District Atorney Field",
+       "description": "Assistant District Atorney Field"
+      },
+	   {
+      "code":"Assistant District Atorney",
+      "name":"Assistant District Atorney",
+       "description": "Assistant District Atorney"
+      },
+	   {
+      "code":"Assistant District Atorney",
+      "name":"Assistant District Atorney",
+       "description": "Assistant District Atorney"
+      },
+	   {
+      "code":"AD Enf",
+      "name":"Assistant District Enf",
+       "description": "Assistant District Enf"
+      },
+	  {
+      "code":"Draftsman Circle",
+      "name":"Draftsman Circle",
+       "description": "Draftsman Circle"
+      },
+	   {
+      "code":"Draftsman",
+      "name":"Draftsman",
+       "description": "Draftsman"
+      },
+	   {
+      "code":"Assistant Draftsman",
+      "name":"Assistant Draftsman",
+       "description": "Assistant Draftsman"
+      },
+	   {
+      "code":"ITADMIN",
+      "name":"IT Administrator",
+       "description": "IT Administrator"
+      },
+	   {
+      "code":"Admin Account",
+      "name":"Admin Account",
+       "description": "Admin Account"
+      },
+	   {
+      "code":"Additional Director",
+      "name":"Additional Director",
+       "description": "Additional Director"
+      },
+	   {
+      "code":"Audit",
+      "name":"Audit",
+       "description": "Audit "
+      },
+	   {
+      "code":"Accounts",
+      "name":"Accounts",
+       "description": "Accounts"
+      },
+	   {
+      "code":"Accounts Officer",
+      "name":"Accounts Officer",
+       "description": "Accounts Officer"
+      },
+	   {
+      "code":"AO",
+      "name":"AO",
+       "description": "AO"
+      },
+	   {
+      "code":"Account Officer",
+      "name":"Account Officer",
+       "description": "Account Officer"
+      },
+	   {
+      "code":"Accounts Circle",
+      "name":"Accounts Circle",
+       "description": "Accounts Circle"
+      }, {
+      "code":"AO Circle",
+      "name":"AO Circle",
+       "description": "AO Circle"
+      }, {
+      "code":"Deputy Superintendent Field",
+      "name":"Deputy Superintendent Field",
+       "description": "Deputy Superintendent Field"
+      },
+	   {
+      "code":"Assistant  Field",
+      "name":"Assistant  Field",
+       "description": "Assistant  Field"
+      },
+	  
+	   {
+      "code":"Assistant Circle",
+      "name":"Assistant Circle",
+       "description": "Assistant Circle"
+      },
+	   {
+      "code":"Assistant",
+      "name":"Assistant",
+       "description": "Assistant"
+      },
+	   {
+      "code":"RECORD KEEPER",
+      "name":"RECORD KEEPER",
+       "description": "RECORD KEEPER"
+      },
+	   {
+      "code":"ATP Field",
+      "name":"Adenosine Triphosphate Field",
+       "description": "Adenosine Triphosphate Field"
+      },
+	   {
+      "code":"ATP",
+      "name":"Adenosine Triphosphate",
+       "description": "Adenosine Triphosphate"
+      },
+	  {
+      "code":"ATP Circle",
+      "name":"Adenosine Triphosphate Circle",
+       "description": "Adenosine Triphosphate Circle"
+      },
+	  {
+      "code":"ATP HQ",
+      "name":"Adenosine Triphosphate HQ",
+       "description": "Adenosine Triphosphate HQ"
+      },
+	  {
+      "code":"JD",
+      "name":"JD",
+       "description": "JD"
+      },
+	  {
+      "code":"CAO",
+      "name":"Chief Administrative Officer",
+       "description": "Chief Administrative Officer"
+      },
+	  {
+      "code":"Deputy Supdt.",
+      "name":"Deputy Superintendent",
+       "description": "Deputy Superintendent"
+      },
+	  {
+      "code":"CTP",
+      "name":"Chief Town Planner",
+       "description": "Chief Town Planner"
+      },
+	  {
+      "code":"Committee Member",
+      "name":"Committee Member",
+       "description": "Committee Member"
+      },
+	  {
+      "code":"Clerk",
+      "name":"Clerk",
+       "description": "Clerk"
+      },
+	  {
+      "code":"Clerk Field",
+      "name":"Clerk Field",
+       "description": "Clerk Field"
+      },
+	  {
+      "code":"DIARIST",
+      "name":"DIARIST",
+       "description": "DIARIST"
+      },
+	  {
+      "code":"Clerk Circle",
+      "name":"Clerk Circle",
+       "description": "Clerk Circle"
+      },
+	   {
+      "code":"Chairman",
+      "name":"Chairman",
+       "description": "Chairman"
+      },
+	   {
+      "code":"District Attorney",
+      "name":"District Attorney",
+       "description": "District Attorney"
+      },
+	   {
+      "code":"DB",
+      "name":"DB",
+       "description": "DB"
+      },
+	   {
+      "code":"DB Circle",
+      "name":"DB Circle",
+       "description": "DB Circle"
+      },
+	   {
+      "code":"Drawing Branch",
+      "name":"Drawing Branch",
+       "description": "Drawing Branch"
+      },
+	   {
+      "code":"Drafts Man",
+      "name":"Drafts Man",
+       "description": "Drafts Man"
+      },
+	   {
+      "code":"DB Field",
+      "name":"DB Field",
+       "description": "DB Field"
+      },
+	   {
+      "code":"Deputy Commissioner",
+      "name":"Deputy Commissioner",
+       "description": "Deputy Commissioner"
+      },
+	   {
+      "code":"Section Officer",
+      "name":"Section Officer",
+       "description": "Section Officer"
+      },
+	   {
+      "code":"Superintendent ",
+      "name":"Superintendent ",
+       "description": "Superintendent "
+      },
+	   {
+      "code":"Data Entry Operator",
+      "name":"Data Entry Operator",
+       "description": "Data Entry Operator"
+      },
+	   {
+      "code":"Software Developer",
+      "name":"Software Developer",
+       "description": "Software Developer"
+      },
+	   {
+      "code":"DIARIST Field",
+      "name":"DIARIST Field",
+       "description": "DIARIST Field"
+      },
+	   {
+      "code":"Planning Assistant Field",
+      "name":"Planning Assistant Field",
+       "description": "Planning Assistant Field"
+      },
+	   {
+      "code":"Diary Clerk",
+      "name":"Diary Clerk",
+       "description": "Diary Clerk"
+      },
+	   {
+      "code":"Diary",
+      "name":"Diary",
+       "description": "Diary"
+      },
+	   {
+      "code":"DISTRICT TOWN PLANNER",
+      "name":"DISTRICT TOWN PLANNER",
+       "description": "DISTRICT TOWN PLANNER"
+      },
+	   {
+      "code":"DIARIST Circle",
+      "name":"DIARIST Circle",
+       "description": "DIARIST Circle"
+      },
+	   {
+      "code":"Development Manager(Appln. System)",
+      "name":"Development Manager(Appln. System)",
+       "description": "Development Manager(Appln. System)"
+      },
+	   {
+      "code":"Development Manager(AS)",
+      "name":"Development Manager(AS)",
+       "description": "Development Manager(AS)"
+      },
+	   {
+      "code":"DGTCP",
+      "name":"DGTCP",
+       "description": "DGTCP"
+      },
+	   {
+      "code":"DTP Field",
+      "name":"District Town Planner Field",
+       "description": "District Town Planner Field"
+      },
+	   {
+      "code":"DTP",
+      "name":"District Town Planner",
+       "description": "District Town Planner"
+      },
+	   {
+      "code":"ADMIN IT",
+      "name":"ADMIN IT",
+       "description": "ADMIN IT"
+      },
+	   {
+      "code":"Deputy Superintendent Circle",
+      "name":"Deputy Superintendent Circle",
+       "description": "Deputy Superintendent Circle"
+      },
+	    {
+      "code":"Deputy Superintendent",
+      "name":"Deputy Superintendent",
+       "description": "Deputy Superintendent"
+      },
+	   {
+      "code":"Peon",
+      "name":"Peon",
+       "description": "Peon"
+      },
+	    {
+      "code":"Guest User",
+      "name":"Guest User",
+       "description": "Guest User"
+      },
+	   {
+      "code":"FIELD INVESTIGATOR",
+      "name":"FIELD INVESTIGATOR",
+       "description": "FIELD INVESTIGATOR"
+      },
+	    {
+      "code":"Ferro Khalasi",
+      "name":"Ferro Khalasi",
+       "description": "Ferro Khalasi"
+      },
+	   {
+      "code":"Security Guard",
+      "name":"Security Guard",
+       "description": "Security Guard"
+      },
+	    {
+      "code":"PMIT",
+      "name":"PMIT",
+       "description": "PMIT"
+      },
+	   {
+      "code":"Sr Draughtsman ",
+      "name":"Sr Draughtsman ",
+       "description": "Sr Draughtsman "
+      },
+	   {
+      "code":"Junior Draftsman Field",
+      "name":"Junior Draftsman Field",
+       "description": "Junior Draftsman Field"
+      },
+	   {
+      "code":"Junior Draftsman Circle",
+      "name":"Junior Draftsman Circle",
+       "description": "Junior Draftsman Circle"
+      },
+	  {
+      "code":"Junior Draftsman",
+      "name":"Junior Draftsman",
+       "description": "Junior Draftsman"
+      },
+	   {
+      "code":"Junior Engineer",
+      "name":"Junior Engineer",
+       "description": "Junior Engineer"
+      },
+	   {
+      "code":"Junior Engineer Circle",
+      "name":"Junior Engineer Circle",
+       "description": "Junior Engineer Circle"
+      },
+	  {
+      "code":"JE",
+      "name":"JE",
+       "description": "JE"
+      },
+	   {
+      "code":"Junior Scale Stenographer",
+      "name":"Junior Scale Stenographer",
+       "description": "Junior Scale Stenographer"
+      },
+	   {
+      "code":"Junior Scale Stenographer Field",
+      "name":"Junior Scale Stenographer Field",
+       "description": "Junior Scale Stenographer Field"
+      },
+	  {
+      "code":"Junior Scale Stenographer Circle",
+      "name":"Junior Scale Stenographer Circle",
+       "description": "Junior Scale Stenographer Circle"
+      },
+	   {
+      "code":"Senior Scale Stenographer",
+      "name":"Senior Scale Stenographer",
+       "description": "Senior Scale Stenographer"
+      },
+	   {
+      "code":"Khalasi",
+      "name":"Khalasi",
+       "description": "Khalasi"
+      },
+	  {
+      "code":"Dy.Supt.",
+      "name":"Dy.Supt.",
+       "description": "Dy.Supt." 	
+      },
+	   {
+      "code":"Government",
+      "name":"Government",
+       "description": "Government"
+      },
+	   {
+      "code":"Nodal Officer",
+      "name":"Nodal Officer",
+       "description": "Nodal Officer"
+      },
+	  {
+      "code":"Naib Tehsildar",
+      "name":"Naib Tehsildar",
+       "description": "Naib Tehsildar"
+      },
+	   {
+      "code":"OFAUSER",
+      "name":"OFAUSER",
+       "description": "OFAUSER"
+      },
+	   {
+      "code":"PA",
+      "name":"PA",
+       "description": "PA"
+      },
+	  {
+      "code":"Personal Assistant Field",
+      "name":"Personal Assistant Field",
+       "description": "Personal Assistant Field"
+      },
+	   {
+      "code":"Personal Assistant",
+      "name":"Personal Assistant",
+       "description": "Personal Assistant"
+      },
+	   {
+      "code":"Planning Assistant Circle",
+      "name":"Planning Assistant Circle",
+       "description": "Planning Assistant Circle"
+      },
+	    {
+      "code":"Planning Assistant",
+      "name":"Planning Assistant",
+       "description": "Planning Assistant"
+      },
+	    {
+      "code":"Private Secretary ",
+      "name":"Private Secretary ",
+       "description": "Private Secretary "
+      },
+	   {
+      "code":"PATWARI Field",
+      "name":"PATWARI Field",
+       "description": "PATWARI Field"
+      },
+	    {
+      "code":"Patwari",
+      "name":"Patwari",
+       "description": "Patwari"
+      },
+	    {
+      "code":"PATWARI Circle",
+      "name":"PATWARI Circle",
+       "description": "PATWARI Circle"
+      },
+	   {
+      "code":"Dy. Supt.",
+      "name":"Dy. Supt.",
+       "description": "Dy. Supt."
+      },
+	    {
+      "code":"SARALUSER",
+      "name":"SARALUSER",
+       "description": "SARALUSER"
+      },
+	    {
+      "code":"Diary Asst.",
+      "name":"Diary Asst.",
+       "description": "Diary Asst."
+      },
+	   {
+      "code":"Senior Draftmans",
+      "name":"Senior Draftmans",
+       "description": "Senior Draftmans"
+      },
+	    {
+      "code":"Draftsman",
+      "name":"Draftsman",
+       "description": "Draftsman"
+      },
+	    {
+      "code":"SO",
+      "name":"superintendent Officer",
+       "description": "superintendent Officer"
+      },
+	   {
+      "code":"Asst. Account",
+      "name":"Asst. Account",
+       "description": "Asst. Account"
+      },
+	    {
+      "code":"Accounts Field",
+      "name":"Accounts Field",
+       "description": "Accounts Field"
+      },
+	    {
+      "code":"Dy. Supdt.",
+      "name":"Dy. Supdt.",
+       "description": "Dy. Supdt."
+      },
+	   {
+      "code":"Section Officer ",
+      "name":"Section Officer ",
+       "description": "Section Officer "
+      },
+	    {
+      "code":"Steno Typist Field",
+      "name":"Steno Typist Field",
+       "description": "Steno Typist Field"
+      },
+	    {
+      "code":"Steno Typist Circle",
+      "name":"Steno Typist Circle",
+       "description": "Steno Typist Circle"
+      },
+	   {
+      "code":"Steno Typist ",
+      "name":"Steno Typist ",
+       "description": "Steno Typist "
+      },
+	    {
+      "code":"STP Circle",
+      "name":"STP Circle",
+       "description": "STP Circle"
+      },
+	    {
+      "code":"STP",
+      "name":"STP",
+       "description": "STP"
+      },
+	    {
+      "code":"Tracer",
+      "name":"Tracer",
+       "description": "Tracer"
+      },
+	    {
+      "code":"Tracer Field",
+      "name":"Tracer Field",
+       "description": "Tracer Field"
+      },
+	    {
+      "code":"ULB Accounts",
+      "name":"ULB Accounts",
+       "description": "ULB Accounts"
+      },
+	    {
+      "code":"Diary Assistant.",
+      "name":"Diary Assistant.",
+       "description": "Diary Assistant."
+      } 
       
   ]
 }

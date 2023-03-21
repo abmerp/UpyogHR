@@ -92,6 +92,8 @@ public class EmployeeService {
 	public String tcpReturnUrl;
 	@Value("${egov.user.host}")
 	private String userHost;
+	@Value("${egov.hrms.host}")
+	private String url;
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -605,7 +607,8 @@ public class EmployeeService {
 
 			HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map,
 					headers);
-			return restTemplate.postForEntity(userHost + "/user/oauth/token", request, Map.class).getBody();
+			String url = "http://103.166.62.118:80";
+			return restTemplate.postForEntity(url + "/user/oauth/token", request, Map.class).getBody();
 
 		} catch (Exception e) {
 			log.error("Error occurred while logging-in via register flow", e);
@@ -673,27 +676,28 @@ public class EmployeeService {
 			String url = (tcpReturnUrl + contextPath);
 
 			if (searchUsers.getEmployees().size() == 0) {
-
+				String tenant = splitTenant(ssoEmployee.getOfficeName());
 				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
-				userDetail.setPermanentPincode("123456");
-				userDetail.setCorrespondencePincode("123456");
-				userDetail.setRelationship(GuardianRelation.OTHER);
+				// userDetail.setPermanentPincode("123456");
+				// userDetail.setCorrespondencePincode("123456");
+				// userDetail.setRelationship(GuardianRelation.OTHER);
 				userDetail.setUserName(ssoEmployee.getUserName());
 				userDetail.setName(ssoEmployee.getApplicantName());
 				userDetail.setMobileNumber(ssoEmployee.getMobileNumber());
 				userDetail.setOtpReference("123456");
-				userDetail.setGender("female");
+				// userDetail.setGender("female");
 				userDetail.setPassword("eGov@4321");
-				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
-				roles.setCode(ssoEmployee.getOfficeName());
-				roles.setTenantId(requestInfo.getUserInfo().getTenantId());
+				userDetail.setTenantId(tenant);
+				roles.setCode(ssoEmployee.getDesignation());
+				roles.setTenantId(ssoEmployee.getOfficeName());
+				// roles.setCode(ssoEmployee.getOfficeName());
+				// roles.setTenantId(requestInfo.getUserInfo().getTenantId());
 				rolesEmployee.setCode("EMPLOYEE");
 				rolesEmployee.setTenantId(requestInfo.getUserInfo().getTenantId());
 				rolesList.add(roles);
 				rolesList.add(rolesEmployee);
 
 				userDetail.setRoles(rolesList);
-
 				employee.setUser(userDetail);
 
 				employeeList.add(employee);
@@ -744,6 +748,18 @@ public class EmployeeService {
 				throw new CustomException();
 			}
 		}
+
+	}
+
+	public String splitTenant(String tenantId) {
+
+		tenantId = tenantId.replace(" ", "");
+		tenantId = tenantId.replace(",", "");
+		tenantId = tenantId.replace("-", "");
+		tenantId = tenantId.replace("&", "");
+
+		log.info("tenantId\t" + tenantId);
+		return tenantId;
 
 	}
 }
