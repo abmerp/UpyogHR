@@ -5147,7 +5147,7 @@ public class LoiReportService {
 					try {
 						detailsofAppliedLand.getPurposeDetails().stream().forEach(purposedetails->{
 					
-							if(purposedetails.getCode().contains("CPRS")) {
+							if(purposedetails.getCode().equals("CPRS")) {
 								plottedComponent=Optional.ofNullable(purposedetails.getArea()).orElseThrow(RuntimeException::new);
 								farAmount=Optional.ofNullable(String.valueOf(purposedetails.getFar().charAt(0))).orElseThrow(RuntimeException::new);
 							}else {
