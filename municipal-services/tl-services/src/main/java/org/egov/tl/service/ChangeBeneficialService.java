@@ -90,7 +90,7 @@ public class ChangeBeneficialService {
 
 	}
 
-	public ChangeBeneficialResponse createChangeBeneficialPay(RequestInfo requestInfo,String applicationNumber,int isIntialPayment)
+	public ChangeBeneficialResponse createChangeBeneficialPay(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment)
 			throws JsonProcessingException {
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
@@ -99,16 +99,14 @@ public class ChangeBeneficialService {
 			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 			
 			if(changeBeneficiaDetails!=null) {
-			   Double payableAmount=getAdministrativeChargeForChangeBeneficial(requestInfo, applicationNumber, changeBeneficiaDetails, isIntialPayment);
-			   if(!payableAmount.equals(0.0)){
 				  TradeLicense tradeLicenses=tradeLicensesService.getLicensesWithOwnerInfo(TradeLicenseSearchCriteria.builder().applicationNumber(applicationNumber).tenantId("hr").build(), requestInfo).get(0);
 				  String data = mapper.writeValueAsString(tradeLicenses);
 				  System.out.println("data :----------------------"+data);
-				  // --------------------------calculation--------------------------------//
-						
+				  // --------------------------calculation start--------------------------------//
 				        StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
 						calculatorUrl.append(calculatorEndPoint);
-					
+						calculatorUrl.append("?calculationServiceName="+calculationServiceName+"&calculationType="+calculationType+"&isIntialCalculation="+isIntialPayment);
+					    System.out.println("url:---"+calculatorUrl);
 						CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
 						calulationCriteriaRequest.setTenantId(tradeLicenses.getTenantId());
 						calulationCriteriaRequest.setTradelicense(tradeLicenses);
@@ -122,14 +120,15 @@ public class ChangeBeneficialService {
 						calculatorMap.put("CalculatorRequest", calculator);
 						calculatorMap.put("RequestInfo", requestInfo);
 						Object responseCalculator = serviceRequestRepository.fetchResult(calculatorUrl, calculatorMap);
-							
+				// --------------------------calculation end--------------------------------//
+				
+			    // --------------------------fetch bill start--------------------------------//
+				
 						
-					
-				 
-			   }else {
-				   changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-							.requestInfo(null).message("Your license fee invalid data coming or version mismatch of tradelicense and tradelicensedetails").status(false).build();
-			   }
+				// --------------------------fetch bill end--------------------------------//
+						 
+						
+						
 			}else {
 				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
@@ -140,45 +139,4 @@ public class ChangeBeneficialService {
 		}
 		return changeBeneficialResponse;
 	}
-	
-	private Double getAdministrativeChargeForChangeBeneficial(RequestInfo requestInfo,String applicationNumber,ChangeBeneficial changeBeneficialDetails,int type) {
-	
-		LicenseServiceResponseInfo licenseServiceResponseInfo=licenseService.getNewServicesInfoById(applicationNumber, requestInfo);
-	    Double administrativeCharge=0.0;
-	    Boolean isIntial=(type==1?true:false);   
-	    try { //COD , JDAMR, CISP, TOL
-	    	  String developerServiceCode=changeBeneficialDetails.getDeveloperServiceCode();
-	 	      licenseFee = "3123133";//Optional.ofNullable(licenseServiceResponseInfo.getNewServiceInfoData().get(0).getFeesAndCharges().getLicenseFee()).orElseThrow(RuntimeException::new);
-	  			switch (developerServiceCode) {
-				
-					case "COD":
-						administrativeCharge=Double.parseDouble(licenseFee)*0.25*(isIntial?(0.4):(0.6));
-						break;
-					case "JDAMR":
-							// adminestrive charge has levied	
-					    break;
-					case "CISP":
-						administrativeCharge=Double.parseDouble(licenseFee)*0.25*(isIntial?(0.4):(0.6));
-						break;
-					case "TOL":
-						administrativeCharge=Double.parseDouble(licenseFee)*0.25*(isIntial?(0.4):(0.6))+(isIntial?(Double.parseDouble(licenseFee)*0.1):(0.0));
-			        	break;
-					default:
-						break;
-				}
-	  			
-			   log.info("Administrative Charge for change beneficial : "+administrativeCharge);
-			}catch (Exception e) {
-				e.printStackTrace();
-			  log.error("Exception : "+e.getMessage());
-			}
-	        
-	        if(licenseFee.equals(0.0)) {
-	    	    administrativeCharge=0.0;
-				log.warn("Your License Fees is very low : "+licenseFee);
-			}
-	      
-		return administrativeCharge;
-		}
-
 }

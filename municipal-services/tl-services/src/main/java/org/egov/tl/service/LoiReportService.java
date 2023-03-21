@@ -5138,12 +5138,25 @@ public class LoiReportService {
 					
 					DetailsofAppliedLand detailsofAppliedLand = Optional
 							.ofNullable(licenseDetails.getDetailsofAppliedLand()).orElseThrow(RuntimeException::new);
-					DetailsAppliedLandPlot detailsAppliedLandPlot = detailsofAppliedLand.getDetailsAppliedLandPlot();
-					farAmount = Optional.ofNullable(detailsAppliedLandPlot.getFAR()).orElseThrow(RuntimeException::new);
-					plottedComponent = Optional.ofNullable(detailsAppliedLandPlot.getUnderPlot())
-							.orElseThrow(RuntimeException::new);
-					comericalComponent = Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
-							.orElseThrow(RuntimeException::new);
+//					DetailsAppliedLandPlot detailsAppliedLandPlot = detailsofAppliedLand.getDetailsAppliedLandPlot();
+//					farAmount = Optional.ofNullable(detailsAppliedLandPlot.getFAR()).orElseThrow(RuntimeException::new);
+//					plottedComponent = Optional.ofNullable(detailsAppliedLandPlot.getUnderPlot())
+//							.orElseThrow(RuntimeException::new);
+//					comericalComponent = Optional.ofNullable(detailsAppliedLandPlot.getCommercial())
+//							.orElseThrow(RuntimeException::new);
+					try {
+						detailsofAppliedLand.getPurposeDetails().stream().forEach(purposedetails->{
+					
+							if(purposedetails.getCode().contains("CPRS")) {
+								plottedComponent=Optional.ofNullable(purposedetails.getArea()).orElseThrow(RuntimeException::new);
+								farAmount=Optional.ofNullable(String.valueOf(purposedetails.getFar().charAt(0))).orElseThrow(RuntimeException::new);
+							}else {
+								comericalComponent=Optional.ofNullable(comericalComponent=purposedetails.getArea()).orElseThrow(RuntimeException::new);
+							}
+						});
+					}catch (Exception e) {
+						log.error("Exception: "+e.getMessage());
+					}
 
 //					licenseFees = ConvertUtil.numberToComa(licenseFee);
 //					licenseFeesInWord = ConvertUtil.numberToWords(licenseFee);
