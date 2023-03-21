@@ -4966,54 +4966,58 @@ public class LoiReportService {
 
 	public void getCalculatorData(String applicationNumber, LicenseDetails newobj, RequestLOIReport requestLOIReport) {
 		decfor.setRoundingMode(RoundingMode.UP);
-
-		TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
-		tradeLicenseRequest.setApplicationNumber(applicationNumber);
-		java.util.List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
-				requestLOIReport.getRequestInfo());
-
-		// --------------------------calculation--------------------------------//
-		StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
-		calculatorUrl.append(calculatorEndPoint);
-
-		CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
-		calulationCriteriaRequest.setTenantId(tradeLicenses.get(0).getTenantId());
-		calulationCriteriaRequest.setTradelicense(tradeLicenses.get(0));
-		java.util.List<CalulationCriteria> calulationCriteria = Arrays.asList(calulationCriteriaRequest);
-
-		CalculatorRequest calculator = new CalculatorRequest();
-		calculator.setApplicationNumber(applicationNumber);
-		calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
-		calculator.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
-//		calculator.setTotalLandSize(new BigDecimal(newobj.getApplicantPurpose().getTotalArea()));
-
-		Map<String, Object> calculatorMap = new HashMap<>();
-		calculatorMap.put("CalulationCriteria", calulationCriteria);
-		calculatorMap.put("CalculatorRequest", calculator);
-		calculatorMap.put("RequestInfo", requestLOIReport.getRequestInfo());
-		Object responseCalculator = serviceRequestRepository.fetchResult(calculatorUrl, calculatorMap);
-
-		String data = null;
-		try {
-			data = mapper.writeValueAsString(responseCalculator);
-		} catch (JsonProcessingException e) { // TODO Auto-generated catch block
-			log.error("JsonProcessingException : "+e.getMessage());
-		}
-		CalculationRes calculationRes = null;
-		ObjectReader objectReaders = mapper.readerFor(new TypeReference<CalculationRes>() {
-		});
-		try {
-
-			calculationRes = objectReaders.readValue(data);
-		} catch (IOException e) {
-			log.error("IOException : "+e.getMessage());
-		}
-		FeeAndBillingSlabIds charges = calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
-		double dblicenseFees=0.0;
-		double dbscrutinyFees=0.0;
-		double dbconversionCharges=0.0;
-		double dbstateInfrastructureDevelopmentCharges=0.0;
-		try {
+		
+     try {
+			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
+			tradeLicenseRequest.setApplicationNumber(applicationNumber);
+			java.util.List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest,
+					requestLOIReport.getRequestInfo());
+	
+			// --------------------------calculation--------------------------------//
+			StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
+			calculatorUrl.append(calculatorEndPoint);
+	
+			CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
+			calulationCriteriaRequest.setTenantId(tradeLicenses.get(0).getTenantId());
+			calulationCriteriaRequest.setTradelicense(tradeLicenses.get(0));
+			java.util.List<CalulationCriteria> calulationCriteria = Arrays.asList(calulationCriteriaRequest);
+	
+			CalculatorRequest calculator = new CalculatorRequest();
+			calculator.setApplicationNumber(applicationNumber);
+			calculator.setPotenialZone(newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getPotential());
+			calculator.setPurposeCode(newobj.getApplicantPurpose().getPurpose());
+	//		calculator.setTotalLandSize(new BigDecimal(newobj.getApplicantPurpose().getTotalArea()));
+	
+			Map<String, Object> calculatorMap = new HashMap<>();
+			calculatorMap.put("CalulationCriteria", calulationCriteria);
+			calculatorMap.put("CalculatorRequest", calculator);
+			calculatorMap.put("RequestInfo", requestLOIReport.getRequestInfo());
+			Object responseCalculator = serviceRequestRepository.fetchResult(calculatorUrl, calculatorMap);
+	
+			String data = null;
+			try {
+				data = mapper.writeValueAsString(responseCalculator);
+			} catch (JsonProcessingException e) { // TODO Auto-generated catch block
+				log.error("JsonProcessingException : "+e.getMessage());
+			}
+			CalculationRes calculationRes = null;
+			ObjectReader objectReaders = mapper.readerFor(new TypeReference<CalculationRes>() {
+			});
+			try {
+	
+				calculationRes = objectReaders.readValue(data);
+			} catch (IOException e) {
+				log.error("IOException : "+e.getMessage());
+			}
+			
+			
+			double dblicenseFees=0.0;
+			double dbscrutinyFees=0.0;
+			double dbconversionCharges=0.0;
+			double dbstateInfrastructureDevelopmentCharges=0.0;
+			
+			FeeAndBillingSlabIds charges = calculationRes.getCalculations().get(0).getTradeTypeBillingIds();
+		
 			
 			zoneWiseEdcAmount = Optional.ofNullable(charges.getExternalDevelopmentCharges()).orElseThrow(RuntimeException::new);
 			zoneWiseEdcAmount = Double.parseDouble(String.valueOf(zoneWiseEdcAmount).toString().replace("E", ""));
