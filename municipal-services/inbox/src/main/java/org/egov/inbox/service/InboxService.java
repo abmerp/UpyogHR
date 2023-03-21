@@ -199,7 +199,7 @@ public class InboxService {
 			for (String businessSrv : businessServiceName) {
 				BusinessService businessService = workflowService.getBusinessService(criteria.getTenantId(),
 						requestInfo, businessSrv);
-				log.info("businessService\t"+businessService);
+			
 				if (businessService != null)
 					bussinessSrvs.add(businessService);
 			}

@@ -304,6 +304,7 @@ public class TLInboxFilterService {
 			}
             StringBuilder uri = new StringBuilder();
             uri.append(searcherHost).append(tlInboxSearcherCountEndpoint);
+            log.info("uri searcher\t"+uri);
 
             result = restTemplate.postForObject(uri.toString(), searcherRequest, Map.class);
 
