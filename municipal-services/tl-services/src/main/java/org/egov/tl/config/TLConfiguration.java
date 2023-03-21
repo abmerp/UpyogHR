@@ -400,6 +400,10 @@ public class TLConfiguration {
     @Value("${egov.hrms.workDir.path}")
     private String  hrmsContextPath;
     
+ // change beneficial
+    @Value("${persister.changrebeneficial.save}")
+    private String saveChangreBeneficialTopic;
+    
     	
 
 }
