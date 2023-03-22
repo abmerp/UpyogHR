@@ -171,6 +171,7 @@ public class TLInboxFilterService {
 					tlInboxSearcherEndpoint=tlInboxSearcherEndpoint;
 					break;
 				case BUSINESSSERVICE_BG_NEW:
+					break;
 				case BUSINESSSERVICE_BG_MORTGAGE:
 					tlInboxSearcherDescEndpoint = newBankGuaranteeSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = newBankGuaranteeSearcherEndpoint;
@@ -189,6 +190,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_ELECTRICAL_PLAN:
 					tlInboxSearcherDescEndpoint = electricPlaneSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = electricPlanSearcherEndpoint;
+					break;
+					
+				default:
 					break;
 				}
 			}
