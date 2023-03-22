@@ -80,6 +80,7 @@ public class TLInboxFilterService {
 
     @Autowired
     private ServiceRequestRepository serviceRequestRepository;
+    private static final String BUSINESSSERVICE_NEW_TL = "NewTL";
     
     private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
     private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
@@ -159,13 +160,16 @@ public class TLInboxFilterService {
             searcherRequest.put(SEARCH_CRITERIA_PARAM, searchCriteria);
 
             StringBuilder uri = new StringBuilder();
-            System.out.println("*******criteria*****"+criteria.getProcessSearchCriteria().getBusinessService());
+           log.info("*******criteria*****"+criteria.getProcessSearchCriteria().getBusinessService());
             //switch case:
 			if (Objects.nonNull(criteria.getProcessSearchCriteria().getBusinessService())
 					&& !criteria.getProcessSearchCriteria().getBusinessService().isEmpty()) {
 				//assumption: only one businessService will be sent in searcher as multiple will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
 				switch(businessService) {
+				case BUSINESSSERVICE_NEW_TL:
+					tlInboxSearcherEndpoint=tlInboxSearcherEndpoint;
+					break;
 				case BUSINESSSERVICE_BG_NEW:
 				case BUSINESSSERVICE_BG_MORTGAGE:
 					tlInboxSearcherDescEndpoint = newBankGuaranteeSearcherDescEndpoint;
@@ -193,11 +197,11 @@ public class TLInboxFilterService {
 				uri.append(searcherHost).append(tlInboxSearcherDescEndpoint);
 			} else {
 				uri.append(searcherHost).append(tlInboxSearcherEndpoint);
+				log.info("search for application no url"+uri);
 			}
             
 
             result = restTemplate.postForObject(uri.toString(), searcherRequest, Map.class);
-
             acknowledgementNumbers = JsonPath.read(result, "$.Licenses.*.applicationnumber");
 
         }
@@ -283,6 +287,7 @@ public class TLInboxFilterService {
 					&& !criteria.getProcessSearchCriteria().getBusinessService().isEmpty()) {
 				//assumption: only one businessService will be sent in searcher as multiple will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
+				
 				switch(businessService) {
 				case BUSINESSSERVICE_BG_NEW:
 				case BUSINESSSERVICE_BG_MORTGAGE:
