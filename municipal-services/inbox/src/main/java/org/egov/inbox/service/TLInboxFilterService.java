@@ -80,7 +80,6 @@ public class TLInboxFilterService {
 
     @Autowired
     private ServiceRequestRepository serviceRequestRepository;
-    private static final String BUSINESSSERVICE_NEW_TL = "NewTL";
     
     private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
     private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
@@ -167,9 +166,7 @@ public class TLInboxFilterService {
 				//assumption: only one businessService will be sent in searcher as multiple will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0); 
 				switch(businessService) {
-				case BUSINESSSERVICE_NEW_TL:
-					tlInboxSearcherEndpoint=tlInboxSearcherEndpoint;
-					break;
+			 
 				case BUSINESSSERVICE_BG_NEW:
 					break;
 				case BUSINESSSERVICE_BG_MORTGAGE:
@@ -190,9 +187,6 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_ELECTRICAL_PLAN:
 					tlInboxSearcherDescEndpoint = electricPlaneSearcherDescEndpoint;
 					tlInboxSearcherEndpoint = electricPlanSearcherEndpoint;
-					break;
-					
-				default:
 					break;
 				}
 			}
