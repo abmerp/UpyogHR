@@ -159,6 +159,7 @@ public class OtpSMSRepository {
 			if(Arrays.asList("2","3").contains(messageOnEmailMobileRequest.getIsMessageOnEmailMobile())) {
 				message=message.replaceAll("Please check your mail box.", "");
 				message=message.replaceAll("#"+templateId, "");
+				message="Hi,/n"+message+" /nRegards: TCP Haryama.";
 				RequestInfo requestInfo = new RequestInfo("apiId", "ver", new Date().getTime(), "action", "did", "key", "msgId", "requesterId", "authToken",new User());
 			    Set<String> emailList=new HashSet<>();
 				emailList.add(messageOnEmailMobileRequest.getEmailId());
