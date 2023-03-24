@@ -41,7 +41,9 @@ public class OtpController {
     @PostMapping("/v1/_sendMessageOnEmailAndMobile")
     public MessageOnEmailMobileResponse sendMessageOnEmailAndMobile(@RequestBody @Valid MessageOnEmailMobileRequest messageOnEmailMobileRequest,BindingResult bindingResult) {
     	Map<String, String> errorResponse=otpService.isValidRequest(bindingResult, messageOnEmailMobileRequest);
-    	otpService.sendMessage(messageOnEmailMobileRequest);
+    	if(errorResponse.isEmpty()){
+    		otpService.sendMessage(messageOnEmailMobileRequest);
+    	}
     	return MessageOnEmailMobileResponse.builder().message(errorResponse.isEmpty()?("Success"):"Fail").body(errorResponse.isEmpty()?("Message sent"):errorResponse).status(errorResponse.isEmpty()?true:false).build();
     }
 

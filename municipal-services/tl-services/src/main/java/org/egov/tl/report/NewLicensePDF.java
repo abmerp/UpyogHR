@@ -26,6 +26,7 @@ import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.PurposeDetails;
 import org.egov.tl.web.models.ShareholdingPattens;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,7 +58,7 @@ import javax.servlet.http.HttpServletResponse;
 public class NewLicensePDF {
 	
 	
-	private static Font catFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC,BaseColor.DARK_GRAY);
+	private static Font catFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC,BaseColor.BLUE);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
 
@@ -70,6 +71,10 @@ public class NewLicensePDF {
 
 	@Autowired public RestTemplate restTemplate;
 	@Autowired TLConfiguration config;
+	
+	@Autowired
+	Environment environment;
+	
 
 	@RequestMapping(value = "new/license/pdf", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void jsonToPdf(@ModelAttribute("RequestInfo") RequestInfo requestInfo, HttpServletRequest request,
@@ -101,7 +106,7 @@ public class NewLicensePDF {
 			throws MalformedURLException, IOException, DocumentException {
 		
 		
-		boolean flag = true;
+	//	boolean flag = true;
 		
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber, requestInfo);
 		
@@ -118,14 +123,14 @@ public class NewLicensePDF {
 		 Paragraph p2 = new Paragraph("Department of Town & Country Planning, Haryana", new
 				 Font(FontFamily.HELVETICA, 18, Font.BOLDITALIC, new BaseColor(0, 0, 255)) );
 		 
-		 final ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Kolkata"));
+		 final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(environment.getProperty("egov.timeZoneName")));
 		 Paragraph p3 = new Paragraph(now.toString());
 		Paragraph p1 = new Paragraph();
 		Paragraph p = new Paragraph();
 		Paragraph l = new Paragraph();
 		l.setFont(blackFont);
 		l.add("Service ID:-");
-		l.add("Licences");
+		l.add("Licence");
 	//	l.add(licenseServiceResponceInfo.getBusinessService());
 		p.setFont(blackFont);
 		p.add("Application Number:-");
@@ -185,7 +190,7 @@ public class NewLicensePDF {
 					  table.addCell(licenseDetails.getApplicantInfo().getDevDetail().getAddInfo().getRegisteredAddress());
 					  
 					  table.addCell("EmailId");
-					  table.addCell(licenseDetails.getApplicantInfo().getDevDetail().getAddInfo().getEmail());
+					  table.addCell(licenseDetails.getApplicantInfo().getDevDetail().getAddInfo().getEmailId());
 					  
 					  
 					  table.addCell("Developer Type");
@@ -412,7 +417,7 @@ public class NewLicensePDF {
 							
 						for(int j=0;j<licenseDetails.getApplicantPurpose().getAppliedLandDetails().size();j++) {
 																				
-							table = new PdfPTable(26);
+							table = new PdfPTable(27);
 							table.setSpacingBefore(5f);
 							table.setSpacingAfter(5f);
 							table.setWidthPercentage(100f);
@@ -433,8 +438,13 @@ public class NewLicensePDF {
 							 Paragraph p6 = new Paragraph(s1, font);
 							 
 						     doc.add(p6);
+						     
+						     
+						     PdfPCell c2 = new PdfPCell(new Phrase("District"));
+						        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+						        table.addCell(c2);
 							
-					        PdfPCell c2 = new PdfPCell(new Phrase("Tehsil"));
+					         c2 = new PdfPCell(new Phrase("Tehsil"));
 					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 					        table.addCell(c2);
 					        
@@ -555,7 +565,8 @@ public class NewLicensePDF {
 					       
 					        
 					        table.setHeaderRows(1);
-					        table.addCell(appliedLandDetails.getTehsil());
+					        table.addCell(appliedLandDetails.getDistrict());
+						    table.addCell(appliedLandDetails.getTehsil());
 					        table.addCell(appliedLandDetails.getRevenueEstate());
 					        table.addCell(appliedLandDetails.getMustil());
 					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getConsolidationType());
@@ -604,7 +615,7 @@ public class NewLicensePDF {
 						pls.add("Land Schedule");
 						Paragraph pls1 = new Paragraph();
 						pls1.setFont(catFont);
-						pls1.add("(1) Applied additional Area");
+						pls1.add("1:- Applied additional Area");
 						doc.add(pls);
 						doc.add(pls1);
 						
@@ -613,163 +624,186 @@ public class NewLicensePDF {
 						table.setSpacingAfter(10f);
 						table.setWidthPercentage(100f);
 						
-						if(licenseDetails.getLandSchedule().getLicenseApplied()!= null) {
+						System.out.println(licenseDetails.getLandSchedule().getLicenseApplied());
+						String t = licenseDetails.getLandSchedule().getLicenseApplied();
+						System.out.println(t);
+						
+						if(t=="Y") {
+							System.out.println(t);
 							
 							  table.addCell("License Applied");
 							  table.addCell(licenseDetails.getLandSchedule().getLicenseApplied());
-						        
+							  
+							  if(licenseDetails.getLandSchedule().getLicenseNumber()!= null) {
+									
+								  table.addCell("License Number");
+								  table.addCell(licenseDetails.getLandSchedule().getLicenseNumber());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("License Number");
+								  table.addCell("NULL");
+								
+							}
+							
+							if(licenseDetails.getLandSchedule().getPotential()!= null) {
+								
+								  table.addCell("Potential");
+								  table.addCell(licenseDetails.getLandSchedule().getPotential());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Potential");
+								  table.addCell("NULL");
+								
+							}
+							
+							if(licenseDetails.getLandSchedule().getSiteLoc()!= null) {
+								
+								  table.addCell("SiteLoc");
+								  table.addCell(licenseDetails.getLandSchedule().getSiteLoc());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("SiteLoc");
+								  table.addCell("NULL");
+								
+							}
+
+							
+							if(licenseDetails.getLandSchedule().getApproachType()!= null) {
+								
+								  table.addCell("Approach Type");
+								  table.addCell(licenseDetails.getLandSchedule().getApproachType());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Approach Type");
+								  table.addCell("NULL");
+								
+							}
+
+							
+							if(licenseDetails.getLandSchedule().getApproachRoadWidth()!= null) {
+								
+								  table.addCell("Approach RoadWidth");
+								  table.addCell(licenseDetails.getLandSchedule().getApproachRoadWidth());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Approach RoadWidth");
+								  table.addCell("NULL");
+								
+							}
+							
+							if(licenseDetails.getLandSchedule().getSpecify()!= null) {
+								
+								  table.addCell("Specify");
+								  table.addCell(licenseDetails.getLandSchedule().getSpecify());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Specify");
+								  table.addCell("NULL");
+								
+							}
+
+							if(licenseDetails.getLandSchedule().getTypeLand()!= null) {
+								
+								  table.addCell("TypeLand");
+								  table.addCell(licenseDetails.getLandSchedule().getTypeLand());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("TypeLand");
+								  table.addCell("NULL");
+								
+							}
+
+							if(licenseDetails.getLandSchedule().getThirdParty()!= null) {
+								
+								  table.addCell("Third Party");
+								  table.addCell(licenseDetails.getLandSchedule().getThirdParty());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Third Party");
+								  table.addCell("NULL");
+								
+							}
+
+							if(licenseDetails.getLandSchedule().getThirdPartyRemark()!= null) {
+								
+								  table.addCell("Third Party Remark");
+								  table.addCell(licenseDetails.getLandSchedule().getThirdPartyRemark());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Third Party Remark");
+								  table.addCell("NULL");
+								
+							}
+
+							if(licenseDetails.getLandSchedule().getThirdPartyDoc()!= null) {
+								
+								  table.addCell("Third PartyDoc");
+								  table.addCell(licenseDetails.getLandSchedule().getThirdPartyDoc());
+							        
+								
+							}
+							else {
+								
+								 table.addCell("Third PartyDoc");
+								  table.addCell("NULL");
+								
+							}
 							
 						}
 						else {
 							
 							 table.addCell("License Applied");
-							  table.addCell("NULL");
+							  table.addCell(licenseDetails.getLandSchedule().getLicenseApplied());
 							
 						}
 						
 						
-						if(licenseDetails.getLandSchedule().getLicenseNumber()!= null) {
-							
-							  table.addCell("License Number");
-							  table.addCell(licenseDetails.getLandSchedule().getLicenseNumber());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("License Number");
-							  table.addCell("NULL");
-							
-						}
+					
+						doc.add(table);
 						
-						if(licenseDetails.getLandSchedule().getPotential()!= null) {
-							
-							  table.addCell("Potential");
-							  table.addCell(licenseDetails.getLandSchedule().getPotential());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Potential");
-							  table.addCell("NULL");
-							
-						}
+					}
+					
+					
+					if(licenseDetails.getLandSchedule()!= null) {
 						
-						if(licenseDetails.getLandSchedule().getSiteLoc()!= null) {
-							
-							  table.addCell("SiteLoc");
-							  table.addCell(licenseDetails.getLandSchedule().getSiteLoc());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("SiteLoc");
-							  table.addCell("NULL");
-							
-						}
-
+						Paragraph pls2 = new Paragraph();
+						pls2.setFont(catFont);
+						pls2.add("2:- Applied Under migration Policy");
 						
-						if(licenseDetails.getLandSchedule().getApproachType()!= null) {
-							
-							  table.addCell("Approach Type");
-							  table.addCell(licenseDetails.getLandSchedule().getApproachType());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Approach Type");
-							  table.addCell("NULL");
-							
-						}
-
+						doc.add(pls2);
 						
-						if(licenseDetails.getLandSchedule().getApproachRoadWidth()!= null) {
-							
-							  table.addCell("Approach RoadWidth");
-							  table.addCell(licenseDetails.getLandSchedule().getApproachRoadWidth());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Approach RoadWidth");
-							  table.addCell("NULL");
-							
-						}
+						table = new PdfPTable(2);
+						table.setSpacingBefore(10f);
+						table.setSpacingAfter(10f);
+						table.setWidthPercentage(100f);
 						
-						if(licenseDetails.getLandSchedule().getSpecify()!= null) {
-							
-							  table.addCell("Specify");
-							  table.addCell(licenseDetails.getLandSchedule().getSpecify());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Specify");
-							  table.addCell("NULL");
-							
-						}
-
-						if(licenseDetails.getLandSchedule().getTypeLand()!= null) {
-							
-							  table.addCell("TypeLand");
-							  table.addCell(licenseDetails.getLandSchedule().getTypeLand());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("TypeLand");
-							  table.addCell("NULL");
-							
-						}
-
-						if(licenseDetails.getLandSchedule().getThirdParty()!= null) {
-							
-							  table.addCell("Third Party");
-							  table.addCell(licenseDetails.getLandSchedule().getThirdParty());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Third Party");
-							  table.addCell("NULL");
-							
-						}
-
-						if(licenseDetails.getLandSchedule().getThirdPartyRemark()!= null) {
-							
-							  table.addCell("Third Party Remark");
-							  table.addCell(licenseDetails.getLandSchedule().getThirdPartyRemark());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Third Party Remark");
-							  table.addCell("NULL");
-							
-						}
-
-						if(licenseDetails.getLandSchedule().getThirdPartyDoc()!= null) {
-							
-							  table.addCell("Third PartyDoc");
-							  table.addCell(licenseDetails.getLandSchedule().getThirdPartyDoc());
-						        
-							
-						}
-						else {
-							
-							 table.addCell("Third PartyDoc");
-							  table.addCell("NULL");
-							
-						}
-
 						
 						if(licenseDetails.getLandSchedule().getMigrationLic()!= null) {
 							
@@ -912,6 +946,122 @@ public class NewLicensePDF {
 							  table.addCell("NULL");
 							
 						}
+						
+						
+	                doc.add(table);
+						
+					}
+					
+					
+					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!=null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {
+						
+						 List<LandScheduleDetails> f= licenseDetails.getLandSchedule().getLandScheduleDetails();
+		                   
+						Paragraph lsd = new Paragraph();
+						lsd.add("LandSchedule Details");
+						doc.add(lsd);
+						
+						table = new PdfPTable(9);
+						table.setSpacingBefore(10f);
+						table.setSpacingAfter(10f);
+						table.setWidthPercentage(100f);
+						
+						/**	List value
+						   if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null) {
+								
+								  table.addCell("LandScheduleDetails");
+								  table.addCell(licenseDetails.getLandSchedule().getLandScheduleDetails());
+							      
+							}
+							else {
+								
+								 table.addCell("LandScheduleDetails");
+								  table.addCell("NULL");
+								
+							}*/
+							
+						
+						PdfPCell c2 = new PdfPCell(new Phrase("Previous Licensenumber"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Area Of ParentLicence"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Purpose Of ParentLicence"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Validity"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Date"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Area Applied Migration"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Khasra Number"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Area"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+				        
+				        c2 = new PdfPCell(new Phrase("Balance Of ParentLicence"));
+				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        table.addCell(c2);
+						
+						for(int j=0;j<f.size();j++) {
+							LandScheduleDetails g =  f.get(j);
+						
+						  table.addCell(g.getPreviousLicensenumber());
+						  
+						 
+						  table.addCell(g.getAreaOfParentLicence());
+						  
+						
+						  table.addCell(g.getPurposeOfParentLicence());
+						  
+						  table.addCell(g.getValidity());
+						  
+						  table.addCell(g.getDate());
+						  
+						  table.addCell(g.getAreaAppliedmigration());
+						  
+						  table.addCell(g.getKhasraNumber());
+						  
+						  table.addCell(g.getArea());
+						  
+						  table.addCell(g.getBalanceOfParentLicence());
+						  
+					
+						
+		                  
+		                   }
+		                   doc.add(table);
+					}
+					
+                      if(licenseDetails.getLandSchedule()!= null) {
+						
+						Paragraph pls3 = new Paragraph();
+						pls3.setFont(catFont);
+						pls3.add("3:- Any Encumburance");
+						
+						doc.add(pls3);
+						
+						table = new PdfPTable(2);
+						table.setSpacingBefore(10f);
+						table.setSpacingAfter(10f);
+						table.setWidthPercentage(100f);
+					
+					
+						
 						if(licenseDetails.getLandSchedule().getEncumburance()!= null) {
 							
 							  table.addCell("Encumburance");
@@ -942,7 +1092,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getEncumburanceDoc()!= null) {
 							
 							  table.addCell("Encumburance Doc");
-							  table.addCell(licenseDetails.getLandSchedule().getEncumburanceDoc());
+							  table.addCell("ATTACHED");
 						        
 							
 						}
@@ -981,7 +1131,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getLitigationDoc()!= null) {
 							
 							  table.addCell("Litigation Doc");
-							  table.addCell(licenseDetails.getLandSchedule().getLitigationDoc());
+							  table.addCell("ATTACHED");
 						        
 							
 						}
@@ -1020,7 +1170,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getCourtDoc()!= null) {
 							
 							  table.addCell("Court Doc");
-							  table.addCell(licenseDetails.getLandSchedule().getCourtDoc());
+							  table.addCell("ATTACHED");
 						        
 							
 						}
@@ -1060,7 +1210,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getInsolvencyDoc()!= null) {
 							
 							  table.addCell("Insolvency Doc");
-							  table.addCell(licenseDetails.getLandSchedule().getInsolvencyDoc());
+							  table.addCell("ATTACHED");
 						        
 							
 						}
@@ -1070,6 +1220,25 @@ public class NewLicensePDF {
 							  table.addCell("NULL");
 							
 						}
+						
+						
+						 doc.add(table);
+							
+  					}
+                      
+                      
+                      if(licenseDetails.getLandSchedule()!= null) {
+  						
+  						Paragraph pls4 = new Paragraph();
+  						pls4.setFont(catFont);
+  						pls4.add("4:- Shajra Plan");
+  						
+  						doc.add(pls4);
+  						
+  						table = new PdfPTable(2);
+  						table.setSpacingBefore(10f);
+  						table.setSpacingAfter(10f);
+  						table.setWidthPercentage(100f);
 						
 						if(licenseDetails.getLandSchedule().getAppliedLand()!= null) {
 							
@@ -1087,7 +1256,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getAppliedLandDoc()!= null) {
 							
 							  table.addCell("AppliedLandDoc");
-							  table.addCell(licenseDetails.getLandSchedule().getAppliedLandDoc());
+							  table.addCell("ATTACHED");
 						        
 							
 						}
@@ -1343,6 +1512,28 @@ public class NewLicensePDF {
 							  table.addCell("NULL");
 							
 						}
+						
+						
+						 doc.add(table);
+							
+    					}
+                        
+						
+                      if(licenseDetails.getLandSchedule()!= null) {
+    						
+    						Paragraph pls5 = new Paragraph();
+    						pls5.setFont(catFont);
+    						pls5.add("5:- Site Conditon");
+    						
+    						doc.add(pls5);
+    						
+    						table = new PdfPTable(2);
+    						table.setSpacingBefore(10f);
+    						table.setSpacingAfter(10f);
+    						table.setWidthPercentage(100f);
+						
+						
+						
 						if(licenseDetails.getLandSchedule().getVacant()!= null) {
 							
 							  table.addCell("Vacant");
@@ -1643,7 +1834,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getGiftDeedHibbanama()!= null) {
 							
 							  table.addCell("GiftDeedHibbanama");
-							  table.addCell(licenseDetails.getLandSchedule().getGiftDeedHibbanama());
+							  table.addCell("ATTACHED																					");
 						      
 						}
 						else {
@@ -1855,7 +2046,7 @@ public class NewLicensePDF {
 						if(licenseDetails.getLandSchedule().getAvailableExistingApproachDoc()!= null) {
 							
 							  table.addCell("Available Existing ApproachDoc");
-							  table.addCell(licenseDetails.getLandSchedule().getAvailableExistingApproachDoc());
+							  table.addCell("ATTACHED");
 						      
 						}
 						else {
@@ -1890,6 +2081,24 @@ public class NewLicensePDF {
 							  table.addCell("NULL");
 							
 						}
+						
+						doc.add(table);
+						
+  					}
+                      
+                      
+                      if(licenseDetails.getLandSchedule()!= null) {
+  						
+  						Paragraph pls6 = new Paragraph();
+  						pls6.setFont(catFont);
+  						pls6.add("6:- Enclose The Docume");
+  						
+  						doc.add(pls6);
+  						
+  						table = new PdfPTable(2);
+  						table.setSpacingBefore(10f);
+  						table.setSpacingAfter(10f);
+  						table.setWidthPercentage(100f);
 						
 						
 						if(licenseDetails.getLandSchedule().getLandSchedule()!= null) {
@@ -2150,6 +2359,15 @@ public class NewLicensePDF {
 						doc.add(table);
 											
 					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {

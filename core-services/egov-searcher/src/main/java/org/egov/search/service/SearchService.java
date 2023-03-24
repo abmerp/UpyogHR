@@ -72,6 +72,7 @@ public class SearchService {
 				}
 			}else {
 				maps = searchRepository.fetchData(searchRequest, searchDefinition);
+				log.info("application number"+maps);
 			}
 		}catch(Exception e){
 			log.error("Exception: ",e);

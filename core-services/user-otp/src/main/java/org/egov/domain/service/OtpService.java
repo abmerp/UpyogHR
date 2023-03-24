@@ -97,18 +97,6 @@ public class OtpService {
    
     private void sendStatusMessage(MessageOnEmailMobileRequest messageOnEmailMobileRequest) {
     	try {
-	    	String username=null;
-	    	if(messageOnEmailMobileRequest.getIsMessageOnEmailMobile().equals("1")) {
-	    		username=messageOnEmailMobileRequest.getEmailId();
-	    	}else {
-	    		username=messageOnEmailMobileRequest.getMobileNumber();
-	    	}
-			final User matchingUser = userRepository.fetchUser(username, messageOnEmailMobileRequest.getTenantId(),
-					messageOnEmailMobileRequest.getUserType());
-			if (matchingUser==null) {
-			    throw new UserNotExistingInSystemException();
-			}
-	
 		    otpSMSSender.sendMessage(messageOnEmailMobileRequest,message);
     	}catch (Exception e) {
 			log.error("Exception : "+e.getMessage());
@@ -118,6 +106,19 @@ public class OtpService {
     public Map<String, String> isValidRequest(BindingResult bindingResult,MessageOnEmailMobileRequest messageOnEmailMobileRequest) {
     	Map<String, String> errors = new HashMap<>();
      	try {
+     		   
+	     		String username=null;
+		    	if(messageOnEmailMobileRequest.getIsMessageOnEmailMobile().equals("1")) {
+		    		username=messageOnEmailMobileRequest.getEmailId();
+		    	}else {
+		    		username=messageOnEmailMobileRequest.getMobileNumber();
+		    	}
+				User matchingUser = userRepository.fetchUser(username, messageOnEmailMobileRequest.getTenantId(),
+						messageOnEmailMobileRequest.getUserType());
+				if(matchingUser==null) {
+					errors.put("user", username+" is not registered with Us.");
+				}
+     		
 	    	   Map<String, Object> localisedMsgs = localizationService.getLocalisedMsg(messageOnEmailMobileRequest.getTenantId(), "en_IN", "egov-user",messageCode.getMessageCode(messageOnEmailMobileRequest.getType()));
 	           Map<String,Object> parameter=messageOnEmailMobileRequest.getMessageParameter();
 		       if(localisedMsgs.get("msgCode")!=null&&"TCPMSG0013".equals(localisedMsgs.get("msgCode"))) {
@@ -150,7 +151,7 @@ public class OtpService {
 		    	    });
 	    	    }
 	    	    if(localisedMsgs.isEmpty()||localisedMsgs.get("message")==null||localisedMsgs.get("msgCode")==null){
-	 	    	   errors.put("msgCode", "Invalid message type");
+	 	    	   errors.put("Type", "Invalid message type");
 	 	    	}else {
 	 	    		message=keepAllParemeterInMessage(localisedMsgs.get("message").toString(),parameter,localisedMsgs.get("msgCode").toString());
 	 	    	}
