@@ -4,14 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jdk.internal.org.jline.utils.Log;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-
 import org.apache.commons.lang3.StringUtils;
 import org.egov.common.contract.request.RequestInfo;
-import org.egov.common.contract.request.Role;
-import org.egov.common.contract.request.User;
 
 import org.egov.tlcalculator.config.TLCalculatorConfigs;
 import org.egov.tlcalculator.repository.CalculationRepository;
@@ -19,12 +14,9 @@ import org.egov.tlcalculator.repository.DemandRepository;
 import org.egov.tlcalculator.repository.ServiceRequestRepository;
 import org.egov.tlcalculator.repository.builder.CalculationQueryBuilder;
 import org.egov.tlcalculator.utils.CalculationUtils;
-import org.egov.tlcalculator.utils.TLCalculatorConstants;
 import org.egov.tlcalculator.web.models.*;
-import org.egov.tlcalculator.web.models.tradelicense.TradeLicense;
 import org.egov.tlcalculator.web.models.demand.*;
 import org.egov.tracer.model.CustomException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
