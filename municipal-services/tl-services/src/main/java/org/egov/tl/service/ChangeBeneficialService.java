@@ -207,15 +207,16 @@ public class ChangeBeneficialService {
 						calculatorMap.put("CalculatorRequest", calculator);
 						calculatorMap.put("RequestInfo", requestInfo);
 						HashMap responseCalculator = serviceRequestRepository.fetchResultJSON(calculatorUrl, calculatorMap);
-				// --------------------------calculation end--------------------------------//
-				
-			    // --------------------------fetch bill start--------------------------------//
-				
-						
-				// --------------------------fetch bill end--------------------------------//
-						 
+						List<HashMap> calculatorReqData=(List<HashMap>) responseCalculator.get("Calculations");
+						List<HashMap> taxHeadEstimates=(List<HashMap>) calculatorReqData.get(0).get("taxHeadEstimates");
+						BigDecimal estimateAmount= (BigDecimal) taxHeadEstimates.get(0).get("estimateAmount");
 						
 						
+						HashMap tradeTypeBillingIds=(HashMap) calculatorReqData.get(0).get("tradeTypeBillingIds");
+						List<String> billingSlabIds=(List<String>) tradeTypeBillingIds.get("billingSlabIds");
+						String billingId=billingSlabIds.get(0);
+						createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),tradeLicenses.getTenantId(),estimateAmount,applicationNumber,billingId,"");
+								
 			}else {
 				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
