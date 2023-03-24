@@ -135,8 +135,10 @@ public class ChangeBeneficialService {
 	
 	@Value("${egov.tl.calculator.host}")
 	private String guranteeHost;
-	@Value("${egov.tl.calculator.calculate.endpoint}")
-	private String calculatorEndPoint;
+	
+	@Value("${egov.tl.calculator.access.calculate.endpoint}")
+	private String accessCalculatorEndPoint;
+	
 	
 	@Value("${egov.billingservice.host}")
     private String billingHost;
@@ -191,7 +193,7 @@ public class ChangeBeneficialService {
 				  System.out.println("data :----------------------"+data);
 				  // --------------------------calculation start--------------------------------//
 				        StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
-						calculatorUrl.append(calculatorEndPoint);
+						calculatorUrl.append(accessCalculatorEndPoint);
 						calculatorUrl.append("?calculationServiceName="+calculationServiceName+"&calculationType="+calculationType+"&isIntialCalculation="+isIntialPayment);
 					    System.out.println("url:---"+calculatorUrl);
 						CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
