@@ -149,6 +149,11 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.0</version>
 		</dependency>
+		<dependency>
+	        <groupId>org.openjfx</groupId>
+	        <artifactId>javafx-controls</artifactId>
+	        <version>17.0.0.1</version>
+        </dependency>
 	</dependencies>
 	
 	

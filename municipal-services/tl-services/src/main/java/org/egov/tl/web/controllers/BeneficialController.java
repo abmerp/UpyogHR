@@ -41,4 +41,6 @@ public class BeneficialController {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficialPay(requestInfo,applicationNumber,calculationServiceName,calculationType,isIntialPayment);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
+	
+	
 }

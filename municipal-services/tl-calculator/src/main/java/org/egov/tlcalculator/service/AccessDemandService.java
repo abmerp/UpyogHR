@@ -3,6 +3,11 @@ package org.egov.tlcalculator.service;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jdk.internal.org.jline.utils.Log;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+
 import org.apache.commons.lang3.StringUtils;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
@@ -29,7 +34,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
+import java.awt.Desktop;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URI;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,6 +51,7 @@ import static org.egov.tlcalculator.utils.TLCalculatorConstants.businessService_
 import static org.egov.tlcalculator.utils.TLCalculatorConstants.businessService_TL;
 
 @Service
+@Log4j2
 public class AccessDemandService {
 
 	@Autowired
@@ -75,7 +84,7 @@ public class AccessDemandService {
 
 	@Autowired
 	private CalculationQueryBuilder calculationQueryBuilder;
-
+	
 	/**
 	 * Creates or updates Demand
 	 * 
@@ -83,7 +92,7 @@ public class AccessDemandService {
 	 * @param calculations The Calculation Objects for which demand has to be
 	 *                     generated or updated
 	 */
-	public void generateDemand(RequestInfo requestInfo, List<Calculation> calculations,DemandRequiredParamater demandRequiredParamater) {
+	public List<Demand> generateDemand(RequestInfo requestInfo, List<Calculation> calculations,DemandRequiredParamater demandRequiredParamater) {
 
 		String businessService=demandRequiredParamater.getBusinessService();
 		
@@ -122,8 +131,10 @@ public class AccessDemandService {
 		
 		if(demands!=null&&!demands.isEmpty()) {
 			System.out.println(demands.size());
-			createBillV2(requestInfo,demandRequiredParamater,demands);
+			createBillV2(requestInfo,calculations,demandRequiredParamater,demands);
 		}
+		
+		return demands;
 	}
 
 	/**
@@ -285,7 +296,7 @@ public class AccessDemandService {
 	
 	
 	
-	private void createBillV2(RequestInfo requestInfo,DemandRequiredParamater demandRequiredParamater,List<Demand> demands) {
+	private void createBillV2(RequestInfo requestInfo,List<Calculation> calculations,DemandRequiredParamater demandRequiredParamater,List<Demand> demands) {
 		Demand demand=demands.get(0);
 		String demandId=demand.getId();
 	
@@ -345,15 +356,25 @@ public class AccessDemandService {
     
         HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		String billId=null;
 		try {
 		HttpEntity<Map<String,Object>> entity = new HttpEntity<>(billV2CreationRequest, headers);
-		System.out.println("entity.getBody():---"+entity.getBody());
+//		System.out.println("entity.getBody():---"+entity.getBody());
 		HashMap billDeatails = restTemplate.exchange(url.toString(), HttpMethod.POST, entity, HashMap.class).getBody();
-		System.out.println("Bill Created :---"+billDeatails);
+		List<HashMap> bill=(List<HashMap>) billDeatails.get("Bill");
+	    billId=bill.get(0).get("id").toString();
+		log.info("Bill Created : "+billId);
 		}catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
+			log.error("Bill Created : "+billId);
 		}
+		
+		List<String> billIds=Arrays.asList(billId);
+		calculations=calculations.stream().map(cal->{
+			FeeAndBillingSlabIds feeAndBillingSlabIds=new FeeAndBillingSlabIds();
+			feeAndBillingSlabIds.setBillingSlabIds(billIds);
+			cal.setTradeTypeBillingIds(feeAndBillingSlabIds);
+			return cal;
+			}).collect(Collectors.toList());
 		
 	}
 	
@@ -542,5 +563,6 @@ public class AccessDemandService {
 			demandDetails.add(roundOffDemandDetail);
 		}
 	}
+	
 
 }
