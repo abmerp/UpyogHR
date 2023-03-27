@@ -169,8 +169,7 @@ public class OtpService {
     		   switch (msgCode) {
 			      case "TCPMSG0001": {
 	    	    	  msg= msg.replaceAll("#grant", parameter.get("grant").toString());
-	    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString());
-	    	          msg= msg.replaceAll("#dated", parameter.get("dated").toString());
+	    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString()); 
 	    	          break;
 			      }
 			      case  "TCPMSG0002": {
@@ -178,21 +177,21 @@ public class OtpService {
 	    	          break;
 			      }
 			      case  "TCPMSG0003": {
-	    	          msg= msg.replaceAll("#grant", parameter.get("grant").toString());
-	    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString());
-	    	          msg= msg.replaceAll("#dated", parameter.get("dated").toString());
+	    	          msg= msg.replace("#grant", parameter.get("grant").toString());
+	    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	          msg= msg.replace("#dated", parameter.get("dated").toString());
 	    	          break;
 			      }
 			      case "TCPMSG0004": {
-	    	    	  msg= msg.replaceAll("#grant", parameter.get("grant").toString());
-	    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString());
-	    	          msg= msg.replaceAll("#dated", parameter.get("dated").toString());
+	    	    	  msg= msg.replace("#grant", parameter.get("grant").toString());
+	    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	          msg= msg.replace("#dated", parameter.get("dated").toString());
 	    	          break;
 			      }
 			      case "TCPMSG0005": {
-	    	    	  msg= msg.replaceAll("#diaryNo", parameter.get("diaryNo").toString());
-	    	          msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString());
-	    	          msg= msg.replaceAll("#dated", parameter.get("dated").toString());
+	    	    	  msg= msg.replace("#diaryNo", parameter.get("diaryNo").toString());
+	    	          msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	          msg= msg.replace("#dated", parameter.get("dated").toString());
 	    	          break;
 			      }
 			      case "TCPMSG0006": {
@@ -211,8 +210,8 @@ public class OtpService {
 	    	 	      break;
 			      }
 			      case "TCPMSG0009": {
-	    	    	  msg= msg.replaceAll("#applicationNo", parameter.get("applicationNo").toString());
-	    	    	  msg= msg.replaceAll("#dated", parameter.get("dated").toString());
+	    	    	  msg= msg.replace("#applicationNo", parameter.get("applicationNo").toString());
+	    	    	  msg= msg.replace("#dated", parameter.get("dated").toString());
 		    	      break;
 			      }
 			      case "TCPMSG0010": {
