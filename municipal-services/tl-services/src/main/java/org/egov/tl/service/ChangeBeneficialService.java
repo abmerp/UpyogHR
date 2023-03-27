@@ -1,6 +1,7 @@
 package org.egov.tl.service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.ibm.icu.math.BigDecimal;
+
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -161,6 +162,7 @@ public class ChangeBeneficialService {
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
+						changebeneficial.setApplicationNumber(applicationNumber);
 						if (!changebeneficial.getDeveloperServiceCode().equals("JDAMR")) {
 							changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
 									: (changebeneficial.getAreaInAcres()));
@@ -201,23 +203,36 @@ public class ChangeBeneficialService {
 						calulationCriteriaRequest.setTradelicense(tradeLicenses);
 						java.util.List<CalulationCriteria> calulationCriteria = Arrays.asList(calulationCriteriaRequest);
 
-						CalculatorRequest calculator = new CalculatorRequest();
-						calculator.setApplicationNumber(applicationNumber);
+//						CalculatorRequest calculator = new CalculatorRequest();
+						Map<String, Object> calculator = new HashMap<>();
+						calculator.put("applicationNumber", applicationNumber);
 						
 						Map<String, Object> calculatorMap = new HashMap<>();
 						calculatorMap.put("CalulationCriteria", calulationCriteria);
 						calculatorMap.put("CalculatorRequest", calculator);
 						calculatorMap.put("RequestInfo", requestInfo);
 						HashMap responseCalculator = serviceRequestRepository.fetchResultJSON(calculatorUrl, calculatorMap);
-						List<HashMap> calculatorReqData=(List<HashMap>) responseCalculator.get("Calculations");
-						List<HashMap> taxHeadEstimates=(List<HashMap>) calculatorReqData.get(0).get("taxHeadEstimates");
-						BigDecimal estimateAmount= (BigDecimal) taxHeadEstimates.get(0).get("estimateAmount");
+						
+						 StringBuilder faetchBillUrl = new StringBuilder(billingHost);
+						 faetchBillUrl.append(fetchBillEndpoint);
+						 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumber);
+						 
+						 Map<String, Object> faetchBillMap = new HashMap<>();
+						 faetchBillMap.put("RequestInfo", requestInfo);
+						 HashMap faetchBill = serviceRequestRepository.fetchResultJSON(faetchBillUrl, faetchBillMap);
+							
+//						 faetchBillUrl.append("?calculationServiceName="+calculationServiceName+"&calculationType="+calculationType+"&isIntialCalculation="+isIntialPayment);
+						 
 						
 						
-						HashMap tradeTypeBillingIds=(HashMap) calculatorReqData.get(0).get("tradeTypeBillingIds");
-						List<String> billingSlabIds=(List<String>) tradeTypeBillingIds.get("billingSlabIds");
-						String billingId=billingSlabIds.get(0);
-						createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),tradeLicenses.getTenantId(),estimateAmount,applicationNumber,billingId,"");
+						List<HashMap> BillData=(List<HashMap>) faetchBill.get("Bill");
+						List<HashMap> billDetails=(List<HashMap>) BillData.get(0).get("billDetails");
+						String billId=billDetails.get(0).get("billId").toString();
+						List<HashMap> billAccountDetails=(List<HashMap>)billDetails.get(0).get("billAccountDetails");
+						BigDecimal estimateAmount= new BigDecimal(billAccountDetails.get(0).get("amount").toString());
+						
+						String callBack="http://localhost:8075/tl-services/new/transaction/v1/_redirect";
+						createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),tradeLicenses.getTenantId(),estimateAmount,applicationNumber,billId,callBack);
 								
 			}else {
 				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
