@@ -23,10 +23,10 @@ public class BeneficialController {
 	ChangeBeneficialService changeBeneficialService;
 	
 	@PostMapping(value = "_create")
-	public ResponseEntity<ChangeBeneficialResponse> changeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest,@RequestParam("applicationNumber") String applicationNumber)
+	public ResponseEntity<ChangeBeneficialResponse> changeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest)
 			throws JsonProcessingException {
 //		changeBeneficialService.getLicenseByApplication
-         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest,applicationNumber);   
+         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
