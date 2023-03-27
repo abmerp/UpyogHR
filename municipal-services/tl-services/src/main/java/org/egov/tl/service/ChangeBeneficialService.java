@@ -1,9 +1,5 @@
 package org.egov.tl.service;
 
-import static org.egov.tl.util.TLConstants.TRIGGER_NOWORKFLOW;
-import static org.egov.tl.util.TLConstants.businessService_BPA;
-import static org.egov.tl.util.TLConstants.businessService_TL;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,14 +24,11 @@ import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
-import org.egov.tl.util.TradeUtil;
 import org.egov.tl.validator.LandMDMSValidator;
-import org.egov.tl.web.models.CalculatorRequest;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.ChangeBeneficialResponse;
 import org.egov.tl.web.models.LicenseDetails;
-import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.ResponseTransaction;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -44,7 +36,6 @@ import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.UserResponse;
 import org.egov.tl.web.models.UserSearchCriteria;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
-import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -53,10 +44,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -64,12 +53,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.jayway.jsonpath.DocumentContext;
-import com.jayway.jsonpath.JsonPath;
-import com.jayway.jsonpath.PathNotFoundException;
 
 import lombok.extern.slf4j.Slf4j;
-import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 
 @Slf4j
@@ -198,16 +183,16 @@ public class ChangeBeneficialService {
 		return changeBeneficialResponse;
 
 	}
-	
-	
-	private String setWorkFlowAndgetCode() {
-		JSONObject workFlowRequest = new JSONObject();
-		
-		rest.postForObject(config.getWfHost().concat(config.getWfTransitionPath()), workFlowRequest, String.class);
-		
-		
-		return null;
-	}
+//	
+//	
+//	private String setWorkFlowAndgetCode() {
+//		JSONObject workFlowRequest = new JSONObject();
+//		
+//		rest.postForObject(config.getWfHost().concat(config.getWfTransitionPath()), workFlowRequest, String.class);
+//		
+//		
+//		return null;
+//	}
 
 	public ChangeBeneficialResponse createChangeBeneficialPay(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment)
 			throws JsonProcessingException {
