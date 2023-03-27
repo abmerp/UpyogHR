@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "nocDocument", "consentLetterFromNewEntryDoc", "JustificationForSuchRequestDoc", "sideEffectForExtstingDeveloperDoc", "detailsOfAppliedAreaDoc", "undertackingPayBalanceDoc", "authorizedSignatoryOEDDoc", "authorizedSignatoryNEDoc","applicationNumber") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "nocDocument", "consentLetterFromNewEntryDoc", "JustificationForSuchRequestDoc", "sideEffectForExtstingDeveloperDoc", "detailsOfAppliedAreaDoc", "undertackingPayBalanceDoc", "authorizedSignatoryOEDDoc", "authorizedSignatoryNEDoc",application_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
