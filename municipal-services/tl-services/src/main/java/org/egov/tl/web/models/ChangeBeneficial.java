@@ -28,6 +28,11 @@ public class ChangeBeneficial {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
+	@JsonProperty("isDraft")
+	private String isDraft;
+	
+	@JsonProperty("workFlowCode")
+	private String workFlowCode;
 
 //	@JsonProperty("totalAmount")
 //	private double totalAmount;
@@ -51,29 +56,42 @@ public class ChangeBeneficial {
 	@JsonProperty("developerId")
 	private long developerId;
 	
-	@JsonProperty("nocDocument")
-	private String nocDocument;
 	
-	@JsonProperty("consentLetterFromNewEntryDoc")
-	private String consentLetterFromNewEntryDoc;
 	
-	@JsonProperty("JustificationForSuchRequestDoc")
-	private String JustificationForSuchRequestDoc;
+	@JsonProperty("noObjectionCertificate")
+	private String noObjectionCertificate;
 	
-	@JsonProperty("sideEffectForExtstingDeveloperDoc")
-	private String sideEffectForExtstingDeveloperDoc;
+	@JsonProperty("consentLetter")
+	private String consentLetter;
 	
-	@JsonProperty("detailsOfAppliedAreaDoc")
-	private String detailsOfAppliedAreaDoc;
+	@JsonProperty("justificationCertificate")
+	private String justificationCertificate;
 	
-	@JsonProperty("undertackingPayBalanceDoc")
-	private String undertackingPayBalanceDoc;
+	@JsonProperty("thirdPartyRightsCertificate")
+	private String thirdPartyRightsCertificate;
 	
-	@JsonProperty("authorizedSignatoryOEDDoc")
-	private String authorizedSignatoryOEDDoc;  // existing developer
+	@JsonProperty("jointDevelopmentCertificate")
+	private String jointDevelopmentCertificate;
 	
-	@JsonProperty("authorizedSignatoryNEDoc")
-	private String authorizedSignatoryNEDoc; // new Entity
+	@JsonProperty("aministrativeChargeCertificate")
+	private String aministrativeChargeCertificate;
+	
+	@JsonProperty("boardResolutionExisting")
+	private String boardResolutionExisting;  // existing developer
+	
+	@JsonProperty("boardResolutionNewEntity")
+	private String boardResolutionNewEntity; // new Entity
+		
+	
+	@JsonProperty("shareholdingPatternCertificate")
+	private String shareholdingPatternCertificate; 
+		
+	@JsonProperty("reraRegistrationCertificate")
+	private String reraRegistrationCertificate; 
+	
+	@JsonProperty("fiancialCapacityCertificate")
+	private String fiancialCapacityCertificate; 
+	
 	
 
 }

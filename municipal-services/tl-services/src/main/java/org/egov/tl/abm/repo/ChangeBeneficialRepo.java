@@ -57,7 +57,14 @@ public class ChangeBeneficialRepo {
 	
 	public void save(ChangeBeneficialRequest beneficialRequest) {
 		try {
-		producer.push(tlConfiguration.getSaveChangreBeneficialTopic(), beneficialRequest);
+	      
+		  if(beneficialRequest.getChangeBeneficial().get(0).getIsDraft()==null ) {
+		    producer.push(tlConfiguration.getSaveChangreBeneficialTopic(), beneficialRequest);
+		  }
+	      else {
+	    	producer.push(tlConfiguration.getSaveChangreBeneficialTopic(), beneficialRequest);
+	      }
+		
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

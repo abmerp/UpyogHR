@@ -404,6 +404,9 @@ public class TLConfiguration {
     @Value("${persister.changrebeneficial.save}")
     private String saveChangreBeneficialTopic;
     
+    @Value("${persister.changrebeneficial.update}")
+    private String updateChangreBeneficialTopic;
+    
     	
 
 }

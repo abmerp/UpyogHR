@@ -1,0 +1,163 @@
+serviceMaps:
+ serviceName: tl-services
+ mappings:
+ - version: 1.0
+   description: Persists benefical service of  change_benefical table
+   fromTopic: save-changrebeneficial
+   isTransaction: true
+   queryMaps: 
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        basePath: changeBeneficial.*
+        jsonMaps:
+        
+         - jsonPath: changeBeneficial.*.developerServiceCode
+           type: STRING
+      
+         - jsonPath: changeBeneficial.*.areaInAcres
+           type: STRING
+  
+         - jsonPath: changeBeneficial.*.developerId
+           type: LONG
+         
+         - jsonPath: changeBeneficial.*.noObjectionCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.consentLetter
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.justificationCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.thirdPartyRightsCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.jointDevelopmentCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.aministrativeChargeCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.boardResolutionExisting
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.boardResolutionNewEntity
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.shareholdingPatternCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.reraRegistrationCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.fiancialCapacityCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.isDraft
+           type: STRING
+           
+           
+           
+ - version: 1.0
+   description: Persists benefical service of  change_benefical table
+   fromTopic: update-changrebeneficial
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.eg_tl_change_beneficial SET "activeStatus"=true,"developerServiceCode"=?, "areaInAcres"=?,"developerId"=?,noobjectioncertificate=?, consentletter=?, justificationcertificate=?, thirdpartyrightscertificate=?, jointdevelopmentcertificate=?, aministrativechargecertificate=?, boardresolutionexisting=?, boardresolutionnewentity=?,shareholdingpatterncertificate=?, reraregistrationcertificate=?, fiancialcapacitycertificate=?, is_draft=? where "application_number"=? order by "created_at" desc
+       
+        basePath: changeBeneficial.*
+        jsonMaps:       
+         - jsonPath: changeBeneficial.*.developerServiceCode
+           type: STRING
+      
+         - jsonPath: changeBeneficial.*.areaInAcres
+           type: STRING
+  
+         - jsonPath: changeBeneficial.*.developerId
+           type: LONG
+         
+         - jsonPath: changeBeneficial.*.noObjectionCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.consentLetter
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.justificationCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.thirdPartyRightsCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.jointDevelopmentCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.aministrativeChargeCertificate
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.boardResolutionExisting
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.boardResolutionNewEntity
+           type: STRING
+        
+         - jsonPath: changeBeneficial.*.shareholdingPatternCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.reraRegistrationCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.fiancialCapacityCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.isDraft
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
+      
+#      
+#     
+#
+# - version: 1.0
+#   description: Persists benefical service of  save-renewallicense table
+#   fromTopic: save-renewallicense
+#   isTransaction: true
+#   queryMaps: 
+#      - query: INSERT INTO public.eg_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "nocDocument", "consentLetterFromNewEntryDoc", "JustificationForSuchRequestDoc", "sideEffectForExtstingDeveloperDoc", "detailsOfAppliedAreaDoc", "undertackingPayBalanceDoc", "authorizedSignatoryOEDDoc", "authorizedSignatoryNEDoc") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+#        basePath: changeBeneficial.*
+#        jsonMaps:
+#        
+#         - jsonPath: changeBeneficial.*.developerServiceCode
+#           type: STRING
+#      
+#         - jsonPath: changeBeneficial.*.areaInAcres
+#           type: STRING
+#  
+#         - jsonPath: changeBeneficial.*.developerId
+#           type: LONG
+#         
+#         - jsonPath: changeBeneficial.*.nocDocument
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.consentLetterFromNewEntryDoc
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.JustificationForSuchRequestDoc
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.sideEffectForExtstingDeveloperDoc
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.detailsOfAppliedAreaDoc
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.undertackingPayBalanceDoc
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.authorizedSignatoryOEDDoc
+#           type: STRING
+#         
+#         - jsonPath: changeBeneficial.*.authorizedSignatoryNEDoc
+#           type: STRING
