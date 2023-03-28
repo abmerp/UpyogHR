@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -53,6 +53,9 @@ serviceMaps:
            type: STRING
            
          - jsonPath: changeBeneficial.*.fiancialCapacityCertificate
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.cbApplicationNumber
            type: STRING
            
          - jsonPath: changeBeneficial.*.isDraft

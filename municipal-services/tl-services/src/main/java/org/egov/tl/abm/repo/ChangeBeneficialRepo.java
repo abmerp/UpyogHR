@@ -103,6 +103,7 @@ public class ChangeBeneficialRepo {
 		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
 				.id(rs.getString("id").toString())
 				.developerServiceCode(rs.getString("developerServiceCode").toString())
+				.cbApplicationNumber(rs.getString("cb_application_number").toString())
 				.build());
 		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 			cahngeBeneficial=changeBeneficial.get(0);

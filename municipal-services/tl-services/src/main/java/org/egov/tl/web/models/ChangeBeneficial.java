@@ -21,6 +21,8 @@ public class ChangeBeneficial {
 	@JsonProperty("id")
 	private String id;
 	
+	@JsonProperty("cbApplicationNumber")
+	private String cbApplicationNumber;
 
 	@JsonProperty("developerServiceCode")
 	private String developerServiceCode;
@@ -34,18 +36,14 @@ public class ChangeBeneficial {
 	@JsonProperty("workFlowCode")
 	private String workFlowCode;
 
-//	@JsonProperty("totalAmount")
-//	private double totalAmount;
+	@JsonProperty("paymentType")
+	private int paymentType;  // 1-partial payment,2- full payment   //new 
+	
+	@JsonProperty("applicationStatus")
+	private int applicationStatus; //  1- pending,2-partial paied,3-full paied    // new
 	
 	@JsonProperty("paidAmount")
-	private double paidAmount;
-	
-//	@JsonProperty("paymentStatus")
-//	private double paymentStatus;
-//	
-//	@JsonProperty("tranactionId")
-//	private String tranactionId;
-//	
+	private String paidAmount;	
 
 	@JsonProperty("areaInAcres")
 	private String areaInAcres;
