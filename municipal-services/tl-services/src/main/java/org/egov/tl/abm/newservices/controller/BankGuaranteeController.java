@@ -49,10 +49,11 @@ public class BankGuaranteeController {
 			@RequestParam(value = "typeOfBg", required = false) String typeOfBg,
 			@RequestParam(value = "bgNumber", required = false) String bgNumber,
 			@RequestParam(value = "bankName", required = false) String bankName,
-			@RequestParam(value = "existingBgNumber", required = false) String existingBgNumber) {
+			@RequestParam(value = "existingBgNumber", required = false) String existingBgNumber,
+			@RequestParam(value = "licenceNumber", required = false) String licenceNumber) {
 		
 		List<NewBankGuarantee> newBankGuaranteeList = bankGuaranteeService.searchNewBankGuarantee(requestInfo,
-				applicationNumber, loiNumber, typeOfBg, bgNumber, existingBgNumber, bankName);
+				applicationNumber, loiNumber, typeOfBg, bgNumber, existingBgNumber, bankName,licenceNumber);
 		NewBankGuaranteeResponse newBankGuaranteeResponse = NewBankGuaranteeResponse.builder()
 				.newBankGuaranteeList(newBankGuaranteeList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfo, true))

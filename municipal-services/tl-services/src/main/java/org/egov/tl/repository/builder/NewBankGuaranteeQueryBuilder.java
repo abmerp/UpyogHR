@@ -58,6 +58,11 @@ public class NewBankGuaranteeQueryBuilder {
 			builder.append(" ebnbg.existing_Bg_Number=?");
 			preparedStmtList.add(bankGuaranteeSearchCriteria.getExistingBgNumber());
 		}
+		if (!StringUtils.isEmpty(bankGuaranteeSearchCriteria.getLicenceNumber())) {
+			addClauseIfRequired(preparedStmtList, builder);
+			builder.append(" ebnbg.licence_number=?");
+			preparedStmtList.add(bankGuaranteeSearchCriteria.getLicenceNumber());
+		}
 		return builder.toString();
 
 	}
