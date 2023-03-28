@@ -80,7 +80,7 @@ public class ApprovalStandardService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT license_no, plan, other_document, amount, id" + " FROM public.eg_approval_standard"
+		String query = "SELECT license_no, plan, other_document, amount" + " FROM public.eg_approval_standard"
 				+ " Where ";
 		builder = new StringBuilder(query);
 
