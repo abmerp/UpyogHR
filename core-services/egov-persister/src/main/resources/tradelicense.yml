@@ -1339,3 +1339,35 @@ serviceMaps:
           - jsonPath: $.Licenses.*.tradeLicenseDetail.IDW
                 
           - jsonPath: $.Licenses.*.tradeLicenseDetail.id
+          
+ - version: 1.0
+   description: create approval of standard 
+   fromTopic: save-approval-of-standard
+   isTransaction: true
+   queryMaps:
+    
+       - query: INSERT INTO public.eg_approval_standard(license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?);
+         basePath: ApprovalStandardEntity.*
+         jsonMaps:         
+                   
+          - jsonPath: $.ApprovalStandardEntity.*.licenseNo
+          
+          - jsonPath: $.ApprovalStandardEntity.*.plan
+          
+          - jsonPath: $.ApprovalStandardEntity.*.otherDocument
+          
+          - jsonPath: $.ApprovalStandardEntity.*.amount
+          
+          - jsonPath: $.ApprovalStandardEntity.*.auditDetails.createdBy
+
+          - jsonPath: $.ApprovalStandardEntity.*.auditDetails.createdTime
+
+          - jsonPath: $.ApprovalStandardEntity.*.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ApprovalStandardEntity.*.auditDetails.lastModifiedTime
+          
+        
+          
+      
+          
+          

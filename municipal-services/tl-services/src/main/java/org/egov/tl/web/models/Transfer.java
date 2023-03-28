@@ -149,6 +149,9 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(name="AnyOtherDoc")
 	private String anyOtherDoc;
+	
+	@Column(name="FormHorizontalRadios")
+	private String formHorizontalRadios;
 
 
 }

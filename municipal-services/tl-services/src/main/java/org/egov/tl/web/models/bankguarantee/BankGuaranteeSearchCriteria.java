@@ -51,4 +51,6 @@ public class BankGuaranteeSearchCriteria {
 
 	@JsonProperty("limit")
 	private Integer limit;
+	@JsonProperty("licenceNumber")
+	private String licenceNumber;
 }
