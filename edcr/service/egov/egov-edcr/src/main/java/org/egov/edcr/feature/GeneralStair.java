@@ -1,6 +1,7 @@
 package org.egov.edcr.feature;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -40,7 +41,7 @@ public class GeneralStair extends FeatureProcess {
 	private static final String FLIGHT_WIDTH_DEFINED_DESCRIPTION = "Flight polyline width is not defined in layer ";
 	private static final String WIDTH_LANDING_DESCRIPTION = "Minimum width for general stair %s mid landing %s";
 	private static final String FLIGHT_NOT_DEFINED_DESCRIPTION = "General stair flight is not defined in block %s floor %s";
-	private static final String RISER_HEIGHT_DESCRIPTION = "Minimum Riser Height for general stair %s flight %s";
+	private static final String RISER_HEIGHT_DESCRIPTION = "Maximum Riser Height for general stair";
 
 	@Override
 	public Plan validate(Plan plan) {
@@ -227,19 +228,25 @@ public class GeneralStair extends FeatureProcess {
 			ScrutinyDetail scrutinyDetail3, ScrutinyDetail scrutinyDetailRise, ScrutinyDetail scrutinyDetailRiserHt,
 			OccupancyTypeHelper mostRestrictiveOccupancyType, Floor floor, Map<String, Object> typicalFloorValues,
 			org.egov.common.entity.edcr.GeneralStair generalStair) {
+		BigDecimal totalnoOfRises = BigDecimal.ZERO;
+		BigDecimal maxRiserHeight = BigDecimal.ZERO;
+	
 		if (!generalStair.getFlights().isEmpty()) {
+			
 			for (Flight flight : generalStair.getFlights()) {
 				List<Measurement> flightPolyLines = flight.getFlights();
 				List<BigDecimal> flightLengths = flight.getLengthOfFlights();
 				List<BigDecimal> flightWidths = flight.getWidthOfFlights();
 				BigDecimal noOfRises = flight.getNoOfRises();
 				Boolean flightPolyLineClosed = flight.getFlightClosed();
-
+				
+				totalnoOfRises = new BigDecimal(totalnoOfRises.add(noOfRises).doubleValue());
+				
 				BigDecimal minTread = BigDecimal.ZERO;
 				BigDecimal minFlightWidth = BigDecimal.ZERO;
 				String flightLayerName = String.format(DxfFileConstants.LAYER_STAIR_FLIGHT, block.getNumber(),
 						floor.getNumber(), generalStair.getNumber(), flight.getNumber());
-
+				
 				if (flightPolyLines != null && flightPolyLines.size() > 0) {
 					if (flightPolyLineClosed) {
 						if (flightWidths != null && flightWidths.size() > 0) {
@@ -272,7 +279,9 @@ public class GeneralStair extends FeatureProcess {
 							plan.addErrors(errors);
 
 						}
-
+						
+						
+						
 						if (noOfRises.compareTo(BigDecimal.ZERO) > 0) {
 							try {
 								validateNoOfRises(plan, errors, block, scrutinyDetailRise, floor, typicalFloorValues,
@@ -294,13 +303,26 @@ public class GeneralStair extends FeatureProcess {
 						}
 
 					}
-				} else {
+				} 
+			else {
 					errors.put("Flight PolyLine " + flightLayerName,
 							FLIGHT_POLYLINE_NOT_DEFINED_DESCRIPTION + flightLayerName);
 					plan.addErrors(errors);
 				}
 
 			}
+			
+
+				try {
+					validateRiserHeight(plan, errors, block, scrutinyDetailRiserHt, 
+							floor, typicalFloorValues, generalStair, totalnoOfRises, 
+							maxRiserHeight, mostRestrictiveOccupancyType);
+				} catch (ArithmeticException e) {
+					LOG.info("Denominator is zero");
+				}
+			
+				
+			
 		} else {
 			String error = String.format(FLIGHT_NOT_DEFINED_DESCRIPTION, block.getNumber(), floor.getNumber());
 			errors.put(error, error);
@@ -456,6 +478,69 @@ public class GeneralStair extends FeatureProcess {
 		}
 		return BigDecimal.valueOf(0.3);
 	}
+	
+	
+	private BigDecimal validateRiserHeight(Plan plan, HashMap<String, String> errors, Block block,
+			ScrutinyDetail scrutinyDetailRiserHt, Floor floor, Map<String, Object> typicalFloorValues,
+			org.egov.common.entity.edcr.GeneralStair generalStair, BigDecimal totalnoOfRises,
+			BigDecimal maxRiserHeight, OccupancyTypeHelper mostRestrictiveOccupancyType) {
+		
+		boolean valid = false;
+		if(!floor.getRegularRooms().isEmpty() && floor.getRegularRooms() != null) {
+			BigDecimal regularRoomHeight = floor.getRegularRooms().get(0).getHeights().get(0).getHeight();
+				BigDecimal requiredRiserHt = getRequiredRiserHeight(mostRestrictiveOccupancyType);
+				maxRiserHeight = new BigDecimal(requiredRiserHt.doubleValue());
+				BigDecimal calculatedRiserHt = regularRoomHeight.divide(totalnoOfRises).setScale(2, BigDecimal.ROUND_DOWN);
+				if((calculatedRiserHt.compareTo((requiredRiserHt))) <= 0)
+				{
+					valid = true;
+				}
+				String value = typicalFloorValues.get("typicalFloors") != null
+						? (String) typicalFloorValues.get("typicalFloors")
+						: " floor " + floor.getNumber();
+				if (valid) {
+					setReportOutputDetailsFloorStairWise(plan, RULE42_5_II, value,
+							String.format(RISER_HEIGHT_DESCRIPTION),
+							requiredRiserHt.toString(), String.valueOf(calculatedRiserHt), Result.Accepted.getResultVal(),
+							scrutinyDetailRiserHt);
+				} else {
+					setReportOutputDetailsFloorStairWise(plan, RULE42_5_II, value,
+							String.format(RISER_HEIGHT_DESCRIPTION),
+							requiredRiserHt.toString(), String.valueOf(calculatedRiserHt), Result.Not_Accepted.getResultVal(),
+							scrutinyDetailRiserHt);
+				}
+				
+			}
+		
+		
+		return maxRiserHeight;
+	}
+	
+	private BigDecimal getRequiredRiserHeight(OccupancyTypeHelper mostRestrictiveOccupancyType) {
+
+		if (mostRestrictiveOccupancyType != null && mostRestrictiveOccupancyType.getSubtype() != null) {
+
+			switch (mostRestrictiveOccupancyType.getSubtype().getCode()) {
+
+			case DxfFileConstants.A_AF:
+				return BigDecimal.valueOf(0.19);
+
+			case DxfFileConstants.A:
+				return BigDecimal.valueOf(0.19);
+				
+			case DxfFileConstants.A_R:
+				return BigDecimal.valueOf(0.19);
+
+			default:
+				return BigDecimal.valueOf(0.19);
+
+			}
+
+		}
+		return BigDecimal.valueOf(0.19);
+	}
+	
+	
 
 	private void validateNoOfRises(Plan plan, HashMap<String, String> errors, Block block,
 			ScrutinyDetail scrutinyDetail3, Floor floor, Map<String, Object> typicalFloorValues,

@@ -66,6 +66,7 @@ import org.egov.common.entity.edcr.Measurement;
 import org.egov.common.entity.edcr.OccupancyTypeHelper;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
+import org.egov.common.entity.edcr.RoofArea;
 import org.egov.common.entity.edcr.Room;
 import org.egov.common.entity.edcr.ScrutinyDetail;
 import org.egov.common.entity.edcr.SetBack;
@@ -107,6 +108,7 @@ public class AdditionalFeature extends FeatureProcess {
     private static final BigDecimal ROAD_WIDTH_TWELVE_POINTTWO = BigDecimal.valueOf(12.2);
 
     private static final int PLOTAREA_100 = 100;
+    private static final int ROOFAREA_100 = 100;
     private static final int PLOTAREA_300 = 300;
     private static final int PLOTAREA_420 = 420;
     private static final int PLOTAREA_500 = 500;
@@ -195,7 +197,7 @@ public class AdditionalFeature extends FeatureProcess {
         return pl;
     }
 
-    private void validateFireDeclaration(Plan pl, HashMap<String, String> errors) {
+	private void validateFireDeclaration(Plan pl, HashMap<String, String> errors) {
         ScrutinyDetail scrutinyDetail = getNewScrutinyDetail("Fire Protection And Fire Safety Requirements");
         OccupancyTypeHelper mostRestrictiveOccupancyType = pl.getVirtualBuilding() != null
                 ? pl.getVirtualBuilding().getMostRestrictiveFarHelper()
@@ -582,30 +584,79 @@ public class AdditionalFeature extends FeatureProcess {
 
                     if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_100)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_500)) < 0) {
-
-                        validate1a(pl, scrutinyDetail);
+                    	
+                    	
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+                    	
+                    	
+                    	
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
 
+//    					validate1b(pl, scrutinyDetail);
+                        validate4a(pl, scrutinyDetail);
+                        
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_500)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) < 0) {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
 
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_3000)) < 0) {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
 
                     } else {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
@@ -616,14 +667,36 @@ public class AdditionalFeature extends FeatureProcess {
                     if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_100)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_500)) < 0) {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
 
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_500)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) < 0) {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
@@ -631,14 +704,36 @@ public class AdditionalFeature extends FeatureProcess {
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_3000)) < 0) {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
 
                     } else {
 
-                        validate1a(pl, scrutinyDetail);
+                    	blk: for (Block block : pl.getBlocks()) {
+                    		for (Floor floor : block.getBuilding().getFloors()) {
+                    			for (RoofArea roofArea : floor.getRoofAreas()) {
+                    			if (roofArea != null && roofArea.getArea() != null) {
+                    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+                    					validate1a(pl, scrutinyDetail);
+                    				}
+                    			}
+                    		  }
+                    		}
+                    	}
+//                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
                         validate4a(pl, scrutinyDetail);
@@ -852,6 +947,24 @@ public class AdditionalFeature extends FeatureProcess {
                     "Not Provided rain water harvesting", Result.Not_Accepted.getResultVal());
         }
     }
+    
+//    private void validate1b(Plan pl, ScrutinyDetail scrutinyDetail) {
+//    	for (Block block : pl.getBlocks()) {
+//    		for (Floor floor : block.getBuilding().getFloors()) {
+//    			for (RoofArea roofArea : floor.getRoofAreas()) {
+//    			if (roofArea != null && roofArea.getArea() != null) {
+//    				if (roofArea.getArea().compareTo(BigDecimal.valueOf(ROOFAREA_100)) >= 0) {
+//    					addDetailsForRoof(scrutinyDetail, "55-1-a", "Rain Water Harvesting Roof Area Criteria", "Roof Area >= 100",
+//    			                roofArea.getArea().toString(), Result.Accepted.getResultVal());
+//    				} else {
+//    					addDetailsForRoof(scrutinyDetail, "55-1-a", "Rain Water Harvesting Roof Area Criteria", "Roof Area < 100",
+//    							roofArea.getArea().toString(), Result.NA.getResultVal());
+//    				}
+//    			}
+//    		  }
+//    		}
+//    	}
+//    }
 
     /*
      * private void validateIntCourtYard(Plan pl, HashMap<String, String> errors) { for (Block block : pl.getBlocks()) { boolean
@@ -867,6 +980,17 @@ public class AdditionalFeature extends FeatureProcess {
      */
 
     private void addDetails(ScrutinyDetail scrutinyDetail, String rule, String description, String required,
+            String provided, String status) {
+        Map<String, String> details = new HashMap<>();
+        details.put(RULE_NO, rule);
+        details.put(DESCRIPTION, description);
+        details.put(REQUIRED, required);
+        details.put(PROVIDED, provided);
+        details.put(STATUS, status);
+        scrutinyDetail.getDetail().add(details);
+    }
+    
+    private void addDetailsForRoof(ScrutinyDetail scrutinyDetail, String rule, String description, String required,
             String provided, String status) {
         Map<String, String> details = new HashMap<>();
         details.put(RULE_NO, rule);

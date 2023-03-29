@@ -81,6 +81,7 @@ public class HeightOfRoom extends FeatureProcess {
 
     private static final String SUBRULE_41_II_A_AC_DESC = "Minimum height of ac room";
     private static final String SUBRULE_41_II_A_REGULAR_DESC = "Minimum height of regular room";
+    private static final String SUBRULE_41_II_A_FLOOR = "Height of Floor";
     private static final String SUBRULE_41_II_B_AREA_DESC = "Total area of rooms";
     private static final String SUBRULE_41_II_B_TOTAL_WIDTH = "Minimum Width of room";
 
@@ -93,6 +94,7 @@ public class HeightOfRoom extends FeatureProcess {
     public static final BigDecimal MINIMUM_WIDTH_2_1 = BigDecimal.valueOf(2.1);
     private static final String FLOOR = "Floor";
     private static final String ROOM_HEIGHT_NOTDEFINED = "Room height is not defined in layer ";
+    private static final String FLOOR_HEIGHT_NOTDEFINED = "Floor height is not defined in layer ";
     private static final String LAYER_ROOM_HEIGHT = "BLK_%s_FLR_%s_%s";
 
     @Override
@@ -119,9 +121,10 @@ public class HeightOfRoom extends FeatureProcess {
                         scrutinyDetail.addColumnHeading(1, RULE_NO);
                         scrutinyDetail.addColumnHeading(2, DESCRIPTION);
                         scrutinyDetail.addColumnHeading(3, FLOOR);
-                        scrutinyDetail.addColumnHeading(4, REQUIRED);
-                        scrutinyDetail.addColumnHeading(5, PROVIDED);
-                        scrutinyDetail.addColumnHeading(6, STATUS);
+            			scrutinyDetail.addColumnHeading(4, ROOM_NAME);
+                        scrutinyDetail.addColumnHeading(5, REQUIRED);
+                        scrutinyDetail.addColumnHeading(6, PROVIDED);
+                        scrutinyDetail.addColumnHeading(7, STATUS);
 
                         scrutinyDetail.setKey("Block_" + block.getNumber() + "_" + "Room");
 
@@ -133,7 +136,9 @@ public class HeightOfRoom extends FeatureProcess {
                             BigDecimal minWidth = BigDecimal.ZERO;
                             String subRule = null;
                             String subRuleDesc = null;
+                            String floorRuleDesc = null;
                             String color = "";
+                            String roomName = "";
 
                             if (A.equalsIgnoreCase(mostRestrictiveOccupancy.getType().getCode()))
                                 color = DxfFileConstants.COLOR_RESIDENTIAL_ROOM;
@@ -185,7 +190,7 @@ public class HeightOfRoom extends FeatureProcess {
                                     boolean isTypicalRepititiveFloor = false;
                                     Map<String, Object> typicalFloorValues = ProcessHelper.getTypicalFloorValues(block, floor,
                                             isTypicalRepititiveFloor);
-                                    buildResult(pl, floor, minimumHeight, subRule, subRuleDesc, minHeight, valid,
+                                    buildResult(pl, floor, minimumHeight, subRule, roomName, subRuleDesc, minHeight, valid,
                                             typicalFloorValues);
                                 } else {
                                     String layerName = String.format(LAYER_ROOM_HEIGHT, block.getNumber(), floor.getNumber(),
@@ -234,17 +239,71 @@ public class HeightOfRoom extends FeatureProcess {
                                     subRule = SUBRULE_41_II_A;
                                     subRuleDesc = SUBRULE_41_II_A_REGULAR_DESC;
 
-
+                                    if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 0) {
+       								 	roomName = "Regular Room";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 1) {
+       									roomName = "Bedroom";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 2) {
+       									roomName = "Bedroom with attached bathroom";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 3) {
+       									roomName = "Drawing room";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 4) {
+       									roomName = "Child bedroom";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 5) {
+       									roomName = "Safe deposit vault room";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 6) {
+       									roomName = "A.C. Plant room";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 7) {
+       									roomName = "Storage room other than inflammable material";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 8) {
+       									roomName = "Other utilities room";
+       								}
+       								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 41) {
+       									roomName = "Convenience Shop";
+       								}
+                                    
                                     boolean valid = false;
                                     boolean isTypicalRepititiveFloor = false;
                                     Map<String, Object> typicalFloorValues = ProcessHelper.getTypicalFloorValues(block, floor,
                                             isTypicalRepititiveFloor);
-                                    buildResult(pl, floor, minimumHeight, subRule, subRuleDesc, minHeight, valid,
+                                    buildResult(pl, floor, minimumHeight, subRule, roomName, subRuleDesc, minHeight, valid,
                                             typicalFloorValues);
                                 } else {
                                     String layerName = String.format(LAYER_ROOM_HEIGHT, block.getNumber(), floor.getNumber(),
                                             "REGULAR_ROOM");
                                     errors.put(layerName, ROOM_HEIGHT_NOTDEFINED + layerName);
+                                    pl.addErrors(errors);
+                                }
+                                
+                                if (!residentialRoomHeights.isEmpty()) {
+                                    BigDecimal minHeight = residentialRoomHeights.stream().reduce(BigDecimal::min).get();
+
+                                    if (!G.equalsIgnoreCase(mostRestrictiveOccupancy.getType().getCode()))
+                                        minimumHeight = MINIMUM_HEIGHT_2_75;
+                                    else
+                                        minimumHeight = MINIMUM_HEIGHT_3_6;
+
+                                    subRule = SUBRULE_41_II_A;
+                                    floorRuleDesc = SUBRULE_41_II_A_FLOOR;
+                                    
+                                    boolean valid = false;
+                                    boolean isTypicalRepititiveFloor = false;
+                                    Map<String, Object> typicalFloorValues = ProcessHelper.getTypicalFloorValues(block, floor,
+                                            isTypicalRepititiveFloor);
+                                    buildResultFloor(pl, floor, minimumHeight, subRule, floorRuleDesc, minHeight, valid,
+                                            typicalFloorValues);
+                                } else {
+                                    String layerName = String.format(LAYER_ROOM_HEIGHT, block.getNumber(), floor.getNumber(),
+                                            "FLOOR");
+                                    errors.put(layerName, FLOOR_HEIGHT_NOTDEFINED + layerName);
                                     pl.addErrors(errors);
                                 }
 
@@ -264,15 +323,46 @@ public class HeightOfRoom extends FeatureProcess {
                                 }
                                 subRule = SUBRULE_41_II_B;
                                 subRuleDesc = SUBRULE_41_II_B_AREA_DESC;
+                                
+                                if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 0) {
+   								 	roomName = "Regular Room";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 1) {
+   									roomName = "Bedroom";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 2) {
+   									roomName = "Bedroom with attached bathroom";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 3) {
+   									roomName = "Drawing room";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 4) {
+   									roomName = "Child bedroom";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 5) {
+   									roomName = "Safe deposit vault room";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 6) {
+   									roomName = "A.C. Plant room";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 7) {
+   									roomName = "Storage room other than inflammable material";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 8) {
+   									roomName = "Other utilities room";
+   								}
+   								if(floor.getRegularRooms().get(0).getRooms().get(0).getColorCode() == 41) {
+   									roomName = "Convenience Shop";
+   								}
 
                                 boolean valid = false;
                                 boolean isTypicalRepititiveFloor = false;
                                 Map<String, Object> typicalFloorValues = ProcessHelper.getTypicalFloorValues(block, floor,
                                         isTypicalRepititiveFloor);
-                                buildResult(pl, floor, minimumHeight, subRule, subRuleDesc, totalArea, valid, typicalFloorValues);
+                                buildResult(pl, floor, minimumHeight, subRule, roomName, subRuleDesc, totalArea, valid, typicalFloorValues);
 
                                 subRuleDesc = SUBRULE_41_II_B_TOTAL_WIDTH;
-                                buildResult(pl, floor, minWidth, subRule, subRuleDesc, minRoomWidth, valid, typicalFloorValues);
+                                buildResult(pl, floor, minWidth, subRule, roomName, subRuleDesc, minRoomWidth, valid, typicalFloorValues);
                             }
                         }
                     }
@@ -283,7 +373,7 @@ public class HeightOfRoom extends FeatureProcess {
 
     }
 
-    private void buildResult(Plan pl, Floor floor, BigDecimal expected, String subRule, String subRuleDesc,
+    private void buildResult(Plan pl, Floor floor, BigDecimal expected, String subRule, String roomName, String subRuleDesc,
             BigDecimal actual, boolean valid, Map<String, Object> typicalFloorValues) {
         if (!(Boolean) typicalFloorValues.get("isTypicalRepititiveFloor")
                 && expected.compareTo(BigDecimal.valueOf(0)) > 0 &&
@@ -295,23 +385,61 @@ public class HeightOfRoom extends FeatureProcess {
                     ? (String) typicalFloorValues.get("typicalFloors")
                     : " floor " + floor.getNumber();
             if (valid) {
-                setReportOutputDetails(pl, subRule, subRuleDesc, value,
+                setReportOutputDetails(pl, subRule, subRuleDesc, value, roomName,
                         expected + DcrConstants.IN_METER,
                         actual + DcrConstants.IN_METER, Result.Accepted.getResultVal());
             } else {
-                setReportOutputDetails(pl, subRule, subRuleDesc, value,
+                setReportOutputDetails(pl, subRule, subRuleDesc, value, roomName,
+                        expected + DcrConstants.IN_METER,
+                        actual + DcrConstants.IN_METER, Result.Not_Accepted.getResultVal());
+            }
+        }
+    }
+    
+    private void buildResultFloor(Plan pl, Floor floor, BigDecimal expected, String subRule, String subRuleDesc,
+            BigDecimal actual, boolean valid, Map<String, Object> typicalFloorValues) {
+        if (!(Boolean) typicalFloorValues.get("isTypicalRepititiveFloor")
+                && expected.compareTo(BigDecimal.valueOf(0)) > 0 &&
+                subRule != null && subRuleDesc != null) {
+            if (actual.compareTo(expected) >= 0) {
+                valid = true;
+            }
+            String value = typicalFloorValues.get("typicalFloors") != null
+                    ? (String) typicalFloorValues.get("typicalFloors")
+                    : " floor " + floor.getNumber();
+            if (valid) {
+                setReportOutputDetailsFloor(pl, subRule, subRuleDesc, value,
+                        expected + DcrConstants.IN_METER,
+                        actual + DcrConstants.IN_METER, Result.Accepted.getResultVal());
+            } else {
+                setReportOutputDetailsFloor(pl, subRule, subRuleDesc, value,
                         expected + DcrConstants.IN_METER,
                         actual + DcrConstants.IN_METER, Result.Not_Accepted.getResultVal());
             }
         }
     }
 
-    private void setReportOutputDetails(Plan pl, String ruleNo, String ruleDesc, String floor, String expected, String actual,
+    private void setReportOutputDetails(Plan pl, String ruleNo, String ruleDesc, String floor, String roomName, String expected, String actual,
             String status) {
         Map<String, String> details = new HashMap<>();
         details.put(RULE_NO, ruleNo);
         details.put(DESCRIPTION, ruleDesc);
         details.put(FLOOR, floor);
+        details.put(ROOM_NAME, roomName);
+        details.put(REQUIRED, expected);
+        details.put(PROVIDED, actual);
+        details.put(STATUS, status);
+        scrutinyDetail.getDetail().add(details);
+        pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
+    }
+    
+    private void setReportOutputDetailsFloor(Plan pl, String ruleNo, String ruleDesc, String floor, String expected, String actual,
+            String status) {
+        Map<String, String> details = new HashMap<>();
+        details.put(RULE_NO, ruleNo);
+        details.put(DESCRIPTION, ruleDesc);
+        details.put(FLOOR, floor);
+        details.put(ROOM_NAME, "");
         details.put(REQUIRED, expected);
         details.put(PROVIDED, actual);
         details.put(STATUS, status);

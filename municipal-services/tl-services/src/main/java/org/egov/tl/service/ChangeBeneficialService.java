@@ -1,5 +1,8 @@
 package org.egov.tl.service;
 
+import static org.egov.tl.util.TLConstants.businessService_BPA;
+import static org.egov.tl.util.TLConstants.businessService_TL;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -7,9 +10,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -21,6 +26,7 @@ import org.egov.common.contract.request.Role;
 import org.egov.common.contract.request.User;
 import org.egov.tl.abm.repo.ChangeBeneficialRepo;
 import org.egov.tl.config.TLConfiguration;
+import org.egov.tl.repository.IdGenRepository;
 import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
@@ -28,6 +34,7 @@ import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.ChangeBeneficialResponse;
+import org.egov.tl.web.models.Document;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.ResponseTransaction;
 import org.egov.tl.web.models.TradeLicense;
@@ -35,7 +42,10 @@ import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.UserResponse;
 import org.egov.tl.web.models.UserSearchCriteria;
+import org.egov.tl.web.models.Idgen.IdResponse;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
+import org.egov.tl.workflow.ChangeBeneficialWorkflowIntegrator;
+import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -44,6 +54,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -60,6 +71,10 @@ import net.minidev.json.JSONObject;
 @Slf4j
 @Service
 public class ChangeBeneficialService {
+	
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CBWF";
+	private static final String WFTENANTID = "hr";
+
 	
 	@Value("${tcp.payment.host}")
 	private String paymentHost;
@@ -131,6 +146,12 @@ public class ChangeBeneficialService {
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 	
+	@Autowired
+	private ChangeBeneficialWorkflowIntegrator workflowIntegrator;
+	
+	@Autowired
+	private IdGenRepository idGenRepository;
+	
 	@Value("${egov.tl.calculator.host}")
 	private String guranteeHost;
 	
@@ -160,6 +181,8 @@ public class ChangeBeneficialService {
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
+						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
+						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -174,6 +197,23 @@ public class ChangeBeneficialService {
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			changeBeneficialRepo.save(beneficialRequest);
+			changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
+//			/************************* Workflow start *****************************/
+////			UUID uuid=UUID.randomUUID(); 
+//			Map<String ,Object> workFlowRequests=new HashMap<>();
+//			workFlowRequests.put("cbApplicationNumber","");
+//			workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
+//			workFlowRequests.put("workFlowRequestType","PERMENENT");
+//			workFlowRequests.put("action","INITIATE");
+//			workFlowRequests.put("comment","start process");
+//			workFlowRequests.put("wfTenantId",WFTENANTID);
+//			
+//			String businessServiceFromMDMS="TL";
+//			String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo);
+//			List<Document> wfDocuments=new ArrayList<>();
+//			workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), businessServiceFromMDMS, requestInfo, wfDocuments, Arrays.asList(assignees));
+//			/************************* Workflow end *****************************/
+//			
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Success").status(true).build();
 		} else {
@@ -182,6 +222,91 @@ public class ChangeBeneficialService {
 		}
 		return changeBeneficialResponse;
 
+	}
+	
+	public List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
+		List<IdResponse> idResponses = idGenRepository.getId(requestInfo, tenantId, idKey, idformat, count)
+				.getIdResponses();
+
+		if (CollectionUtils.isEmpty(idResponses))
+			throw new CustomException("IDGEN ERROR", "No ids returned from idgen Service");
+
+		return idResponses.stream().map(IdResponse::getId).collect(Collectors.toList());
+	}
+
+	/**
+	 * Sets the ApplicationNumber for given TradeLicenseRequest
+	 *
+	 * @param request TradeLicenseRequest which is to be created
+	 */
+	private String getGenIds(String tenantId,RequestInfo requestInfo,String businessService,int requestSize) {
+		if (businessService == null)
+			businessService = businessService_TL;
+		List<String> applicationNumbers = null;
+		switch (businessService) {
+		case businessService_TL:
+			applicationNumbers = getIdList(requestInfo, tenantId, config.getApplicationNumberIdgenNameTL(),
+					config.getApplicationNumberIdgenFormatTL(), requestSize);
+			break;
+
+		case businessService_BPA:
+			applicationNumbers = getIdList(requestInfo, tenantId, config.getApplicationNumberIdgenNameBPA(),
+					config.getApplicationNumberIdgenFormatBPA(), requestSize);
+			break;
+		}
+		ListIterator<String> itr = applicationNumbers.listIterator();
+
+		Map<String, String> errorMap = new HashMap<>();
+		if (applicationNumbers.size() != requestSize) {
+			errorMap.put("IDGEN ERROR ",
+					"The number of LicenseNumber returned by idgen is not equal to number of TradeLicenses");
+		}
+
+		if (!errorMap.isEmpty())
+			throw new CustomException(errorMap);
+		return itr.next().replace("TL", "CB");
+	}
+	
+	public String generateApplicationNumber(String userId) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+		LocalDateTime localDateTime = LocalDateTime.now();
+		String date = formatter.format(localDateTime);
+		
+		Map<String, Object> authtoken = new HashMap<String, Object>();
+		authtoken.put("UserId", "39");
+		authtoken.put("TpUserId", userId);
+		authtoken.put("EmailId", "mkthakur84@gmail.com");
+		
+		
+		
+		Map<String, Object> mapDNo = new HashMap<String, Object>();
+
+		mapDNo.put("Village","");
+		mapDNo.put("DiaryDate", date);
+		mapDNo.put("ReceivedFrom", "1758");
+		mapDNo.put("UserId", "1265");
+		mapDNo.put("DistrictCode","");
+		mapDNo.put("UserLoginId", "39");
+		String dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value").toString();
+		System.out.println("dairyNumber:---"+dairyNumber);
+		
+		
+		
+		
+		Map<String, Object> mapANo = new HashMap<String, Object>();
+		mapANo.put("DiaryNo", dairyNumber);
+		mapANo.put("DiaryDate",date);
+		mapANo.put("TotalArea", 0.0);
+		mapANo.put("Village","Abc");
+		mapANo.put("PurposeId", "74");
+		mapANo.put("NameofOwner","Abc");
+		mapANo.put("DateOfHearing", date);
+		mapANo.put("DateForFilingOfReply", date);
+		mapANo.put("UserId", "2");
+		mapANo.put("UserLoginId", "39");
+		String tcpApplicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody().get("Value").toString();
+        System.out.println("tcpApplicationNmber:---"+tcpApplicationNmber);
+		return tcpApplicationNmber;
 	}
 //	
 //	
@@ -193,8 +318,44 @@ public class ChangeBeneficialService {
 //		
 //		return null;
 //	}
+	public void changeBeneficialBillDemandCreation(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment) {
+   
+	  TradeLicense tradeLicenses=tradeLicensesService.getLicensesWithOwnerInfo(TradeLicenseSearchCriteria.builder().applicationNumber(applicationNumber).tenantId("hr").build(), requestInfo).get(0);
+//			  try {
+//				String data = mapper.writeValueAsString(tradeLicenses);
+//			} catch (JsonProcessingException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+	  // --------------------------calculation start--------------------------------//
+	        StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
+			calculatorUrl.append(accessCalculatorEndPoint);
+			calculatorUrl.append("?calculationServiceName="+calculationServiceName+"&calculationType="+calculationType+"&isIntialCalculation="+isIntialPayment);
+		    System.out.println("url:---"+calculatorUrl);
+			CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
+			calulationCriteriaRequest.setTenantId(tradeLicenses.getTenantId());
+			calulationCriteriaRequest.setTradelicense(tradeLicenses);
+			java.util.List<CalulationCriteria> calulationCriteria = Arrays.asList(calulationCriteriaRequest);
 
-	public ChangeBeneficialResponse createChangeBeneficialPay(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment)
+//			CalculatorRequest calculator = new CalculatorRequest();
+			Map<String, Object> calculator = new HashMap<>();
+			calculator.put("applicationNumber", applicationNumber);
+			
+			Map<String, Object> calculatorMap = new HashMap<>();
+			calculatorMap.put("CalulationCriteria", calulationCriteria);
+			calculatorMap.put("CalculatorRequest", calculator);
+			calculatorMap.put("RequestInfo", requestInfo);
+			HashMap responseCalculator = null;
+			try {
+				responseCalculator = serviceRequestRepository.fetchResultJSON(calculatorUrl, calculatorMap);
+			}catch (Exception e) {
+				log.error("Exception :-- "+e.getMessage());
+			}
+	
+	
+   }
+	
+	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment)
 			throws JsonProcessingException {
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
@@ -203,50 +364,52 @@ public class ChangeBeneficialService {
 			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 			
 			if(changeBeneficiaDetails!=null) {
-				  TradeLicense tradeLicenses=tradeLicensesService.getLicensesWithOwnerInfo(TradeLicenseSearchCriteria.builder().applicationNumber(applicationNumber).tenantId("hr").build(), requestInfo).get(0);
-				  String data = mapper.writeValueAsString(tradeLicenses);
-				  System.out.println("data :----------------------"+data);
-				  // --------------------------calculation start--------------------------------//
-				        StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
-						calculatorUrl.append(accessCalculatorEndPoint);
-						calculatorUrl.append("?calculationServiceName="+calculationServiceName+"&calculationType="+calculationType+"&isIntialCalculation="+isIntialPayment);
-					    System.out.println("url:---"+calculatorUrl);
-						CalulationCriteria calulationCriteriaRequest = new CalulationCriteria();
-						calulationCriteriaRequest.setTenantId(tradeLicenses.getTenantId());
-						calulationCriteriaRequest.setTradelicense(tradeLicenses);
-						java.util.List<CalulationCriteria> calulationCriteria = Arrays.asList(calulationCriteriaRequest);
-
-//						CalculatorRequest calculator = new CalculatorRequest();
-						Map<String, Object> calculator = new HashMap<>();
-						calculator.put("applicationNumber", applicationNumber);
+				
+						try {
+							 changeBeneficialBillDemandCreation(requestInfo,applicationNumber,calculationServiceName,calculationType,isIntialPayment);
+						} catch (Exception e) {
+							log.error("Exception :--"+e.getMessage());
+						}
+				}else {
+				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
 						
-						Map<String, Object> calculatorMap = new HashMap<>();
-						calculatorMap.put("CalulationCriteria", calulationCriteria);
-						calculatorMap.put("CalculatorRequest", calculator);
-						calculatorMap.put("RequestInfo", requestInfo);
-						HashMap responseCalculator = serviceRequestRepository.fetchResultJSON(calculatorUrl, calculatorMap);
-						
-						 StringBuilder faetchBillUrl = new StringBuilder(billingHost);
-						 faetchBillUrl.append(fetchBillEndpoint);
-						 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumber);
-						 
-						 Map<String, Object> faetchBillMap = new HashMap<>();
-						 faetchBillMap.put("RequestInfo", requestInfo);
-						 HashMap faetchBill = serviceRequestRepository.fetchResultJSON(faetchBillUrl, faetchBillMap);
-							
-//						 faetchBillUrl.append("?calculationServiceName="+calculationServiceName+"&calculationType="+calculationType+"&isIntialCalculation="+isIntialPayment);
-						 
-						
-						
-						List<HashMap> BillData=(List<HashMap>) faetchBill.get("Bill");
-						List<HashMap> billDetails=(List<HashMap>) BillData.get(0).get("billDetails");
-						String billId=billDetails.get(0).get("billId").toString();
-						List<HashMap> billAccountDetails=(List<HashMap>)billDetails.get(0).get("billAccountDetails");
-						BigDecimal estimateAmount= new BigDecimal(billAccountDetails.get(0).get("amount").toString());
-						
-						String callBack="http://localhost:8075/tl-services/new/transaction/v1/_redirect";
-						createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),tradeLicenses.getTenantId(),estimateAmount,applicationNumber,billId,callBack);
-								
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		return changeBeneficialResponse;
+	}
+	
+	public ChangeBeneficialResponse pay(RequestInfo requestInfo,String applicationNumber)
+			throws JsonProcessingException {
+		ChangeBeneficialResponse changeBeneficialResponse = null;
+		ChangeBeneficial changeBeneficiaDetails = null;
+		
+		try {
+			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
+			
+			if(changeBeneficiaDetails!=null) {
+				
+						try {
+							 StringBuilder faetchBillUrl = new StringBuilder(billingHost);
+							 faetchBillUrl.append(fetchBillEndpoint);
+							 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumber);
+							 
+							 Map<String, Object> faetchBillMap = new HashMap<>();
+							 faetchBillMap.put("RequestInfo", requestInfo);
+							 HashMap faetchBill = serviceRequestRepository.fetchResultJSON(faetchBillUrl, faetchBillMap);
+							 List<HashMap> BillData=(List<HashMap>) faetchBill.get("Bill");
+							 List<HashMap> billDetails=(List<HashMap>) BillData.get(0).get("billDetails");
+							 String billId=billDetails.get(0).get("billId").toString();
+							 List<HashMap> billAccountDetails=(List<HashMap>)billDetails.get(0).get("billAccountDetails");
+							 BigDecimal estimateAmount= new BigDecimal(billAccountDetails.get(0).get("amount").toString());
+							 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
+							 createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
+						} catch (Exception e) {
+							e.printStackTrace();
+							log.error("Exception :--"+e.getMessage());
+						}								
 			}else {
 				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
@@ -290,21 +453,22 @@ public class ChangeBeneficialService {
 	}
 	
 	
-	public void createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amount,String consumerCode,String billId,String callbackUrl) {
-		
+	public void createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl) {
+		String am=amountFr.toString();
+		int amount=Integer.parseInt(am);
 		UserResponse UserResponse=getUserInfo(userId);
 		org.egov.tl.web.models.User user=UserResponse.getUser().get(0);
 		StringBuilder url = new StringBuilder(userHost);
 		url.append(transactionCreatePath);
 		Map<String, Object> taxAndPayments = new HashMap<>();
 		taxAndPayments.put("billId",billId);
-		taxAndPayments.put("amountPaid",amount);
+		taxAndPayments.put("amountPaid",new BigDecimal(amount));
 		Map<String, Object> additionalDetails = new HashMap<>();
 		additionalDetails.put("isWhatsapp",false);
 		
 		Map<String, Object> transaction = new HashMap<>();
 		transaction.put("tenantId", tenantId);
-		transaction.put("txnAmount", amount);
+		transaction.put("txnAmount", new BigDecimal(amount));
 		transaction.put("bank", "0300997");
 		transaction.put("ptype", "101");
 		transaction.put("remarks", "Pay");
@@ -336,7 +500,12 @@ public class ChangeBeneficialService {
 	}
 	
 	public ResponseEntity<Object> postTransactionDeatil(MultiValueMap<String, String> requestParam) {
-
+			
+		String dairyNumber="";
+		String tcpApplicationNumber="";
+		String caseNumber="";
+		
+		
 		String transactionId = requestParam.get(new String("Applicationnumber")).get(0);
 		String grn = requestParam.get(new String("GRN")).get(0);
 		String status = requestParam.get(new String("status")).get(0);
@@ -348,9 +517,7 @@ public class ChangeBeneficialService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String date = formatter.format(localDateTime);
-		String dairyNumber;
-		String caseNumber;
-		String tcpApplicationNmber;
+		
 		String saveTransaction;
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
@@ -470,8 +637,16 @@ public class ChangeBeneficialService {
 			// ------------------user search end----------------//
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
 			tradeLicenseRequest.setApplicationNumber(applicationNumber);
+			
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
-
+			ChangeBeneficial changeBeneficial=null;
+		    try {
+		    	changeBeneficial=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
+			} catch (JsonProcessingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			for (TradeLicense tradeLicense : tradeLicenses) {
 
 				ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
@@ -494,127 +669,150 @@ public class ChangeBeneficialService {
 
 					if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
 
-						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
-								.mDMSCallPurposeCode(info, tradeLicense.getTenantId(),
-										newobj.getApplicantPurpose().getPurpose());
-
-						Map<String, List<String>> mdmsData;
-						mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
-
-						List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
-
-						int purposeId = 0;
-
-						for (Map<String, Object> mm : msp) {
-
-							purposeId = Integer.valueOf(String.valueOf(mm.get("purposeId")));
-							log.info("purposeId" + purposeId);
-
-						}
-
-						Map<String, Object> mapDNo = new HashMap<String, Object>();
-
-						mapDNo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
-						mapDNo.put("DiaryDate", date);
-						mapDNo.put("ReceivedFrom", userName);
-						mapDNo.put("UserId", "1265");
-						mapDNo.put("DistrictCode",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-						mapDNo.put("UserLoginId", "39");
-						dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
-								.toString();
-						tradeLicense.setTcpDairyNumber(dairyNumber);
-
-						/****************
-						 * End Here
-						 ***********/
-						// case number
-						Map<String, Object> mapCNO = new HashMap<String, Object>();
-						mapCNO.put("DiaryNo", dairyNumber);
-						mapCNO.put("DiaryDate", date);
-						mapCNO.put("DeveloperId", "2");
-						mapCNO.put("PurposeId", purposeId);
-						mapCNO.put("StartDate", date);
-						mapCNO.put("DistrictCode",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-						mapCNO.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
-						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
-						mapCNO.put("UserId", "2");
-						mapCNO.put("UserLoginId", "39");
-						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
-								.toString();
-						tradeLicense.setTcpCaseNumber(caseNumber);
-
-						/****************
-						 * End Here
-						 ***********/
-						// application number
-						Map<String, Object> mapANo = new HashMap<String, Object>();
-						mapANo.put("DiaryNo", dairyNumber);
-						mapANo.put("DiaryDate", date);
-						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
-						mapANo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
-						mapANo.put("PurposeId", purposeId);
-						mapANo.put("NameofOwner",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
-						mapANo.put("DateOfHearing", date);
-						mapANo.put("DateForFilingOfReply", date);
-						mapANo.put("UserId", "2");
-						mapANo.put("UserLoginId", "39");
-						tcpApplicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
-								.get("Value").toString();
-						tradeLicense.setTcpApplicationNumber(tcpApplicationNmber);
-
-						/****************
-						 * End Here
-						 ***********/
-						/****************
-						 * starttransaction data
-						 ********/
-						Map<String, Object> map3 = new HashMap<String, Object>();
-						map3.put("UserName", userName);
-						map3.put("EmailId", email);
-						map3.put("MobNo", mobNo);
-						map3.put("TxnNo", grn);
-						map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-						map3.put("NameofOwner",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
-						map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
-						map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
-						map3.put("UserId", "2");
-						map3.put("UserLoginId", "39");
-						map3.put("TpUserId", userId);
-						map3.put("PaymentMode", paymentType);
-						map3.put("PayAgreegator", bankcode);
-						map3.put("LcApplicantName", userName);
-						map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
-						map3.put("LcDevelopmentPlan",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDevelopmentPlan());
-						map3.put("LcDistrict",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-						saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
-								.toString();
-						tradeLicense.setTcpSaveTransactionNumber(saveTransaction);
-
-						/****************
-						 * End Here
-						 ***********/
-
-						tradeLicense.setAction("PAID");
-						tradeLicense.setWorkflowCode("NewTL");
-						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-						tradeLicense.setAssignee(Arrays
-								.asList(servicePlanService.assignee("CTP_HR", tradeLicense.getTenantId(), true, info)));
-
-						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
-
-						tradeLicenseRequests.addLicensesItem(tradeLicense);
-						tradeLicenseRequests.setRequestInfo(info);
-						
+//						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallPurposeId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
+//								.mDMSCallPurposeCode(info, tradeLicense.getTenantId(),
+//										newobj.getApplicantPurpose().getPurpose());
+//
+//						Map<String, List<String>> mdmsData;
+//						mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
+//
+//						List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
+//
+//						int purposeId = 0;
+//
+//						for (Map<String, Object> mm : msp) {
+//
+//							purposeId = Integer.valueOf(String.valueOf(mm.get("purposeId")));
+//							log.info("purposeId" + purposeId);
+//
+//						}
+//
+//						Map<String, Object> mapDNo = new HashMap<String, Object>();
+//
+//						mapDNo.put("Village",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+//						mapDNo.put("DiaryDate", date);
+//						mapDNo.put("ReceivedFrom", userName);
+//						mapDNo.put("UserId", "1265");
+//						mapDNo.put("DistrictCode",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
+//						mapDNo.put("UserLoginId", "39");
+//						dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
+//								.toString();
+//						tradeLicense.setTcpDairyNumber(dairyNumber);
+//
+//						/****************
+//						 * End Here
+//						 ***********/
+//						// case number
+//						Map<String, Object> mapCNO = new HashMap<String, Object>();
+//						mapCNO.put("DiaryNo", dairyNumber);
+//						mapCNO.put("DiaryDate", date);
+//						mapCNO.put("DeveloperId", "2");
+//						mapCNO.put("PurposeId", purposeId);
+//						mapCNO.put("StartDate", date);
+//						mapCNO.put("DistrictCode",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
+//						mapCNO.put("Village",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+//						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
+//						mapCNO.put("UserId", "2");
+//						mapCNO.put("UserLoginId", "39");
+//						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
+//								.toString();
+//						tradeLicense.setTcpCaseNumber(caseNumber);
+//
+//						/****************
+//						 * End Here
+//						 ***********/
+//						// application number
+//						Map<String, Object> mapANo = new HashMap<String, Object>();
+//						mapANo.put("DiaryNo", dairyNumber);
+//						mapANo.put("DiaryDate", date);
+//						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
+//						mapANo.put("Village",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+//						mapANo.put("PurposeId", purposeId);
+//						mapANo.put("NameofOwner",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+//						mapANo.put("DateOfHearing", date);
+//						mapANo.put("DateForFilingOfReply", date);
+//						mapANo.put("UserId", "2");
+//						mapANo.put("UserLoginId", "39");
+//						tcpApplicationNumber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
+//								.get("Value").toString();
+//						tradeLicense.setTcpApplicationNumber(tcpApplicationNumber);
+//
+//						/****************
+//						 * End Here
+//						 ***********/
+//						/****************
+//						 * starttransaction data
+//						 ********/
+//						Map<String, Object> map3 = new HashMap<String, Object>();
+//						map3.put("UserName", userName);
+//						map3.put("EmailId", email);
+//						map3.put("MobNo", mobNo);
+//						map3.put("TxnNo", grn);
+//						map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
+//						map3.put("NameofOwner",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+//						map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
+//						map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
+//						map3.put("UserId", "2");
+//						map3.put("UserLoginId", "39");
+//						map3.put("TpUserId", userId);
+//						map3.put("PaymentMode", paymentType);
+//						map3.put("PayAgreegator", bankcode);
+//						map3.put("LcApplicantName", userName);
+//						map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
+//						map3.put("LcDevelopmentPlan",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDevelopmentPlan());
+//						map3.put("LcDistrict",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
+//						saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
+//								.toString();
+//						tradeLicense.setTcpSaveTransactionNumber(saveTransaction);
+//
+//						/****************
+//						 * End Here
+//						 ***********/
+//
+//						tradeLicense.setAction("PAID");
+//						tradeLicense.setWorkflowCode("NewTL");
+//						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+//						tradeLicense.setAssignee(Arrays
+//								.asList(servicePlanService.assignee("CTP_HR", tradeLicense.getTenantId(), true, info)));
+//
+//						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
+//
+//						tradeLicenseRequests.addLicensesItem(tradeLicense);
+//						tradeLicenseRequests.setRequestInfo(info);
+//						
 //						tradeLicenseService.update(tradeLicenseRequests, "TL");
+						ChangeBeneficial changeBeneficiaDetails=null;
+						try {
+							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
+						} catch (JsonProcessingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+//						
+						
+						/************************* Workflow start *****************************/
+					Map<String ,Object> workFlowRequests=new HashMap<>();
+					workFlowRequests.put("cbApplicationNumber",changeBeneficiaDetails.getCbApplicationNumber());
+					workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
+					workFlowRequests.put("workFlowRequestType","PERMENENT");
+					workFlowRequests.put("action","INITIATE");
+					workFlowRequests.put("comment","start process");
+					workFlowRequests.put("wfTenantId",WFTENANTID);
+					
+					String businessServiceFromMDMS="TL";
+					String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
+					List<Document> wfDocuments=new ArrayList<>();
+					workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), businessServiceFromMDMS, info, wfDocuments, Arrays.asList(assignees));
+					/************************* Workflow end *****************************/
 
 						// -----------------payment----------------------//
 						// ----------payment update--------//
@@ -657,7 +855,5 @@ public class ChangeBeneficialService {
 		httpHeaders1.setLocation(UriComponentsBuilder.fromHttpUrl(redirectURL.toString()).queryParams(requestParam)
 				.build().encode().toUri());
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
-
-	}
-
+}
 }
