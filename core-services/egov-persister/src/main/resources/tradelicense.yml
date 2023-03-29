@@ -1346,7 +1346,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     
-       - query: INSERT INTO public.eg_approval_standard(license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_approval_standard(license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: ApprovalStandardEntity.*
          jsonMaps:         
                    
@@ -1366,6 +1366,21 @@ serviceMaps:
 
           - jsonPath: $.ApprovalStandardEntity.*.auditDetails.lastModifiedTime
           
+          - jsonPath: $.ApprovalStandardEntity.*.applicationNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.*.tenantId
+         
+          - jsonPath: $.ApprovalStandardEntity.*.id
+          
+          - jsonPath: $.ApprovalStandardEntity.*.action
+          
+          - jsonPath: $.ApprovalStandardEntity.*.status
+          
+          - jsonPath: $.ApprovalStandardEntity.*.businessService
+          
+          - jsonPath: $.ApprovalStandardEntity.*.comment
+           
+          - jsonPath: $.ApprovalStandardEntity.*.workflowCode
         
           
       

@@ -29,10 +29,19 @@ public class ApprovalStandardRowMapper implements ResultSetExtractor<List<Approv
 			approvalStandardEntity.setOtherDocument(rs.getString("other_document"));
 			approvalStandardEntity.setPlan(rs.getString("plan"));
 			approvalStandardEntity.setAmount(rs.getBigDecimal("amount"));
+			approvalStandardEntity.setApplicationNumber(rs.getString("application_number"));
+			approvalStandardEntity.setAction(rs.getString("action"));
+			approvalStandardEntity.setBusinessService(rs.getString("business_service"));
+			approvalStandardEntity.setComment(rs.getString("comment"));
+			approvalStandardEntity.setId(rs.getString("id"));
+			approvalStandardEntity.setStatus(rs.getString("status"));
+			approvalStandardEntity.setTenantId(rs.getString("tenantid"));
+			approvalStandardEntity.setWorkflowCode(rs.getString("workflow_code"));
 
 			AuditDetails auditDetails = new AuditDetails();
 
-			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("created_by"))
+			AuditDetails auditDetails_build = auditDetails.builder()
+					.createdBy(rs.getString("created_by"))
 					.createdTime(rs.getLong("created_time"))
 					.lastModifiedBy(rs.getString("last_modified_by"))
 					.lastModifiedTime(rs.getLong("last_modified_time")).build();

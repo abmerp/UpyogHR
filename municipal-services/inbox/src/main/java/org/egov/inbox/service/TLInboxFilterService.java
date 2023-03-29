@@ -74,6 +74,12 @@ public class TLInboxFilterService {
 
 	@Value("${egov.searcher.tl.EP.search.desc.path}")
 	private String electricPlaneSearcherDescEndpoint;
+	@Value("${egov.searcher.tl.AS.search.path}")
+	private String approvalStandardSearcherEndPoint;
+	@Value("${egov.searcher.tl.AS.count.path}")
+	private String approvalStandardSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.AS.search.desc.path}")
+	private String approvalStandardSearcherDescEndPoint;
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -89,6 +95,7 @@ public class TLInboxFilterService {
 	private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
 
 	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
+	private static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
 
 	public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria,
 			HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo) {
@@ -222,6 +229,15 @@ public class TLInboxFilterService {
 					}
 
 					break;
+				case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(approvalStandardSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(approvalStandardSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;
 				}
 			}
 
@@ -351,6 +367,10 @@ public class TLInboxFilterService {
 					uri.append(searcherHost).append(electricPlanSearcherCountEndpoint);
 					log.info("uri searcher\t" + uri);
 
+					break;
+				case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
+					uri.append(searcherHost).append(approvalStandardSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
 					break;
 				}
 			}

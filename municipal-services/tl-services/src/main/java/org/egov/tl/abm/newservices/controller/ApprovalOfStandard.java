@@ -45,10 +45,12 @@ public class ApprovalOfStandard {
 
 	@PostMapping("_search")
 	public ResponseEntity<ApprovalStandardResponse> searchNewBankGuarantee(@RequestBody RequestInfo requestInfo,
-			@RequestParam(value = "licenseNo", required = false) String licenseNo) {
+			@RequestParam(value = "licenseNo", required = false) String licenseNo,
+			@RequestParam(value = "applicationNumber", required = false) String applicationNumber,
+			@RequestParam(value = "tenantId", required = false) String tenantId) {
 
 		List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(requestInfo,
-				licenseNo);
+				licenseNo,applicationNumber,tenantId);
 
 		ApprovalStandardResponse responseSearch = ApprovalStandardResponse.builder()
 				.approvalStandardResponse(searchApproval)

@@ -70,6 +70,8 @@ public class WorkflowIntegrator {
 	private static final String BUSINESSIDJOSNKEY = "$.businessId";
 
 	private static final String STATUSJSONKEY = "$.state.applicationStatus";
+	
+	private static final String ASNAMEVALUE = "APPROVAL_OF_STANDARD";
 
 	private RestTemplate rest;
 
@@ -122,7 +124,10 @@ public class WorkflowIntegrator {
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 						break;
-						
+					case ASNAMEVALUE:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, ASNAMEVALUE);
+						break;
 					case SPNAMEVALUE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, SPNAMEVALUE);

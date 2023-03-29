@@ -224,7 +224,7 @@ public class ServicePlanService {
 		return uuid;
 	}
 
-	private List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
+	List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
 		List<IdResponse> idResponses = idGenRepository.getId(requestInfo, tenantId, idKey, idformat, count)
 				.getIdResponses();
 
