@@ -143,7 +143,7 @@ public class ChangeBeneficialRepo {
 				.id(rs.getString("id").toString())
 				.developerServiceCode(rs.getString("developerServiceCode").toString())
 				.cbApplicationNumber(rs.getString("cb_application_number").toString())
-				.paidAmount(rs.getString("paid_beneficial_change_amount").toString())
+				.paidAmount(rs.getString("paid_beneficial_change_amount")!=null?rs.getString("paid_beneficial_change_amount").toString():"0.0")
 				.areaInAcres(rs.getString("areaInAcres").toString())
 				.noObjectionCertificate(rs.getString("noObjectionCertificate").toString())
 				.consentLetter(rs.getString("consentLetter").toString())
@@ -156,7 +156,8 @@ public class ChangeBeneficialRepo {
 				.shareholdingPatternCertificate(rs.getString("shareholdingPatternCertificate").toString())
 				.reraRegistrationCertificate(rs.getString("reraRegistrationCertificate").toString())
 				.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate").toString())
-				.applicationStatus(rs.getInt("applicationStatus"))
+				.applicationStatus(rs.getInt("application_status"))
+				.applicationNumber(rs.getString("application_number"))
 				.createdDate(rs.getString("created_at").toString())
 				.build());
 		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {

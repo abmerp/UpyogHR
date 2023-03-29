@@ -30,10 +30,10 @@ public class ChangeBeneficial {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
-	@JsonProperty("isDraft")
+	@JsonIgnore
 	private String isDraft;
 	
-	@JsonProperty("workFlowCode")
+	@JsonIgnore
 	private String workFlowCode;
 
 	@JsonProperty("paymentType")
@@ -48,10 +48,10 @@ public class ChangeBeneficial {
 	@JsonProperty("areaInAcres")
 	private String areaInAcres;
 	
-	@JsonProperty("paid_beneficial_change_amount")
+	@JsonIgnore
 	private String paid_beneficial_change_amount;
 	
-	@JsonProperty("developerId")
+	@JsonIgnore
 	private long developerId;
 	
 	@JsonProperty("createdDate")
@@ -81,7 +81,6 @@ public class ChangeBeneficial {
 	@JsonProperty("boardResolutionNewEntity")
 	private String boardResolutionNewEntity; // new Entity
 		
-	
 	@JsonProperty("shareholdingPatternCertificate")
 	private String shareholdingPatternCertificate; 
 		

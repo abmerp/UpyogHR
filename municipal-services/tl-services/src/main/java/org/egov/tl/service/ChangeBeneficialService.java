@@ -246,7 +246,7 @@ public class ChangeBeneficialService {
 				.requestInfo(requestInfo).message("Fetched success").status(true).build();
 		}else {
 		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-					.requestInfo(requestInfo).message("Record not found").status(false).build();
+					.requestInfo(null).message("Record not found").status(false).build();
 		}
 		
 		return changeBeneficialResponse;
