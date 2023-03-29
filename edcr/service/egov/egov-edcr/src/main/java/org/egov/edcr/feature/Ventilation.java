@@ -152,7 +152,8 @@ public class Ventilation extends FeatureProcess {
 
 							} else {
 								details.put(FLOOR, " floor " + f.getNumber());
-								details.put(ROOM_NAME, "" + f.getRegularRooms().get(0).getRooms().get(0).getColorCode());
+//								details.put(ROOM_NAME, "" + f.getRegularRooms().get(0).getRooms().get(0).getColorCode());
+								details.put(ROOM_NAME, "" + "Regular Room");
 								details.put(REQUIRED, "Minimum 1/8th of the Room floor area ");
 								details.put(PROVIDED, "Ventilation area " + totalVentilationArea + " of Room Floor Area "
 										+ totalRoomFloorArea);

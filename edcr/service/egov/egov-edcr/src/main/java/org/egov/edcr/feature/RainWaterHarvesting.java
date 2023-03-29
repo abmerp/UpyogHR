@@ -53,9 +53,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.egov.common.entity.edcr.Block;
+import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.OccupancyTypeHelper;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
+import org.egov.common.entity.edcr.RoofArea;
 import org.egov.common.entity.edcr.ScrutinyDetail;
 import org.egov.edcr.constants.DxfFileConstants;
 import org.egov.edcr.utility.DcrConstants;
@@ -72,7 +75,8 @@ public class RainWaterHarvesting extends FeatureProcess {
     // private static final String RAINWATER_HARVESTING_TANK_CAPACITY = "Minimum capacity of Rain Water Harvesting Tank";
     private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
     private static final String RWH_DECLARATION_ERROR = DxfFileConstants.RWH_DECLARED
-            + " in PLAN_INFO layer must be declared as YES for plot area greater than 100 sqm.";
+            + " in PLAN_INFO layer must be declared as YES for Roof area greater than 100 sqm.";
+    BigDecimal areaOfRoof = BigDecimal.ZERO;
 
     @Override
     public Plan validate(Plan pl) {
@@ -92,15 +96,25 @@ public class RainWaterHarvesting extends FeatureProcess {
         scrutinyDetail.setKey("Common_Rain Water Harvesting");
         String subRule = RULE_51;
         String subRuleDesc = RULE_51_DESCRIPTION;
+        
         // BigDecimal expectedTankCapacity = BigDecimal.ZERO;
         BigDecimal plotArea = pl.getPlot() != null ? pl.getPlot().getArea() : BigDecimal.ZERO;
+        
+        for (Block block : pl.getBlocks()) {
+        	for (Floor floor : block.getBuilding().getFloors()) {
+        		for (RoofArea roofArea : floor.getRoofAreas()) {
+        			areaOfRoof = floor.getRoofAreas() != null ? roofArea.getArea() : BigDecimal.ZERO;
+        		}
+        	}
+        }
+        
         OccupancyTypeHelper mostRestrictiveFarHelper = pl.getVirtualBuilding() != null
                 ? pl.getVirtualBuilding().getMostRestrictiveFarHelper()
                 : null;
 
         if (mostRestrictiveFarHelper != null && mostRestrictiveFarHelper.getType() != null) {
             if (DxfFileConstants.A.equalsIgnoreCase(mostRestrictiveFarHelper.getType().getCode()) &&
-                    plotArea.compareTo(HUNDRED) >= 0) {
+            		areaOfRoof.compareTo(HUNDRED) >= 0) {
                 addOutput(pl, errors, subRule, subRuleDesc);
             } else if (DxfFileConstants.F.equalsIgnoreCase(mostRestrictiveFarHelper.getType().getCode())) {
                 addOutput(pl, errors, subRule, subRuleDesc);
@@ -135,15 +149,18 @@ public class RainWaterHarvesting extends FeatureProcess {
 
     private void addReportOutput(Plan pl, String subRule, String subRuleDesc) {
         if (pl.getUtility() != null) {
-            if (pl.getUtility().getRainWaterHarvest() != null && !pl.getUtility().getRainWaterHarvest().isEmpty()) {
+            if (pl.getUtility().getRainWaterHarvest() != null && !pl.getUtility().getRainWaterHarvest().isEmpty() && pl.getUtility().getRainWaterHarvest().get(0).getPresentInDxf()) {
+            
                 setReportOutputDetails(pl, subRule, subRuleDesc, null,
                         "Defined in the plan",
-                        Result.Verify.getResultVal());
-            } else {
+                        Result.Accepted.getResultVal()); 
+            } 
+            	else {
                 setReportOutputDetails(pl, subRule, subRuleDesc, null,
                         "Not Defined in the plan",
                         Result.Not_Accepted.getResultVal());
-            }
+            
+            	}
         }
     }
 
