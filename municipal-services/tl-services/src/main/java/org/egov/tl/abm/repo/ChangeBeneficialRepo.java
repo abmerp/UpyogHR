@@ -49,7 +49,7 @@ public class ChangeBeneficialRepo {
 			+ "inner join eg_tl_tradelicensedetail on eg_tl_tradelicensedetail.tradelicenseid = eg_tl_tradelicense.id "
 			+ "where to_timestamp(eg_tl_tradelicense.validfrom / 1000)<CURRENT_TIMESTAMP(0) and CURRENT_TIMESTAMP(0)<to_timestamp(eg_tl_tradelicense.validto / 1000) and eg_tl_tradelicense.applicationnumber=:applicationNumber";//and  eg_tl_tradelicense.status!='INITIATED'  //and eg_user.id=:userId
 
-	String getUpdateBeneficialId="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and is_full_payment_done = 'false'\r\n"
+	String getUpdateBeneficialId="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber \r\n"
 			+ " order by created_at desc limit 1";
 	
 	String getUpdateQuery="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status = 1 \r\n"

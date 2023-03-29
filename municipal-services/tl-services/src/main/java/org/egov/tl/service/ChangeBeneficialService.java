@@ -183,7 +183,7 @@ public class ChangeBeneficialService {
 				    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
 				}
-		    }else if (changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId()) > 0) {
+		    }else if ((changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId()) > 0)||(changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber)!=null)) {
 			RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
