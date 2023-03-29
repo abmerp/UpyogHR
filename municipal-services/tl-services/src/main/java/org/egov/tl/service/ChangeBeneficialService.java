@@ -407,6 +407,7 @@ public class ChangeBeneficialService {
 							 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
 							 createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
 						} catch (Exception e) {
+							e.printStackTrace();
 							log.error("Exception :--"+e.getMessage());
 						}								
 			}else {
@@ -452,21 +453,22 @@ public class ChangeBeneficialService {
 	}
 	
 	
-	public void createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amount,String consumerCode,String billId,String callbackUrl) {
-		
+	public void createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl) {
+		String am=amountFr.toString();
+		int amount=Integer.parseInt(am);
 		UserResponse UserResponse=getUserInfo(userId);
 		org.egov.tl.web.models.User user=UserResponse.getUser().get(0);
 		StringBuilder url = new StringBuilder(userHost);
 		url.append(transactionCreatePath);
 		Map<String, Object> taxAndPayments = new HashMap<>();
 		taxAndPayments.put("billId",billId);
-		taxAndPayments.put("amountPaid",amount);
+		taxAndPayments.put("amountPaid",new BigDecimal(amount));
 		Map<String, Object> additionalDetails = new HashMap<>();
 		additionalDetails.put("isWhatsapp",false);
 		
 		Map<String, Object> transaction = new HashMap<>();
 		transaction.put("tenantId", tenantId);
-		transaction.put("txnAmount", amount);
+		transaction.put("txnAmount", new BigDecimal(amount));
 		transaction.put("bank", "0300997");
 		transaction.put("ptype", "101");
 		transaction.put("remarks", "Pay");
