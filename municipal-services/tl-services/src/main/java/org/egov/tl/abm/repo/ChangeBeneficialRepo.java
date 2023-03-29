@@ -52,6 +52,9 @@ public class ChangeBeneficialRepo {
 	String getUpdateBeneficialId="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and is_full_payment_done = 'false'\r\n"
 			+ " order by created_at desc limit 1";
 	
+	String getUpdateQuery="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status = 1 \r\n"
+			+ " order by created_at desc limit 1";
+	
 	String getBeneficialDetails="select * from public.eg_tl_change_beneficial where id=:changeBeneficialId";
 	
 	
@@ -105,6 +108,24 @@ public class ChangeBeneficialRepo {
 				.id(rs.getString("id").toString())
 				.developerServiceCode(rs.getString("developerServiceCode").toString())
 				.cbApplicationNumber(rs.getString("cb_application_number").toString())
+				.build());
+		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
+			cahngeBeneficial=changeBeneficial.get(0);
+		}
+	   
+		return cahngeBeneficial;
+	}
+	
+	public ChangeBeneficial getUdatedBeneficial(String applicationNumber)
+			throws JsonProcessingException {
+		
+		ChangeBeneficial cahngeBeneficial=null;
+		List<Object> preparedStmtList = new ArrayList<>();
+		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateQuery.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+				.id(rs.getString("id").toString())
+				.developerServiceCode(rs.getString("developerServiceCode").toString())
+				.cbApplicationNumber(rs.getString("cb_application_number").toString())
+				.applicationStatus(rs.getInt("application_status"))
 				.build());
 		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 			cahngeBeneficial=changeBeneficial.get(0);

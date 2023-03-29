@@ -172,15 +172,18 @@ public class ChangeBeneficialService {
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest) throws JsonProcessingException {
 		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
 //		String applicationNumber,String isDraft
+		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		if(changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber)!=null) {
-			changeBeneficialRepo.update(beneficialRequest);
-			changeBeneficialResponse = ChangeBeneficialResponse.builder()
-					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
-		
-//			changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-//					.requestInfo(null).message("This Application Number already taken and payment is in pending").status(false).build();
-		}else if (changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId()) > 0) {
+		if(changeBeneficialCheck!=null) {
+				if(changeBeneficialCheck.getApplicationStatus()==1) {
+					changeBeneficialRepo.update(beneficialRequest);
+					changeBeneficialResponse = ChangeBeneficialResponse.builder()
+							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
+				}else {
+				    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
+				}
+		    }else if (changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId()) > 0) {
 			RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
