@@ -68,7 +68,7 @@ serviceMaps:
    fromTopic: update-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET "activeStatus"=true,"developerServiceCode"=?, "areaInAcres"=?,noobjectioncertificate=?, consentletter=?, justificationcertificate=?, thirdpartyrightscertificate=?, jointdevelopmentcertificate=?, aministrativechargecertificate=?, boardresolutionexisting=?, boardresolutionnewentity=?,shareholdingpatterncertificate=?, reraregistrationcertificate=?, fiancialcapacitycertificate=?, is_draft=? where "application_number"=? order by "created_at" desc
+      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?,noobjectioncertificate=?, consentletter=?, justificationcertificate=?, thirdpartyrightscertificate=?, jointdevelopmentcertificate=?, aministrativechargecertificate=?, boardresolutionexisting=?, boardresolutionnewentity=?,shareholdingpatterncertificate=?, reraregistrationcertificate=?, fiancialcapacitycertificate=?, is_draft=? where "application_number"=?
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -116,6 +116,7 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.applicationNumber
            type: STRING
+ 
       
 #      
 #     

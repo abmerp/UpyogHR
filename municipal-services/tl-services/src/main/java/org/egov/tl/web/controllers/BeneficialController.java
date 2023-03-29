@@ -43,7 +43,7 @@ public class BeneficialController {
 	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfo requestInfo,
 			@RequestParam("applicationNumber") String applicationNumber)
 			throws JsonProcessingException {
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfo,applicationNumber);   
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfo,applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
