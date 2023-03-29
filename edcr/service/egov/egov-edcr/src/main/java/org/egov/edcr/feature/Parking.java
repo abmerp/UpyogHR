@@ -246,7 +246,7 @@ public class Parking extends FeatureProcess {
     public void processParking(Plan pl) {
         ParkingHelper helper = new ParkingHelper();
         // checkDimensionForCarParking(pl, helper);
-
+        int floor_count = 0;
         OccupancyTypeHelper mostRestrictiveOccupancy = pl.getVirtualBuilding() != null
                 ? pl.getVirtualBuilding().getMostRestrictiveFarHelper()
                 : null;
@@ -256,6 +256,7 @@ public class Parking extends FeatureProcess {
         BigDecimal basementParkingArea = BigDecimal.ZERO;
         for (Block block : pl.getBlocks()) {
             for (Floor floor : block.getBuilding().getFloors()) {
+            	floor_count++;
                 coverParkingArea = coverParkingArea.add(floor.getParking().getCoverCars().stream().map(Measurement::getArea)
                         .reduce(BigDecimal.ZERO, BigDecimal::add));
                 basementParkingArea = basementParkingArea
@@ -281,9 +282,9 @@ public class Parking extends FeatureProcess {
 
             if (mostRestrictiveOccupancy != null && A.equals(mostRestrictiveOccupancy.getType().getCode())) {
                 if (totalBuiltupArea.doubleValue() <= 200) {
-                    requiredCarParkArea += OPEN_ECS * 1;
+                    requiredCarParkArea += OPEN_ECS * 1 * floor_count;
                 } else if (totalBuiltupArea.doubleValue() > 200 && totalBuiltupArea.doubleValue() <= 300) {
-                    requiredCarParkArea += OPEN_ECS * 2;
+                    requiredCarParkArea += OPEN_ECS * 2 * floor_count;
                 }
             } else {
                 BigDecimal builtupArea = totalBuiltupArea.subtract(totalBuiltupArea.multiply(BigDecimal.valueOf(0.15)));

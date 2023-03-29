@@ -50,7 +50,7 @@ public class RainWaterHarvestingExtract extends FeatureExtract {
             }
 
         List<DXFCircle> rainWaterHarvestingCircle = Util.getPolyCircleByLayer(pl.getDoc(),
-                layerNames.getLayerName("LAYER_NAME_RAINWATER_HARWESTING"));
+                layerNames.getLayerName("LAYER_NAME_RAINWATER_HARWESTING")); //POLY LINE
         if (rainWaterHarvestingCircle != null && !rainWaterHarvestingCircle.isEmpty())
             for (DXFCircle pline : rainWaterHarvestingCircle) {
                 RainWaterHarvesting rwh = new RainWaterHarvesting();
@@ -63,7 +63,7 @@ public class RainWaterHarvestingExtract extends FeatureExtract {
         if (pl.getDoc().containsDXFLayer(layerNames.getLayerName("LAYER_NAME_RAINWATER_HARWESTING"))) {
             String tankCapacity = Util.getMtextByLayerName(pl.getDoc(),
                     layerNames.getLayerName("LAYER_NAME_RAINWATER_HARWESTING"),
-                    layerNames.getLayerName("LAYER_NAME_RWH_CAPACITY_L"));
+                    layerNames.getLayerName("LAYER_NAME_RWH_CAPACITY_L")); //PLAN INFO
             if (tankCapacity != null && !tankCapacity.isEmpty())
                 try {
                     if (tankCapacity.contains(";")) {
