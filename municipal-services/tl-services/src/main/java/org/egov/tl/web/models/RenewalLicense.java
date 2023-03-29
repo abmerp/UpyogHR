@@ -31,16 +31,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name="eg-tl-renewal-license")
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-public class RenewalLicense implements Serializable {
+//@Entity
+//@Table(name="eg-tl-renewal-license")
+//@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+public class RenewalLicense {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@JsonProperty("id")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
