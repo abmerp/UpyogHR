@@ -415,6 +415,9 @@ public class TLConfiguration {
     @Value("${persister.renewallicense.update}")
     private String updateRenewalLicenseTopic;
     
-    	
+	@Value("${egov.idgen.tlAS.applicationNum.name}")
+	private String approvalStandardApplicationName;
+	@Value("${egov.idgen.tlAS.applicationNum.format}")
+	private String approvalStandardformat;	
 
 }
