@@ -37,8 +37,8 @@ import lombok.Setter;
 public class RenewalLicense {
 	
 	@JsonProperty("id")
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	/********************************** Step:-1 Application Information start **************************************/
