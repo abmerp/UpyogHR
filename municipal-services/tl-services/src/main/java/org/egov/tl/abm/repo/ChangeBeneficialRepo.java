@@ -57,15 +57,16 @@ public class ChangeBeneficialRepo {
 	
 	public void save(ChangeBeneficialRequest beneficialRequest) {
 		try {
-	      
-		  if(beneficialRequest.getChangeBeneficial().get(0).getIsDraft()==null ) {
-		    producer.push(tlConfiguration.getSaveChangreBeneficialTopic(), beneficialRequest);
-		  }
-	      else {
-	    	producer.push(tlConfiguration.getSaveChangreBeneficialTopic(), beneficialRequest);
-	      }
-		
-		}catch (Exception e) {
+	        producer.push(tlConfiguration.getSaveChangreBeneficialTopic(), beneficialRequest);
+		  }catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(ChangeBeneficialRequest beneficialRequest) {
+		try {
+	     	producer.push(tlConfiguration.getUpdateChangreBeneficialTopic(), beneficialRequest);
+	  	}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -111,6 +112,39 @@ public class ChangeBeneficialRepo {
 	   
 		return cahngeBeneficial;
 	}
+	
+	public ChangeBeneficial getBeneficialDetailsByApplicationNumber(String applicationNumber)
+			throws JsonProcessingException {
+		
+		ChangeBeneficial cahngeBeneficial=null;
+		List<Object> preparedStmtList = new ArrayList<>();
+		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+				.id(rs.getString("id").toString())
+				.developerServiceCode(rs.getString("developerServiceCode").toString())
+				.cbApplicationNumber(rs.getString("cb_application_number").toString())
+				.paidAmount(rs.getString("paid_beneficial_change_amount").toString())
+				.areaInAcres(rs.getString("areaInAcres").toString())
+				.noObjectionCertificate(rs.getString("noObjectionCertificate").toString())
+				.consentLetter(rs.getString("consentLetter").toString())
+				.justificationCertificate(rs.getString("justificationCertificate").toString())
+				.thirdPartyRightsCertificate(rs.getString("thirdPartyRightsCertificate").toString())
+				.jointDevelopmentCertificate(rs.getString("jointDevelopmentCertificate").toString())
+				.aministrativeChargeCertificate(rs.getString("aministrativeChargeCertificate").toString())
+				.boardResolutionExisting(rs.getString("boardResolutionExisting").toString())
+				.boardResolutionNewEntity(rs.getString("boardResolutionNewEntity").toString())
+				.shareholdingPatternCertificate(rs.getString("shareholdingPatternCertificate").toString())
+				.reraRegistrationCertificate(rs.getString("reraRegistrationCertificate").toString())
+				.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate").toString())
+				.applicationStatus(rs.getInt("applicationStatus"))
+				.createdDate(rs.getString("created_at").toString())
+				.build());
+		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
+			cahngeBeneficial=changeBeneficial.get(0);
+		}
+	   
+		return cahngeBeneficial;
+	}
+	
 //	
 //	public ChangeBeneficial getChangeBeneficial(String changeBeneficialId) {
 //		ChangeBeneficial changeBeneficial=null;

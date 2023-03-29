@@ -54,7 +54,8 @@ public class ChangeBeneficial {
 	@JsonProperty("developerId")
 	private long developerId;
 	
-	
+	@JsonProperty("createdDate")
+	private String createdDate;
 	
 	@JsonProperty("noObjectionCertificate")
 	private String noObjectionCertificate;

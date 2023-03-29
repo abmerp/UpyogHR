@@ -174,8 +174,12 @@ public class ChangeBeneficialService {
 //		String applicationNumber,String isDraft
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		if(changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber)!=null) {
-			changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-					.requestInfo(null).message("This Application Number already taken and payment is in pending").status(false).build();
+			changeBeneficialRepo.update(beneficialRequest);
+			changeBeneficialResponse = ChangeBeneficialResponse.builder()
+					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
+		
+//			changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+//					.requestInfo(null).message("This Application Number already taken and payment is in pending").status(false).build();
 		}else if (changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId()) > 0) {
 			RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
@@ -215,13 +219,34 @@ public class ChangeBeneficialService {
 //			/************************* Workflow end *****************************/
 //			
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
-					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Success").status(true).build();
+					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
 		} else {
 			changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 					.requestInfo(null).message("Application Number is not existing").status(false).build();
 		}
 		return changeBeneficialResponse;
 
+	}
+	
+	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber)
+			throws JsonProcessingException {
+		ChangeBeneficialResponse changeBeneficialResponse = null;
+		ChangeBeneficial changeBeneficiaDetails = null;
+		
+		try {
+			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumber(applicationNumber);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		if(changeBeneficiaDetails!=null) {
+		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(changeBeneficiaDetails))
+				.requestInfo(requestInfo).message("Fetched success").status(true).build();
+		}else {
+		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+					.requestInfo(requestInfo).message("Record not found").status(false).build();
+		}
+		
+		return changeBeneficialResponse;
 	}
 	
 	public List<String> getIdList(RequestInfo requestInfo, String tenantId, String idKey, String idformat, int count) {
@@ -403,7 +428,13 @@ public class ChangeBeneficialService {
 							 List<HashMap> billDetails=(List<HashMap>) BillData.get(0).get("billDetails");
 							 String billId=billDetails.get(0).get("billId").toString();
 							 List<HashMap> billAccountDetails=(List<HashMap>)billDetails.get(0).get("billAccountDetails");
-							 BigDecimal estimateAmount= new BigDecimal(billAccountDetails.get(0).get("amount").toString());
+							
+							 Double am=0.0;
+                             for (HashMap hashMap : billAccountDetails) {
+	                             am=am+Double.parseDouble(hashMap.get("amount").toString()); 
+							 } 
+						
+							 BigDecimal estimateAmount= new BigDecimal(am);
 							 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
 							 createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
 						} catch (Exception e) {
@@ -455,7 +486,14 @@ public class ChangeBeneficialService {
 	
 	public void createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl) {
 		String am=amountFr.toString();
-		int amount=Integer.parseInt(am);
+		Double amount=0.0;
+		
+        try{
+			amount=Double.parseDouble(am);
+		}catch (NumberFormatException e) {
+			e.printStackTrace();
+		}
+				
 		UserResponse UserResponse=getUserInfo(userId);
 		org.egov.tl.web.models.User user=UserResponse.getUser().get(0);
 		StringBuilder url = new StringBuilder(userHost);
@@ -804,7 +842,7 @@ public class ChangeBeneficialService {
 					workFlowRequests.put("cbApplicationNumber",changeBeneficiaDetails.getCbApplicationNumber());
 					workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
 					workFlowRequests.put("workFlowRequestType","PERMENENT");
-					workFlowRequests.put("action","INITIATE");
+					workFlowRequests.put("action","INITIATED");
 					workFlowRequests.put("comment","start process");
 					workFlowRequests.put("wfTenantId",WFTENANTID);
 					

@@ -39,6 +39,13 @@ public class BeneficialController {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfo,applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
+	@PostMapping(value = "_get")
+	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfo requestInfo,
+			@RequestParam("applicationNumber") String applicationNumber)
+			throws JsonProcessingException {
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfo,applicationNumber);   
+       return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
+	}
 	
 	@PostMapping(value = "_billDemandRefresh")
 	public ResponseEntity<ChangeBeneficialResponse> _changeBeneficialBillDemandRefresh(@RequestBody RequestInfo requestInfo,
