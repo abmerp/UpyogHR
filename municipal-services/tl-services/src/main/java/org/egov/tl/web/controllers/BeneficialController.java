@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class BeneficialController {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfo,applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
-	@PostMapping(value = "_get")
+	@GetMapping(value = "_get")
 	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfo requestInfo,
 			@RequestParam("applicationNumber") String applicationNumber)
 			throws JsonProcessingException {
