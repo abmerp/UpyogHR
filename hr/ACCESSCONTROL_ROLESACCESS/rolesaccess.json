@@ -1,0 +1,27 @@
+{
+   "tenantId":"hr",
+   "moduleName":"ACCESSCONTROL_ROLESACCESS",
+   "rolesaccess":[
+
+      {
+         "role":"Patwari",
+         "applicationStatus":"WF_NEWTL_PENDING_AT_PATWARI_HQ_PRELIM",
+         "fields":[
+            "purposeOfColony",
+            "totalArea",
+            "district",
+            "developmentPlan",
+            "potential",
+            "sector",
+            "tehsil",
+            "revenueEstate",
+            "Hadbast No.",
+            "Name of Land Owners"
+         ]
+      }
+   
+   ]
+  }
+ 
+  
+ 
