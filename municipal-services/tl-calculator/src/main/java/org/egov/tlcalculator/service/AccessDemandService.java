@@ -358,7 +358,8 @@ public class AccessDemandService {
 	    billId=bill.get(0).get("id").toString();
 		log.info("Bill Created : "+billId);
 		}catch (Exception e) {
-			log.error("Bill Created : "+billId);
+			e.printStackTrace();
+			log.error("Exception: "+e.getMessage());
 		}
 		
 		List<String> billIds=Arrays.asList(billId);

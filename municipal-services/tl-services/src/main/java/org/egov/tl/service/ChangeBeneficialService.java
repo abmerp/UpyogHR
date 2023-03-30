@@ -555,8 +555,9 @@ public class ChangeBeneficialService {
 		
 		HashMap transactionRes=serviceRequestRepository.fetchResultJSON(url, transactionReq);
 		System.out.println(transactionRes);
-		if(transactionRes.get("status")!=null&&transactionRes.get("status").toString().toUpperCase().equals("SUCCESSFUL")) {
-			simpleUrlBrowser.browse(transactionRes.get("redirectUrl").toString());
+		HashMap transactionResp=(HashMap) transactionRes.get("Transaction");
+		if(transactionResp.get("txnStatus")!=null&&transactionResp.get("txnStatus").toString().toUpperCase().equals("SUCCESS")) {
+			simpleUrlBrowser.browse(transactionResp.get("redirectUrl").toString());
 		}else {
 			simpleUrlBrowser.browse(transactionRes.get("callbackUrl").toString());
 		}
