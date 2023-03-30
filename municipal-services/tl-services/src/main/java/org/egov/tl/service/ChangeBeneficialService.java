@@ -177,6 +177,7 @@ public class ChangeBeneficialService {
 		if(changeBeneficialCheck!=null) {
 				if(changeBeneficialCheck.getApplicationStatus()==1) {
 					changeBeneficialRepo.update(beneficialRequest);
+					changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
 					changeBeneficialResponse = ChangeBeneficialResponse.builder()
 							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
 				}else {
@@ -523,7 +524,13 @@ public class ChangeBeneficialService {
 		transaction.put("gateway", "NIC");
 		transaction.put("callbackUrl", callbackUrl);
 	
-		transaction.put("user", user);
+		Map<String, Object> userDEtails = new HashMap<>();
+		userDEtails.put("userName", user.getMobileNumber());
+		userDEtails.put("name", user.getName());
+		userDEtails.put("mobileNumber", user.getMobileNumber());
+		userDEtails.put("tenantId", tenantId);
+		
+		transaction.put("user", userDEtails);
 		transaction.put("additionalDetails", additionalDetails);
 		transaction.put("taxAndPayments", Arrays.asList(taxAndPayments));
 
@@ -532,6 +539,7 @@ public class ChangeBeneficialService {
 		transactionReq.put("RequestInfo", requestInfo);
 		
 		HashMap transactionRes=serviceRequestRepository.fetchResultJSON(url, transactionReq);
+		System.out.println(transactionRes);
 		if(transactionRes.get("status")!=null&&transactionRes.get("status").toString().toUpperCase().equals("SUCCESSFUL")) {
 			simpleUrlBrowser.browse(transactionRes.get("redirectUrl").toString());
 		}else {

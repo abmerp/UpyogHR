@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,29 +34,29 @@ public class BeneficialController {
 	}
 	
 	@PostMapping(value = "_pay")
-	public ResponseEntity<ChangeBeneficialResponse> changeBeneficialPay(@RequestBody RequestInfo requestInfo,
+	public ResponseEntity<ChangeBeneficialResponse> changeBeneficialPay(@RequestBody ChangeBeneficialRequest beneficialRequest,
 			@RequestParam("applicationNumber") String applicationNumber)
 			throws JsonProcessingException {
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfo,applicationNumber);   
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(beneficialRequest.getRequestInfo(),applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
-	@PostMapping(value = "_get")
-	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfo requestInfo,
+	@GetMapping(value = "_get")
+	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest,
 			@RequestParam("applicationNumber") String applicationNumber)
 			throws JsonProcessingException {
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfo,applicationNumber);   
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(beneficialRequest.getRequestInfo(),applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping(value = "_billDemandRefresh")
-	public ResponseEntity<ChangeBeneficialResponse> _changeBeneficialBillDemandRefresh(@RequestBody RequestInfo requestInfo,
+	public ResponseEntity<ChangeBeneficialResponse> _changeBeneficialBillDemandRefresh(@RequestBody ChangeBeneficialRequest beneficialRequest,
 			@RequestParam("applicationNumber") String applicationNumber,
 			@RequestParam("isIntialPayment") int isIntialPayment,
 			@RequestParam("calculationType") int calculationType,
 			@RequestParam("calculationServiceName") String calculationServiceName
 			)
 			throws JsonProcessingException {
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(requestInfo,applicationNumber,calculationServiceName,calculationType,isIntialPayment);   
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(beneficialRequest.getRequestInfo(),applicationNumber,calculationServiceName,calculationType,isIntialPayment);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
