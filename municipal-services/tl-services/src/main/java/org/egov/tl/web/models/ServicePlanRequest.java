@@ -109,6 +109,9 @@ public class ServicePlanRequest {
 	
 	@JsonProperty("anyOtherdoc")
     private String anyOtherdoc = null;
+	
+	@JsonProperty("externalAgency")
+	private Object externalAgency = null;
 
 //	public ServicePlanRequest(ServicePlan servicePlan) {
 //		
