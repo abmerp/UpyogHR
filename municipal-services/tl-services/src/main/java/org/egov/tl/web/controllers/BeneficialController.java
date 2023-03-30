@@ -39,7 +39,7 @@ public class BeneficialController {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfoWrapper.getRequestInfo(),applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
-	@GetMapping("_get")
+	@PostMapping("_get")
 	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam("applicationNumber") String applicationNumber) {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfoWrapper.getRequestInfo(),applicationNumber);   
