@@ -178,6 +178,7 @@ public class AccessDemandService {
 		String consumerCode = demandRequiredParamater.getConsumerCode();
 		String businessService=demandRequiredParamater.getBusinessService();
 		String consumerType=demandRequiredParamater.getConsumerType();
+		BigDecimal minAmount=demandRequiredParamater.getTaxAmount();
 		
 		List<Demand> demands = new LinkedList<>();
 		for (Calculation calculation : calculations) {
@@ -200,9 +201,9 @@ public class AccessDemandService {
 					&& !CollectionUtils.isEmpty(calculation.getAccessoryBillingIds().getBillingSlabIds()))
 				combinedBillingSlabs.addAll(calculation.getAccessoryBillingIds().getBillingSlabIds());
 			Demand singleDemand = Demand.builder().consumerCode(consumerCode).demandDetails(demandDetails)//.payer(owner)
-					.minimumAmountPayable(config.getMinimumPayableAmount()).tenantId(tenantId)
+					.minimumAmountPayable(minAmount).tenantId(tenantId)
 					.taxPeriodFrom(taxPeriodFrom).taxPeriodTo(taxPeriodTo)
-					.businessService(config.getBusinessServiceTL())
+					.businessService(tenantId)
 					.additionalDetails(Collections.singletonMap(BILLINGSLAB_KEY, combinedBillingSlabs)).build();
 			
 			switch (businessService) {

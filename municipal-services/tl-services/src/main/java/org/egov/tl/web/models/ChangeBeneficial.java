@@ -18,7 +18,6 @@ public class ChangeBeneficial {
 	
 
 	@JsonIgnore
-	@JsonProperty("id")
 	private String id;
 	
 	@JsonProperty("cbApplicationNumber")

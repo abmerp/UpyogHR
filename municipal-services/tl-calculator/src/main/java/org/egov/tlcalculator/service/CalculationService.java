@@ -645,7 +645,7 @@ public class CalculationService {
 			e.printStackTrace();
 		}
 		if(validateDemandParameter(demandRequiredParamater)) {
-			CalculationRes calculationRes = CalculationRes.builder().calculations(null).build();
+			CalculationRes calculationRes = CalculationRes.builder().calculations(calculations).build();
 			accessDemandService.generateDemand(calculationReq.getRequestInfo(), calculations, demandRequiredParamater);
 			producer.push(config.getSaveTopic(), calculationRes);
 		}else {
