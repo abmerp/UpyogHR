@@ -169,7 +169,7 @@ public class ChangeBeneficialService {
 	String  licenseFee = "0.0";
 	
 
-	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest) throws JsonProcessingException {
+	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
 //		String applicationNumber,String isDraft
 		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
@@ -250,8 +250,7 @@ public class ChangeBeneficialService {
 
 	}
 	
-	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber)
-			throws JsonProcessingException {
+	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
 		
@@ -402,8 +401,7 @@ public class ChangeBeneficialService {
 	
    }
 	
-	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment)
-			throws JsonProcessingException {
+	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
 		
@@ -428,8 +426,7 @@ public class ChangeBeneficialService {
 		return changeBeneficialResponse;
 	}
 	
-	public ChangeBeneficialResponse pay(RequestInfo requestInfo,String applicationNumber)
-			throws JsonProcessingException {
+	public ChangeBeneficialResponse pay(RequestInfo requestInfo,String applicationNumber) {
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
 		
@@ -709,7 +706,7 @@ public class ChangeBeneficialService {
 			ChangeBeneficial changeBeneficial=null;
 		    try {
 		    	changeBeneficial=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
-			} catch (JsonProcessingException e1) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
@@ -860,7 +857,7 @@ public class ChangeBeneficialService {
 						ChangeBeneficial changeBeneficiaDetails=null;
 						try {
 							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
-						} catch (JsonProcessingException e) {
+						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}

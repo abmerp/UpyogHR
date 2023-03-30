@@ -88,38 +88,45 @@ public class ChangeBeneficialRepo {
 		return size;
 	}
 	
-	public List<TradeLicense> getTradeLicense(long userId)
-			throws JsonProcessingException {
+	public List<TradeLicense> getTradeLicense(long userId) {
+		List<TradeLicense> licenses=null;
+		try {
 		List<Object> preparedStmtList = new ArrayList<>();
-		List<TradeLicense> licenses = jdbcTemplate.query(getLicenseQuery, preparedStmtList.toArray(),  (rs, rowNum) ->TradeLicense.builder()
+		       licenses = jdbcTemplate.query(getLicenseQuery, preparedStmtList.toArray(),  (rs, rowNum) ->TradeLicense.builder()
 				.validFrom(Long.parseLong(rs.getString("validFrom").toString()))
 				.validTo(Long.parseLong(rs.getString("validTo").toString()))
 				.build());
-				return licenses;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return licenses;
 	}
 	
 	
-	public ChangeBeneficial getBeneficialByApplicationNumber(String applicationNumber)
-			throws JsonProcessingException {
+	public ChangeBeneficial getBeneficialByApplicationNumber(String applicationNumber){
 		
 		ChangeBeneficial cahngeBeneficial=null;
-		List<Object> preparedStmtList = new ArrayList<>();
-		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
-				.id(rs.getString("id").toString())
-				.developerServiceCode(rs.getString("developerServiceCode").toString())
-				.cbApplicationNumber(rs.getString("cb_application_number").toString())
-				.build());
-		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
-			cahngeBeneficial=changeBeneficial.get(0);
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+					.id(rs.getString("id").toString())
+					.developerServiceCode(rs.getString("developerServiceCode").toString())
+					.cbApplicationNumber(rs.getString("cb_application_number").toString())
+					.build());
+			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
+				cahngeBeneficial=changeBeneficial.get(0);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
-	   
 		return cahngeBeneficial;
 	}
 	
-	public ChangeBeneficial getUdatedBeneficial(String applicationNumber)
-			throws JsonProcessingException {
+	public ChangeBeneficial getUdatedBeneficial(String applicationNumber) {
 		
 		ChangeBeneficial cahngeBeneficial=null;
+		try {
 		List<Object> preparedStmtList = new ArrayList<>();
 		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateQuery.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
 				.id(rs.getString("id").toString())
@@ -130,40 +137,44 @@ public class ChangeBeneficialRepo {
 		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 			cahngeBeneficial=changeBeneficial.get(0);
 		}
+		}catch (Exception e) {
+		  e.printStackTrace();
+		}
 	   
 		return cahngeBeneficial;
 	}
 	
-	public ChangeBeneficial getBeneficialDetailsByApplicationNumber(String applicationNumber)
-			throws JsonProcessingException {
-		
+	public ChangeBeneficial getBeneficialDetailsByApplicationNumber(String applicationNumber){
 		ChangeBeneficial cahngeBeneficial=null;
-		List<Object> preparedStmtList = new ArrayList<>();
-		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
-				.id(rs.getString("id").toString())
-				.developerServiceCode(rs.getString("developerServiceCode").toString())
-				.cbApplicationNumber(rs.getString("cb_application_number").toString())
-				.paidAmount(rs.getString("paid_beneficial_change_amount")!=null?rs.getString("paid_beneficial_change_amount").toString():"0.0")
-				.areaInAcres(rs.getString("areaInAcres").toString())
-				.noObjectionCertificate(rs.getString("noObjectionCertificate").toString())
-				.consentLetter(rs.getString("consentLetter").toString())
-				.justificationCertificate(rs.getString("justificationCertificate").toString())
-				.thirdPartyRightsCertificate(rs.getString("thirdPartyRightsCertificate").toString())
-				.jointDevelopmentCertificate(rs.getString("jointDevelopmentCertificate").toString())
-				.aministrativeChargeCertificate(rs.getString("aministrativeChargeCertificate").toString())
-				.boardResolutionExisting(rs.getString("boardResolutionExisting").toString())
-				.boardResolutionNewEntity(rs.getString("boardResolutionNewEntity").toString())
-				.shareholdingPatternCertificate(rs.getString("shareholdingPatternCertificate").toString())
-				.reraRegistrationCertificate(rs.getString("reraRegistrationCertificate").toString())
-				.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate").toString())
-				.applicationStatus(rs.getInt("application_status"))
-				.applicationNumber(rs.getString("application_number"))
-				.createdDate(rs.getString("created_at").toString())
-				.build());
-		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
-			cahngeBeneficial=changeBeneficial.get(0);
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+					.id(rs.getString("id").toString())
+					.developerServiceCode(rs.getString("developerServiceCode").toString())
+					.cbApplicationNumber(rs.getString("cb_application_number").toString())
+					.paidAmount(rs.getString("paid_beneficial_change_amount")!=null?rs.getString("paid_beneficial_change_amount").toString():"0.0")
+					.areaInAcres(rs.getString("areaInAcres").toString())
+					.noObjectionCertificate(rs.getString("noObjectionCertificate").toString())
+					.consentLetter(rs.getString("consentLetter").toString())
+					.justificationCertificate(rs.getString("justificationCertificate").toString())
+					.thirdPartyRightsCertificate(rs.getString("thirdPartyRightsCertificate").toString())
+					.jointDevelopmentCertificate(rs.getString("jointDevelopmentCertificate").toString())
+					.aministrativeChargeCertificate(rs.getString("aministrativeChargeCertificate").toString())
+					.boardResolutionExisting(rs.getString("boardResolutionExisting").toString())
+					.boardResolutionNewEntity(rs.getString("boardResolutionNewEntity").toString())
+					.shareholdingPatternCertificate(rs.getString("shareholdingPatternCertificate").toString())
+					.reraRegistrationCertificate(rs.getString("reraRegistrationCertificate").toString())
+					.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate").toString())
+					.applicationStatus(rs.getInt("application_status"))
+					.applicationNumber(rs.getString("application_number"))
+					.createdDate(rs.getString("created_at").toString())
+					.build());
+			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
+				cahngeBeneficial=changeBeneficial.get(0);
+			}
+			}catch (Exception e) {
+				e.printStackTrace();
 		}
-	   
 		return cahngeBeneficial;
 	}
 	
