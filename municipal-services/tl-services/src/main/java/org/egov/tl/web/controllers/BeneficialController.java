@@ -27,8 +27,7 @@ public class BeneficialController {
 	ChangeBeneficialService changeBeneficialService;
 	
 	@PostMapping("_create")
-	public ResponseEntity<ChangeBeneficialResponse> changeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest)
-			throws JsonProcessingException {
+	public ResponseEntity<ChangeBeneficialResponse> changeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest){
 //		changeBeneficialService.getLicenseByApplication
          ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
@@ -36,15 +35,13 @@ public class BeneficialController {
 	
 	@PostMapping("_pay")
 	public ResponseEntity<ChangeBeneficialResponse> changeBeneficialPay(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber)
-			throws JsonProcessingException {
+			@RequestParam("applicationNumber") String applicationNumber){
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfoWrapper.getRequestInfo(),applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	@GetMapping("_get")
 	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber)
-			throws JsonProcessingException {
+			@RequestParam("applicationNumber") String applicationNumber) {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfoWrapper.getRequestInfo(),applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
@@ -55,8 +52,7 @@ public class BeneficialController {
 			@RequestParam("isIntialPayment") int isIntialPayment,
 			@RequestParam("calculationType") int calculationType,
 			@RequestParam("calculationServiceName") String calculationServiceName
-			)
-			throws JsonProcessingException {
+			){
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(requestInfoWrapper.getRequestInfo(),applicationNumber,calculationServiceName,calculationType,isIntialPayment);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
