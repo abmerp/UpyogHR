@@ -176,6 +176,24 @@ public class ChangeBeneficialService {
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		if(changeBeneficialCheck!=null) {
 				if(changeBeneficialCheck.getApplicationStatus()==1) {
+					List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
+							.stream().map(changebeneficial -> {
+								changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
+								changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+								if(changebeneficial.getIsDraft()==null) {
+									changebeneficial.setIsDraft("0");	
+								}else {
+									changebeneficial.setIsDraft("1");
+								}
+								
+								if (!changebeneficial.getDeveloperServiceCode().equals("JDAMR")) {
+									changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
+											: (changebeneficial.getAreaInAcres()));
+								}
+								return changebeneficial;
+							}).collect(Collectors.toList());
+					
+					beneficialRequest.setChangeBeneficial(changeBeneficial);
 					changeBeneficialRepo.update(beneficialRequest);
 					changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
 					changeBeneficialResponse = ChangeBeneficialResponse.builder()
