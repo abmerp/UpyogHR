@@ -177,6 +177,7 @@ public class ChangeBeneficialService {
 		if(changeBeneficialCheck!=null) {
 				if(changeBeneficialCheck.getApplicationStatus()==1) {
 					changeBeneficialRepo.update(beneficialRequest);
+					changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
 					changeBeneficialResponse = ChangeBeneficialResponse.builder()
 							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
 				}else {
