@@ -626,9 +626,14 @@ public class CalculationService {
 		calculationReq.setCalulationCriteria(calulationCriteria);
 		
 		calculations=Arrays.asList(Calculation.builder().tradeLicense(tradeLicense).applicationNumber(consumerCode).tenantId(tenantId).build());
-		
-	    try {
-		  if(calculationType.equals("1")){
+		boolean exceptionType=true;
+		try {
+	      if(calculationType.equals("1")){
+			 BigDecimal licenseFees=calculations.get(0).getTradeLicense().getTradeLicenseDetail().getLicenseFeeCharges();
+			 if(licenseFees==null||licenseFees.compareTo(new BigDecimal(0.0))==0) {
+				 exceptionType=false;
+			 }
+			  
 			  calculations=calculationAllType(calculationReq.getRequestInfo(), calculations,isIntialCalculation,calculationServiceName, calculationType);
 			  BigDecimal amount=calculations.get(0).getTaxHeadEstimates().get(0).getEstimateAmount();
 			  demandRequiredParamater=DemandRequiredParamater.builder()
@@ -649,8 +654,12 @@ public class CalculationService {
 			accessDemandService.generateDemand(calculationReq.getRequestInfo(), calculations, demandRequiredParamater);
 			producer.push(config.getSaveTopic(), calculationRes);
 		}else {
-			throw new CustomException("400",
-					"Some required parameter are null for demand and  bill creation");
+			if(exceptionType) {
+			    throw new CustomException("400","Some required parameter are null for demand and  bill creation");
+			}else {
+				throw new CustomException("404", "Licence fees is null, Invalid Application Number for this License");
+				
+			}
 	    }
 		return calculations;
 	}
@@ -662,7 +671,7 @@ public class CalculationService {
 				&&demandRequiredParamater.getConsumerCode()!=null
 				&&demandRequiredParamater.getConsumerType()!=null
 				&&demandRequiredParamater.getTenantId()!=null
-				&&demandRequiredParamater.getTaxAmount()!=null) {
+				&&demandRequiredParamater.getTaxAmount()!=null&&demandRequiredParamater.getTaxAmount().compareTo(new BigDecimal(0.0))!=0) {
 			isValid=true;
 		}
 		
