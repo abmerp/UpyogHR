@@ -2,6 +2,7 @@ package org.egov.tl.web.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -31,22 +32,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-//@Entity
-//@Table(name="eg-tl-renewal-license")
-//@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+@Entity
+@Table(name="eg_tl_renewal_license")
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class RenewalLicense {
 	
 	@JsonProperty("id")
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	/********************************** Step:-1 Application Information start **************************************/
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
-	@JsonProperty("renewalAt")
-	private Date renewalAt;
+	@JsonProperty("createdAt")
+	private Timestamp createdAt;
 
     @JsonProperty("validUpTo")
     private String validUpTo;
@@ -82,7 +83,7 @@ public class RenewalLicense {
 	private String renewalDelayInDays;
 		
 	@JsonProperty("penaltyPayable")
-	private float penaltyPayable;
+	private String penaltyPayable;
 	
 	@JsonProperty("renewalAmount")
 	private String renewalAmount;
@@ -94,9 +95,9 @@ public class RenewalLicense {
 	@JsonProperty("isRenewalAppliedFirstTime")
 	private boolean isRenewalAppliedFirstTime;
 	
-	@JsonProperty("previouslyCondition_RL")
-	private JsonNode previouslyCondition_RL = null; ///if  isRenewalAppliedFirstTime yes
-	
+	@Type(type = "jsonb")
+	@Column(columnDefinition = "jsonb",name = "previouslyCondition_RL")
+	private List<RenewalLicensePreviopusCondition> previouslyCondition_RL;
 	
 	@JsonProperty("colonizerObtainApproveNoc")
 	private boolean colonizerObtainApproveNoc;
@@ -104,8 +105,8 @@ public class RenewalLicense {
 	@JsonProperty("colonizerTransferred")
 	private boolean colonizerTransferred;
 	
-	@JsonProperty("colonizerTransferredDetails")
-	private JsonNode colonizerTransferredDetails=null;///if  colonizerTransferred yes	
+//	@JsonProperty("colonizerTransferredDetails")
+//	private JsonNode colonizerTransferredDetails=null;///if  colonizerTransferred yes	
 
 	@JsonProperty("colonizerConveyed")
 	private String colonizerConveyed;

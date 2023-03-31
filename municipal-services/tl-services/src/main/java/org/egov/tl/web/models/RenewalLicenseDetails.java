@@ -27,7 +27,7 @@ public class RenewalLicenseDetails {
 	@JsonProperty("ver")
 	private float ver;
 	
-	@JsonProperty("renewalLicenseDetails")
+	@JsonProperty("renewalLicense")
 	private List<RenewalLicense> renewalLicense;
 	
 	@JsonProperty("renewalLicenseEDC")

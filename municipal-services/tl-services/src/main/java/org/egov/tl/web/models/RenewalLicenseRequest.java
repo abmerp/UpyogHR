@@ -22,20 +22,21 @@ public class RenewalLicenseRequest {
 
 	@JsonProperty("requestInfo")
 	private RequestInfo requestInfo = null;
-
-	private Long id;
-
-	private float currentVersion;
-
-	private String applicationNumber;
-	private String pageName;
+//
+//	private Long id;
+//
+//	private float currentVersion;
+//
+//	private String applicationNumber;
+//	private String pageName;
+//	
+//	@JsonProperty("action")
+//	private String action;
+//	
+//	@JsonProperty("ApplicationStatus")
+//	private String applicationStatus;
 	
-	@JsonProperty("action")
-	private String action;
+	@JsonProperty("renewalLicense")
+	private List<RenewalLicense> renewalLicense;
 	
-	@JsonProperty("ApplicationStatus")
-	private String applicationStatus;
-	
-	@JsonProperty("renewalLicenseDetails")
-	private RenewalLicenseDetails renewalLicenseDetails;
 }

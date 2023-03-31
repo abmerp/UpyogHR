@@ -1,0 +1,228 @@
+serviceMaps:
+ serviceName: tl-services
+ mappings:
+ - version: 1.0
+   description: Persists renewallicense service of  renewallicense
+   fromTopic: save-renewallicense
+   isTransaction: true
+   queryMaps: 
+      - query: INSERT INTO public.eg_tl_renewal_license(application_number, area_in_acre, ca_certificate_document, clonizer_name, clonizer_type, colonizer_conveyed, colonizer_obtain_approve_noc, colonizer_transferred, community_site_sold_to_third_party, compliance_with_condition, district, edc_status, enhanceedcamount, enhanceedcremark, enhanceedcstatus, explanation_development_work_doc, incom_tax_clearnence_certificate, is_any_legal_activity, is_any_legal_activity_details, is_renewal_applied_first_time, is_renewal_applied_with_in, non_completion_project_reasons, old_license_doc, penalty_payable, previously_condition_rl, renewal_amount, renewal_at, renewal_delay_in_days, renewal_for_duration, renewal_licenseedc, renewal_licensesidc, renewal_licensesoc, renewal_licensespc, rule24document_upload, rule24financial_year_data, rule24remark, rule26document_upload, rule26financial_year_data, rule26remark, rule27document_upload, rule27financial_year_data, rule27remark, rule28document_upload, rule28financial_year_data, rule28remark, sector_no, sidc_status, status_development_work_doc, status_of_community_sites, tehsil, total_no_ofewsflats_or_plots_approved_in_layout_plan, valid_up_to, village) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
+        basePath: renewalLicense.*
+        jsonMaps:
+        
+         - jsonPath: renewalLicense.*.applicationNumber
+           type: STRING
+      
+         - jsonPath: renewalLicense.*.createdAt
+           type: STRING
+  
+         - jsonPath: renewalLicense.*.validUpTo
+           type: LONG
+         
+         - jsonPath: renewalLicense.*.renewalForDuration
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.clonizerName
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.clonizerType
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.areaInAcre
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.sectorNo
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.village
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.tehsil
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.district
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.isRenewalAppliedWithIn
+           type: BOOLEAN
+           
+         - jsonPath: renewalLicense.*.renewalDelayInDays
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.penaltyPayable
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.renewalAmount
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.nonCompletionProjectReasons
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.isRenewalAppliedFirstTime
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.previouslyCondition_RL
+           type: OBJECT
+         
+         - jsonPath: renewalLicense.*.colonizerObtainApproveNoc
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.colonizerTransferred
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.colonizerConveyed
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.complianceWithCondition
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.isAnyLegalActivity
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.isAnyLegalActivityDetails
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.edc_status
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.renewalLicenseEDC
+           type: OBJECT
+           
+         - jsonPath: renewalLicense.*.sidc_status
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.renewalLicenseSIDC
+           type: OBJECT
+           
+         - jsonPath: renewalLicense.*.enhanceEDCStatus
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.enhanceEDCAmount
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.enhanceEDCRemark
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.caCertificateDocument
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.rule24FinancialYearData
+           type: BOOLEAN
+         
+         - jsonPath: renewalLicense.*.rule24Remark
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.rule24DocumentUpload
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.rule26FinancialYearData
+           type: BOOLEAN
+         
+         - jsonPath: renewalLicense.*.rule26Remark
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.rule26DocumentUpload
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.rule27FinancialYearData
+           type: BOOLEAN
+           
+         - jsonPath: renewalLicense.*.rule27Remark
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.rule27DocumentUpload
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.rule28FinancialYearData
+           type: BOOLEAN
+           
+         - jsonPath: renewalLicense.*.rule28Remark
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.rule28DocumentUpload
+           type: STRING
+           
+         - jsonPath: renewalLicense.*.statusOfCommunitySites
+           type: BOOLEAN
+           
+         - jsonPath: renewalLicense.*.communitySiteSoldToThirdParty
+           type: BOOLEAN
+         
+         - jsonPath: renewalLicense.*.renewalLicenseSOC
+           type: OBJECT
+         
+         - jsonPath: renewalLicense.*.renewalLicenseSPC
+           type: OBJECT
+         
+         - jsonPath: renewalLicense.*.totalNoOfEWSFlatsOrPlotsApprovedInLayoutPlan
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.incomTaxClearnenceCertificate
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.explanationDevelopmentWorkDoc
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.statusDevelopmentWorkDoc
+           type: STRING
+         
+         - jsonPath: renewalLicense.*.oldLicenseDoc
+           type: BOOLEAN
+      
+           
+#           
+# - version: 1.0
+#   description: Persists benefical service of  change_benefical table
+#   fromTopic: update-changrebeneficial
+#   isTransaction: true
+#   queryMaps: 
+#      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where "application_number"=?
+#       
+#        basePath: renewalLicense.*
+#        jsonMaps:       
+#         - jsonPath: renewalLicense.*.developerServiceCode
+#           type: STRING
+#      
+#         - jsonPath: renewalLicense.*.areaInAcres
+#           type: STRING
+#  
+#         - jsonPath: renewalLicense.*.noObjectionCertificate
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.consentLetter
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.justificationCertificate
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.thirdPartyRightsCertificate
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.jointDevelopmentCertificate
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.aministrativeChargeCertificate
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.boardResolutionExisting
+#           type: STRING
+#         
+#         - jsonPath: renewalLicense.*.boardResolutionNewEntity
+#           type: STRING
+#        
+#         - jsonPath: renewalLicense.*.shareholdingPatternCertificate
+#           type: STRING
+#           
+#         - jsonPath: renewalLicense.*.reraRegistrationCertificate
+#           type: STRING
+#           
+#         - jsonPath: renewalLicense.*.fiancialCapacityCertificate
+#           type: STRING
+#           
+#         - jsonPath: renewalLicense.*.isDraft
+#           type: STRING
+#           
+#         - jsonPath: renewalLicense.*.applicationNumber
+#           type: STRING
+# 
+#    
