@@ -52,6 +52,9 @@ public class ChangeBeneficialRepo {
 	String getUpdateBeneficialId="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status IN(1,2) \r\n"
 			+ " order by created_at desc limit 1";
 	
+	String getDataQueryBycbApplicationNumber="select * from public.eg_tl_change_beneficial where (cb_application_number=:cbapplicationNumber or application_number=:applicationNumber) and application_status IN(1,2,3) \r\n"
+			+ " order by created_at desc limit 1";
+	
 	String getUpdateQuery="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status = 1 \r\n"
 			+ " order by created_at desc limit 1";
 	
@@ -143,12 +146,23 @@ public class ChangeBeneficialRepo {
 	   
 		return cahngeBeneficial;
 	}
+
+	public ChangeBeneficial getBeneficialDetailsBycbApplicationNumber(String cbApplicationNumber){
+		String query=getDataQueryBycbApplicationNumber.replace(":cbapplicationNumber", "'"+cbApplicationNumber+"'").replace(":applicationNumber", "'"+cbApplicationNumber+"'");
+		return formateChangeBeneficialData(query);
+	}
+	
 	
 	public ChangeBeneficial getBeneficialDetailsByApplicationNumber(String applicationNumber){
+		String query=getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'");
+		return formateChangeBeneficialData(query);
+	}
+	
+	private ChangeBeneficial formateChangeBeneficialData(String query){
 		ChangeBeneficial cahngeBeneficial=null;
 		try {
 			List<Object> preparedStmtList = new ArrayList<>();
-			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
 					.id(rs.getString("id").toString())
 					.developerServiceCode(rs.getString("developerServiceCode").toString())
 					.cbApplicationNumber(rs.getString("cb_application_number").toString())
@@ -172,8 +186,8 @@ public class ChangeBeneficialRepo {
 			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 				cahngeBeneficial=changeBeneficial.get(0);
 			}
-			}catch (Exception e) {
-				e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		return cahngeBeneficial;
 	}
