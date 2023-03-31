@@ -48,7 +48,14 @@ public class RenewalLicenseService {
 	
 	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
 		List<RenewalLicense> renewalLicense = null;
-		
+		try {
+			List<RenewalLicense> renewalLicenseList = renewalLicenseServiceRepo.getRenewalLicense(applicationNumber);
+			if(renewalLicenseList!=null&&!renewalLicenseList.isEmpty()) {
+				renewalLicense=renewalLicenseList;
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return renewalLicense;
 	}
 
