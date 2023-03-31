@@ -35,15 +35,21 @@ public class RenewalLicenseService {
 	RenewalLicenseServiceRepo renewalLicenseServiceRepo;
 	
 	
-	public void saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
-		String currentDate=ConvertUtil.getCurrentDate(timeZoneName, null);
+	public List<RenewalLicense> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
+		Timestamp currentDate=Timestamp.valueOf(ConvertUtil.getCurrentFullDate(timeZoneName, null));
 		List<RenewalLicense> renewalLicense = renewalLicenseRequest.getRenewalLicense().stream().map(renewallicense->{
-			renewallicense.setCreatedAt(Timestamp.valueOf(currentDate));
+			renewallicense.setCreatedAt(currentDate);
 			return renewallicense;
 		  }).collect(Collectors.toList());
 		renewalLicenseRequest.setRenewalLicense(renewalLicense);
-		
 		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
+		return renewalLicense;
+	}
+	
+	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
+		List<RenewalLicense> renewalLicense = null;
+		
+		return renewalLicense;
 	}
 
 }

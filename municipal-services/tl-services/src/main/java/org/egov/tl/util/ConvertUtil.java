@@ -153,6 +153,20 @@ public class ConvertUtil {
 		 return "Wrong Input";
 	}
 	}
+	
+	
+    public static String getCurrentFullDate(String timeZoneName,Long timestamp) {
+		
+		Date today = timestamp==null?new Date():new Date(timestamp);
+	  //displaying this date on IST timezone
+//      DateFormat df = new SimpleDateFormat("dd.MM.yy HH:mm:SS z");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+        df.setTimeZone(TimeZone.getTimeZone(timeZoneName));
+        String IST = df.format(today);
+        return IST;
+	}
+
+	
 //	public static void main(String[] args) {
 //		System.out.println(ConvertUtil.numberToWords(String.valueOf(6094912.0)));
 //	}

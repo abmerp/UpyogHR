@@ -15,6 +15,7 @@ import org.egov.tl.web.models.LicenseServiceResponse;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.RenewalLicense;
 import org.egov.tl.web.models.RenewalLicenseRequest;
+import org.egov.tl.web.models.RenewalLicenseResponse;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,23 +46,24 @@ public class RenewalLicenseController {
 	
 	
 	@PostMapping(value = "_create")
-	public ResponseEntity<Map<String,Object>> createRenewLicense(@RequestBody RenewalLicenseRequest renewalRequest,@RequestParam String applicationNumber)
-			throws JsonProcessingException {
-        Map<String,Object> response=new HashMap<>();
-       
-        renewalLicenseService.saveRenewalLicense(renewalRequest);
-        response.put("data", renewalRequest);
-        
-		return new ResponseEntity<>(response, HttpStatus.OK);
+	public ResponseEntity<RenewalLicenseResponse> createRenewLicense(@RequestBody RenewalLicenseRequest renewalRequest){
+        List<RenewalLicense> renewalLicense=renewalLicenseService.saveRenewalLicense(renewalRequest);
+        RenewalLicenseResponse renewalLicenseResponse=RenewalLicenseResponse.builder().message("Record has been inserted successfully.").status(true).renewalLicense(renewalLicense).build();
+		return new ResponseEntity<>(renewalLicenseResponse, HttpStatus.OK);
 	}
 	
-	@GetMapping("_get")
-	public ResponseEntity<LicenseServiceResponseInfo> getNewServicesDetailById(
+	@PostMapping("_get")
+	public ResponseEntity<RenewalLicenseResponse> getNewServicesDetailById(
 			@RequestParam("applicationNumber") String applicationNumber,
 			@Valid @RequestBody RequestInfoWrapper requestInfoWrapper) {
-		return new ResponseEntity<>(
-				newServiceInfoService.getNewServicesInfoById(applicationNumber, requestInfoWrapper.getRequestInfo()),
-				HttpStatus.OK);
+		RenewalLicenseResponse renewalLicenseResponse=null;
+		List<RenewalLicense> renuLicenseDetails = renewalLicenseService.getRenewalLicense(applicationNumber);
+			if(renuLicenseDetails!=null) {
+				renewalLicenseResponse =RenewalLicenseResponse.builder().message("Record has been Fetched successfully.").status(true).renewalLicense(renuLicenseDetails).build();
+			}else{
+				renewalLicenseResponse =RenewalLicenseResponse.builder().message("Record Not Found.").status(false).renewalLicense(null).build();
+			}
+		return new ResponseEntity<>(renewalLicenseResponse, HttpStatus.OK);
 	}
 
 }
