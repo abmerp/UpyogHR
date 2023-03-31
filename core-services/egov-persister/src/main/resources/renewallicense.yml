@@ -62,7 +62,7 @@ serviceMaps:
            type: STRING
            
          - jsonPath: renewalLicense.*.previouslyCondition_RL
-           type: JSONArray
+           type: jsonb
          
          - jsonPath: renewalLicense.*.colonizerObtainApproveNoc
            type: STRING
@@ -86,13 +86,13 @@ serviceMaps:
            type: STRING
            
          - jsonPath: renewalLicense.*.renewalLicenseEDC
-           type: JSONArray
+           type: jsonb
            
          - jsonPath: renewalLicense.*.sidc_status
            type: STRING
            
          - jsonPath: renewalLicense.*.renewalLicenseSIDC
-           type: JSONArray
+           type: jsonb
            
          - jsonPath: renewalLicense.*.enhanceEDCStatus
            type: STRING
@@ -149,10 +149,10 @@ serviceMaps:
            type: BOOLEAN
          
          - jsonPath: renewalLicense.*.renewalLicenseSOC
-           type: JSONArray
+           type: jsonb
          
          - jsonPath: renewalLicense.*.renewalLicenseSPC
-           type: JSONArray
+           type: jsonb
          
          - jsonPath: renewalLicense.*.totalNoOfEWSFlatsOrPlotsApprovedInLayoutPlan
            type: STRING
