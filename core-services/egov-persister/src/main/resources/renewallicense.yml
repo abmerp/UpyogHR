@@ -35,26 +35,26 @@ serviceMaps:
          - jsonPath: renewalLicense.*.nonCompletionProjectReasons
          - jsonPath: renewalLicense.*.oldLicenseDoc
          - jsonPath: renewalLicense.*.penaltyPayable
-         - jsonPath: renewalLicense.*.previouslyCondition_RL.previouslyCondition_RL
+         - jsonPath: renewalLicense.*.previouslyCondition_RL
            type: JSON
            dbType: JSONB
             
          - jsonPath: renewalLicense.*.renewalAmount
          - jsonPath: renewalLicense.*.renewalDelayInDays
          - jsonPath: renewalLicense.*.renewalForDuration
-         - jsonPath: renewalLicense.*.renewalLicenseEDC.renewalLicenseEDC
+         - jsonPath: renewalLicense.*.renewalLicenseEDC
            type: JSON
            dbType: JSONB
             
-         - jsonPath: renewalLicense.*.renewalLicenseSIDC.renewalLicenseSIDC
+         - jsonPath: renewalLicense.*.renewalLicenseSIDC
            type: JSON
            dbType: JSONB
            
-         - jsonPath: renewalLicense.*.renewalLicenseSOC.renewalLicenseSOC
+         - jsonPath: renewalLicense.*.renewalLicenseSOC
            type: JSON
            dbType: JSONB
            
-         - jsonPath: renewalLicense.*.renewalLicenseSPC.renewalLicenseSPC
+         - jsonPath: renewalLicense.*.renewalLicenseSPC
            type: JSON
            dbType: JSONB
            
