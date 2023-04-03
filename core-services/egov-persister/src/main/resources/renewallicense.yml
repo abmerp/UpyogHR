@@ -35,14 +35,14 @@ serviceMaps:
          - jsonPath: renewalLicense.*.nonCompletionProjectReasons
          - jsonPath: renewalLicense.*.oldLicenseDoc
          - jsonPath: renewalLicense.*.penaltyPayable
-         - jsonPath: renewalLicense.*.previouslyCondition_RL.previouslyCondition_RL
+         - jsonPath: renewalLicense.*.previouslyCondition_RL.*.previouslyCondition_RL
          - jsonPath: renewalLicense.*.renewalAmount
          - jsonPath: renewalLicense.*.renewalDelayInDays
          - jsonPath: renewalLicense.*.renewalForDuration
-         - jsonPath: renewalLicense.*.renewalLicenseEDC.renewalLicenseEDC
-         - jsonPath: renewalLicense.*.renewalLicenseSIDC.renewalLicenseSIDC
-         - jsonPath: renewalLicense.*.renewalLicenseSOC.renewalLicenseSOC
-         - jsonPath: renewalLicense.*.renewalLicenseSPC.renewalLicenseSPC
+         - jsonPath: renewalLicense.*.renewalLicenseEDC.*.renewalLicenseEDC
+         - jsonPath: renewalLicense.*.renewalLicenseSIDC.*.renewalLicenseSIDC
+         - jsonPath: renewalLicense.*.renewalLicenseSOC.*.renewalLicenseSOC
+         - jsonPath: renewalLicense.*.renewalLicenseSPC.*.renewalLicenseSPC
          - jsonPath: renewalLicense.*.rule24FinancialYearData
          - jsonPath: renewalLicense.*.rule24Remark
          - jsonPath: renewalLicense.*.rule24DocumentUpload
