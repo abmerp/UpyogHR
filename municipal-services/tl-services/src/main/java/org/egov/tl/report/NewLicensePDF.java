@@ -35,6 +35,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -49,6 +52,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,7 +66,7 @@ public class NewLicensePDF {
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
 
-  //  private static String hindifont = "D:\\new Upyog\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+  //  private static String hindifont = "D:\\UPYOG-bikash\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 //	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
 
@@ -75,7 +79,9 @@ public class NewLicensePDF {
 	@Autowired
 	Environment environment;
 	
-
+	@Autowired
+	ObjectMapper objectMapper;
+	
 	@RequestMapping(value = "new/license/pdf", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void jsonToPdf(@ModelAttribute("RequestInfo") RequestInfo requestInfo, HttpServletRequest request,
 			HttpServletResponse response, @RequestParam("applicationNumber") String applicationNumber) throws IOException {
@@ -90,7 +96,7 @@ public class NewLicensePDF {
 				if (file.exists()) {
 			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
 			if (mimeType == null) {
-				mimeType = "application/octet-stream";
+				mimeType = "application/pdf";
 			}
 			response.setContentType(mimeType);
 			response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
@@ -142,6 +148,7 @@ public class NewLicensePDF {
 		p2.setAlignment(Element.ALIGN_CENTER);
 		p3.setAlignment(Element.ALIGN_RIGHT);
 		doc.add(img);
+		p2.setSpacingAfter(50);
 		doc.add(p2);
 		doc.add(p);
 		doc.add(l);
@@ -204,6 +211,7 @@ public class NewLicensePDF {
 					  
 					doc.add(table);
 				}
+				
 				
 		if(licenseDetails.getApplicantInfo().getDevDetail().getAddInfo().getDirectorsInformationMCA()!=null && licenseDetails.getApplicantInfo().getDevDetail().getAddInfo().getDirectorsInformationMCA().size()>0) {
 					
@@ -417,10 +425,16 @@ public class NewLicensePDF {
 							
 						for(int j=0;j<licenseDetails.getApplicantPurpose().getAppliedLandDetails().size();j++) {
 																				
-							table = new PdfPTable(27);
-							table.setSpacingBefore(5f);
-							table.setSpacingAfter(5f);
+//							table = new PdfPTable(27);
+//							table.setSpacingBefore(5f);
+//							table.setSpacingAfter(5f);
+//							table.setWidthPercentage(100f);
+							
+							table = new PdfPTable(2);
+							table.setSpacingBefore(10f);
+							table.setSpacingAfter(10f);
 							table.setWidthPercentage(100f);
+							
 							
 							System.out.println(licenseDetails.getApplicantPurpose().getAppliedLandDetails().size());							
 							AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j);
@@ -431,6 +445,12 @@ public class NewLicensePDF {
 														
 							 BaseFont unicode = BaseFont.createFont(hindifont, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 							 Font font=new Font(unicode,12,Font.NORMAL,new BaseColor(51,0,255));
+							 
+							 System.out.println(s1);
+							 
+							 if(s1.isEmpty()) {
+							 }
+							 else {
 							 Paragraph lo = new Paragraph();
 							 lo.setFont(blackFont);
 							 lo.add("Name of Land Owner:");
@@ -438,120 +458,100 @@ public class NewLicensePDF {
 							 Paragraph p6 = new Paragraph(s1, font);
 							 
 						     doc.add(p6);
-						     
-						     
-						     PdfPCell c2 = new PdfPCell(new Phrase("District"));
-						        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-						        table.addCell(c2);
-							
-					         c2 = new PdfPCell(new Phrase("Tehsil"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Revenue Estate"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Mustil"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Consolidation Type"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Sarsai"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Kanal"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Marla"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Hadbast No"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Bigha"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Biswansi"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Biswa"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					       /** c2 = new PdfPCell(new Phrase("LandOwner"));
-					        PdfPCell  c3 = new PdfPCell(new Phrase(s1, font));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);*/
-					        
-					        c2 = new PdfPCell(new Phrase("Collaboration"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Developer Company"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("AgreementValid From"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Validity Date"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Agreement Irrevocialble"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("AuthSignature"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Name AuthSign"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					       
-					        c2 = new PdfPCell(new Phrase("Registering Authority"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Registering AuthorityDoc"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Khewats"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Consolidated Total"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("NonConsolidated Total"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Edit Khewats"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("Edit RectangleNo"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
-					        
-					        c2 = new PdfPCell(new Phrase("TypeLand"));
-					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-					        table.addCell(c2);
+							 }
+
+//					        c2 = new PdfPCell(new Phrase("Sarsai"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Kanal"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Marla"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Hadbast No"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Bigha"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Biswansi"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Biswa"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					       /** c2 = new PdfPCell(new Phrase("LandOwner"));
+//					        PdfPCell  c3 = new PdfPCell(new Phrase(s1, font));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);*/
+//					        
+//					        c2 = new PdfPCell(new Phrase("Collaboration"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Developer Company"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("AgreementValid From"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Validity Date"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Agreement Irrevocialble"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("AuthSignature"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Name AuthSign"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					       
+//					        c2 = new PdfPCell(new Phrase("Registering Authority"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Registering AuthorityDoc"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Khewats"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Consolidated Total"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("NonConsolidated Total"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Edit Khewats"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("Edit RectangleNo"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
+//					        
+//					        c2 = new PdfPCell(new Phrase("TypeLand"));
+//					        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//					        table.addCell(c2);
 
 
 
@@ -563,37 +563,78 @@ public class NewLicensePDF {
 					       
 
 					       
-					        
-					        table.setHeaderRows(1);
+					        table.addCell("District");
 					        table.addCell(appliedLandDetails.getDistrict());
+					        table.addCell("Potential");
+					        table.addCell(appliedLandDetails.getPotential());
+					        table.addCell("Zone");
+					        table.addCell(appliedLandDetails.getZone());
+					        table.addCell("Development Plan");
+					        table.addCell(appliedLandDetails.getDevelopmentPlan());
+					        table.addCell("Sector");
+					        table.addCell(appliedLandDetails.getSector());
+					        table.addCell("Tehsil");
 						    table.addCell(appliedLandDetails.getTehsil());
+					        table.addCell("Revenue Estate");
 					        table.addCell(appliedLandDetails.getRevenueEstate());
+					        table.addCell("Mustil");
 					        table.addCell(appliedLandDetails.getMustil());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getConsolidationType());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getSarsai());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getKanal());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getMarla());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getHadbastNo());
-					        System.out.println(appliedLandDetails.getHadbastNo());	
-						    table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getBigha());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getBiswansi());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getBiswa());
-					        //table.addCell(c3);
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getCollaboration());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getDeveloperCompany());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getAgreementValidFrom());
-					        table.addCell(licenseDetails.getApplicantPurpose().getAppliedLandDetails().get(j).getAgreementValidTo());
+					        table.addCell("Consolidation Type");
+					        table.addCell(appliedLandDetails.getConsolidationType());
+					        table.addCell("Sarsai");
+					        table.addCell(appliedLandDetails.getSarsai());
+					        table.addCell("Kanal");
+					        table.addCell(appliedLandDetails.getKanal());
+					        table.addCell("Marla");
+					        table.addCell(appliedLandDetails.getMarla());
+					        table.addCell("HadbastNo");
+					        table.addCell(appliedLandDetails.getHadbastNo());
+					        table.addCell("Bigh");
+					        table.addCell(appliedLandDetails.getBigha());
+					        table.addCell("Biswansi");
+					        table.addCell(appliedLandDetails.getBiswansi());
+					        table.addCell("Biswa");
+					        table.addCell(appliedLandDetails.getBiswa());
+					        table.addCell("LandOwner Registry");
+					        table.addCell(appliedLandDetails.getLandOwnerRegistry());
+					        table.addCell("Collaboration");
+					        table.addCell(appliedLandDetails.getCollaboration());
+					        table.addCell("Developer ompany");
+					        table.addCell(appliedLandDetails.getDeveloperCompany());
+					        table.addCell("Agreement Valid From");
+					        table.addCell(appliedLandDetails.getAgreementValidFrom());
+					        table.addCell("AgreementValidTo");
+					        table.addCell(appliedLandDetails.getAgreementValidTo());
+					        table.addCell("Agreement Irrevocialble");
 					        table.addCell(appliedLandDetails.getAgreementIrrevocialble());
+					        table.addCell("AuthSignature");
 					        table.addCell(appliedLandDetails.getAuthSignature());
+					        table.addCell("Name Auth Sign");
 					        table.addCell(appliedLandDetails.getNameAuthSign());
+					        table.addCell("Registering Authority");
 					        table.addCell(appliedLandDetails.getRegisteringAuthority());
+					        table.addCell("Registering Authority Doc");
 					        table.addCell(appliedLandDetails.getRegisteringAuthorityDoc());
+					        table.addCell("Khewats");
 					        table.addCell(appliedLandDetails.getKhewats());
+					        table.addCell("Consolidated Total");
 					        table.addCell(appliedLandDetails.getConsolidatedTotal());
+					        table.addCell("Non Consolidated Total");
 					        table.addCell(appliedLandDetails.getNonConsolidatedTotal());
+					        table.addCell("Edit Khewats");
 					        table.addCell(appliedLandDetails.getEditKhewats());
+					        table.addCell("Edit Rectangle No");
 					        table.addCell(appliedLandDetails.getEditRectangleNo());
+					        table.addCell("TypeLand");
 					        table.addCell(appliedLandDetails.getTypeLand());
+					        table.addCell("RectangleNo");
+					        table.addCell(appliedLandDetails.getRectangleNo());
+					        table.addCell("Non ConsolidationType");
+					        table.addCell(appliedLandDetails.getNonConsolidationType());
+					        table.addCell("LandOwnerSPAGPADoc");
+					        table.addCell(appliedLandDetails.getLandOwnerSPAGPADoc());
+					        table.addCell("DeveloperSPAGPADoc");
+					        table.addCell(appliedLandDetails.getDeveloperSPAGPADoc());
 					        
 					        
 					        
@@ -628,11 +669,19 @@ public class NewLicensePDF {
 						String t = licenseDetails.getLandSchedule().getLicenseApplied();
 						System.out.println(t);
 						
-						if(t=="Y") {
-							System.out.println(t);
-							
+						 if(licenseDetails.getLandSchedule().getLicenseApplied()!= null) {
+							 
+						
 							  table.addCell("License Applied");
 							  table.addCell(licenseDetails.getLandSchedule().getLicenseApplied());
+						 }
+						 else {
+								
+							 table.addCell("License Applied");
+							  table.addCell(licenseDetails.getLandSchedule().getLicenseApplied());
+							
+						}
+						
 							  
 							  if(licenseDetails.getLandSchedule().getLicenseNumber()!= null) {
 									
@@ -776,13 +825,7 @@ public class NewLicensePDF {
 								
 							}
 							
-						}
-						else {
-							
-							 table.addCell("License Applied");
-							  table.addCell(licenseDetails.getLandSchedule().getLicenseApplied());
-							
-						}
+						
 						
 						
 					
@@ -2459,11 +2502,15 @@ public class NewLicensePDF {
 	                 	table.setSpacingBefore(10f);
 	                  	table.setSpacingAfter(10f);
 		                table.setWidthPercentage(100f);
+		                Paragraph doal = new Paragraph();
+	                	   doal.setFont(blackFont1);
+	                	   doal.add("Details of AppliedLand");
+	                	   doc.add(doal);
 		                
 		                if(licenseDetails.getDetailsofAppliedLand().getDgps()!=null && licenseDetails.getDetailsofAppliedLand().getDgps().size()>0) {
-		                	  Paragraph doal = new Paragraph();
-      	                	   doal.add("Details of AppliedLand");
-      	                 	   doc.add(doal);
+		                	 
+                         	   
+                         	 
                        	   
 		                	List<List<GISDeatils>> f= licenseDetails.getDetailsofAppliedLand().getDgps();
 	                           for(int j=0;j<f.size();j++) {
@@ -2490,103 +2537,301 @@ public class NewLicensePDF {
 		                doc.add(table); 
 					}
 					
-					if(licenseDetails.getDetailsofAppliedLand()!= null) {
-	                	Paragraph doal = new Paragraph();
-	                	doal.add("Details of AppliedLand Plot");
-	                 	doc.add(doal);
-		                
-	                  	table = new PdfPTable(2);
-	                 	table.setSpacingBefore(10f);
-	                  	table.setSpacingAfter(10f);
-		                table.setWidthPercentage(100f);
-		
-		            								
-								
-								  table.addCell("TotalArea");
-								  table.addCell(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalAreaScheme());
-								  
-								   								  
-								  table.addCell("Area Under SectorRoad");
-								  table.addCell(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getAreaUnderSectorRoad());
-							       
-								  table.addCell("Area Under SectorRoad");
-								  table.addCell(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getBalanceAreaAfterDeduction());
 
-								  table.addCell("Area Under SectorRoad");
-								  table.addCell(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getAreaUnderSectorRoad());
-
-							
-													
-							 
-		  
-		  
-		           doc.add(table);
-	}
 					
-  if(licenseDetails.getDetailsofAppliedLand()!= null) {
+                   if(licenseDetails.getDetailsofAppliedLand()!= null) {
 	                	
 		                
 	                  	table = new PdfPTable(2);
 	                 	table.setSpacingBefore(10f);
 	                  	table.setSpacingAfter(10f);
 		                table.setWidthPercentage(100f);
+		                
+		                Paragraph doal1 = new Paragraph();
+	                	   doal1.setFont(blackFont1);
+	                	   doal1.add("Bifurcation Of Purpose");
+	                	   doc.add(doal1);
+	                	   
+	                	   table.addCell("Total Applied Area");
+						   table.addCell(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getTotalAreaScheme());
+	                	   
+	                	   
 		            
 					
 					if(licenseDetails.getDetailsofAppliedLand().getPurposeDetails()!=null && licenseDetails.getDetailsofAppliedLand().getPurposeDetails().size()>0) {
+						
+
+						
 						List<PurposeDetails> f= licenseDetails.getDetailsofAppliedLand().getPurposeDetails();
-                           for(int j=0;j<f.size();j++) {
-                        	   
-                        	   
-                        	   PurposeDetails h = f.get(j);
-                        	   
-                        	   Paragraph pl = new Paragraph();
-       	                	   pl.add("Purpose Details");
-       	                 	   doc.add(pl);
-                        	   
-                        	   
-                        	   table.addCell("ID");
-							   table.addCell(h.getId());
+						// String k= objectMapper.writeValueAsString(f);
+					
+						
+						
+						for(int j=0;j<f.size();j++) {
+							
+							PurposeDetails l1 = f.get(j);
+							
+							
+							 table.addCell("ID");
+							   table.addCell(l1.getId());
 							   
-							   System.out.println(h.getId());
-							   
+							  
 							   table.addCell("Name");
-							   table.addCell(h.getName());
+							   table.addCell(l1.getName());
 							   
 							   table.addCell("Code");
-							   table.addCell(h.getCode());
+							   table.addCell(l1.getCode());
 							
 							   
 							   table.addCell("Area");
-							   table.addCell(h.getArea());
+							   table.addCell(l1.getArea());
 							   
 							   table.addCell("fars");
-							   table.addCell(h.getFar());
+							   table.addCell(l1.getFar());
 							   
 							   
 							   table.addCell("MaxPercentage");
-							   table.addCell(h.getMaxPercentage());
+							   table.addCell(l1.getMaxPercentage());
 							   
 
 							   table.addCell("MinPercentage");
-							   table.addCell(h.getMinPercentage());
+							   table.addCell(l1.getMinPercentage());
 							   
 							   table.addCell("MinPercentage");
-							   table.addCell(h.getMinPercentage());
-		
-							   System.out.println(h.getPurposeDetail());
+							   table.addCell(l1.getMinPercentage());
+							   
+							   
+							   if(l1.getPurposeDetail()!=null && l1.getPurposeDetail().size()>0) {
+								   
+									
+									List<PurposeDetails> l2 = l1.getPurposeDetail();
+									
+									for(int k1=0;k1<l2.size();k1++) {
+										
+										PurposeDetails l3 = l2.get(k1);
+										
+								  table.addCell("ID");
+								   table.addCell(l3.getId());
+								   
+								   
+								   table.addCell("Name");
+								   table.addCell(l3.getName());
+								   
+								   table.addCell("Code");
+								   table.addCell(l3.getCode());
 								
-                        	   
-                        	   
-	
-					
-                           }
-                           
-//                       	if(licenseDetails.getDetailsofAppliedLand().getPurposeDetails()!=null && licenseDetails.getDetailsofAppliedLand().getPurposeDetails().size()>0) {}
-                    
+								   
+								   table.addCell("Area");
+								   table.addCell(l3.getArea());
+								   
+								   table.addCell("fars");
+								   table.addCell(l3.getFar());
+								   
+								   
+								   table.addCell("MaxPercentage");
+								   table.addCell(l3.getMaxPercentage());
+								   
+
+								   table.addCell("MinPercentage");
+								   table.addCell(l3.getMinPercentage());
+								   
+								   table.addCell("MinPercentage");
+								   table.addCell(l3.getMinPercentage());
+								   
+								   if(l3.getPurposeDetail()!=null && l3.getPurposeDetail().size()>0) {
+									   
+									  List<PurposeDetails> l4 = l3.getPurposeDetail();
+									   
+									   for(int k2=0;k2<l4.size();k2++) {
+										   PurposeDetails l5= l4.get(k2);
+										   
+										   
+										  
+										   table.addCell("ID");
+										   table.addCell(l5.getId());
+										   
+										   
+										   table.addCell("Name");
+										   table.addCell(l5.getName());
+										   
+										   table.addCell("Code");
+										   table.addCell(l5.getCode());
+										
+										   
+										   table.addCell("Area");
+										   table.addCell(l5.getArea());
+										   
+										   table.addCell("fars");
+										   table.addCell(l5.getFar());
+										   
+										   
+										   table.addCell("MaxPercentage");
+										   table.addCell(l5.getMaxPercentage());
+										   
+
+										   table.addCell("MinPercentage");
+										   table.addCell(l5.getMinPercentage());
+										   
+										   table.addCell("MinPercentage");
+										   table.addCell(l5.getMinPercentage());
+										   
+										   
+									   }
+									   
+									   
+									   
+									   
+									   
+									   
+								   }
+								   
+								  								   
+								   
+								   
+								   
+									}
+								}
+							
+							
+							
+						}
+						
+					                           
 					}
 					
+					
+								
 					doc.add(table);
+					
+					
   }
+                   
+                   if(licenseDetails.getDetailsofAppliedLand()!= null) {
+	                	
+		                
+	                  	table = new PdfPTable(2);
+	                 	table.setSpacingBefore(10f);
+	                  	table.setSpacingAfter(10f);
+		                table.setWidthPercentage(100f);
+		                
+		                Paragraph layout = new Paragraph();
+						 layout.setFont(blackFont1);
+						 layout.add("Layout Plan Document");
+						 doc.add(layout);
+	              	     
+	              	     
+	              	   if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getLayoutPlanPdf()!= null) {
+							
+	              		 table.addCell("Layout PlanPdf");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Layout PlanPdf");
+							  table.addCell("NULL");
+							
+						}
+	              	 if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getLayoutPlanDxf()!= null) {
+							
+	              		 table.addCell("Layout PlanDxf");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Layout PlanDxf");
+							  table.addCell("NULL");
+							
+						}
+	              	 if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getUndertaking()!= null) {
+							
+	              		 table.addCell("Undertaking");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Undertaking");
+							  table.addCell("NULL");
+							
+						}
+	              	 if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getDevelopmentPlan()!= null) {
+							
+	              		 table.addCell("DevelopmentPlan");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("DevelopmentPlan");
+							  table.addCell("NULL");
+							
+						}
+	              	if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getSectoralPlan()!= null) {
+						
+	              		 table.addCell("SectoralPlan");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("SectoralPlan");
+							  table.addCell("NULL");
+							
+						}
+	              	if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getExplanatoryNote()!= null) {
+						
+	              		 table.addCell("Explanatory Note");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Explanatory Note");
+							  table.addCell("NULL");
+							
+						}
+	              	if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getGuideMap()!= null) {
+						
+	              		 table.addCell("GuideMap");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("GuideMap");
+							  table.addCell("NULL");
+							
+						}
+	              	if(licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot().getIdemnityBondDoc()!= null) {
+						
+	              		 table.addCell("Idemnity BondDoc");
+						   table.addCell("ATTACHED");
+						        
+							
+						}
+						else {
+							
+							 table.addCell("Idemnity BondDoc");
+							  table.addCell("NULL");
+							
+						}
+                	   
+	              	   
+	              	 doc.add(table);
+	              	   
+                   }
+  
+  
+
 					
 					
 			
