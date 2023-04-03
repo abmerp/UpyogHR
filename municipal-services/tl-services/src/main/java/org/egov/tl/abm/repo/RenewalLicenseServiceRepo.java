@@ -46,8 +46,8 @@ public class RenewalLicenseServiceRepo {
 
 	public void saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		try {
-			renewalLicenseRepo.save(renewalLicenseRequest.getRenewalLicense().get(0));
-//		 	producer.push(tlConfiguration.getSaveRenewalLicenseTopic(), renewalLicenseRequest);
+//			renewalLicenseRepo.save(renewalLicenseRequest.getRenewalLicense().get(0));
+		 	producer.push(tlConfiguration.getSaveRenewalLicenseTopic(), renewalLicenseRequest);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
