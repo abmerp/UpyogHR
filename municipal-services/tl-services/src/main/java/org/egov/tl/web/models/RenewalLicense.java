@@ -33,8 +33,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name="eg_tl_renewal_license")
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+//@Table(name="eg_tl_renewal_license")
+//@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class RenewalLicense {
 	
 	@JsonProperty("id")
