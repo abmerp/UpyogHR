@@ -95,9 +95,9 @@ public class RenewalLicense {
 	@JsonProperty("isRenewalAppliedFirstTime")
 	private boolean isRenewalAppliedFirstTime;
 	
-	@Type(type = "jsonb")
-	@Column(columnDefinition = "jsonb")
-	private List<RenewalLicensePreviopusCondition> previouslyCondition_RL;
+//	@Type(type = "jsonb")
+//	@Column(columnDefinition = "jsonb")
+	private JsonNode previouslyCondition_RL;
 	
 	@JsonProperty("colonizerObtainApproveNoc")
 	private boolean colonizerObtainApproveNoc;
@@ -131,16 +131,16 @@ public class RenewalLicense {
 //	@JsonProperty("edc_details")
 //	private JsonNode edc_details=null;
 	
-	@Type(type = "jsonb")
-	@Column(columnDefinition = "jsonb")
-	private List<RenewalLicenseEDC> renewalLicenseEDC;
+//	@Type(type = "jsonb")
+//	@Column(columnDefinition = "jsonb")
+	private JsonNode renewalLicenseEDC;
 	
 	@JsonProperty("sidc_status")
 	private boolean sidc_status;
 	
-	@Type(type = "jsonb")
-	@Column(columnDefinition = "jsonb")
-	private List<RenewalLicenseSIDC> renewalLicenseSIDC;
+//	@Type(type = "jsonb")
+//	@Column(columnDefinition = "jsonb")
+	private JsonNode renewalLicenseSIDC;
 	
 //	@JsonProperty("sidc_details")
 //	private JsonNode sidc_details=null;
@@ -207,16 +207,16 @@ public class RenewalLicense {
 //	@JsonProperty("soc_details")
 //	private JsonNode soc_details=null;
 	
-	@Type(type = "jsonb")
-	@Column(columnDefinition = "jsonb")
-	private List<RenewalLicenseSOC> renewalLicenseSOC;
+//	@Type(type = "jsonb")
+//	@Column(columnDefinition = "jsonb")
+	private JsonNode renewalLicenseSOC;
 	
 //	@JsonProperty("spc_details")
 //	private JsonNode spc_details=null;
 	
-	@Type(type = "jsonb")
-	@Column(columnDefinition = "jsonb")
-	private List<RenewalLicenseSPC> renewalLicenseSPC;
+//	@Type(type = "jsonb")
+//	@Column(columnDefinition = "jsonb")
+	private JsonNode renewalLicenseSPC;
 		
 	@JsonProperty("totalNoOfEWSFlatsOrPlotsApprovedInLayoutPlan")
 	private String totalNoOfEWSFlatsOrPlotsApprovedInLayoutPlan;
