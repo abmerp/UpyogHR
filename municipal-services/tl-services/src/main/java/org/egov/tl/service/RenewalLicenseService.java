@@ -55,8 +55,8 @@ public class RenewalLicenseService {
 	
 	
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
-		List<RenewalLicenseRequestDetail> requestData=java.util.Arrays.asList(getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail());
-		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData.get(0));
+		List<RenewalLicenseRequestDetail> requestData=getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail();
+		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
 		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
 	}
@@ -88,7 +88,7 @@ public class RenewalLicenseService {
 		auditDetails.setCreatedBy(requestInfo.getUserInfo().getUuid());
 		auditDetails.setCreatedTime(currentDate.getTime());
 		
-		List<RenewalLicenseDetail> renewalLicenseDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().getRenewalLicenseDetail();
+		List<RenewalLicenseDetail> renewalLicenseDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail();
 		renewalLicenseDetails.stream().map(renewalLicenseDetail->{
 			renewalLicenseDetail.setAuditDetails(auditDetails);
 			renewalLicenseDetail.setId(UUID.randomUUID().toString());
@@ -99,7 +99,7 @@ public class RenewalLicenseService {
 		}).collect(Collectors.toList());
 		
 		
-		List<RenewalLicense> renewalLicense = renewalLicenseRequest.getRenewalLicenseRequestDetail().getRenewalLicense().stream().map(renewallicense->{
+		List<RenewalLicense> renewalLicense = renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicense().stream().map(renewallicense->{
 			renewallicense.setAuditDetails(auditDetails);;
 			renewallicense.setApplicationDate(currentDate.getTime());
 			renewallicense.setAssignee(assignees);
@@ -118,8 +118,8 @@ public class RenewalLicenseService {
 			renewallicense.setRenewalLicenseDetail(renewalLicenseDetails.get(0));
 			return renewallicense;
 		}).collect(Collectors.toList());
-		renewalLicenseRequest.getRenewalLicenseRequestDetail().setRenewalLicense(renewalLicense);
-		renewalLicenseRequest.getRenewalLicenseRequestDetail().setRenewalLicenseDetail(renewalLicenseDetails);
+		renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).setRenewalLicense(renewalLicense);
+		renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).setRenewalLicenseDetail(renewalLicenseDetails);
 		
 		List<RenewalLicenseRequest> arrayList=new ArrayList<>();
 		arrayList.add(renewalLicenseRequest);
