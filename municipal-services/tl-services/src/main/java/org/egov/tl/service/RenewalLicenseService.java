@@ -60,7 +60,7 @@ public class RenewalLicenseService {
 		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
 		RenewalLicensePreviopusCondition renewalLicensePreviopusCondition=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail().getPreviouslyCondition_RL().get(0);
 		System.out.println("Data:---------------------"+renewalLicensePreviopusCondition.isComplianceDone());
-//		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
+		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
 	}
 	
