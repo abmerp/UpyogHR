@@ -1389,7 +1389,101 @@ serviceMaps:
            
           - jsonPath: $.ApprovalStandardEntity.*.workflowCode
         
+ - version: 1.0
+   description: create revised layout plan
+   fromTopic: save-revised-layout-plan
+   isTransaction: true
+   queryMaps:
+    
+       - query: INSERT INTO public.eg_revised_layout_plan(id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, existingarea, areaplanning, anyotherfeature, amount, reasonrevision, earlyapprovedlayoutplan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+         basePath: RevisedPlan.*
+         jsonMaps:    
+         
+          - jsonPath: $.RevisedPlan.*.id     
           
+          - jsonPath: $.RevisedPlan.*.licenseNo
+          
+          - jsonPath: $.RevisedPlan.*.applicationNumber
+          
+          - jsonPath: $.RevisedPlan.*.tenantId      
+                   
+          - jsonPath: $.RevisedPlan.*.action
+          
+          - jsonPath: $.RevisedPlan.*.status
+          
+          - jsonPath: $.RevisedPlan.*.workflowCode 
+          
+          - jsonPath: $.RevisedPlan.*.businessService
+           
+          - jsonPath: $.RevisedPlan.*.additionalDetails
+            type: JSON
+            dbType: JSONB
+          
+          - jsonPath: $.RevisedPlan.*.auditDetails.createdBy
+
+          - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedBy         
+
+          - jsonPath: $.RevisedPlan.*.auditDetails. createdTime
+
+          - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedTime       
+
+          - jsonPath: $.RevisedPlan.*.existingArea
+
+          - jsonPath: $.RevisedPlan.*.areaPlanning
+
+          - jsonPath: $.RevisedPlan.*.anyOtherFeature
+
+          - jsonPath: $.RevisedPlan.*.amount
+
+          - jsonPath: $.RevisedPlan.*.reasonRevision
+
+          - jsonPath: $.RevisedPlan.*.earlierApprovedlayoutPlan          
       
+ - version: 1.0
+   description: update revised layout plan
+   fromTopic: update-revised-layout-plan
+   isTransaction: true
+   queryMaps:
+   
+       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, existingarea=?, areaplanning=?, anyotherfeature=?, amount=?, reasonrevision=?, earlyapprovedlayoutplan=? WHERE application_number=?;
+         basePath: RevisedPlan.*
+         jsonMaps:    
+         
+          - jsonPath: $.RevisedPlan.*.id  
           
+          - jsonPath: $.RevisedPlan.*.tenantId      
+                   
+          - jsonPath: $.RevisedPlan.*.action
+          
+          - jsonPath: $.RevisedPlan.*.status
+          
+          - jsonPath: $.RevisedPlan.*.workflowCode 
+          
+          - jsonPath: $.RevisedPlan.*.businessService
+           
+          - jsonPath: $.RevisedPlan.*.additionalDetails
+            type: JSON
+            dbType: JSONB
+          
+          - jsonPath: $.RevisedPlan.*.auditDetails.createdBy
+
+          - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedBy         
+
+          - jsonPath: $.RevisedPlan.*.auditDetails. createdTime
+
+          - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedTime       
+
+          - jsonPath: $.RevisedPlan.*.existingArea
+
+          - jsonPath: $.RevisedPlan.*.areaPlanning
+
+          - jsonPath: $.RevisedPlan.*.anyOtherFeature
+
+          - jsonPath: $.RevisedPlan.*.amount
+
+          - jsonPath: $.RevisedPlan.*.reasonRevision
+
+          - jsonPath: $.RevisedPlan.*.earlierApprovedlayoutPlan
+          
+          - jsonPath: $.RevisedPlan.*.applicationNumber
           
