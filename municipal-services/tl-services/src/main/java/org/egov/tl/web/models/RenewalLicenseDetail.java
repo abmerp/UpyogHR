@@ -53,7 +53,7 @@ public class RenewalLicenseDetail {
 	private String renewllicenseId;
 
 	@JsonProperty("additionalDetail")
-	private JsonNode additionalDetail = null;
+	private RenewalLicenseAddetionalDetails additionalDetail = null;
 
 	@JsonProperty("currentVersion")
 	private float currentVersion;
