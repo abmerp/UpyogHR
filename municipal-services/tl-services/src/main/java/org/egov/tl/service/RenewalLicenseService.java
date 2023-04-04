@@ -60,15 +60,17 @@ public class RenewalLicenseService {
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		List<RenewalLicenseRequestDetail> requestData=getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail();
 		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
-		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
-		String additionaldetail=null;
-		try {
-			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		log.info("additionaldetail:---------------------"+additionaldetail);
+		
+		
+//		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
+//		String additionaldetail=null;
+//		try {
+//			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		log.info("additionaldetail:---------------------"+additionaldetail);
 		
 		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
