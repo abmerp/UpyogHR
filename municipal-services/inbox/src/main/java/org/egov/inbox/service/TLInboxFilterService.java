@@ -80,12 +80,26 @@ public class TLInboxFilterService {
 	private String approvalStandardSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.AS.search.desc.path}")
 	private String approvalStandardSearcherDescEndPoint;
-
+	@Value("${egov.searcher.tl.RL.search.path}")
+	private String renewalOfLicenceSearcherEndPoint;
+	@Value("${egov.searcher.tl.RL.count.path}")
+	private String renewalOfLicenceSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.RL.search.desc.path}")
+	private String renewalOfLicenceSearcherDescEndPoint;
+	@Value("${egov.searcher.tl.RLP.search.path}")
+	private String revisedLayoutPlanSearcherEndPoint;
+	@Value("${egov.searcher.tl.RLP.count.path}")
+	private String revisedLayoutPlanSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.RLP.search.desc.path}")
+	private String revisedLayoutPlanSearcherDescEndPoint;
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
+
+	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
+	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
 	private static final String BUSINESSSERVICE_NEWTL = "NewTL";
 	private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
@@ -175,6 +189,24 @@ public class TLInboxFilterService {
 				// will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 				switch (businessService) {
+				case BUSINESSSERVICE_REVISED:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(revisedLayoutPlanSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(revisedLayoutPlanSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;
+				case BUSINESSSERVICE_RENEWAL:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(renewalOfLicenceSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(renewalOfLicenceSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;
 				case BUSINESSSERVICE_NEWTL:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -333,6 +365,15 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 
 				switch (businessService) {
+				case BUSINESSSERVICE_REVISED:
+					uri.append(searcherHost).append(revisedLayoutPlanSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+					break;
+				case BUSINESSSERVICE_RENEWAL:
+					uri.append(searcherHost).append(renewalOfLicenceSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+
+					break;
 
 				case BUSINESSSERVICE_NEWTL:
 					uri.append(searcherHost).append(tlInboxSearcherCountEndpoint);
