@@ -1,23 +1,37 @@
 package org.egov.tl.service;
 
+import static org.egov.tl.util.TLConstants.businessService_TL;
+
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.abm.repo.RenewalLicenseServiceRepo;
 import org.egov.tl.util.ConvertUtil;
+import org.egov.tl.util.TLConstants;
+import org.egov.tl.util.TradeUtil;
+import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.RenewalLicense;
+import org.egov.tl.web.models.RenewalLicense.ApplicationTypeEnum;
+import org.egov.tl.web.models.RenewalLicense.LicenseTypeEnum;
+import org.egov.tl.web.models.RenewalLicenseDetail;
+import org.javers.common.collections.Arrays;
 import org.egov.tl.web.models.RenewalLicenseRequest;
+import org.egov.tl.web.models.RenewalLicenseRequestDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,22 +48,22 @@ public class RenewalLicenseService {
 	@Autowired
 	RenewalLicenseServiceRepo renewalLicenseServiceRepo;
 	
+	@Autowired
+	private ServicePlanService servicePlanService;
 	
-	public List<RenewalLicense> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
-		Timestamp currentDate=Timestamp.valueOf(ConvertUtil.getCurrentFullDate(timeZoneName, null));
-		List<RenewalLicense> renewalLicense = renewalLicenseRequest.getRenewalLicense().stream().map(renewallicense->{
-			renewallicense.setCreatedAt(currentDate);
-			return renewallicense;
-		  }).collect(Collectors.toList());
-		renewalLicenseRequest.setRenewalLicense(renewalLicense);
-		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
-		return renewalLicense;
+	private TradeUtil util;
+	
+	
+	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
+		List<RenewalLicenseRequestDetail> requestData=java.util.Arrays.asList(getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail());
+		renewalLicenseServiceRepo.saveRenewalLicense(requestData.get(0));
+		return requestData;
 	}
 	
 	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
 		List<RenewalLicense> renewalLicense = null;
 		try {
-			List<RenewalLicense> renewalLicenseList = renewalLicenseServiceRepo.getRenewalLicense(applicationNumber);
+			List<RenewalLicense> renewalLicenseList = null;// renewalLicenseServiceRepo.getRenewalLicense(applicationNumber);
 			if(renewalLicenseList!=null&&!renewalLicenseList.isEmpty()) {
 				renewalLicense=renewalLicenseList;
 			}
@@ -57,6 +71,59 @@ public class RenewalLicenseService {
 			e.printStackTrace();
 		}
 		return renewalLicense;
+	}
+	
+	public List<RenewalLicenseRequest> getRenewalLicenseData(RenewalLicenseRequest renewalLicenseRequest){
+		
+//		Object mdmsData = util.mDMSCall(renewalLicenseRequest.getRequestInfo(), "hr");
+//		String jsonPath = TLConstants.MDMS_CURRENT_FINANCIAL_YEAR.replace("{}", businessService_TL);
+//		List<Map<String, Object>> jsonOutput = JsonPath.read(mdmsData, jsonPath);
+		
+		RequestInfo requestInfo=renewalLicenseRequest.getRequestInfo();
+		Timestamp currentDate=Timestamp.valueOf(ConvertUtil.getCurrentFullDate(timeZoneName, null));
+		List<String> assignees=java.util.Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, renewalLicenseRequest.getRequestInfo()));
+		String renewalLicenceId=UUID.randomUUID().toString();
+		AuditDetails auditDetails=new AuditDetails();
+		auditDetails.setCreatedBy(requestInfo.getUserInfo().getUuid());
+		auditDetails.setCreatedTime(currentDate.getTime());
+		
+		List<RenewalLicenseDetail> renewalLicenseDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().getRenewalLicenseDetail();
+		renewalLicenseDetails.stream().map(renewalLicenseDetail->{
+			renewalLicenseDetail.setAuditDetails(auditDetails);
+			renewalLicenseDetail.setId(UUID.randomUUID().toString());
+			renewalLicenseDetail.setRenewllicenseId(renewalLicenceId);
+			renewalLicenseDetail.setCurrentVersion(renewalLicenseRequest.getCurrentVersion());
+			renewalLicenseDetail.setRenewalType("PERMANENT");
+			return renewalLicenseDetail;
+		}).collect(Collectors.toList());
+		
+		
+		List<RenewalLicense> renewalLicense = renewalLicenseRequest.getRenewalLicenseRequestDetail().getRenewalLicense().stream().map(renewallicense->{
+			renewallicense.setAuditDetails(auditDetails);;
+			renewallicense.setApplicationDate(currentDate.getTime());
+			renewallicense.setAssignee(assignees);
+			renewallicense.setApplicationType(ApplicationTypeEnum.RENEWAL);
+			renewallicense.setLicenseType(LicenseTypeEnum.PERMANENT);
+			renewallicense.setWorkflowCode("TCPRL");
+			renewallicense.setFinancialYear("2022-23");
+			renewallicense.setValidUpTo("01-03-2024");
+			renewallicense.setRenewalForDuration("5 month");
+			
+			renewallicense.setAction("initiate".toUpperCase());
+			renewallicense.setBusinessService("TL");
+			renewallicense.setTenantId("hr");
+			renewallicense.setId(renewalLicenceId);
+			renewallicense.setVer(renewalLicenseRequest.getCurrentVersion());
+			renewallicense.setRenewalLicenseDetail(renewalLicenseDetails.get(0));
+			return renewallicense;
+		}).collect(Collectors.toList());
+		renewalLicenseRequest.getRenewalLicenseRequestDetail().setRenewalLicense(renewalLicense);
+		renewalLicenseRequest.getRenewalLicenseRequestDetail().setRenewalLicenseDetail(renewalLicenseDetails);
+		
+		List<RenewalLicenseRequest> arrayList=new ArrayList<>();
+		arrayList.add(renewalLicenseRequest);
+		
+		return arrayList;
 	}
 
 }

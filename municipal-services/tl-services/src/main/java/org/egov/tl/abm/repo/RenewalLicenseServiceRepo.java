@@ -1,15 +1,9 @@
 package org.egov.tl.abm.repo;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
-import org.egov.tl.web.models.ChangeBeneficialRequest;
-import org.egov.tl.web.models.RenewalLicense;
-import org.egov.tl.web.models.RenewalLicenseRequest;
+import org.egov.tl.web.models.RenewalLicenseRequestDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -30,37 +24,30 @@ public class RenewalLicenseServiceRepo {
 	private ObjectMapper mapper;
 
 	@Autowired
-	private EntityManager entityManager;
-
-	@Autowired
 	private TLConfiguration tlConfiguration;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
 	@Autowired
-	org.egov.tl.service.repo.RenewalLicenseRepo renewalLicenseRepo;
-
-	@Autowired
 	private TLRowMapper rowMapper;
 
-	public void saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
+	public void saveRenewalLicense(RenewalLicenseRequestDetail renewalLicenseRequest) {
 		try {
-//			renewalLicenseRepo.save(renewalLicenseRequest.getRenewalLicense().get(0));
 		 	producer.push(tlConfiguration.getSaveRenewalLicenseTopic(), renewalLicenseRequest);
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error("Exception : "+e.getMessage());
 		}
 	}
 	
-	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
-		List<RenewalLicense>  renewalLicense=null;
-		try {
-			renewalLicense=renewalLicenseRepo.findByApplicationNumber(applicationNumber);
+//	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
+//		List<RenewalLicense>  renewalLicense=null;
+//		try {
 //		 	producer.push(tlConfiguration.getSaveRenewalLicenseTopic(), renewalLicenseRequest);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return renewalLicense;
-	}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return renewalLicense;
+//	}
 }
