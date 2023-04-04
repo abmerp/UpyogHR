@@ -127,7 +127,7 @@ public class RenewalLicenseService {
 			renewallicense.setValidUpTo("01-03-2024");
 			renewallicense.setRenewalForDuration("5 month");
 			
-			renewallicense.setAction("initiate".toUpperCase());
+			renewallicense.setAction("INITIATE");
 			renewallicense.setBusinessService("TL");
 			renewallicense.setTenantId("hr");
 			renewallicense.setId(renewalLicenceId);
