@@ -11,6 +11,8 @@ public class TLConstants {
 
 
     public static  final String businessService_TL = "TL";
+    
+    public static  final String businessService_Revised = "REVISED_LAYOUT_PLAN";
 
     public static  final String businessService_DIRECT_RENEWAL = "DIRECTRENEWAL";
     
