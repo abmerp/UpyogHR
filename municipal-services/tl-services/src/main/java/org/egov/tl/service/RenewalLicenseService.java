@@ -84,9 +84,10 @@ public class RenewalLicenseService {
 		Timestamp currentDate=Timestamp.valueOf(ConvertUtil.getCurrentFullDate(timeZoneName, null));
 		List<String> assignees=java.util.Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, renewalLicenseRequest.getRequestInfo()));
 		String renewalLicenceId=UUID.randomUUID().toString();
+		long currentTime=currentDate.getTime();
 		AuditDetails auditDetails=new AuditDetails();
 		auditDetails.setCreatedBy(requestInfo.getUserInfo().getUuid());
-		auditDetails.setCreatedTime(currentDate.getTime());
+		auditDetails.setCreatedTime(currentTime);
 		
 		List<RenewalLicenseDetail> renewalLicenseDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail();
 		renewalLicenseDetails.stream().map(renewalLicenseDetail->{
