@@ -22,6 +22,7 @@ import org.egov.tl.web.models.RenewalLicense;
 import org.egov.tl.web.models.RenewalLicense.ApplicationTypeEnum;
 import org.egov.tl.web.models.RenewalLicense.LicenseTypeEnum;
 import org.egov.tl.web.models.RenewalLicenseDetail;
+import org.egov.tl.web.models.RenewalLicensePreviopusCondition;
 import org.javers.common.collections.Arrays;
 import org.egov.tl.web.models.RenewalLicenseRequest;
 import org.egov.tl.web.models.RenewalLicenseRequestDetail;
@@ -57,7 +58,9 @@ public class RenewalLicenseService {
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		List<RenewalLicenseRequestDetail> requestData=getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail();
 		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
-		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
+		RenewalLicensePreviopusCondition renewalLicensePreviopusCondition=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail().getPreviouslyCondition_RL().get(0);
+		System.out.println("Data:---------------------"+renewalLicensePreviopusCondition.isComplianceDone());
+//		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
 	}
 	
@@ -96,6 +99,7 @@ public class RenewalLicenseService {
 			renewalLicenseDetail.setRenewllicenseId(renewalLicenceId);
 			renewalLicenseDetail.setCurrentVersion(renewalLicenseRequest.getCurrentVersion());
 			renewalLicenseDetail.setRenewalType("PERMANENT");
+			renewalLicenseDetail.setAdditionalDetail(renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail());
 			return renewalLicenseDetail;
 		}).collect(Collectors.toList());
 		
