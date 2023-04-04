@@ -200,8 +200,8 @@ public class  RenewalLicense   {
         @JsonProperty("status")
         private String status = null;
        
-        @JsonProperty("renewalLicenseDetail")
-        private RenewalLicenseDetail renewalLicenseDetail;
+//        @JsonProperty("renewalLicenseDetail")
+//        private RenewalLicenseDetail renewalLicenseDetail;
 
 //        @JsonProperty("calculation")
 //        private Calculation calculation;

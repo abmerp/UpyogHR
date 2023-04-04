@@ -61,18 +61,18 @@ public class RenewalLicenseService {
 		return requestData;
 	}
 	
-	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
-		List<RenewalLicense> renewalLicense = null;
-		try {
-			List<RenewalLicense> renewalLicenseList = null;// renewalLicenseServiceRepo.getRenewalLicense(applicationNumber);
-			if(renewalLicenseList!=null&&!renewalLicenseList.isEmpty()) {
-				renewalLicense=renewalLicenseList;
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return renewalLicense;
-	}
+//	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {
+//		List<RenewalLicense> renewalLicense = null;
+//		try {
+//			List<RenewalLicense> renewalLicenseList = null;// renewalLicenseServiceRepo.getRenewalLicense(applicationNumber);
+//			if(renewalLicenseList!=null&&!renewalLicenseList.isEmpty()) {
+//				renewalLicense=renewalLicenseList;
+//			}
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return renewalLicense;
+//	}
 	
 	public List<RenewalLicenseRequest> getRenewalLicenseData(RenewalLicenseRequest renewalLicenseRequest){
 		
@@ -90,7 +90,7 @@ public class RenewalLicenseService {
 		auditDetails.setCreatedTime(currentTime);
 		
 		List<RenewalLicenseDetail> renewalLicenseDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail();
-		renewalLicenseDetails.stream().map(renewalLicenseDetail->{
+		renewalLicenseDetails=renewalLicenseDetails.stream().map(renewalLicenseDetail->{
 			renewalLicenseDetail.setAuditDetails(auditDetails);
 			renewalLicenseDetail.setId(UUID.randomUUID().toString());
 			renewalLicenseDetail.setRenewllicenseId(renewalLicenceId);
@@ -116,7 +116,7 @@ public class RenewalLicenseService {
 			renewallicense.setTenantId("hr");
 			renewallicense.setId(renewalLicenceId);
 			renewallicense.setVer(renewalLicenseRequest.getCurrentVersion());
-			renewallicense.setRenewalLicenseDetail(renewalLicenseDetails.get(0));
+//			renewallicense.setRenewalLicenseDetail(renewalLicenseDetails);
 			return renewallicense;
 		}).collect(Collectors.toList());
 		renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).setRenewalLicense(renewalLicense);
