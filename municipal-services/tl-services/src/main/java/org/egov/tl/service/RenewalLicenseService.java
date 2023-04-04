@@ -60,16 +60,18 @@ public class RenewalLicenseService {
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		List<RenewalLicenseRequestDetail> requestData=getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail();
 		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
-//		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
-//		String additionaldetail=null;
-//		try {
-//			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
-//		} catch (JsonProcessingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		log.info("additionaldetail:---------------------"+additionaldetail);
-//		
+		
+		
+		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
+		String additionaldetail=null;
+		try {
+			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("additionaldetail:---------------------"+additionaldetail);
+		
 		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
 	}
@@ -109,8 +111,6 @@ public class RenewalLicenseService {
 			renewalLicenseDetail.setRenewllicenseId(renewalLicenceId);
 			renewalLicenseDetail.setCurrentVersion(renewalLicenseRequest.getCurrentVersion());
 			renewalLicenseDetail.setRenewalType("PERMANENT");
-			renewalLicenseDetail.setPenaltyPayable("0.0");
-			renewalLicenseDetail.setRenewalAmount("0.0");
 			renewalLicenseDetail.setAdditionalDetail(renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail());
 			return renewalLicenseDetail;
 		}).collect(Collectors.toList());
@@ -124,7 +124,9 @@ public class RenewalLicenseService {
 			renewallicense.setLicenseType(LicenseTypeEnum.PERMANENT);
 			renewallicense.setWorkflowCode("TCPRL");
 			renewallicense.setFinancialYear("2022-23");
-			renewallicense.setStatus("PENDING");
+			renewallicense.setValidUpTo("01-03-2024");
+			renewallicense.setRenewalForDuration("5 month");
+			
 			renewallicense.setAction("INITIATE");
 			renewallicense.setBusinessService("TL");
 			renewallicense.setTenantId("hr");
