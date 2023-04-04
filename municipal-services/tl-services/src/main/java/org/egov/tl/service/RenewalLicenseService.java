@@ -19,6 +19,7 @@ import org.egov.tl.util.TLConstants;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.RenewalLicense;
+import org.egov.tl.web.models.RenewalLicenseAddetionalDetails;
 import org.egov.tl.web.models.RenewalLicense.ApplicationTypeEnum;
 import org.egov.tl.web.models.RenewalLicense.LicenseTypeEnum;
 import org.egov.tl.web.models.RenewalLicenseDetail;
@@ -30,6 +31,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
@@ -58,8 +60,16 @@ public class RenewalLicenseService {
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		List<RenewalLicenseRequestDetail> requestData=getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail();
 		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
-		RenewalLicensePreviopusCondition renewalLicensePreviopusCondition=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail().getPreviouslyCondition_RL().get(0);
-		System.out.println("Data:---------------------"+renewalLicensePreviopusCondition.isComplianceDone());
+		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
+		String additionaldetail=null;
+		try {
+			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		log.info("additionaldetail:---------------------"+additionaldetail);
+		
 		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
 	}
