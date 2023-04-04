@@ -26,8 +26,8 @@ public class RenewalLicenseResponse {
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo = null;
 	
-	@JsonProperty("renewalLicense")
-	private List<RenewalLicense> renewalLicense;
+	@JsonProperty("renewalLicenseRequest")
+	private List<RenewalLicenseRequestDetail> renewalLicenseRequest;
 	
 	@JsonProperty("message")
 	private String message;

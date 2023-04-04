@@ -6,134 +6,49 @@ serviceMaps:
    fromTopic: save-renewallicense
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_renewal_license(application_number, area_in_acre, ca_certificate_document, clonizer_name, clonizer_type, colonizer_conveyed, colonizer_obtain_approve_noc, colonizer_transferred, community_site_sold_to_third_party, compliance_with_condition, created_at, district,edc_status, enhanceedcamount, enhanceedcremark, enhanceedcstatus, explanation_development_work_doc, incom_tax_clearnence_certificate, is_any_legal_activity, is_any_legal_activity_details, is_renewal_applied_first_time, is_renewal_applied_with_in, non_completion_project_reasons, old_license_doc, penalty_payable, previously_condition_rl, renewal_amount, renewal_delay_in_days, renewal_for_duration, renewal_licenseedc, renewal_licensesidc, renewal_licensesoc, renewal_licensespc, rule24document_upload, rule24financial_year_data, rule24remark, rule26document_upload, rule26financial_year_data, rule26remark, rule27document_upload, rule27financial_year_data, rule27remark, rule28document_upload, rule28financial_year_data, rule28remark, sector_no, sidc_status, status_development_work_doc, status_of_community_sites, tehsil, total_no_ofewsflats_or_plots_approved_in_layout_plan, valid_up_to, village) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
-        basePath: renewalLicense.*
-        jsonMaps:
-        
+      - query: INSERT INTO public.eg_tl_renewallicense(id,tenantid, licensetype, licensenumber, applicationnumber, applicationdate, issueddate, financialyear, action, status, createdby, lastmodifiedby, createdtime, lastmodifiedtime, "renewalLicensename", businessservice, applicationtype, workflowcode, ver, application_number, application_status, current_version, loi_number, old_application_number, validupto, renewalforduration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        basePath: renewal.*.renewalLicense.*
+        jsonMaps:        
+         - jsonPath: renewalLicense.*.id
+         - jsonPath: renewalLicense.*.tenantId
+         - jsonPath: renewalLicense.*.licenseType
+         - jsonPath: renewalLicense.*.licenseNumber
          - jsonPath: renewalLicense.*.applicationNumber
-         - jsonPath: renewalLicense.*.areaInAcre
-         - jsonPath: renewalLicense.*.caCertificateDocument
-         - jsonPath: renewalLicense.*.clonizerName
-         - jsonPath: renewalLicense.*.clonizerType
-         - jsonPath: renewalLicense.*.colonizerConveyed
-         - jsonPath: renewalLicense.*.colonizerObtainApproveNoc
-         - jsonPath: renewalLicense.*.colonizerTransferred
-         - jsonPath: renewalLicense.*.communitySiteSoldToThirdParty
-         - jsonPath: renewalLicense.*.complianceWithCondition
-         - jsonPath: renewalLicense.*.createdAt
-         - jsonPath: renewalLicense.*.district
-         - jsonPath: renewalLicense.*.edc_status
-         - jsonPath: renewalLicense.*.enhanceEDCAmount
-         - jsonPath: renewalLicense.*.enhanceEDCRemark
-         - jsonPath: renewalLicense.*.enhanceEDCStatus
-         - jsonPath: renewalLicense.*.explanationDevelopmentWorkDoc
-         - jsonPath: renewalLicense.*.incomTaxClearnenceCertificate
-         - jsonPath: renewalLicense.*.isAnyLegalActivity
-         - jsonPath: renewalLicense.*.isAnyLegalActivityDetails
-         - jsonPath: renewalLicense.*.isRenewalAppliedFirstTime
-         - jsonPath: renewalLicense.*.isRenewalAppliedWithIn
-         - jsonPath: renewalLicense.*.nonCompletionProjectReasons
-         - jsonPath: renewalLicense.*.oldLicenseDoc
-         - jsonPath: renewalLicense.*.penaltyPayable
-         - jsonPath: renewalLicense.*.previouslyCondition_RL
-           type: JSON
-           dbType: JSONB
-            
-         - jsonPath: renewalLicense.*.renewalAmount
-         - jsonPath: renewalLicense.*.renewalDelayInDays
-         - jsonPath: renewalLicense.*.renewalForDuration
-         - jsonPath: renewalLicense.*.renewalLicenseEDC
-           type: JSON
-           dbType: JSONB
-            
-         - jsonPath: renewalLicense.*.renewalLicenseSIDC
-           type: JSON
-           dbType: JSONB
-           
-         - jsonPath: renewalLicense.*.renewalLicenseSOC
-           type: JSON
-           dbType: JSONB
-           
-         - jsonPath: renewalLicense.*.renewalLicenseSPC
-           type: JSON
-           dbType: JSONB
-           
-         - jsonPath: renewalLicense.*.rule24FinancialYearData
-         - jsonPath: renewalLicense.*.rule24Remark
-         - jsonPath: renewalLicense.*.rule24DocumentUpload
-         - jsonPath: renewalLicense.*.rule26FinancialYearData
-         - jsonPath: renewalLicense.*.rule26Remark
-         - jsonPath: renewalLicense.*.rule26DocumentUpload
-         - jsonPath: renewalLicense.*.rule27FinancialYearData
-         - jsonPath: renewalLicense.*.rule27Remark
-         - jsonPath: renewalLicense.*.rule27DocumentUpload
-         - jsonPath: renewalLicense.*.rule28FinancialYearData
-         - jsonPath: renewalLicense.*.rule28Remark
-         - jsonPath: renewalLicense.*.rule28DocumentUpload
-         - jsonPath: renewalLicense.*.sectorNo
-         - jsonPath: renewalLicense.*.sidc_status
-         - jsonPath: renewalLicense.*.statusDevelopmentWorkDoc
-         - jsonPath: renewalLicense.*.statusOfCommunitySites
-         - jsonPath: renewalLicense.*.tehsil
-         - jsonPath: renewalLicense.*.totalNoOfEWSFlatsOrPlotsApprovedInLayoutPlan
+         - jsonPath: renewalLicense.*.applicationDate
+         - jsonPath: renewalLicense.*.issuedDate
+         - jsonPath: renewalLicense.*.financialYear
+         - jsonPath: renewalLicense.*.action
+         - jsonPath: renewalLicense.*.status
+         - jsonPath: renewalLicense.*.auditDetails.createdBy
+         - jsonPath: renewalLicense.*.auditDetails.lastModifiedBy
+         - jsonPath: renewalLicense.*.auditDetails.createdTime
+         - jsonPath: renewalLicense.*.auditDetails.lastModifiedTime
+         - jsonPath: renewalLicense.*.renewalLicenseName
+         - jsonPath: renewalLicense.*.businessService
+         - jsonPath: renewalLicense.*.applicationType
+         - jsonPath: renewalLicense.*.workflowCode
+         - jsonPath: renewalLicense.*.ver
+         - jsonPath: renewalLicense.*.applicationNumber
+         - jsonPath: renewalLicense.*.applicationStatus
+         - jsonPath: renewalLicense.*.ver
+         - jsonPath: renewalLicense.*.loiNumber
+         - jsonPath: renewalLicense.*.oldApplicationStatus
          - jsonPath: renewalLicense.*.validUpTo
-         - jsonPath: renewalLicense.*.village
-         
-         
+         - jsonPath: renewalLicense.*.renewalForDuration
+     
+      - query: INSERT INTO public.eg_tl_renewallicensedetail(id, additionaldetail, renewallicenseid, createdby, lastmodifiedby, createdtime, lastmodifiedtime, currentversion, penaltypayable, renewalamount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        basePath: renewal.*.renewalLicenseDetail.*
+        jsonMaps:        
+         - jsonPath: renewalLicenseDetail.*.id
+         - jsonPath: renewalLicenseDetail.*.additionaldetail
+           type: JSON
+           dbType: JSONB   
            
-#           
-# - version: 1.0
-#   description: Persists benefical service of  change_benefical table
-#   fromTopic: update-changrebeneficial
-#   isTransaction: true
-#   queryMaps: 
-#      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where "application_number"=?
-#       
-#        basePath: renewalLicense.*
-#        jsonMaps:       
-#         - jsonPath: renewalLicense.*.developerServiceCode
-#           type: STRING
-#      
-#         - jsonPath: renewalLicense.*.areaInAcres
-#           type: STRING
-#  
-#         - jsonPath: renewalLicense.*.noObjectionCertificate
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.consentLetter
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.justificationCertificate
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.thirdPartyRightsCertificate
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.jointDevelopmentCertificate
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.aministrativeChargeCertificate
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.boardResolutionExisting
-#           type: STRING
-#         
-#         - jsonPath: renewalLicense.*.boardResolutionNewEntity
-#           type: STRING
-#        
-#         - jsonPath: renewalLicense.*.shareholdingPatternCertificate
-#           type: STRING
-#           
-#         - jsonPath: renewalLicense.*.reraRegistrationCertificate
-#           type: STRING
-#           
-#         - jsonPath: renewalLicense.*.fiancialCapacityCertificate
-#           type: STRING
-#           
-#         - jsonPath: renewalLicense.*.isDraft
-#           type: STRING
-#           
-#         - jsonPath: renewalLicense.*.applicationNumber
-#           type: STRING
-# 
-#    
+         - jsonPath: renewalLicenseDetail.*.renewllicenseId
+         - jsonPath: renewalLicenseDetail.*.auditDetails.createdBy
+         - jsonPath: renewalLicenseDetail.*.auditDetails.lastModifiedBy
+         - jsonPath: renewalLicenseDetail.*.auditDetails.createdTime
+         - jsonPath: renewalLicenseDetail.*.auditDetails.lastModifiedTime
+         - jsonPath: renewalLicenseDetail.*.currentVersion
+         - jsonPath: renewalLicenseDetail.*.penaltyPayable
+         - jsonPath: renewalLicenseDetail.*.renewalAmount
