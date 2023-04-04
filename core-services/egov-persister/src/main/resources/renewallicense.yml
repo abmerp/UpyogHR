@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-renewallicense
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_renewallicense(id,tenantid, licensetype, licensenumber, applicationnumber, applicationdate, issueddate, financialyear, action, status, createdby, lastmodifiedby, createdtime, lastmodifiedtime, "renewalLicensename", businessservice, applicationtype, workflowcode, ver, application_number, application_status, created_by, created_date, current_version, loi_number, old_application_number, validupto, renewalforduration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_renewallicense(id,tenantid, licensetype, licensenumber, applicationnumber, applicationdate, issueddate, financialyear, action, status, createdby, lastmodifiedby, createdtime, lastmodifiedtime, "renewalLicensename", businessservice, applicationtype, workflowcode, ver, application_number, application_status, current_version, loi_number, old_application_number, validupto, renewalforduration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: renewal.*.renewalLicense.*
         jsonMaps:        
          - jsonPath: renewalLicense.*.id
@@ -30,8 +30,6 @@ serviceMaps:
          - jsonPath: renewalLicense.*.ver
          - jsonPath: renewalLicense.*.applicationNumber
          - jsonPath: renewalLicense.*.applicationStatus
-         - jsonPath: renewalLicense.*.auditDetails.createdBy
-         - jsonPath: renewalLicense.*.auditDetails.createdTime
          - jsonPath: renewalLicense.*.ver
          - jsonPath: renewalLicense.*.loiNumber
          - jsonPath: renewalLicense.*.oldApplicationStatus
