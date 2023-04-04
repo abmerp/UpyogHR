@@ -36,6 +36,6 @@ public class RenewalLicenseRequest {
 	private String applicationStatus;
 	
 	@JsonProperty("renewal")
-	private List<RenewalLicenseRequestDetail> renewalLicenseRequestDetail;
+	private RenewalLicenseRequestDetail renewalLicenseRequestDetail;
 	
 }
