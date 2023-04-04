@@ -3,6 +3,7 @@ package org.egov.tl.abm.repo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.web.models.RenewalLicenseRequest;
 import org.egov.tl.web.models.RenewalLicenseRequestDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,7 +33,7 @@ public class RenewalLicenseServiceRepo {
 	@Autowired
 	private TLRowMapper rowMapper;
 
-	public void saveRenewalLicense(RenewalLicenseRequestDetail renewalLicenseRequest) {
+	public void saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		try {
 		 	producer.push(tlConfiguration.getSaveRenewalLicenseTopic(), renewalLicenseRequest);
 		} catch (Exception e) {

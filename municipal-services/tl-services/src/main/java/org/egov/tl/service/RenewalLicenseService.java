@@ -56,7 +56,8 @@ public class RenewalLicenseService {
 	
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		List<RenewalLicenseRequestDetail> requestData=java.util.Arrays.asList(getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail());
-		renewalLicenseServiceRepo.saveRenewalLicense(requestData.get(0));
+		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData.get(0));
+		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
 		return requestData;
 	}
 	
