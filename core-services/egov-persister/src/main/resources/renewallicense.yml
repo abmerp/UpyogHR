@@ -40,7 +40,7 @@ serviceMaps:
         basePath: renewal.*.renewalLicenseDetail.*
         jsonMaps:        
          - jsonPath: renewalLicenseDetail.*.id
-         - jsonPath: renewalLicenseDetail.*.additionaldetail
+         - jsonPath: renewalLicenseDetail.*.additionaldetail.*
            type: JSON
            dbType: JSONB   
            
