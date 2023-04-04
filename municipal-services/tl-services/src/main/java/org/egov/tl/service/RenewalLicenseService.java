@@ -111,6 +111,8 @@ public class RenewalLicenseService {
 			renewalLicenseDetail.setRenewllicenseId(renewalLicenceId);
 			renewalLicenseDetail.setCurrentVersion(renewalLicenseRequest.getCurrentVersion());
 			renewalLicenseDetail.setRenewalType("PERMANENT");
+			renewalLicenseDetail.setPenaltyPayable("0.0");
+			renewalLicenseDetail.setRenewalAmount("0.0");
 			renewalLicenseDetail.setAdditionalDetail(renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail());
 			return renewalLicenseDetail;
 		}).collect(Collectors.toList());
@@ -124,8 +126,6 @@ public class RenewalLicenseService {
 			renewallicense.setLicenseType(LicenseTypeEnum.PERMANENT);
 			renewallicense.setWorkflowCode("TCPRL");
 			renewallicense.setFinancialYear("2022-23");
-			renewallicense.setValidUpTo("01-03-2024");
-			renewallicense.setRenewalForDuration("5 month");
 			
 			renewallicense.setAction("INITIATE");
 			renewallicense.setBusinessService("TL");
