@@ -45,10 +45,10 @@ serviceMaps:
            dbType: JSONB   
            
          - jsonPath: renewalLicenseDetail.*.renewllicenseId
-         - jsonPath: renewalLicenseDetail.*.additionaldetail.auditDetails.createdBy
-         - jsonPath: renewalLicenseDetail.*.additionaldetail.auditDetails.lastModifiedBy
-         - jsonPath: renewalLicenseDetail.*.additionaldetail.auditDetails.createdTime
-         - jsonPath: renewalLicenseDetail.*.additionaldetail.auditDetails.lastModifiedTime
+         - jsonPath: renewalLicenseDetail.*.auditDetails.createdBy
+         - jsonPath: renewalLicenseDetail.*.auditDetails.lastModifiedBy
+         - jsonPath: renewalLicenseDetail.*.auditDetails.createdTime
+         - jsonPath: renewalLicenseDetail.*.auditDetails.lastModifiedTime
          - jsonPath: renewalLicenseDetail.*.currentVersion
          - jsonPath: renewalLicenseDetail.*.penaltyPayable
          - jsonPath: renewalLicenseDetail.*.renewalAmount
