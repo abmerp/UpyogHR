@@ -126,11 +126,11 @@ public class  RenewalLicense   {
 
         @Size(max=64)
         @SafeHtml
-        @JsonProperty("applicationNumber")
-        private String applicationNumber;
+        @JsonProperty("oldapplicationNumber")
+        private String oldapplicationNumber;
         
-        @JsonProperty("oldApplicationStatus")
-        private String oldApplicationStatus;
+        @JsonProperty("ApplicationStatus")
+        private String ApplicationStatus;
 
     
 
