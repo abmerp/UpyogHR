@@ -171,8 +171,10 @@ public class ChangeBeneficialService {
 
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
-		ChangeBeneficial changeBeneficialCheck=applicationNumber.contains("HRCB")?changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber):changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
-		applicationNumber=changeBeneficialCheck!=null?(changeBeneficialCheck.getApplicationNumber()!=null?changeBeneficialCheck.getApplicationNumber():applicationNumber):applicationNumber;
+		
+		ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber);
+		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
+		applicationNumber=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		if(changeBeneficialCheck!=null) {
