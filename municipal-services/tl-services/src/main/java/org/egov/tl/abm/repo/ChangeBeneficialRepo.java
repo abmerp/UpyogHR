@@ -131,6 +131,7 @@ public class ChangeBeneficialRepo {
 					.developerServiceCode(rs.getString("developerServiceCode").toString())
 					.cbApplicationNumber(rs.getString("cb_application_number").toString())
 					.applicationNumber(rs.getString("application_number").toString())
+					.applicationStatus(rs.getInt("application_status"))
 					.build());
 			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 				cahngeBeneficial=changeBeneficial.get(0);
@@ -151,6 +152,7 @@ public class ChangeBeneficialRepo {
 				.developerServiceCode(rs.getString("developerServiceCode").toString())
 				.cbApplicationNumber(rs.getString("cb_application_number").toString())
 				.applicationNumber(rs.getString("application_number"))
+				.applicationStatus(rs.getInt("application_status"))
 				.build());
 		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 			cahngeBeneficial=changeBeneficial.get(0);

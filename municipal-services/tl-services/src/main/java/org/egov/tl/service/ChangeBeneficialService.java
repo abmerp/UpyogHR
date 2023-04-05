@@ -208,7 +208,7 @@ public class ChangeBeneficialService {
 				}
 		    }else if(tradeLicense==null||tradeLicense.size()==0) {
 		    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(null).message("Application Number is not existing").status(false).build();
+						.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
 		    }else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
 		    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
 						.changeBeneficial(null).requestInfo(null).message("licence fees is null.").status(false).build();
