@@ -469,7 +469,7 @@ public class ChangeBeneficialService {
 					 BigDecimal estimateAmount= new BigDecimal(am);
 					 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
 					 try {
-					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
+					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack,changeBeneficiaDetails);
 					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(trans))
 								.requestInfo(requestInfo).message("Transaction has been created successfully ").status(true).build();
 					 }catch (Exception e) {
@@ -527,7 +527,7 @@ public class ChangeBeneficialService {
 	}
 	
 	
-	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl) {
+	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl,ChangeBeneficial changeBeneficiaDetails) {
 		
 		
 		String am=amountFr.toString();
@@ -564,6 +564,8 @@ public class ChangeBeneficialService {
 		transaction.put("productInfo", "Change Beneficial Payment");
 		transaction.put("gateway", "NIC");
 		transaction.put("callbackUrl", callbackUrl);
+		transaction.put("isInitial", changeBeneficiaDetails.getApplicationStatus()==1?0:1);
+		
 	
 		Map<String, Object> userDEtails = new HashMap<>();
 		userDEtails.put("userName", user.getMobileNumber());
@@ -889,13 +891,25 @@ public class ChangeBeneficialService {
 						try {
 							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 							ChangeBeneficialRequest changeBeneficialRequest=new ChangeBeneficialRequest();
-							ChangeBeneficial changeBeneficialPayment=ChangeBeneficial.builder()
-									.paidAmount("")
-									.isDraft("0")
-									.applicationStatus(changeBeneficiaDetails.getApplicationStatus()==1?2:3)
-									.isFullPaymentDone(false)
-									.applicationNumber(applicationNumber)
-									.build();
+							ChangeBeneficial changeBeneficialPayment=null;
+							if(requestParam.get("isInitial").equals("0")){
+								changeBeneficialPayment=ChangeBeneficial.builder()
+										.paidAmount(requestParam.get("amount").toString())
+										.isDraft("0")
+										.applicationStatus(changeBeneficiaDetails.getApplicationStatus()==1?2:3)
+										.isFullPaymentDone(false)
+										.applicationStatus(2)
+										.build();
+							}else {
+								changeBeneficialPayment=ChangeBeneficial.builder()
+										.paidAmount(requestParam.get("amount").toString())
+										.isDraft("0")
+										.applicationStatus(changeBeneficiaDetails.getApplicationStatus()==1?2:3)
+										.isFullPaymentDone(true)
+										.applicationStatus(3)
+										.build();
+							}
+							
 							changeBeneficialRequest.setChangeBeneficial(Arrays.asList(changeBeneficialPayment));
 							changeBeneficialRepo.updatePaymentDetails(changeBeneficialRequest);
 						} catch (Exception e) {
