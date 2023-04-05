@@ -167,7 +167,7 @@ public class ChangeBeneficialService {
 	   
 		
 	String  licenseFee = "0.0";
-	
+	private final String JDAMR_DEVELOPER_STATUS="JDAMR";
 
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
@@ -188,16 +188,23 @@ public class ChangeBeneficialService {
 									changebeneficial.setIsDraft("1");
 								}
 								
-								if (!changebeneficial.getDeveloperServiceCode().equals("JDAMR")) {
+								if (!changebeneficial.getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 									changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
 											: (changebeneficial.getAreaInAcres()));
+									changebeneficial.setFullPaymentDone(false);
+									changebeneficial.setApplicationStatus(1);
+								}else {
+									changebeneficial.setFullPaymentDone(true);
+									changebeneficial.setApplicationStatus(3);
 								}
 								return changebeneficial;
 							}).collect(Collectors.toList());
 					
 					beneficialRequest.setChangeBeneficial(changeBeneficial);
 //					changeBeneficialRepo.update(beneficialRequest);
-					changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
+					if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+						changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
+					}
 					changeBeneficialResponse = ChangeBeneficialResponse.builder()
 							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
 				}else if(changeBeneficialCheck.getApplicationStatus()==2) {
@@ -237,12 +244,19 @@ public class ChangeBeneficialService {
 						if (!changebeneficial.getDeveloperServiceCode().equals("JDAMR")) {
 							changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
 									: (changebeneficial.getAreaInAcres()));
+							changebeneficial.setFullPaymentDone(false);
+							changebeneficial.setApplicationStatus(1);
+						}else {
+							changebeneficial.setFullPaymentDone(true);
+							changebeneficial.setApplicationStatus(3);
 						}
 						return changebeneficial;
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			changeBeneficialRepo.save(beneficialRequest);
-			changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
+			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
+			}
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
 		return changeBeneficialResponse;

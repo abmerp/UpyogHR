@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -63,6 +63,12 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.totalChangeBeneficialCharge
            type: STRING
+         
+         - jsonPath: changeBeneficial.*.isFullPaymentDone
+           type: BOOLEAN
+           
+         - jsonPath: changeBeneficial.*.applicationStatus
+           type: INTEGER
            
            
            
@@ -71,7 +77,7 @@ serviceMaps:
    fromTopic: update-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where "application_number"=?
+      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=?, is_full_payment_done=?, application_status=? where "application_number"=?
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -119,6 +125,12 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.applicationNumber
            type: STRING
+         
+         - jsonPath: changeBeneficial.*.isFullPaymentDone
+           type: BOOLEAN
+           
+         - jsonPath: changeBeneficial.*.applicationStatus
+           type: INTEGER
            
  - version: 1.0
    description: Persists benefical service of  change_benefical table
