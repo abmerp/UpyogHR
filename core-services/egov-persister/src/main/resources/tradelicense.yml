@@ -929,7 +929,7 @@ serviceMaps:
    queryMaps:
 
 
-       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, devname , developmentplan ,purpose , totalarea , business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails , layoutplan, revisedlayout, demarcation, demarcationgis, layoutexcel , anyotherdoc, externalagency) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ? ,?, ?, ? , ?, ? ,?, ?, ? , ? , ?);
+       - query: INSERT INTO public.eg_service_plan (id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking,  action, devname , developmentplan ,purpose , totalarea , business_service, comment, tenantid, application_number , created_by, created_time, last_modified_by, last_modified_time , additionaldetails , layoutplan, revisedlayout, demarcation, demarcationgis, layoutexcel , anyotherdoc) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ? , ? ,?, ?, ? , ?, ? ,?, ?, ? , ? , ?);
          basePath: ServicePlanRequest.*
          jsonMaps:
 
@@ -997,10 +997,7 @@ serviceMaps:
           
           - jsonPath: $.ServicePlanRequest.*.anyOtherdoc 
 
-          - jsonPath: $.ServicePlanRequest.*.externalAgency
-            type: JSON
-            dbType: JSONB
-
+        
  - version: 1.0
    description: Update Service Plan Application
    fromTopic: update-sp-tradelicense
@@ -1075,12 +1072,14 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.layoutExcel 
           
           - jsonPath: $.ServicePlanRequest.*.anyOtherdoc 
-
-          - jsonPath: $.ServicePlanRequest.*.applicationNumber
           
           - jsonPath: $.ServicePlanRequest.*.externalagency
             type: JSON
             dbType: JSONB
+
+          - jsonPath: $.ServicePlanRequest.*.applicationNumber
+          
+         
           
           
  - version: 1.0
@@ -1437,7 +1436,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     
-       - query: INSERT INTO public.eg_revised_layout_plan(id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, existingarea, areaplanning, anyotherfeature, amount, reasonrevision, earlyapprovedlayoutplan) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_revised_layout_plan(id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, existingarea, areaplanning, anyotherfeature, amount, reasonrevision, earlyapprovedlayoutplan, feescharges, feesresult) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: RevisedPlan.*
          jsonMaps:    
          
@@ -1479,7 +1478,15 @@ serviceMaps:
 
           - jsonPath: $.RevisedPlan.*.reasonRevision
 
-          - jsonPath: $.RevisedPlan.*.earlierApprovedlayoutPlan          
+          - jsonPath: $.RevisedPlan.*.earlierApprovedlayoutPlan     
+          
+          - jsonPath: $.RevisedPlan.*.feesCharges
+            type: JSON
+            dbType: JSONB
+            
+          - jsonPath: $.RevisedPlan.*.feesResult
+            type: JSON
+            dbType: JSONB     
       
  - version: 1.0
    description: update revised layout plan
@@ -1487,7 +1494,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
    
-       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, existingarea=?, areaplanning=?, anyotherfeature=?, amount=?, reasonrevision=?, earlyapprovedlayoutplan=? WHERE application_number=?;
+       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, existingarea=?, areaplanning=?, anyotherfeature=?, amount=?, reasonrevision=?, earlyapprovedlayoutplan=?, feescharges=?, feesresult=? WHERE application_number=?;
          basePath: RevisedPlan.*
          jsonMaps:    
          
@@ -1527,5 +1534,13 @@ serviceMaps:
 
           - jsonPath: $.RevisedPlan.*.earlierApprovedlayoutPlan
           
+          - jsonPath: $.RevisedPlan.*.feesCharges
+            type: JSON
+            dbType: JSONB
+            
+          - jsonPath: $.RevisedPlan.*.feesResult
+            type: JSON
+            dbType: JSONB
+            
           - jsonPath: $.RevisedPlan.*.applicationNumber
           

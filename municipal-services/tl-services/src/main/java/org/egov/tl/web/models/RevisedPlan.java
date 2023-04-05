@@ -68,4 +68,7 @@ public class RevisedPlan implements Serializable {
     @JsonProperty("wfDocuments")
 	private List<Document> wfDocuments;
     
+    private JsonNode feesCharges;
+    
+    private JsonNode feesResult;
 }
