@@ -28,5 +28,5 @@ public class FeesAndCharges {
 	private String stateInfrastructureDevelopmentCharges;
 	private String IDW;
 	private String EDC;
-	
+	private List<String> feesTypeCalculationDto;
 }
