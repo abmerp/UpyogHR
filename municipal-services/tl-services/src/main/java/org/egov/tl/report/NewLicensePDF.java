@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URLConnection;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-
+import java.time.format.DateTimeFormatter;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.service.LicenseService;
@@ -19,6 +19,7 @@ import org.egov.tl.web.models.AddRemoveAuthoizedUsers;
 import org.egov.tl.web.models.AppliedLandDetails;
 import org.egov.tl.web.models.DirectorsInformation;
 import org.egov.tl.web.models.DirectorsInformationMCA;
+import org.egov.tl.web.models.FeesAndCharges;
 import org.egov.tl.web.models.GISDeatils;
 import org.egov.tl.web.models.LandScheduleDetails;
 import org.egov.tl.web.models.LicenseDetails;
@@ -35,9 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -52,7 +51,6 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +64,7 @@ public class NewLicensePDF {
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
 
-  //  private static String hindifont = "D:\\UPYOG-bikash\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+//.    private static String hindifont = "D:\\UPYOG-bikash\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 //	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
 
@@ -129,15 +127,24 @@ public class NewLicensePDF {
 		 Paragraph p2 = new Paragraph("Department of Town & Country Planning, Haryana", new
 				 Font(FontFamily.HELVETICA, 18, Font.BOLDITALIC, new BaseColor(0, 0, 255)) );
 		 
+		 
+		 
+
+		 
 		 final ZonedDateTime now = ZonedDateTime.now(ZoneId.of(environment.getProperty("egov.timeZoneName")));
-		 Paragraph p3 = new Paragraph(now.toString());
+		
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
+		 String formattedDateTime = now.format(formatter);
+		 
+		
+		 Paragraph p3 = new Paragraph(formattedDateTime);
+		 
 		Paragraph p1 = new Paragraph();
 		Paragraph p = new Paragraph();
 		Paragraph l = new Paragraph();
 		l.setFont(blackFont);
 		l.add("Service ID:-");
 		l.add("Licence");
-	//	l.add(licenseServiceResponceInfo.getBusinessService());
 		p.setFont(blackFont);
 		p.add("Application Number:-");
 		p.add(applicationNumber);
@@ -2829,6 +2836,89 @@ public class NewLicensePDF {
 	              	 doc.add(table);
 	              	   
                    }
+                   
+                   if(licenseDetails.getFeesAndCharges()!= null) {
+	                	
+                	   FeesAndCharges  y = licenseDetails.getFeesAndCharges();
+                	   
+	                  	table = new PdfPTable(2);
+	                 	table.setSpacingBefore(10f);
+	                  	table.setSpacingAfter(10f);
+		                table.setWidthPercentage(100f);
+		                
+		                Paragraph fac = new Paragraph();
+		                fac.setFont(blackFont1);
+		                fac.add("Fees and Charges");
+						 doc.add(fac);
+	              	     
+						   table.addCell("TotalArea");
+						   table.addCell(y.getTotalArea());
+						   
+						   table.addCell("Purpose");
+						   table.addCell(y.getPurpose());
+
+						   table.addCell("Potential");
+						   table.addCell(y.getPotential());
+						  
+						   table.addCell("DevelopmentPlan");
+						   table.addCell(y.getDevelopmentPlan());
+						  
+						   
+						   table.addCell("LicNumber");
+						   table.addCell(y.getLicNumber());
+						  
+						   
+						   table.addCell("Amount");
+						   table.addCell(y.getAmount());
+						  
+						   
+						   table.addCell("Amount Adjusted");
+						   table.addCell(y.getAmountAdjusted());
+						   
+						   table.addCell("Amount Payable");
+						   table.addCell(y.getAmountPayable());
+						   
+						   table.addCell("ScrutinyFee");
+						   table.addCell(y.getScrutinyFee());
+						   
+						   table.addCell("License Fee");
+						   table.addCell(y.getLicenseFee());
+						   
+						   table.addCell("Conversion Charges");
+						   table.addCell(y.getConversionCharges());
+						   
+						   table.addCell("Payable Now");
+						   table.addCell(y.getPayableNow());
+						   
+						   table.addCell("Remark");
+						   table.addCell(y.getRemark());
+						   
+						   table.addCell("Adjust Fee");
+						   table.addCell(y.getAdjustFee());
+						   
+						   table.addCell("Belongs Developer");
+						   table.addCell(y.getBelongsDeveloper());
+						   
+						   table.addCell("ConsentLetter");
+						   table.addCell(y.getConsentLetter());
+						   
+						   table.addCell("State Infrastructure Development Charges");
+						   table.addCell(y.getStateInfrastructureDevelopmentCharges());
+						   
+						   table.addCell("IDW");
+						   table.addCell(y.getIDW());
+						   
+						   table.addCell("EDC");
+						   table.addCell(y.getEDC());
+						   
+						   
+						  
+               	   
+	              	   
+	              	 doc.add(table);
+	              	   
+                  }
+ 
   
   
 
