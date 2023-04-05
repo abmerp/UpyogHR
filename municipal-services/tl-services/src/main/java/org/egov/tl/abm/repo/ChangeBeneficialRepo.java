@@ -61,7 +61,7 @@ public class ChangeBeneficialRepo {
 	
 	String getUpdateForNest="select * from public.eg_tl_change_beneficial where (application_number=:applicationNumber or cb_application_number=:applicationNumber) and application_status IN(3) and application_number NOT LIKE '%HRCB%'  \r\n"
 			+ " order by created_at desc limit 1";
-	String checkIsValidApplicationNumberQuery="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status IN(3)  order by created_at desc limit 1";
+	String checkIsValidApplicationNumberQuery="select * from public.eg_tl_change_beneficial where application_number=:applicationNumber order by created_at desc limit 1";
 	
 	String getBeneficialDetails="select * from public.eg_tl_change_beneficial where id=:changeBeneficialId";
 	
@@ -195,7 +195,9 @@ public class ChangeBeneficialRepo {
 					.id(rs.getString("id").toString())
 					.build());
 			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
-				isValid=false;
+				if(changeBeneficial.get(0).getApplicationStatus()==3) {
+				  isValid=false;
+				}
 			}
 		}catch (Exception e) {
 		  e.printStackTrace();
