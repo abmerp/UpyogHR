@@ -447,10 +447,16 @@ public class ChangeBeneficialService {
 				
 					 BigDecimal estimateAmount= new BigDecimal(am);
 					 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
-					 createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
+					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
+					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(trans))
+								.requestInfo(requestInfo).message("Transaction has been created successfully ").status(true).build();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					log.error("Exception :--"+e.getMessage());
+					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+								.requestInfo(null).message("Something went wrong").status(false).build();
+			
 				}								
 			}else {
 				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
@@ -495,7 +501,7 @@ public class ChangeBeneficialService {
 	}
 	
 	
-	public void createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl) {
+	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl) {
 		
 		
 		String am=amountFr.toString();
@@ -548,15 +554,15 @@ public class ChangeBeneficialService {
 		transactionReq.put("RequestInfo", requestInfo);
 		
 		HashMap transactionRes=serviceRequestRepository.fetchResultJSON(url, transactionReq);
-		System.out.println(transactionRes);
-		HashMap transactionResp=(HashMap) transactionRes.get("Transaction");
-		System.out.println(transactionResp);
+//		System.out.println(transactionRes);
+		HashMap<String, Object> transactionResp=(HashMap<String, Object>) transactionRes.get("Transaction");
+		log.info("Transaction Response : "+transactionResp);
 //		if(transactionResp.get("txnStatus")!=null&&transactionResp.get("txnStatus").toString().toUpperCase().equals("SUCCESS")) {
-			simpleUrlBrowser.browse(transactionResp.get("redirectUrl").toString());
+//			simpleUrlBrowser.browse(transactionResp.get("redirectUrl").toString());
 //		}else {
 //			simpleUrlBrowser.browse(transactionRes.get("callbackUrl").toString());
 //		}
-				
+		return transactionResp;		
 	}
 	
 	public ResponseEntity<Object> postTransactionDeatil(MultiValueMap<String, String> requestParam) {

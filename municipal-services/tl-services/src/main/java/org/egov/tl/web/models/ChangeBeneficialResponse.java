@@ -24,7 +24,7 @@ public class ChangeBeneficialResponse {
 	private RequestInfo requestInfo = null;
 	
 	@JsonProperty("changeBeneficial")
-	private List<ChangeBeneficial> changeBeneficial;
+	private List<?> changeBeneficial;
 	
 	@JsonProperty("message")
 	private String message;
