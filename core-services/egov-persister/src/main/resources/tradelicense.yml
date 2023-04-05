@@ -1073,7 +1073,7 @@ serviceMaps:
           
           - jsonPath: $.ServicePlanRequest.*.anyOtherdoc 
           
-          - jsonPath: $.ServicePlanRequest.*.externalagency
+          - jsonPath: $.ServicePlanRequest.*.externalAgency
             type: JSON
             dbType: JSONB
 
