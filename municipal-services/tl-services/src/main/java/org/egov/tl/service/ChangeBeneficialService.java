@@ -171,7 +171,7 @@ public class ChangeBeneficialService {
 
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
-		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
+		ChangeBeneficial changeBeneficialCheck=applicationNumber.contains("HRCB")?changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber):changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
 		applicationNumber=changeBeneficialCheck!=null?(changeBeneficialCheck.getApplicationNumber()!=null?changeBeneficialCheck.getApplicationNumber():applicationNumber):applicationNumber;
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 		ChangeBeneficialResponse changeBeneficialResponse = null;
@@ -196,7 +196,7 @@ public class ChangeBeneficialService {
 							}).collect(Collectors.toList());
 					
 					beneficialRequest.setChangeBeneficial(changeBeneficial);
-					changeBeneficialRepo.update(beneficialRequest);
+//					changeBeneficialRepo.update(beneficialRequest);
 					changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
 					changeBeneficialResponse = ChangeBeneficialResponse.builder()
 							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();

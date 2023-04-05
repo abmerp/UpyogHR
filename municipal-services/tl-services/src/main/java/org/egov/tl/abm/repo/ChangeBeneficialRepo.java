@@ -59,8 +59,8 @@ public class ChangeBeneficialRepo {
 	String getUpdateQuery="select * from public.eg_tl_change_beneficial where (application_number=:applicationNumber or cb_application_number=:applicationNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_at desc limit 1";
 	
-//	String getUpdateForNest="select * from public.eg_tl_change_beneficial where (application_number=:applicationNumber or cb_application_number=:applicationNumber) and application_status IN(3) \r\n"
-//			+ " order by created_at desc limit 1";
+	String getUpdateForNest="select * from public.eg_tl_change_beneficial where (application_number=:applicationNumber or cb_application_number=:applicationNumber) and application_status IN(3) and application_number NOT LIKE '%HRCB%'  \r\n"
+			+ " order by created_at desc limit 1";
 	
 	String getBeneficialDetails="select * from public.eg_tl_change_beneficial where id=:changeBeneficialId";
 	
@@ -164,26 +164,27 @@ public class ChangeBeneficialRepo {
 		return cahngeBeneficial;
 	}
 	
-//  public ChangeBeneficial getUdatedBeneficialForNest(String applicationNumber) {
-//		
-//		ChangeBeneficial cahngeBeneficial=null;
-//		try {
-//		List<Object> preparedStmtList = new ArrayList<>();
-//		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateForNest.replaceAll(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
-//				.id(rs.getString("id").toString())
-//				.developerServiceCode(rs.getString("developerServiceCode").toString())
-//				.cbApplicationNumber(rs.getString("cb_application_number").toString())
-//				.applicationNumber(rs.getString("application_number"))
-//				.build());
-//		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
-//			cahngeBeneficial=changeBeneficial.get(0);
-//		}
-//		}catch (Exception e) {
-//		  e.printStackTrace();
-//		}
-//	   
-//		return cahngeBeneficial;
-//	}
+  public ChangeBeneficial getUdatedBeneficialForNest(String applicationNumber) {
+		
+		ChangeBeneficial cahngeBeneficial=null;
+		try {
+		List<Object> preparedStmtList = new ArrayList<>();
+		List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(getUpdateForNest.replaceAll(":applicationNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+				.id(rs.getString("id").toString())
+				.developerServiceCode(rs.getString("developerServiceCode").toString())
+				.cbApplicationNumber(rs.getString("cb_application_number").toString())
+				.applicationNumber(rs.getString("application_number"))
+				.applicationStatus(rs.getInt("application_status"))
+				.build());
+		if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
+			cahngeBeneficial=changeBeneficial.get(0);
+		}
+		}catch (Exception e) {
+		  e.printStackTrace();
+		}
+	   
+		return cahngeBeneficial;
+	}
 
 	public ChangeBeneficial getBeneficialDetailsBycbApplicationNumber(String cbApplicationNumber){
 		String query=getDataQueryBycbApplicationNumber.replace(":cbapplicationNumber", "'"+cbApplicationNumber+"'").replace(":applicationNumber", "'"+cbApplicationNumber+"'");
