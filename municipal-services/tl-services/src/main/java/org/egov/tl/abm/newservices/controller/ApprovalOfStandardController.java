@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("_ApprovalStandard")
-public class ApprovalOfStandard {
+public class ApprovalOfStandardController {
 	@Autowired
 	ApprovalStandardService approvalStandardService;
 	@Autowired
@@ -50,11 +50,24 @@ public class ApprovalOfStandard {
 			@RequestParam(value = "tenantId", required = false) String tenantId) {
 
 		List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(requestInfo,
-				licenseNo,applicationNumber,tenantId);
+				licenseNo, applicationNumber, tenantId);
 
 		ApprovalStandardResponse responseSearch = ApprovalStandardResponse.builder()
 				.approvalStandardResponse(searchApproval)
 				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfo, true)).build();
 		return new ResponseEntity<>(responseSearch, HttpStatus.OK);
+	}
+
+	@PostMapping(value = "_update")
+	public ResponseEntity<ApprovalStandardResponse> update(
+			@RequestBody ApprovalStandardContract approvalStandardContract) {
+
+		List<ApprovalStandardEntity> newApprovalServiceInfo = approvalStandardService.Update(approvalStandardContract);
+
+		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
+				.approvalStandardResponse(newApprovalServiceInfo).responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
+				.build();
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }
