@@ -106,6 +106,7 @@ import org.egov.common.entity.edcr.FarDetails;
 import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Measurement;
 import org.egov.common.entity.edcr.Occupancy;
+import org.egov.common.entity.edcr.OccupancyType;
 import org.egov.common.entity.edcr.OccupancyTypeHelper;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
@@ -138,6 +139,7 @@ public class Far extends FeatureProcess {
     private static final BigDecimal ONE_POINTFIVE = BigDecimal.valueOf(1.5);
     
     private static final BigDecimal ONE_POINTFOURFIVE = BigDecimal.valueOf(1.45);
+    private static final BigDecimal ONE_POINTSEVENFIVE = BigDecimal.valueOf(1.75);
     private static final BigDecimal ONE_POINTTHREE = BigDecimal.valueOf(1.3);
     private static final BigDecimal ONE_POINTSIXFIVE = BigDecimal.valueOf(1.65);
     
@@ -1019,6 +1021,12 @@ public class Far extends FeatureProcess {
 	                pl.getFarDetails().setPermissableFar(ONE.doubleValue());
 	                expectedResult = "<= 1";
 	            }
+	            
+	            if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A4.getOccupancyTypeVal())) {
+	            	isAccepted = far.compareTo(ONE_POINTSEVENFIVE) <= 0;
+	            	pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
+	            	expectedResult = "<= 1.75";
+	            }
 
             }
 
@@ -1035,6 +1043,12 @@ public class Far extends FeatureProcess {
                     pl.getFarDetails().setPermissableFar(TWO_POINTFOUR.doubleValue());
                     expectedResult = "<= 2.40";
                 }
+            	
+            	if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A4.getOccupancyTypeVal())) {
+            		isAccepted = far.compareTo(ONE_POINTSEVENFIVE) <= 0;
+            		pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
+            		expectedResult = "<= 1.75";
+            	}
             	
             	
 				/*
