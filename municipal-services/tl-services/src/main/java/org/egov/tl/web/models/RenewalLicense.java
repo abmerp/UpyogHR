@@ -129,8 +129,8 @@ public class  RenewalLicense   {
         @JsonProperty("applicationNumber")
         private String applicationNumber;
         
-        @JsonProperty("oldApplicationStatus")
-        private String oldApplicationStatus;
+        @JsonProperty("oldApplicationNumber")
+        private String oldApplicationNumber;
 
     
 

@@ -132,6 +132,12 @@ public class RenewalLicenseAddetionalDetails {
 	@JsonProperty("renewalLicenseSIDC")
 	private List<RenewalLicenseSIDC> renewalLicenseSIDC;
 	
+	@JsonProperty("statusOfCommunitySite")
+	private List<StatusOfCommunitySite> statusOfCommunitySite;
+	
+	@JsonProperty("renewalLicenseBG")
+	private List<RenewalLicenseBG> renewalLicenseBG;
+	
 	@JsonProperty("enhanceEDCStatus")
 	private String enhanceEDCStatus; 
 	
@@ -154,7 +160,6 @@ public class RenewalLicenseAddetionalDetails {
 	
 	@JsonProperty("rule24DocumentUpload")
 	private String rule24DocumentUpload; 
-	
 	
 	@JsonProperty("rule26FinancialYearData")
 	private boolean rule26FinancialYearData; 
