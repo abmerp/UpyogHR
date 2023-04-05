@@ -63,6 +63,7 @@ import org.apache.logging.log4j.LogManager;
 import org.egov.common.entity.edcr.Block;
 import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Measurement;
+import org.egov.common.entity.edcr.OccupancyType;
 import org.egov.common.entity.edcr.OccupancyTypeHelper;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
@@ -129,8 +130,8 @@ public class AdditionalFeature extends FeatureProcess {
     public static final String NEW_AREA_ERROR_MSG = "No construction shall be permitted if the road width is less than 6.1m for new area.";
     public static final String NO_OF_FLOORS = "Maximum number of floors allowed";
     public static final String HEIGHT_BUILDING = "Maximum height of building allowed";
-    public static final String MIN_PLINTH_HEIGHT = " >= 0.45";
-    public static final String MIN_PLINTH_HEIGHT_DESC = "Minimum plinth height";
+    public static final String MIN_PLINTH_HEIGHT = " >= 0.45 & <= 1.5";
+    public static final String MIN_PLINTH_HEIGHT_DESC = "Plinth height";
     public static final String MAX_BSMNT_CELLAR = "Number of basement/cellar allowed";
     public static final String MIN_INT_COURT_YARD = "0.15";
     public static final String MIN_INT_COURT_YARD_DESC = "Minimum interior courtyard";
@@ -192,8 +193,11 @@ public class AdditionalFeature extends FeatureProcess {
         validateGreenBuildingsAndSustainability(pl, errors);
         validateSolarPanels(pl, errors);
         validateFireDeclaration(pl, errors);
-        validateDwellingUnits(pl, errors);
-
+        
+        if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A1.getOccupancyTypeVal()) 
+        		|| pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A2.getOccupancyTypeVal())) {
+        	validateDwellingUnits(pl, errors);
+        }
         return pl;
     }
 
@@ -489,13 +493,15 @@ public class AdditionalFeature extends FeatureProcess {
 
             boolean isAccepted = false;
             BigDecimal minPlinthHeight = BigDecimal.ZERO;
+            BigDecimal maxPlinthHeight = BigDecimal.ZERO;
             String blkNo = block.getNumber();
             ScrutinyDetail scrutinyDetail = getNewScrutinyDetail("Block_" + blkNo + "_" + "Plinth");
             List<BigDecimal> plinthHeights = block.getPlinthHeight();
 
             if (!plinthHeights.isEmpty()) {
                 minPlinthHeight = plinthHeights.stream().reduce(BigDecimal::min).get();
-                if (minPlinthHeight.compareTo(BigDecimal.valueOf(0.45)) >= 0) {
+                maxPlinthHeight = plinthHeights.stream().reduce(BigDecimal::max).get();
+                if (minPlinthHeight.compareTo(BigDecimal.valueOf(0.45)) >= 0 && maxPlinthHeight.compareTo(BigDecimal.valueOf(1.5)) <= 0) {
                     isAccepted = true;
                 }
             } else {
@@ -507,7 +513,7 @@ public class AdditionalFeature extends FeatureProcess {
             if (errors.isEmpty()) {
                 Map<String, String> details = new HashMap<>();
                 details.put(RULE_NO, RULE_41_I_A);
-                details.put(DESCRIPTION, MIN_PLINTH_HEIGHT_DESC);
+                details.put(DESCRIPTION, MIN_PLINTH_HEIGHT_DESC );
                 details.put(PERMISSIBLE, MIN_PLINTH_HEIGHT);
                 details.put(PROVIDED, String.valueOf(minPlinthHeight));
                 details.put(STATUS, isAccepted ? Result.Accepted.getResultVal() : Result.Not_Accepted.getResultVal());
