@@ -30,7 +30,7 @@ public class ChangeBeneficial {
 	private String applicationNumber;
 	
 	@JsonIgnore
-	private String isDraft;
+	private String isDraft;  // 0-draft,1 -not draft
 	
 	@JsonIgnore
 	private String workFlowCode;
@@ -44,11 +44,14 @@ public class ChangeBeneficial {
 	@JsonProperty("paidAmount")
 	private String paidAmount;	
 
+	@JsonProperty("isFullPaymentDone")
+	private boolean isFullPaymentDone;
+	
 	@JsonProperty("areaInAcres")
 	private String areaInAcres;
 	
 	@JsonIgnore
-	private String paid_beneficial_change_amount;
+	private String totalChangeBeneficialCharge;
 	
 	@JsonIgnore
 	private long developerId;

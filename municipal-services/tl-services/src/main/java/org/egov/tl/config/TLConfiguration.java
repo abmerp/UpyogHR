@@ -385,6 +385,9 @@ public class TLConfiguration {
 
 	@Value("${persister.changrebeneficial.update}")
 	private String updateChangreBeneficialTopic;
+	
+	@Value("${persister.changrebeneficial.updatePayment}")
+	private String updatePaymentChangreBeneficialTopic;
 
 	// renewal license
 	@Value("${persister.renewallicense.save}")

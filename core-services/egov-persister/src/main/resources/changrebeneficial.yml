@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -59,6 +59,9 @@ serviceMaps:
            type: STRING
            
          - jsonPath: changeBeneficial.*.isDraft
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.totalChangeBeneficialCharge
            type: STRING
            
            
@@ -116,49 +119,19 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.applicationNumber
            type: STRING
- 
-      
-#      
-#     
-#
-# - version: 1.0
-#   description: Persists benefical service of  save-renewallicense table
-#   fromTopic: save-renewallicense
-#   isTransaction: true
-#   queryMaps: 
-#      - query: INSERT INTO public.eg_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "nocDocument", "consentLetterFromNewEntryDoc", "JustificationForSuchRequestDoc", "sideEffectForExtstingDeveloperDoc", "detailsOfAppliedAreaDoc", "undertackingPayBalanceDoc", "authorizedSignatoryOEDDoc", "authorizedSignatoryNEDoc") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-#        basePath: changeBeneficial.*
-#        jsonMaps:
-#        
-#         - jsonPath: changeBeneficial.*.developerServiceCode
-#           type: STRING
-#      
-#         - jsonPath: changeBeneficial.*.areaInAcres
-#           type: STRING
-#  
-#         - jsonPath: changeBeneficial.*.developerId
-#           type: LONG
-#         
-#         - jsonPath: changeBeneficial.*.nocDocument
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.consentLetterFromNewEntryDoc
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.JustificationForSuchRequestDoc
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.sideEffectForExtstingDeveloperDoc
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.detailsOfAppliedAreaDoc
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.undertackingPayBalanceDoc
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.authorizedSignatoryOEDDoc
-#           type: STRING
-#         
-#         - jsonPath: changeBeneficial.*.authorizedSignatoryNEDoc
-#           type: STRING
+           
+ - version: 1.0
+   description: Persists benefical service of  change_benefical table
+   fromTopic: update-payment-changrebeneficial
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=? where "application_number"=?
+       
+        basePath: changeBeneficial.*
+        jsonMaps:       
+         - jsonPath: changeBeneficial.*.paidAmount
+         - jsonPath: changeBeneficial.*.isDraft
+         - jsonPath: changeBeneficial.*.applicationStatus
+         - jsonPath: changeBeneficial.*.isFullPaymentDone
+         - jsonPath: changeBeneficial.*.applicationNumber
+           

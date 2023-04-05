@@ -171,10 +171,12 @@ public class ChangeBeneficialService {
 
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
-//		String applicationNumber,String isDraft
 		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
+		applicationNumber=changeBeneficialCheck!=null?(changeBeneficialCheck.getApplicationNumber()!=null?changeBeneficialCheck.getApplicationNumber():applicationNumber):null;
+		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		if(changeBeneficialCheck!=null) {
+			    
 				if(changeBeneficialCheck.getApplicationStatus()==1) {
 					List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 							.stream().map(changebeneficial -> {
@@ -198,17 +200,34 @@ public class ChangeBeneficialService {
 					changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
 					changeBeneficialResponse = ChangeBeneficialResponse.builder()
 							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
-				}else {
+				}else if(changeBeneficialCheck.getApplicationStatus()==2) {
 				    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
+				}else {
+				   	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
 				}
-		    }else if ((changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId()) > 0)||(changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber)!=null)) {
-			RequestInfo requestInfo = beneficialRequest.getRequestInfo();
+		    }else if(tradeLicense==null||tradeLicense.size()==0) {
+		    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("Application Number is not existing").status(false).build();
+		    }else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
+		    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
+						.changeBeneficial(null).requestInfo(null).message("licence fees is null.").status(false).build();
+		    } else {
+		    	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
+		    }
+		return changeBeneficialResponse;
+
+	}
+	
+	private ChangeBeneficialResponse createNewChangeBeneficial(ChangeBeneficialRequest beneficialRequest,List<TradeLicense> tradeLicense,ChangeBeneficialResponse changeBeneficialResponse,String applicationNumber) {
+	
+		  RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+						changebeneficial.setTotalChangeBeneficialCharge(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges().toString());
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -224,30 +243,9 @@ public class ChangeBeneficialService {
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			changeBeneficialRepo.save(beneficialRequest);
 			changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
-//			/************************* Workflow start *****************************/
-////			UUID uuid=UUID.randomUUID(); 
-//			Map<String ,Object> workFlowRequests=new HashMap<>();
-//			workFlowRequests.put("cbApplicationNumber","");
-//			workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
-//			workFlowRequests.put("workFlowRequestType","PERMENENT");
-//			workFlowRequests.put("action","INITIATE");
-//			workFlowRequests.put("comment","start process");
-//			workFlowRequests.put("wfTenantId",WFTENANTID);
-//			
-//			String businessServiceFromMDMS="TL";
-//			String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo);
-//			List<Document> wfDocuments=new ArrayList<>();
-//			workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), businessServiceFromMDMS, requestInfo, wfDocuments, Arrays.asList(assignees));
-//			/************************* Workflow end *****************************/
-//			
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
-		} else {
-			changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-					.requestInfo(null).message("Application Number is not existing").status(false).build();
-		}
 		return changeBeneficialResponse;
-
 	}
 	
 	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber){
@@ -447,10 +445,15 @@ public class ChangeBeneficialService {
 				
 					 BigDecimal estimateAmount= new BigDecimal(am);
 					 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
+					 try {
 					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack);
 					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(trans))
 								.requestInfo(requestInfo).message("Transaction has been created successfully ").status(true).build();
-					
+					 }catch (Exception e) {
+						 log.error("Exception :--"+e.getMessage());
+						 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+									.requestInfo(null).message("You have already created Transaction").status(false).build();
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					log.error("Exception :--"+e.getMessage());
@@ -856,14 +859,26 @@ public class ChangeBeneficialService {
 //						tradeLicenseRequests.setRequestInfo(info);
 //						
 //						tradeLicenseService.update(tradeLicenseRequests, "TL");
+						
+						
+						
 						ChangeBeneficial changeBeneficiaDetails=null;
 						try {
 							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
+							ChangeBeneficialRequest changeBeneficialRequest=new ChangeBeneficialRequest();
+							ChangeBeneficial changeBeneficialPayment=ChangeBeneficial.builder()
+									.paidAmount("")
+									.isDraft("0")
+									.applicationStatus(changeBeneficiaDetails.getApplicationStatus()==1?2:3)
+									.isFullPaymentDone(false)
+									.applicationNumber(applicationNumber)
+									.build();
+							changeBeneficialRequest.setChangeBeneficial(Arrays.asList(changeBeneficialPayment));
+							changeBeneficialRepo.updatePaymentDetails(changeBeneficialRequest);
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-//						
 						
 						/************************* Workflow start *****************************/
 					Map<String ,Object> workFlowRequests=new HashMap<>();
