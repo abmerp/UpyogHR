@@ -175,55 +175,62 @@ public class ChangeBeneficialService {
 		ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber);
 		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
 		applicationNumber=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
-		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
+		boolean applicationNumberCheck=changeBeneficialRepo.checkIsValidApplicationNumber(applicationNumber);
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		if(changeBeneficialCheck!=null) {
-			    
-				if(changeBeneficialCheck.getApplicationStatus()==1) {
-					List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
-							.stream().map(changebeneficial -> {
-								changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
-								changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
-								if(changebeneficial.getIsDraft()==null) {
-									changebeneficial.setIsDraft("0");	
-								}else {
-									changebeneficial.setIsDraft("1");
-								}
-								
-								if (!changebeneficial.getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
-									changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
-											: (changebeneficial.getAreaInAcres()));
-									changebeneficial.setFullPaymentDone(false);
-									changebeneficial.setApplicationStatus(1);
-								}else {
-									changebeneficial.setFullPaymentDone(true);
-									changebeneficial.setApplicationStatus(3);
-								}
-								return changebeneficial;
-							}).collect(Collectors.toList());
-					
-					beneficialRequest.setChangeBeneficial(changeBeneficial);
-//					changeBeneficialRepo.update(beneficialRequest);
-					if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
-						changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
+		if(applicationNumberCheck) {
+			List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
+			if(changeBeneficialCheck!=null) {
+				    
+					if(changeBeneficialCheck.getApplicationStatus()==1) {
+						List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
+								.stream().map(changebeneficial -> {
+									changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
+									changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+									if(changebeneficial.getIsDraft()==null) {
+										changebeneficial.setIsDraft("0");	
+									}else {
+										changebeneficial.setIsDraft("1");
+									}
+									
+									if (!changebeneficial.getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+										changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
+												: (changebeneficial.getAreaInAcres()));
+										changebeneficial.setFullPaymentDone(false);
+										changebeneficial.setApplicationStatus(1);
+									}else {
+										changebeneficial.setFullPaymentDone(true);
+										changebeneficial.setApplicationStatus(3);
+									}
+									return changebeneficial;
+								}).collect(Collectors.toList());
+						
+						beneficialRequest.setChangeBeneficial(changeBeneficial);
+						changeBeneficialRepo.update(beneficialRequest);
+						if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+							changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
+						}
+						changeBeneficialResponse = ChangeBeneficialResponse.builder()
+								.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
+					}else if(changeBeneficialCheck.getApplicationStatus()==2) {
+					    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+							.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
+					}else {
+					   	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
 					}
-					changeBeneficialResponse = ChangeBeneficialResponse.builder()
-							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
-				}else if(changeBeneficialCheck.getApplicationStatus()==2) {
-				    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
-				}else {
-				   	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
-				}
-		    }else if(tradeLicense==null||tradeLicense.size()==0) {
-		    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
-		    }else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
-		    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
-						.changeBeneficial(null).requestInfo(null).message("licence fees is null.").status(false).build();
-		    } else {
-		    	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
-		    }
+			    }else if(tradeLicense==null||tradeLicense.size()==0) {
+			    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+							.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+			    }else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
+			    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
+							.changeBeneficial(null).requestInfo(null).message("licence fees is null.").status(false).build();
+			    } else {
+			    	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
+			    }
+		
+	      }else {
+	    	  	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("Application Number is not existing").status(false).build();
+		  }
 		return changeBeneficialResponse;
 
 	}
