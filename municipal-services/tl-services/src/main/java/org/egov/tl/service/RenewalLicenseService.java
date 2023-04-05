@@ -2,6 +2,9 @@ package org.egov.tl.service;
 
 import static org.egov.tl.util.TLConstants.businessService_TL;
 
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -59,21 +62,46 @@ public class RenewalLicenseService {
 	
 	public List<RenewalLicenseRequestDetail> saveRenewalLicense(RenewalLicenseRequest renewalLicenseRequest) {
 		List<RenewalLicenseRequestDetail> requestData=getRenewalLicenseData(renewalLicenseRequest).get(0).getRenewalLicenseRequestDetail();
+//		validateRenewalLicense(requestData);
 		renewalLicenseRequest.setRenewalLicenseRequestDetail(requestData);
-		
-		
-		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
-		String additionaldetail=null;
+//		
+//		
+//		RenewalLicenseAddetionalDetails renewalLicenseAddetionalDetails=renewalLicenseRequest.getRenewalLicenseRequestDetail().get(0).getRenewalLicenseDetail().get(0).getAdditionalDetail();
+//		String additionaldetail=null;
+//		try {
+//			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		log.info("additionaldetail:---------------------"+additionaldetail);
+//		
+//		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
+		return requestData;
+	}
+	
+	private void validateRenewalLicense(List<RenewalLicenseRequestDetail> renewalLicenseRequestDetails) {
 		try {
-			additionaldetail = mapper.writeValueAsString(renewalLicenseAddetionalDetails);
-		} catch (JsonProcessingException e) {
+			for(RenewalLicenseRequestDetail renewalLicenseRequestDetail:renewalLicenseRequestDetails) {
+				for(RenewalLicense renewalLicense:renewalLicenseRequestDetail.getRenewalLicense()) {
+					for(PropertyDescriptor propertyDescriptor : Introspector.getBeanInfo(renewalLicense.getClass()).getPropertyDescriptors()){
+						System.out.println("RenewalLicense:--"+propertyDescriptor.getReadMethod());
+					}				
+				}
+	
+				for(RenewalLicenseDetail renewalLicenseDetail:renewalLicenseRequestDetail.getRenewalLicenseDetail()) {
+					for(PropertyDescriptor propertyDescriptor : Introspector.getBeanInfo(renewalLicenseDetail.getClass()).getPropertyDescriptors()){
+						System.out.println("RenewalLicenseDetail:--"+propertyDescriptor.getName());
+						
+					}
+				}
+			}
+		} catch (IntrospectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		log.info("additionaldetail:---------------------"+additionaldetail);
+
 		
-		renewalLicenseServiceRepo.saveRenewalLicense(renewalLicenseRequest);
-		return requestData;
 	}
 	
 //	public List<RenewalLicense> getRenewalLicense(String applicationNumber) {

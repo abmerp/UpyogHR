@@ -9,16 +9,16 @@ import lombok.Setter;
 @Getter
 public class RenewalLicenseBG {
 	
-    @JsonProperty("BG_amount")
-	private boolean BG_amount;
+    @JsonProperty("bgAmount")
+	private boolean bgamount;
 
-    @JsonProperty("BG_validity")
-	private boolean BG_validity;
+    @JsonProperty("bgValidity")
+	private boolean bgValidity;
 
-    @JsonProperty("BG_bank")
-	private boolean BG_bank;
+    @JsonProperty("bgBank")
+	private boolean bgBank;
 
-    @JsonProperty("BG_component")
-	private boolean BG_component;
+    @JsonProperty("bgComponent")
+	private boolean bgComponent;
 
 }
