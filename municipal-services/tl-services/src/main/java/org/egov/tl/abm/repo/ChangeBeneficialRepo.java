@@ -204,7 +204,7 @@ public class ChangeBeneficialRepo {
 					.id(rs.getString("id").toString())
 					.developerServiceCode(rs.getString("developerServiceCode").toString())
 					.cbApplicationNumber(rs.getString("cb_application_number").toString())
-					.paidAmount(rs.getString("paid_beneficial_change_amount")!=null?rs.getString("paid_beneficial_change_amount").toString():"0.0")
+					.paidAmount(rs.getString("paid_amount")!=null?rs.getString("paid_amount").toString():"0.0")
 					.areaInAcres(rs.getString("areaInAcres").toString())
 					.noObjectionCertificate(rs.getString("noObjectionCertificate").toString())
 					.consentLetter(rs.getString("consentLetter").toString())
