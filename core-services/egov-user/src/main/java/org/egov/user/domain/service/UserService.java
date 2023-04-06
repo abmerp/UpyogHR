@@ -81,6 +81,9 @@ public class UserService {
 	@Value("${egov.user.search.default.size}")
 	private Integer defaultSearchSize;
 
+	@Value("${tcp.sso.authorized.url}")
+	private String ssoAuthorizedUrl;
+
 	private UserRepository userRepository;
 	private OtpRepository otpRepository;
 	private PasswordEncoder passwordEncoder;
@@ -245,7 +248,10 @@ public class UserService {
 		user.setUuid(UUID.randomUUID().toString());
 		user.setActive(true);
 		user.validateNewUser(createUserValidateName);
-
+		Map<String, Object> authorizedValid = new HashMap<>();
+		authorizedValid.put("EmailID", user.getEmailId());
+		authorizedValid.put("Mobile", user.getMobileNumber());
+		authorizedValid.put("DeveloperName", user.getName());
 		conditionallyValidateOtp(user);
 		/* encrypt here */
 		user = encryptionDecryptionUtil.encryptObject(user, "User", User.class);
@@ -260,6 +266,9 @@ public class UserService {
 		user.setDefaultPasswordExpiry(defaultPasswordExpiryInDays);
 		user.setTenantId(getStateLevelTenantForCitizen(user.getTenantId(), user.getType()));
 		User persistedNewUser = persistNewUser(user);
+		log.info("persistedNewUser" + persistedNewUser);
+		ResponseEntity<Map> responseAuthorizedSSo = validSSOAuthorized(authorizedValid);
+		log.info("responseAuthorizedSSo:" + responseAuthorizedSSo.getBody().get("status"));
 		return encryptionDecryptionUtil.decryptObject(persistedNewUser, "User", User.class, requestInfo);
 
 		/* decrypt here because encrypted data coming from DB */
@@ -738,7 +747,7 @@ public class UserService {
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setOtpReference("123456");
 				Object updateUser = getAccess(user, user.getOtpReference());
-			
+
 				String data = null;
 				ObjectMapper mapper = new ObjectMapper();
 				try {
@@ -746,7 +755,7 @@ public class UserService {
 				} catch (JsonProcessingException e) { // TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				TokenResponse tokenResponse=null;
+				TokenResponse tokenResponse = null;
 				ObjectReader reader = mapper.readerFor(new TypeReference<TokenResponse>() {
 				});
 				try {
@@ -757,9 +766,9 @@ public class UserService {
 				}
 
 				log.info("tokenResponse" + tokenResponse);
-			    Long id = tokenResponse.getUserRequest().getId();
-			    userInfo.setId(id);
-			    requestInfo.setUserInfo(userInfo);
+				Long id = tokenResponse.getUserRequest().getId();
+				userInfo.setId(id);
+				requestInfo.setUserInfo(userInfo);
 				user.setUuid(searchUsers.get(0).getUuid());
 				user.setRoles(searchUsers.get(0).getRoles());
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
@@ -799,4 +808,13 @@ public class UserService {
 		return response;
 	}
 
+	public ResponseEntity<Map> validSSOAuthorized(Map<String, Object> request) {
+
+		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + ssoAuthorizedUrl, request, Map.class);
+		if (response.getStatusCode() == HttpStatus.OK) {
+			log.info("validSSOAuthorized\n" + response.getBody().get("status"));
+		}
+		
+		return response;
+	}
 }
