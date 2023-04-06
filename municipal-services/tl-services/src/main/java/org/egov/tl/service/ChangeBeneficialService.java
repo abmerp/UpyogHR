@@ -72,7 +72,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ChangeBeneficialService {
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CBWF";
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CBIWF";
 	private static final String WFTENANTID = "hr";
 
 	
@@ -930,7 +930,7 @@ public class ChangeBeneficialService {
 					workFlowRequests.put("cbApplicationNumber",changeBeneficiaDetails.getCbApplicationNumber());
 					workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
 					workFlowRequests.put("workFlowRequestType","PERMENENT");
-					workFlowRequests.put("action","INITIATED");
+					workFlowRequests.put("action","INITIATE");
 					workFlowRequests.put("comment","start process");
 					workFlowRequests.put("wfTenantId",WFTENANTID);
 					
