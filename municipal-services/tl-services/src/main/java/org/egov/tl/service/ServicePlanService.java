@@ -243,7 +243,7 @@ public class ServicePlanService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , additionaldetails , devName , developmentPlan , purpose , totalArea , layoutplan, revisedlayout, demarcation, demarcationgis, layoutexcel , anyotherdoc , created_by, created_time, last_modified_by, last_modified_time\r\n"
+		String query = "SELECT id , loi_number, auto_cad_file, certifiead_copy_of_the_plan, environmental_clearance, self_certified_drawing_from_empaneled_doc, self_certified_drawings_from_chareted_eng, shape_file_as_per_template, status, sp_action, undertaking, assignee, action, business_service, comment, tenantid, application_number , additionaldetails , devName , developmentPlan , purpose , totalArea , layoutplan, revisedlayout, demarcation, demarcationgis, layoutexcel , anyotherdoc , created_by, created_time, last_modified_by, last_modified_time, externalagency\r\n"
 				+ "FROM public.eg_service_plan\r\n" + "WHERE  ";
 
 		builder = new StringBuilder(query);
