@@ -445,6 +445,12 @@ public class ChangeBeneficialService {
 	}
 	
 	public ChangeBeneficialResponse pay(RequestInfo requestInfo,String applicationNumber) {
+		
+		ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber);
+		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
+		String applicationNumberLicense=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
+			
+		
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
 		try {
@@ -454,7 +460,7 @@ public class ChangeBeneficialService {
 					 applicationNumber=changeBeneficiaDetails.getApplicationNumber();
 					 StringBuilder faetchBillUrl = new StringBuilder(billingHost);
 					 faetchBillUrl.append(fetchBillEndpoint);
-					 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumber);
+					 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumberLicense);
 					 
 					 Map<String, Object> faetchBillMap = new HashMap<>();
 					 faetchBillMap.put("RequestInfo", requestInfo);
@@ -472,7 +478,7 @@ public class ChangeBeneficialService {
 					 BigDecimal estimateAmount= new BigDecimal(am);
 					 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
 					 try {
-					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack,changeBeneficiaDetails);
+					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumberLicense,billId,callBack,changeBeneficiaDetails);
 					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(trans))
 								.requestInfo(requestInfo).message("Transaction has been created successfully ").status(true).build();
 					 }catch (Exception e) {
@@ -530,7 +536,7 @@ public class ChangeBeneficialService {
 	}
 	
 	
-	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String consumerCode,String billId,String callbackUrl,ChangeBeneficial changeBeneficiaDetails) {
+	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String applicationNumberLicense,String billId,String callbackUrl,ChangeBeneficial changeBeneficiaDetails) {
 		
 		
 		String am=amountFr.toString();
@@ -563,7 +569,7 @@ public class ChangeBeneficialService {
 		transaction.put("cityName", "haryana");
 		transaction.put("module", "TL");
 		transaction.put("billId", billId);
-		transaction.put("consumerCode", consumerCode);
+		transaction.put("consumerCode", applicationNumberLicense+","+changeBeneficiaDetails.getApplicationNumber());
 		transaction.put("productInfo", "Change Beneficial Payment");
 		transaction.put("gateway", "NIC");
 		transaction.put("callbackUrl", callbackUrl);
@@ -650,7 +656,8 @@ public class ChangeBeneficialService {
 
 		log.info("transaction" + transaction);
 		String txnId = transaction.getTransaction().get(0).getTxnId();
-		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode();
+		String applicationNumberLicense = transaction.getTransaction().get(0).getConsumerCode().split(",")[0];
+		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split(",")[1];
 		String uuid = transaction.getTransaction().get(0).getUser().getUuid();
 		String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
 		String userName = transaction.getTransaction().get(0).getUser().getUserName();
@@ -664,7 +671,7 @@ public class ChangeBeneficialService {
 		// ------------failure----------------//
 		if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 
-			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
+			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumberLicense + "/" + "hr";
 			returnPaymentUrl = paymentUrl + "?" + params1;
 			log.info("returnPaymentUrl" + returnPaymentUrl);
 			httpHeaders.setLocation(
@@ -733,16 +740,16 @@ public class ChangeBeneficialService {
 
 			// ------------------user search end----------------//
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
-			tradeLicenseRequest.setApplicationNumber(applicationNumber);
+			tradeLicenseRequest.setApplicationNumber(applicationNumberLicense);
 			
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
-			ChangeBeneficial changeBeneficial=null;
-		    try {
-		    	changeBeneficial=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+//			ChangeBeneficial changeBeneficial=null;
+//		    try {
+//		    	changeBeneficial=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
+//			} catch (Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
 			
 			for (TradeLicense tradeLicense : tradeLicenses) {
 
@@ -946,7 +953,7 @@ public class ChangeBeneficialService {
 						log.info("paymentUpdate\t" + paymentUpdate);
 						// -------------------payment update end-----------//
 						paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
-								+ applicationNumber + "/" + tradeLicense.getTenantId();
+								+ applicationNumberLicense + "/" + tradeLicense.getTenantId();
 						returnPaymentUrl = paymentUrl + "?" + params1;
 						log.info("returnPaymentUrl" + returnPaymentUrl);
 						httpHeaders.setLocation(
