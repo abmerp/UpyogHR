@@ -122,15 +122,15 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.isDraft
            type: STRING
-           
-         - jsonPath: changeBeneficial.*.applicationNumber
-           type: STRING
          
          - jsonPath: changeBeneficial.*.isFullPaymentDone
            type: BOOLEAN
            
          - jsonPath: changeBeneficial.*.applicationStatus
            type: INTEGER
+           
+         - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
            
  - version: 1.0
    description: Persists benefical service of  change_benefical table
