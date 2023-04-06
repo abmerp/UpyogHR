@@ -416,17 +416,20 @@ public class ChangeBeneficialService {
 	
    }
 	
-	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment){
+	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String applicationNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
 		
 		try {
-			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 			
+			ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNestRefrsh(applicationNumber);
+			ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
+			String applicationNumbers=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
+			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 			if(changeBeneficiaDetails!=null) {
 				
 						try {
-							 changeBeneficialBillDemandCreation(requestInfo,applicationNumber,calculationServiceName,calculationType,isIntialPayment);
+							 changeBeneficialBillDemandCreation(requestInfo,applicationNumbers,changeBeneficiaDetails.getDeveloperServiceCode(),0,0);
 						} catch (Exception e) {
 							log.error("Exception :--"+e.getMessage());
 						}

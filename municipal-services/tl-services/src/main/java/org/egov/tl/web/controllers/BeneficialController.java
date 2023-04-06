@@ -48,12 +48,8 @@ public class BeneficialController {
 	
 	@PostMapping("_billDemandRefresh")
 	public ResponseEntity<ChangeBeneficialResponse> _changeBeneficialBillDemandRefresh(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber,
-			@RequestParam("isIntialPayment") int isIntialPayment,
-			@RequestParam("calculationType") int calculationType,
-			@RequestParam("calculationServiceName") String calculationServiceName
-			){
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(requestInfoWrapper.getRequestInfo(),applicationNumber,calculationServiceName,calculationType,isIntialPayment);   
+			@RequestParam("applicationNumber") String applicationNumber){
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(requestInfoWrapper.getRequestInfo(),applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
