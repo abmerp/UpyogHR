@@ -24,6 +24,7 @@ import javax.persistence.EntityManager;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.common.contract.request.User;
+import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.abm.repo.ChangeBeneficialRepo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.repository.IdGenRepository;
@@ -38,6 +39,7 @@ import org.egov.tl.web.models.Document;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.ResponseTransaction;
 import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.UserResponse;
@@ -45,6 +47,7 @@ import org.egov.tl.web.models.UserSearchCriteria;
 import org.egov.tl.web.models.Idgen.IdResponse;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
 import org.egov.tl.workflow.ChangeBeneficialWorkflowIntegrator;
+import org.egov.tl.workflow.WorkflowIntegrator;
 import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -72,7 +75,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ChangeBeneficialService {
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CBIWF";
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "APPROVAL_OF_STANDARD";
 	private static final String WFTENANTID = "hr";
 
 	
@@ -164,6 +167,9 @@ public class ChangeBeneficialService {
 	
 	@Value("${egov.bill.gen.endpoint}")
 	private String fetchBillEndpoint;
+	
+	@Autowired
+	private WorkflowIntegrator wfIntegrator;
 	   
 		
 	String  licenseFee = "0.0";
@@ -242,7 +248,16 @@ public class ChangeBeneficialService {
 					.stream().map(changebeneficial -> {
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
+						changebeneficial.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, requestInfo)));
+						changebeneficial.setAction("APPLIED");
+						changebeneficial.setTenantId("hr");
+						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
+						changebeneficial.setComment("change beneficial workflow");
+						changebeneficial.setWfDocuments(null);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+						TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changebeneficial,requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
+						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+						
 						changebeneficial.setTotalChangeBeneficialCharge(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges().toString());
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
@@ -982,4 +997,31 @@ public class ChangeBeneficialService {
 				.build().encode().toUri());
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 }
+	
+	
+	private TradeLicenseRequest prepareProcessInstanceRequest(ChangeBeneficial changeBeneficial,
+			RequestInfo requestInfo, String bussinessServicename) {
+
+		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+		TradeLicense tradeLicenseAS = new TradeLicense();
+		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
+		tradeLicenseAS.setBusinessService(changeBeneficial.getBusinessService());
+		tradeLicenseAS.setAction(changeBeneficial.getAction());
+		tradeLicenseAS.setAssignee(changeBeneficial.getAssignee());
+		tradeLicenseAS.setApplicationNumber(changeBeneficial.getApplicationNumber());
+		tradeLicenseAS.setWorkflowCode(changeBeneficial.getWorkFlowCode());
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(bussinessServicename);
+		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicenseAS.setComment(changeBeneficial.getComment());
+		tradeLicenseAS.setWfDocuments(changeBeneficial.getWfDocuments());
+		tradeLicenseAS.setTenantId(changeBeneficial.getTenantId());
+		tradeLicenseAS.setBusinessService(bussinessServicename);
+
+		tradeLicenseASRequest.setRequestInfo(requestInfo);
+		tradeLicenseASlist.add(tradeLicenseAS);
+		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
+
+		return tradeLicenseASRequest;
+	}
 }
