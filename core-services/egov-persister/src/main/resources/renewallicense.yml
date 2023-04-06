@@ -35,7 +35,7 @@ serviceMaps:
          - jsonPath: renewalLicense.*.oldApplicationStatus
          - jsonPath: renewalLicense.*.validUpTo
          - jsonPath: renewalLicense.*.renewalForDuration
-     
+      
       - query: INSERT INTO public.eg_tl_renewallicensedetail(id, additionaldetail, renewallicenseid, createdby, lastmodifiedby, createdtime, lastmodifiedtime, currentversion, penaltypayable, renewalamount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         basePath: renewal.*.renewalLicenseDetail.*
         jsonMaps:        
