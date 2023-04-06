@@ -27,6 +27,7 @@ public class CapcityDevelopAColony {
 	private List<ObtainedLicense> obtainedLicense;	
 	private TechnicalCapacityOutsideHaryanaDetails technicalCapacityOutsideHaryanaDetails;
 	private Documents documents;
+	private Boolean isUndertakenDR;
 	
 	//extra
 //	private List<CapacityDevelopColonyLawAct> capacityDevelopColonyLawAct;
