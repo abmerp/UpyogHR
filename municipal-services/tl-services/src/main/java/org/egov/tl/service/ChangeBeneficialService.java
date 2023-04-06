@@ -892,21 +892,19 @@ public class ChangeBeneficialService {
 							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 							ChangeBeneficialRequest changeBeneficialRequest=new ChangeBeneficialRequest();
 							ChangeBeneficial changeBeneficialPayment=null;
-							if(requestParam.get("isInitial").equals("0")){
+							if(changeBeneficiaDetails.getApplicationStatus()==1) {
 								changeBeneficialPayment=ChangeBeneficial.builder()
-										.paidAmount(requestParam.get("amount").toString())
+										.paidAmount(String.valueOf(requestParam.get("amount")))
 										.isDraft("0")
-										.applicationStatus(changeBeneficiaDetails.getApplicationStatus()==1?2:3)
-										.isFullPaymentDone(false)
 										.applicationStatus(2)
+										.isFullPaymentDone(false)
 										.build();
-							}else {
+							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
 								changeBeneficialPayment=ChangeBeneficial.builder()
-										.paidAmount(requestParam.get("amount").toString())
+										.paidAmount(String.valueOf(requestParam.get("amount")))
 										.isDraft("0")
-										.applicationStatus(changeBeneficiaDetails.getApplicationStatus()==1?2:3)
-										.isFullPaymentDone(true)
 										.applicationStatus(3)
+										.isFullPaymentDone(true)
 										.build();
 							}
 							
