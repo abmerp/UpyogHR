@@ -186,7 +186,7 @@ public class ChangeBeneficialService {
 		if(applicationNumberCheck) {
 			List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 			if(changeBeneficialCheck!=null) {
-				    
+				beneficialRequest.getChangeBeneficial().get(0).setApplicationNumber(applicationNumber);
 					if(changeBeneficialCheck.getApplicationStatus()==1) {
 						List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 								.stream().map(changebeneficial -> {
@@ -246,34 +246,35 @@ public class ChangeBeneficialService {
 		  RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
+						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
-						changebeneficial.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, requestInfo)));
-						changebeneficial.setAction("INITIATE");
-						changebeneficial.setTenantId("hr");
-						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
-						changebeneficial.setComment("change beneficial workflow");
-						changebeneficial.setWfDocuments(null);
+//						changebeneficial.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, requestInfo)));
+//						changebeneficial.setAction("INITIATE");
+//						changebeneficial.setTenantId("hr");
+//						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
+//						changebeneficial.setComment("change beneficial workflow");
+//						changebeneficial.setWfDocuments(null);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
-						changebeneficial.setTotalChangeBeneficialCharge(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges().toString());
+						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 //						TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changebeneficial,requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
 //						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 					
 						
-						/************************* Workflow start *****************************/
-						Map<String ,Object> workFlowRequests=new HashMap<>();
-						workFlowRequests.put("cbApplicationNumber",changebeneficial.getCbApplicationNumber());
-						workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
-						workFlowRequests.put("workFlowRequestType","PERMENENT");
-						workFlowRequests.put("action","INITIATE");
-						workFlowRequests.put("comment","start process");
-						workFlowRequests.put("wfTenantId",WFTENANTID);
-						
-						String businessServiceFromMDMS="TL";
-						String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo);
-						List<Document> wfDocuments=new ArrayList<>();
-						workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), CHANGE_BENEFICIAL_WORKFLOWCODE, requestInfo, wfDocuments, Arrays.asList(assignees));
-				
+//						/************************* Workflow start *****************************/
+//						Map<String ,Object> workFlowRequests=new HashMap<>();
+//						workFlowRequests.put("cbApplicationNumber",changebeneficial.getCbApplicationNumber());
+//						workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
+//						workFlowRequests.put("workFlowRequestType","PERMENENT");
+//						workFlowRequests.put("action","INITIATE");
+//						workFlowRequests.put("comment","start process");
+//						workFlowRequests.put("wfTenantId",WFTENANTID);
+//						
+//						String businessServiceFromMDMS="TL";
+//						String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo);
+//						List<Document> wfDocuments=new ArrayList<>();
+//						workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), CHANGE_BENEFICIAL_WORKFLOWCODE, requestInfo, wfDocuments, Arrays.asList(assignees));
+//				
 						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
@@ -293,7 +294,7 @@ public class ChangeBeneficialService {
 						return changebeneficial;
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
-			changeBeneficialRepo.save(beneficialRequest);
+//			changeBeneficialRepo.save(beneficialRequest);
 				
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
@@ -969,7 +970,7 @@ public class ChangeBeneficialService {
 					String businessServiceFromMDMS="TL";
 					String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
 					List<Document> wfDocuments=new ArrayList<>();
-					workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), businessServiceFromMDMS, info, wfDocuments, Arrays.asList(assignees));
+					workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), CHANGE_BENEFICIAL_WORKFLOWCODE, info, wfDocuments, Arrays.asList(assignees));
 					/************************* Workflow end *****************************/
 
 						// -----------------payment----------------------//
@@ -1015,30 +1016,30 @@ public class ChangeBeneficialService {
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 }
 	
-	
-	private TradeLicenseRequest prepareProcessInstanceRequest(ChangeBeneficial changeBeneficial,
-			RequestInfo requestInfo, String bussinessServicename) {
-
-		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
-		TradeLicense tradeLicenseAS = new TradeLicense();
-		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
-		tradeLicenseAS.setBusinessService(changeBeneficial.getBusinessService());
-		tradeLicenseAS.setAction(changeBeneficial.getAction());
-		tradeLicenseAS.setAssignee(changeBeneficial.getAssignee());
-		tradeLicenseAS.setApplicationNumber(changeBeneficial.getApplicationNumber());
-		tradeLicenseAS.setWorkflowCode(changeBeneficial.getWorkFlowCode());
-		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-		tradeLicenseDetail.setTradeType(bussinessServicename);
-		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
-		tradeLicenseAS.setComment(changeBeneficial.getComment());
-		tradeLicenseAS.setWfDocuments(changeBeneficial.getWfDocuments());
-		tradeLicenseAS.setTenantId(changeBeneficial.getTenantId());
-		tradeLicenseAS.setBusinessService(bussinessServicename);
-
-		tradeLicenseASRequest.setRequestInfo(requestInfo);
-		tradeLicenseASlist.add(tradeLicenseAS);
-		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
-
-		return tradeLicenseASRequest;
-	}
+//	
+//	private TradeLicenseRequest prepareProcessInstanceRequest(ChangeBeneficial changeBeneficial,
+//			RequestInfo requestInfo, String bussinessServicename) {
+//
+//		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+//		TradeLicense tradeLicenseAS = new TradeLicense();
+//		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
+//		tradeLicenseAS.setBusinessService(changeBeneficial.getBusinessService());
+//		tradeLicenseAS.setAction(changeBeneficial.getAction());
+//		tradeLicenseAS.setAssignee(changeBeneficial.getAssignee());
+//		tradeLicenseAS.setApplicationNumber(changeBeneficial.getApplicationNumber());
+//		tradeLicenseAS.setWorkflowCode(changeBeneficial.getWorkFlowCode());
+//		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+//		tradeLicenseDetail.setTradeType(bussinessServicename);
+//		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
+//		tradeLicenseAS.setComment(changeBeneficial.getComment());
+//		tradeLicenseAS.setWfDocuments(changeBeneficial.getWfDocuments());
+//		tradeLicenseAS.setTenantId(changeBeneficial.getTenantId());
+//		tradeLicenseAS.setBusinessService(bussinessServicename);
+//
+//		tradeLicenseASRequest.setRequestInfo(requestInfo);
+//		tradeLicenseASlist.add(tradeLicenseAS);
+//		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
+//
+//		return tradeLicenseASRequest;
+//	}
 }

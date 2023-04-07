@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,"licenseNumber") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -69,6 +69,12 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.applicationStatus
            type: INTEGER
+         
+         - jsonPath: changeBeneficial.*.workFlowCode
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.licenseNumber
+           type: STRING
            
            
            
@@ -142,8 +148,17 @@ serviceMaps:
         basePath: changeBeneficial.*
         jsonMaps:       
          - jsonPath: changeBeneficial.*.paidAmount
-         - jsonPath: changeBeneficial.*.isDraft
-         - jsonPath: changeBeneficial.*.applicationStatus
-         - jsonPath: changeBeneficial.*.isFullPaymentDone
-         - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
            
+         - jsonPath: changeBeneficial.*.isDraft
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.applicationStatus
+           type: INTEGER
+           
+         - jsonPath: changeBeneficial.*.isFullPaymentDone
+           type: BOOLEAN
+           
+         - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
+                      

@@ -31,7 +31,10 @@ public class ChangeBeneficial {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
-	@JsonIgnore
+	@JsonProperty("licenseNumber")
+	private String licenseNumber;
+	
+	@JsonProperty("isDraft")
 	private String isDraft;  // 0-draft,1 -not draft
 	
 	@JsonProperty("paymentType")
@@ -49,7 +52,7 @@ public class ChangeBeneficial {
 	@JsonProperty("areaInAcres")
 	private String areaInAcres;
 	
-	@JsonIgnore
+	@JsonProperty("totalChangeBeneficialCharge")
 	private String totalChangeBeneficialCharge;
 	
 	@JsonIgnore
@@ -92,26 +95,26 @@ public class ChangeBeneficial {
 	private String fiancialCapacityCertificate; 
 	
 	
-	@JsonProperty("assignee")
-	private List<String> assignee;
-
-	@JsonProperty("action")
-	private String action;
-
-	@JsonProperty("tenantId")
-	private String tenantId;
-
-	@JsonProperty("businessService")
-	private String businessService;
-
-	@JsonProperty("comment")
-	private String comment;
+//	@JsonProperty("assignee")
+//	private List<String> assignee;
+//
+//	@JsonProperty("action")
+//	private String action;
+//
+//	@JsonProperty("tenantId")
+//	private String tenantId;
+//
+//	@JsonProperty("businessService")
+//	private String businessService;
+//
+//	@JsonProperty("comment")
+//	private String comment;
 
 	@JsonProperty("workFlowCode")
 	private String workFlowCode = null;
-
-	@JsonProperty("wfDocuments")
-	private List<Document> wfDocuments;
+//
+//	@JsonProperty("wfDocuments")
+//	private List<Document> wfDocuments;
 	
 	
 
