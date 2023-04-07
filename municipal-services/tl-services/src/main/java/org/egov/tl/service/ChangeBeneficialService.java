@@ -970,7 +970,7 @@ public class ChangeBeneficialService {
 					String businessServiceFromMDMS="TL";
 					String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
 					List<Document> wfDocuments=new ArrayList<>();
-					workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), CHANGE_BENEFICIAL_WORKFLOWCODE, info, wfDocuments, Arrays.asList(assignees));
+					workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), businessServiceFromMDMS, info, wfDocuments, Arrays.asList(assignees));
 					/************************* Workflow end *****************************/
 
 						// -----------------payment----------------------//
@@ -1029,7 +1029,7 @@ public class ChangeBeneficialService {
 		workFlowRequests.put("wfTenantId",WFTENANTID);
 		String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
 		List<Document> wfDocuments=new ArrayList<>();
-		workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), workflow, info, wfDocuments, Arrays.asList(assignees));
+		workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), null, info, wfDocuments, Arrays.asList(assignees));
 		return tradeLicenseASRequest;
 	}
 	
