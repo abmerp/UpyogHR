@@ -249,32 +249,8 @@ public class ChangeBeneficialService {
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
-//						changebeneficial.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, requestInfo)));
-//						changebeneficial.setAction("INITIATE");
-//						changebeneficial.setTenantId("hr");
-//						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
-//						changebeneficial.setComment("change beneficial workflow");
-//						changebeneficial.setWfDocuments(null);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
-//						TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changebeneficial,requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
-//						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-					
-						
-//						/************************* Workflow start *****************************/
-//						Map<String ,Object> workFlowRequests=new HashMap<>();
-//						workFlowRequests.put("cbApplicationNumber",changebeneficial.getCbApplicationNumber());
-//						workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
-//						workFlowRequests.put("workFlowRequestType","PERMENENT");
-//						workFlowRequests.put("action","INITIATE");
-//						workFlowRequests.put("comment","start process");
-//						workFlowRequests.put("wfTenantId",WFTENANTID);
-//						
-//						String businessServiceFromMDMS="TL";
-//						String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo);
-//						List<Document> wfDocuments=new ArrayList<>();
-//						workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), CHANGE_BENEFICIAL_WORKFLOWCODE, requestInfo, wfDocuments, Arrays.asList(assignees));
-//				
 						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
@@ -517,7 +493,7 @@ public class ChangeBeneficialService {
 					 }catch (Exception e) {
 						 log.error("Exception :--"+e.getMessage());
 						 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-									.requestInfo(null).message("You have already created Transaction").status(false).build();
+									.requestInfo(null).message("You have already created Transaction and Transaction failed, Now try by next day").status(false).build();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -602,7 +578,7 @@ public class ChangeBeneficialService {
 		transaction.put("cityName", "haryana");
 		transaction.put("module", "TL");
 		transaction.put("billId", billId);
-		transaction.put("consumerCode", applicationNumberLicense+","+changeBeneficiaDetails.getApplicationNumber());
+		transaction.put("consumerCode", applicationNumberLicense+"_"+changeBeneficiaDetails.getApplicationNumber());
 		transaction.put("productInfo", "Change Beneficial Payment");
 		transaction.put("gateway", "NIC");
 		transaction.put("callbackUrl", callbackUrl);
@@ -689,8 +665,8 @@ public class ChangeBeneficialService {
 
 		log.info("transaction" + transaction);
 		String txnId = transaction.getTransaction().get(0).getTxnId();
-		String applicationNumberLicense = transaction.getTransaction().get(0).getConsumerCode().split(",")[0];
-		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split(",")[1];
+		String applicationNumberLicense = transaction.getTransaction().get(0).getConsumerCode().split("_")[0];
+		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split("_")[1];
 		String uuid = transaction.getTransaction().get(0).getUser().getUuid();
 		String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
 		String userName = transaction.getTransaction().get(0).getUser().getUserName();
