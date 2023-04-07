@@ -1029,12 +1029,12 @@ public class ChangeBeneficialService {
 		tradeLicenseAS.setApplicationNumber(applicationNumber);
 		tradeLicenseAS.setWorkflowCode(workflow);
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-		tradeLicenseDetail.setTradeType(CHANGE_BENEFICIAL_WORKFLOWCODE);
+		tradeLicenseDetail.setTradeType(workflow);
 		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
-		tradeLicenseAS.setComment(CHANGE_BENEFICIAL_WORKFLOWCODE);
+		tradeLicenseAS.setComment(workflow);
 		tradeLicenseAS.setWfDocuments(wfDocuments);
 		tradeLicenseAS.setTenantId(WFTENANTID);
-		tradeLicenseAS.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
+		tradeLicenseAS.setBusinessService(workflow);
 
 		tradeLicenseASRequest.setRequestInfo(info);
 		tradeLicenseASlist.add(tradeLicenseAS);
@@ -1042,5 +1042,31 @@ public class ChangeBeneficialService {
 		wfIntegrator.callWorkFlow(tradeLicenseASRequest);
 		return tradeLicenseASRequest;
 	}
+	
+//	private TradeLicenseRequest prepareProcessInstanceRequest(ApprovalStandardEntity approvalStandardEntity,
+//			RequestInfo requestInfo, String bussinessServicename) {
+//
+//		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+//		TradeLicense tradeLicenseAS = new TradeLicense();
+//		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
+//		tradeLicenseAS.setBusinessService(approvalStandardEntity.getBusinessService());
+//		tradeLicenseAS.setAction(approvalStandardEntity.getAction());
+//		tradeLicenseAS.setAssignee(approvalStandardEntity.getAssignee());
+//		tradeLicenseAS.setApplicationNumber(approvalStandardEntity.getApplicationNumber());
+//		tradeLicenseAS.setWorkflowCode(approvalStandardEntity.getWorkflowCode());
+//		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+//		tradeLicenseDetail.setTradeType(bussinessServicename);
+//		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
+//		tradeLicenseAS.setComment(approvalStandardEntity.getComment());
+//		tradeLicenseAS.setWfDocuments(approvalStandardEntity.getWfDocuments());
+//		tradeLicenseAS.setTenantId(approvalStandardEntity.getTenantId());
+//		tradeLicenseAS.setBusinessService(bussinessServicename);
+//
+//		tradeLicenseASRequest.setRequestInfo(requestInfo);
+//		tradeLicenseASlist.add(tradeLicenseAS);
+//		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
+//
+//		return tradeLicenseASRequest;
+//	}
 	
 }
