@@ -63,11 +63,10 @@ public class BeneficialController {
 //	String workflow, String applicationNumber
 	@PostMapping("_check_workflow")
 	public ResponseEntity<TradeLicenseRequest> check_workflow(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("businessService") String businessService,
 			@RequestParam("action") String action,
 			@RequestParam("workflow") String workflow,
 			@RequestParam("applicationNumber") String applicationNumber){
-		TradeLicenseRequest changeBeneficialResponse=changeBeneficialService.prepareProcessInstanceRequest(businessService,action,requestInfoWrapper.getRequestInfo(),workflow,applicationNumber);   
+		TradeLicenseRequest changeBeneficialResponse=changeBeneficialService.prepareProcessInstanceRequest(action,requestInfoWrapper.getRequestInfo(),workflow,applicationNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
