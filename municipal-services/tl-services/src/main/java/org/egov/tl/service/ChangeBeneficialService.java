@@ -1016,30 +1016,31 @@ public class ChangeBeneficialService {
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 }
 	
-//	
-//	private TradeLicenseRequest prepareProcessInstanceRequest(ChangeBeneficial changeBeneficial,
-//			RequestInfo requestInfo, String bussinessServicename) {
-//
-//		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
-//		TradeLicense tradeLicenseAS = new TradeLicense();
-//		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
-//		tradeLicenseAS.setBusinessService(changeBeneficial.getBusinessService());
-//		tradeLicenseAS.setAction(changeBeneficial.getAction());
-//		tradeLicenseAS.setAssignee(changeBeneficial.getAssignee());
-//		tradeLicenseAS.setApplicationNumber(changeBeneficial.getApplicationNumber());
-//		tradeLicenseAS.setWorkflowCode(changeBeneficial.getWorkFlowCode());
-//		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-//		tradeLicenseDetail.setTradeType(bussinessServicename);
-//		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
-//		tradeLicenseAS.setComment(changeBeneficial.getComment());
-//		tradeLicenseAS.setWfDocuments(changeBeneficial.getWfDocuments());
-//		tradeLicenseAS.setTenantId(changeBeneficial.getTenantId());
-//		tradeLicenseAS.setBusinessService(bussinessServicename);
-//
-//		tradeLicenseASRequest.setRequestInfo(requestInfo);
-//		tradeLicenseASlist.add(tradeLicenseAS);
-//		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
-//
-//		return tradeLicenseASRequest;
-//	}
+	
+	public TradeLicenseRequest prepareProcessInstanceRequest(String businessService,String action,RequestInfo info,
+			String workflow, String applicationNumber) {
+		List<Document> wfDocuments=new ArrayList<>();
+		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+		TradeLicense tradeLicenseAS = new TradeLicense();
+		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
+		tradeLicenseAS.setBusinessService(businessService);
+		tradeLicenseAS.setAction(action);
+		tradeLicenseAS.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, info)));
+		tradeLicenseAS.setApplicationNumber(applicationNumber);
+		tradeLicenseAS.setWorkflowCode(workflow);
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(CHANGE_BENEFICIAL_WORKFLOWCODE);
+		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicenseAS.setComment(CHANGE_BENEFICIAL_WORKFLOWCODE);
+		tradeLicenseAS.setWfDocuments(wfDocuments);
+		tradeLicenseAS.setTenantId(WFTENANTID);
+		tradeLicenseAS.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
+
+		tradeLicenseASRequest.setRequestInfo(info);
+		tradeLicenseASlist.add(tradeLicenseAS);
+		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
+		wfIntegrator.callWorkFlow(tradeLicenseASRequest);
+		return tradeLicenseASRequest;
+	}
+	
 }
