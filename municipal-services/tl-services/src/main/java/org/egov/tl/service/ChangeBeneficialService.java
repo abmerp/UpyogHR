@@ -256,9 +256,25 @@ public class ChangeBeneficialService {
 						changebeneficial.setWfDocuments(null);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges().toString());
-						TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changebeneficial,requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
-						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+//						TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changebeneficial,requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
+//						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 					
+						
+						/************************* Workflow start *****************************/
+						Map<String ,Object> workFlowRequests=new HashMap<>();
+						workFlowRequests.put("cbApplicationNumber",changebeneficial.getCbApplicationNumber());
+						workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
+						workFlowRequests.put("workFlowRequestType","PERMENENT");
+						workFlowRequests.put("action","INITIATE");
+						workFlowRequests.put("comment","start process");
+						workFlowRequests.put("wfTenantId",WFTENANTID);
+						
+						String businessServiceFromMDMS="TL";
+						String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo);
+						List<Document> wfDocuments=new ArrayList<>();
+						workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), CHANGE_BENEFICIAL_WORKFLOWCODE, requestInfo, wfDocuments, Arrays.asList(assignees));
+				
+						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
