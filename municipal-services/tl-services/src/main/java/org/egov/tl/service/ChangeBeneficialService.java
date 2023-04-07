@@ -249,15 +249,12 @@ public class ChangeBeneficialService {
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
 						changebeneficial.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, requestInfo)));
-						changebeneficial.setAction("APPLIED");
+						changebeneficial.setAction("APPLY");
 						changebeneficial.setTenantId("hr");
 						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setComment("change beneficial workflow");
 						changebeneficial.setWfDocuments(null);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
-						TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changebeneficial,requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
-						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-						
 						changebeneficial.setTotalChangeBeneficialCharge(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges().toString());
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
@@ -278,6 +275,9 @@ public class ChangeBeneficialService {
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			changeBeneficialRepo.save(beneficialRequest);
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(changeBeneficial.get(0),requestInfo, CHANGE_BENEFICIAL_WORKFLOWCODE);
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
 			}
