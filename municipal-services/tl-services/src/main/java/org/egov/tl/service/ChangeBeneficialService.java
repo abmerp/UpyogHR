@@ -75,7 +75,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ChangeBeneficialService {
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "APPROVAL_OF_STANDARD";
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL_OR_TOL";
 	private static final String WFTENANTID = "hr";
 
 	
@@ -249,7 +249,7 @@ public class ChangeBeneficialService {
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
 						changebeneficial.setAssignee(Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, requestInfo)));
-						changebeneficial.setAction("APPLY");
+						changebeneficial.setAction("INITIATE");
 						changebeneficial.setTenantId("hr");
 						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setComment("change beneficial workflow");
