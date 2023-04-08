@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,"licenseNumber") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,"licenseNumber",audit_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -74,6 +74,9 @@ serviceMaps:
            type: STRING
          
          - jsonPath: changeBeneficial.*.licenseNumber
+           type: STRING
+         
+         - jsonPath: changeBeneficial.*.auditDetails
            type: STRING
            
            
@@ -162,12 +165,12 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.tranactionId
            type: STRING
            
-         - jsonPath: changeBeneficial.*.tranactionId
-           type: STRING
-           
          - jsonPath: changeBeneficial.*.diaryNumber
            type: STRING
            
          - jsonPath: changeBeneficial.*.tcpApplicationNumber
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.applicationNumber
            type: STRING
                       

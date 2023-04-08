@@ -36,21 +36,23 @@ public class BeneficialController {
 	
 	@PostMapping("_pay")
 	public ResponseEntity<ChangeBeneficialResponse> changeBeneficialPay(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber){
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfoWrapper.getRequestInfo(),applicationNumber);   
+			@RequestParam("licenseNumber") String licenseNumber){
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.pay(requestInfoWrapper.getRequestInfo(),licenseNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	@PostMapping("_get")
 	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber) {
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfoWrapper.getRequestInfo(),applicationNumber);   
+			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
+			@RequestParam(value = "applicationNumber", required = false) String applicationNumber
+			) {
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfoWrapper.getRequestInfo(),applicationNumber,licenceNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_billDemandRefresh")
 	public ResponseEntity<ChangeBeneficialResponse> _changeBeneficialBillDemandRefresh(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("applicationNumber") String applicationNumber){
-		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(requestInfoWrapper.getRequestInfo(),applicationNumber);   
+			@RequestParam("licenseNumber") String licenseNumber){
+		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.billAndDemandRefresh(requestInfoWrapper.getRequestInfo(),licenseNumber);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
@@ -59,16 +61,5 @@ public class BeneficialController {
 
 		return changeBeneficialService.postTransactionDeatil(formData);
 	}
-	//(String businessService,String action,RequestInfo info,
-//	String workflow, String applicationNumber
-	@PostMapping("_check_workflow")
-	public ResponseEntity<TradeLicenseRequest> check_workflow(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam("action") String action,
-			@RequestParam("workflow") String workflow,
-			@RequestParam("applicationNumber") String applicationNumber){
-		TradeLicenseRequest changeBeneficialResponse=changeBeneficialService.prepareProcessInstanceRequest(action,requestInfoWrapper.getRequestInfo(),workflow,applicationNumber);   
-       return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
-	}
-	
 	
 }

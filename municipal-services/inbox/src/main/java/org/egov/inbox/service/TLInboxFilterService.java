@@ -98,12 +98,22 @@ public class TLInboxFilterService {
 	private String transferOfLicenceSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.TRANSFER.search.desc.path}")
 	private String transferOfLicenceSearcherDescEndPoint;
+	
+//	CHANGE OF BENEFICIAL
+	@Value("${egov.searcher.tl.change.beneficial.search.path}")
+	private String changeOfBeneficialSearcherEndPoint;
+	@Value("${egov.searcher.tl.change.beneficial.count.path}")
+	private String changeOfBeneficialSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.change.beneficial.search.desc.path}")
+	private String changeOfBeneficialSearcherDescEndPoint;
+	
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 
+	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
 	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
 	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
 	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
@@ -196,6 +206,15 @@ public class TLInboxFilterService {
 				// will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 				switch (businessService) {
+				case BUSINESSSERVICE_CHANGEBENEFICIAL:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(changeOfBeneficialSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(changeOfBeneficialSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;				
 				case BUSINESSSERVICE_TRANSFER:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -381,6 +400,10 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 
 				switch (businessService) {
+				case BUSINESSSERVICE_CHANGEBENEFICIAL:
+					uri.append(searcherHost).append(changeOfBeneficialSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+					break;
 				case BUSINESSSERVICE_TRANSFER:
 					uri.append(searcherHost).append(transferOfLicenceSearcherCountEndPoint);
 					log.info("uri searcher\t" + uri);

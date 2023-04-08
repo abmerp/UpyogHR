@@ -106,5 +106,7 @@ public class ChangeBeneficial {
 	@JsonProperty("workFlowCode")
 	private String workFlowCode = null;
 	
-
+	@JsonProperty("auditDetails")
+	AuditDetails auditDetails=null;
+	
 }

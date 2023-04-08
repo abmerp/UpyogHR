@@ -58,6 +58,8 @@ public class WorkflowIntegrator {
 	private static final String SPNAMEVALUE_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
 	
 	private static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
+	
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL_OR_TOL";
 
 	private static final String BPAMODULENAMEVALUE = "BPAREG";
 
@@ -120,6 +122,11 @@ public class WorkflowIntegrator {
 				switch(businessServiceFromMDMS)
 				{
 				//TLR Changes
+				    case CHANGE_BENEFICIAL_WORKFLOWCODE:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+					break;
+					
 					case businessService_TL:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);

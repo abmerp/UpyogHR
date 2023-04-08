@@ -31,7 +31,9 @@ import org.egov.tl.repository.IdGenRepository;
 import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.service.repo.LicenseServiceRepo;
 import org.egov.tl.util.LandUtil;
+import org.egov.tl.util.TradeUtil;
 import org.egov.tl.validator.LandMDMSValidator;
+import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.ChangeBeneficialResponse;
@@ -42,6 +44,7 @@ import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
+import org.egov.tl.web.models.Transfer;
 import org.egov.tl.web.models.UserResponse;
 import org.egov.tl.web.models.UserSearchCriteria;
 import org.egov.tl.web.models.Idgen.IdResponse;
@@ -170,87 +173,85 @@ public class ChangeBeneficialService {
 	
 	@Autowired
 	private WorkflowIntegrator wfIntegrator;
+	
+	@Autowired
+	private TradeUtil tradeUtil;
+
 	   
 		
 	String  licenseFee = "0.0";
 	private final String JDAMR_DEVELOPER_STATUS="JDAMR";
-
+	
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
-		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
-		
-		ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber);
-		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
-		applicationNumber=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
-		boolean applicationNumberCheck=changeBeneficialRepo.checkIsValidApplicationNumber(applicationNumber);
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		if(applicationNumberCheck) {
-			List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
-			if(changeBeneficialCheck!=null) {
-				beneficialRequest.getChangeBeneficial().get(0).setApplicationNumber(applicationNumber);
-					if(changeBeneficialCheck.getApplicationStatus()==1) {
-						List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
-								.stream().map(changebeneficial -> {
-									changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
-									changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
-									if(changebeneficial.getIsDraft()==null) {
-										changebeneficial.setIsDraft("0");	
-									}else {
-										changebeneficial.setIsDraft("1");
-									}
-									
-									if (!changebeneficial.getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
-										changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
-												: (changebeneficial.getAreaInAcres()));
-										changebeneficial.setFullPaymentDone(false);
-										changebeneficial.setApplicationStatus(1);
-									}else {
-										changebeneficial.setFullPaymentDone(true);
-										changebeneficial.setApplicationStatus(3);
-									}
-									return changebeneficial;
-								}).collect(Collectors.toList());
-						
-						beneficialRequest.setChangeBeneficial(changeBeneficial);
-						changeBeneficialRepo.update(beneficialRequest);
-						if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
-							changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
-						}
-						changeBeneficialResponse = ChangeBeneficialResponse.builder()
-								.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
-					}else if(changeBeneficialCheck.getApplicationStatus()==2) {
-					    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-							.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
-					}else {
-					   	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
-					}
-			    }else if(tradeLicense==null||tradeLicense.size()==0) {
-			    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-							.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
-			    }else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
-			    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
-							.changeBeneficial(null).requestInfo(null).message("licence fees is null.").status(false).build();
-			    } else {
-			    	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
-			    }
+		String licenseNumber=beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber();
 		
-	      }else {
-	    	  	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(null).message("Application Number is not existing").status(false).build();
-		  }
-		return changeBeneficialResponse;
+		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
+		if(tradeLicense==null||tradeLicense.isEmpty()) {
+		 	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+					.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+		}else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
+	    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
+					.changeBeneficial(null).requestInfo(null).message("licence fees is null of this Application").status(false).build();
+	    }else {
+	    	ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
+	    	if(changeBeneficialCheck!=null) {
+	    		if(changeBeneficialCheck.getApplicationStatus()==1) {
+	    			
+	    			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
+							.stream().map(changebeneficial -> {
+								changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
+								changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+								if(changebeneficial.getIsDraft()==null) {
+									changebeneficial.setIsDraft("0");	
+								}else {
+									changebeneficial.setIsDraft("1");
+								}
+								
+								if (!changebeneficial.getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+									changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
+											: (changebeneficial.getAreaInAcres()));
+									changebeneficial.setFullPaymentDone(false);
+									changebeneficial.setApplicationStatus(1);
+								}else {
+									changebeneficial.setFullPaymentDone(true);
+									changebeneficial.setApplicationStatus(3);
+								}
+								return changebeneficial;
+							}).collect(Collectors.toList());
+					
+					beneficialRequest.setChangeBeneficial(changeBeneficial);
+					changeBeneficialRepo.update(beneficialRequest);
+					if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+						String applicationNumber=tradeLicense.get(0).getApplicationNumber();
+						changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
+					}
+					changeBeneficialResponse = ChangeBeneficialResponse.builder()
+							.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
+			
+	    		}else if(changeBeneficialCheck.getApplicationStatus()==2) {
+				    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("This license Number already taken and 2nd part payment is in pending").status(false).build();
+				}else {
+					createNewChangeBeneficial(beneficialRequest,tradeLicense,changeBeneficialResponse,licenseNumber);
+				}
+	    	}else {
+	    		    createNewChangeBeneficial(beneficialRequest,tradeLicense,changeBeneficialResponse,licenseNumber);
+	    	}	    	
+	    }
+	   return changeBeneficialResponse;
 
 	}
-	
-	private ChangeBeneficialResponse createNewChangeBeneficial(ChangeBeneficialRequest beneficialRequest,List<TradeLicense> tradeLicense,ChangeBeneficialResponse changeBeneficialResponse,String applicationNumber) {
-	
+	private ChangeBeneficialResponse createNewChangeBeneficial(ChangeBeneficialRequest beneficialRequest,List<TradeLicense> tradeLicense,ChangeBeneficialResponse changeBeneficialResponse,String licenseNumber) {
+		
 		  RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
-						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
-						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
+						AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), false);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
+						changebeneficial.setAuditDetails(auditDetails);
 						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
@@ -271,7 +272,8 @@ public class ChangeBeneficialService {
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			changeBeneficialRepo.save(beneficialRequest);
-				
+		    
+			String applicationNumber=tradeLicense.get(0).getApplicationNumber();
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
 			}
@@ -279,15 +281,95 @@ public class ChangeBeneficialService {
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
 		return changeBeneficialResponse;
 	}
+//	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
+//		String applicationNumber=beneficialRequest.getChangeBeneficial().get(0).getApplicationNumber();
+//		
+//		ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber);
+//		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
+//		applicationNumber=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
+//		boolean applicationNumberCheck=changeBeneficialRepo.checkIsValidApplicationNumber(applicationNumber);
+//		ChangeBeneficialResponse changeBeneficialResponse = null;
+//		if(applicationNumberCheck) {
+//			List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
+//			if(changeBeneficialCheck!=null) {
+//				    AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), false);
+//					beneficialRequest.getChangeBeneficial().get(0).setApplicationNumber(applicationNumber);
+//					beneficialRequest.getChangeBeneficial().get(0).setAuditDetails(auditDetails);
+//				
+//					if(changeBeneficialCheck.getApplicationStatus()==1) {
+//						List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
+//								.stream().map(changebeneficial -> {
+//									changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
+//									changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+//									if(changebeneficial.getIsDraft()==null) {
+//										changebeneficial.setIsDraft("0");	
+//									}else {
+//										changebeneficial.setIsDraft("1");
+//									}
+//									
+//									if (!changebeneficial.getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+//										changebeneficial.setAreaInAcres(changebeneficial.getAreaInAcres() == null ? ("0.0")
+//												: (changebeneficial.getAreaInAcres()));
+//										changebeneficial.setFullPaymentDone(false);
+//										changebeneficial.setApplicationStatus(1);
+//									}else {
+//										changebeneficial.setFullPaymentDone(true);
+//										changebeneficial.setApplicationStatus(3);
+//									}
+//									return changebeneficial;
+//								}).collect(Collectors.toList());
+//						
+//						beneficialRequest.setChangeBeneficial(changeBeneficial);
+//						changeBeneficialRepo.update(beneficialRequest);
+//						if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
+//							changeBeneficialBillDemandCreation(beneficialRequest.getRequestInfo(),applicationNumber,beneficialRequest.getChangeBeneficial().get(0).getDeveloperServiceCode(),1,1);
+//						}
+//						changeBeneficialResponse = ChangeBeneficialResponse.builder()
+//								.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Records has been updated Successfully.").status(true).build();
+//					}else if(changeBeneficialCheck.getApplicationStatus()==2) {
+//					    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+//							.requestInfo(null).message("This Application Number already taken and 2nd part payment is in pending").status(false).build();
+//					}else {
+//					   	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
+//					}
+//			    }else if(tradeLicense==null||tradeLicense.size()==0) {
+//			    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+//							.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+//			    }else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
+//			    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
+//							.changeBeneficial(null).requestInfo(null).message("licence fees is null.").status(false).build();
+//			    } else {
+//			    	changeBeneficialResponse=createNewChangeBeneficial(beneficialRequest, tradeLicense, changeBeneficialResponse, applicationNumber);
+//			    }
+//		
+//	      }else {
+//	    	  	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+//						.requestInfo(null).message("Application Number is not existing").status(false).build();
+//		  }
+//		return changeBeneficialResponse;
+//
+//	}
 	
-	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber){
+	
+	
+	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber,String licenseNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		ChangeBeneficial changeBeneficiaDetails = null;
 		
-		try {
-			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumber(applicationNumber);
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		if(applicationNumber==null&&licenseNumber==null) {
+			  changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(requestInfo).message("Application Number and License Number both can't be null.").status(false).build();
+		}else {
+			try {
+				if(applicationNumber==null) {
+					changeBeneficiaDetails=changeBeneficialRepo.searcherBeneficialDetailsByLicenceNumber(licenseNumber);
+				}else {
+					changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumber(applicationNumber);
+				}
+				
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
 		if(changeBeneficiaDetails!=null) {
 		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(changeBeneficiaDetails))
@@ -378,25 +460,10 @@ public class ChangeBeneficialService {
         System.out.println("tcpApplicationNmber:---"+tcpApplicationNmber);
 		return tcpApplicationNmber;
 	}
-//	
-//	
-//	private String setWorkFlowAndgetCode() {
-//		JSONObject workFlowRequest = new JSONObject();
-//		
-//		rest.postForObject(config.getWfHost().concat(config.getWfTransitionPath()), workFlowRequest, String.class);
-//		
-//		
-//		return null;
-//	}
+
 	public void changeBeneficialBillDemandCreation(RequestInfo requestInfo,String applicationNumber,String calculationServiceName,int calculationType,int isIntialPayment) {
    
 	  TradeLicense tradeLicenses=tradeLicensesService.getLicensesWithOwnerInfo(TradeLicenseSearchCriteria.builder().applicationNumber(applicationNumber).tenantId("hr").build(), requestInfo).get(0);
-//			  try {
-//				String data = mapper.writeValueAsString(tradeLicenses);
-//			} catch (JsonProcessingException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
 	  // --------------------------calculation start--------------------------------//
 	        StringBuilder calculatorUrl = new StringBuilder(guranteeHost);
 			calculatorUrl.append(accessCalculatorEndPoint);
@@ -425,51 +492,77 @@ public class ChangeBeneficialService {
 	
    }
 	
-	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String applicationNumber){
+	public ChangeBeneficialResponse billAndDemandRefresh(RequestInfo requestInfo,String licenseNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		ChangeBeneficial changeBeneficiaDetails = null;
-		
 		try {
 			
-			ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNestRefrsh(applicationNumber);
-			ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
-			String applicationNumbers=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
-			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
-			if(changeBeneficiaDetails!=null) {
-				
-						try {
-							 changeBeneficialBillDemandCreation(requestInfo,applicationNumbers,changeBeneficiaDetails.getDeveloperServiceCode(),0,0);
-						} catch (Exception e) {
-							log.error("Exception :--"+e.getMessage());
-						}
-				}else {
-				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
-						
-			}
+			List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,requestInfo.getUserInfo().getId());
+			if(tradeLicense==null||tradeLicense.isEmpty()) {
+			 	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+			}else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
+		    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
+						.changeBeneficial(null).requestInfo(null).message("licence fees is null of this Application").status(false).build();
+		    }else {
+		    	ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
+		    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(changeBeneficialCheck))
+						.requestInfo(requestInfo).message("Your demand and bill has been refresh successfully").status(true).build();
+		    	if(changeBeneficialCheck==null) {
+		    		changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+							.requestInfo(null).message("You have not changed any beneficial status.").status(false).build();
+		    	}else if(changeBeneficialCheck.getApplicationStatus()==1) {
+		    		 changeBeneficialBillDemandCreation(requestInfo,tradeLicense.get(0).getApplicationNumber(),changeBeneficialCheck.getDeveloperServiceCode(),0,0);
+		    	}else if(changeBeneficialCheck.getApplicationStatus()==2) {
+		   		     changeBeneficialBillDemandCreation(requestInfo,tradeLicense.get(0).getApplicationNumber(),changeBeneficialCheck.getDeveloperServiceCode(),1,1);
+		    	}else {
+		    		changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+							.requestInfo(null).message("You have not changed any beneficial status.").status(false).build();
+				}
+		    }
+			
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		return changeBeneficialResponse;
 	}
 	
-	public ChangeBeneficialResponse pay(RequestInfo requestInfo,String applicationNumber) {
-		
-		ChangeBeneficial applicationNumberChangeBeneficial=changeBeneficialRepo.getUdatedBeneficialForNest(applicationNumber);
-		ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getUdatedBeneficial(applicationNumber);
-		String applicationNumberLicense=changeBeneficialCheck!=null&&applicationNumber.contains("HRCB")?(applicationNumberChangeBeneficial.getApplicationNumber()!=null?applicationNumberChangeBeneficial.getApplicationNumber():applicationNumber):applicationNumber;
-			
-		
+	public ChangeBeneficialResponse pay(RequestInfo requestInfo,String licenseNumber) {
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		ChangeBeneficial changeBeneficiaDetails = null;
-		try {
-			changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsBycbApplicationNumber(applicationNumber);
-			if(changeBeneficiaDetails!=null) {
-				try {
-					 applicationNumber=changeBeneficiaDetails.getApplicationNumber();
+		
+		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,requestInfo.getUserInfo().getId());
+		changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+				.requestInfo(requestInfo).message("Your payment link has been generated successfully.").status(true).build();
+		if(tradeLicense==null||tradeLicense.isEmpty()) {
+		 	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+					.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+		}else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
+	    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
+					.changeBeneficial(null).requestInfo(null).message("licence fees is null of this Application").status(false).build();
+	    }else {
+	    	
+	    	ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
+	    	if(changeBeneficialCheck==null) {
+	    		changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
+	    	}else if(changeBeneficialCheck.getApplicationStatus()==1) {
+	    		changeBeneficialResponse=generateTransactionLink(requestInfo,tradeLicense.get(0).getApplicationNumber(),changeBeneficialCheck);
+	    	}else if(changeBeneficialCheck.getApplicationStatus()==2) {
+	    		changeBeneficialResponse=generateTransactionLink(requestInfo,tradeLicense.get(0).getApplicationNumber(),changeBeneficialCheck);
+	    	}else {
+	    		changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+						.requestInfo(null).message("You have not changed any beneficial status.").status(false).build();
+	    	}
+	    }
+
+		return changeBeneficialResponse;
+	}
+	
+	public ChangeBeneficialResponse generateTransactionLink(RequestInfo requestInfo,String applicationNumber,ChangeBeneficial changeBeneficialCheck) { 	
+			 ChangeBeneficialResponse changeBeneficialResponse = null;
+		     try {
 					 StringBuilder faetchBillUrl = new StringBuilder(billingHost);
 					 faetchBillUrl.append(fetchBillEndpoint);
-					 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumberLicense);
+					 faetchBillUrl.append("?tenantId=hr&businessService=TL&consumerCode="+applicationNumber);
 					 
 					 Map<String, Object> faetchBillMap = new HashMap<>();
 					 faetchBillMap.put("RequestInfo", requestInfo);
@@ -487,7 +580,7 @@ public class ChangeBeneficialService {
 					 BigDecimal estimateAmount= new BigDecimal(am);
 					 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
 					 try {
-					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumberLicense,billId,callBack,changeBeneficiaDetails);
+					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack,changeBeneficialCheck);
 					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(trans))
 								.requestInfo(requestInfo).message("Transaction has been created successfully ").status(true).build();
 					 }catch (Exception e) {
@@ -495,21 +588,14 @@ public class ChangeBeneficialService {
 						 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 									.requestInfo(null).message("You have already created Transaction and Transaction failed, Now try by next day").status(false).build();
 					}
-				} catch (Exception e) {
-					e.printStackTrace();
-					log.error("Exception :--"+e.getMessage());
-					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-								.requestInfo(null).message("Something went wrong").status(false).build();
-			
-				}								
-			}else {
-				changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(null).message("You have not changed any beneficial status ").status(false).build();
-						
-			}
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.error("Exception :--"+e.getMessage());
+				 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
+							.requestInfo(null).message("Something went wrong").status(false).build();
+		
+			}								
+		
 		return changeBeneficialResponse;
 	}
 	
@@ -545,7 +631,7 @@ public class ChangeBeneficialService {
 	}
 	
 	
-	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String applicationNumberLicense,String billId,String callbackUrl,ChangeBeneficial changeBeneficiaDetails) {
+	public HashMap<String, Object> createTranaction(RequestInfo requestInfo,String userId,String tenantId,BigDecimal amountFr,String applicationNumber,String billId,String callbackUrl,ChangeBeneficial changeBeneficiaDetails) {
 		
 		
 		String am=amountFr.toString();
@@ -578,7 +664,7 @@ public class ChangeBeneficialService {
 		transaction.put("cityName", "haryana");
 		transaction.put("module", "TL");
 		transaction.put("billId", billId);
-		transaction.put("consumerCode", applicationNumberLicense+"_"+changeBeneficiaDetails.getApplicationNumber());
+		transaction.put("consumerCode", applicationNumber+"_"+changeBeneficiaDetails.getLicenseNumber());
 		transaction.put("productInfo", "Change Beneficial Payment");
 		transaction.put("gateway", "NIC");
 		transaction.put("callbackUrl", callbackUrl);
@@ -617,7 +703,6 @@ public class ChangeBeneficialService {
 		
 		String dairyNumber="";
 		String tcpApplicationNumber="";
-		String caseNumber="";
 		
 		
 		String transactionId = requestParam.get(new String("Applicationnumber")).get(0);
@@ -668,8 +753,8 @@ public class ChangeBeneficialService {
 
 		log.info("transaction" + transaction);
 		String txnId = transaction.getTransaction().get(0).getTxnId();
-		String applicationNumberLicense = transaction.getTransaction().get(0).getConsumerCode().split("_")[0];
-		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split("_")[1];
+		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split("_")[0];
+		String licenseNumber = transaction.getTransaction().get(0).getConsumerCode().split("_")[1];
 		String uuid = transaction.getTransaction().get(0).getUser().getUuid();
 		String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
 		String userName = transaction.getTransaction().get(0).getUser().getUserName();
@@ -683,7 +768,7 @@ public class ChangeBeneficialService {
 		// ------------failure----------------//
 		if (!status.isEmpty() && status.equalsIgnoreCase("Success")) {
 
-			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumberLicense + "/" + "hr";
+			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
 			returnPaymentUrl = paymentUrl + "?" + params1;
 			log.info("returnPaymentUrl" + returnPaymentUrl);
 			httpHeaders.setLocation(
@@ -752,7 +837,7 @@ public class ChangeBeneficialService {
 
 			// ------------------user search end----------------//
 			TradeLicenseSearchCriteria tradeLicenseRequest = new TradeLicenseSearchCriteria();
-			tradeLicenseRequest.setApplicationNumber(applicationNumberLicense);
+			tradeLicenseRequest.setApplicationNumber(applicationNumber);
 			
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
 			
@@ -833,7 +918,7 @@ public class ChangeBeneficialService {
 						
 						ChangeBeneficial changeBeneficiaDetails=null;
 						try {
-							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
+							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
 							ChangeBeneficialRequest changeBeneficialRequest=new ChangeBeneficialRequest();
 							ChangeBeneficial changeBeneficialPayment=null;
 							String tranxId=transactionId.replaceFirst("[", "").replaceAll("]", "");
@@ -845,7 +930,7 @@ public class ChangeBeneficialService {
 										.applicationStatus(2)
 										.isFullPaymentDone(false)
 										.tranactionId(tranxId)
-										.tcpApplicationNumber(tcpApplicationNumber)
+										.applicationNumber(tcpApplicationNumber)
 										.diaryNumber(dairyNumber)
 										.build();
 							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
@@ -865,21 +950,10 @@ public class ChangeBeneficialService {
 							e.printStackTrace();
 						}
 						
-						/************************* Workflow start *****************************/
-					Map<String ,Object> workFlowRequests=new HashMap<>();
-					workFlowRequests.put("cbApplicationNumber",changeBeneficiaDetails.getCbApplicationNumber());
-					workFlowRequests.put("workflowCode",CHANGE_BENEFICIAL_WORKFLOWCODE);
-					workFlowRequests.put("workFlowRequestType","PERMENENT");
-					workFlowRequests.put("action","INITIATE");
-					workFlowRequests.put("comment","start process");
-					workFlowRequests.put("wfTenantId",WFTENANTID);
-					
-					String businessServiceFromMDMS="TL";
-					String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
-					List<Document> wfDocuments=new ArrayList<>();
-					workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), businessServiceFromMDMS, info, wfDocuments, Arrays.asList(assignees));
-					/************************* Workflow end *****************************/
-
+						List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, info));
+						TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,applicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,info);
+						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+						
 						// -----------------payment----------------------//
 						// ----------payment update--------//
 
@@ -893,7 +967,7 @@ public class ChangeBeneficialService {
 						log.info("paymentUpdate\t" + paymentUpdate);
 						// -------------------payment update end-----------//
 						paymentUrl = paymentHost + paymentSuccess + tradeLicense.getBusinessService() + "/"
-								+ applicationNumberLicense + "/" + tradeLicense.getTenantId();
+								+ applicationNumber + "/" + tradeLicense.getTenantId();
 						returnPaymentUrl = paymentUrl + "?" + params1;
 						log.info("returnPaymentUrl" + returnPaymentUrl);
 						httpHeaders.setLocation(
@@ -923,22 +997,28 @@ public class ChangeBeneficialService {
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 }
 	
-	
-	public TradeLicenseRequest prepareProcessInstanceRequest(String action,RequestInfo info,
-			String workflow, String applicationNumber) {
-		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
-		Map<String ,Object> workFlowRequests=new HashMap<>();
-		workFlowRequests.put("cbApplicationNumber",applicationNumber);
-		workFlowRequests.put("workflowCode",workflow);
-		workFlowRequests.put("workFlowRequestType","PERMENENT");
-		workFlowRequests.put("action",action);
-		workFlowRequests.put("comment","start process");
-		workFlowRequests.put("wfTenantId",WFTENANTID);
-		String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
+	private TradeLicenseRequest prepareProcessInstanceRequest(String tenantId, String businessService,String action,List<String> assignee,String applicationNumber,String workflowCode, RequestInfo requestInfo) {
 		List<Document> wfDocuments=new ArrayList<>();
-		workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), null, info, wfDocuments, Arrays.asList(assignees));
+		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+		TradeLicense tradeLicenseAS = new TradeLicense();
+		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
+		tradeLicenseAS.setBusinessService(businessService);
+		tradeLicenseAS.setAction(action);
+		tradeLicenseAS.setAssignee(assignee);
+		tradeLicenseAS.setApplicationNumber(applicationNumber);
+		tradeLicenseAS.setWorkflowCode(workflowCode);
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(businessService);
+		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicenseAS.setComment("This is workflow for Changebeneficial");
+		tradeLicenseAS.setWfDocuments(wfDocuments);
+		tradeLicenseAS.setTenantId(tenantId);
+		tradeLicenseAS.setBusinessService(businessService);
+
+		tradeLicenseASRequest.setRequestInfo(requestInfo);
+		tradeLicenseASlist.add(tradeLicenseAS);
+		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
 		return tradeLicenseASRequest;
 	}
-	
 	
 }
