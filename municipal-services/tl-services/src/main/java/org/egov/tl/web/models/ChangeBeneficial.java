@@ -94,28 +94,17 @@ public class ChangeBeneficial {
 	@JsonProperty("fiancialCapacityCertificate")
 	private String fiancialCapacityCertificate; 
 	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber; 
 	
-//	@JsonProperty("assignee")
-//	private List<String> assignee;
-//
-//	@JsonProperty("action")
-//	private String action;
-//
-//	@JsonProperty("tenantId")
-//	private String tenantId;
-//
-//	@JsonProperty("businessService")
-//	private String businessService;
-//
-//	@JsonProperty("comment")
-//	private String comment;
-
+	@JsonProperty("diaryNumber")
+	private String diaryNumber; 
+	
+	@JsonProperty("tranactionId")
+	private String tranactionId;
+	
 	@JsonProperty("workFlowCode")
 	private String workFlowCode = null;
-//
-//	@JsonProperty("wfDocuments")
-//	private List<Document> wfDocuments;
-	
 	
 
 }

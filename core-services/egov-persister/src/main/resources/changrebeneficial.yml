@@ -143,7 +143,7 @@ serviceMaps:
    fromTopic: update-payment-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=? where "application_number"=?
+      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=?, tcp_application_number=? where application_number=?
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -159,6 +159,15 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.isFullPaymentDone
            type: BOOLEAN
            
-         - jsonPath: changeBeneficial.*.applicationNumber
+         - jsonPath: changeBeneficial.*.tranactionId
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.tranactionId
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.diaryNumber
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.tcpApplicationNumber
            type: STRING
                       
