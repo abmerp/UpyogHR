@@ -233,10 +233,10 @@ public class ChangeBeneficialService {
 				    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(null).message("This license Number already taken and 2nd part payment is in pending").status(false).build();
 				}else {
-					createNewChangeBeneficial(beneficialRequest,tradeLicense,changeBeneficialResponse,licenseNumber);
+					changeBeneficialResponse = createNewChangeBeneficial(beneficialRequest,tradeLicense,changeBeneficialResponse,licenseNumber);
 				}
 	    	}else {
-	    		    createNewChangeBeneficial(beneficialRequest,tradeLicense,changeBeneficialResponse,licenseNumber);
+	    		changeBeneficialResponse = createNewChangeBeneficial(beneficialRequest,tradeLicense,changeBeneficialResponse,licenseNumber);
 	    	}	    	
 	    }
 	   return changeBeneficialResponse;
