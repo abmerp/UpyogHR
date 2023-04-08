@@ -10,73 +10,23 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransferOfLicence {
-	private String undertakingThirdParty;
-
-	private String colonizerSeeking;
-
-	private String consentLetter;
-
-	private String boardResolution;
-
-	private String objectionCertificate;
-
-	private String technicalFinancialCapacity;
-
-	private String undertakingBalance;
-
-	private String justificationRequest;
-
-	private String administrativeCharges;
-
-	private String statusRegarding;
-
-	private String registrationStatus;
-
-	private String otherDocument;
-
-	private String creationThirdParty;
-
-	private String colonizerSeekingTransfer;
-
-	private String consentLetterNewEntity;
-
-	private String boardResolutionSignatory;
-
-	private String statusRegistration;
-
-	private String documentOther;
-
-	private String thirdPartyLicensedArea;
-
-	private String newEntityChange;
-
-	private String authorizedSignatory;
-
-	private String noObjection;
-
-	private String documentsTechnicalFianncial;
-
-	private String undertakingPay;
-
-	private String justificationChange;
-
-	private String requestJustification;
-
-	private String administrativeChargesCases;
-
-	private String registrationRera;
-
-	private String document;
-
-	private String craetionLicensedArea;
-
-	private String justificationEntity;
-
-	private String resolutionBoardSignatory;
-
+	
+	private String selectType;
+	private String areaInAcres;
+	private String licenceTransferredFromLandOwn;
+	private String transferredTitleOfLand;
+	private String changeOfDeveloper;
+	private String amount;
+	private String affidavitForLicencedArea;
+	private String colonizerSeekingTransferLicence;
+	private String consentLetterDoc;
+	private String boardResolutionDoc;
+	private String noObjectionCertificate;
+	private String technicalAndFinancialCapacityDoc;
+	private String affidavitOfAdmCharges;
+	private String justificationForRequest;
+	private String affidavitFixedChargesForAdm;
+	private String thirdPartyCreationStatus;
 	private String registrationProjectRera;
 	private String anyOtherDoc;
-
-	private String formHorizontalRadios;
-	
 }

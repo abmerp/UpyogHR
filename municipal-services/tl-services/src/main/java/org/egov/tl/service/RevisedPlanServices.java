@@ -115,9 +115,7 @@ public class RevisedPlanServices {
 
 		revisedPlans.setAction(revisedPlanRequest.getRevisedPlan().get(0).getAction());
 		revisedPlans.setTenantId(revisedPlanRequest.getRevisedPlan().get(0).getTenantId());
-
 		revisedPlans.setLicenseNo(revisedPlanRequest.getRevisedPlan().get(0).getLicenseNo());
-
 		renewalList.add(revisedPlans);
 		for (RevisedPlan revisedPlan : renewalList) {
 

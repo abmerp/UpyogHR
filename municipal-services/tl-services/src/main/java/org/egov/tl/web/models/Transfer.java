@@ -53,7 +53,7 @@ public class Transfer {
 
 	@JsonProperty("wfDocuments")
 	private List<Document> wfDocuments;
-	@JsonProperty("transferOfLicence")
+	@JsonProperty("TransferOfLicence")
 	private TransferOfLicence transferOfLicence;
 
 }
