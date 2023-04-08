@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,"licenseNumber",audit_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         

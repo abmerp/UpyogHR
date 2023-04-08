@@ -248,7 +248,8 @@ public class ChangeBeneficialService {
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
-						AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), false);
+						Long time = System.currentTimeMillis();
+						AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), true);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 						changebeneficial.setAuditDetails(auditDetails);
@@ -271,7 +272,7 @@ public class ChangeBeneficialService {
 						return changebeneficial;
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
-			changeBeneficialRepo.save(beneficialRequest);
+//			changeBeneficialRepo.save(beneficialRequest);
 		    
 			String applicationNumber=tradeLicense.get(0).getApplicationNumber();
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
