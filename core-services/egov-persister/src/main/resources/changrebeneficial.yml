@@ -77,7 +77,8 @@ serviceMaps:
            type: STRING
          
          - jsonPath: changeBeneficial.*.auditDetails
-           type: STRING
+           type: JSON
+           dbType: JSONB
            
            
            
