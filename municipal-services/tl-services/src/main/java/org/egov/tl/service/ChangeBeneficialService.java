@@ -272,7 +272,7 @@ public class ChangeBeneficialService {
 						return changebeneficial;
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
-//			changeBeneficialRepo.save(beneficialRequest);
+			changeBeneficialRepo.save(beneficialRequest);
 		    
 			String applicationNumber=tradeLicense.get(0).getApplicationNumber();
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
