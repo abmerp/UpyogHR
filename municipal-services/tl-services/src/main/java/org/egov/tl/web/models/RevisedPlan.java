@@ -25,11 +25,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RevisedPlan implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RevisedPlan {
 	private String id;
 
 	private String licenseNo;
@@ -71,4 +67,8 @@ public class RevisedPlan implements Serializable {
     private JsonNode feesCharges;
     
     private JsonNode feesResult;
+    @JsonProperty("ReviseLayoutPlan")
+    private ReviseLayoutPlan ReviseLayoutPlan;
+  
+
 }

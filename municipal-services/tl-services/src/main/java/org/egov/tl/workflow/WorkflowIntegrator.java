@@ -125,6 +125,11 @@ public class WorkflowIntegrator {
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 						break;
 						
+					case businessService_TRANSFER:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+						break;
+						
 					case businessService_Revised:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);

@@ -18,58 +18,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
-@RequestMapping("/TransferOfLicenseRequest")
+@RequestMapping("/_TransferOfLicenseRequest")
 public class TransferOfLicenseController {
-	
+
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
-	@Autowired 
+	@Autowired
 	private TransferOfLicenseServices transferOfLicenseServices;
-	
+
 	@PostMapping("/_create")
-	public ResponseEntity<TransferOfLicenseResponse> create(@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) {
-		
-		Transfer transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
-		
-		List<Transfer> TransferList = new ArrayList<>();
-		TransferList.add(transfer);
-		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(TransferList).
-				responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(),true)).build();
-				
-	
-		return new ResponseEntity<>(transferOfLicenseResponse, HttpStatus.OK);
-	}
-	
-	@PostMapping("/_update")
-	public ResponseEntity<TransferOfLicenseResponse> update(
-			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) {
-		Transfer transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
-		List<Transfer> TransferList = new ArrayList<>();
-		
-		TransferList.add(transfer);
-		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder(). transfer(TransferList)
+	public ResponseEntity<TransferOfLicenseResponse> create(
+			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
+
+		List<Transfer> transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
+
+		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))
 				.build();
-		
+
 		return new ResponseEntity<>(transferOfLicenseResponse, HttpStatus.OK);
 	}
-	
-	@PostMapping("/_search")
-	public ResponseEntity<TransferOfLicenseResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,@RequestParam("licenseNo") Integer id) {
 
-		Transfer transfer = transferOfLicenseServices.search(id);
-		List<Transfer> TransferList = new ArrayList<>();
-		TransferList.add(transfer);
-		
-		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder(). transfer(TransferList)
+	@PostMapping("/_update")
+	public ResponseEntity<TransferOfLicenseResponse> update(
+			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) {
+		List<Transfer> transfer = transferOfLicenseServices.Update(transferOfLicenseRequest);
+
+		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
 				.responseInfo(responseInfoFactory
-						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))
 				.build();
-		
+
 		return new ResponseEntity<>(transferOfLicenseResponse, HttpStatus.OK);
 	}
 
+	@PostMapping("/_search")
+	public ResponseEntity<TransferOfLicenseResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
+			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
+
+		List<Transfer> transfer = transferOfLicenseServices.search(requestInfoWrapper.getRequestInfo(), licenceNumber,
+				applicationNumber);
+
+		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
+				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
+						true))
+				.build();
+
+		return new ResponseEntity<>(transferOfLicenseResponse, HttpStatus.OK);
+	}
 
 }

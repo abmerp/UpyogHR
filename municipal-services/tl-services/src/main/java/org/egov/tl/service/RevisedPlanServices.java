@@ -22,6 +22,7 @@ import org.egov.tl.repository.rowmapper.ApprovalStandardRowMapper;
 import org.egov.tl.repository.rowmapper.RevisedLayoutPlanRowMapper;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.ReviseLayoutPlan;
 import org.egov.tl.web.models.RevisedPlan;
 import org.egov.tl.web.models.RevisedPlanRequest;
 import org.egov.tl.web.models.ServicePlanContract;
@@ -29,6 +30,8 @@ import org.egov.tl.web.models.ServicePlanRequest;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.Transfer;
+import org.egov.tl.web.models.TransferOfLicence;
 import org.egov.tl.web.models.workflow.Action;
 import org.egov.tl.web.models.workflow.BusinessService;
 import org.egov.tl.web.models.workflow.State;
@@ -43,6 +46,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +57,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RevisedPlanServices {
 	@Value("${persister.create.revised.layout.plan.topic}")
 	private String revisedTopic;
-	
+
 	@Value("${persister.update.revised.layout.plan.topic}")
 	private String revisdUpdateTopic;
 
@@ -93,14 +98,27 @@ public class RevisedPlanServices {
 	@Autowired
 	ServicePlanService servicePlanService;
 
-	public List<RevisedPlan> create(RevisedPlanRequest revisedPlanRequest) {
+	public List<RevisedPlan> create(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
 
 		String uuid = revisedPlanRequest.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
-		List<RevisedPlan> renewalList = revisedPlanRequest.getRevisedPlan();
+		List<RevisedPlan> renewalList = new ArrayList<>();
+
+		ReviseLayoutPlan reviseLayoutPlan = revisedPlanRequest.getRevisedPlan().get(0).getReviseLayoutPlan();
+		RevisedPlan revisedPlans = new RevisedPlan();
+		String data = mapper.writeValueAsString(reviseLayoutPlan);
+		JsonNode jsonNode = mapper.readTree(data);
+		revisedPlans.setAdditionalDetails(jsonNode);
+
+		revisedPlans.setAction(revisedPlanRequest.getRevisedPlan().get(0).getAction());
+		revisedPlans.setTenantId(revisedPlanRequest.getRevisedPlan().get(0).getTenantId());
+
+		revisedPlans.setLicenseNo(revisedPlanRequest.getRevisedPlan().get(0).getLicenseNo());
+
+		renewalList.add(revisedPlans);
 		for (RevisedPlan revisedPlan : renewalList) {
 
 			List<String> applicationNumbers = null;
@@ -256,7 +274,6 @@ public class RevisedPlanServices {
 			}
 
 		}
-		
 
 		revisedPlanRequest.setRevisedPlan(revisedPlanList);
 

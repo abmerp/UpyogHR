@@ -244,7 +244,7 @@ public class ApprovalStandardService {
 
 				String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
 
-				approvalStandardEntity.setAssignee(Arrays.asList(servicePlanService.assignee("DTP_HQ",
+				approvalStandardEntity.setAssignee(Arrays.asList(servicePlanService.assignee("CAO",
 						approvalStandardEntity.getTenantId(), true, requestInfo)));
 
 				approvalStandardEntity.setAction(CITIZEN_UPDATE_ACTION);

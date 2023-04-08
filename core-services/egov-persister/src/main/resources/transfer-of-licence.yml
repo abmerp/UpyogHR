@@ -1,0 +1,79 @@
+serviceMaps:
+ serviceName: TransferOfLicence
+ mappings:
+ - version: 1.0
+   name: transfer-of-licence
+   description: transfer of licence
+   fromTopic: save-transfer-of-licence
+   isTransaction: true
+   queryMaps:
+    - query: INSERT INTO public.eg_transfer_of_licence_service (id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      basePath: Transfer.*
+      jsonMaps:
+
+       - jsonPath: $.Transfer.*.id
+
+       - jsonPath: $.Transfer.*.araeInAcres
+
+       - jsonPath: $.Transfer.*.licenseNo
+
+       - jsonPath: $.Transfer.*.applicationNumber
+
+       - jsonPath: $.Transfer.*.tenantId
+
+       - jsonPath: $.Transfer.*.action
+
+       - jsonPath: $.Transfer.*.businessService
+
+       - jsonPath: $.Transfer.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.Transfer.*.auditDetails.createdBy
+
+       - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.Transfer.*.auditDetails.createdTime
+
+       - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
+
+       - jsonPath: $.Transfer.*.status
+   
+ - version: 1.0
+   name: transfer-of-licence
+   description: transfer of licence
+   fromTopic: update-transfer-of-licence
+   isTransaction: true
+   queryMaps:
+    - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?, license_no=?, tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, transfer_of_licence=? WHERE application_number=? ;   
+      basePath: Transfer.*
+      jsonMaps:
+
+       - jsonPath: $.Transfer.*.id
+
+       - jsonPath: $.Transfer.*.araeInAcres
+
+       - jsonPath: $.Transfer.*.licenseNo
+
+       - jsonPath: $.Transfer.*.tenantId
+
+       - jsonPath: $.Transfer.*.action
+
+       - jsonPath: $.Transfer.*.businessService
+
+       - jsonPath: $.Transfer.*.additionalDetails
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.Transfer.*.auditDetails.createdBy
+
+       - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.Transfer.*.auditDetails.createdTime
+
+       - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
+
+       - jsonPath: $.Transfer.*.status       
+      
+       - jsonPath: $.Transfer.*.applicationNumber
+   

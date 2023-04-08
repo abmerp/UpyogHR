@@ -1,13 +1,11 @@
 package org.egov.tl.web.models;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,140 +16,44 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name="transfer")
-//@NamedQuery(name="Transfer.findAll", query="SELECT e FROM Transfer e")
-public class Transfer implements Serializable {
-	
-private static final long serialVersionUID = 1L;
-	
-	/*
-	 * @Id
-	 * 
-	 * @SequenceGenerator(name="ZONE_PLAN_ID_GENERATOR",
-	 * sequenceName="ZONE_PLAN_SEQ")
-	 * 
-	 * @GeneratedValue(strategy=GenerationType.SEQUENCE,
-	 * generator="ZONE_PLAN_ID_GENERATOR") private Integer id;
-	 */
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	
-	@Column(name="LicenseNo")
+public class Transfer {
+
+	private String id;
+
 	private String licenseNo;
 
-	@Column(name="SelectType")
 	private String selectType;
 
-	@Column(name="AraeInAcres")
 	private String araeInAcres;
 
-	@Column(name="UndertakingThirdParty")
-	private String undertakingThirdParty;
-	
-	@Column(name="ColonizerSeeking")
-	private String colonizerSeeking;
-	
-	@Column(name="ConsentLetter")
-	private String consentLetter;
+	private JsonNode additionalDetails = null;
+	@JsonProperty("auditDetails")
+	private AuditDetails auditDetails = null;
+	@JsonProperty("applicationNumber")
+	private String applicationNumber;
+	@JsonProperty("tenantId")
+	private String tenantId;
+	@JsonProperty("assignee")
+	private List<String> assignee;
 
-	@Column(name="BoardResolution")
-	private String boardResolution;
+	@JsonProperty("action")
+	private String action;
 
-	@Column(name="ObjectionCertificate")
-	private String objectionCertificate;
+	@JsonProperty("status")
+	private String status;
 
-	@Column(name="TechnicalFinancialCapacity")
-	private String technicalFinancialCapacity;
-	
-	@Column(name="UndertakingBalance")
-	private String undertakingBalance;
-	
-	@Column(name="JustificationRequest")
-	private String justificationRequest;
+	@JsonProperty("businessService")
+	private String businessService;
 
-	@Column(name="AdministrativeCharges")
-	private String administrativeCharges;
+	@JsonProperty("comment")
+	private String comment;
 
-	@Column(name="StatusRegarding")
-	private String statusRegarding;
+	@JsonProperty("workflowCode")
+	private String workflowCode = null;
 
-	@Column(name="RegistrationStatus")
-	private String registrationStatus;
-	
-	@Column(name="OtherDocument")
-	private String otherDocument;
-	
-	@Column(name="CreationThirdParty")
-	private String creationThirdParty;
-
-	@Column(name="ColonizerSeekingTransfer")
-	private String colonizerSeekingTransfer;
-
-	@Column(name="ConsentLetterNewEntity")
-	private String consentLetterNewEntity;
-
-	@Column(name="BoardResolutionSignatory")
-	private String boardResolutionSignatory;
-	
-	@Column(name="StatusRegistration")
-	private String statusRegistration;
-	
-	@Column(name="DocumentOther")
-	private String documentOther;
-
-	@Column(name="ThirdPartyLicensedArea")
-	private String thirdPartyLicensedArea;
-
-	@Column(name="NewEntityChange")
-	private String newEntityChange;
-
-	@Column(name="AuthorizedSignatory")
-	private String authorizedSignatory;
-	
-	@Column(name="NoObjection")
-	private String noObjection;
-	
-	@Column(name="DocumentsTechnicalFianncial")
-	private String documentsTechnicalFianncial;
-
-	@Column(name="UndertakingPay")
-	private String undertakingPay;
-
-	@Column(name="JustificationChange")
-	private String justificationChange;
-
-	@Column(name="RequestJustification")
-	private String requestJustification;
-	
-	@Column(name="AdministrativeChargesCases")
-	private String administrativeChargesCases;
-	
-	@Column(name="RegistrationRera")
-	private String registrationRera;
-	
-	@Column(name="Document")
-	private String document;
-
-	@Column(name="CraetionLicensedArea")
-	private String craetionLicensedArea;
-
-	@Column(name="JustificationEntity")
-	private String justificationEntity;
-
-	@Column(name="ResolutionBoardSignatory")
-	private String resolutionBoardSignatory;
-	
-	@Column(name="RegistrationProjectRera")
-	private String registrationProjectRera;
-	
-	@Column(name="AnyOtherDoc")
-	private String anyOtherDoc;
-	
-	@Column(name="FormHorizontalRadios")
-	private String formHorizontalRadios;
-
+	@JsonProperty("wfDocuments")
+	private List<Document> wfDocuments;
+	@JsonProperty("transferOfLicence")
+	private TransferOfLicence transferOfLicence;
 
 }

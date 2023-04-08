@@ -385,7 +385,7 @@ public class TLConfiguration {
 
 	@Value("${persister.changrebeneficial.update}")
 	private String updateChangreBeneficialTopic;
-	
+
 	@Value("${persister.changrebeneficial.updatePayment}")
 	private String updatePaymentChangreBeneficialTopic;
 
@@ -403,7 +403,12 @@ public class TLConfiguration {
 
 	@Value("${egov.idgen.tlRLP.applicationNum.name}")
 	private String revisedLayoutPlanName;
-	
+
 	@Value("${egov.idgen.tlRLP.applicationNum.format}")
 	private String revisedLayoutPlanFormat;
+
+	@Value("${egov.idgen.tlTRANSFER.applicationNum.name}")
+	private String transferName;
+	@Value("${egov.idgen.tlTRANSFER.applicationNum.format}")
+	private String transferFormat;
 }
