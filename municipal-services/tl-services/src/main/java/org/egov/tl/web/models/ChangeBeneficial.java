@@ -1,5 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,12 +31,12 @@ public class ChangeBeneficial {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
-	@JsonIgnore
+	@JsonProperty("licenseNumber")
+	private String licenseNumber;
+	
+	@JsonProperty("isDraft")
 	private String isDraft;  // 0-draft,1 -not draft
 	
-	@JsonIgnore
-	private String workFlowCode;
-
 	@JsonProperty("paymentType")
 	private int paymentType;  // 1-partial payment,2- full payment   //new 
 	
@@ -50,7 +52,7 @@ public class ChangeBeneficial {
 	@JsonProperty("areaInAcres")
 	private String areaInAcres;
 	
-	@JsonIgnore
+	@JsonProperty("totalChangeBeneficialCharge")
 	private String totalChangeBeneficialCharge;
 	
 	@JsonIgnore
@@ -92,6 +94,17 @@ public class ChangeBeneficial {
 	@JsonProperty("fiancialCapacityCertificate")
 	private String fiancialCapacityCertificate; 
 	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber; 
+	
+	@JsonProperty("diaryNumber")
+	private String diaryNumber; 
+	
+	@JsonProperty("tranactionId")
+	private String tranactionId;
+	
+	@JsonProperty("workFlowCode")
+	private String workFlowCode = null;
 	
 
 }

@@ -24,6 +24,7 @@ import javax.persistence.EntityManager;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.common.contract.request.User;
+import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.abm.repo.ChangeBeneficialRepo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.repository.IdGenRepository;
@@ -38,6 +39,7 @@ import org.egov.tl.web.models.Document;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.ResponseTransaction;
 import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.UserResponse;
@@ -45,6 +47,7 @@ import org.egov.tl.web.models.UserSearchCriteria;
 import org.egov.tl.web.models.Idgen.IdResponse;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
 import org.egov.tl.workflow.ChangeBeneficialWorkflowIntegrator;
+import org.egov.tl.workflow.WorkflowIntegrator;
 import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -72,7 +75,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ChangeBeneficialService {
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CBIWF";
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL_OR_TOL";
 	private static final String WFTENANTID = "hr";
 
 	
@@ -164,6 +167,9 @@ public class ChangeBeneficialService {
 	
 	@Value("${egov.bill.gen.endpoint}")
 	private String fetchBillEndpoint;
+	
+	@Autowired
+	private WorkflowIntegrator wfIntegrator;
 	   
 		
 	String  licenseFee = "0.0";
@@ -180,7 +186,7 @@ public class ChangeBeneficialService {
 		if(applicationNumberCheck) {
 			List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByApplicationNo(applicationNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 			if(changeBeneficialCheck!=null) {
-				    
+				beneficialRequest.getChangeBeneficial().get(0).setApplicationNumber(applicationNumber);
 					if(changeBeneficialCheck.getApplicationStatus()==1) {
 						List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 								.stream().map(changebeneficial -> {
@@ -240,10 +246,12 @@ public class ChangeBeneficialService {
 		  RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
+						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						changebeneficial.setDeveloperId(requestInfo.getUserInfo().getId());
 						changebeneficial.setCbApplicationNumber(getGenIds(WFTENANTID, requestInfo, businessService_TL, 1));
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
-						changebeneficial.setTotalChangeBeneficialCharge(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges().toString());
+						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
+						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -263,6 +271,7 @@ public class ChangeBeneficialService {
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			changeBeneficialRepo.save(beneficialRequest);
+				
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
 			}
@@ -484,7 +493,7 @@ public class ChangeBeneficialService {
 					 }catch (Exception e) {
 						 log.error("Exception :--"+e.getMessage());
 						 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-									.requestInfo(null).message("You have already created Transaction").status(false).build();
+									.requestInfo(null).message("You have already created Transaction and Transaction failed, Now try by next day").status(false).build();
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -569,7 +578,7 @@ public class ChangeBeneficialService {
 		transaction.put("cityName", "haryana");
 		transaction.put("module", "TL");
 		transaction.put("billId", billId);
-		transaction.put("consumerCode", applicationNumberLicense+","+changeBeneficiaDetails.getApplicationNumber());
+		transaction.put("consumerCode", applicationNumberLicense+"_"+changeBeneficiaDetails.getApplicationNumber());
 		transaction.put("productInfo", "Change Beneficial Payment");
 		transaction.put("gateway", "NIC");
 		transaction.put("callbackUrl", callbackUrl);
@@ -603,7 +612,9 @@ public class ChangeBeneficialService {
 	}
 	
 	public ResponseEntity<Object> postTransactionDeatil(MultiValueMap<String, String> requestParam) {
-			
+		
+		System.out.println("TranactionData : "+requestParam);
+		
 		String dairyNumber="";
 		String tcpApplicationNumber="";
 		String caseNumber="";
@@ -620,7 +631,8 @@ public class ChangeBeneficialService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String date = formatter.format(localDateTime);
-		
+		System.out.println("transactionId: "+transactionId);
+		System.out.println("amount: "+amount);
 		String saveTransaction;
 		String returnURL = "";
 		RequestInfo info = new RequestInfo();
@@ -656,12 +668,12 @@ public class ChangeBeneficialService {
 
 		log.info("transaction" + transaction);
 		String txnId = transaction.getTransaction().get(0).getTxnId();
-		String applicationNumberLicense = transaction.getTransaction().get(0).getConsumerCode().split(",")[0];
-		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split(",")[1];
+		String applicationNumberLicense = transaction.getTransaction().get(0).getConsumerCode().split("_")[0];
+		String applicationNumber = transaction.getTransaction().get(0).getConsumerCode().split("_")[1];
 		String uuid = transaction.getTransaction().get(0).getUser().getUuid();
 		String tennatId = transaction.getTransaction().get(0).getUser().getTenantId();
 		String userName = transaction.getTransaction().get(0).getUser().getUserName();
-
+		
 		String paymentUrl;
 		String returnPaymentUrl;
 		MultiValueMap<String, String> params1 = new LinkedMultiValueMap<>();
@@ -743,13 +755,6 @@ public class ChangeBeneficialService {
 			tradeLicenseRequest.setApplicationNumber(applicationNumberLicense);
 			
 			List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseRequest, info);
-//			ChangeBeneficial changeBeneficial=null;
-//		    try {
-//		    	changeBeneficial=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
-//			} catch (Exception e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
 			
 			for (TradeLicense tradeLicense : tradeLicenses) {
 
@@ -803,28 +808,7 @@ public class ChangeBeneficialService {
 						mapDNo.put("UserLoginId", "39");
 						dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 								.toString();
-						tradeLicense.setTcpDairyNumber(dairyNumber);
 
-						/****************
-						 * End Here
-						 ***********/
-						// case number
-						Map<String, Object> mapCNO = new HashMap<String, Object>();
-						mapCNO.put("DiaryNo", dairyNumber);
-						mapCNO.put("DiaryDate", date);
-						mapCNO.put("DeveloperId", "2");
-						mapCNO.put("PurposeId", purposeId);
-						mapCNO.put("StartDate", date);
-						mapCNO.put("DistrictCode",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-						mapCNO.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
-						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
-						mapCNO.put("UserId", "2");
-						mapCNO.put("UserLoginId", "39");
-						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
-								.toString();
-						tradeLicense.setTcpCaseNumber(caseNumber);
 
 						/****************
 						 * End Here
@@ -845,56 +829,6 @@ public class ChangeBeneficialService {
 						mapANo.put("UserLoginId", "39");
 						tcpApplicationNumber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 								.get("Value").toString();
-						tradeLicense.setTcpApplicationNumber(tcpApplicationNumber);
-
-						/****************
-						 * End Here
-						 ***********/
-						/****************
-						 * starttransaction data
-						 ********/
-//						Map<String, Object> map3 = new HashMap<String, Object>();
-//						map3.put("UserName", userName);
-//						map3.put("EmailId", email);
-//						map3.put("MobNo", mobNo);
-//						map3.put("TxnNo", grn);
-//						map3.put("TxnAmount", newobj.getFeesAndCharges().getPayableNow());
-//						map3.put("NameofOwner",
-//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
-//						map3.put("LicenceFeeNla", newobj.getFeesAndCharges().getLicenseFee());
-//						map3.put("ScrutinyFeeNla", newobj.getFeesAndCharges().getScrutinyFee());
-//						map3.put("UserId", "2");
-//						map3.put("UserLoginId", "39");
-//						map3.put("TpUserId", userId);
-//						map3.put("PaymentMode", paymentType);
-//						map3.put("PayAgreegator", bankcode);
-//						map3.put("LcApplicantName", userName);
-//						map3.put("LcPurpose", newobj.getApplicantPurpose().getPurpose());
-//						map3.put("LcDevelopmentPlan",
-//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDevelopmentPlan());
-//						map3.put("LcDistrict",
-//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-//						saveTransaction = thirPartyAPiCall.saveTransactionData(map3, authtoken).getBody().get("Value")
-//								.toString();
-//						tradeLicense.setTcpSaveTransactionNumber(saveTransaction);
-//
-//						/****************
-//						 * End Here
-//						 ***********/
-//
-//						tradeLicense.setAction("PAID");
-//						tradeLicense.setWorkflowCode("NewTL");
-//						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-//						tradeLicense.setAssignee(Arrays
-//								.asList(servicePlanService.assignee("CTP_HR", tradeLicense.getTenantId(), true, info)));
-//
-//						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
-//
-//						tradeLicenseRequests.addLicensesItem(tradeLicense);
-//						tradeLicenseRequests.setRequestInfo(info);
-//						
-//						tradeLicenseService.update(tradeLicenseRequests, "TL");
-						
 						
 						
 						ChangeBeneficial changeBeneficiaDetails=null;
@@ -902,21 +836,27 @@ public class ChangeBeneficialService {
 							changeBeneficiaDetails=changeBeneficialRepo.getBeneficialByApplicationNumber(applicationNumber);
 							ChangeBeneficialRequest changeBeneficialRequest=new ChangeBeneficialRequest();
 							ChangeBeneficial changeBeneficialPayment=null;
+							String tranxId=transactionId.replaceFirst("[", "").replaceAll("]", "");
+							String amt=requestParam.get("amount").toString().replaceFirst("[", "").replaceAll("]", "");
 							if(changeBeneficiaDetails.getApplicationStatus()==1) {
 								changeBeneficialPayment=ChangeBeneficial.builder()
-										.paidAmount(String.valueOf(requestParam.get("amount")))
+										.paidAmount(amt)
 										.isDraft("0")
 										.applicationStatus(2)
 										.isFullPaymentDone(false)
+										.tranactionId(tranxId)
+										.tcpApplicationNumber(tcpApplicationNumber)
+										.diaryNumber(dairyNumber)
 										.build();
 							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
 								changeBeneficialPayment=ChangeBeneficial.builder()
-										.paidAmount(String.valueOf(requestParam.get("amount")))
+										.paidAmount(changeBeneficiaDetails.getPaidAmount()+","+amt)
+										.tranactionId(changeBeneficiaDetails.getTranactionId()+","+tranxId)
 										.isDraft("0")
 										.applicationStatus(3)
 										.isFullPaymentDone(true)
 										.build();
-							}
+							 }
 							
 							changeBeneficialRequest.setChangeBeneficial(Arrays.asList(changeBeneficialPayment));
 							changeBeneficialRepo.updatePaymentDetails(changeBeneficialRequest);
@@ -982,4 +922,23 @@ public class ChangeBeneficialService {
 				.build().encode().toUri());
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 }
+	
+	
+	public TradeLicenseRequest prepareProcessInstanceRequest(String action,RequestInfo info,
+			String workflow, String applicationNumber) {
+		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+		Map<String ,Object> workFlowRequests=new HashMap<>();
+		workFlowRequests.put("cbApplicationNumber",applicationNumber);
+		workFlowRequests.put("workflowCode",workflow);
+		workFlowRequests.put("workFlowRequestType","PERMENENT");
+		workFlowRequests.put("action",action);
+		workFlowRequests.put("comment","start process");
+		workFlowRequests.put("wfTenantId",WFTENANTID);
+		String assignees=servicePlanService.assignee("CTP_HR", WFTENANTID, true, info);
+		List<Document> wfDocuments=new ArrayList<>();
+		workflowIntegrator.callWorkFlow(Arrays.asList(workFlowRequests), null, info, wfDocuments, Arrays.asList(assignees));
+		return tradeLicenseASRequest;
+	}
+	
+	
 }
