@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity",application_number,"shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",cb_application_number,is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -43,9 +43,6 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.boardResolutionNewEntity
            type: STRING
            
-         - jsonPath: changeBeneficial.*.applicationNumber
-           type: STRING
-           
          - jsonPath: changeBeneficial.*.shareholdingPatternCertificate
            type: STRING
            
@@ -53,9 +50,6 @@ serviceMaps:
            type: STRING
            
          - jsonPath: changeBeneficial.*.fiancialCapacityCertificate
-           type: STRING
-           
-         - jsonPath: changeBeneficial.*.cbApplicationNumber
            type: STRING
            
          - jsonPath: changeBeneficial.*.isDraft
@@ -87,7 +81,7 @@ serviceMaps:
    fromTopic: update-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=?, is_full_payment_done=?, application_status=? where "application_number"=?
+      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where license_number=? and application_status=1 order by created_at desc limit 1
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -132,14 +126,8 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.isDraft
            type: STRING
-         
-         - jsonPath: changeBeneficial.*.isFullPaymentDone
-           type: BOOLEAN
            
-         - jsonPath: changeBeneficial.*.applicationStatus
-           type: INTEGER
-           
-         - jsonPath: changeBeneficial.*.applicationNumber
+         - jsonPath: changeBeneficial.*.licenseNumber
            type: STRING
            
  - version: 1.0
@@ -147,7 +135,7 @@ serviceMaps:
    fromTopic: update-payment-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=?, tcp_application_number=? where application_number=?
+      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=?, tcp_application_number=?, application_number=? where license_number=? and application_status IN(2,3) order by created_at desc limit 1
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -173,5 +161,8 @@ serviceMaps:
            type: STRING
            
          - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.licenseNumber
            type: STRING
                       
