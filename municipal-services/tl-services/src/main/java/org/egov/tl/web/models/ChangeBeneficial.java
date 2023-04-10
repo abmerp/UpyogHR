@@ -103,4 +103,7 @@ public class ChangeBeneficial {
 	@JsonProperty("auditDetails")
 	AuditDetails auditDetails=null;
 	
+	@JsonProperty("createdTime")
+	private long createdTime;
+	
 }

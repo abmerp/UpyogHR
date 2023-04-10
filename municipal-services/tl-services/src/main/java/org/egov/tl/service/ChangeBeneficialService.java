@@ -252,7 +252,7 @@ public class ChangeBeneficialService {
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 						changebeneficial.setAuditDetails(auditDetails);
-						
+						changebeneficial.setCreatedTime(time);
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -354,7 +354,7 @@ public class ChangeBeneficialService {
 	
 	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber,String licenseNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		ChangeBeneficial changeBeneficiaDetails = null;
+		List<ChangeBeneficial> changeBeneficiaDetails = null;
 		
 		if(applicationNumber==null&&licenseNumber==null) {
 			  changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
@@ -362,9 +362,9 @@ public class ChangeBeneficialService {
 		}else {
 			try {
 				if(applicationNumber==null) {
-					changeBeneficiaDetails=changeBeneficialRepo.searcherBeneficialDetailsByLicenceNumber(licenseNumber);
+					changeBeneficiaDetails=changeBeneficialRepo.searcherBeneficialDetailsByLicenceNumberList(licenseNumber);
 				}else {
-					changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumber(applicationNumber);
+					changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumberList(applicationNumber);
 				}
 				
 			} catch (Exception e1) {
@@ -372,7 +372,7 @@ public class ChangeBeneficialService {
 			}
 		}
 		if(changeBeneficiaDetails!=null) {
-		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(changeBeneficiaDetails))
+		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(changeBeneficiaDetails)
 				.requestInfo(requestInfo).message("Fetched success").status(true).build();
 		}else {
 		    changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
@@ -505,7 +505,7 @@ public class ChangeBeneficialService {
 						.changeBeneficial(null).requestInfo(null).message("licence fees is null of this Application").status(false).build();
 		    }else {
 		    	ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
-		    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(changeBeneficialCheck))
+		    	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
 						.requestInfo(requestInfo).message("Your demand and bill has been refresh successfully").status(true).build();
 		    	if(changeBeneficialCheck==null) {
 		    		changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)

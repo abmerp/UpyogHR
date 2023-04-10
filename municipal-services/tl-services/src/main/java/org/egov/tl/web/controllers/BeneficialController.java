@@ -1,24 +1,19 @@
 package org.egov.tl.web.controllers;
 
-import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.service.ChangeBeneficialService;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.ChangeBeneficialResponse;
 import org.egov.tl.web.models.RequestInfoWrapper;
-import org.egov.tl.web.models.TradeLicenseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/beneficial/")
@@ -29,7 +24,6 @@ public class BeneficialController {
 	
 	@PostMapping("_create")
 	public ResponseEntity<ChangeBeneficialResponse> changeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest){
-//		changeBeneficialService.getLicenseByApplication
          ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
@@ -42,7 +36,7 @@ public class BeneficialController {
 	}
 	@PostMapping("_get")
 	public ResponseEntity<ChangeBeneficialResponse> getBeneficial(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
+			@RequestParam(value = "licenseNumber", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber
 			) {
 		ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.getChangeBeneficial(requestInfoWrapper.getRequestInfo(),applicationNumber,licenceNumber);   

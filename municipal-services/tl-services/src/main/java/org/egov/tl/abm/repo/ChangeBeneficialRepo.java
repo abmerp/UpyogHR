@@ -285,7 +285,30 @@ public class ChangeBeneficialRepo {
 	
 	private ChangeBeneficial formateChangeBeneficialData(String query){
 		ChangeBeneficial cahngeBeneficial=null;
-		
+		try {
+			List<ChangeBeneficial> changeBeneficial=getChangeBeneficialList(query);
+			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
+					cahngeBeneficial=changeBeneficial.get(0);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cahngeBeneficial;
+	}
+	
+	public List<ChangeBeneficial> searcherBeneficialDetailsByLicenceNumberList(String licenseNumber){
+		String query=querybyLicenseNumber.replace(":licenseNumber", "'"+licenseNumber+"'");
+		return getChangeBeneficialList(query);
+	}
+	
+	public List<ChangeBeneficial> getBeneficialDetailsByApplicationNumberList(String applicationNumber){
+		String query=getUpdateBeneficialId.replace(":applicationNumber", "'"+applicationNumber+"'");
+		return getChangeBeneficialList(query);
+	}
+	
+	
+	private List<ChangeBeneficial> getChangeBeneficialList(String query){
+		List<ChangeBeneficial> cahngeBeneficialList=null;
 		try {
 			List<Object> preparedStmtList = new ArrayList<>();
 			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->{
@@ -331,12 +354,12 @@ public class ChangeBeneficialRepo {
 					
 			});
 			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
-				cahngeBeneficial=changeBeneficial.get(0);
+				cahngeBeneficialList=changeBeneficial;
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return cahngeBeneficial;
+		return cahngeBeneficialList;
 	}
 	
 //	
