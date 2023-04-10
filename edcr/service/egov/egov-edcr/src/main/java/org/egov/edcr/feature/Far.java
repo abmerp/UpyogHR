@@ -987,6 +987,7 @@ public class Far extends FeatureProcess {
                 pl.getFarDetails().setPermissableFar(THREE_POINTFIVE.doubleValue());
                 expectedResult = "<= 3.5";
             }
+        	}
 
             //*** Implemementayion for FAR as per Haryana 
             
@@ -1027,8 +1028,7 @@ public class Far extends FeatureProcess {
 	            	pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
 	            	expectedResult = "<= 1.75";
 	            }
-
-            }
+             }
 
             if (typeOfArea.equalsIgnoreCase(NEW)) {
             	
@@ -1049,7 +1049,7 @@ public class Far extends FeatureProcess {
             		pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
             		expectedResult = "<= 1.75";
             	}
-            	
+               }
             	
 				/*
 				 * if(pl.getPlot().getArea().compareTo(HUNDRED)>0 &&
@@ -1075,15 +1075,14 @@ public class Far extends FeatureProcess {
 				 * far.compareTo(ONE) <= 0;
 				 * pl.getFarDetails().setPermissableFar(ONE.doubleValue()); expectedResult =
 				 * "<= 1"; }
-				 */            }
+				 */            
+            	
 
         String occupancyName = occupancyType.getType().getName();
         if (errors.isEmpty() && StringUtils.isNotBlank(expectedResult)) {
             buildResult(pl, occupancyName, far, typeOfArea, roadWidth, expectedResult, isAccepted);
         }
     }
-        
-  }
     
     private void processFarNonResidential(Plan pl, OccupancyTypeHelper occupancyType, BigDecimal far, String typeOfArea,
             BigDecimal roadWidth, HashMap<String, String> errors) {
