@@ -1,12 +1,14 @@
 package org.egov.tl.abm.repo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.TradeLicense;
@@ -16,7 +18,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,8 +31,8 @@ public class ChangeBeneficialRepo {
 	@Autowired
 	private Producer producer;
 	
-//	@Autowired
-//	private ObjectMapper mapper;
+	@Autowired
+	private ObjectMapper mapper;
 //	
 //	@Autowired
 //	private EntityManager entityManager;
@@ -281,29 +285,51 @@ public class ChangeBeneficialRepo {
 	
 	private ChangeBeneficial formateChangeBeneficialData(String query){
 		ChangeBeneficial cahngeBeneficial=null;
+		
 		try {
 			List<Object> preparedStmtList = new ArrayList<>();
-			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()
+			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->{
+				AuditDetails auditDetails=null;
+				try {
+					AuditDetails audit_details = new Gson().fromJson(
+							rs.getString("audit_details").equals("{}") || rs.getString("audit_details").equals("null")
+									? null
+									: rs.getString("audit_details"),
+									AuditDetails.class);
+					System.out.println(audit_details);
+					auditDetails=audit_details;
+				}catch (Exception e) {
+				   e.printStackTrace();
+				}
+				
+				return ChangeBeneficial.builder()
 					.id(rs.getString("id").toString())
-					.developerServiceCode(rs.getString("developerServiceCode").toString())
-					.cbApplicationNumber(rs.getString("cb_application_number").toString())
-					.paidAmount(rs.getString("paid_amount")!=null?rs.getString("paid_amount").toString():"0.0")
-					.areaInAcres(rs.getString("areaInAcres").toString())
-					.noObjectionCertificate(rs.getString("noObjectionCertificate").toString())
-					.consentLetter(rs.getString("consentLetter").toString())
-					.justificationCertificate(rs.getString("justificationCertificate").toString())
-					.thirdPartyRightsCertificate(rs.getString("thirdPartyRightsCertificate").toString())
-					.jointDevelopmentCertificate(rs.getString("jointDevelopmentCertificate").toString())
-					.aministrativeChargeCertificate(rs.getString("aministrativeChargeCertificate").toString())
-					.boardResolutionExisting(rs.getString("boardResolutionExisting").toString())
-					.boardResolutionNewEntity(rs.getString("boardResolutionNewEntity").toString())
-					.shareholdingPatternCertificate(rs.getString("shareholdingPatternCertificate").toString())
-					.reraRegistrationCertificate(rs.getString("reraRegistrationCertificate").toString())
-					.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate").toString())
+					.developerServiceCode(rs.getString("developerServiceCode"))
+					.paidAmount(rs.getString("paid_amount")!=null?rs.getString("paid_amount"):"0.0")
+					.areaInAcres(rs.getString("areaInAcres"))
+					.noObjectionCertificate(rs.getString("noObjectionCertificate"))
+					.consentLetter(rs.getString("consentLetter"))
+					.justificationCertificate(rs.getString("justificationCertificate"))
+					.thirdPartyRightsCertificate(rs.getString("thirdPartyRightsCertificate"))
+					.jointDevelopmentCertificate(rs.getString("jointDevelopmentCertificate"))
+					.aministrativeChargeCertificate(rs.getString("aministrativeChargeCertificate"))
+					.boardResolutionExisting(rs.getString("boardResolutionExisting"))
+					.boardResolutionNewEntity(rs.getString("boardResolutionNewEntity"))
+					.shareholdingPatternCertificate(rs.getString("shareholdingPatternCertificate"))
+					.reraRegistrationCertificate(rs.getString("reraRegistrationCertificate"))
+					.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate"))
 					.applicationStatus(rs.getInt("application_status"))
 					.applicationNumber(rs.getString("application_number"))
-					.createdDate(rs.getString("created_at").toString())
-					.build());
+					.workFlowCode(rs.getString("workflowcode"))
+					.diaryNumber(rs.getString("diary_number"))
+					.auditDetails(auditDetails)
+					.isDraft(rs.getString("is_draft"))
+					.tranactionId(rs.getString("transaction_id"))
+					.licenseNumber(rs.getString("license_number"))
+					.createdDate(rs.getString("created_at"))
+					.build();
+					
+			});
 			if(changeBeneficial!=null&&!changeBeneficial.isEmpty()) {
 				cahngeBeneficial=changeBeneficial.get(0);
 			}

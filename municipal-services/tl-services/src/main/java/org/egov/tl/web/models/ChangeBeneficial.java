@@ -22,9 +22,6 @@ public class ChangeBeneficial {
 	@JsonIgnore
 	private String id;
 	
-	@JsonProperty("cbApplicationNumber")
-	private String cbApplicationNumber;
-
 	@JsonProperty("developerServiceCode")
 	private String developerServiceCode;
 	
@@ -55,7 +52,7 @@ public class ChangeBeneficial {
 	@JsonProperty("totalChangeBeneficialCharge")
 	private String totalChangeBeneficialCharge;
 	
-	@JsonIgnore
+	@JsonProperty("developerId")
 	private long developerId;
 	
 	@JsonProperty("createdDate")
@@ -92,10 +89,7 @@ public class ChangeBeneficial {
 	private String reraRegistrationCertificate; 
 	
 	@JsonProperty("fiancialCapacityCertificate")
-	private String fiancialCapacityCertificate; 
-	
-	@JsonProperty("tcpApplicationNumber")
-	private String tcpApplicationNumber; 
+	private String fiancialCapacityCertificate;
 	
 	@JsonProperty("diaryNumber")
 	private String diaryNumber; 

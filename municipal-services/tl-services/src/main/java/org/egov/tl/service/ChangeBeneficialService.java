@@ -200,7 +200,6 @@ public class ChangeBeneficialService {
 	    			
 	    			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 							.stream().map(changebeneficial -> {
-								changebeneficial.setCbApplicationNumber(changeBeneficialCheck.getCbApplicationNumber());
 								changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 								if(changebeneficial.getIsDraft()==null) {
 									changebeneficial.setIsDraft("0");	
