@@ -109,8 +109,8 @@ public class ApprovalStandardService {
 			List<ApprovalStandardEntity> searchApprovalPlan = searchApprovalStandard(requestInfo,
 					approvalStandardRequest.getLicenseNo(), approvalStandardRequest.getApplicationNumber());
 			if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
-				throw new CustomException("Already Found  or multiple Service plan applications with LoiNumber.",
-						"Already Found or multiple Service plan applications with LoiNumber.");
+				throw new CustomException("Already Found  or multiple approval of standard design applications with LoiNumber.",
+						"Already Found or multiple approval of standard design applications with LoiNumber.");
 			}
 
 			approvalStandardRequest.setId(UUID.randomUUID().toString());
@@ -199,8 +199,8 @@ public class ApprovalStandardService {
 
 			if (Objects.isNull(approvalStandardContract)
 					|| Objects.isNull(approvalStandardContract.getApprovalStandardRequest())) {
-				throw new CustomException("ServicePlanContract must not be null",
-						"ServicePlanContract must not be null");
+				throw new CustomException("approval of standard design must not be null",
+						"approval of standard design must not be null");
 			}
 
 			if (StringUtils.isEmpty(approvalStandardEntity.getApplicationNumber())) {
@@ -210,8 +210,8 @@ public class ApprovalStandardService {
 			List<ApprovalStandardEntity> approvalStandardEntitySearch = searchApprovalStandard(requestInfo,
 					approvalStandardEntity.getLicenseNo(), approvalStandardEntity.getApplicationNumber());
 			if (CollectionUtils.isEmpty(approvalStandardEntitySearch) || approvalStandardEntitySearch.size() > 1) {
-				throw new CustomException("Found none or multiple service plan applications with applicationNumber.",
-						"Found none or multiple service plan applications with applicationNumber.");
+				throw new CustomException("Found none or multiple approval of standard design applications with applicationNumber.",
+						"Found none or multiple approval of standard design applications with applicationNumber.");
 			}
 
 			approvalStandardEntity.setBusinessService(approvalStandardEntity.getBusinessService());

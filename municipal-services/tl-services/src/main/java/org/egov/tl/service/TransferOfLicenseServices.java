@@ -125,8 +125,8 @@ public class TransferOfLicenseServices {
 			List<Transfer> transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
 					transferRequest.getApplicationNumber());
 			if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
-				throw new CustomException("Already Found  or multiple Service plan applications with LoiNumber.",
-						"Already Found or multiple Service plan applications with LoiNumber.");
+				throw new CustomException("Already Found  or multiple transfer of licence applications with LoiNumber.",
+						"Already Found or multiple transfer of licence applications with LoiNumber.");
 			}
 
 			transferRequest.setId(UUID.randomUUID().toString());
@@ -202,8 +202,8 @@ public class TransferOfLicenseServices {
 
 			if (Objects.isNull(transferOfLicenseRequest)
 					|| Objects.isNull(transferOfLicenseRequest.getTransfer())) {
-				throw new CustomException("ServicePlanContract must not be null",
-						"ServicePlanContract must not be null");
+				throw new CustomException("transfer of licence must not be null",
+						"transfer of licence must not be null");
 			}
 
 			if (StringUtils.isEmpty(transfer.getApplicationNumber())) {
@@ -213,8 +213,8 @@ public class TransferOfLicenseServices {
 			List<Transfer> transferSearch = search(requestInfo,
 					transfer.getLicenseNo(), transfer.getApplicationNumber());
 			if (CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
-				throw new CustomException("Found none or multiple service plan applications with applicationNumber.",
-						"Found none or multiple service plan applications with applicationNumber.");
+				throw new CustomException("Found none or multiple transfer of licence applications with applicationNumber.",
+						"Found none or multiple transfer of licence applications with applicationNumber.");
 			}
 
 			transfer.setBusinessService(transfer.getBusinessService());

@@ -124,8 +124,8 @@ public class RevisedPlanServices {
 			List<RevisedPlan> searchApprovalPlan = search(requestInfo, revisedPlan.getLicenseNo(),
 					revisedPlan.getApplicationNumber());
 			if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
-				throw new CustomException("Already Found  or multiple Service plan applications with LoiNumber.",
-						"Already Found or multiple Service plan applications with LoiNumber.");
+				throw new CustomException("Already Found  or multiple revised layout plan applications with LoiNumber.",
+						"Already Found or multiple revised layout plan applications with LoiNumber.");
 			}
 
 			revisedPlan.setId(UUID.randomUUID().toString());
@@ -205,8 +205,8 @@ public class RevisedPlanServices {
 		for (RevisedPlan revisedPlan : revisedPlanList) {
 
 			if (Objects.isNull(revisedPlanRequest) || Objects.isNull(revisedPlanRequest.getRevisedPlan())) {
-				throw new CustomException("ServicePlanContract must not be null",
-						"ServicePlanContract must not be null");
+				throw new CustomException("revised layout plan must not be null",
+						"revised layout plan must not be null");
 			}
 
 			if (StringUtils.isEmpty(revisedPlan.getApplicationNumber())) {
