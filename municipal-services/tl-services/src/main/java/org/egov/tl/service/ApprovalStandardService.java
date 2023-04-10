@@ -57,7 +57,7 @@ public class ApprovalStandardService {
 
 	private static final String businessService_AS = "APPROVAL_OF_STANDARD";
 
-	private static final String SENDBACK_STATUS = "AS_SENDBACK_TO_APPLICANT";
+	private static final String SENDBACK_STATUS = "SENDBACK_TO_APPLICANT";
 
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 	@Autowired

@@ -411,4 +411,9 @@ public class TLConfiguration {
 	private String transferName;
 	@Value("${egov.idgen.tlTRANSFER.applicationNum.format}")
 	private String transferFormat;
+
+	@Value("${egov.idgen.tlSOL.applicationNum.name}")
+	private String surrenderName;
+	@Value("${egov.idgen.tlSOL.applicationNum.format}")
+	private String surrenderFormat;
 }
