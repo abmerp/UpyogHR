@@ -59,7 +59,7 @@ public class WorkflowIntegrator {
 	
 	private static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL_OR_TOL";
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
 
 	private static final String BPAMODULENAMEVALUE = "BPAREG";
 

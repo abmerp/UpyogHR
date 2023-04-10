@@ -78,7 +78,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ChangeBeneficialService {
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL_OR_TOL";
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
 	private static final String WFTENANTID = "hr";
 
 	
