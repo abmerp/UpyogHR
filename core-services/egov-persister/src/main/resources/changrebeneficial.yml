@@ -81,7 +81,7 @@ serviceMaps:
    fromTopic: update-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where license_number=? and application_status=1 order by created_at desc limit 1
+      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where license_number=? and application_status=1
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -135,7 +135,7 @@ serviceMaps:
    fromTopic: update-payment-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=?, tcp_application_number=?, application_number=? where license_number=? and application_status IN(2,3) order by created_at desc limit 1
+      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=?, tcp_application_number=?, application_number=? where license_number=? and application_status IN(2,3)
        
         basePath: changeBeneficial.*
         jsonMaps:       
