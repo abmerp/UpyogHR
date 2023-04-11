@@ -282,10 +282,10 @@ public class ChangeBeneficialService {
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
 			}
-			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo));
-			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,cbApplicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,requestInfo);
-			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-		
+//			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo));
+//			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,cbApplicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,requestInfo);
+//			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+//		
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
 		return changeBeneficialResponse;
