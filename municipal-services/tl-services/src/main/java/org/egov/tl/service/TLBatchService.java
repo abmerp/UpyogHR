@@ -106,7 +106,7 @@ public class TLBatchService {
 
         				log.info("current Offset: "+offSet);
 
-        				List<TradeLicense> licensesFromRepository = repository.getLicenses(criteria);
+        				List<TradeLicense> licensesFromRepository = repository.getLicenses(criteria,requestInfo);
         				if(CollectionUtils.isEmpty(licensesFromRepository)) 
         					break;
 

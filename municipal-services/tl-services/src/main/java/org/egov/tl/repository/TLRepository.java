@@ -51,17 +51,17 @@ public class TLRepository {
 	 * @param criteria The tradeLicense Search criteria
 	 * @return List of TradeLicense from seach
 	 */
-	public List<TradeLicense> getLicenses(TradeLicenseSearchCriteria criteria) {
+	public List<TradeLicense> getLicenses(TradeLicenseSearchCriteria criteria,RequestInfo requestInfo) {
 		List<Object> preparedStmtList = new ArrayList<>();
-		String query = queryBuilder.getTLSearchQuery(criteria, preparedStmtList, false);
+		String query = queryBuilder.getTLSearchQuery(criteria, preparedStmtList, requestInfo,false);
 		List<TradeLicense> licenses = jdbcTemplate.query(query, preparedStmtList.toArray(), rowMapper);
 		sortChildObjectsById(licenses);
 		return licenses;
 	}
 
-	public int getLicenseCount(TradeLicenseSearchCriteria criteria) {
+	public int getLicenseCount(TradeLicenseSearchCriteria criteria,RequestInfo requestInfo) {
 		List<Object> preparedStmtList = new ArrayList<>();
-		String query = queryBuilder.getTLSearchQuery(criteria, preparedStmtList, true);
+		String query = queryBuilder.getTLSearchQuery(criteria, preparedStmtList,requestInfo, true);
 		int licenseCount = jdbcTemplate.queryForObject(query, preparedStmtList.toArray(), Integer.class);
 		return licenseCount;
 	}

@@ -280,7 +280,7 @@ public class TradeLicenseService {
 		criteria.setBusinessService(serviceFromPath);
 		enrichmentService.enrichSearchCriteriaWithAccountId(requestInfo, criteria);
 
-		int licenseCount = repository.getLicenseCount(criteria);
+		int licenseCount = repository.getLicenseCount(criteria,requestInfo);
 
 		return licenseCount;
 	}
@@ -325,7 +325,7 @@ public class TradeLicenseService {
 	 * @return List of tradeLicense for the given criteria
 	 */
 	public List<TradeLicense> getLicensesWithOwnerInfo(TradeLicenseSearchCriteria criteria, RequestInfo requestInfo) {
-		List<TradeLicense> licenses = repository.getLicenses(criteria);
+		List<TradeLicense> licenses = repository.getLicenses(criteria,requestInfo);
 		log.info("licenses" + licenses);
 		if (licenses.isEmpty())
 			return Collections.emptyList();
@@ -359,7 +359,7 @@ public class TradeLicenseService {
 	 * @param request The update request
 	 * @return List of tradeLicenses
 	 */
-	public List<TradeLicense> getLicensesWithOwnerInfo(TradeLicenseRequest request) {
+	public List<TradeLicense> getLicensesWithOwnerInfo(TradeLicenseRequest request,RequestInfo requestInfo) {
 		TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
 		List<String> ids = new LinkedList<>();
 		request.getLicenses().forEach(license -> {
@@ -370,7 +370,7 @@ public class TradeLicenseService {
 		criteria.setIds(ids);
 		criteria.setBusinessService(request.getLicenses().get(0).getBusinessService());
 
-		List<TradeLicense> licenses = repository.getLicenses(criteria);
+		List<TradeLicense> licenses = repository.getLicenses(criteria,requestInfo);
 
 		if (licenses.isEmpty())
 			return Collections.emptyList();
@@ -534,7 +534,7 @@ public class TradeLicenseService {
 			criteria.setTenantId(null);
 		}
 
-		licenses = repository.getLicenses(criteria);
+		licenses = repository.getLicenses(criteria,requestInfo);
 
 		if (licenses.size() == 0) {
 			return true;

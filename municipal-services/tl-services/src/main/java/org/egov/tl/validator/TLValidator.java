@@ -68,7 +68,7 @@ public class TLValidator {
         List<TradeLicense> licenses = request.getLicenses();
         String businessService = request.getLicenses().isEmpty()?null:request.getLicenses().get(0).getBusinessService();
         if(licenses.get(0).getApplicationType() != null && licenses.get(0).getApplicationType().toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)){
-            validateRenewal(request);
+            validateRenewal(request,request.getRequestInfo());
         }
         if (businessService == null)
             businessService = businessService_TL;
@@ -188,7 +188,7 @@ public class TLValidator {
      *  Validates the fromDate and toDate of the request
      * @param request The input TradeLicenseRequest Object
      */
-    public void validateRenewal(TradeLicenseRequest request){
+    public void validateRenewal(TradeLicenseRequest request,RequestInfo requestInfo){
             
         TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
         List<String> licenseNumbers = new LinkedList<>();
@@ -225,7 +225,7 @@ public class TLValidator {
         criteria.setStatus(statuses);
         criteria.setBusinessService(request.getLicenses().get(0).getBusinessService());
         criteria.setLicenseNumbers(licenseNumbers);
-        List<TradeLicense> searchResult = tlRepository.getLicenses(criteria);
+        List<TradeLicense> searchResult = tlRepository.getLicenses(criteria,requestInfo);
 
         Map<String , TradeLicense> licenseMap = new HashMap<>();
         searchResult.forEach(license -> {
@@ -278,7 +278,7 @@ public class TLValidator {
         validateAllIds(searchResult, licenses);
         String businessService = request.getLicenses().isEmpty()?null:licenses.get(0).getBusinessService();
         if(licenses.get(0).getApplicationType() != null && licenses.get(0).getApplicationType().toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)){
-            validateRenewal(request);
+            validateRenewal(request,request.getRequestInfo());
         }        
         if (businessService == null)
             businessService = businessService_TL;
