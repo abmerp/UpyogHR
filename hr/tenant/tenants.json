@@ -2726,6 +2726,42 @@
       "contactNumber":"",
       "pdfHeader":"",
       "pdfContactDetails":""
+   },
+{
+      "code":"HQOffice",
+      "name":"HQOffice",
+      "description":"HQOffice",
+      "logoId":"",
+      "imageId":"",
+      "domainUrl":"",
+      "type":"CITY",
+      "twitterUrl":"",
+      "facebookUrl":"",
+      "emailId":"",
+      "OfficeTimings":{
+         "Mon - Fri":"9.00 AM - 6.00 PM"
+      },
+      "city":{
+         "name":"",
+         "localName":null,
+         "districtCode":null,
+         "districtName":null,
+         "regionName":null,
+         "ulbGrade":"",
+         "longitude":"",
+         "latitude":"",
+         "shapeFileLocation":null,
+         "captcha":null,
+         "code":"",
+         "ddrName":""
+      },
+      "address":"",
+      "pincode":[
+         
+      ],
+      "contactNumber":"",
+      "pdfHeader":"",
+      "pdfContactDetails":""
    }
    
   ]
