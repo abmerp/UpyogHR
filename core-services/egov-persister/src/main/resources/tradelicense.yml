@@ -1550,7 +1550,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-       - query: INSERT INTO public.eg_surrend_of_license(id, "licenseNo", "selectType", "areaFallingUnder", "thirdPartyRights", "areraRegistration", "zoningLayoutPlanfileUrl", "licenseCopyfileUrl", "edcaVailedfileUrl", "detailedRelocationSchemefileUrl", "giftDeedfileUrl", "mutationfileUrl", "jamabandhifileUrl", "thirdPartyRightsDeclarationfileUrl", "areaInAcres", "applicationNumber", "additionaldetails", "createdBy", "lastModifiedBy", "createdTime", "lastModifiedTime") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_surrend_of_license(id, "licenseNo", "selectType", "areaFallingUnder", "thirdPartyRights", "areraRegistration", "zoningLayoutPlanfileUrl", "licenseCopyfileUrl", "edcaVailedfileUrl", "detailedRelocationSchemefileUrl", "giftDeedfileUrl", "mutationfileUrl", "jamabandhifileUrl", "thirdPartyRightsDeclarationfileUrl", "areaInAcres", "application_number", "additionaldetails", "createdBy", "lastModifiedBy", "createdTime", "lastModifiedTime") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: SurrendOfLicense.*
          jsonMaps:    
          
@@ -1606,9 +1606,9 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-        - query: UPDATE public.eg_surrend_of_license SET id=?, licenseNo=?, selectType=?, areaFallingUnder=?, thirdPartyRights=?, areraRegistration=?,zoningLayoutPlanfileUrl=?,licenseCopyfileUrl=?,edcaVailedfileUrl=?,detailedRelocationSchemefileUrl=?,giftDeedfileUrl=?,mutationfileUrl=?, jamabandhifileUrl=?,thirdPartyRightsDeclarationfileUrl=?,areaInAcres=?, createdby=?, lastmodifyby=?,created_time=?, lastmodifiedtime=? WHERE application_number=?; 
-          basePath: SurrendOfLicense.*
-          jsonMaps:    
+       - query: UPDATE public.eg_surrend_of_license SET id=?, "licenseNo"=?, "selectType"=?, "areaFallingUnder"=?, "thirdPartyRights"=?, "areraRegistration"=?, "zoningLayoutPlanfileUrl"=?, "licenseCopyfileUrl"=?, "edcaVailedfileUrl"=?, "detailedRelocationSchemefileUrl"=?,"giftDeedfileUrl"=?, "mutationfileUrl"=?, "jamabandhifileUrl"=?, "thirdPartyRightsDeclarationfileUrl"=?, "areaInAcres"=?, additionaldetails=?, "createdBy"=?, "lastModifiedBy"=?, "createdTime"=?, "lastModifiedTime"=?, workflowcode=?, status=?, businessservice=? WHERE  "application_number"=?; 
+         basePath: SurrendOfLicense.*
+         jsonMaps:    
          
           - jsonPath: $.SurrendOfLicense.*.id     
           
@@ -1634,6 +1634,12 @@ serviceMaps:
 
           - jsonPath: $.SurrendOfLicense.*.mutationfileUrl
           
+          - jsonPath: $.SurrendOfLicense.*.jamabandhifileUrl       
+
+          - jsonPath: $.SurrendOfLicense.*.thirdPartyRightsDeclarationfileUrl
+
+          - jsonPath: $.SurrendOfLicense.*.areaInAcres
+          
           - jsonPath: $.SurrendOfLicense.*.additionalDetails
             type: JSON
             dbType: JSONB
@@ -1645,12 +1651,12 @@ serviceMaps:
           - jsonPath: $.SurrendOfLicense.*.auditDetails.createdTime
 
           - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedTime
-
-          - jsonPath: $.SurrendOfLicense.*.jamabandhifileUrl       
-
-          - jsonPath: $.SurrendOfLicense.*.thirdPartyRightsDeclarationfileUrl
-
-          - jsonPath: $.SurrendOfLicense.*.areaInAcres
+          
+          - jsonPath: $.SurrendOfLicense.*.workflowCode
+          
+          - jsonPath: $.SurrendOfLicense.*.businessService
+          
+          - jsonPath: $.SurrendOfLicense.*.status          
 
           - jsonPath: $.SurrendOfLicense.*.applicationNumber     
           

@@ -48,7 +48,7 @@ public class SurrendOfLicenseController {
 	public ResponseEntity<SurrendOfLicenseResponse> update(
 			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) {
 
-		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.create(surrendOfLicenseRequest);
+		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.update(surrendOfLicenseRequest);
 
 //		List<SurrendOfLicense> SurrendOfLicenseList = new ArrayList<>();
 //		SurrendOfLicenseList.add(surrendOfLicense);
@@ -59,20 +59,20 @@ public class SurrendOfLicenseController {
 
 		return new ResponseEntity<>(surrendOfLicenseResponse, HttpStatus.OK);
 	}
-//	
-//	@PostMapping("/_search")
-//	public ResponseEntity<SurrendOfLicenseResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,@RequestParam("licenseNo") Integer id) {
-//
-//		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.search(id);
-//		List<SurrendOfLicense> SurrendOfLicenseList = new ArrayList<>();
-//		SurrendOfLicenseList.add(surrendOfLicense);
-//		
-//		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder(). surrendOfLicense(SurrendOfLicenseList)
-//				.responseInfo(responseInfoFactory
-//						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
-//				.build();
-//		
-//		return new ResponseEntity<>(surrendOfLicenseResponse, HttpStatus.OK);
-//	}
+	
+	@PostMapping("/_search")
+	public ResponseEntity<SurrendOfLicenseResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
+			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
+		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
+				applicationNumber, licenceNumber);
+		
+		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder(). surrendOfLicense(surrendOfLicense)
+				.responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+				.build();
+		
+		return new ResponseEntity<>(surrendOfLicenseResponse, HttpStatus.OK);
+	}
 
 }

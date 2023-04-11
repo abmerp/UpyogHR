@@ -19,7 +19,11 @@ import org.egov.tl.web.models.RevisedPlan;
 import org.egov.tl.web.models.RevisedPlanRequest;
 import org.egov.tl.web.models.SurrendOfLicense;
 import org.egov.tl.web.models.SurrendOfLicenseRequest;
+import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.workflow.WorkflowIntegrator;
+import org.egov.tl.workflow.WorkflowService;
 import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,6 +36,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Service
 public class SurrendOfLicenseServices {
+
+	private static final String BUSINESS_SURRENDER = "SURREND_OF_LICENSE";
 
 	@Value("${persister.create.surrend.of.license.topic}")
 	private String surrendTopic;
@@ -56,6 +62,12 @@ public class SurrendOfLicenseServices {
 	@Autowired
 	ServicePlanService servicePlanService;
 
+	@Autowired
+	private WorkflowIntegrator wfIntegrator;
+
+	@Autowired
+	private WorkflowService workflowService;
+
 	@SuppressWarnings("null")
 	public List<SurrendOfLicense> create(SurrendOfLicenseRequest surrendOfLicenseRequest) {
 
@@ -76,16 +88,23 @@ public class SurrendOfLicenseServices {
 				throw new CustomException("Already Found  or multiple surender of licence applications with LoiNumber.",
 						"Already Found or multiple Service plan applications with LoiNumber.");
 			}
-
+			surrendOfLicense.setTenantId("hr");
 			surrendOfLicense.setId(UUID.randomUUID().toString());
 			surrendOfLicense.setAssignee(Arrays
 					.asList(servicePlanService.assignee("CTP_HR", surrendOfLicense.getTenantId(), true, requestInfo)));
 ////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 			applicationNumbers = servicePlanService.getIdList(requestInfo, surrendOfLicense.getTenantId(),
 					config.getSurrenderName(), config.getSurrenderFormat(), count);
-
+			surrendOfLicense.setAction("INITIATE");
 			surrendOfLicense.setAuditDetails(auditDetails);
+			surrendOfLicense.setBusinessService(BUSINESS_SURRENDER);
+			surrendOfLicense.setWorkflowCode(BUSINESS_SURRENDER);
+
 			surrendOfLicense.setApplicationNumber(applicationNumbers.get(0));
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
+					surrendOfLicenseRequest.getSurrendOfLicense().get(0), requestInfo, surrendOfLicense.getBusinessService());
+
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 		}
 
@@ -116,6 +135,32 @@ public class SurrendOfLicenseServices {
 
 	}
 
+	private TradeLicenseRequest prepareProcessInstanceRequest(SurrendOfLicense surrendOfLicense,
+			RequestInfo requestInfo, String bussinessServicename) {
+
+		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
+		TradeLicense tradeLicenseAS = new TradeLicense();
+		List<TradeLicense> tradeLicenseASlist = new ArrayList<>();
+		tradeLicenseAS.setBusinessService(bussinessServicename);
+		tradeLicenseAS.setAction(surrendOfLicense.getAction());
+		tradeLicenseAS.setAssignee(surrendOfLicense.getAssignee());
+		tradeLicenseAS.setApplicationNumber(surrendOfLicense.getApplicationNumber());
+		tradeLicenseAS.setWorkflowCode(bussinessServicename);
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(bussinessServicename);
+		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicenseAS.setComment("Workflow for surrender");
+		tradeLicenseAS.setWfDocuments(null);
+		tradeLicenseAS.setTenantId(surrendOfLicense.getTenantId());
+		// tradeLicenseAS.setBusinessService("SURRENDER_OF_LICENSE");
+
+		tradeLicenseASRequest.setRequestInfo(requestInfo);
+		tradeLicenseASlist.add(tradeLicenseAS);
+		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
+
+		return tradeLicenseASRequest;
+	}
+
 	public List<SurrendOfLicense> search(RequestInfo info, String applicattionNumber, String licenseNo) {
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -123,7 +168,7 @@ public class SurrendOfLicenseServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, \"licenseNo\", \"selectType\", \"areaFallingUnder\", \"thirdPartyRights\", \"areraRegistration\", \"zoningLayoutPlanfileUrl\", \"licenseCopyfileUrl\", \"edcaVailedfileUrl\", \"detailedRelocationSchemefileUrl\", \"giftDeedfileUrl\", \"mutationfileUrl\", \"jamabandhifileUrl\", \"thirdPartyRightsDeclarationfileUrl\", \"areaInAcres\", \"applicationNumber\", \"additionaldetails\", \"createdBy\", \"lastModifiedBy\", \"createdTime\", \"lastModifiedTime\"\r\n"
+		String query = "SELECT id, \"licenseNo\", \"selectType\", \"areaFallingUnder\", \"thirdPartyRights\", \"areraRegistration\", \"zoningLayoutPlanfileUrl\", \"licenseCopyfileUrl\", \"edcaVailedfileUrl\", \"detailedRelocationSchemefileUrl\", \"giftDeedfileUrl\", \"mutationfileUrl\", \"jamabandhifileUrl\", \"thirdPartyRightsDeclarationfileUrl\", \"areaInAcres\", \"application_number\", additionaldetails, \"createdBy\", \"lastModifiedBy\", \"created_time\", \"lastModifiedTime\", workflowcode, status, businessservice\r\n"
 				+ "	FROM public.eg_surrend_of_license " + " Where ";
 		builder = new StringBuilder(query);
 
@@ -138,11 +183,17 @@ public class SurrendOfLicenseServices {
 			List<String> applicationNumberList = Arrays.asList(applicattionNumber.split(","));
 			log.info("applicationNumberList" + applicationNumberList);
 			if (applicationNumberList != null) {
-				builder.append("\"applicationNumber\" in ( :AN )");
+				builder.append("\"application_number\" in ( :AN )");
 				paramMapList.put("AN", applicationNumberList);
 				preparedStatement.add(applicationNumberList);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, surrendOfLicenseRowMapper);
 			}
+
+		} else if ((info.getUserInfo().getUuid() != null)) {
+			builder.append(" createdBy= :CB");
+			paramMap.put("CB", info.getUserInfo().getUuid());
+			preparedStatement.add(info.getUserInfo().getUuid());
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, surrendOfLicenseRowMapper);
 
 		}
 		return Result;

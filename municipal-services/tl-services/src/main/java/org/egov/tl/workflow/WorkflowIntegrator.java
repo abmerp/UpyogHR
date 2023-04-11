@@ -32,6 +32,8 @@ import static org.egov.tl.util.TLConstants.*;
 @Service
 @Slf4j
 public class WorkflowIntegrator {
+	
+	private static final String SURRENDER_OF_LICENSE = "SURREND_OF_LICENSE";
 
 	private static final String TENANTIDKEY = "tenantId";
 
@@ -121,6 +123,11 @@ public class WorkflowIntegrator {
 				obj.put(TENANTIDKEY, wfTenantId);
 				switch(businessServiceFromMDMS)
 				{
+				
+				case SURRENDER_OF_LICENSE:
+					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+				break;
 				//TLR Changes
 				    case CHANGE_BENEFICIAL_WORKFLOWCODE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());

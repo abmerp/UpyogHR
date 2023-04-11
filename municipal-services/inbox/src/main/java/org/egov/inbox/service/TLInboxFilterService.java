@@ -107,6 +107,15 @@ public class TLInboxFilterService {
 	@Value("${egov.searcher.tl.change.beneficial.search.desc.path}")
 	private String changeOfBeneficialSearcherDescEndPoint;
 	
+//	SURREND OF LICENSE
+	@Value("${egov.searcher.tl.Surrend.of.license.search.path}")
+	private String SurrendOfLicenseSearcherEndPoint;
+	@Value("${egov.searcher.tl.Surrend.of.license.count.path}")
+	private String SurrendOfLicenseSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.Surrend.of.license.search.desc.path}")
+	private String SurrendOfLicenseSearcherDescEndPoint;
+	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
+	
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -206,6 +215,15 @@ public class TLInboxFilterService {
 				// will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 				switch (businessService) {
+				case BUSINESSSERVICE_SURRENDOFLICENSE:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(SurrendOfLicenseSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(SurrendOfLicenseSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;
 				case BUSINESSSERVICE_CHANGEBENEFICIAL:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -400,6 +418,10 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 
 				switch (businessService) {
+				case BUSINESSSERVICE_SURRENDOFLICENSE:
+					uri.append(searcherHost).append(SurrendOfLicenseSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+					break;
 				case BUSINESSSERVICE_CHANGEBENEFICIAL:
 					uri.append(searcherHost).append(changeOfBeneficialSearcherCountEndPoint);
 					log.info("uri searcher\t" + uri);

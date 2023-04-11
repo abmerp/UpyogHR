@@ -65,9 +65,9 @@ public class SurrendOfLicenseRowMapper implements ResultSetExtractor<List<Surren
 
 				AuditDetails auditDetails = new AuditDetails();
 
-				AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("createdby"))
-						.createdTime(rs.getLong("created_time")).lastModifiedBy(rs.getString("lastmodifyby"))
-						.lastModifiedTime(rs.getLong("lastmodifiedtime")).build();
+				AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("createdBy"))
+						.createdTime(rs.getLong("createdTime")).lastModifiedBy(rs.getString("lastModifiedBy"))
+						.lastModifiedTime(rs.getLong("lastModifiedTime")).build();
 				surrendOfLicense.setAuditDetails(auditDetails_build);
 				surrendOfLicenseList.add(surrendOfLicense);
 			}
