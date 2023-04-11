@@ -6,7 +6,7 @@
          {
           "roles": "Patwari",
           "applicationStatus": "WF_NEWTL_PENDING_AT_PATWARI_HQ_PRELIM",
-          "fields": [
+          "field": [
           {"fields": "NWL_APPLICANT_PURPOSE_OF_LICENCE"
          },
          {
@@ -182,902 +182,563 @@
       {
          "role":"Patwari",
          "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_PRELIM",
-          "field":[
-            {
-               "fields":"Purpose of colony"
-            },
-            {
-               "fields":"Total Area (in acres)"
-            },
-            {
-               "fields":"District (All applied districts for eg. Panipat, Karnal to be specified)"
-            },
-            {
-               "fields":"Development Plan (All applied development Plans to be specified)"
-            },
-            {
-               "fields":"Potential  (All applied zones to be specified)"
-            },
-            {
-               "fields":"Sector (All applied sectors to be specified)"
-            },
-            {
-               "fields":"Tehsil (All applied tehsils to be specified)"
-            },
-            {
-               "fields":"Revenue Estate (All applied revenue estates to be specified)"
-            },
-            {
-               "fields":"Hadbast No."
-            },
-            {
-               "fields":"Name of Land Owners  (names of all land owners to be specified)"
-            },
-            {
-               "fields":"Rectangle\/ Khasra   (all applied khasras to be specified)"
-            },
-            {
-               "fields":"Type of land"
-            },
-            {
-               "fields":"If change in information - Rectangle No.\/Mustil\/ Khasra"
-            },
-            {
-               "fields":"If change in information -Name of the Land Ower as per Mutation\/Jamabandi"
-            },
-            {
-               "fields":"Khasras being developed in collaboration (all applied khasras in collaboration to be specified)"
-            },
-            {
-               "fields":"Name of the collaborator company"
-            },
-            {
-               "fields":"Date of registering collaboration agreement (Autofetch from table)"
-            },
-            {
-               "fields":"Whether collaboration agreement irrevocable (Yes\/No)"
-            },
-            {
-               "fields":"Registering Authority"
-            },
-            {
-               "fields":"Upload Collaboration Agreement"
-            },
-            {
-               "fields":"Name of authorized signatory on behalf of land owner(s)"
-            },
-            {
-               "fields":"Upload SPA\/GPA of  authorised signatory on behalf of land owner to execute Collaboration agreement"
-            },
-            {
-               "fields":"Name of authorized signatory on behalf of developer"
-            },
-            {
-               "fields":"Upload SPA\/GPA\/ Board resolution of authorised signatory on behalf of developer to execute Collaboration agreement"
-            },
-            {
-               "fields":"Kanal"
-            },
-            {
-               "fields":"Bigha"
-            },
-            {
-               "fields":"Marla"
-            },
-            {
-               "fields":"Consolidated Total Area"
-            },
-            {
-               "fields":"Biswa"
-            },
-            {
-               "fields":"Sarsai"
-            },
-            {
-               "fields":"Biswansi"
-            },
-            {
-               "fields":"Non-Consolidated Total Area"
-            },
-            {
-               "fields":"Fresh application"
-            },
-            {
-               "fields":"Additional application"
-            },
-            {
-               "fields":"Additional application with Migration"
-            },
-            {
-               "fields":"Migration application"
-            },
-            {
-               "fields":"Migration application with additional fresh area"
-            },
-            {
-               "fields":"Licence No. of Parent Licence"
-            },
-            {
-               "fields":"Development Plan"
-            },
-            {
-               "fields":"Type of colony"
-            },
-            {
-               "fields":"Area of parent licence in acres"
-            },
-            {
-               "fields":"Parent Licence Number"
-            },
-            {
-               "fields":"Area of parent licence in acres"
-            },
-            {
-               "fields":"Purpose of parent licence"
-            },
-            {
-               "fields":"Area applied under migration in acres"
-            },
-            {
-               "fields":"Applied Khasra number"
-            },
-            {
-               "fields":"Balance area left in parent license in acres"
-            },
-            {
-               "fields":"Rehan \/ Mortgage"
-            },
-            {
-               "fields":"Patta\/Lease"
-            },
-            {
-               "fields":"Gair\/Marusi"
-            },
-            {
-               "fields":"Loan"
-            },
-            {
-               "fields":"Any Other"
-            },
-            {
-               "fields":"Upload Non Encumbrance Certificate"
-            },
-            {
-               "fields":"As per site situation(Yes\/No)"
-            },
-            {
-               "fields":"Revenue rasta, if any."
-            },
-            {
-               "fields":"Width thereof"
-            },
-            {
-               "fields":"Watercourse\/Nallah"
-            },
-            {
-               "fields":"Width thereof"
-            },
-            {
-               "fields":"Whether in Compact Block."
-            },
-            {
-               "fields":"Others land fallng within applied land"
-            },
-            {
-               "fields":"If yes, Khasra nos."
-            },
-            {
-               "fields":"Shajra Plan duly attested by Halqa Patwari"
-            },
-            {
-               "fields":"(I) Category-I approach"
-            },
-            {
-               "fields":"(i)(a) Approach available from minimum 4 karam (22 ft) wide revenue rasta."
-            },
-            {
-               "fields":"(i)(b) Approach available from minimum 11 feet wide revenue rasta and applied site abuts acquired alignment of the sector road and there is no stay regarding construction on the land falling under the abutting sector road"
-            },
-            {
-               "fields":"(ii) Applied site abouts already constructed sector road or internal circulation road of approved sectoral plan (of min. 18m\/24m width as the case may be) provided its entire stretch required for approach is licenced and is further leading upto atleast 4 karam wide revenue rasta"
-            },
-            {
-               "fields":"(iii)(a) Applied land is accessible from a minimum 4 karam wide rasta through adjoining own land of the applicant (but not applied for licence)."
-            },
-            {
-               "fields":"(iii)(b) If applicable, whether the applicant has donated at least 4 karam wide strip from its adjoining own land in favour of the Gram Panchayat\/Municipality, in order to connect the applied site to existing 4 karam rasta?"
-            },
-            {
-               "fields":"(iii)(c) Upload copy of Gift Deed"
-            },
-            {
-               "fields":"(iv)(a) Applied land is accessible from a minimum 4 karam wide rasta through adjoining other’s land"
-            },
-            {
-               "fields":"(iv)(b) If applicable, whether the applicant has donated at least 4 karam wide strip from its adjoining others land in favour of the Gram Panchayat\/Municipality, in order to connect the applied site to existing 4 karam rasta?"
-            },
-            {
-               "fields":"(iv)(c) Upload copy of Gift Deed"
-            },
-            {
-               "fields":"(III) Category-II approach"
-            },
-            {
-               "fields":"(i) Enter Width in Meters"
-            },
-            {
-               "fields":"(ii) Whether irrevocable consent from such developer\/ colonizer for uninterrupted usage of such internal road for the purpose of development of the colony by the applicant or by its agencies and for usage by its allottees submitted"
-            },
-            {
-               "fields":"(iii) Upload irrevocable consent"
-            },
-            {
-               "fields":"Land schedule"
-            },
-            {
-               "fields":"In case of migration application, schedule of land left in parent license, if any."
-            },
-            {
-               "fields":"Copy of Mutation duly attested by Halqa Patwari"
-            },
-            {
-               "fields":"Copy of Jamabandi duly attested by Halqa Patwari"
-            },
-            {
-               "fields":"Details of lease \/ patta"
-            },
-            {
-               "fields":"Sale Deed\/Exchange Deed"
-            }
-         ]
+         "field": [
+            {"fields": "NWL_APPLICANT_PURPOSE_OF_LICENCE"
+           },
+           {
+            "fields": "NWL_APPLICANT_TOTAL_AREA_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_DISTRICT_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_DEVELOPMENT_PLAN_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_ZONE_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_SECTOR_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_TEHSIL_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_REVENUE_ESTATE_LAND_SCHEDULE"
+           },
+           {
+            "fields": " NWL_APPLICANT_HADBAST_NUMBER_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_NAME_OF_LAND_OWNER_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_RECTANGLE_NUMBER_LAND_SCHEDULE"
+           },
+           {
+            "fields": " NWL_APPLICANT_TYPE_OF_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_RECTANGLE_NO_MUSTIL_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_NAME_OF_THE_LAND_OWNER_AS_PER_MUTATION_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_DEVELOPED_IN_COLLABORATION_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_NAME_OF_THE_DEVELOPER_COMPANY_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_DATA_OF_REGISTERING_COLLOABORATION_AGREEMENT_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_WHETER_COLLABORATION_AGREEMENT_IRREVOCABLE_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_REGISTERING_AUTHORITY_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_NAME_OF_AUTHORIZED_SIGNATORY_ON_BEHALF_OF_LAND_OWNER"
+           },
+           {
+            "fields": "NWL_APPLICANT_NAME_OF_AUTHORIZED_SIGNATORY_ON_BEHALF_OF_DEVELOPER"
+           },
+           {
+            "fields": "NWL_APPLICANT_KANAL_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_BIGHA_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_MARLA_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_TOTAL_AREA_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_BISWA_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_SARSAI_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_BISWANSI_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_TOTAL_AREA_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_LICENCE_NUMBER_OF_PARENT_LICENCE"
+           },
+           {
+            "fields": "NWL_APPLICANT_DEVELOMENT_PLAN_ADDICATION_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_TYPE_OF_COLONY_ADDICATION_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_AREA_OF_PARENT_LICENCE_IN_ACRES_ADDICATION_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_PREVIOUS_LICENCE_MGINATIONLIC"
+           },
+           {
+            "fields": "NWL_APPLICANT_AREA_OF_PARENT_LICENCE_MGINATIONLIC"
+           },
+           {
+            "fields": "NWL_APPLICANT_PURPOSE_OF_PAREMENT_LICENCE_MGINATIONLIC"
+           },
+           {
+            "fields": "NWL_APPLICANT_AREA_APPLIED_UNDER_MGINATIONLIC"
+           },
+           {
+            "fields": " NWL_APPLICANT_APPLIED_KHASRS_NUMBER_GINATIONLIC"
+           },
+           {
+            "fields": "\nNWL_APPLICANT_BALANCE_OF_PARENT_LICENCE_MGINATIONLIC\n"
+           },
+           {
+            "fields": "NWL_APPLICANT_ANY_ENCUMBRANCE_WITH_RESPECT_TO_FOLLOWING"
+           },
+           {
+            "fields": "NWL_APPLICANT_REVENUE_RASTA_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_APPROACH_AVAILABLE_FROM_MINIMUN_KARAM_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_APPROACH_AVAILABLE_FROM_MINIMUN_FEET_WIDE_REVENUE_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_APPLIED_SITE__ABOUTS_ALREADY_CONSTRUCTED_SECTOR_ROAD_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_APPLIED_LAND_IS_ACCESSIBLE_FROM_A_MINIMUN_THROUGH_ADJOINING_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_D_D1_IF_APPLICABLE_WHETHER_THE_APPLICATION_HAS_DONATED_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_D_D1_IF_Y_COPY_OF_GIFT_DEED_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_E_APPLIED_LAND_IS_ACCESSIBLE_FROM_MINIMUN_KARAM_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_E_Y_E1_WHETHER_THE_LAND-OWNER_OF_THE_ADJOINING_DONATED_KARAM_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_E_E1_IF_Y_COPY_OF_GIFT_DEED_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_N_A_ENTER_WIDTH_IN_METERS_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_N_B_WHETHER_IRREVOCABLE_CONSENT_FROM_SUCH_DEVELOPER_COLONIZER_SHAJRA_PLAN"
+           },
+           {
+            "fields": "NWL_APPLICANT_LAND_SCHEDULE"
+           },
+           {
+            "fields": "NWL_APPLICANT_COPY_OF_MUTATIION"
+           },
+           {
+            "fields": "NWL_APPLICANT_COPY_OF_JAMABANDI"
+           },
+           {
+            "fields": "NWL_APPLICANT_DETAILS_OF_LEASE_PATTA"
+           },
+           {
+            "fields": "NWL_APPLICANT_SALES_DEED_EXCHANGE_DEED"
+           }
+          ]
       },
       {
-         "role":"JE",
-         "applicationStatus":"PENDING_AT_JE_HQ_PRELIM",
-         "field":[
-            {
-               "fields":"Name of Developer"
-            },
-            {
-               "fields":"Address"
-            },
-            {
-               "fields":"Email Id"
-            },
-            {
-               "fields":"Developer Type"
-            },
-            {
-               "fields":"CIN Number"
-            },
-            {
-               "fields":"Director Information as per MCA Portal\r (Auto-fetch from Developer Registration)"
-            },
-            {
-               "fields":"Directors Information as per Developer"
-            },
-            {
-               "fields":"Shareholding Pattern"
-            },
-            {
-               "fields":"Memorandum of Association of Company\r (Auto-fetch from Developer Registration)"
-            },
-            {
-               "fields":"Articles of Association  of Company (Auto-\r fetch from Developer Registration)"
-            },
-            {
-               "fields":"LLP Agreement (Auto-fetch from Developer\r Registration)"
-            },
-            {
-               "fields":"Authorized Person Information"
-            },
-            {
-               "fields":"Board resolution of authorised signatory\r (Upload copy)"
-            },
-            {
-               "fields":"Purpose of colony"
-            },
-            {
-               "fields":"Total Area (in acres)"
-            },
-            {
-               "fields":"Technical capacity (Auto fetch from\r Developer Registration)"
-            },
-            {
-               "fields":"District (All applied districts for eg. Panipat,\r Karnal to be specified)"
-            },
-            {
-               "fields":"Development Plan (All applied development\r Plans to be specified)"
-            },
-            {
-               "fields":"Potential  (All applied zones to be specified)"
-            },
-            {
-               "fields":"Sector (All applied sectors to be specified)"
-            },
-            {
-               "fields":"Tehsil (All applied tehsils to be specified)"
-            },
-            {
-               "fields":"Revenue Estate (All applied revenue estates\r to be specified)"
-            },
-            {
-               "fields":"Fresh application"
-            },
-            {
-               "fields":"Additional application"
-            },
-            {
-               "fields":"Additional application with Migration"
-            },
-            {
-               "fields":"Migration application"
-            },
-            {
-               "fields":"Migration application with additional fresh\r area"
-            },
-            {
-               "fields":"Whether application received within online window (if under purview of policy dated\r 10.11.2017)."
-            },
-            {
-               "fields":"Licence No. of Parent Licence"
-            },
-            {
-               "fields":"Development Plan"
-            },
-            {
-               "fields":"Type of colony"
-            },
-            {
-               "fields":"Area of parent licence in acres"
-            },
-            {
-               "fields":"Validity of parent licence"
-            },
-            {
-               "fields":"Whether license renewed/ renewal licence\r fee submitted"
-            },
-            {
-               "fields":"EDC dues in parent license"
-            },
-            {
-               "fields":"SIDC dues in parent license"
-            },
-            {
-               "fields":"Any Other Remarks"
-            },
-            {
-               "fields":"Third-party right created in parent license"
-            },
-            {
-               "fields":"If not, upload affidavit"
-            },
-            {
-               "fields":"Whether Project is RERA registered"
-            },
-            {
-               "fields":"If yes, Upload RERA registration"
-            },
-            {
-               "fields":"If no, upload Affidavit regarding non\r registration"
-            },
-            {
-               "fields":"Parent Licence Number"
-            },
-            {
-               "fields":"Area of parent licence in acres"
-            },
-            {
-               "fields":"Purpose of parent licence"
-            },
-            {
-               "fields":"Validity of parent licence"
-            },
-            {
-               "fields":"Whether licence renewed/ renewal licence\r fee submitted"
-            },
-            {
-               "fields":"Area applied under migration in acres"
-            },
-            {
-               "fields":"Applied Khasra number"
-            },
-            {
-               "fields":"Balance area left in parent license in acres"
-            },
-            {
-               "fields":"Third-party right created in parent license"
-            },
-            {
-               "fields":"If not, upload affidavit"
-            },
-            {
-               "fields":"Whether Project is RERA registered"
-            },
-            {
-               "fields":"If yes, Upload RERA registration"
-            },
-            {
-               "fields":"If no, upload Affidavit regarding non\r registration"
-            },
-            {
-               "fields":"Rehan / Mortgage"
-            },
-            {
-               "fields":"Patta/Lease"
-            },
-            {
-               "fields":"Gair/Marusi"
-            },
-            {
-               "fields":"Loan"
-            },
-            {
-               "fields":"Any Other"
-            },
-            {
-               "fields":"Existing litigation, if any, concerning applied\r land including co-sharers and collaborator."
-            },
-            {
-               "fields":"Court orders, if any, affecting applied land."
-            },
-            {
-               "fields":"Any insolvency/liquidation proceedings against the Land Owing\r Company/Developer Company"
-            },
-            {
-               "fields":"Remarks"
-            },
-            {
-               "fields":"Document Uploaded"
-            },
-            {
-               "fields":"Upload Non Encumbrance Certificate"
-            },
-            {
-               "fields":"(I) Category-I approach"
-            },
-            {
-               "fields":"(i)(a) Approach available from minimum 4\r karam (22 ft) wide revenue rasta."
-            },
-            {
-               "fields":"(i)(b) Approach available from minimum 11 feet wide revenue rasta and applied site abuts acquired alignment of the sector road and there is no stay regarding construction on the land falling under the abutting sector road"
-            },
-            {
-               "fields":"(ii) Applied site abouts already constructed sector road or internal circulation road of approved sectoral plan (of min. 18m/24m width as the case may be) provided its entire stretch required for approach is licenced and is further leading upto atleast 4 karam wide revenue rasta"
-            },
-            {
-               "fields":"(iii)(a) Applied land is accessible from a minimum 4 karam wide rasta through adjoining own land of the applicant (but not\r applied for licence)."
-            },
-            {
-               "fields":"(iii)(b) If applicable, whether the applicant has donated at least 4 karam wide strip from its adjoining own land in favour of the Gram Panchayat/Municipality, in order to connect the applied site to existing 4 karam rasta?"
-            },
-            {
-               "fields":"(iii)(c) Upload copy of Gift Deed"
-            },
-            {
-               "fields":"(iv)(a) Applied land is accessible from a\r minimum 4 karam wide rasta through adjoining other’s land"
-            },
-            {
-               "fields":"(iv)(b) If applicable, whether the applicant has donated at least 4 karam wide strip from its adjoining others land in favour of\r the Gram Panchayat/Municipality, in order to connect the applied site to existing 4 karam\r rasta?"
-            },
-            {
-               "fields":"(iv)(c) Upload copy of Gift Deed"
-            },
-            {
-               "fields":"(III) Category-II approach"
-            },
-            {
-               "fields":"(i) Enter Width in Meters"
-            },
-            {
-               "fields":"(ii) Whether irrevocable consent from such developer/ colonizer for uninterrupted usage of such internal road for the purpose of development of the colony by the applicant or by its agencies and for usage by its allottees submitted"
-            },
-            {
-               "fields":"(iii) Upload irrevocable consent"
-            },
-            {
-               "fields":"In case of access from NH/ SR, access\r permission from competent authority uploaded."
-            },
-            {
-               "fields":"Land schedule"
-            },
-            {
-               "fields":"In case of migration application, schedule of\r land left in parent license, if any."
-            },
-            {
-               "fields":"Total Applied Area"
-            },
-            {
-               "fields":"Purpose Name"
-            },
-            {
-               "fields":"Sub components depending on purpose\r selected-"
-            },
-            {
-               "fields":"For Eg - Residential Plotted colony"
-            },
-            {
-               "fields":"Residential Plotted Component"
-            },
-            {
-               "fields":"Commercial Integrated component"
-            },
-            {
-               "fields":"Commercial Plotted Component"
-            },
-            {
-               "fields":"Group Housing Component"
-            },
-            {
-               "fields":"Commercial Component of Group housing\r componennt"
-            },
-            {
-               "fields":"Layout Plan in pdf"
-            },
-            {
-               "fields":"Layout Plan in dxf"
-            },
-            {
-               "fields":"If layout plan for additional License then\r applicable scrutiny fee deposited"
-            },
-            {
-               "fields":"If under migration, the revised layout plan of\r land left in parent license."
-            },
-            {
-               "fields":"Applicable Scrutiny fee for revision of\r balance layout in case of migration"
-            },
-            {
-               "fields":"Guide Map"
-            },
-            {
-               "fields":"Survey Plan"
-            },
-            {
-               "fields":"Demarcation plen (in other than plotted\r colonies)"
-            },
-            {
-               "fields":"Explanatory note"
-            },
-            {
-               "fields":"Undertaking"
-            },
-            {
-               "fields":"Indemnity bond"
-            },
-            {
-               "fields":"Consent and attested degree of Civil\r Engineer"
-            },
-            {
-               "fields":"Consent, attested degree  and COA\r certificate of Architect"
-            },
-            {
-               "fields":"Any other relevant document"
-            }
+             "role": "JE",
+             "applicationStatus": "WF_NEWTL_PENDING_AT_PATWARI_HQ_PRELIM",
+             "field":[
+               {
+             "fields": "NWL_APPLICANT_DEVELOPER_NAME"
+           },
+           {
+             "fields": "NWL_APPLICANT_DEVELOPER_ADDRESS"
+           },
+           {
+             "fields": "NWL_APPLICANT_DEVELOPER_EMAILID"
+           },
+           {
+             "fields": "NWL_APPLICANT_DEVELOPER_TYPE"
+           },
+           {
+             "fields": "NWL_APPLICANT_CIN_NUMBER"
+           },
+           {
+             "fields": "NWL_APPLICANT_1_DIRECTOR_INFOMATION_AS_PER_MCA"
+           },
+           {
+             "fields": "NWL_APPLICANT_1_DIRECTOR_INFOMATION_AS_PER_DEVELOPER"
+           },
+           {
+             "fields": "NWL_APPLICANT_SHAREHOLDING_PATTERNS"
+           },
+           {
+             "fields": "NWL_APPLICANT_LLP_NUMBER"
+           },
+           {
+             "fields": "NWL_APPLICANT_AUTHORIZED_NAME\r\nNWL_APPLICANT_AUTHORIZED_MOBILE_NO\r\nNWL_APPLICANT_EMAILID_FOR_AUTHORIZED_SINGNATORY\r\nNWL_APPLICANT_AUTHORIZED_PAN_NUMBER"
+           },
+           {
+             "fields": "NWL_APPLICANT_BOARD_RESOLUTION"
+           },
+           {
+             "fields": "NWL_APPLICANT_PURPOSE_OF_LICENCE"
+           },
+           {
+             "fields": "NWL_APPLICANT_TOTAL_AREA_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_DISTRICT_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_DEVELOPMENT_PLAN_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_ZONE_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_SECTOR_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_TEHSIL_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_REVENUE_ESTATE_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_LICENCE_NUMBER_OF_PARENT_LICENCE"
+           },
+           {
+             "fields": "NWL_APPLICANT_DEVELOMENT_PLAN_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_TYPE_OF_COLONY_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_AREA_OF_PARENT_LICENCE_IN_ACRES_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_VALIDITY_OF_PARENT_LICENCES_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_WHETHER_RENEWAL_LICENCES_FEE_SUBMITTED_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_WHETHER_ANY_OTHER_REMARKS_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_THIRD_PARTY_RIGHT_CREATED_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_PREVIOUS_LICENCE_MGINATIONLIC"
+           },
+           {
+             "fields": "NWL_APPLICANT_AREA_OF_PARENT_LICENCE_MGINATIONLIC"
+           },
+           {
+             "fields": "NWL_APPLICANT_PURPOSE_OF_PAREMENT_LICENCE_MGINATIONLIC"
+           },
+           {
+             "fields": "NWL_APPLICANT_VALIDITY_OF_PARENT_LICENCE_MGINATIONLIC"
+           },
+           {
+             "fields": "NWL_APPLICANT_AREA_APPLIED_UNDER_MGINATIONLIC"
+           },
+           {
+             "fields": " NWL_APPLICANT_APPLIED_KHASRS_NUMBER_GINATIONLIC"
+           },
+           {
+             "fields": "\r\nNWL_APPLICANT_BALANCE_OF_PARENT_LICENCE_MGINATIONLIC\r\n"
+           },
+           {
+             "fields": "NWL_APPLICANT_THIRD_PARTY_RIGHT_CREATED_ADDICATION_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_ANY_ENCUMBRANCE_WITH_RESPECT_TO_FOLLOWING"
+           },
+           {
+             "fields": "NWL_APPLICANT_EXISTING_LITIGATION_IF_ANY_CONCERNING_APPLIED_LAND"
+           },
+           {
+             "fields": "NWL_APPLICANT_ANY_INSOLVENCY_LIQUIDATION_PROCEESSDING_AGAINST_THE_LAND_OWING"
+           },
+           {
+             "fields": "NWL_APPLICANT_ANY_INSOLVENCY_LIQUIDATION_PROCEESSDING_AGAINST_THE_LAND_OWING"
+           },
+           {
+             "fields": "NWL_APPLICANT_ANY_INSOLVENCY_Y_REMARKS_LAND_OWING"
+           },
+           {
+             "fields": "NWL_APPLICANT_ANY_INSOLVENCY_Y_DOWNLOAD_DOCUMENT_LAND_OWING\r\n"
+           },
+           {
+             "fields": "NWL_APPLICANT_APPROACH_AVAILABLE_FROM_MINIMUN_KARAM_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_APPROACH_AVAILABLE_FROM_MINIMUN_FEET_WIDE_REVENUE_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_APPLIED_SITE__ABOUTS_ALREADY_CONSTRUCTED_SECTOR_ROAD_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_APPLIED_LAND_IS_ACCESSIBLE_FROM_A_MINIMUN_THROUGH_ADJOINING_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_D_D1_IF_APPLICABLE_WHETHER_THE_APPLICATION_HAS_DONATED_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_D_D1_IF_Y_COPY_OF_GIFT_DEED_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_E_APPLIED_LAND_IS_ACCESSIBLE_FROM_MINIMUN_KARAM_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_E_Y_E1_WHETHER_THE_LAND-OWNER_OF_THE_ADJOINING_DONATED_KARAM_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_E_E1_IF_Y_COPY_OF_GIFT_DEED_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_N_A_ENTER_WIDTH_IN_METERS_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_N_B_WHETHER_IRREVOCABLE_CONSENT_FROM_SUCH_DEVELOPER_COLONIZER_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_N_C_ACCESS_FROM_NH_SR_SHAJRA_PLAN"
+           },
+           {
+             "fields": "NWL_APPLICANT_LAND_SCHEDULE"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_TOTAL_APPLIED_AREA"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_POINTS_PURPOSE_NAME"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_POINTS_SUBPURPOSE_NAME"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_GUIDE_MAP"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_LAYOUT_PLAN_DXF"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_GUIDE_MAP"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_INDEMNITY_BOND"
+           },
+           {
+             "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_ANY_OTHER_RELEVANT_DOCUMENT"
+           }
          ]
+       
       },
       {
          "role":"JE",
          "applicationStatus":"PENDING_AT_JE_HQ_ROUND2_PRELIM",
          "field":[
             {
-               "fields":"Name of Developer"
-            },
-            {
-               "fields":"Address"
-            },
-            {
-               "fields":"Email Id"
-            },
-            {
-               "fields":"Developer Type"
-            },
-            {
-               "fields":"CIN Number"
-            },
-            {
-               "fields":"Director Information as per MCA Portal\r (Auto-fetch from Developer Registration)"
-            },
-            {
-               "fields":"Directors Information as per Developer"
-            },
-            {
-               "fields":"Shareholding Pattern"
-            },
-            {
-               "fields":"Memorandum of Association of Company\r (Auto-fetch from Developer Registration)"
-            },
-            {
-               "fields":"Articles of Association  of Company (Auto-\r fetch from Developer Registration)"
-            },
-            {
-               "fields":"LLP Agreement (Auto-fetch from Developer\r Registration)"
-            },
-            {
-               "fields":"Authorized Person Information"
-            },
-            {
-               "fields":"Board resolution of authorised signatory\r (Upload copy)"
-            },
-            {
-               "fields":"Purpose of colony"
-            },
-            {
-               "fields":"Total Area (in acres)"
-            },
-            {
-               "fields":"Technical capacity (Auto fetch from\r Developer Registration)"
-            },
-            {
-               "fields":"District (All applied districts for eg. Panipat,\r Karnal to be specified)"
-            },
-            {
-               "fields":"Development Plan (All applied development\r Plans to be specified)"
-            },
-            {
-               "fields":"Potential  (All applied zones to be specified)"
-            },
-            {
-               "fields":"Sector (All applied sectors to be specified)"
-            },
-            {
-               "fields":"Tehsil (All applied tehsils to be specified)"
-            },
-            {
-               "fields":"Revenue Estate (All applied revenue estates\r to be specified)"
-            },
-            {
-               "fields":"Fresh application"
-            },
-            {
-               "fields":"Additional application"
-            },
-            {
-               "fields":"Additional application with Migration"
-            },
-            {
-               "fields":"Migration application"
-            },
-            {
-               "fields":"Migration application with additional fresh\r area"
-            },
-            {
-               "fields":"Whether application received within online window (if under purview of policy dated\r 10.11.2017)."
-            },
-            {
-               "fields":"Licence No. of Parent Licence"
-            },
-            {
-               "fields":"Development Plan"
-            },
-            {
-               "fields":"Type of colony"
-            },
-            {
-               "fields":"Area of parent licence in acres"
-            },
-            {
-               "fields":"Validity of parent licence"
-            },
-            {
-               "fields":"Whether license renewed/ renewal licence\r fee submitted"
-            },
-            {
-               "fields":"EDC dues in parent license"
-            },
-            {
-               "fields":"SIDC dues in parent license"
-            },
-            {
-               "fields":"Any Other Remarks"
-            },
-            {
-               "fields":"Third-party right created in parent license"
-            },
-            {
-               "fields":"If not, upload affidavit"
-            },
-            {
-               "fields":"Whether Project is RERA registered"
-            },
-            {
-               "fields":"If yes, Upload RERA registration"
-            },
-            {
-               "fields":"If no, upload Affidavit regarding non\r registration"
-            },
-            {
-               "fields":"Parent Licence Number"
-            },
-            {
-               "fields":"Area of parent licence in acres"
-            },
-            {
-               "fields":"Purpose of parent licence"
-            },
-            {
-               "fields":"Validity of parent licence"
-            },
-            {
-               "fields":"Whether licence renewed/ renewal licence\r fee submitted"
-            },
-            {
-               "fields":"Area applied under migration in acres"
-            },
-            {
-               "fields":"Applied Khasra number"
-            },
-            {
-               "fields":"Balance area left in parent license in acres"
-            },
-            {
-               "fields":"Third-party right created in parent license"
-            },
-            {
-               "fields":"If not, upload affidavit"
-            },
-            {
-               "fields":"Whether Project is RERA registered"
-            },
-            {
-               "fields":"If yes, Upload RERA registration"
-            },
-            {
-               "fields":"If no, upload Affidavit regarding non\r registration"
-            },
-            {
-               "fields":"Rehan / Mortgage"
-            },
-            {
-               "fields":"Patta/Lease"
-            },
-            {
-               "fields":"Gair/Marusi"
-            },
-            {
-               "fields":"Loan"
-            },
-            {
-               "fields":"Any Other"
-            },
-            {
-               "fields":"Existing litigation, if any, concerning applied\r land including co-sharers and collaborator."
-            },
-            {
-               "fields":"Court orders, if any, affecting applied land."
-            },
-            {
-               "fields":"Any insolvency/liquidation proceedings against the Land Owing\r Company/Developer Company"
-            },
-            {
-               "fields":"Remarks"
-            },
-            {
-               "fields":"Document Uploaded"
-            },
-            {
-               "fields":"Upload Non Encumbrance Certificate"
-            },
-            {
-               "fields":"(I) Category-I approach"
-            },
-            {
-               "fields":"(i)(a) Approach available from minimum 4\r karam (22 ft) wide revenue rasta."
-            },
-            {
-               "fields":"(i)(b) Approach available from minimum 11 feet wide revenue rasta and applied site abuts acquired alignment of the sector road and there is no stay regarding construction on the land falling under the abutting sector road"
-            },
-            {
-               "fields":"(ii) Applied site abouts already constructed sector road or internal circulation road of approved sectoral plan (of min. 18m/24m width as the case may be) provided its entire stretch required for approach is licenced and is further leading upto atleast 4 karam wide revenue rasta"
-            },
-            {
-               "fields":"(iii)(a) Applied land is accessible from a minimum 4 karam wide rasta through adjoining own land of the applicant (but not\r applied for licence)."
-            },
-            {
-               "fields":"(iii)(b) If applicable, whether the applicant has donated at least 4 karam wide strip from its adjoining own land in favour of the Gram Panchayat/Municipality, in order to connect the applied site to existing 4 karam rasta?"
-            },
-            {
-               "fields":"(iii)(c) Upload copy of Gift Deed"
-            },
-            {
-               "fields":"(iv)(a) Applied land is accessible from a\r minimum 4 karam wide rasta through adjoining other’s land"
-            },
-            {
-               "fields":"(iv)(b) If applicable, whether the applicant has donated at least 4 karam wide strip from its adjoining others land in favour of\r the Gram Panchayat/Municipality, in order to connect the applied site to existing 4 karam\r rasta?"
-            },
-            {
-               "fields":"(iv)(c) Upload copy of Gift Deed"
-            },
-            {
-               "fields":"(III) Category-II approach"
-            },
-            {
-               "fields":"(i) Enter Width in Meters"
-            },
-            {
-               "fields":"(ii) Whether irrevocable consent from such developer/ colonizer for uninterrupted usage of such internal road for the purpose of development of the colony by the applicant or by its agencies and for usage by its allottees submitted"
-            },
-            {
-               "fields":"(iii) Upload irrevocable consent"
-            },
-            {
-               "fields":"In case of access from NH/ SR, access\r permission from competent authority uploaded."
-            },
-            {
-               "fields":"Land schedule"
-            },
-            {
-               "fields":"In case of migration application, schedule of\r land left in parent license, if any."
-            },
-            {
-               "fields":"Total Applied Area"
-            },
-            {
-               "fields":"Purpose Name"
-            },
-            {
-               "fields":"Sub components depending on purpose\r selected-"
-            },
-            {
-               "fields":"For Eg - Residential Plotted colony"
-            },
-            {
-               "fields":"Residential Plotted Component"
-            },
-            {
-               "fields":"Commercial Integrated component"
-            },
-            {
-               "fields":"Commercial Plotted Component"
-            },
-            {
-               "fields":"Group Housing Component"
-            },
-            {
-               "fields":"Commercial Component of Group housing\r componennt"
-            },
-            {
-               "fields":"Layout Plan in pdf"
-            },
-            {
-               "fields":"Layout Plan in dxf"
-            },
-            {
-               "fields":"If layout plan for additional License then\r applicable scrutiny fee deposited"
-            },
-            {
-               "fields":"If under migration, the revised layout plan of\r land left in parent license."
-            },
-            {
-               "fields":"Applicable Scrutiny fee for revision of\r balance layout in case of migration"
-            },
-            {
-               "fields":"Guide Map"
-            },
-            {
-               "fields":"Survey Plan"
-            },
-            {
-               "fields":"Demarcation plen (in other than plotted\r colonies)"
-            },
-            {
-               "fields":"Explanatory note"
-            },
-            {
-               "fields":"Undertaking"
-            },
-            {
-               "fields":"Indemnity bond"
-            },
-            {
-               "fields":"Consent and attested degree of Civil\r Engineer"
-            },
-            {
-               "fields":"Consent, attested degree  and COA\r certificate of Architect"
-            },
-            {
-               "fields":"Any other relevant document"
-            }
-         ]
+          "fields": "NWL_APPLICANT_DEVELOPER_NAME"
+        },
+        {
+          "fields": "NWL_APPLICANT_DEVELOPER_ADDRESS"
+        },
+        {
+          "fields": "NWL_APPLICANT_DEVELOPER_EMAILID"
+        },
+        {
+          "fields": "NWL_APPLICANT_DEVELOPER_TYPE"
+        },
+        {
+          "fields": "NWL_APPLICANT_CIN_NUMBER"
+        },
+        {
+          "fields": "NWL_APPLICANT_1_DIRECTOR_INFOMATION_AS_PER_MCA"
+        },
+        {
+          "fields": "NWL_APPLICANT_1_DIRECTOR_INFOMATION_AS_PER_DEVELOPER"
+        },
+        {
+          "fields": "NWL_APPLICANT_SHAREHOLDING_PATTERNS"
+        },
+        {
+          "fields": "NWL_APPLICANT_LLP_NUMBER"
+        },
+        {
+          "fields": "NWL_APPLICANT_AUTHORIZED_NAME\r\nNWL_APPLICANT_AUTHORIZED_MOBILE_NO\r\nNWL_APPLICANT_EMAILID_FOR_AUTHORIZED_SINGNATORY\r\nNWL_APPLICANT_AUTHORIZED_PAN_NUMBER"
+        },
+        {
+          "fields": "NWL_APPLICANT_BOARD_RESOLUTION"
+        },
+        {
+          "fields": "NWL_APPLICANT_PURPOSE_OF_LICENCE"
+        },
+        {
+          "fields": "NWL_APPLICANT_TOTAL_AREA_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_DISTRICT_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_DEVELOPMENT_PLAN_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_ZONE_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_SECTOR_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_TEHSIL_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_REVENUE_ESTATE_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_LICENCE_NUMBER_OF_PARENT_LICENCE"
+        },
+        {
+          "fields": "NWL_APPLICANT_DEVELOMENT_PLAN_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_TYPE_OF_COLONY_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_AREA_OF_PARENT_LICENCE_IN_ACRES_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_VALIDITY_OF_PARENT_LICENCES_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_WHETHER_RENEWAL_LICENCES_FEE_SUBMITTED_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_WHETHER_ANY_OTHER_REMARKS_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_THIRD_PARTY_RIGHT_CREATED_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_PREVIOUS_LICENCE_MGINATIONLIC"
+        },
+        {
+          "fields": "NWL_APPLICANT_AREA_OF_PARENT_LICENCE_MGINATIONLIC"
+        },
+        {
+          "fields": "NWL_APPLICANT_PURPOSE_OF_PAREMENT_LICENCE_MGINATIONLIC"
+        },
+        {
+          "fields": "NWL_APPLICANT_VALIDITY_OF_PARENT_LICENCE_MGINATIONLIC"
+        },
+        {
+          "fields": "NWL_APPLICANT_AREA_APPLIED_UNDER_MGINATIONLIC"
+        },
+        {
+          "fields": " NWL_APPLICANT_APPLIED_KHASRS_NUMBER_GINATIONLIC"
+        },
+        {
+          "fields": "\r\nNWL_APPLICANT_BALANCE_OF_PARENT_LICENCE_MGINATIONLIC\r\n"
+        },
+        {
+          "fields": "NWL_APPLICANT_THIRD_PARTY_RIGHT_CREATED_ADDICATION_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_ANY_ENCUMBRANCE_WITH_RESPECT_TO_FOLLOWING"
+        },
+        {
+          "fields": "NWL_APPLICANT_EXISTING_LITIGATION_IF_ANY_CONCERNING_APPLIED_LAND"
+        },
+        {
+          "fields": "NWL_APPLICANT_ANY_INSOLVENCY_LIQUIDATION_PROCEESSDING_AGAINST_THE_LAND_OWING"
+        },
+        {
+          "fields": "NWL_APPLICANT_ANY_INSOLVENCY_LIQUIDATION_PROCEESSDING_AGAINST_THE_LAND_OWING"
+        },
+        {
+          "fields": "NWL_APPLICANT_ANY_INSOLVENCY_Y_REMARKS_LAND_OWING"
+        },
+        {
+          "fields": "NWL_APPLICANT_ANY_INSOLVENCY_Y_DOWNLOAD_DOCUMENT_LAND_OWING\r\n"
+        },
+        {
+          "fields": "NWL_APPLICANT_APPROACH_AVAILABLE_FROM_MINIMUN_KARAM_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_APPROACH_AVAILABLE_FROM_MINIMUN_FEET_WIDE_REVENUE_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_APPLIED_SITE__ABOUTS_ALREADY_CONSTRUCTED_SECTOR_ROAD_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_APPLIED_LAND_IS_ACCESSIBLE_FROM_A_MINIMUN_THROUGH_ADJOINING_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_D_D1_IF_APPLICABLE_WHETHER_THE_APPLICATION_HAS_DONATED_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_D_D1_IF_Y_COPY_OF_GIFT_DEED_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_E_APPLIED_LAND_IS_ACCESSIBLE_FROM_MINIMUN_KARAM_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_E_Y_E1_WHETHER_THE_LAND-OWNER_OF_THE_ADJOINING_DONATED_KARAM_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_E_E1_IF_Y_COPY_OF_GIFT_DEED_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_N_A_ENTER_WIDTH_IN_METERS_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_N_B_WHETHER_IRREVOCABLE_CONSENT_FROM_SUCH_DEVELOPER_COLONIZER_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_N_C_ACCESS_FROM_NH_SR_SHAJRA_PLAN"
+        },
+        {
+          "fields": "NWL_APPLICANT_LAND_SCHEDULE"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_TOTAL_APPLIED_AREA"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_POINTS_PURPOSE_NAME"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_POINTS_SUBPURPOSE_NAME"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_GUIDE_MAP"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_LAYOUT_PLAN_DXF"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_GUIDE_MAP"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_INDEMNITY_BOND"
+        },
+        {
+          "fields": "NWL_APPLICANT_DGPS_DOCUMENTS_ANY_OTHER_RELEVANT_DOCUMENT"
+        }
+      ]
       },
       {
          "role":"ATP HQ",
