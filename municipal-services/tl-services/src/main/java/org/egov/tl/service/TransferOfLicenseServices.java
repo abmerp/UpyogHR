@@ -184,7 +184,13 @@ public class TransferOfLicenseServices {
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, transferRowMapper);
 			}
 
-		} 
+		} else if ((requestInfo.getUserInfo().getUuid() != null)) {
+			builder.append(" created_by= :CB");
+			paramMap.put("CB", requestInfo.getUserInfo().getUuid());
+			preparedStatement.add(requestInfo.getUserInfo().getUuid());
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, transferRowMapper);
+
+		}
 		return Result;
 
 	}

@@ -187,6 +187,12 @@ public class RevisedPlanServices {
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, revisedLayoutPlanRowMapper);
 			}
 
+		}else if ((info.getUserInfo().getUuid() != null)) {
+			builder.append(" createdby= :CB");
+			paramMap.put("CB", info.getUserInfo().getUuid());
+			preparedStatement.add(info.getUserInfo().getUuid());
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, revisedLayoutPlanRowMapper);
+
 		}
 		return Result;
 

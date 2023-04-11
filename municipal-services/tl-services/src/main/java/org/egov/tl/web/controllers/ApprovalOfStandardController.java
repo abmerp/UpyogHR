@@ -1,4 +1,4 @@
-package org.egov.tl.abm.newservices.controller;
+package org.egov.tl.web.controllers;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.service.ApprovalStandardService;
 import org.egov.tl.util.ResponseInfoFactory;
+import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.TradeLicenseResponse;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,16 +45,16 @@ public class ApprovalOfStandardController {
 	}
 
 	@PostMapping("_search")
-	public ResponseEntity<ApprovalStandardResponse> searchNewBankGuarantee(@RequestBody RequestInfo requestInfo,
+	public ResponseEntity<ApprovalStandardResponse> searchApprovalStandard(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenseNo,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
 
-		List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(requestInfo,
+		List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(requestInfoWrapper.getRequestInfo(),
 				licenseNo, applicationNumber);
 
 		ApprovalStandardResponse responseSearch = ApprovalStandardResponse.builder()
 				.approvalStandardResponse(searchApproval)
-				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfo, true)).build();
+				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true)).build();
 		return new ResponseEntity<>(responseSearch, HttpStatus.OK);
 	}
 
