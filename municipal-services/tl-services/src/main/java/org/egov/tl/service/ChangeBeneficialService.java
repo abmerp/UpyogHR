@@ -243,21 +243,21 @@ public class ChangeBeneficialService {
 
 	}
 	private ChangeBeneficialResponse createNewChangeBeneficial(ChangeBeneficialRequest beneficialRequest,List<TradeLicense> tradeLicense,ChangeBeneficialResponse changeBeneficialResponse,String licenseNumber) {
-		
+		String cbApplicationNumber = servicePlanService.getIdList(beneficialRequest.getRequestInfo(), "hr",
+				config.getChangeBeneficialApplicationName(), config.getChangeBeneficialApplicationFormat(), 1).get(0);
 		  RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						Long time = System.currentTimeMillis();
-						String applicationNumber = servicePlanService.getIdList(beneficialRequest.getRequestInfo(), "hr",
-								config.getChangeBeneficialApplicationName(), config.getChangeBeneficialApplicationFormat(), 1).get(0);
+						
 						
 						AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), true);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 						changebeneficial.setAuditDetails(auditDetails);
 						changebeneficial.setCreatedTime(time);
-						changebeneficial.setApplicationNumber(applicationNumber);
+						changebeneficial.setApplicationNumber(cbApplicationNumber);
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -283,7 +283,7 @@ public class ChangeBeneficialService {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
 			}
 			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo));
-			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,applicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,requestInfo);
+			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,cbApplicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,requestInfo);
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 		
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
