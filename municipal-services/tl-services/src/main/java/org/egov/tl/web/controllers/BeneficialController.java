@@ -28,6 +28,12 @@ public class BeneficialController {
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
+	@PostMapping("_update")
+	public ResponseEntity<ChangeBeneficialResponse> updateChangeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest){
+         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest);   
+       return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
+	}
+	
 	@PostMapping("_pay")
 	public ResponseEntity<ChangeBeneficialResponse> changeBeneficialPay(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam("licenseNumber") String licenseNumber){
