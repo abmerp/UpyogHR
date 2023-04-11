@@ -951,7 +951,7 @@ public class ChangeBeneficialService {
 						}
 						
 						List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, info));
-						TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,applicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,info);
+						TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,changeBeneficiaDetails.getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,info);
 						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 						
 						// -----------------payment----------------------//
