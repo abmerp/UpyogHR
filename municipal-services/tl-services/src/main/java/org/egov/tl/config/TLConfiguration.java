@@ -416,4 +416,9 @@ public class TLConfiguration {
 	private String surrenderName;
 	@Value("${egov.idgen.tlSOL.applicationNum.format}")
 	private String surrenderFormat;
+	
+	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber}")
+	private String changeBeneficialApplicationName;
+	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber.format}")
+	private String changeBeneficialApplicationFormat;
 }

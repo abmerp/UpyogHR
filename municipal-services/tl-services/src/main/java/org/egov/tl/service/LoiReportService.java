@@ -4955,14 +4955,12 @@ public class LoiReportService {
 
 	/****************************************************************************************************************************
 	 * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
-	 * :::::::::::::::::::::::::::::::::::::::::::Below is Root and Common Method
-	 * ::::::::::::::::::::::::::::::::::::::::::::::*
+	 * :::::::::::::::::::::::::::::::::::::::::::Below is Root and Common Method ::::::::::::::::::::::::::::::::::::::::::::::*
 	 * :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*
 	 ****************************************************************************************************************************
-	 *
-	 *
-	 ***************************************************** LOI Purpose : Common method start
-	 ************************************/
+	 *																														    *
+	 *																														    *
+	 ***************************************************** LOI Purpose : Common method start************************************/
 
 	public void getCalculatorData(String applicationNumber, LicenseDetails newobj, RequestLOIReport requestLOIReport) {
 		decfor.setRoundingMode(RoundingMode.UP);
@@ -5050,6 +5048,10 @@ public class LoiReportService {
 			dbstateInfrastructureDevelopmentCharges = Double.parseDouble(decfor.format(dbstateInfrastructureDevelopmentCharges));
 			stateInfrastructureDevelopmentChargesInWord = ConvertUtil.numberToWords(String.valueOf(dbstateInfrastructureDevelopmentCharges));
 			stateInfrastructureDevelopmentCharges = ConvertUtil.numberToComa(String.valueOf(dbstateInfrastructureDevelopmentCharges));
+			
+			
+			FeesAndCharges feesAndCharges=newobj.getFeesAndCharges();
+			
 			
 			
 		} catch (Exception e) {

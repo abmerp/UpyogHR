@@ -186,6 +186,7 @@ public class ChangeBeneficialService {
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		String licenseNumber=beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber();
 		
+
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 		if(tradeLicense==null||tradeLicense.isEmpty()) {
 		 	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
@@ -248,11 +249,15 @@ public class ChangeBeneficialService {
 					.stream().map(changebeneficial -> {
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						Long time = System.currentTimeMillis();
+						String applicationNumber = servicePlanService.getIdList(beneficialRequest.getRequestInfo(), "hr",
+								config.getChangeBeneficialApplicationName(), config.getChangeBeneficialApplicationFormat(), 1).get(0);
+						
 						AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), true);
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 						changebeneficial.setAuditDetails(auditDetails);
 						changebeneficial.setCreatedTime(time);
+						changebeneficial.setApplicationNumber(applicationNumber);
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -277,6 +282,10 @@ public class ChangeBeneficialService {
 			if(!changeBeneficial.get(0).getDeveloperServiceCode().equals(JDAMR_DEVELOPER_STATUS)) {
 			   changeBeneficialBillDemandCreation(requestInfo,applicationNumber,changeBeneficial.get(0).getDeveloperServiceCode(),1,1);
 			}
+			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, requestInfo));
+			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,applicationNumber,CHANGE_BENEFICIAL_WORKFLOWCODE,requestInfo);
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+		
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
 		return changeBeneficialResponse;
@@ -899,21 +908,21 @@ public class ChangeBeneficialService {
 						 * End Here
 						 ***********/
 						// application number
-						Map<String, Object> mapANo = new HashMap<String, Object>();
-						mapANo.put("DiaryNo", dairyNumber);
-						mapANo.put("DiaryDate", date);
-						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
-						mapANo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
-						mapANo.put("PurposeId", purposeId);
-						mapANo.put("NameofOwner",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
-						mapANo.put("DateOfHearing", date);
-						mapANo.put("DateForFilingOfReply", date);
-						mapANo.put("UserId", "2");
-						mapANo.put("UserLoginId", "39");
-						tcpApplicationNumber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
-								.get("Value").toString();
+//						Map<String, Object> mapANo = new HashMap<String, Object>();
+//						mapANo.put("DiaryNo", dairyNumber);
+//						mapANo.put("DiaryDate", date);
+//						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
+//						mapANo.put("Village",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+//						mapANo.put("PurposeId", purposeId);
+//						mapANo.put("NameofOwner",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+//						mapANo.put("DateOfHearing", date);
+//						mapANo.put("DateForFilingOfReply", date);
+//						mapANo.put("UserId", "2");
+//						mapANo.put("UserLoginId", "39");
+//						tcpApplicationNumber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
+//								.get("Value").toString();
 						
 						
 						ChangeBeneficial changeBeneficiaDetails=null;
@@ -930,7 +939,6 @@ public class ChangeBeneficialService {
 										.applicationStatus(2)
 										.isFullPaymentDone(false)
 										.tranactionId(tranxId)
-										.applicationNumber(tcpApplicationNumber)
 										.diaryNumber(dairyNumber)
 										.build();
 							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
