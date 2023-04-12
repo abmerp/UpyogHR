@@ -239,7 +239,8 @@ public class TLQueryBuilder {
 				builder.append("  tlunit.tradetype LIKE ? ");
 				preparedStmtList.add(criteria.getTradeType().split("\\.")[0] + "%");
 			}
-			if ((requestInfo.getUserInfo().getUuid() != null)) {
+			if(requestInfo.getUserInfo()!=null)
+			if (requestInfo.getUserInfo().getUuid() != null) {
 				addClauseIfRequired(preparedStmtList, builder);
 				builder.append("   tl.createdby=  ? ");
 				preparedStmtList.add(requestInfo.getUserInfo().getUuid());
