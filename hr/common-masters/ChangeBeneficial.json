@@ -1,0 +1,21 @@
+{
+  "tenantId": "hr",
+  "moduleName": "common-masters",
+  "DeveloperStatusCode": [
+	{
+	"developerServiceName":"CHANGE OF DEVELOPERS",
+	"developerServiceCode":"COD",
+	"status":true
+	},
+	{
+	"developerServiceName":"JOINT DEVELOPMENT AND /OR MARKETING RIGHTS",
+	"developerServiceCode":"JDAMR",
+	"status":true
+	},
+	{
+	"developerServiceName":"CHANGE IN SHAREHOLDING PATTERN",
+	"developerServiceCode":"CISP",
+	"status":true
+	}
+]
+}
