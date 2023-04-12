@@ -1550,7 +1550,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-       - query: INSERT INTO public.eg_surrend_of_license(id, "licenseNo", "selectType", "areaFallingUnder", "thirdPartyRights", "areraRegistration", "zoningLayoutPlanfileUrl", "licenseCopyfileUrl", "edcaVailedfileUrl", "detailedRelocationSchemefileUrl", "giftDeedfileUrl", "mutationfileUrl", "jamabandhifileUrl", "thirdPartyRightsDeclarationfileUrl", "areaInAcres", "application_number", "additionaldetails", "createdBy", "lastModifiedBy", "createdTime", "lastModifiedTime") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_surrend_of_license(id, "licenseNo", "selectType", "areaFallingUnder", "thirdPartyRights", "areraRegistration", "zoningLayoutPlanfileUrl", "licenseCopyfileUrl", "edcaVailedfileUrl", "detailedRelocationSchemefileUrl", "giftDeedfileUrl", "mutationfileUrl", "jamabandhifileUrl", "thirdPartyRightsDeclarationfileUrl", "areaInAcres", "application_number", "additionaldetails", "createdBy", "lastModifiedBy", "created_time", "lastModifiedTime") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: SurrendOfLicense.*
          jsonMaps:    
          
@@ -1606,7 +1606,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-       - query: UPDATE public.eg_surrend_of_license SET id=?, "licenseNo"=?, "selectType"=?, "areaFallingUnder"=?, "thirdPartyRights"=?, "areraRegistration"=?, "zoningLayoutPlanfileUrl"=?, "licenseCopyfileUrl"=?, "edcaVailedfileUrl"=?, "detailedRelocationSchemefileUrl"=?,"giftDeedfileUrl"=?, "mutationfileUrl"=?, "jamabandhifileUrl"=?, "thirdPartyRightsDeclarationfileUrl"=?, "areaInAcres"=?, additionaldetails=?, "createdBy"=?, "lastModifiedBy"=?, "createdTime"=?, "lastModifiedTime"=?, workflowcode=?, status=?, businessservice=? WHERE  "application_number"=?; 
+       - query: UPDATE public.eg_surrend_of_license SET id=?, "licenseNo"=?, "selectType"=?, "areaFallingUnder"=?, "thirdPartyRights"=?, "areraRegistration"=?, "zoningLayoutPlanfileUrl"=?, "licenseCopyfileUrl"=?, "edcaVailedfileUrl"=?, "detailedRelocationSchemefileUrl"=?,"giftDeedfileUrl"=?, "mutationfileUrl"=?, "jamabandhifileUrl"=?, "thirdPartyRightsDeclarationfileUrl"=?, "areaInAcres"=?, additionaldetails=?, "createdBy"=?, "lastModifiedBy"=?, "created_time"=?, "lastModifiedTime"=?, workflowcode=?, status=?, businessservice=? WHERE  "application_number"=?; 
          basePath: SurrendOfLicense.*
          jsonMaps:    
          
