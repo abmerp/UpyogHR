@@ -1494,7 +1494,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
    
-       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, existingarea=?, areaplanning=?, anyotherfeature=?, amount=?, reasonrevision=?, earlyapprovedlayoutplan=?, feescharges=?, feesresult=? WHERE application_number=?;
+       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=? WHERE application_number=?;
          basePath: RevisedPlan.*
          jsonMaps:    
          
@@ -1521,18 +1521,6 @@ serviceMaps:
           - jsonPath: $.RevisedPlan.*.auditDetails. createdTime
 
           - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedTime       
-
-          - jsonPath: $.RevisedPlan.*.existingArea
-
-          - jsonPath: $.RevisedPlan.*.areaPlanning
-
-          - jsonPath: $.RevisedPlan.*.anyOtherFeature
-
-          - jsonPath: $.RevisedPlan.*.amount
-
-          - jsonPath: $.RevisedPlan.*.reasonRevision
-
-          - jsonPath: $.RevisedPlan.*.earlierApprovedlayoutPlan
           
           - jsonPath: $.RevisedPlan.*.feesCharges
             type: JSON
