@@ -20,60 +20,71 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
-public class SurrendOfLicenseRowMapper implements ResultSetExtractor<List<SurrendOfLicense>>{
-	
-	 @Autowired
-	    private ObjectMapper mapper;
-		@Override
-		public List<SurrendOfLicense> extractData(ResultSet rs) throws SQLException, DataAccessException {
-			// TODO Auto-generated method stub
+public class SurrendOfLicenseRowMapper implements ResultSetExtractor<List<SurrendOfLicense>> {
 
-			List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
-			while (rs.next()) {
-				SurrendOfLicense surrendOfLicense = new SurrendOfLicense();
+	@Autowired
+	private ObjectMapper mapper;
 
-				surrendOfLicense.setId(rs.getString("id"));surrendOfLicense.setLicenseNo(rs.getString("licenseNo"));
-				surrendOfLicense.setSelectType(rs.getString("selectType"));
-				surrendOfLicense.setAreaFallingUnder(rs.getString("areaFallingUnder"));
-				surrendOfLicense.setThirdPartyRights(rs.getString("thirdPartyRights"));
-				surrendOfLicense.setAreraRegistration(rs.getString("areraRegistration"));
-				surrendOfLicense.setZoningLayoutPlanfileUrl(rs.getString("zoningLayoutPlanfileUrl"));
-				surrendOfLicense.setLicenseCopyfileUrl(rs.getString("licenseCopyfileUrl"));
-				surrendOfLicense.setEdcaVailedfileUrl(rs.getString("edcaVailedfileUrl"));
-				surrendOfLicense.setDetailedRelocationSchemefileUrl(rs.getString("detailedRelocationSchemefileUrl"));
-				surrendOfLicense.setGiftDeedfileUrl(rs.getString("giftDeedfileUrl"));
-				surrendOfLicense.setMutationfileUrl(rs.getString("mutationfileUrl"));
-				surrendOfLicense.setJamabandhifileUrl(rs.getString("jamabandhifileUrl"));
-				surrendOfLicense.setJamabandhifileUrl(rs.getString("thirdPartyRightsDeclarationfileUrl"));
-				surrendOfLicense.setAreaInAcres(rs.getString("areaInAcres"));
-				
-				surrendOfLicense.setApplicationNumber(rs.getString("application_number"));
-				 PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
-				 if(pgObj!=null){
-	                 JsonNode additionalDetail = null;
-					try {
-						additionalDetail = mapper.readTree(pgObj.getValue());
-					} catch (JsonMappingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (JsonProcessingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					surrendOfLicense.setAdditionalDetails(additionalDetail);
-	             }
+	@Override
+	public List<SurrendOfLicense> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		// TODO Auto-generated method stub
 
-				AuditDetails auditDetails = new AuditDetails();
+		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
+		while (rs.next()) {
+			SurrendOfLicense surrendOfLicense = new SurrendOfLicense();
 
-				AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("createdBy"))
-						.createdTime(rs.getLong("created_time")).lastModifiedBy(rs.getString("lastModifiedBy"))
-						.lastModifiedTime(rs.getLong("lastModifiedTime")).build();
-				surrendOfLicense.setAuditDetails(auditDetails_build);
-				surrendOfLicenseList.add(surrendOfLicense);
+			surrendOfLicense.setId(rs.getString("id"));
+			surrendOfLicense.setLicenseNo(rs.getString("license_no"));
+			surrendOfLicense.setSelectType(rs.getString("select_type"));
+			surrendOfLicense.setAreaFallingUnder(rs.getString("area_falling_under"));
+			surrendOfLicense.setThirdPartyRights(rs.getString("third_party_rights"));
+			surrendOfLicense.setAreraRegistration(rs.getString("arera_registration"));
+			surrendOfLicense.setZoningLayoutPlanfileUrl(rs.getString("zoning_layout_planfileurl"));
+			surrendOfLicense.setLicenseCopyfileUrl(rs.getString("license_copyfileurl"));
+			surrendOfLicense.setEdcaVailedfileUrl(rs.getString("edca_vailedfileurl"));
+			surrendOfLicense.setDetailedRelocationSchemefileUrl(rs.getString("detailed_relocationSchemefileurl"));
+			surrendOfLicense.setGiftDeedfileUrl(rs.getString("gift_deedfileurl"));
+			surrendOfLicense.setMutationfileUrl(rs.getString("mutationfileurl"));
+			surrendOfLicense.setJamabandhifileUrl(rs.getString("jamabandhifileurl"));
+			surrendOfLicense
+					.setThirdPartyRightsDeclarationfileUrl(rs.getString("third_partyrights_declarationfileurl"));
+			surrendOfLicense.setAreaInAcres(rs.getString("areain_acres"));
+			surrendOfLicense.setApplicationNumber(rs.getString("application_number"));
+			surrendOfLicense.setWorkflowCode(rs.getString("workflowcode"));
+			surrendOfLicense.setStatus(rs.getString("status"));
+			surrendOfLicense.setBusinessService(rs.getString("businessservice"));
+			surrendOfLicense.setTenantId(rs.getString("tenant_id"));
+			surrendOfLicense.setDeclarationIDWWorksfileUrl(rs.getString("declarationi_dwworksfileurl"));
+			surrendOfLicense.setRevisedLayoutPlanfileUrl(rs.getString("revised_layout_planfileurl"));
+			surrendOfLicense.setAvailedEdcfileUrl(rs.getString("availed_edc_file_url"));
+			surrendOfLicense.setAreaFallingUnderfileUrl(rs.getString("area_falling_underfileurl"));
+			surrendOfLicense.setAreaFallingDividing(rs.getString("area_falling_dividing"));
+
+			PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
+			if (pgObj != null) {
+				JsonNode additionalDetail = null;
+				try {
+					additionalDetail = mapper.readTree(pgObj.getValue());
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				surrendOfLicense.setAdditionalDetails(additionalDetail);
 			}
 
-			return surrendOfLicenseList;
+			AuditDetails auditDetails = new AuditDetails();
+
+			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("created_by"))
+					.createdTime(rs.getLong("created_time")).lastModifiedBy(rs.getString("lastModified_by"))
+					.lastModifiedTime(rs.getLong("lastModified_time")).build();
+			surrendOfLicense.setAuditDetails(auditDetails_build);
+			surrendOfLicenseList.add(surrendOfLicense);
 		}
 
+		return surrendOfLicenseList;
+	}
 
 }

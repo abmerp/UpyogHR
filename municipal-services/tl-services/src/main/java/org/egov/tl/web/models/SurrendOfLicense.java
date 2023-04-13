@@ -76,4 +76,10 @@ public class SurrendOfLicense {
 
 	private String status;
 
+	private String declarationIDWWorksfileUrl;
+	private String revisedLayoutPlanfileUrl;
+	private String availedEdcfileUrl;
+	private String areaFallingUnderfileUrl;
+	private String areaFallingDividing;
+
 }

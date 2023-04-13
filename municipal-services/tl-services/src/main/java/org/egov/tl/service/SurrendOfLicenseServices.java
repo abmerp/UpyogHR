@@ -168,14 +168,14 @@ public class SurrendOfLicenseServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, \"licenseNo\", \"selectType\", \"areaFallingUnder\", \"thirdPartyRights\", \"areraRegistration\", \"zoningLayoutPlanfileUrl\", \"licenseCopyfileUrl\", \"edcaVailedfileUrl\", \"detailedRelocationSchemefileUrl\", \"giftDeedfileUrl\", \"mutationfileUrl\", \"jamabandhifileUrl\", \"thirdPartyRightsDeclarationfileUrl\", \"areaInAcres\", \"application_number\", additionaldetails, \"createdBy\", \"lastModifiedBy\", \"created_time\", \"lastModifiedTime\", workflowcode, status, businessservice\r\n"
+		String query = "SELECT id, license_no, select_type, area_falling_under, third_party_rights, arera_registration, zoning_layout_planfileurl, license_copyfileurl, edca_vailedfileurl, detailed_relocationschemefileurl, gift_deedfileurl, mutationfileurl, jamabandhifileurl, third_partyrights_declarationfileurl, areain_acres, application_number, additionaldetails, created_by, \"lastModified_by\", created_time, \"lastModified_time\", workflowcode, status, businessservice, tenant_id, declarationi_dwworksfileurl, revised_layout_planfileurl, availed_edc_file_url, area_falling_underfileurl, area_falling_dividing\r\n"
 				+ "	FROM public.eg_surrend_of_license " + " Where ";
 		builder = new StringBuilder(query);
 
 		List<SurrendOfLicense> Result = null;
 
 		if (licenseNo != null) {
-			builder.append("\"licenseNo\" = :LN");
+			builder.append(" license_no= :LN");
 			paramMap.put("LN", licenseNo);
 			preparedStatement.add(licenseNo);
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, surrendOfLicenseRowMapper);
@@ -183,7 +183,7 @@ public class SurrendOfLicenseServices {
 			List<String> applicationNumberList = Arrays.asList(applicattionNumber.split(","));
 			log.info("applicationNumberList" + applicationNumberList);
 			if (applicationNumberList != null) {
-				builder.append("\"application_number\" in ( :AN )");
+				builder.append(" application_number in ( :AN )");
 				paramMapList.put("AN", applicationNumberList);
 				preparedStatement.add(applicationNumberList);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, surrendOfLicenseRowMapper);

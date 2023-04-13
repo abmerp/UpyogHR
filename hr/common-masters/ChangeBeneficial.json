@@ -1,7 +1,7 @@
 {
   "tenantId": "hr",
   "moduleName": "common-masters",
-  "DeveloperStatusCode": [
+  "ChangeBeneficial": [
 	{
 	"developerServiceName":"CHANGE OF DEVELOPERS",
 	"developerServiceCode":"COD",

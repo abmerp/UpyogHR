@@ -1538,7 +1538,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-       - query: INSERT INTO public.eg_surrend_of_license(id, "licenseNo", "selectType", "areaFallingUnder", "thirdPartyRights", "areraRegistration", "zoningLayoutPlanfileUrl", "licenseCopyfileUrl", "edcaVailedfileUrl", "detailedRelocationSchemefileUrl", "giftDeedfileUrl", "mutationfileUrl", "jamabandhifileUrl", "thirdPartyRightsDeclarationfileUrl", "areaInAcres", "application_number", "additionaldetails", "createdBy", "lastModifiedBy", "created_time", "lastModifiedTime") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_surrend_of_license( id, license_no, select_type, area_falling_under, third_party_rights, arera_registration, zoning_layout_planfileurl, license_copyfileurl, edca_vailedfileurl, detailed_relocationschemefileurl, gift_deedfileurl, mutationfileurl, jamabandhifileurl, third_partyrights_declarationfileurl, areain_acres, application_number, additionaldetails, created_by, "lastModified_by", created_time, "lastModified_time", workflowcode, status, businessservice, tenant_id, declarationi_dwworksfileurl, revised_layout_planfileurl, availed_edc_file_url, area_falling_underfileurl, area_falling_dividing) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);  
          basePath: SurrendOfLicense.*
          jsonMaps:    
          
@@ -1585,16 +1585,32 @@ serviceMaps:
           - jsonPath: $.SurrendOfLicense.*.auditDetails. createdTime
 
           - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedTime
+          
+          - jsonPath: $.SurrendOfLicense.*.workflowCode
+         
+          - jsonPath: $.SurrendOfLicense.*.status
+        
+          - jsonPath: $.SurrendOfLicense.*.businessService
+       
+          - jsonPath: $.SurrendOfLicense.*.tenantId  
+          
+          - jsonPath: $.SurrendOfLicense.*.declarationIDWWorksfileUrl
+          
+          - jsonPath: $.SurrendOfLicense.*.revisedLayoutPlanfileUrl
+         
+          - jsonPath: $.SurrendOfLicense.*.availedEdcfileUrl
+          
+          - jsonPath: $.SurrendOfLicense.*.areaFallingUnderfileUrl  
+          
+          - jsonPath: $.SurrendOfLicense.*.areaFallingDividing     
 
-            
-     
  - version: 1.0
    description: update surrend of license
    fromTopic: update-surrend-of-license
    isTransaction: true
    queryMaps:      
     
-       - query: UPDATE public.eg_surrend_of_license SET id=?, "licenseNo"=?, "selectType"=?, "areaFallingUnder"=?, "thirdPartyRights"=?, "areraRegistration"=?, "zoningLayoutPlanfileUrl"=?, "licenseCopyfileUrl"=?, "edcaVailedfileUrl"=?, "detailedRelocationSchemefileUrl"=?,"giftDeedfileUrl"=?, "mutationfileUrl"=?, "jamabandhifileUrl"=?, "thirdPartyRightsDeclarationfileUrl"=?, "areaInAcres"=?, additionaldetails=?, "createdBy"=?, "lastModifiedBy"=?, "created_time"=?, "lastModifiedTime"=?, workflowcode=?, status=?, businessservice=? WHERE  "application_number"=?; 
+       - query: UPDATE public.eg_surrend_of_license SET id=?, license_no=?, select_type=?, area_falling_under=?, third_party_rights=?, arera_registration=?, zoning_layout_planfileurl=?, license_copyfileurl=?, edca_vailedfileurl=?, detailed_relocationschemefileurl=?, gift_deedfileurl=?, mutationfileurl=?, jamabandhifileurl=?, third_partyrights_declarationfileurl=?, areain_acres=?, additionaldetails=?, created_by=?, "lastModified_by"=?, created_time=?, "lastModified_time"=?, workflowcode=?, status=?, businessservice=?, tenant_id=?, declarationi_dwworksfileurl=?, revised_layout_planfileurl=?, availed_edc_file_url=?, area_falling_underfileurl=?, area_falling_dividing=? WHERE application_number=?;  
          basePath: SurrendOfLicense.*
          jsonMaps:    
          
@@ -1626,7 +1642,7 @@ serviceMaps:
 
           - jsonPath: $.SurrendOfLicense.*.thirdPartyRightsDeclarationfileUrl
 
-          - jsonPath: $.SurrendOfLicense.*.areaInAcres
+          - jsonPath: $.SurrendOfLicense.*.areaInAcres 
           
           - jsonPath: $.SurrendOfLicense.*.additionalDetails
             type: JSON
@@ -1636,17 +1652,26 @@ serviceMaps:
 
           - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedBy         
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.createdTime
+          - jsonPath: $.SurrendOfLicense.*.auditDetails. createdTime
 
           - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedTime
           
           - jsonPath: $.SurrendOfLicense.*.workflowCode
-          
+         
+          - jsonPath: $.SurrendOfLicense.*.status
+        
           - jsonPath: $.SurrendOfLicense.*.businessService
+       
+          - jsonPath: $.SurrendOfLicense.*.tenantId  
           
-          - jsonPath: $.SurrendOfLicense.*.status          
+          - jsonPath: $.SurrendOfLicense.*.declarationIDWWorksfileUrl
+          
+          - jsonPath: $.SurrendOfLicense.*.revisedLayoutPlanfileUrl
+         
+          - jsonPath: $.SurrendOfLicense.*.availedEdcfileUrl
+          
+          - jsonPath: $.SurrendOfLicense.*.areaFallingUnderfileUrl  
+          
+          - jsonPath: $.SurrendOfLicense.*.areaFallingDividing   
 
-          - jsonPath: $.SurrendOfLicense.*.applicationNumber     
-          
-   
-          
+          - jsonPath: $.SurrendOfLicense.*.applicationNumber  
