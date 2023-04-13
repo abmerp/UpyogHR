@@ -578,7 +578,7 @@ public class ChangeBeneficialService {
 					 } 
 				
 					 BigDecimal estimateAmount= new BigDecimal(am);
-					 String callBack="http://localhost:8075/tl-services/beneficial/transaction/v1/_redirect";
+					 String callBack="http://103.166.62.118:8075/tl-services/beneficial/transaction/v1/_redirect";
 					 try {
 					 HashMap<String, Object> trans= createTranaction(requestInfo,requestInfo.getUserInfo().getId().toString(),WFTENANTID,estimateAmount,applicationNumber,billId,callBack,changeBeneficialCheck);
 					 changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(Arrays.asList(trans))
