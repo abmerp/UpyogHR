@@ -63,12 +63,10 @@ import org.apache.logging.log4j.LogManager;
 import org.egov.common.entity.edcr.Block;
 import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Measurement;
-import org.egov.common.entity.edcr.OccupancyType;
 import org.egov.common.entity.edcr.OccupancyTypeHelper;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
 import org.egov.common.entity.edcr.RoofArea;
-import org.egov.common.entity.edcr.Room;
 import org.egov.common.entity.edcr.ScrutinyDetail;
 import org.egov.common.entity.edcr.SetBack;
 import org.egov.common.entity.edcr.Yard;
@@ -81,7 +79,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdditionalFeature extends FeatureProcess {
     private static final Logger LOG = LogManager.getLogger(AdditionalFeature.class);
-
+    
     private static final String RULE_38 = "38";
     private static final String RULE_39 = "39";
     private static final String RULE_41_I_A = "41-i-a";
@@ -193,11 +191,30 @@ public class AdditionalFeature extends FeatureProcess {
         validateGreenBuildingsAndSustainability(pl, errors);
         validateSolarPanels(pl, errors);
         validateFireDeclaration(pl, errors);
+        validateDwellingUnits(pl, errors); 
+//		  if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.
+//		  OCCUPANCY_A1.getOccupancyTypeVal()) ||
+//		  pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.
+//		  OCCUPANCY_A2.getOccupancyTypeVal())) { 
+//			
+//			  validateDwellingUnits(pl, errors); 
+//			  
+//		  }
         
-        if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A1.getOccupancyTypeVal()) 
-        		|| pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A2.getOccupancyTypeVal())) {
-        	validateDwellingUnits(pl, errors);
-        }
+//        String buildingFootPrintLayer = String.format(DxfFileConstants.BUILDING_FOOT_PRINT);
+//        
+//        if (pl.getPlot().getBuildingFootPrint().getPresentInDxf() &&
+//        		(pl.getPlot().getBuildingFootPrint().getColorCode() == 25 || 
+//        				pl.getPlot().getBuildingFootPrint().getColorCode() == 3) && 
+//        		(pl.getPlot().getBuildingFootPrint().getName().equals(buildingFootPrintLayer)))
+//        {
+//        		validateDwellingUnits(pl, errors); 
+//			  
+//        } 
+//        else {
+//        	pl.addError(RESIDENTIAL, getLocaleMessage(OBJECTNOTDEFINED, RESIDENTIAL));
+//        }
+        
         return pl;
     }
 

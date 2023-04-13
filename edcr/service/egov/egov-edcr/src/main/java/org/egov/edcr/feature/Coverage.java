@@ -80,6 +80,8 @@ public class Coverage extends FeatureProcess {
    // private static final BigDecimal ThirtyFive = BigDecimal.valueOf(35);
     private static final BigDecimal SIXTYSIX = BigDecimal.valueOf(66);
     private static final BigDecimal SEVENTYFIVE = BigDecimal.valueOf(75);
+//    private static final BigDecimal THIRTYFIVE = BigDecimal.valueOf(35);
+//    private static final BigDecimal FIFTY = BigDecimal.valueOf(50);
 	/*
 	 * private static final BigDecimal FortyFive = BigDecimal.valueOf(45); private
 	 * static final BigDecimal Sixty = BigDecimal.valueOf(60); private static final
@@ -94,6 +96,8 @@ public class Coverage extends FeatureProcess {
 
 	private static final BigDecimal HUNDRED = BigDecimal.valueOf(100);
 	private static final BigDecimal TWOHUNDREDFIFTY = BigDecimal.valueOf(250);
+//	private static final BigDecimal SIX_ACRES_IN_SQM = BigDecimal.valueOf(24636);
+//	private static final BigDecimal TWENTY_FIVE_ACRES_IN_SQM = BigDecimal.valueOf(101524);
 	private static final BigDecimal THREEHUNDREDFIFTY = BigDecimal.valueOf(350);
 	private static final BigDecimal FIVEHUNDRED = BigDecimal.valueOf(500);
 	private static final BigDecimal ONETHOUSAND = BigDecimal.valueOf(1000);
@@ -168,6 +172,16 @@ public class Coverage extends FeatureProcess {
     	if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
     		 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SIXTYSIX);
         }
+    	
+		/*
+		 * if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.
+		 * OCCUPANCY_A4.getOccupancyTypeVal())) { if
+		 * (pl.getPlot().getArea().compareTo(SIX_ACRES_IN_SQM) <= 0) {
+		 * processCoverage(pl, StringUtils.EMPTY, totalCoverage, FIFTY); } if
+		 * (pl.getPlot().getArea().compareTo(SIX_ACRES_IN_SQM) > 0 &&
+		 * pl.getPlot().getArea().compareTo(TWENTY_FIVE_ACRES_IN_SQM) <= 0) {
+		 * processCoverage(pl, StringUtils.EMPTY, totalCoverage, THIRTYFIVE); } }
+		 */
         
         
         

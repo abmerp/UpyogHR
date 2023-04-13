@@ -1023,11 +1023,23 @@ public class Far extends FeatureProcess {
 	                expectedResult = "<= 1";
 	            }
 	            
-	            if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A4.getOccupancyTypeVal())) {
-	            	isAccepted = far.compareTo(ONE_POINTSEVENFIVE) <= 0;
-	            	pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
-	            	expectedResult = "<= 1.75";
-	            }
+//	            if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A4.getOccupancyTypeVal())) {
+//	            	isAccepted = far.compareTo(ONE_POINTSEVENFIVE) <= 0;
+//	            	pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
+//	            	expectedResult = "<= 1.75";
+//	            }
+	            
+//	            String buildingFootPrintLayer = String.format(DxfFileConstants.BUILDING_FOOT_PRINT);
+//	            
+//	            if (pl.getPlot().getBuildingFootPrint().getPresentInDxf() &&
+//	            		pl.getPlot().getBuildingFootPrint().getColorCode() == 2 && 
+//	            		pl.getPlot().getBuildingFootPrint().getName().equals(buildingFootPrintLayer)) {
+//	            	
+//	            	isAccepted = far.compareTo(ONE_POINTSEVENFIVE) <= 0;
+//	            	pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
+//	            	expectedResult = "<= 1.75";
+//	            
+//	            }
              }
 
             if (typeOfArea.equalsIgnoreCase(NEW)) {
@@ -1044,11 +1056,13 @@ public class Far extends FeatureProcess {
                     expectedResult = "<= 2.40";
                 }
             	
-            	if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.OCCUPANCY_A4.getOccupancyTypeVal())) {
-            		isAccepted = far.compareTo(ONE_POINTSEVENFIVE) <= 0;
-            		pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
-            		expectedResult = "<= 1.75";
-            	}
+				/*
+				 * if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.
+				 * OCCUPANCY_A4.getOccupancyTypeVal())) { isAccepted =
+				 * far.compareTo(ONE_POINTSEVENFIVE) <= 0;
+				 * pl.getFarDetails().setPermissableFar(ONE_POINTSEVENFIVE.doubleValue());
+				 * expectedResult = "<= 1.75"; }
+				 */
                }
             	
 				/*
