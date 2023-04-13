@@ -389,6 +389,18 @@ public class TLConfiguration {
 	@Value("${persister.changrebeneficial.updatePayment}")
 	private String updatePaymentChangreBeneficialTopic;
 
+	// complition certificate 
+	    
+    @Value("${persister.completioncertificate.save}")
+	private String saveCompletionCertificateTopic;
+
+	@Value("${persister.completioncertificate.update}")
+	private String updateCompletionCertificateTopic;
+
+	@Value("${persister.completioncertificate.updatePayment}")
+	private String updatePaymentCompletionCertificateTopic;
+
+	
 	// renewal license
 	@Value("${persister.renewallicense.save}")
 	private String saveRenewalLicenseTopic;
