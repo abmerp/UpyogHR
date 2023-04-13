@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details,created_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details,created_time,application_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -77,14 +77,16 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.createdTime
            type: LONG
            
-           
+         - jsonPath: changeBeneficial.*.applicationNumber
+           type: STRING
+                     
            
  - version: 1.0
    description: Persists benefical service of  change_benefical table
    fromTopic: update-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=? where license_number=? and application_status=1
+      - query: UPDATE public.eg_tl_change_beneficial SET "developerServiceCode"=?, "areaInAcres"=?, "noObjectionCertificate"=?, "consentLetter"=?, "justificationCertificate"=?, "thirdPartyRightsCertificate"=?, "jointDevelopmentCertificate"=?, "aministrativeChargeCertificate"=?, "boardResolutionExisting"=?, "boardResolutionNewEntity"=?, "shareholdingPatternCertificate"=?, "reraRegistrationCertificate"=?, "fiancialCapacityCertificate"=?, is_draft=?, audit_details=? where license_number=? and application_status=1
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -129,6 +131,10 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.isDraft
            type: STRING
+         
+         - jsonPath: changeBeneficial.*.auditDetails
+           type: JSON
+           dbType: JSONB
            
          - jsonPath: changeBeneficial.*.licenseNumber
            type: STRING
@@ -138,7 +144,7 @@ serviceMaps:
    fromTopic: update-payment-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=?, application_number=? where license_number=? and application_status IN(2,3)
+      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=? where license_number=? and application_status IN(2,3)
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -158,9 +164,6 @@ serviceMaps:
            type: STRING
            
          - jsonPath: changeBeneficial.*.diaryNumber
-           type: STRING
-           
-         - jsonPath: changeBeneficial.*.applicationNumber
            type: STRING
            
          - jsonPath: changeBeneficial.*.licenseNumber

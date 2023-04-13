@@ -200,7 +200,11 @@ public class ChangeBeneficialService {
 	    			
 	    			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 							.stream().map(changebeneficial -> {
-								changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+								Long time = System.currentTimeMillis();
+								AuditDetails auditDetails=changebeneficial.getAuditDetails();
+								auditDetails.setLastModifiedBy(beneficialRequest.getRequestInfo().getUserInfo().getUuid());
+								auditDetails.setLastModifiedTime(time);
+								changebeneficial.setAuditDetails(auditDetails);
 								if(changebeneficial.getIsDraft()==null) {
 									changebeneficial.setIsDraft("0");	
 								}else {
@@ -243,16 +247,20 @@ public class ChangeBeneficialService {
 	}
 	private ChangeBeneficialResponse createNewChangeBeneficial(ChangeBeneficialRequest beneficialRequest,List<TradeLicense> tradeLicense,ChangeBeneficialResponse changeBeneficialResponse,String licenseNumber) {
 		
+		
 		  RequestInfo requestInfo = beneficialRequest.getRequestInfo();
 			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 					.stream().map(changebeneficial -> {
+						String applicationNumberCb = servicePlanService.getIdList(beneficialRequest.getRequestInfo(), "hr",
+								config.getChangeBeneficialApplicationName(), config.getChangeBeneficialApplicationFormat(), 1).get(0);
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						Long time = System.currentTimeMillis();
-						AuditDetails auditDetails = tradeUtil.getAuditDetails(beneficialRequest.getRequestInfo().getUserInfo().getUuid(), true);
+						AuditDetails auditDetails=AuditDetails.builder().createdBy(beneficialRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 						changebeneficial.setAuditDetails(auditDetails);
 						changebeneficial.setCreatedTime(time);
+						changebeneficial.setApplicationNumber(applicationNumberCb);
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -899,21 +907,21 @@ public class ChangeBeneficialService {
 						 * End Here
 						 ***********/
 						// application number
-						Map<String, Object> mapANo = new HashMap<String, Object>();
-						mapANo.put("DiaryNo", dairyNumber);
-						mapANo.put("DiaryDate", date);
-						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
-						mapANo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
-						mapANo.put("PurposeId", purposeId);
-						mapANo.put("NameofOwner",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
-						mapANo.put("DateOfHearing", date);
-						mapANo.put("DateForFilingOfReply", date);
-						mapANo.put("UserId", "2");
-						mapANo.put("UserLoginId", "39");
-						tcpApplicationNumber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
-								.get("Value").toString();
+//						Map<String, Object> mapANo = new HashMap<String, Object>();
+//						mapANo.put("DiaryNo", dairyNumber);
+//						mapANo.put("DiaryDate", date);
+//						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
+//						mapANo.put("Village",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+//						mapANo.put("PurposeId", purposeId);
+//						mapANo.put("NameofOwner",
+//								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
+//						mapANo.put("DateOfHearing", date);
+//						mapANo.put("DateForFilingOfReply", date);
+//						mapANo.put("UserId", "2");
+//						mapANo.put("UserLoginId", "39");
+//						tcpApplicationNumber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
+//								.get("Value").toString();
 						
 						
 						ChangeBeneficial changeBeneficiaDetails=null;
@@ -930,7 +938,7 @@ public class ChangeBeneficialService {
 										.applicationStatus(2)
 										.isFullPaymentDone(false)
 										.tranactionId(tranxId)
-										.applicationNumber(tcpApplicationNumber)
+//										.applicationNumber(tcpApplicationNumber)
 										.diaryNumber(dairyNumber)
 										.build();
 							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
@@ -997,7 +1005,7 @@ public class ChangeBeneficialService {
 		return new ResponseEntity<>(httpHeaders1, HttpStatus.FOUND);
 }
 	
-	private TradeLicenseRequest prepareProcessInstanceRequest(String tenantId, String businessService,String action,List<String> assignee,String applicationNumber,String workflowCode, RequestInfo requestInfo) {
+	public TradeLicenseRequest prepareProcessInstanceRequest(String tenantId, String businessService,String action,List<String> assignee,String applicationNumber,String workflowCode, RequestInfo requestInfo) {
 		List<Document> wfDocuments=new ArrayList<>();
 		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
 		TradeLicense tradeLicenseAS = new TradeLicense();
@@ -1010,7 +1018,7 @@ public class ChangeBeneficialService {
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 		tradeLicenseDetail.setTradeType(businessService);
 		tradeLicenseAS.setTradeLicenseDetail(tradeLicenseDetail);
-		tradeLicenseAS.setComment("This is workflow for Changebeneficial");
+		tradeLicenseAS.setComment("This is workflow for "+businessService);
 		tradeLicenseAS.setWfDocuments(wfDocuments);
 		tradeLicenseAS.setTenantId(tenantId);
 		tradeLicenseAS.setBusinessService(businessService);

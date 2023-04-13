@@ -388,6 +388,11 @@ public class TLConfiguration {
 
 	@Value("${persister.changrebeneficial.updatePayment}")
 	private String updatePaymentChangreBeneficialTopic;
+	
+	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber}")
+	private String changeBeneficialApplicationName;
+	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber.format}")
+	private String changeBeneficialApplicationFormat;
 
 	// complition certificate 
 	    
@@ -399,6 +404,12 @@ public class TLConfiguration {
 
 	@Value("${persister.completioncertificate.updatePayment}")
 	private String updatePaymentCompletionCertificateTopic;
+	
+	@Value("${egov.idgen.tl.completioncertificate.applicationNumber}")
+	private String completionCertificateName;
+	
+	@Value("${egov.idgen.tl.completioncertificate.applicationNumber.format}")
+	private String completionCertificateFormat;
 
 	
 	// renewal license
@@ -428,4 +439,6 @@ public class TLConfiguration {
 	private String surrenderName;
 	@Value("${egov.idgen.tlSOL.applicationNum.format}")
 	private String surrenderFormat;
+	
+	
 }
