@@ -217,7 +217,7 @@ serviceMaps:
          - jsonPath: completionCertificate.*.transferOfLicenseCertificate
          - jsonPath: completionCertificate.*.updatedComplianceWithRules
          - jsonPath: completionCertificate.*.workFlowCode
-         - jsonPath: changeBeneficial.*.auditDetails
+         - jsonPath: completionCertificate.*.auditDetails
            type: JSON
            dbType: JSONB
            
@@ -268,7 +268,7 @@ serviceMaps:
          - jsonPath: completionCertificate.*.updatedComplianceWithRules
          - jsonPath: completionCertificate.*.workFlowCode
 
-         - jsonPath: changeBeneficial.*.auditDetails
+         - jsonPath: completionCertificate.*.auditDetails
            type: JSON
            dbType: JSONB
 

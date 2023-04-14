@@ -95,17 +95,17 @@ public class CompletionCertificateService {
 					AuditDetails auditDetails = null;
 					if(isCreate) {
 						auditDetails=AuditDetails.builder().createdBy(completionCertificateRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
+						certificate.setId(UUID.randomUUID().toString());
+						certificate.setWorkFlowCode(COMPLETION_CERTIFICATE_WORKFLOWCODE);
+						certificate.setApplicationStatus(1);
+						certificate.setCreatedDate(new Timestamp(time));
+						certificate.setFullPaymentDone(false);
 					}else {
 						auditDetails=completionCertificateData.getAuditDetails();
 						auditDetails.setLastModifiedBy(completionCertificateRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);
 					}
-					certificate.setId(UUID.randomUUID().toString());
-					certificate.setWorkFlowCode(COMPLETION_CERTIFICATE_WORKFLOWCODE);
-					certificate.setApplicationStatus(1);
-					certificate.setCreatedDate(new Timestamp(time));
 					certificate.setAuditDetails(auditDetails);
-					certificate.setFullPaymentDone(false);
 					if(certificate.getIsDraft()==null) {
 						certificate.setIsDraft("0");	
 					}else {
