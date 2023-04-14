@@ -55,6 +55,13 @@ public class CompletionCertificateService {
 	
 	@Autowired
 	private CompletionCertificateRepo completionCertificateRepo;
+	
+	@Autowired
+	private ChangeBeneficialService changeBeneficialService;
+	
+	@Autowired
+	private ServicePlanService servicePlanService;
+	
 
 	public CompletionCertificateResponse createCompletionCertificate(CompletionCertificateRequest completionCertificateRequest){
 		CompletionCertificateResponse completionCertificateResponse = null;
@@ -91,6 +98,8 @@ public class CompletionCertificateService {
 		CompletionCertificateResponse completionCertificateResponse=null;
 		List<CompletionCertificate> completionCertificate = (List<CompletionCertificate>) completionCertificateRequest.getCompletionCertificate()
 				.stream().map(certificate -> {
+					String applicationNumberCC = servicePlanService.getIdList(completionCertificateRequest.getRequestInfo(), "hr",
+							config.getCompletionCertificateName(), config.getCompletionCertificateFormat(), 1).get(0);
 					Long time = System.currentTimeMillis();
 					AuditDetails auditDetails = null;
 					if(isCreate) {
@@ -106,6 +115,8 @@ public class CompletionCertificateService {
 						auditDetails.setLastModifiedTime(time);
 					}
 					certificate.setAuditDetails(auditDetails);
+					certificate.setApplicationNumber(applicationNumberCC);
+					
 					if(certificate.getIsDraft()==null) {
 						certificate.setIsDraft("0");	
 					}else {

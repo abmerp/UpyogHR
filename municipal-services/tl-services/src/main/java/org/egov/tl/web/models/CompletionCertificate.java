@@ -55,7 +55,7 @@ public class CompletionCertificate{// implements Serializable{
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
-	@JsonProperty("workFlowCode ")
+	@JsonProperty("workFlowCode")
 	private String workFlowCode; 
 	
 	
@@ -135,10 +135,10 @@ public class CompletionCertificate{// implements Serializable{
 	@JsonProperty("transferOfLicenseCertificate")
 	private String transferOfLicenseCertificate;
 	
-	@JsonProperty("occupationCertificate ")
+	@JsonProperty("occupationCertificate")
 	private String occupationCertificate;
 	
-	@JsonProperty("updatedComplianceWithRules ")
+	@JsonProperty("updatedComplianceWithRules")
 	private String updatedComplianceWithRules;
 	
 	@JsonProperty("paymentAugmentationCharges")
