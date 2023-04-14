@@ -162,7 +162,7 @@ public class CompletionCertificateRepo {
 					.id(rs.getString("id"))
 					.applicationStatus(rs.getInt("application_status"))
 					.applicationNumber(rs.getString("application_number"))
-					.workFlowCode(rs.getString("workflowcode"))
+					.workFlowCode(rs.getString("work_flow_code"))
 					.auditDetails(auditDetails)
 					.isDraft(rs.getString("is_draft"))
 					.tranactionId(rs.getString("transaction_id"))
