@@ -203,7 +203,7 @@ public class CompletionCertificateRepo {
 					.complianceOfRules(rs.getString("compliance_of_rules"))
 					.affidavitNoUnauthorized(rs.getString("affidavit_no_unauthorized"))
 					.complainsDetails(rs.getString("complains_details"))
-					.AccessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
+					.accessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
 					.tranactionId(rs.getString("transaction_id"))
 					.build();
 			});
