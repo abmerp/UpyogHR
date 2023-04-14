@@ -56,7 +56,7 @@ public class CompletionCertificateService {
 	@Autowired
 	private CompletionCertificateRepo completionCertificateRepo;
 
-	public CompletionCertificateResponse createChangeBeneficial(CompletionCertificateRequest completionCertificateRequest){
+	public CompletionCertificateResponse createCompletionCertificate(CompletionCertificateRequest completionCertificateRequest){
 		CompletionCertificateResponse completionCertificateResponse = null;
 		String licenseNumber=completionCertificateRequest.getCompletionCertificate().get(0).getLicenseNumber();
 		

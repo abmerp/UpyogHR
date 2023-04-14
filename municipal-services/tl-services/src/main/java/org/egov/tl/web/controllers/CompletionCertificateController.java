@@ -22,14 +22,14 @@ public class CompletionCertificateController {
 	
 	@PostMapping("_create")
 	public ResponseEntity<CompletionCertificateResponse> saveCompletionCertificate(@RequestBody CompletionCertificateRequest completionRequest){
-		CompletionCertificateResponse CompletionCertificateResponse=completionCertificateService.createChangeBeneficial(completionRequest);
-       return new ResponseEntity<>(CompletionCertificateResponse, HttpStatus.OK);
+		CompletionCertificateResponse completionCertificateResponse=completionCertificateService.createCompletionCertificate(completionRequest);
+       return new ResponseEntity<>(completionCertificateResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_update")
 	public ResponseEntity<CompletionCertificateResponse> updateCompletionCertificate(@RequestBody CompletionCertificateRequest completionRequest){
-		CompletionCertificateResponse CompletionCertificateResponse=completionCertificateService.createChangeBeneficial(completionRequest);   
-       return new ResponseEntity<>(CompletionCertificateResponse, HttpStatus.OK);
+		CompletionCertificateResponse completionCertificateResponse=completionCertificateService.createCompletionCertificate(completionRequest);   
+       return new ResponseEntity<>(completionCertificateResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_get")

@@ -47,10 +47,10 @@ public class CompletionCertificateRepo {
 			+ "where to_timestamp(eg_tl_tradelicense.validfrom / 1000)<CURRENT_TIMESTAMP(0) and CURRENT_TIMESTAMP(0)<to_timestamp(eg_tl_tradelicense.validto / 1000) and eg_tl_tradelicense.licensenumber=:licenseNumber";//and  eg_tl_tradelicense.status!='INITIATED'  //and eg_user.id=:userId
 	
 	String querybyLicenseNumber="select * from public.eg_tl_completion_certificate where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
-			+ " order by created_at desc limit 1";
+			+ " order by created_date desc limit 1";
 
 	String querybyApplicationNumber="select * from public.eg_tl_completion_certificate where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
-			+ " order by created_at desc limit 1";
+			+ " order by created_date desc limit 1";
 	
 	public void save(CompletionCertificateRequest CompletionCertificate) {
 		try {
@@ -167,7 +167,7 @@ public class CompletionCertificateRepo {
 					.isDraft(rs.getString("is_draft"))
 					.tranactionId(rs.getString("transaction_id"))
 					.licenseNumber(rs.getString("license_number"))
-					.createdDate(rs.getTimestamp("created_at"))
+					.createdDate(rs.getTimestamp("created_date"))
 					
 					.licenseValidTill(rs.getString("license_valid_till"))
 					.edcIdcBgValid(rs.getString("edc_idc_bg_valid"))
