@@ -174,7 +174,7 @@ public class CompletionCertificate{// implements Serializable{
 	@JsonProperty("tranactionId")
 	private String tranactionId; 
 	
-	@JsonProperty("auditDetails ")
+	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails; 
 	
 //	@JsonProperty("tranactionId")
