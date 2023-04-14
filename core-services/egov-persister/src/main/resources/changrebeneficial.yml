@@ -226,10 +226,9 @@ serviceMaps:
    fromTopic: update-completioncertificate
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_completion_certificate SET id=?, access_permission_fromnhai=?, affidavit_no_unauthorized=?, bg_on_account_till_valid=?, ca_certificate=?, ca_certificate_regarding15percentage=?, complains_details=?, completion_approval_layout_plan=?, compliance_of_rules=?, copy_approval_service_plan=?,edc_idc_bg_valid=?, electric_service_plan=?, handling_over_comunity_site=?,  iac_aplicable=?, is_complete_profile_less_then=?, is_draft=?, license_valid_till=?, noc_from_fair_safety=?, noc_frommoef=?,  occupation_certificate=?, status_of_complains_for_rules=?, status_of_complains_if_any=?, status_of_development_work=?, status_ofedcis_fully_paid=?,status_of_handling_over=?, status_of_npl_plot=?, status_of_reading_handling_over=?, status_ofsidcis_fully_paid=?, status_of_total_comunity=?, total_completion_certificate_charge=?,payment_augmentation_charges=?, transfer_of_license_certificate=?, updated_compliance_with_rules=?, audit_details=? where application_status=1 and license_number=?;        
+      - query: UPDATE public.eg_tl_completion_certificate SET access_permission_fromnhai=?, affidavit_no_unauthorized=?, bg_on_account_till_valid=?, ca_certificate=?,ca_certificate_regarding15percentage=?, complains_details=?, completion_approval_layout_plan=?, compliance_of_rules=?, copy_approval_service_plan=?,edc_idc_bg_valid=?,electric_service_plan=?, handling_over_comunity_site=?,  iac_aplicable=?, is_complete_profile_less_then=?, is_draft=?, license_valid_till=?,noc_from_fair_safety=?, noc_frommoef=?,  occupation_certificate=?, status_of_complains_for_rules=?, status_of_complains_if_any=?, status_of_development_work=?, status_ofedcis_fully_paid=?,status_of_handling_over=?, status_of_npl_plot=?,  status_of_reading_handling_over=?, status_ofsidcis_fully_paid=?, status_of_total_comunity=?, total_completion_certificate_charge=?,payment_augmentation_charges=?,transfer_of_license_certificate=?, updated_compliance_with_rules=?, audit_details=? where application_status=1 and license_number=?;        
         basePath: completionCertificate.*
         jsonMaps: 
-         - jsonPath: completionCertificate.*.id
          - jsonPath: completionCertificate.*.accessPermissionFromNHAI
          - jsonPath: completionCertificate.*.affidavitNoUnauthorized
          - jsonPath: completionCertificate.*.applicationNumber
@@ -247,12 +246,10 @@ serviceMaps:
          - jsonPath: completionCertificate.*.iacAplicable
          - jsonPath: completionCertificate.*.isCompleteProfileLessThen
          - jsonPath: completionCertificate.*.isDraft
-         - jsonPath: completionCertificate.*.isFullPaymentDone
          - jsonPath: completionCertificate.*.licenseValidTill
          - jsonPath: completionCertificate.*.nocFromFairSafety
          - jsonPath: completionCertificate.*.nocFromMOEF
          - jsonPath: completionCertificate.*.occupationCertificate
-         - jsonPath: completionCertificate.*.paymentType
          - jsonPath: completionCertificate.*.statusOfComplainsForRules
          - jsonPath: completionCertificate.*.statusOfComplainsIfAny
          - jsonPath: completionCertificate.*.statusOfDevelopmentWork
@@ -266,7 +263,6 @@ serviceMaps:
          - jsonPath: completionCertificate.*.paymentAugmentationCharges
          - jsonPath: completionCertificate.*.transferOfLicenseCertificate
          - jsonPath: completionCertificate.*.updatedComplianceWithRules
-         - jsonPath: completionCertificate.*.workFlowCode
 
          - jsonPath: completionCertificate.*.auditDetails
            type: JSON
