@@ -1010,7 +1010,7 @@ serviceMaps:
           - jsonPath: $.ServicePlanRequest.*.applicationNumber
 
 
-       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=?,  devname=? , developmentplan=? , purpose=? , totalarea=?  , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? , layoutplan = ?, revisedlayout= ?, demarcation= ?, demarcationgis= ?, layoutexcel= ? , anyotherdoc= ? , externalagency= ? WHERE application_number=?;
+       - query: UPDATE public.eg_service_plan SET id=? ,auto_cad_file=?, certifiead_copy_of_the_plan=?, environmental_clearance=?, self_certified_drawing_from_empaneled_doc=?, self_certified_drawings_from_chareted_eng=?,  shape_file_as_per_template=?, undertaking=?, action=?, status=? , sp_action=?,  devname=? , developmentplan=? , purpose=? , totalarea=?  , business_service=?, comment=?, tenantid=?, loi_number=?,  last_modified_by=?, last_modified_time=? , additionaldetails=? , layoutplan = ?, revisedlayout= ?, demarcation= ?, demarcationgis= ?, layoutexcel= ? , anyotherdoc= ? , externalagency= ? , tcpapplicationnumber = ?, tcpcasenumber = ?, tcpdairynumber=? WHERE application_number=?;
  
          basePath: ServicePlanRequest.*
          jsonMaps:
@@ -1075,12 +1075,15 @@ serviceMaps:
           
           - jsonPath: $.ServicePlanRequest.*.externalAgency
             type: JSON
-            dbType: JSONB
-
-          - jsonPath: $.ServicePlanRequest.*.applicationNumber
+            dbType: JSONB         
           
+          - jsonPath: $.ServicePlanRequest.*.tcpApplicationNumber
+          
+          - jsonPath: $.ServicePlanRequest.*.tcpCaseNumber
          
+          - jsonPath: $.ServicePlanRequest.*.tcpDairyNumber
           
+          - jsonPath: $.ServicePlanRequest.*.applicationNumber
           
  - version: 1.0
    description: update new bank guarantee details in eg_tl_bank_guarantee table
@@ -1250,7 +1253,7 @@ serviceMaps:
           - jsonPath: $.ElectricPlanRequest.*.applicationNumber
 
 
-       - query: UPDATE public.eg_electric_plan SET id=? , auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?,  last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?,  devname=? , developmentplan=? , purpose=? , totalarea=? , status=?, comment=?, pdf_format=?  , additionaldetails=? WHERE application_number=?;
+       - query: UPDATE public.eg_electric_plan SET id=? , auto_cad=?, elecric_distribution=?, electrical_capacity=?, electrical_infra=?, environmental_clearance=?, load_sancation=?, switching_station=?, verified_plan=?, loi_number=?, self_centred_drawing=?,  tenantid=?,  last_modified_by=?, last_modified_time=?, application_number=?, business_service=?, action=?,  devname=? , developmentplan=? , purpose=? , totalarea=? , status=?, comment=?, pdf_format=?  , additionaldetails=? , tcpapplicationnumber =? , tcpcasenumber = ?, tcpdairynumber = ? WHERE application_number=?;
  
          basePath: ElectricPlanRequest.*
          jsonMaps:
@@ -1289,13 +1292,13 @@ serviceMaps:
           
           - jsonPath: $.ElectricPlanRequest.*.action
           
-          - jsonPath: $.ServicePlanRequest.*.devName
+          - jsonPath: $.ElectricPlanRequest.*.devName
 
-          - jsonPath: $.ServicePlanRequest.*.developmentPlan
+          - jsonPath: $.ElectricPlanRequest.*.developmentPlan
 
-          - jsonPath: $.ServicePlanRequest.*.purpose
+          - jsonPath: $.ElectricPlanRequest.*.purpose
 
-          - jsonPath: $.ServicePlanRequest.*.totalArea
+          - jsonPath: $.ElectricPlanRequest.*.totalArea
           
           - jsonPath: $.ElectricPlanRequest.*.status
           
@@ -1303,10 +1306,16 @@ serviceMaps:
           
           - jsonPath: $.ElectricPlanRequest.*.pdfFormat
           
-          - jsonPath: $.ServicePlanRequest.*.additionalDetails
+          - jsonPath: $.ElectricPlanRequest.*.additionalDetails
             type: JSON
             dbType: JSONB
 
+          - jsonPath: $.ElectricPlanRequest.*.tcpApplicationNumber
+          
+          - jsonPath: $.ElectricPlanRequest.*.tcpCaseNumber
+          
+          - jsonPath: $.ElectricPlanRequest.*.tcpDairyNumber         
+          
           - jsonPath: $.ElectricPlanRequest.*.applicationNumber
           
  - version: 1.0

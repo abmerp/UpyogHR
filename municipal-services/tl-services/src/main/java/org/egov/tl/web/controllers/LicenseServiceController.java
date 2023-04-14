@@ -12,8 +12,11 @@ import javax.validation.Valid;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.response.ResponseInfo;
+
 import org.egov.tl.config.TLConfiguration;
+import org.egov.tl.service.GenerateTcpNumbers;
 import org.egov.tl.service.LicenseService;
+import org.egov.tl.service.ThirPartyAPiCall;
 import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.LicenseServiceRequest;
@@ -21,8 +24,10 @@ import org.egov.tl.web.models.LicenseServiceRequest;
 import org.egov.tl.web.models.LicenseServiceResponse;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.RequestInfoWrapper;
+import org.egov.tl.web.models.ServicePlanRequest;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseResponse;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.Transaction;
 import org.egov.tl.web.models.TransactionResponse;
 
@@ -32,6 +37,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +57,9 @@ import com.fasterxml.jackson.databind.node.ValueNode;
 @RestController
 @RequestMapping("new")
 public class LicenseServiceController {
+
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 
 	@Autowired
 	LicenseService newServiceInfoService;
@@ -187,12 +196,27 @@ public class LicenseServiceController {
 			@RequestParam("applicationNumber") String applicationNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
-		 List<TradeLicense> dispatchtoken = newServiceInfoService.generateLoiNumber(map,
-				requestInfoWrapper, applicationNo);
-		  TradeLicenseResponse response = TradeLicenseResponse.builder().licenses(dispatchtoken).responseInfo(
-	                responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
-	                .build();
-	        return new ResponseEntity<>(response, HttpStatus.OK);
+		List<TradeLicense> dispatchtoken = newServiceInfoService.generateLoiNumber(map, requestInfoWrapper,
+				applicationNo);
+		TradeLicenseResponse response = TradeLicenseResponse.builder().licenses(dispatchtoken).responseInfo(
+				responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+				.build();
+		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
+
+	@PostMapping(value = "/_generateTcpNumbers")
+	public Map<String, Object> generateTcpNumbers(
+			@RequestBody RequestInfoWrapper requestInfoWrapper, @ModelAttribute TradeLicenseSearchCriteria criteria,
+			@RequestParam(required = false) String businessService) {
+
+		Map<String, Object> generateNumbers = generateTcpNumbers.tcpNumbers(criteria, requestInfoWrapper.getRequestInfo(),
+				businessService);
+
+//		ResponseGenerateNumbers response = ResponseGenerateNumbers.builder().servicePlanRequest(generate).responseInfo(
+//				responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+//				.build();
+		return generateNumbers;
+	}
+
 }
