@@ -175,7 +175,7 @@ serviceMaps:
    fromTopic: save-completioncertificate
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_completion_certificate(id, access_permission_fromnhai, affidavit_no_unauthorized, application_number, application_status, bg_on_account_till_valid, ca_certificate, ca_certificate_regarding15percentage, complains_details, completion_approval_layout_plan, compliance_of_rules, copy_approval_service_plan, created_date, edc_idc_bg_valid, electric_service_plan, handling_over_comunity_site,  iac_aplicable, is_complete_profile_less_then, is_draft, is_full_payment_done, license_number, license_valid_till, noc_from_fair_safety, noc_frommoef,  occupation_certificate, payment_type, status_of_complains_for_rules, status_of_complains_if_any, status_of_development_work, status_ofedcis_fully_paid,status_of_handling_over, status_of_npl_plot, status_of_reading_handling_over, status_ofsidcis_fully_paid, status_of_total_comunity, total_completion_certificate_charge,payment_augmentation_charges, transfer_of_license_certificate, updated_compliance_with_rules, work_flow_code, "auditDetails") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);        
+      - query: INSERT INTO public.eg_tl_completion_certificate(id, access_permission_fromnhai, affidavit_no_unauthorized, application_number, application_status, bg_on_account_till_valid, ca_certificate, ca_certificate_regarding15percentage, complains_details, completion_approval_layout_plan, compliance_of_rules, copy_approval_service_plan, created_date, edc_idc_bg_valid, electric_service_plan, handling_over_comunity_site,  iac_aplicable, is_complete_profile_less_then, is_draft, is_full_payment_done, license_number, license_valid_till, noc_from_fair_safety, noc_frommoef,  occupation_certificate, payment_type, status_of_complains_for_rules, status_of_complains_if_any, status_of_development_work, status_ofedcis_fully_paid,status_of_handling_over, status_of_npl_plot, status_of_reading_handling_over, status_ofsidcis_fully_paid, status_of_total_comunity, total_completion_certificate_charge,payment_augmentation_charges, transfer_of_license_certificate, updated_compliance_with_rules, work_flow_code, "auditDetails") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);        
         basePath: completionCertificate.*
         jsonMaps: 
          - jsonPath: completionCertificate.*.id
@@ -194,6 +194,9 @@ serviceMaps:
            type: STRING
          
          - jsonPath: completionCertificate.*.bgOnAccountTillValid
+           type: STRING
+         
+         - jsonPath: completionCertificate.*.caCertificate
            type: STRING
          
          - jsonPath: completionCertificate.*.caCertificateRegarding15Percentage
@@ -318,6 +321,9 @@ serviceMaps:
            type: STRING
          
          - jsonPath: completionCertificate.*.bgOnAccountTillValid
+           type: STRING
+         
+         - jsonPath: completionCertificate.*.caCertificate
            type: STRING
          
          - jsonPath: completionCertificate.*.caCertificateRegarding15Percentage
