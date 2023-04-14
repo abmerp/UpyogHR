@@ -116,6 +116,7 @@ public class CompletionCertificateService {
 						certificate.setCreatedDate(new Timestamp(time));
 						certificate.setFullPaymentDone(false);
 						certificate.setApplicationNumber(applicationNumberCC);
+						certificate.setCreatedTime(time);
 					}else {
 						auditDetails=completionCertificateData.getAuditDetails();
 						auditDetails.setLastModifiedBy(completionCertificateRequest.getRequestInfo().getUserInfo().getUuid());

@@ -62,6 +62,9 @@ public class WorkflowIntegrator {
 	private static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
 	
 	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
+	
+	private static final String COMPLETION_CERTIFICATE_WORKFLOWCODE = "COMPLETION_CERTIFICATE";
+	
 
 	private static final String BPAMODULENAMEVALUE = "BPAREG";
 
@@ -129,6 +132,10 @@ public class WorkflowIntegrator {
 					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 				break;
 				//TLR Changes
+				    case COMPLETION_CERTIFICATE_WORKFLOWCODE:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+					break;
 				    case CHANGE_BENEFICIAL_WORKFLOWCODE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);

@@ -107,6 +107,14 @@ public class TLInboxFilterService {
 	@Value("${egov.searcher.tl.change.beneficial.search.desc.path}")
 	private String changeOfBeneficialSearcherDescEndPoint;
 	
+//	CHANGE OF BENEFICIAL
+	@Value("${egov.searcher.tl.completion.certificate.search.path}")
+	private String completionCertificateSearcherEndPoint;
+	@Value("${egov.searcher.tl.completion.certificate.count.path}")
+	private String completionCertificateSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.completion.certificate.search.desc.path}")
+	private String completionCertificateSearcherDescEndPoint;
+	
 //	SURREND OF LICENSE
 	@Value("${egov.searcher.tl.Surrend.of.license.search.path}")
 	private String SurrendOfLicenseSearcherEndPoint;
@@ -123,6 +131,8 @@ public class TLInboxFilterService {
 	private ServiceRequestRepository serviceRequestRepository;
 
 	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
+	private static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
+	
 	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
 	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
 	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
@@ -232,7 +242,16 @@ public class TLInboxFilterService {
 						uri.append(searcherHost).append(changeOfBeneficialSearcherEndPoint);
 						log.info("search for application no url" + uri);
 					}
-					break;				
+					break;	
+				case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(completionCertificateSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(completionCertificateSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;	
 				case BUSINESSSERVICE_TRANSFER:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -424,6 +443,10 @@ public class TLInboxFilterService {
 					break;
 				case BUSINESSSERVICE_CHANGEBENEFICIAL:
 					uri.append(searcherHost).append(changeOfBeneficialSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+					break;
+				case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
+					uri.append(searcherHost).append(completionCertificateSearcherCountEndPoint);
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_TRANSFER:

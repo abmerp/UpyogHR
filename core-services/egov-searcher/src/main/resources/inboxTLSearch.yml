@@ -1228,4 +1228,142 @@ SearchDefinitions:
           ]
       outJsonPath: $.Licenses
       responseInfoPath: $.ResponseInfo
+  - name: inboxtlsearchcountCompletionCertificate
+    query:
+      baseQuery: SELECT row_to_json(TotalCount) from (SELECT COUNT(result) from ( select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from eg_tl_completion_certificate as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid) order by tl.created_time  asc ) result) TotalCount
+      groupBy: null
+      orderBy: null
+    searchParams:
+      condition: AND
+      params:
+      - name: tl.tenantid
+        isMandatory: true
+        jsonPath: $.searchCriteria.tenantId
+      - name: tl.licenseNumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.licenseNumber
+      - name: tl.oldlicensenumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.oldlicensenumber
+      - name: tladd.locality
+        isMandatory: false
+        jsonPath: $.searchCriteria.locality
+      - name: assg.assignee
+        isMandatory: false
+        jsonPath: $.searchCriteria.assignee
+      - name: pi.status
+        isMandatory: false
+        jsonPath: $.searchCriteria.status
+      - name: tl.applicationNumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.applicationNumber
+      - name: owner.id
+        isMandatory: false
+        jsonPath: $.searchCriteria.userid
+      - name: pi.businessservice
+        isMandatory: false
+        jsonPath: $.searchCriteria.businessservice
+      pagination:
+        noOfRecords: $.searchCriteria.noOfRecords
+        offset: $.searchCriteria.offset
+    output:
+      jsonFormat:
+        ResponseInfo: {
+          }
+        TotalCount: {
+          }
+      outJsonPath: $.TotalCount
+      responseInfoPath: $.ResponseInfo
+  - name: inboxtlsearchCompletionCertificate
+    query:
+      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from eg_tl_completion_certificate as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid) order by tl.created_time  asc ) result
+      groupBy: null
+      orderBy: null
+    searchParams:
+      condition: AND
+      params:
+      - name: tl.tenantid
+        isMandatory: true
+        jsonPath: $.searchCriteria.tenantId
+      - name: tl.licenseNumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.licenseNumber
+      - name: tl.oldlicensenumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.oldlicensenumber
+      - name: tladd.locality
+        isMandatory: false
+        jsonPath: $.searchCriteria.locality
+      - name: assg.assignee
+        isMandatory: false
+        jsonPath: $.searchCriteria.assignee
+      - name: pi.status
+        isMandatory: false
+        jsonPath: $.searchCriteria.status
+      - name: tl.applicationNumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.applicationNumber
+      - name: owner.id
+        isMandatory: false
+        jsonPath: $.searchCriteria.userid
+      - name: pi.businessservice
+        isMandatory: false
+        jsonPath: $.searchCriteria.businessservice
+      pagination:
+        noOfRecords: $.searchCriteria.noOfRecords
+        offset: $.searchCriteria.offset
+    output:
+      jsonFormat:
+        ResponseInfo: {
+          }
+        Licenses: [
+          ]
+      outJsonPath: $.Licenses
+      responseInfoPath: $.ResponseInfo
+  - name: inboxtlsearchdescCompletionCertificate
+    query:
+      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_number) as applicationNumber  , tl.created_time  as createdtime from eg_tl_completion_certificate as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid) order by tl.created_time   desc ) result
+      groupBy: null
+      orderBy: null
+    searchParams:
+      condition: AND
+      params:
+      - name: tl.tenantid
+        isMandatory: true
+        jsonPath: $.searchCriteria.tenantId
+      - name: tl.licenseNumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.licenseNumber
+      - name: tl.oldlicensenumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.oldlicensenumber
+      - name: tladd.locality
+        isMandatory: false
+        jsonPath: $.searchCriteria.locality
+      - name: assg.assignee
+        isMandatory: false
+        jsonPath: $.searchCriteria.assignee
+      - name: pi.status
+        isMandatory: false
+        jsonPath: $.searchCriteria.status
+      - name: tl.applicationNumber
+        isMandatory: false
+        jsonPath: $.searchCriteria.applicationNumber
+      - name: owner.id
+        isMandatory: false
+        jsonPath: $.searchCriteria.userid
+      - name: pi.businessservice
+        isMandatory: false
+        jsonPath: $.searchCriteria.businessservice
+      pagination:
+        noOfRecords: $.searchCriteria.noOfRecords
+        offset: $.searchCriteria.offset
+    output:
+      jsonFormat:
+        ResponseInfo: {
+          }
+        Licenses: [
+          ]
+      outJsonPath: $.Licenses
+      responseInfoPath: $.ResponseInfo 
        

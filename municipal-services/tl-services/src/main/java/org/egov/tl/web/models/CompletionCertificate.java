@@ -186,7 +186,7 @@ public class CompletionCertificate{// implements Serializable{
 //	@JsonProperty("auditDetails")
 //	AuditDetails auditDetails=null;
 //	
-//	@JsonProperty("createdTime")
-//	private long createdTime;
+	@JsonProperty("createdTime")
+	private long createdTime;
 	
 }
