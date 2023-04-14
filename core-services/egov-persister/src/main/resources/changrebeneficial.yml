@@ -231,8 +231,6 @@ serviceMaps:
         jsonMaps: 
          - jsonPath: completionCertificate.*.accessPermissionFromNHAI
          - jsonPath: completionCertificate.*.affidavitNoUnauthorized
-         - jsonPath: completionCertificate.*.applicationNumber
-         - jsonPath: completionCertificate.*.applicationStatus
          - jsonPath: completionCertificate.*.bgOnAccountTillValid
          - jsonPath: completionCertificate.*.caCertificate
          - jsonPath: completionCertificate.*.caCertificateRegarding15Percentage
