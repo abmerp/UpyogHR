@@ -162,14 +162,14 @@ public class CompletionCertificate{// implements Serializable{
 	@JsonProperty("complianceOfRules")
 	private String complianceOfRules;
 	
-	@JsonProperty("affidavitNoUnauthorized ")
+	@JsonProperty("affidavitNoUnauthorized")
 	private String affidavitNoUnauthorized; 
 	
-	@JsonProperty("complainsDetails ")
+	@JsonProperty("complainsDetails")
 	private String complainsDetails; 
 	
-	@JsonProperty("AccessPermissionFromNHAI ")
-	private String AccessPermissionFromNHAI; 
+	@JsonProperty("accessPermissionFromNHAI")
+	private String accessPermissionFromNHAI; 
 	
 	@JsonProperty("tranactionId")
 	private String tranactionId; 
