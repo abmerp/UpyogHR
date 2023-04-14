@@ -90,11 +90,27 @@ public class CompletionCertificateRepo {
 	   CompletionCertificate completionCertificate=null;
 		try {
 		List<Object> preparedStmtList = new ArrayList<>();
-		List<CompletionCertificate> completionCertificateList = jdbcTemplate.query(querybyLicenseNumber.replaceAll(":licenseNumber", "'"+licenseNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->CompletionCertificate.builder()
-//				.id(rs.getString("id").toString())
+		List<CompletionCertificate> completionCertificateList = jdbcTemplate.query(querybyLicenseNumber.replaceAll(":licenseNumber", "'"+licenseNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->{
+			
+			AuditDetails auditDetails=null;
+			try {
+				AuditDetails audit_details = new Gson().fromJson(
+						rs.getString("audit_details").equals("{}") || rs.getString("audit_details").equals("null")
+								? null
+								: rs.getString("audit_details"),
+								AuditDetails.class);
+				System.out.println(audit_details);
+				auditDetails=audit_details;
+			}catch (Exception e) {
+			   e.printStackTrace();
+			}
+			
+			
+			return CompletionCertificate.builder().id(rs.getString("id"))
 				.applicationNumber(rs.getString("application_number"))
 				.applicationStatus(rs.getInt("application_status"))
-				.build());
+				.auditDetails(auditDetails)
+				.build();});
 		if(completionCertificateList!=null&&!completionCertificateList.isEmpty()) {
 			completionCertificate=completionCertificateList.get(0);
 		}

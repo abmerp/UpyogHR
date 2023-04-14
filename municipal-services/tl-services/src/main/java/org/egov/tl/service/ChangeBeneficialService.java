@@ -201,7 +201,7 @@ public class ChangeBeneficialService {
 	    			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
 							.stream().map(changebeneficial -> {
 								Long time = System.currentTimeMillis();
-								AuditDetails auditDetails=changebeneficial.getAuditDetails();
+								AuditDetails auditDetails=changeBeneficialCheck.getAuditDetails();
 								auditDetails.setLastModifiedBy(beneficialRequest.getRequestInfo().getUserInfo().getUuid());
 								auditDetails.setLastModifiedTime(time);
 								changebeneficial.setAuditDetails(auditDetails);
