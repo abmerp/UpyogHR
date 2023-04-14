@@ -190,7 +190,10 @@ serviceMaps:
          - jsonPath: completionCertificate.*.completionApprovalLayoutPlan
          - jsonPath: completionCertificate.*.complianceOfRules
          - jsonPath: completionCertificate.*.copyApprovalServicePlan
+         
          - jsonPath: completionCertificate.*.createdDate
+           type: Timestamp
+         
          - jsonPath: completionCertificate.*.edcIdcBgValid
          - jsonPath: completionCertificate.*.electricServicePlan
          - jsonPath: completionCertificate.*.handlingOverComunitySite
@@ -242,7 +245,10 @@ serviceMaps:
          - jsonPath: completionCertificate.*.completionApprovalLayoutPlan
          - jsonPath: completionCertificate.*.complianceOfRules
          - jsonPath: completionCertificate.*.copyApprovalServicePlan
+
          - jsonPath: completionCertificate.*.createdDate
+           type: Timestamp
+           
          - jsonPath: completionCertificate.*.edcIdcBgValid
          - jsonPath: completionCertificate.*.electricServicePlan
          - jsonPath: completionCertificate.*.handlingOverComunitySite
