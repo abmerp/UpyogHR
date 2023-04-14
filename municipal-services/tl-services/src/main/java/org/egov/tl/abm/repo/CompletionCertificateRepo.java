@@ -195,15 +195,15 @@ public class CompletionCertificateRepo {
 					.occupationCertificate(rs.getString("occupation_certificate"))
 					.updatedComplianceWithRules(rs.getString("updated_compliance_with_rules"))
 					.paymentAugmentationCharges(rs.getString("payment_augmentation_charges"))
-					.caCertificateRegarding15Percentage(rs.getString("ca_certificate_regarding15_percentage"))
+					.caCertificateRegarding15Percentage(rs.getString("ca_certificate_regarding15percentage"))
 					.statusOfDevelopmentWork(rs.getString("status_of_development_work"))
 					.completionApprovalLayoutPlan(rs.getString("completion_approval_layout_plan"))
-					.nocFromMOEF(rs.getString("noc_from_mofe"))
+					.nocFromMOEF(rs.getString("noc_frommoef"))
 					.nocFromFairSafety(rs.getString("noc_from_fair_safety"))
 					.complianceOfRules(rs.getString("compliance_of_rules"))
 					.affidavitNoUnauthorized(rs.getString("affidavit_no_unauthorized"))
 					.complainsDetails(rs.getString("complains_details"))
-					.AccessPermissionFromNHAI(rs.getString("access_permission_from_nhai"))
+					.AccessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
 					.tranactionId(rs.getString("transaction_id"))
 					.build();
 			});
