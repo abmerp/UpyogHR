@@ -188,7 +188,7 @@ public class CompletionCertificateRepo {
 					.applicationStatus(rs.getInt("application_status"))
 					.paidAmount(rs.getString("paid_amount"))
 					.isFullPaymentDone(rs.getBoolean("is_full_payment_done"))
-					.totalCompletionCertificateCharge(rs.getString("total_change_beneficial_charge"))
+					.totalCompletionCertificateCharge(rs.getString("total_completion_certificate_charge"))
 					.copyApprovalServicePlan(rs.getString("copy_approval_service_plan"))
 					.electricServicePlan(rs.getString("electric_service_plan"))
 					.transferOfLicenseCertificate(rs.getString("transfer_of_license_certificate"))
@@ -204,7 +204,7 @@ public class CompletionCertificateRepo {
 					.affidavitNoUnauthorized(rs.getString("affidavit_no_unauthorized"))
 					.complainsDetails(rs.getString("complains_details"))
 					.AccessPermissionFromNHAI(rs.getString("access_permission_from_nhai"))
-					.tranactionId(rs.getString("tranaction_id"))
+					.tranactionId(rs.getString("transaction_id"))
 					.build();
 			});
 			if(completionCertificate!=null&&!completionCertificate.isEmpty()) {
