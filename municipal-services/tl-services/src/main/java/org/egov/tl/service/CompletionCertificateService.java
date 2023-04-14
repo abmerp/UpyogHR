@@ -1,6 +1,7 @@
 package org.egov.tl.service;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -17,6 +18,8 @@ import org.egov.tl.web.models.CompletionCertificate;
 import org.egov.tl.web.models.CompletionCertificateRequest;
 import org.egov.tl.web.models.CompletionCertificateResponse;
 import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -61,6 +64,9 @@ public class CompletionCertificateService {
 	
 	@Autowired
 	private ServicePlanService servicePlanService;
+	
+	@Autowired
+	private WorkflowIntegrator workflowIntegrator;
 	
 
 	public CompletionCertificateResponse createCompletionCertificate(CompletionCertificateRequest completionCertificateRequest){
@@ -109,13 +115,13 @@ public class CompletionCertificateService {
 						certificate.setApplicationStatus(1);
 						certificate.setCreatedDate(new Timestamp(time));
 						certificate.setFullPaymentDone(false);
+						certificate.setApplicationNumber(applicationNumberCC);
 					}else {
 						auditDetails=completionCertificateData.getAuditDetails();
 						auditDetails.setLastModifiedBy(completionCertificateRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);
 					}
 					certificate.setAuditDetails(auditDetails);
-					certificate.setApplicationNumber(applicationNumberCC);
 					
 					if(certificate.getIsDraft()==null) {
 						certificate.setIsDraft("0");	
@@ -127,15 +133,16 @@ public class CompletionCertificateService {
 		   completionCertificateRequest.setCompletionCertificate(completionCertificate);
 		
 		if(isCreate) {
-		  completionCertificateRepo.save(completionCertificateRequest);
-		  completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(completionCertificate)
+			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
+			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
+			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+		    completionCertificateRepo.save(completionCertificateRequest);
+		    completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(completionCertificate)
 					.requestInfo(completionCertificateRequest.getRequestInfo()).message("Records has been inserted successfully.").status(true).build();
-
 		} else {
-		  completionCertificateRepo.update(completionCertificateRequest);
-		  completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(completionCertificate)
+			completionCertificateRepo.update(completionCertificateRequest);
+			completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(completionCertificate)
 					.requestInfo(completionCertificateRequest.getRequestInfo()).message("Records has been updated successfully.").status(true).build();
-
 		}
 		return completionCertificateResponse;
 	}
