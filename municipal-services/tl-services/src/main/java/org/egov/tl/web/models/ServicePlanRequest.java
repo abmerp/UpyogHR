@@ -76,42 +76,53 @@ public class ServicePlanRequest {
 
 	@JsonProperty("wfDocuments")
 	private List<Document> wfDocuments;
-	
+
 	@JsonProperty("additionalDetails")
 	private Object additionalDetails = null;
-	
+
 	@JsonProperty("devName")
-    private String devName = null;
-	
+	private String devName = null;
+
 	@JsonProperty("developmentPlan")
-    private String developmentPlan = null;
-	
+	private String developmentPlan = null;
+
 	@JsonProperty("purpose")
-    private String purpose = null;
-	
+	private String purpose = null;
+
 	@JsonProperty("totalArea")
-    private String totalArea = null;
-	
+	private String totalArea = null;
+
 	@JsonProperty("layoutPlan")
-    private String layoutPlan = null;
-	
+	private String layoutPlan = null;
+
 	@JsonProperty("revisedLayout")
-    private String revisedLayout = null;
-	
+	private String revisedLayout = null;
+
 	@JsonProperty("demarcation")
-    private String demarcation = null;
-	
+	private String demarcation = null;
+
 	@JsonProperty("demarcationgis")
-    private String demarcationgis = null;
-	
+	private String demarcationgis = null;
+
 	@JsonProperty("layoutExcel")
-    private String layoutExcel = null;
-	
+	private String layoutExcel = null;
+
 	@JsonProperty("anyOtherdoc")
-    private String anyOtherdoc = null;
-	
+	private String anyOtherdoc = null;
+
 	@JsonProperty("externalAgency")
 	private JsonNode externalAgency = null;
+
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
+
+	
 
 //	public ServicePlanRequest(ServicePlan servicePlan) {
 //		

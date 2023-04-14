@@ -76,7 +76,14 @@ public class ElectricPlanRequest {
     private String purpose = null;
 	@JsonProperty("totalArea")
     private String totalArea = null;
-	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 
 	
  
