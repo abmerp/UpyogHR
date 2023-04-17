@@ -3,6 +3,7 @@ package org.egov.tl.repository.rowmapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
@@ -18,11 +19,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
 public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<RevisedPlan>> {
 
-    @Autowired
-    private ObjectMapper mapper;
+	@Autowired
+	private ObjectMapper mapper;
+
 	@Override
 	public List<RevisedPlan> extractData(ResultSet rs) throws SQLException, DataAccessException {
 		// TODO Auto-generated method stub
@@ -45,9 +48,12 @@ public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<Revis
 			revisedPlan.setWorkflowCode(rs.getString("workflowcode"));
 			revisedPlan.setAreaPlanning(rs.getString("areaplanning"));
 			revisedPlan.setEarlierApprovedlayoutPlan(rs.getString("earlyapprovedlayoutplan"));
-			 PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
-			 if(pgObj!=null){
-                 JsonNode additionalDetail = null;
+			revisedPlan.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
+			revisedPlan.setTcpCaseNumber(rs.getString("tcpcasenumber"));
+			revisedPlan.setTcpDairyNumber(rs.getString("tcpdairynumber"));
+			PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
+			if (pgObj != null) {
+				JsonNode additionalDetail = null;
 				try {
 					additionalDetail = mapper.readTree(pgObj.getValue());
 				} catch (JsonMappingException e) {
@@ -57,8 +63,8 @@ public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<Revis
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-                 revisedPlan.setAdditionalDetails(additionalDetail);
-             }
+				revisedPlan.setAdditionalDetails(additionalDetail);
+			}
 
 			AuditDetails auditDetails = new AuditDetails();
 

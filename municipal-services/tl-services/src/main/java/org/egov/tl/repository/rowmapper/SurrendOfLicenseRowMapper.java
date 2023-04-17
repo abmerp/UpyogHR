@@ -8,6 +8,7 @@ import java.util.List;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.RevisedPlan;
 import org.egov.tl.web.models.SurrendOfLicense;
+import org.javers.common.collections.Arrays;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -33,8 +34,10 @@ public class SurrendOfLicenseRowMapper implements ResultSetExtractor<List<Surren
 		while (rs.next()) {
 			SurrendOfLicense surrendOfLicense = new SurrendOfLicense();
 
-			surrendOfLicense.setId(rs.getString("id"));
 			surrendOfLicense.setLicenseNo(rs.getString("license_no"));
+			surrendOfLicense.setId(rs.getString("id"));
+//			surrendOfLicense.setLicenseNo(Arrays.asList(rs.getString("license_no")));
+
 			surrendOfLicense.setSelectType(rs.getString("select_type"));
 			surrendOfLicense.setAreaFallingUnder(rs.getString("area_falling_under"));
 			surrendOfLicense.setThirdPartyRights(rs.getString("third_party_rights"));
@@ -59,7 +62,9 @@ public class SurrendOfLicenseRowMapper implements ResultSetExtractor<List<Surren
 			surrendOfLicense.setAvailedEdcfileUrl(rs.getString("availed_edc_file_url"));
 			surrendOfLicense.setAreaFallingUnderfileUrl(rs.getString("area_falling_underfileurl"));
 			surrendOfLicense.setAreaFallingDividing(rs.getString("area_falling_dividing"));
-
+			surrendOfLicense.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
+			surrendOfLicense.setTcpCaseNumber(rs.getString("tcpcasenumber"));
+			surrendOfLicense.setTcpDairyNumber(rs.getString("tcpdairynumber"));
 			PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
 			if (pgObj != null) {
 				JsonNode additionalDetail = null;

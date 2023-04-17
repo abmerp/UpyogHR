@@ -57,7 +57,7 @@ public class TransferOfLicenseServices {
 	@Value("${persister.create.transfer.licence.topic}")
 	private String transferTopic;
 	
-	@Value("${persister.create.transfer.licence.topic}")
+	@Value("${persister.update.transfer.licence.topic}")
 	private String tranferUpdateTopic;
 	private static final String businessService_TRANSFER = "TRANSFER_OF_LICIENCE";
 
@@ -164,7 +164,7 @@ public class TransferOfLicenseServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, transfer_of_licence\r\n"
+		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, transfer_of_licence,tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
 				+ "	FROM public.eg_transfer_of_licence_service" + " Where ";
 		builder = new StringBuilder(query);
 

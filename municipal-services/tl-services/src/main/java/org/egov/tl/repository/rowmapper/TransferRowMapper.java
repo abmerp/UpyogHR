@@ -39,7 +39,9 @@ public class TransferRowMapper implements ResultSetExtractor<List<Transfer>> {
 			transfer.setId(rs.getString("id"));
 			transfer.setStatus(rs.getString("status"));
 			transfer.setTenantId(rs.getString("tenant_id"));
-
+			transfer.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
+			transfer.setTcpCaseNumber(rs.getString("tcpcasenumber"));
+			transfer.setTcpDairyNumber(rs.getString("tcpdairynumber"));
 			PGobject pgObj = (PGobject) rs.getObject("additiona_details");
 
 			if (pgObj != null) {

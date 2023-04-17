@@ -55,5 +55,12 @@ public class Transfer {
 	private List<Document> wfDocuments;
 	@JsonProperty("TransferOfLicence")
 	private TransferOfLicence transferOfLicence;
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
 
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 }

@@ -241,7 +241,7 @@ public class TLQueryBuilder {
 			}
 			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
 					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
-							&& criteria.getTcpDairyNumber() == null) {
+							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null) {
 				if (requestInfo.getUserInfo() != null) {
 					addClauseIfRequired(preparedStmtList, builder);
 					builder.append("   tl.createdby=  ? ");

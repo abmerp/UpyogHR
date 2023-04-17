@@ -109,7 +109,8 @@ public class ApprovalStandardService {
 			List<ApprovalStandardEntity> searchApprovalPlan = searchApprovalStandard(requestInfo,
 					approvalStandardRequest.getLicenseNo(), approvalStandardRequest.getApplicationNumber());
 			if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
-				throw new CustomException("Already Found  or multiple approval of standard design applications with LoiNumber.",
+				throw new CustomException(
+						"Already Found  or multiple approval of standard design applications with LoiNumber.",
 						"Already Found or multiple approval of standard design applications with LoiNumber.");
 			}
 
@@ -146,7 +147,7 @@ public class ApprovalStandardService {
 
 	}
 
-	public List<ApprovalStandardEntity> searchApprovalStandard(RequestInfo requestInfo, String licenseNo,
+	public List<ApprovalStandardEntity> searchApprovalStandard(RequestInfo requestInfo, String licenseNumbers,
 			String applicationNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -154,15 +155,16 @@ public class ApprovalStandardService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code\r\n"
-				+ "" + " FROM public.eg_approval_standard" + " Where ";
+		String query = "SELECT license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code, tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
+				+ "	FROM public.eg_approval_standard " + " Where ";
 		builder = new StringBuilder(query);
 
 		List<ApprovalStandardEntity> Result = null;
-		if (licenseNo != null) {
+		if (licenseNumbers != null) {
+			
 			builder.append(" license_no= :LN");
-			paramMap.put("LN", licenseNo);
-			preparedStatement.add(licenseNo);
+			paramMap.put("LN", licenseNumbers);
+			preparedStatement.add(licenseNumbers);
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, approvalStandardRowMapper);
 		} else if (applicationNumber != null) {
 			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
@@ -210,7 +212,8 @@ public class ApprovalStandardService {
 			List<ApprovalStandardEntity> approvalStandardEntitySearch = searchApprovalStandard(requestInfo,
 					approvalStandardEntity.getLicenseNo(), approvalStandardEntity.getApplicationNumber());
 			if (CollectionUtils.isEmpty(approvalStandardEntitySearch) || approvalStandardEntitySearch.size() > 1) {
-				throw new CustomException("Found none or multiple approval of standard design applications with applicationNumber.",
+				throw new CustomException(
+						"Found none or multiple approval of standard design applications with applicationNumber.",
 						"Found none or multiple approval of standard design applications with applicationNumber.");
 			}
 
@@ -244,8 +247,8 @@ public class ApprovalStandardService {
 
 				String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
 
-				approvalStandardEntity.setAssignee(Arrays.asList(servicePlanService.assignee("CAO",
-						approvalStandardEntity.getTenantId(), true, requestInfo)));
+				approvalStandardEntity.setAssignee(Arrays.asList(
+						servicePlanService.assignee("CAO", approvalStandardEntity.getTenantId(), true, requestInfo)));
 
 				approvalStandardEntity.setAction(CITIZEN_UPDATE_ACTION);
 
@@ -351,4 +354,5 @@ public class ApprovalStandardService {
 
 		return tradeLicenseASRequest;
 	}
+
 }

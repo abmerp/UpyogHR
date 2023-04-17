@@ -1403,12 +1403,11 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     
-       - query: UPDATE public.eg_approval_standard SET license_no=?, plan=?, other_document=?, amount=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, tenantid=?, id=?, action=?, status=?, business_service=?, comment=?, workflow_code=? WHERE application_number=?;   
+       - query: UPDATE public.eg_approval_standard SET  plan=?, other_document=?, amount=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, tenantid=?, id=?, action=?, status=?, business_service=?, comment=?, workflow_code=?,  tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=?;   
          basePath: ApprovalStandardEntity.*
          jsonMaps:         
                    
-          - jsonPath: $.ApprovalStandardEntity.*.licenseNo
-          
+        
           - jsonPath: $.ApprovalStandardEntity.*.plan
           
           - jsonPath: $.ApprovalStandardEntity.*.otherDocument
@@ -1436,6 +1435,12 @@ serviceMaps:
           - jsonPath: $.ApprovalStandardEntity.*.comment
            
           - jsonPath: $.ApprovalStandardEntity.*.workflowCode
+          
+          - jsonPath: $.ApprovalStandardEntity.*.tcpApplicationNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.*.tcpCaseNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.*.tcpDairyNumber
           
           - jsonPath: $.ApprovalStandardEntity.*.applicationNumber
       
@@ -1503,7 +1508,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
    
-       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=? WHERE application_number=?;
+       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=?;
          basePath: RevisedPlan.*
          jsonMaps:    
          
@@ -1539,7 +1544,15 @@ serviceMaps:
             type: JSON
             dbType: JSONB
             
+          - jsonPath: $.RevisedPlan.*.tcpApplicationNumber
+          
+          - jsonPath: $.RevisedPlan.*.tcpCaseNumber
+          
+          - jsonPath: $.RevisedPlan.*.tcpDairyNumber     
+            
           - jsonPath: $.RevisedPlan.*.applicationNumber
+          
+          
           
  - version: 1.0
    description: create surrend of license
@@ -1619,13 +1632,11 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-       - query: UPDATE public.eg_surrend_of_license SET id=?, license_no=?, select_type=?, area_falling_under=?, third_party_rights=?, arera_registration=?, zoning_layout_planfileurl=?, license_copyfileurl=?, edca_vailedfileurl=?, detailed_relocationschemefileurl=?, gift_deedfileurl=?, mutationfileurl=?, jamabandhifileurl=?, third_partyrights_declarationfileurl=?, areain_acres=?, additionaldetails=?, created_by=?, "lastModified_by"=?, created_time=?, "lastModified_time"=?, workflowcode=?, status=?, businessservice=?, tenant_id=?, declarationi_dwworksfileurl=?, revised_layout_planfileurl=?, availed_edc_file_url=?, area_falling_underfileurl=?, area_falling_dividing=? WHERE application_number=?;  
+       - query: UPDATE public.eg_surrend_of_license SET id=?, select_type=?, area_falling_under=?, third_party_rights=?, arera_registration=?, zoning_layout_planfileurl=?, license_copyfileurl=?, edca_vailedfileurl=?, detailed_relocationschemefileurl=?, gift_deedfileurl=?, mutationfileurl=?, jamabandhifileurl=?, third_partyrights_declarationfileurl=?, areain_acres=?, additionaldetails=?, created_by=?, "lastModified_by"=?, created_time=?, "lastModified_time"=?, workflowcode=?, status=?, businessservice=?, tenant_id=?, declarationi_dwworksfileurl=?, revised_layout_planfileurl=?, availed_edc_file_url=?, area_falling_underfileurl=?, area_falling_dividing=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=?;  
          basePath: SurrendOfLicense.*
          jsonMaps:    
          
-          - jsonPath: $.SurrendOfLicense.*.id     
-          
-          - jsonPath: $.SurrendOfLicense.*.licenseNo
+          - jsonPath: $.SurrendOfLicense.*.id 
           
           - jsonPath: $.SurrendOfLicense.*.selectType
           
@@ -1682,5 +1693,11 @@ serviceMaps:
           - jsonPath: $.SurrendOfLicense.*.areaFallingUnderfileUrl  
           
           - jsonPath: $.SurrendOfLicense.*.areaFallingDividing   
+          
+          - jsonPath: $.SurrendOfLicense.*.tcpApplicationNumber
+          
+          - jsonPath: $.SurrendOfLicense.*.tcpCaseNumber
+          
+          - jsonPath: $.SurrendOfLicense.*.tcpDairyNumber
 
           - jsonPath: $.SurrendOfLicense.*.applicationNumber  

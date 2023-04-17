@@ -44,31 +44,38 @@ public class RevisedPlan {
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails;
 	private String applicationNumber;
-    
-    private String tenantId;
-    
-    private String action;
-    
-    private String status;
-    
-    private String businessService;
-    
-    private String comment;
-     
-    private String workflowCode;
-    
-    private JsonNode additionalDetails;
-    
-    private List<String> assignee;
-    
-    @JsonProperty("wfDocuments")
+
+	private String tenantId;
+
+	private String action;
+
+	private String status;
+
+	private String businessService;
+
+	private String comment;
+
+	private String workflowCode;
+
+	private JsonNode additionalDetails;
+
+	private List<String> assignee;
+
+	@JsonProperty("wfDocuments")
 	private List<Document> wfDocuments;
-    
-    private JsonNode feesCharges;
-    
-    private JsonNode feesResult;
-    @JsonProperty("ReviseLayoutPlan")
-    private ReviseLayoutPlan ReviseLayoutPlan;
-  
+
+	private JsonNode feesCharges;
+
+	private JsonNode feesResult;
+	@JsonProperty("ReviseLayoutPlan")
+	private ReviseLayoutPlan ReviseLayoutPlan;
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 
 }

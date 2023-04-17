@@ -121,8 +121,8 @@ public class RevisedPlanServices {
 
 			List<String> applicationNumbers = null;
 			int count = 1;
-			List<RevisedPlan> searchApprovalPlan = search(requestInfo, revisedPlan.getLicenseNo(),
-					revisedPlan.getApplicationNumber());
+			List<RevisedPlan> searchApprovalPlan = search(requestInfo, revisedPlan.getApplicationNumber(),
+					revisedPlan.getLicenseNo());
 			if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
 				throw new CustomException("Already Found  or multiple revised layout plan applications with LoiNumber.",
 						"Already Found or multiple revised layout plan applications with LoiNumber.");
@@ -167,7 +167,7 @@ public class RevisedPlanServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, existingarea, areaplanning, anyotherfeature, amount, reasonrevision, earlyapprovedlayoutplan\r\n"
+		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, existingarea, areaplanning, anyotherfeature, amount, reasonrevision, earlyapprovedlayoutplan,tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
 				+ "	FROM public.eg_revised_layout_plan " + " Where ";
 		builder = new StringBuilder(query);
 
@@ -187,7 +187,7 @@ public class RevisedPlanServices {
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, revisedLayoutPlanRowMapper);
 			}
 
-		}else if ((info.getUserInfo().getUuid() != null)) {
+		} else if ((info.getUserInfo().getUuid() != null)) {
 			builder.append(" createdby= :CB");
 			paramMap.put("CB", info.getUserInfo().getUuid());
 			preparedStatement.add(info.getUserInfo().getUuid());

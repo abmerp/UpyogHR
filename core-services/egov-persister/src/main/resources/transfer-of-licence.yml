@@ -45,16 +45,14 @@ serviceMaps:
    fromTopic: update-transfer-of-licence
    isTransaction: true
    queryMaps:
-    - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?, license_no=?, tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, transfer_of_licence=? WHERE application_number=? ;   
+    - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=? ;   
       basePath: Transfer.*
       jsonMaps:
 
        - jsonPath: $.Transfer.*.id
 
        - jsonPath: $.Transfer.*.araeInAcres
-
-       - jsonPath: $.Transfer.*.licenseNo
-
+       
        - jsonPath: $.Transfer.*.tenantId
 
        - jsonPath: $.Transfer.*.action
@@ -74,6 +72,12 @@ serviceMaps:
        - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
 
        - jsonPath: $.Transfer.*.status       
+       
+       - jsonPath: $.Transfer.*.tcpApplicationNumber
+          
+       - jsonPath: $.Transfer.*.tcpCaseNumber
+          
+       - jsonPath: $.Transfer.*.tcpDairyNumber
       
        - jsonPath: $.Transfer.*.applicationNumber
    

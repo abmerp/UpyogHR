@@ -28,7 +28,7 @@ public class SurrendOfLicense {
 	private String id;
 
 	private String action;
-
+	@JsonProperty("licenseNo")
 	private String licenseNo;
 
 	private String selectType;
@@ -81,5 +81,13 @@ public class SurrendOfLicense {
 	private String availedEdcfileUrl;
 	private String areaFallingUnderfileUrl;
 	private String areaFallingDividing;
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 
 }

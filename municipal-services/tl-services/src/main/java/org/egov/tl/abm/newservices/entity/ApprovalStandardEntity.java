@@ -59,12 +59,18 @@ public class ApprovalStandardEntity {
 	@JsonProperty("comment")
 	private String comment;
 
-
 	@JsonProperty("workflowCode")
 	private String workflowCode = null;
 
 	@JsonProperty("wfDocuments")
 	private List<Document> wfDocuments;
 
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
 
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 }
