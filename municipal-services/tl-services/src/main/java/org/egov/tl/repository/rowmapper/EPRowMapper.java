@@ -62,7 +62,9 @@ public class EPRowMapper implements ResultSetExtractor<List<ElectricPlanRequest>
 			ElectricPlanRequest.setDevelopmentPlan(rs.getString("developmentPlan"));
 			ElectricPlanRequest.setPurpose(rs.getString("purpose"));
 			ElectricPlanRequest.setTotalArea(rs.getString("totalArea"));
-			
+			ElectricPlanRequest.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
+			ElectricPlanRequest.setTcpCaseNumber(rs.getString("tcpcasenumber"));
+			ElectricPlanRequest.setTcpDairyNumber(rs.getString("tcpdairynumber"));
 			
 			Object additionalDetails = new Gson().fromJson(rs.getString("additionaldetails").equals("{}")
 					|| rs.getString("additionaldetails").equals("null")  ? null

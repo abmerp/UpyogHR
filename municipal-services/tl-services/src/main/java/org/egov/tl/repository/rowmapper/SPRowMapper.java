@@ -25,10 +25,10 @@ import com.google.gson.Gson;
 
 @Component
 public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>> {
-	
+
 	@Autowired
-    private ObjectMapper mapper;
-	
+	private ObjectMapper mapper;
+
 	@Override
 	public List<ServicePlanRequest> extractData(ResultSet rs) throws SQLException, DataAccessException {
 		// TODO Auto-generated method stub
@@ -71,10 +71,13 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 			servicePlanRequest.setDemarcationgis(rs.getString("demarcationgis"));
 			servicePlanRequest.setLayoutExcel(rs.getString("layoutexcel"));
 			servicePlanRequest.setAnyOtherdoc(rs.getString("anyotherdoc"));
+			servicePlanRequest.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
+			servicePlanRequest.setTcpCaseNumber(rs.getString("tcpcasenumber"));
+			servicePlanRequest.setTcpDairyNumber(rs.getString("tcpdairynumber"));
 
-			 PGobject pgObj = (PGobject) rs.getObject("externalagency");
-			  if(pgObj!=null){
-                  JsonNode externalAgency = null;
+			PGobject pgObj = (PGobject) rs.getObject("externalagency");
+			if (pgObj != null) {
+				JsonNode externalAgency = null;
 				try {
 					externalAgency = mapper.readTree(pgObj.getValue());
 				} catch (JsonMappingException e) {
@@ -84,9 +87,8 @@ public class SPRowMapper implements ResultSetExtractor<List<ServicePlanRequest>>
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-              	servicePlanRequest.setExternalAgency(externalAgency);
-              }
-		
+				servicePlanRequest.setExternalAgency(externalAgency);
+			}
 
 			Object additionalDetails = new Gson().fromJson(
 					rs.getString("additionaldetails").equals("{}") || rs.getString("additionaldetails").equals("null")
