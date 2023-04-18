@@ -35,11 +35,6 @@ import lombok.Setter;
 //@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class ConstructionOfCommunity {
 
-//	@JsonProperty("id")
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private int id;
-	
 	@JsonProperty("id")
 	private String id;
 	
@@ -52,11 +47,8 @@ public class ConstructionOfCommunity {
 	@JsonProperty("workFlowCode")
 	private String workFlowCode; 
 	
-	
-	
 	@JsonProperty("isDraft")
 	private String isDraft;  // 0-draft,1 -not draft
-	
 	
 	@JsonProperty("paymentType")
 	private int paymentType;  // 1-partial payment,2- full payment   //new 
@@ -70,26 +62,59 @@ public class ConstructionOfCommunity {
 	@JsonProperty("isFullPaymentDone")
 	private boolean isFullPaymentDone;
 	
-	@JsonProperty("totalCompletionCertificateCharge")
-	private String totalCompletionCertificateCharge;
+	@JsonProperty("totalConstructionOfCommunityCharge")
+	private String totalConstructionOfCommunityCharge;
 	
 	@JsonProperty("createdDate")
 	private Timestamp createdDate;
 	
-	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails; 
 	
-//	@JsonProperty("tranactionId")
-//	private String tranactionId;
-//	
-//	@JsonProperty("workFlowCode")
-//	private String workFlowCode = null;
-//	
-//	@JsonProperty("auditDetails")
-//	AuditDetails auditDetails=null;
-//	
 	@JsonProperty("createdTime")
 	private long createdTime;
+	
+	
+	@JsonProperty("appliedBy")
+	private String appliedBy;
+	
+	@JsonProperty("areaInAcers")
+	private String areaInAcers; 
+	
+	@JsonProperty("validUpTo")
+	private String validUpTo; 
+	
+	@JsonProperty("applyedForExtentionPerioud")
+	private String applyedForExtentionPerioud; 
+	
+	@JsonProperty("typeOfCommunitySite")
+	private String typeOfCommunitySite; 
+	
+	//file below
+	
+	@JsonProperty("copyOfBoardResolution")
+	private String copyOfBoardResolution; 
+	
+	@JsonProperty("justificationForExtention")
+	private String justificationForExtention; 
+	
+	@JsonProperty("proofOfOwnershipOfCommunity")
+	private String proofOfOwnershipOfCommunity; 
+	
+	@JsonProperty("proofOfOnlinePaymentOfExtention")
+	private String proofOfOnlinePaymentOfExtention; 
+	
+	@JsonProperty("uploadRenewalLicenseCopy")
+	private String uploadRenewalLicenseCopy; 
+	
+	@JsonProperty("explonatoryNotForExtention")
+	private String explonatoryNotForExtention; 
+	
+	@JsonProperty("locationOfApplied")
+	private String locationOfApplied; 
+	
+	@JsonProperty("anyOtherDocumentByDirector")
+	private String anyOtherDocumentByDirector; 
+	
 	
 }

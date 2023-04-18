@@ -268,3 +268,69 @@ serviceMaps:
            dbType: JSONB
 
          - jsonPath: completionCertificate.*.licenseNumber
+        
+ - version: 1.0
+   description: Persists construction of community  service of constructionOfCommunity
+   fromTopic: save-constructionofcommunity
+   isTransaction: true
+   queryMaps: 
+      - query: INSERT INTO public.eg_tl_construction_of_community(id, application_number, application_status, is_draft, is_full_payment_done, license_number, payment_type,total_construction_of_community_charge,work_flow_code, audit_details, created_time, created_date, applied_by, area_in_acers, valid_up_to, applyed_for_extention_perioud, type_of_community_site,copy_of_board_rsolution, justification_for_extention, proof_of_ownership_of_community, proof_of_online_payment_of_extention, upload_renewal_license_copy, explonatory_not_for_extention, location_of_applied, any_other_document_by_director) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
+        basePath: constructionOfCommunity.*
+        jsonMaps: 
+         - jsonPath: constructionOfCommunity.*.id
+         - jsonPath: constructionOfCommunity.*.applicationNumber
+         - jsonPath: constructionOfCommunity.*.applicationStatus
+         - jsonPath: constructionOfCommunity.*.isDraft
+         - jsonPath: constructionOfCommunity.*.isFullPaymentDone
+         - jsonPath: constructionOfCommunity.*.licenseNumber
+         - jsonPath: constructionOfCommunity.*.paymentType
+         - jsonPath: constructionOfCommunity.*.totalconstructionOfCommunityCharge
+         - jsonPath: constructionOfCommunity.*.workFlowCode
+         - jsonPath: constructionOfCommunity.*.auditDetails
+           type: JSON
+           dbType: JSONB
+         - jsonPath: constructionOfCommunity.*.createdTime
+         - jsonPath: constructionOfCommunity.*.createdDate
+         
+         
+         - jsonPath: constructionOfCommunity.*.appliedBy
+         - jsonPath: constructionOfCommunity.*.areaInAcers
+         - jsonPath: constructionOfCommunity.*.validUpTo
+         - jsonPath: constructionOfCommunity.*.applyedForExtentionPerioud
+         - jsonPath: constructionOfCommunity.*.typeOfCommunitySite
+         
+         - jsonPath: constructionOfCommunity.*.copyOfBoardResolution
+         - jsonPath: constructionOfCommunity.*.justificationForExtention
+         - jsonPath: constructionOfCommunity.*.proofOfOwnershipOfCommunity
+         - jsonPath: constructionOfCommunity.*.proofOfOnlinePaymentOfExtention
+         - jsonPath: constructionOfCommunity.*.uploadRenewalLicenseCopy
+         - jsonPath: constructionOfCommunity.*.explonatoryNotForExtention
+         - jsonPath: constructionOfCommunity.*.locationOfApplied
+         - jsonPath: constructionOfCommunity.*.anyOtherDocumentByDirector
+         
+ - version: 1.0
+   description: Persists construction of community  service of constructionOfCommunity
+   fromTopic: update-constructionofcommunity
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.eg_tl_construction_of_community SET is_draft=?, audit_details, area_in_acers=?, valid_up_to=?, applyed_for_extention_perioud=?, type_of_community_site=?,copy_of_board_rsolution=?, justification_for_extention=?, proof_of_ownership_of_community=?, proof_of_online_payment_of_extention=?, upload_renewal_license_copy=?, explonatory_not_for_extention=?, location_of_applied=?, any_other_document_by_director=? where application_status=1 and license_number=?;
+        basePath: constructionOfCommunity.*
+        jsonMaps: 
+         - jsonPath: constructionOfCommunity.*.isDraft
+         - jsonPath: constructionOfCommunity.*.auditDetails
+           type: JSON
+           dbType: JSONB
+         - jsonPath: constructionOfCommunity.*.areaInAcers
+         - jsonPath: constructionOfCommunity.*.validUpTo
+         - jsonPath: constructionOfCommunity.*.applyedForExtentionPerioud
+         - jsonPath: constructionOfCommunity.*.typeOfCommunitySite
+         
+         - jsonPath: constructionOfCommunity.*.copyOfBoardResolution
+         - jsonPath: constructionOfCommunity.*.justificationForExtention
+         - jsonPath: constructionOfCommunity.*.proofOfOwnershipOfCommunity
+         - jsonPath: constructionOfCommunity.*.proofOfOnlinePaymentOfExtention
+         - jsonPath: constructionOfCommunity.*.uploadRenewalLicenseCopy
+         - jsonPath: constructionOfCommunity.*.explonatoryNotForExtention
+         - jsonPath: constructionOfCommunity.*.locationOfApplied
+         - jsonPath: constructionOfCommunity.*.anyOtherDocumentByDirector
+         - jsonPath: constructionOfCommunity.*.licenseNumber

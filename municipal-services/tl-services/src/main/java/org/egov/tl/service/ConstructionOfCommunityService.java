@@ -114,7 +114,7 @@ public class ConstructionOfCommunityService {
 					AuditDetails auditDetails = null;
 					if(isCreate) {
 						auditDetails=AuditDetails.builder().createdBy(constructionOfCommunityRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
-//						construction.setId(UUID.randomUUID().toString());
+						construction.setId(UUID.randomUUID().toString());
 						construction.setWorkFlowCode(CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE);
 						construction.setApplicationStatus(1);
 						construction.setCreatedDate(new Timestamp(time));
