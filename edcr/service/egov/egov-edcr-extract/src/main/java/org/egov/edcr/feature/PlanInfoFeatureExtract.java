@@ -28,6 +28,8 @@ import org.kabeja.dxf.DXFLWPolyline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//import static org.egov.edcr.utility.DcrConstants.RESIDENTIAL;
+
 @Service
 public class PlanInfoFeatureExtract extends FeatureExtract {
 	private static final Logger LOG = LogManager.getLogger(PlanInfoFeatureExtract.class);
@@ -74,6 +76,41 @@ public class PlanInfoFeatureExtract extends FeatureExtract {
 			DXFLWPolyline plotBndryPolyLine = plotBoundaries.get(0);
 			((PlotDetail) pl.getPlot()).setPolyLine(plotBndryPolyLine);
 			pl.getPlot().setPlotBndryArea(Util.getPolyLineArea(plotBndryPolyLine));
+	      
+//	      if (pl.getPlot().getBuildingFootPrint().getColorCode() != 25 && 
+//	    		  pl.getPlot().getBuildingFootPrint().getColorCode() != 3 &&
+//	    				  pl.getPlot().getBuildingFootPrint().getColorCode() != 19 &&
+//	    						  pl.getPlot().getBuildingFootPrint().getColorCode() != 2 &&
+//	    								  pl.getPlot().getBuildingFootPrint().getColorCode() != 24 &&
+//	    										  pl.getPlot().getBuildingFootPrint().getColorCode() != 7 && 
+//	    												  pl.getPlot().getBuildingFootPrint().getColorCode() != 17 &&
+//	    														  pl.getPlot().getBuildingFootPrint().getColorCode() != 18 &&
+//	    																  pl.getPlot().getBuildingFootPrint().getColorCode() != 23 &&
+//	    																		  pl.getPlot().getBuildingFootPrint().getColorCode() != 26 &&
+//	    																				  pl.getPlot().getBuildingFootPrint().getColorCode() != 31 && 
+//	    																						  pl.getPlot().getBuildingFootPrint().getColorCode() != 28 &&
+//	    																								  pl.getPlot().getBuildingFootPrint().getColorCode() != 30 &&
+//	    																										  pl.getPlot().getBuildingFootPrint().getColorCode() != 32 &&
+//	    																												  pl.getPlot().getBuildingFootPrint().getColorCode() != 14 &&
+//	    																														  pl.getPlot().getBuildingFootPrint().getColorCode() != 9 && 
+//	    																																  pl.getPlot().getBuildingFootPrint().getColorCode() != 10 &&
+//	    																																		  pl.getPlot().getBuildingFootPrint().getColorCode() != 33 &&
+//	    																																				  pl.getPlot().getBuildingFootPrint().getColorCode() != 34 &&
+//	    																																						  pl.getPlot().getBuildingFootPrint().getColorCode() != 11 &&
+//	    																																								  pl.getPlot().getBuildingFootPrint().getColorCode() != 6 && 
+//	    																																										  pl.getPlot().getBuildingFootPrint().getColorCode() != 16 &&
+//	    																																												  pl.getPlot().getBuildingFootPrint().getColorCode() != 22 &&
+//	    																																														  pl.getPlot().getBuildingFootPrint().getColorCode() != 5 &&
+//	    																																																  pl.getPlot().getBuildingFootPrint().getColorCode() != 20 &&
+//	    																																																		  pl.getPlot().getBuildingFootPrint().getColorCode() != 21 && 
+//	    																																																				  pl.getPlot().getBuildingFootPrint().getColorCode() != 4 &&
+//	    																																																						  pl.getPlot().getBuildingFootPrint().getColorCode() != 15 &&
+//	    																																																								  pl.getPlot().getBuildingFootPrint().getColorCode() != 12 &&
+//	    																																																										  pl.getPlot().getBuildingFootPrint().getColorCode() != 13){
+//	    		 
+//	    	  pl.addError(RESIDENTIAL, OBJECTNOTDEFINED);
+//	      	
+//	      }
 		} else
 			pl.addError(layerNames.getLayerName("LAYER_NAME_PLOT_BOUNDARY"),
 					getLocaleMessage(OBJECTNOTDEFINED, layerNames.getLayerName("LAYER_NAME_PLOT_BOUNDARY")));

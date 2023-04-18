@@ -41,6 +41,8 @@ import org.kabeja.parser.Parser;
 import org.kabeja.parser.ParserBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+//import static org.egov.edcr.utility.DcrConstants.OBJECTNOTDEFINED;
+//import static org.egov.edcr.utility.DcrConstants.RESIDENTIAL;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -84,6 +86,42 @@ public class ExtractService {
                 planDetail.getErrors().put("units not in meters", "The 'Drawing Unit' is not as per standard. ");
             }
         }
+        
+//      
+//      if (planDetail.getPlot().getBuildingFootPrint().getColorCode() == 25 || 
+//      	  planDetail.getPlot().getBuildingFootPrint().getColorCode() == 3 ||
+//      	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 19 ||
+//      	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 2 ||
+//      	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 24 ||
+//      	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 7 || 
+//    	  planDetail.getPlot().getBuildingFootPrint().getColorCode() == 17 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 18 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 23 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 26 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 31 || 
+//    	  planDetail.getPlot().getBuildingFootPrint().getColorCode() == 28 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 30 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 32 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 14 ||
+//    	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 9 || 
+//  	  planDetail.getPlot().getBuildingFootPrint().getColorCode() == 10 ||
+//  	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 33 ||
+//  	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 34 ||
+//  	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 11 ||
+//  	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 6 || 
+//	  planDetail.getPlot().getBuildingFootPrint().getColorCode() == 16 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 22 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 5 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 20 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 21 || 
+//	  planDetail.getPlot().getBuildingFootPrint().getColorCode() == 4 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 15 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 12 ||
+//	planDetail.getPlot().getBuildingFootPrint().getColorCode() == 13){
+//    		 
+//    	  planDetail.addError(RESIDENTIAL, OBJECTNOTDEFINED);
+//      	
+//      }
 
         /*
          * // dimension length factor should be 1 if (doc.getDXFHeader() != null && doc.getDXFHeader().getVariable("$DIMLFAC") !=
