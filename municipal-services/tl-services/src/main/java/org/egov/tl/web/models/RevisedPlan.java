@@ -57,6 +57,8 @@ public class RevisedPlan {
 
 	private String workflowCode;
 
+	private JsonNode revisedPlanDetails;
+	
 	private JsonNode additionalDetails;
 
 	private List<String> assignee;

@@ -11,13 +11,21 @@ import java.util.Map;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ServicePlanRequest;
+import org.postgresql.util.PGobject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Component
 public class ApprovalStandardRowMapper implements ResultSetExtractor<List<ApprovalStandardEntity>> {
-
+	  @Autowired
+	    private ObjectMapper mapper;
 	@Override
 	public List<ApprovalStandardEntity> extractData(ResultSet rs) throws SQLException, DataAccessException {
 		// TODO Auto-generated method stub
@@ -41,6 +49,21 @@ public class ApprovalStandardRowMapper implements ResultSetExtractor<List<Approv
 			approvalStandardEntity.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
 			approvalStandardEntity.setTcpCaseNumber(rs.getString("tcpcasenumber"));
 			approvalStandardEntity.setTcpDairyNumber(rs.getString("tcpdairynumber"));
+			PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
+
+			if (pgObj != null) {
+				JsonNode additionalDetail = null;
+				try {
+					additionalDetail = mapper.readTree(pgObj.getValue());
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				approvalStandardEntity.setAdditionalDetails(additionalDetail);
+			}
 			AuditDetails auditDetails = new AuditDetails();
 
 			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("created_by"))

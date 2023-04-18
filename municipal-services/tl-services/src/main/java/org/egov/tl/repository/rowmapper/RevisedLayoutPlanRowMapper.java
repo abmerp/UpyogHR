@@ -35,22 +35,20 @@ public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<Revis
 			RevisedPlan revisedPlan = new RevisedPlan();
 
 			revisedPlan.setLicenseNo(rs.getString("licence_number"));
-			revisedPlan.setReasonRevision(rs.getString("reasonrevision"));
-			revisedPlan.setAnyOtherFeature(rs.getString("anyotherfeature"));
-			revisedPlan.setAmount(rs.getBigDecimal("amount"));
+		
 			revisedPlan.setApplicationNumber(rs.getString("application_number"));
 			revisedPlan.setAction(rs.getString("action"));
 			revisedPlan.setBusinessService(rs.getString("businessservice"));
-			revisedPlan.setExistingArea(rs.getString("existingarea"));
+			
 			revisedPlan.setId(rs.getString("id"));
 			revisedPlan.setStatus(rs.getString("status"));
 			revisedPlan.setTenantId(rs.getString("tenantid"));
 			revisedPlan.setWorkflowCode(rs.getString("workflowcode"));
-			revisedPlan.setAreaPlanning(rs.getString("areaplanning"));
-			revisedPlan.setEarlierApprovedlayoutPlan(rs.getString("earlyapprovedlayoutplan"));
+	
 			revisedPlan.setTcpApplicationNumber(rs.getString("tcpapplicationnumber"));
 			revisedPlan.setTcpCaseNumber(rs.getString("tcpcasenumber"));
 			revisedPlan.setTcpDairyNumber(rs.getString("tcpdairynumber"));
+			
 			PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
 			if (pgObj != null) {
 				JsonNode additionalDetail = null;
@@ -64,6 +62,20 @@ public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<Revis
 					e.printStackTrace();
 				}
 				revisedPlan.setAdditionalDetails(additionalDetail);
+			}
+			PGobject pgObj1 = (PGobject) rs.getObject("revisedplandetail");
+			if (pgObj != null) {
+				JsonNode revisedPlanDetail = null;
+				try {
+					revisedPlanDetail = mapper.readTree(pgObj1.getValue());
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				revisedPlan.setRevisedPlanDetails(revisedPlanDetail);
 			}
 
 			AuditDetails auditDetails = new AuditDetails();
