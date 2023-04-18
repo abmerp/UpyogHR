@@ -57,6 +57,23 @@ public class TransferRowMapper implements ResultSetExtractor<List<Transfer>> {
 				}
 				transfer.setAdditionalDetails(additionalDetail);
 			}
+			PGobject pgObj1 = (PGobject) rs.getObject("transferoflicencedetail");
+
+			if (pgObj1 != null) {
+				JsonNode transferofLicenceDetail = null;
+				
+					try {
+						transferofLicenceDetail = mapper.readTree(pgObj1.getValue());
+					} catch (JsonMappingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+				 transfer.setTransferOfLicenceDetail(transferofLicenceDetail);
+			}
 			AuditDetails auditDetails = new AuditDetails();
 
 			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("created_by"))
