@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: save-transfer-of-licence
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_transfer_of_licence_service (id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    - query: INSERT INTO public.eg_transfer_of_licence_service (id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, transferoflicencedetail) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
       basePath: Transfer.*
       jsonMaps:
 
@@ -38,46 +38,62 @@ serviceMaps:
        - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
 
        - jsonPath: $.Transfer.*.status
-   
+       
+       - jsonPath: $.Transfer.*.transferOfLicenceDetail
+         type: JSON
+         dbType: JSONB
+         
+         
  - version: 1.0
    name: transfer-of-licence
    description: transfer of licence
    fromTopic: update-transfer-of-licence
    isTransaction: true
    queryMaps:
-    - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=? ;   
-      basePath: Transfer.*
-      jsonMaps:
-
-       - jsonPath: $.Transfer.*.id
-
-       - jsonPath: $.Transfer.*.araeInAcres
-       
-       - jsonPath: $.Transfer.*.tenantId
-
-       - jsonPath: $.Transfer.*.action
-
-       - jsonPath: $.Transfer.*.businessService
-
-       - jsonPath: $.Transfer.*.additionalDetails
-         type: JSON
-         dbType: JSONB
-
-       - jsonPath: $.Transfer.*.auditDetails.createdBy
-
-       - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
-
-       - jsonPath: $.Transfer.*.auditDetails.createdTime
-
-       - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
-
-       - jsonPath: $.Transfer.*.status       
-       
-       - jsonPath: $.Transfer.*.tcpApplicationNumber
+   
+       - query: INSERT INTO eg_transfer_of_licence_service_audit SELECT * FROM eg_transfer_of_licence_service WHERE application_number = ?;
+         basePath: Transfer.*
+         jsonMaps:
+          - jsonPath: $.Transfer.*.applicationNumber
           
-       - jsonPath: $.Transfer.*.tcpCaseNumber
+   
+       - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, transferoflicencedetail=? WHERE application_number=? ;   
+         basePath: Transfer.*
+         jsonMaps:
+
+          - jsonPath: $.Transfer.*.id
+
+          - jsonPath: $.Transfer.*.araeInAcres
+       
+          - jsonPath: $.Transfer.*.tenantId
+
+          - jsonPath: $.Transfer.*.action
+
+          - jsonPath: $.Transfer.*.businessService
+
+          - jsonPath: $.Transfer.*.additionalDetails
+            type: JSON
+            dbType: JSONB
+
+          - jsonPath: $.Transfer.*.auditDetails.createdBy
+
+          - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
+
+          - jsonPath: $.Transfer.*.auditDetails.createdTime
+  
+          - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
+ 
+          - jsonPath: $.Transfer.*.status       
+       
+          - jsonPath: $.Transfer.*.tcpApplicationNumber
           
-       - jsonPath: $.Transfer.*.tcpDairyNumber
-      
-       - jsonPath: $.Transfer.*.applicationNumber
+          - jsonPath: $.Transfer.*.tcpCaseNumber
+          
+          - jsonPath: $.Transfer.*.tcpDairyNumber
+          
+          - jsonPath: $.Transfer.*.transferOfLicenceDetail
+            type: JSON
+            dbType: JSONB
+        
+          - jsonPath: $.Transfer.*.applicationNumber
    

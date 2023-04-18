@@ -111,12 +111,13 @@ public class TransferOfLicenseServices {
 		String data = mapper.writeValueAsString(transferOfLicence);
 		JsonNode jsonNode = mapper.readTree(data);
 		//transfers.setTransferOfLicence(transferOfLicence);
-		transfers.setAdditionalDetails(jsonNode);
+		transfers.setTransferOfLicenceDetail(jsonNode);
 		transfers.setAction(transferOfLicenseRequest.getTransfer().get(0).getAction());
 		transfers.setTenantId(transferOfLicenseRequest.getTransfer().get(0).getTenantId());
 		transfers.setAraeInAcres(transferOfLicenseRequest.getTransfer().get(0).getAraeInAcres());
 		transfers.setLicenseNo(transferOfLicenseRequest.getTransfer().get(0).getLicenseNo());
 		transfers.setSelectType(transferOfLicenseRequest.getTransfer().get(0).getSelectType());
+		transfers.setAdditionalDetails(transferOfLicenseRequest.getTransfer().get(0).getAdditionalDetails());
 		transferList.add(transfers);
 		for (Transfer transferRequest : transferList) {
 
@@ -125,8 +126,8 @@ public class TransferOfLicenseServices {
 			List<Transfer> transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
 					transferRequest.getApplicationNumber());
 			if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
-				throw new CustomException("Already Found  or multiple transfer of licence applications with LoiNumber.",
-						"Already Found or multiple transfer of licence applications with LoiNumber.");
+				throw new CustomException("Already Found  or multiple transfer of licence applications with LicenceNumber.",
+						"Already Found or multiple transfer of licence applications with LicenceNumber.");
 			}
 
 			transferRequest.setId(UUID.randomUUID().toString());
@@ -164,7 +165,7 @@ public class TransferOfLicenseServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, transfer_of_licence,tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
+		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, transferoflicencedetail\r\n"
 				+ "	FROM public.eg_transfer_of_licence_service" + " Where ";
 		builder = new StringBuilder(query);
 
