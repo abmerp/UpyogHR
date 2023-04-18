@@ -111,8 +111,8 @@ public class RevisedPlanServices {
 		RevisedPlan revisedPlans = new RevisedPlan();
 		String data = mapper.writeValueAsString(reviseLayoutPlan);
 		JsonNode jsonNode = mapper.readTree(data);
-		revisedPlans.setAdditionalDetails(jsonNode);
-
+		revisedPlans.setRevisedPlanDetails(jsonNode);
+		revisedPlans.setAdditionalDetails(revisedPlanRequest.getRevisedPlan().get(0).getAdditionalDetails());
 		revisedPlans.setAction(revisedPlanRequest.getRevisedPlan().get(0).getAction());
 		revisedPlans.setTenantId(revisedPlanRequest.getRevisedPlan().get(0).getTenantId());
 		revisedPlans.setLicenseNo(revisedPlanRequest.getRevisedPlan().get(0).getLicenseNo());
@@ -167,7 +167,7 @@ public class RevisedPlanServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, existingarea, areaplanning, anyotherfeature, amount, reasonrevision, earlyapprovedlayoutplan,tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
+		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, revisedplandetail\r\n"
 				+ "	FROM public.eg_revised_layout_plan " + " Where ";
 		builder = new StringBuilder(query);
 
