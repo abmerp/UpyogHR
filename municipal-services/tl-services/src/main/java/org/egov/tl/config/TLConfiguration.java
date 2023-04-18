@@ -405,11 +405,27 @@ public class TLConfiguration {
 	@Value("${persister.completioncertificate.updatePayment}")
 	private String updatePaymentCompletionCertificateTopic;
 	
+	
+	// ConstructionOfCommunity
+    
+    @Value("${persister.constructionofcommunity.save}")
+	private String saveConstructionOfCommunityTopic;
+
+	@Value("${persister.constructionofcommunity.update}")
+	private String updateConstructionOfCommunityTopic;
+	
+	
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber}")
 	private String completionCertificateName;
 	
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber.format}")
 	private String completionCertificateFormat;
+	
+	@Value("${egov.idgen.tl.constructionofcommunity.applicationNumber}")
+	private String constructionOfCommunityName;
+	
+	@Value("${egov.idgen.tl.constructionofcommunity.applicationNumber.format}")
+	private String constructionOfCommunityFormat;
 
 	
 	// renewal license
