@@ -30,24 +30,18 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Builder
-@Entity
-@Table(name="eg_tl_construction_Of_community")
-@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-public class ConstructionOfCommunity implements Serializable{
-	
+//@Entity
+//@Table(name="eg_tl_construction_Of_community")
+//@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
+public class ConstructionOfCommunity {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@JsonProperty("id")
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
 //	@JsonProperty("id")
-//	private String id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int id;
+	
+	@JsonProperty("id")
+	private String id;
 	
 	@JsonProperty("licenseNumber")
 	private String licenseNumber;

@@ -89,7 +89,7 @@ public class ConstructionOfCommunityRepo {
 			
 			
 			return ConstructionOfCommunity.builder()
-//					.id(rs.getString("id"))
+				.id(rs.getString("id"))
 				.applicationNumber(rs.getString("application_number"))
 				.applicationStatus(rs.getInt("application_status"))
 				.auditDetails(auditDetails)
@@ -134,7 +134,7 @@ public class ConstructionOfCommunityRepo {
 				}
 				
 				return ConstructionOfCommunity.builder()
-//					.id(rs.getString("id"))
+					.id(rs.getString("id"))
 					.applicationStatus(rs.getInt("application_status"))
 					.applicationNumber(rs.getString("application_number"))
 					.workFlowCode(rs.getString("work_flow_code"))
