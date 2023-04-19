@@ -1,0 +1,32 @@
+serviceMaps:
+ serviceName: PerformaSave
+ mappings:
+ - version: 1.0
+   name: performa-save
+   description: performa save
+   fromTopic: save-performa
+   isTransaction: true
+   queryMaps:
+    - query: INSERT INTO public.eg_performa(id, application_number, business_service, additional_details, created_by, last_modify_by, created_time, last_modified_time, tenant_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);  
+      basePath: Performa.*
+      jsonMaps:
+
+       - jsonPath: $.Performa.*.id      
+
+       - jsonPath: $.Performa.*.applicationNumber       
+
+       - jsonPath: $.Performa.*.businessService
+
+       - jsonPath: $.Performa.*.additionalDetail
+         type: JSON
+         dbType: JSONB
+
+       - jsonPath: $.Performa.*.auditDetails.createdBy
+
+       - jsonPath: $.Performa.*.auditDetails.lastModifiedBy
+
+       - jsonPath: $.Performa.*.auditDetails.createdTime
+
+       - jsonPath: $.Performa.*.auditDetails.lastModifiedTime
+
+       - jsonPath: $.Performa.*.tenantId

@@ -65,7 +65,7 @@ public class SurrendOfLicenseController {
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
 		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
-				applicationNumber, licenceNumber);
+				licenceNumber,applicationNumber);
 		
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder(). surrendOfLicense(surrendOfLicense)
 				.responseInfo(responseInfoFactory
