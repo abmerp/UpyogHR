@@ -310,7 +310,7 @@ serviceMaps:
    fromTopic: update-constructionofcommunity
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_construction_of_community SET is_draft=?, audit_details, area_in_acers=?, valid_up_to=?, applyed_for_extention_perioud=?, type_of_community_site=?,copy_of_board_rsolution=?, justification_for_extention=?, proof_of_ownership_of_community=?, proof_of_online_payment_of_extention=?, upload_renewal_license_copy=?, explonatory_not_for_extention=?, location_of_applied=?, any_other_document_by_director=? where application_status=1 and license_number=?;
+      - query: UPDATE public.eg_tl_construction_of_community SET is_draft=?, audit_details=?, area_in_acers=?, valid_up_to=?, applyed_for_extention_perioud=?, type_of_community_site=?,copy_of_board_rsolution=?, justification_for_extention=?, proof_of_ownership_of_community=?, proof_of_online_payment_of_extention=?, upload_renewal_license_copy=?, explonatory_not_for_extention=?, location_of_applied=?, any_other_document_by_director=? where application_status=1 and license_number=?;
         basePath: constructionOfCommunity.*
         jsonMaps: 
          - jsonPath: constructionOfCommunity.*.isDraft
