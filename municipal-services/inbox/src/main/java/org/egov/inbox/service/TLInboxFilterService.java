@@ -115,6 +115,14 @@ public class TLInboxFilterService {
 	@Value("${egov.searcher.tl.completion.certificate.search.desc.path}")
 	private String completionCertificateSearcherDescEndPoint;
 	
+	@Value("${egov.searcher.tl.constructionofcommunity.search.path}")
+	private String constructionOfCommunitySearcherEndPoint;
+	@Value("${egov.searcher.tl.constructionofcommunity.count.path}")
+	private String constructionOfCommunitySearcherCountEndPoint;
+	@Value("${egov.searcher.tl.constructionofcommunity.search.desc.path}")
+	private String constructionOfCommunitySearcherDescEndPoint;
+	
+	
 //	SURREND OF LICENSE
 	@Value("${egov.searcher.tl.Surrend.of.license.search.path}")
 	private String SurrendOfLicenseSearcherEndPoint;
@@ -132,6 +140,7 @@ public class TLInboxFilterService {
 
 	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
 	private static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
+	private static final String BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY = "CONSTRUCTION_OF_COMMUNITY";
 	
 	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
 	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
@@ -249,6 +258,15 @@ public class TLInboxFilterService {
 						uri.append(searcherHost).append(completionCertificateSearcherDescEndPoint);
 					} else {
 						uri.append(searcherHost).append(completionCertificateSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;	
+				case BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(constructionOfCommunitySearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(constructionOfCommunitySearcherEndPoint);
 						log.info("search for application no url" + uri);
 					}
 					break;	
@@ -447,6 +465,10 @@ public class TLInboxFilterService {
 					break;
 				case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
 					uri.append(searcherHost).append(completionCertificateSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+					break;
+				case BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY:
+					uri.append(searcherHost).append(constructionOfCommunitySearcherCountEndPoint);
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_TRANSFER:

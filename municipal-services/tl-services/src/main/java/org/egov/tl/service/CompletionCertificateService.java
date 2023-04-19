@@ -134,10 +134,10 @@ public class CompletionCertificateService {
 		   completionCertificateRequest.setCompletionCertificate(completionCertificate);
 		
 		if(isCreate) {
-			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
-			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
-			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
-		    completionCertificateRepo.save(completionCertificateRequest);
+//			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
+//			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
+//			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+//		    completionCertificateRepo.save(completionCertificateRequest);
 		    completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(completionCertificate)
 					.requestInfo(completionCertificateRequest.getRequestInfo()).message("Records has been inserted successfully.").status(true).build();
 		} else {
