@@ -280,9 +280,9 @@ public class ChangeBeneficialService {
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			
-			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, beneficialRequest.getRequestInfo()));
-			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,changeBeneficial.get(0).getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,beneficialRequest.getRequestInfo());
-			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+//			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, beneficialRequest.getRequestInfo()));
+//			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,changeBeneficial.get(0).getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,beneficialRequest.getRequestInfo());
+//			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 		
 			
 			changeBeneficialRepo.save(beneficialRequest);
