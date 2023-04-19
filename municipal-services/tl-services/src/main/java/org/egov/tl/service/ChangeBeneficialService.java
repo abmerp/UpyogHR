@@ -189,7 +189,7 @@ public class ChangeBeneficialService {
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
 		if(tradeLicense==null||tradeLicense.isEmpty()) {
 		 	changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-					.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+					.requestInfo(null).message("This License Number has expaired or License Number is not existing").status(false).build();
 		}else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
 	    	changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(null).requestInfo(null).message("licence fees is null of this Application").status(false).build();

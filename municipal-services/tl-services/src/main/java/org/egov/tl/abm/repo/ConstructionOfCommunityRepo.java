@@ -44,6 +44,11 @@ public class ConstructionOfCommunityRepo {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	String queryForgetTradeLicenseDetails="select eg_tl_tradelicense.validFrom,eg_tl_tradelicense.validTo,eg_tl_tradelicensedetail.licensefeecharges,eg_tl_tradelicense.applicationnumber from eg_user inner join eg_tl_tradelicense on eg_user.uuid=eg_tl_tradelicense.createdBy "
+			+ "inner join eg_tl_tradelicensedetail on eg_tl_tradelicensedetail.tradelicenseid = eg_tl_tradelicense.id "
+			+ "where eg_tl_tradelicense.licensenumber=:licenseNumber";//and  eg_tl_tradelicense.status!='INITIATED'  //and eg_user.id=:userId
+	
+	
 	String querybyLicenseNumber="select * from public.eg_tl_construction_Of_community where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 
@@ -66,6 +71,21 @@ public class ConstructionOfCommunityRepo {
 		}
 	}
 	
+	public List<TradeLicense> getLicenseByLicenseNumber(String applicationNumber,long userId) {
+		List<TradeLicense> licenses=null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			      licenses = jdbcTemplate.query(queryForgetTradeLicenseDetails.replace(":licenseNumber", "'"+applicationNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->TradeLicense.builder()
+					.validFrom(Long.parseLong(rs.getString("validFrom").toString()))
+					.validTo(Long.parseLong(rs.getString("validTo").toString()))
+					.applicationNumber(rs.getString("applicationnumber"))
+					.tradeLicenseDetail(TradeLicenseDetail.builder().licenseFeeCharges(rs.getDouble("licensefeecharges")).build())
+					.build());
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return licenses;
+	}
 	
    public ConstructionOfCommunity getConstructionOfCommunityByLicenseNumber(String licenseNumber) {
 		

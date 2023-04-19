@@ -1,6 +1,7 @@
 package org.egov.tl.service;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ import org.egov.tl.web.models.ConstructionOfCommunity;
 import org.egov.tl.web.models.ConstructionOfCommunityRequest;
 import org.egov.tl.web.models.ConstructionOfCommunityResponse;
 import org.egov.tl.web.models.TradeLicense;
+import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,10 +58,7 @@ public class ConstructionOfCommunityService {
 
 	@Autowired
 	LicenseServiceRepo newServiceInfoRepo;
-	
-	@Autowired
-	private CompletionCertificateRepo completionCertificateRepo;
-	
+		
 	@Autowired
 	private ConstructionOfCommunityRepo constructionOfCommunityRepo;
 	
@@ -78,13 +77,13 @@ public class ConstructionOfCommunityService {
 		ConstructionOfCommunityResponse constructionOfCommunityResponse = null;
 		String licenseNumber=constructionOfCommunityRequest.getConstructionOfCommunity().get(0).getLicenseNumber();
 		
-		List<TradeLicense> tradeLicense = completionCertificateRepo.getLicenseByLicenseNumber(licenseNumber,constructionOfCommunityRequest.getRequestInfo().getUserInfo().getId());
+		List<TradeLicense> tradeLicense = constructionOfCommunityRepo.getLicenseByLicenseNumber(licenseNumber,constructionOfCommunityRequest.getRequestInfo().getUserInfo().getId());
 		if(tradeLicense==null||tradeLicense.isEmpty()) {
 			constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(null)
-					.requestInfo(null).message("This Application Number has expaired or Application Number is not existing").status(false).build();
+					.requestInfo(null).message("This License Number is not existing").status(false).build();
 		}else if(tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges()==null) {
 			constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder()
-					.constructionOfCommunity(null).requestInfo(null).message("licence fees is null of this Application").status(false).build();
+					.constructionOfCommunity(null).requestInfo(null).message("licence fees is null of this License").status(false).build();
 	    }else {
 	    	ConstructionOfCommunity constructionOfCommunity=constructionOfCommunityRepo.getConstructionOfCommunityByLicenseNumber(licenseNumber);
 	    	if(constructionOfCommunity!=null) {
@@ -138,9 +137,10 @@ public class ConstructionOfCommunityService {
 		constructionOfCommunityRequest.setConstructionOfCommunity(constructionOfCommunityList);
 		
 		if(isCreate) {
-//			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
-//			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
-//			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
+			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,"INITIATE",assignee,constructionOfCommunityList.get(0).getApplicationNumber(),CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,constructionOfCommunityRequest.getRequestInfo());
+			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+			
 			constructionOfCommunityRepo.save(constructionOfCommunityRequest);
 		    constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(constructionOfCommunityList)
 					.requestInfo(constructionOfCommunityRequest.getRequestInfo()).message("Records has been inserted successfully.").status(true).build();

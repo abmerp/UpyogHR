@@ -65,6 +65,9 @@ public class WorkflowIntegrator {
 	
 	private static final String COMPLETION_CERTIFICATE_WORKFLOWCODE = "COMPLETION_CERTIFICATE";
 	
+	private static final String CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE = "CONSTRUCTION_OF_COMMUNITY";
+
+	
 
 	private static final String BPAMODULENAMEVALUE = "BPAREG";
 
@@ -132,6 +135,10 @@ public class WorkflowIntegrator {
 					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 				break;
 				//TLR Changes
+					case CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+					break;
 				    case COMPLETION_CERTIFICATE_WORKFLOWCODE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
