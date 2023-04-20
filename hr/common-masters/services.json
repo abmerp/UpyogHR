@@ -1,0 +1,53 @@
+{
+    "tenantId": "hr",
+    "moduleName": "common-masters",
+    "services": [{
+"businessService":[
+    {
+       "name": "NewTL"
+    },
+    {
+        "name": "CONSTRUCTION_OF_COMMUNITY"
+     },
+     {
+        "name": "COMPLETION_CERTIFICATE"
+     },
+     {
+        "name": "CHANGE_OF_BENEFICIAL"
+     },
+     {
+        "name": "SURREND_OF_LICENSE"
+     },
+     {
+        "name": "EXTENSION_OF_CLU_PERMISSION"
+     },
+     {
+        "name": "TRANSFER_OF_LICIENCE"
+     },
+
+       {
+        "name": "RENWAL_OF_LICENCE"
+     },
+     {
+        "name": "REVISED_LAYOUT_PLAN"
+     },
+     {
+        "name": "SERVICE_PLAN"
+     },
+     {
+        "name": "ELECTRICAL_PLAN"
+     },
+
+     {
+        "name": "SERVICE_PLAN_DEMARCATION"
+     },
+     {
+        "name": "APPROVAL_OF_STANDARD"
+     }
+
+ 
+]
+    }
+    ]
+}
+      
