@@ -163,7 +163,7 @@ public class CompositionOfUrbanRepo {
 						.nameOfOrginalLandOner(rs.getString("nameOfOrginalLandOner"))
 						.landHoldingOfAbove(rs.getString("landHoldingOfAbove"))
 						.totalAreaInSqMetter(rs.getString("totalAreaInSqMetter"))
-						.totalLandSoldInPart(totalLandSoldInPartDetails)
+						.totalLandSoldInPartDetails(totalLandSoldInPartDetails)
 						.explainTheReasonForVoilation(rs.getString("explainTheReasonForVoilation"))
 						.dateOfSaleDeeds(rs.getString("dateOfSaleDeeds"))
 						.anyOtherDoc(rs.getString("anyOtherDoc"))
