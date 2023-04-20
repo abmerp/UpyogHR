@@ -61,8 +61,8 @@ public class CompositionOfUrban {
 	@JsonProperty("isFullPaymentDone")
 	private boolean isFullPaymentDone;
 	
-	@JsonProperty("totalConstructionOfCommunityCharge")
-	private String totalConstructionOfCommunityCharge;
+	@JsonProperty("totalCompositionOfUrbanCharge")
+	private String totalCompositionOfUrbanCharge;
 	
 	@JsonProperty("createdDate")
 	private Timestamp createdDate;
@@ -82,7 +82,7 @@ public class CompositionOfUrban {
 	private String landHoldingOfAbove;
 	
 	@JsonProperty("totalLandSoldInPart")
-	private List<Map<String,Object>> totalLandSoldInPart;
+	private Map<String,Object> totalLandSoldInPart;
 	
 	@JsonProperty("totalAreaInSqMetter")
 	private String totalAreaInSqMetter;

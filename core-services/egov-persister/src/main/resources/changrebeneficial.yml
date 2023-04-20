@@ -347,16 +347,17 @@ serviceMaps:
          - jsonPath: compositionOfUrban.*.isDraft
          - jsonPath: compositionOfUrban.*.isFullPaymentDone
          - jsonPath: compositionOfUrban.*.paymentType
-         - jsonPath: compositionOfUrban.*.totalconstructionOfCommunityCharge
+         - jsonPath: compositionOfUrban.*.totalCompositionOfUrbanCharge
          - jsonPath: compositionOfUrban.*.workFlowCode
          - jsonPath: compositionOfUrban.*.auditDetails
            type: JSON
            dbType: JSONB
          - jsonPath: compositionOfUrban.*.createdTime
-         
          - jsonPath: compositionOfUrban.*.nameOfOrginalLandOner
          - jsonPath: compositionOfUrban.*.landHoldingOfAbove
          - jsonPath: compositionOfUrban.*.totalLandSoldInPart
+           type: JSON
+           dbType: JSONB
          - jsonPath: compositionOfUrban.*.totalAreaInSqMetter
          - jsonPath: compositionOfUrban.*.explainTheReasonForVoilation
          - jsonPath: compositionOfUrban.*.dateOfSaleDeeds
@@ -379,6 +380,8 @@ serviceMaps:
          - jsonPath: compositionOfUrban.*.nameOfOrginalLandOner
          - jsonPath: compositionOfUrban.*.landHoldingOfAbove
          - jsonPath: compositionOfUrban.*.totalLandSoldInPart
+           type: JSON
+           dbType: JSONB
          - jsonPath: compositionOfUrban.*.totalAreaInSqMetter
          - jsonPath: compositionOfUrban.*.explainTheReasonForVoilation
          - jsonPath: compositionOfUrban.*.dateOfSaleDeeds

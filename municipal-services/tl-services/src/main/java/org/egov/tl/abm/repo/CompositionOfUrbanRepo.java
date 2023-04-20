@@ -129,7 +129,7 @@ public class CompositionOfUrbanRepo {
 			List<Object> preparedStmtList = new ArrayList<>();
 			List<CompositionOfUrban> compositionOfUrban = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->{
 				AuditDetails auditDetails=null;
-				List<Map<String,Object>> totalLandSoldInPart =null;
+				Map<String,Object> totalLandSoldInPart =null;
 				try {
 					AuditDetails audit_details = new Gson().fromJson(
 							rs.getString("audit_details").equals("{}") || rs.getString("audit_details").equals("null")
@@ -141,7 +141,7 @@ public class CompositionOfUrbanRepo {
 							rs.getString("totalLandSoldInPart").equals("{}") || rs.getString("audit_details").equals("null")
 									? null
 									: rs.getString("totalLandSoldInPart"),
-									List.class);
+									HashMap.class);
 					
 					
 					System.out.println(audit_details);
