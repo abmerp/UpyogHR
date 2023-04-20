@@ -27,7 +27,7 @@ public class Transfer {
 	private String araeInAcres;
 
 	private JsonNode additionalDetails = null;
-	private JsonNode transferOfLicenceDetail;
+	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
 	@JsonProperty("applicationNumber")
@@ -36,7 +36,6 @@ public class Transfer {
 	private String tenantId;
 	@JsonProperty("assignee")
 	private List<String> assignee;
-
 	@JsonProperty("action")
 	private String action;
 
