@@ -1,5 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +16,6 @@ import lombok.Setter;
 public class TotalLandSoldInPartDetails {
 	
 	@JsonProperty("totalLandSoldInPart")
-	private TotalLandSoldInPart totalLandSoldInPart;
+	private List<TotalLandSoldInPart> totalLandSoldInPart;
 
 }
