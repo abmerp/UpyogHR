@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.common.contract.request.Role;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.ExtensionOfCLUPermissionRowMapper;
@@ -15,9 +19,13 @@ import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ExtensionOfCLUPermission;
 import org.egov.tl.web.models.ExtensionOfCLUPermissionRequest;
+import org.egov.tl.web.models.SurrendOfLicense;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.workflow.Action;
+import org.egov.tl.web.models.workflow.BusinessService;
+import org.egov.tl.web.models.workflow.State;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.egov.tl.workflow.WorkflowService;
 import org.egov.tracer.model.CustomException;
@@ -26,14 +34,16 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class ExtensionOfCLUPermissionServices {
 	
-//	private static final String BUSINESS_SURRENDER = "SURREND_OF_LICENSE";
-//
+	private static final String BUSINESS_EXTENTION = "EXTENTION_OF_CLU_PERMISSION";
+
 	@Value("${persister.create.extension.of.clu.permission.topic}")
 	private String cluTopic;
 
@@ -62,6 +72,10 @@ public class ExtensionOfCLUPermissionServices {
 
 	@Autowired
 	private WorkflowService workflowService;
+	
+	private static final String SENDBACK_STATUS = "SENDBACK_TO_APPLICANT";
+
+	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 	
 	
 	@SuppressWarnings("null")
@@ -92,15 +106,15 @@ public class ExtensionOfCLUPermissionServices {
 					config.getSurrenderName(), config.getSurrenderFormat(), count);
 			extensionOfCLUPermission.setAction("INITIATE");
 			extensionOfCLUPermission.setAuditDetails(auditDetails);
-//			extensionOfCLUPermission.setBusinessService(BUSINESS_SURRENDER);
-//			extensionOfCLUPermission.setWorkflowCode(BUSINESS_SURRENDER);
+			extensionOfCLUPermission.setBusinessService(BUSINESS_EXTENTION);
+			extensionOfCLUPermission.setWorkflowCode(BUSINESS_EXTENTION);
 
 			extensionOfCLUPermission.setApplicationNo(applicationNo.get(0));
-//			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-//					extensionOfCLUPermissionRequest.getExtensionOfCLUPermission().get(0), requestInfo, extensionOfCLUPermission.getBusinessService());
-//
-//			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
+					extensionOfCLUPermissionRequest.getExtensionOfCLUPermission().get(0), requestInfo, extensionOfCLUPermission.getBusinessService());
 
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			extensionOfCLUPermission.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 		}
 
 		extensionOfCLUPermissionRequest.setExtensionOfCLUPermission(renewalList);
@@ -122,15 +136,88 @@ public class ExtensionOfCLUPermissionServices {
 
 		List<ExtensionOfCLUPermission> extensionOfCLUPermissionList = extensionOfCLUPermissionRequest.getExtensionOfCLUPermission();
 
+		for (ExtensionOfCLUPermission extensionOfCLUPermission : extensionOfCLUPermissionList) {
 
+			if (Objects.isNull(extensionOfCLUPermissionRequest)
+					|| Objects.isNull(extensionOfCLUPermissionRequest.getExtensionOfCLUPermission())) {
+				throw new CustomException("approval of standard design must not be null",
+						"approval of standard design must not be null");
+			}
 
+			if (StringUtils.isEmpty(extensionOfCLUPermission.getApplicationNo())) {
+				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
+			}
+
+			List<ExtensionOfCLUPermission> searchExtensionOfCLUPermission = search(requestInfo, extensionOfCLUPermission.getLicenseNo(),
+					extensionOfCLUPermission.getApplicationNo());
+			if (CollectionUtils.isEmpty(searchExtensionOfCLUPermission) || searchExtensionOfCLUPermission.size() > 1) {
+				throw new CustomException(
+						"Found none or multiple approval of standard design applications with applicationNumber.",
+						"Found none or multiple approval of standard design applications with applicationNumber.");
+			}
+
+			extensionOfCLUPermission.setBusinessService(extensionOfCLUPermission.getBusinessService());
+			extensionOfCLUPermission.setWorkflowCode(extensionOfCLUPermission.getBusinessService());
+
+			// EMPLOYEE RUN THE APPLICATION NORMALLY
+			if (!extensionOfCLUPermission.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
+
+				String currentStatus = searchExtensionOfCLUPermission.get(0).getStatus();
+
+				BusinessService workflow = workflowService.getBusinessService(extensionOfCLUPermission.getTenantId(),
+						extensionOfCLUPermissionRequest.getRequestInfo(), extensionOfCLUPermission.getBusinessService());
+
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, extensionOfCLUPermissionRequest,
+						extensionOfCLUPermission);
+
+				extensionOfCLUPermission.setAuditDetails(auditDetails);
+
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(extensionOfCLUPermission,
+						requestInfo, extensionOfCLUPermission.getBusinessService());
+
+				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+				extensionOfCLUPermission.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+
+			}
+
+			// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
+			else if ((extensionOfCLUPermission.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
+
+				String currentStatus = searchExtensionOfCLUPermission.get(0).getStatus();
+
+				extensionOfCLUPermission.setAssignee(Arrays
+						.asList(servicePlanService.assignee("CAO", extensionOfCLUPermission.getTenantId(), true, requestInfo)));
+
+				extensionOfCLUPermission.setAction(CITIZEN_UPDATE_ACTION);
+
+				BusinessService workflow = workflowService.getBusinessService(extensionOfCLUPermission.getTenantId(),
+						extensionOfCLUPermissionRequest.getRequestInfo(), extensionOfCLUPermission.getBusinessService());
+
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, extensionOfCLUPermissionRequest,
+						extensionOfCLUPermission);
+
+				extensionOfCLUPermission.setAuditDetails(auditDetails);
+
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(extensionOfCLUPermission,
+						requestInfo, extensionOfCLUPermission.getBusinessService());
+
+				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+				extensionOfCLUPermission.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+
+			}
+		}
+
+		extensionOfCLUPermissionRequest.setExtensionOfCLUPermission(extensionOfCLUPermissionList);
+		
 		producer.push(cluUpdateTopic, extensionOfCLUPermissionRequest);
 
 		return extensionOfCLUPermissionList;
 
 	}
 	
-	/*private TradeLicenseRequest prepareProcessInstanceRequest(ExtensionOfCLUPermission extensionOfCLUPermission,
+	private TradeLicenseRequest prepareProcessInstanceRequest(ExtensionOfCLUPermission extensionOfCLUPermission,
 			RequestInfo requestInfo, String bussinessServicename) {
 
 		TradeLicenseRequest tradeLicenseASRequest = new TradeLicenseRequest();
@@ -154,9 +241,9 @@ public class ExtensionOfCLUPermissionServices {
 		tradeLicenseASRequest.setLicenses(tradeLicenseASlist);
 
 		return tradeLicenseASRequest;
-	}*/
+	}
 	
-	public List<ExtensionOfCLUPermission> search(RequestInfo info, String applicattionNo, String licenseNo) {
+	public List<ExtensionOfCLUPermission> search(RequestInfo info,  String licenseNo, String applicattionNo) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
@@ -185,7 +272,7 @@ public class ExtensionOfCLUPermissionServices {
 			}
 
 		} else if ((info.getUserInfo().getUuid() != null)) {
-			builder.append(" createdBy= :CB");
+			builder.append(" created_by= :CB");
 			paramMap.put("CB", info.getUserInfo().getUuid());
 			preparedStatement.add(info.getUserInfo().getUuid());
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, extensionOfCLUPermissionRowMapper);
@@ -193,6 +280,57 @@ public class ExtensionOfCLUPermissionServices {
 		}
 		return Result;
 
+	}
+	
+	private boolean usercheck(RequestInfo requestInfo) {
+		List<Role> roles = requestInfo.getUserInfo().getRoles();
+		for (Role role : roles) {
+			if (role.getCode().equalsIgnoreCase("BPA_BUILDER") || role.getCode().equalsIgnoreCase("BPA_DEVELOPER")) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
+			ExtensionOfCLUPermissionRequest extensionOfCLUPermissionRequest, ExtensionOfCLUPermission extensionOfCLUPermission) {
+		// validate Action-
+		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
+				.filter(state -> state.getState().equals(currentStatus)).findFirst();
+		if (!currentWorkflowStateOptional.isPresent()) {
+			throw new CustomException("workflow State not found:" + currentStatus,
+					"workflow State not found:" + currentStatus);
+		}
+		State currentWorkflowState = currentWorkflowStateOptional.get();
+		List<Action> permissibleActions = currentWorkflowState.getActions();
+		String currentActionFromRequest = extensionOfCLUPermission.getAction();
+		Optional<Action> currentWorkflowActionOptional = permissibleActions.stream()
+				.filter(action -> action.getAction().equals(currentActionFromRequest)).findFirst();
+		if (!currentWorkflowActionOptional.isPresent()) {
+			throw new CustomException(
+					"Action " + currentActionFromRequest + " not found in workflow for current status " + currentStatus,
+					"Action " + currentActionFromRequest + " not found in workflow for current status "
+							+ currentStatus);
+		}
+		Action currentWorkflowAction = currentWorkflowActionOptional.get();
+		// validate roles:
+		List<String> workflowPermissibleRoles = currentWorkflowAction.getRoles();
+		List<Role> rolesFromUserInfo = extensionOfCLUPermissionRequest.getRequestInfo().getUserInfo().getRoles();
+		List<String> currentUserRoles = rolesFromUserInfo.stream().map(role -> role.getCode())
+				.collect(Collectors.toList());
+		boolean isAuthorizedActionByRole = org.apache.commons.collections.CollectionUtils.containsAny(currentUserRoles,
+				workflowPermissibleRoles);
+		if (!isAuthorizedActionByRole) {
+			throw new CustomException("User role not authorized to perform this action",
+					"User role not authorized to perform this action");
+		}
+		String nextStateUUID = currentWorkflowAction.getNextState();
+		Optional<State> nextStateOptional = workflow.getStates().stream()
+				.filter(state -> state.getUuid().equals(nextStateUUID)).findFirst();
+		State nextState = nextStateOptional.get();
+		String nextStateName = nextState.getState();
+		// set next state as status-
+		extensionOfCLUPermission.setStatus(nextStateName);
 	}
 
 }

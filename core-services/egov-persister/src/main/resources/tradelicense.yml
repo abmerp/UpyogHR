@@ -1809,4 +1809,96 @@ serviceMaps:
 
           - jsonPath: $.ExtensionOfCLUPermission.*.auditDetails.lastModifiedTime
           
-  
+ - version: 1.0
+   description: update extension of clu permission
+   fromTopic: update-extension_of_clu_permission
+   isTransaction: true
+   queryMaps:      
+    
+       - query: UPDATE public.eg_extension_of_clu_permission SET id=?, license_no=?, case_no=?, nature_purpose=?, total_area_sq=?, clu_date=?, expiry_clu=?, stage_construction=?, applicant_name=?, mobile=?, email_address=?, address=?, village=?, tehsil=?, pin_code=?, reason_delay=?, building_plan_approval_status=?, zoning_plan_approval_date=?, date_of_sanction_building_plan=?, applied_first_time=?, "upload_brIIIfile_url"=?, clu_permission_letterfile_url=?, upload_photographsfile_url=?, receipt_applicationfile_url=?, upload_building_planfile_url=?, indemnity_bondfile_url=?, additional_details=?, "businessService"=?, comment=?, workflow_code=?, status=?, tenant_id=?, created_by=?, created_time=?, "lastModified_by"=?, "lastModified_time"=?, tcpapplicationnum=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_no=?;  
+         basePath: ExtensionOfCLUPermission.*
+         jsonMaps:   
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.id     
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.licenseNo
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.caseNo
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.naturePurpose
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.totalAreaSq
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.cluDate 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.expiryClu
+           
+          - jsonPath: $.ExtensionOfCLUPermission.*.stageConstruction
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.applicantName
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.mobile         
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.emailAddress
+          
+         
+          - jsonPath: $.ExtensionOfCLUPermission.*.address       
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.village
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.tehsil
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.pinCode 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.reasonDelay
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.buildingPlanApprovalStatus
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.zoningPlanApprovalDate
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.dateOfSanctionBuildingPlan 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.appliedFirstTime 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.uploadbrIIIfileUrl 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.cluPermissionLetterfileUrl 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.uploadPhotographsfileUrl 
+         
+          - jsonPath: $.ExtensionOfCLUPermission.*.receiptApplicationfileUrl 
+         
+          - jsonPath: $.ExtensionOfCLUPermission.*.uploadBuildingPlanfileUrl 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.indemnityBondfileUrl 
+                 
+          - jsonPath: $.ExtensionOfCLUPermission.*.additionalDetails
+            type: JSON
+            dbType: JSONB
+         
+          - jsonPath: $.ExtensionOfCLUPermission.*.businessService
+        
+          - jsonPath: $.ExtensionOfCLUPermission.*.comment
+       
+          - jsonPath: $.ExtensionOfCLUPermission.*.workflowCode  
+ 
+          - jsonPath: $.ExtensionOfCLUPermission.*.status
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.tenantId
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.auditDetails.createdBy
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.auditDetails. createdTime
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.auditDetails.lastModifiedBy         
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.auditDetails.lastModifiedTime 
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.tcpApplicationNumber
+                 
+          - jsonPath: $.ExtensionOfCLUPermission.*.tcpCaseNumber
+          
+          - jsonPath: $.ExtensionOfCLUPermission.*.tcpDairyNumber
+
+          - jsonPath: $.ExtensionOfCLUPermission.*.applicationNo         
+   

@@ -17,16 +17,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class ExtensionOfCLUPermission {
-	
 
+	private String id;
 
-	
-    private String id;
-    
-    private String action;
-    
-    private String licenseNo;
-	
+	private String action;
+
+	private String licenseNo;
+
 	private String caseNo;
 
 	private String applicationNo;
@@ -34,7 +31,7 @@ public class ExtensionOfCLUPermission {
 	private String naturePurpose;
 
 	private String totalAreaSq;
-	
+
 	private String cluDate;
 
 	private String expiryClu;
@@ -42,7 +39,7 @@ public class ExtensionOfCLUPermission {
 	private String stageConstruction;
 
 	private String applicantName;
-	
+
 	private String mobile;
 
 	private String emailAddress;
@@ -50,7 +47,7 @@ public class ExtensionOfCLUPermission {
 	private String address;
 
 	private String village;
-	
+
 	private String tehsil;
 
 	private String pinCode;
@@ -58,7 +55,7 @@ public class ExtensionOfCLUPermission {
 	private String reasonDelay;
 
 	private String buildingPlanApprovalStatus;
-	
+
 	private String zoningPlanApprovalDate;
 
 	private String dateOfSanctionBuildingPlan;
@@ -76,7 +73,7 @@ public class ExtensionOfCLUPermission {
 	private String uploadBuildingPlanfileUrl;
 
 	private String indemnityBondfileUrl;
-	
+
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails;
 
@@ -94,6 +91,13 @@ public class ExtensionOfCLUPermission {
 
 	private String status;
 
-	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 
 }

@@ -98,7 +98,7 @@ public class TLInboxFilterService {
 	private String transferOfLicenceSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.TRANSFER.search.desc.path}")
 	private String transferOfLicenceSearcherDescEndPoint;
-	
+
 //	CHANGE OF BENEFICIAL
 	@Value("${egov.searcher.tl.change.beneficial.search.path}")
 	private String changeOfBeneficialSearcherEndPoint;
@@ -106,7 +106,7 @@ public class TLInboxFilterService {
 	private String changeOfBeneficialSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.change.beneficial.search.desc.path}")
 	private String changeOfBeneficialSearcherDescEndPoint;
-	
+
 //	CHANGE OF BENEFICIAL
 	@Value("${egov.searcher.tl.completion.certificate.search.path}")
 	private String completionCertificateSearcherEndPoint;
@@ -114,15 +114,14 @@ public class TLInboxFilterService {
 	private String completionCertificateSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.completion.certificate.search.desc.path}")
 	private String completionCertificateSearcherDescEndPoint;
-	
+
 	@Value("${egov.searcher.tl.constructionofcommunity.search.path}")
 	private String constructionOfCommunitySearcherEndPoint;
 	@Value("${egov.searcher.tl.constructionofcommunity.count.path}")
 	private String constructionOfCommunitySearcherCountEndPoint;
 	@Value("${egov.searcher.tl.constructionofcommunity.search.desc.path}")
 	private String constructionOfCommunitySearcherDescEndPoint;
-	
-	
+
 //	SURREND OF LICENSE
 	@Value("${egov.searcher.tl.Surrend.of.license.search.path}")
 	private String SurrendOfLicenseSearcherEndPoint;
@@ -130,18 +129,26 @@ public class TLInboxFilterService {
 	private String SurrendOfLicenseSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.Surrend.of.license.search.desc.path}")
 	private String SurrendOfLicenseSearcherDescEndPoint;
-	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
-	
+
+	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.search.path}")
+	private String ExtensionOfCLUPermissionSearcherEndPoint;
+	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.count.path}")
+	private String ExtensionOfCLUPermissionSearcherCountEndPoint;
+	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.search.desc.path}")
+	private String ExtensionOfCLUPermissionSearcherDescEndPoint;
+
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 
+	private static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENSION_OF_CLU_PERMISSION";
+	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
 	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
 	private static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
 	private static final String BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY = "CONSTRUCTION_OF_COMMUNITY";
-	
+
 	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
 	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
 	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
@@ -234,6 +241,15 @@ public class TLInboxFilterService {
 				// will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 				switch (businessService) {
+				case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherDescEndPoint);
+					} else {
+						uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherEndPoint);
+						log.info("search for application no url" + uri);
+					}
+					break;
 				case BUSINESSSERVICE_SURRENDOFLICENSE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -251,7 +267,7 @@ public class TLInboxFilterService {
 						uri.append(searcherHost).append(changeOfBeneficialSearcherEndPoint);
 						log.info("search for application no url" + uri);
 					}
-					break;	
+					break;
 				case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -260,7 +276,7 @@ public class TLInboxFilterService {
 						uri.append(searcherHost).append(completionCertificateSearcherEndPoint);
 						log.info("search for application no url" + uri);
 					}
-					break;	
+					break;
 				case BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -269,7 +285,7 @@ public class TLInboxFilterService {
 						uri.append(searcherHost).append(constructionOfCommunitySearcherEndPoint);
 						log.info("search for application no url" + uri);
 					}
-					break;	
+					break;
 				case BUSINESSSERVICE_TRANSFER:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -455,6 +471,10 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 
 				switch (businessService) {
+				case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
+					uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherCountEndPoint);
+					log.info("uri searcher\t" + uri);
+					break;
 				case BUSINESSSERVICE_SURRENDOFLICENSE:
 					uri.append(searcherHost).append(SurrendOfLicenseSearcherCountEndPoint);
 					log.info("uri searcher\t" + uri);

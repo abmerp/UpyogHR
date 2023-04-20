@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/ExtensionOfCLUPermissionRequest")
 public class ExtensionOfCLUPermissionController {
-	
-	
+
 	@Autowired
 	private ResponseInfoFactory responseInfoFactory;
 	@Autowired
@@ -34,10 +32,12 @@ public class ExtensionOfCLUPermissionController {
 	public ResponseEntity<ExtensionOfCLUPermissionResponse> create(
 			@RequestBody ExtensionOfCLUPermissionRequest extensionOfCLUPermissionRequest) {
 
-		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices.create(extensionOfCLUPermissionRequest);
+		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices
+				.create(extensionOfCLUPermissionRequest);
 
 		ExtensionOfCLUPermissionResponse extensionOfCLUPermissionResponse = ExtensionOfCLUPermissionResponse.builder()
-				.extensionOfCLUPermission(extensionOfCLUPermission).responseInfo(responseInfoFactory
+				.extensionOfCLUPermission(extensionOfCLUPermission)
+				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(extensionOfCLUPermissionRequest.getRequestInfo(), true))
 				.build();
 
@@ -48,32 +48,33 @@ public class ExtensionOfCLUPermissionController {
 	public ResponseEntity<ExtensionOfCLUPermissionResponse> update(
 			@RequestBody ExtensionOfCLUPermissionRequest extensionOfCLUPermissionRequest) {
 
-		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices.update(extensionOfCLUPermissionRequest);
+		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices
+				.update(extensionOfCLUPermissionRequest);
 
 //		List<SurrendOfLicense> SurrendOfLicenseList = new ArrayList<>();
 //		SurrendOfLicenseList.add(surrendOfLicense);
 		ExtensionOfCLUPermissionResponse extensionOfCLUPermissionResponse = ExtensionOfCLUPermissionResponse.builder()
-				.extensionOfCLUPermission(extensionOfCLUPermission).responseInfo(responseInfoFactory
+				.extensionOfCLUPermission(extensionOfCLUPermission)
+				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(extensionOfCLUPermissionRequest.getRequestInfo(), true))
 				.build();
 
 		return new ResponseEntity<>(extensionOfCLUPermissionResponse, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/_search")
 	public ResponseEntity<ExtensionOfCLUPermissionResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices.search(requestInfoWrapper.getRequestInfo(),
-				applicationNumber, licenceNumber);
-		
-		ExtensionOfCLUPermissionResponse extensionOfCLUPermissionResponse = ExtensionOfCLUPermissionResponse.builder(). extensionOfCLUPermission(extensionOfCLUPermission)
-				.responseInfo(responseInfoFactory
+		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices
+				.search(requestInfoWrapper.getRequestInfo(), licenceNumber, applicationNumber);
+
+		ExtensionOfCLUPermissionResponse extensionOfCLUPermissionResponse = ExtensionOfCLUPermissionResponse.builder()
+				.extensionOfCLUPermission(extensionOfCLUPermission).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
 				.build();
-		
+
 		return new ResponseEntity<>(extensionOfCLUPermissionResponse, HttpStatus.OK);
 	}
-
 
 }
