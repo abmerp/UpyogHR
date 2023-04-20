@@ -415,6 +415,18 @@ public class TLConfiguration {
 	private String updateConstructionOfCommunityTopic;
 	
 	
+	// compositionofurban
+    
+    @Value("${persister.compositionofurban.save}")
+	private String saveCompositionOfUrbanTopic;
+
+	@Value("${persister.compositionofurban.update}")
+	private String updateCompositionOfUrbanTopic;
+
+	@Value("${persister.compositionofurban.updatePayment}")
+	private String updatePaymentCompositionOfUrbanTopic;
+	
+	
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber}")
 	private String completionCertificateName;
 	
@@ -426,6 +438,12 @@ public class TLConfiguration {
 	
 	@Value("${egov.idgen.tl.constructionofcommunity.applicationNumber.format}")
 	private String constructionOfCommunityFormat;
+	
+	@Value("${egov.idgen.tl.compositionofurban.applicationNumber}")
+	private String CompositionOfUrbanName;
+	
+	@Value("${egov.idgen.tl.compositionofurban.applicationNumber.format}")
+	private String CompositionOfUrbanFormat;
 
 	
 	// renewal license

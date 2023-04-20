@@ -331,3 +331,57 @@ serviceMaps:
          - jsonPath: constructionOfCommunity.*.locationOfApplied
          - jsonPath: constructionOfCommunity.*.anyOtherDocumentByDirector
          - jsonPath: constructionOfCommunity.*.licenseNumber
+         
+         
+ - version: 1.0
+   description: Persists compositionofurban  service of compositionofurban
+   fromTopic: save-compositionofurban
+   isTransaction: true
+   queryMaps: 
+      - query: INSERT INTO public.eg_tl_composition_of_urban(id, application_number, application_status, is_draft, is_full_payment_done, payment_type,total_composition_of_urban_charge,work_flow_code, audit_details, created_time,"nameOfOrginalLandOner", "landHoldingOfAbove", "totalLandSoldInPart", "totalAreaInSqMetter", "explainTheReasonForVoilation", "dateOfSaleDeeds", "anyOtherDoc") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
+        basePath: compositionOfUrban.*
+        jsonMaps: 
+         - jsonPath: compositionOfUrban.*.id
+         - jsonPath: compositionOfUrban.*.applicationNumber
+         - jsonPath: compositionOfUrban.*.applicationStatus
+         - jsonPath: compositionOfUrban.*.isDraft
+         - jsonPath: compositionOfUrban.*.isFullPaymentDone
+         - jsonPath: compositionOfUrban.*.paymentType
+         - jsonPath: compositionOfUrban.*.totalconstructionOfCommunityCharge
+         - jsonPath: compositionOfUrban.*.workFlowCode
+         - jsonPath: compositionOfUrban.*.auditDetails
+           type: JSON
+           dbType: JSONB
+         - jsonPath: compositionOfUrban.*.createdTime
+         
+         - jsonPath: compositionOfUrban.*.nameOfOrginalLandOner
+         - jsonPath: compositionOfUrban.*.landHoldingOfAbove
+         - jsonPath: compositionOfUrban.*.totalLandSoldInPart
+         - jsonPath: compositionOfUrban.*.totalAreaInSqMetter
+         - jsonPath: compositionOfUrban.*.explainTheReasonForVoilation
+         - jsonPath: compositionOfUrban.*.dateOfSaleDeeds
+         - jsonPath: compositionOfUrban.*.anyOtherDoc
+         - jsonPath: compositionOfUrban.*.landHoldingOfAbove
+       
+         
+ - version: 1.0
+   description: Persists compositionofurban service of compositionofurban
+   fromTopic: update-compositionofurban
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.eg_tl_composition_of_urban SET is_draft=?, audit_details=?,"nameOfOrginalLandOner"=?, "landHoldingOfAbove"=?, "totalLandSoldInPart"=?, "totalAreaInSqMetter"=?, "explainTheReasonForVoilation"=?, "dateOfSaleDeeds"=?, "anyOtherDoc"=?, where application_status=1 and application_number=?;
+        basePath: compositionOfUrban.*
+        jsonMaps: 
+         - jsonPath: compositionOfUrban.*.isDraft
+         - jsonPath: compositionOfUrban.*.auditDetails
+           type: JSON
+           dbType: JSONB
+         - jsonPath: compositionOfUrban.*.nameOfOrginalLandOner
+         - jsonPath: compositionOfUrban.*.landHoldingOfAbove
+         - jsonPath: compositionOfUrban.*.totalLandSoldInPart
+         - jsonPath: compositionOfUrban.*.totalAreaInSqMetter
+         - jsonPath: compositionOfUrban.*.explainTheReasonForVoilation
+         - jsonPath: compositionOfUrban.*.dateOfSaleDeeds
+         - jsonPath: compositionOfUrban.*.anyOtherDoc
+         - jsonPath: compositionOfUrban.*.landHoldingOfAbove
+         - jsonPath: compositionOfUrban.*.applicationNumber
