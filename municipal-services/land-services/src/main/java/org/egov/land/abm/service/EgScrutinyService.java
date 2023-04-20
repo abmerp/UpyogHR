@@ -144,7 +144,7 @@ public class EgScrutinyService {
 					comments2.setName(egScrutiny3.getFieldIdL());
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
-
+					comments2.setValue(egScrutiny3.getFieldValue());
 					if (egScrutiny3.getIsApproved().equalsIgnoreCase("In Order"))
 						approvedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
