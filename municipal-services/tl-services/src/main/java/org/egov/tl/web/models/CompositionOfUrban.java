@@ -82,7 +82,7 @@ public class CompositionOfUrban {
 	private String landHoldingOfAbove;
 	
 	@JsonProperty("totalLandSoldInPart")
-	private Map<String,Object> totalLandSoldInPart;
+	private TotalLandSoldInPartDetails totalLandSoldInPart;
 	
 	@JsonProperty("totalAreaInSqMetter")
 	private String totalAreaInSqMetter;
