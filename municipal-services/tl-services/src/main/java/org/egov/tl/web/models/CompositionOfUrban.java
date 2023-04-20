@@ -81,8 +81,8 @@ public class CompositionOfUrban {
 	@JsonProperty("landHoldingOfAbove")
 	private String landHoldingOfAbove;
 	
-	@JsonProperty("totalLandSoldInPart")
-	private TotalLandSoldInPartDetails totalLandSoldInPart;
+	@JsonProperty("totalLandSoldInPartDetails")
+	private TotalLandSoldInPartDetails totalLandSoldInPartDetails;
 	
 	@JsonProperty("totalAreaInSqMetter")
 	private String totalAreaInSqMetter;
