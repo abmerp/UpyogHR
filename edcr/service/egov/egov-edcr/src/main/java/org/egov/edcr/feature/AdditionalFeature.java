@@ -627,7 +627,7 @@ public class AdditionalFeature extends FeatureProcess {
 //                        validate2b(pl, scrutinyDetail);
 
 //    					validate1b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
                         
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_500)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) < 0) {
@@ -645,7 +645,7 @@ public class AdditionalFeature extends FeatureProcess {
                     	}
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_3000)) < 0) {
@@ -664,7 +664,7 @@ public class AdditionalFeature extends FeatureProcess {
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     } else {
 
@@ -682,7 +682,7 @@ public class AdditionalFeature extends FeatureProcess {
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     }
                 } else {
@@ -703,7 +703,7 @@ public class AdditionalFeature extends FeatureProcess {
                     	}
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_500)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) < 0) {
@@ -722,7 +722,7 @@ public class AdditionalFeature extends FeatureProcess {
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     } else if (pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_1000)) >= 0
                             && pl.getPlot().getArea().compareTo(BigDecimal.valueOf(PLOTAREA_3000)) < 0) {
@@ -741,7 +741,7 @@ public class AdditionalFeature extends FeatureProcess {
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     } else {
 
@@ -759,7 +759,7 @@ public class AdditionalFeature extends FeatureProcess {
 //                    	validate1b(pl, scrutinyDetail);
 //                        validate2a(pl, scrutinyDetail);
 //                        validate2b(pl, scrutinyDetail);
-                        validate4a(pl, scrutinyDetail);
+//                        validate4a(pl, scrutinyDetail);
 
                     }
 
