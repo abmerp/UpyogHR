@@ -56,7 +56,7 @@ public class TransferOfLicenseServices {
 	ObjectMapper mapper;
 	@Value("${persister.create.transfer.licence.topic}")
 	private String transferTopic;
-	
+
 	@Value("${persister.update.transfer.licence.topic}")
 	private String tranferUpdateTopic;
 	private static final String businessService_TRANSFER = "TRANSFER_OF_LICIENCE";
@@ -105,20 +105,8 @@ public class TransferOfLicenseServices {
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = transferOfLicenseRequest.getRequestInfo();
-		List<Transfer> transferList = new ArrayList<>();
-		TransferOfLicence transferOfLicence = transferOfLicenseRequest.getTransfer().get(0).getTransferOfLicence();
-		Transfer transfers = new Transfer();
-		String data = mapper.writeValueAsString(transferOfLicence);
-		JsonNode jsonNode = mapper.readTree(data);
-		//transfers.setTransferOfLicence(transferOfLicence);
-		transfers.setTransferOfLicenceDetail(jsonNode);
-		transfers.setAction(transferOfLicenseRequest.getTransfer().get(0).getAction());
-		transfers.setTenantId(transferOfLicenseRequest.getTransfer().get(0).getTenantId());
-		transfers.setAraeInAcres(transferOfLicenseRequest.getTransfer().get(0).getAraeInAcres());
-		transfers.setLicenseNo(transferOfLicenseRequest.getTransfer().get(0).getLicenseNo());
-		transfers.setSelectType(transferOfLicenseRequest.getTransfer().get(0).getSelectType());
-		transfers.setAdditionalDetails(transferOfLicenseRequest.getTransfer().get(0).getAdditionalDetails());
-		transferList.add(transfers);
+		List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
+
 		for (Transfer transferRequest : transferList) {
 
 			List<String> applicationNumbers = null;
@@ -126,7 +114,8 @@ public class TransferOfLicenseServices {
 			List<Transfer> transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
 					transferRequest.getApplicationNumber());
 			if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
-				throw new CustomException("Already Found  or multiple transfer of licence applications with LicenceNumber.",
+				throw new CustomException(
+						"Already Found  or multiple transfer of licence applications with LicenceNumber.",
 						"Already Found or multiple transfer of licence applications with LicenceNumber.");
 			}
 
@@ -150,6 +139,13 @@ public class TransferOfLicenseServices {
 
 			transferRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
+			TransferOfLicence transferOfLicence = transferRequest.getTransferOfLicence();
+			String data = mapper.writeValueAsString(transferOfLicence);
+			JsonNode jsonNode = mapper.readTree(data);
+			// transfers.setTransferOfLicence(transferOfLicence);
+			transferRequest.setAdditionalDetails(jsonNode);
+			transferRequest.setTransferOfLicence(null);
+
 		}
 		transferOfLicenseRequest.setTransfer(transferList);
 
@@ -165,7 +161,7 @@ public class TransferOfLicenseServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, transferoflicencedetail\r\n"
+		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
 				+ "	FROM public.eg_transfer_of_licence_service" + " Where ";
 		builder = new StringBuilder(query);
 
@@ -195,6 +191,7 @@ public class TransferOfLicenseServices {
 		return Result;
 
 	}
+
 	public List<Transfer> Update(TransferOfLicenseRequest transferOfLicenseRequest) {
 
 		String uuid = transferOfLicenseRequest.getRequestInfo().getUserInfo().getUuid();
@@ -207,8 +204,7 @@ public class TransferOfLicenseServices {
 
 		for (Transfer transfer : transferList) {
 
-			if (Objects.isNull(transferOfLicenseRequest)
-					|| Objects.isNull(transferOfLicenseRequest.getTransfer())) {
+			if (Objects.isNull(transferOfLicenseRequest) || Objects.isNull(transferOfLicenseRequest.getTransfer())) {
 				throw new CustomException("transfer of licence must not be null",
 						"transfer of licence must not be null");
 			}
@@ -217,10 +213,11 @@ public class TransferOfLicenseServices {
 				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 			}
 
-			List<Transfer> transferSearch = search(requestInfo,
-					transfer.getLicenseNo(), transfer.getApplicationNumber());
+			List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(),
+					transfer.getApplicationNumber());
 			if (CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
-				throw new CustomException("Found none or multiple transfer of licence applications with applicationNumber.",
+				throw new CustomException(
+						"Found none or multiple transfer of licence applications with applicationNumber.",
 						"Found none or multiple transfer of licence applications with applicationNumber.");
 			}
 
@@ -235,13 +232,12 @@ public class TransferOfLicenseServices {
 				BusinessService workflow = workflowService.getBusinessService(transfer.getTenantId(),
 						transferOfLicenseRequest.getRequestInfo(), transfer.getBusinessService());
 
-				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, transferOfLicenseRequest,
-						transfer);
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, transferOfLicenseRequest, transfer);
 
 				transfer.setAuditDetails(auditDetails);
 
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-						transfer, requestInfo, transfer.getBusinessService());
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(transfer, requestInfo,
+						transfer.getBusinessService());
 
 				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
@@ -254,21 +250,20 @@ public class TransferOfLicenseServices {
 
 				String currentStatus = transferSearch.get(0).getStatus();
 
-				transfer.setAssignee(Arrays.asList(servicePlanService.assignee("CAO",
-						transfer.getTenantId(), true, requestInfo)));
+				transfer.setAssignee(
+						Arrays.asList(servicePlanService.assignee("CAO", transfer.getTenantId(), true, requestInfo)));
 
 				transfer.setAction(CITIZEN_UPDATE_ACTION);
 
 				BusinessService workflow = workflowService.getBusinessService(transfer.getTenantId(),
 						transferOfLicenseRequest.getRequestInfo(), transfer.getBusinessService());
 
-				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, transferOfLicenseRequest,
-						transfer);
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, transferOfLicenseRequest, transfer);
 
 				transfer.setAuditDetails(auditDetails);
 
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-						transfer, requestInfo, transfer.getBusinessService());
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(transfer, requestInfo,
+						transfer.getBusinessService());
 
 				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
