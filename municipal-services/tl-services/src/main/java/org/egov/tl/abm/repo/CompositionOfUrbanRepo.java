@@ -16,6 +16,7 @@ import org.egov.tl.web.models.CompletionCertificate;
 import org.egov.tl.web.models.CompletionCertificateRequest;
 import org.egov.tl.web.models.CompositionOfUrban;
 import org.egov.tl.web.models.CompositionOfUrbanRequest;
+import org.egov.tl.web.models.TotalLandSoldInPartDetails;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -129,7 +130,7 @@ public class CompositionOfUrbanRepo {
 			List<Object> preparedStmtList = new ArrayList<>();
 			List<CompositionOfUrban> compositionOfUrban = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->{
 				AuditDetails auditDetails=null;
-				List<Map<String,Object>> totalLandSoldInPart =null;
+				TotalLandSoldInPartDetails totalLandSoldInPartDetails =null;
 				try {
 					AuditDetails audit_details = new Gson().fromJson(
 							rs.getString("audit_details").equals("{}") || rs.getString("audit_details").equals("null")
@@ -137,11 +138,11 @@ public class CompositionOfUrbanRepo {
 									: rs.getString("audit_details"),
 									AuditDetails.class);
 					
-					totalLandSoldInPart = new Gson().fromJson(
+					totalLandSoldInPartDetails = new Gson().fromJson(
 							rs.getString("totalLandSoldInPart").equals("{}") || rs.getString("audit_details").equals("null")
 									? null
 									: rs.getString("totalLandSoldInPart"),
-									List.class);
+									TotalLandSoldInPartDetails.class);
 					
 					
 					System.out.println(audit_details);
@@ -162,7 +163,7 @@ public class CompositionOfUrbanRepo {
 						.nameOfOrginalLandOner(rs.getString("nameOfOrginalLandOner"))
 						.landHoldingOfAbove(rs.getString("landHoldingOfAbove"))
 						.totalAreaInSqMetter(rs.getString("totalAreaInSqMetter"))
-						.totalLandSoldInPart(totalLandSoldInPart)
+						.totalLandSoldInPart(totalLandSoldInPartDetails)
 						.explainTheReasonForVoilation(rs.getString("explainTheReasonForVoilation"))
 						.dateOfSaleDeeds(rs.getString("dateOfSaleDeeds"))
 						.anyOtherDoc(rs.getString("anyOtherDoc"))
