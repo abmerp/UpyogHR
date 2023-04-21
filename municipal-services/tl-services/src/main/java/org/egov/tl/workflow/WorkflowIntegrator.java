@@ -33,6 +33,8 @@ import static org.egov.tl.util.TLConstants.*;
 @Slf4j
 public class WorkflowIntegrator {
 	
+	private static final String ZONE_PLAN = "ZONE_PLAN";
+	
 	private static final String SURRENDER_OF_LICENSE = "SURREND_OF_LICENSE";
 
 	private static final String TENANTIDKEY = "tenantId";
@@ -129,8 +131,13 @@ public class WorkflowIntegrator {
 				}
 				obj.put(BUSINESSIDKEY, license.getApplicationNumber());
 				obj.put(TENANTIDKEY, wfTenantId);
+				
 				switch(businessServiceFromMDMS)
 				{
+				case ZONE_PLAN:
+					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+				break;
 				case EXTENTION_OF_CLU_PERMISSION:
 					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);

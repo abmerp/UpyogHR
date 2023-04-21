@@ -474,5 +474,10 @@ public class TLConfiguration {
 	@Value("${egov.idgen.tlSOL.applicationNum.format}")
 	private String surrenderFormat;
 	
+	@Value("${egov.idgen.tlZP.applicationNum.name}")
+	private String zonePlanName;
+	@Value("${egov.idgen.tlZP.applicationNum.format}")
+	private String zonePlanFormat;
+	
 	
 }

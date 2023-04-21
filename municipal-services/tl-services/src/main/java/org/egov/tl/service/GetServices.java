@@ -57,9 +57,13 @@ public class GetServices {
 	private ConstructionOfCommunityRepo constructionOfCommunityRepo;
 	@Autowired
 	private ChangeBeneficialRepo changeBeneficialRepo;
+	
+	
 	private static final String APPLICATION_NUMBER = "APPLICATIONNUMBER";
 	private static final String LICENCE_NUMBER = "LICENCENUMBER";
 	private static final String LOI_NUMBER = "LOINUMBER";
+	
+	
 	private static final String BUSINESS_NEWTL = "NewTL";
 	private static final String BUSINESS_SERVICE_PLAN = "SERVICE_PLAN";
 	private static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENSION_OF_CLU_PERMISSION";
