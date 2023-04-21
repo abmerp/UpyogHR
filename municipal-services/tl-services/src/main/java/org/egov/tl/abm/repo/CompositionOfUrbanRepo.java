@@ -125,7 +125,6 @@ public class CompositionOfUrbanRepo {
 	
 	private List<CompositionOfUrban> getCompositionOfUrbanList(String query){
 		List<CompositionOfUrban> compositionOfUrbanList=null;
-		
 		try {
 			List<Object> preparedStmtList = new ArrayList<>();
 			List<CompositionOfUrban> compositionOfUrban = jdbcTemplate.query(query, preparedStmtList.toArray(),  (rs, rowNum) ->{
@@ -137,16 +136,17 @@ public class CompositionOfUrbanRepo {
 									? null
 									: rs.getString("audit_details"),
 									AuditDetails.class);
-					
-					totalLandSoldInPartDetails = new Gson().fromJson(
-							rs.getString("totalLandSoldInPart").equals("{}") || rs.getString("audit_details").equals("null")
-									? null
-									: rs.getString("totalLandSoldInPart"),
-									TotalLandSoldInPartDetails.class);
-					
-					
 					System.out.println(audit_details);
 					auditDetails=audit_details;
+				}catch (Exception e) {
+					   e.printStackTrace();
+			    }
+				try {	
+					totalLandSoldInPartDetails = new Gson().fromJson(
+							rs.getString("totalLandSoldInPartDetails").equals("{}") || rs.getString("totalLandSoldInPartDetails").equals("null")
+									? null
+									: rs.getString("totalLandSoldInPartDetails"),
+									TotalLandSoldInPartDetails.class);
 				}catch (Exception e) {
 				   e.printStackTrace();
 				}
