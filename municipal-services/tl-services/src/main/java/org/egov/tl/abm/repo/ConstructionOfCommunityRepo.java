@@ -54,7 +54,8 @@ public class ConstructionOfCommunityRepo {
 
 	String querybyApplicationNumber="select * from public.eg_tl_construction_Of_community where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
-	
+
+	String queryApplicationNumber="select * from public.eg_tl_construction_Of_community";
 	public void save(ConstructionOfCommunityRequest constructionOfCommunityRequest) {
 		try {
 	        producer.push(tlConfiguration.getSaveConstructionOfCommunityTopic(), constructionOfCommunityRequest);
@@ -80,6 +81,19 @@ public class ConstructionOfCommunityRepo {
 					.validTo(Long.parseLong(rs.getString("validTo").toString()))
 					.applicationNumber(rs.getString("applicationnumber"))
 					.tradeLicenseDetail(TradeLicenseDetail.builder().licenseFeeCharges(rs.getDouble("licensefeecharges")).build())
+					.build());
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return licenses;
+	}
+	public List<ConstructionOfCommunity> getApplicationNumber() {
+		List<ConstructionOfCommunity> licenses=null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			      licenses = jdbcTemplate.query(queryApplicationNumber, preparedStmtList.toArray(),  (rs, rowNum) ->ConstructionOfCommunity.builder()
+					.licenseNumber(rs.getString("license_number"))
+					.applicationNumber(rs.getString("application_number"))
 					.build());
 			}catch (Exception e) {
 			e.printStackTrace();

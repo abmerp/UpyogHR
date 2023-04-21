@@ -105,18 +105,13 @@ public class RevisedPlanServices {
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
-		List<RevisedPlan> renewalList = new ArrayList<>();
+		List<RevisedPlan> renewalList = revisedPlanRequest.getRevisedPlan();
 
-		ReviseLayoutPlan reviseLayoutPlan = revisedPlanRequest.getRevisedPlan().get(0).getReviseLayoutPlan();
-		RevisedPlan revisedPlans = new RevisedPlan();
-		String data = mapper.writeValueAsString(reviseLayoutPlan);
-		JsonNode jsonNode = mapper.readTree(data);
-		revisedPlans.setRevisedPlanDetails(jsonNode);
-		revisedPlans.setAdditionalDetails(revisedPlanRequest.getRevisedPlan().get(0).getAdditionalDetails());
-		revisedPlans.setAction(revisedPlanRequest.getRevisedPlan().get(0).getAction());
-		revisedPlans.setTenantId(revisedPlanRequest.getRevisedPlan().get(0).getTenantId());
-		revisedPlans.setLicenseNo(revisedPlanRequest.getRevisedPlan().get(0).getLicenseNo());
-		renewalList.add(revisedPlans);
+//		revisedPlans.setAdditionalDetails(revisedPlanRequest.getRevisedPlan().get(0).getAdditionalDetails());
+//		revisedPlans.setAction(revisedPlanRequest.getRevisedPlan().get(0).getAction());
+//		revisedPlans.setTenantId(revisedPlanRequest.getRevisedPlan().get(0).getTenantId());
+//		revisedPlans.setLicenseNo(revisedPlanRequest.getRevisedPlan().get(0).getLicenseNo());
+//		renewalList.add(revisedPlans);
 		for (RevisedPlan revisedPlan : renewalList) {
 
 			List<String> applicationNumbers = null;
@@ -148,7 +143,13 @@ public class RevisedPlanServices {
 
 			revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
-		}
+			ReviseLayoutPlan reviseLayoutPlan = revisedPlan.getReviseLayoutPlan();
+			
+			String data = mapper.writeValueAsString(reviseLayoutPlan);
+			JsonNode jsonNode = mapper.readTree(data);
+			revisedPlan.setAdditionalDetails(jsonNode);
+			revisedPlan.setReviseLayoutPlan(null);
+			}
 
 		revisedPlanRequest.setRevisedPlan(renewalList);
 
@@ -167,7 +168,7 @@ public class RevisedPlanServices {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, revisedplandetail\r\n"
+		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
 				+ "	FROM public.eg_revised_layout_plan " + " Where ";
 		builder = new StringBuilder(query);
 

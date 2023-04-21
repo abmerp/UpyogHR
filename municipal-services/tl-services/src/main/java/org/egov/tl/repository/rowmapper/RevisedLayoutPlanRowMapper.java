@@ -63,21 +63,7 @@ public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<Revis
 				}
 				revisedPlan.setAdditionalDetails(additionalDetail);
 			}
-			PGobject pgObj1 = (PGobject) rs.getObject("revisedplandetail");
-			if (pgObj != null) {
-				JsonNode revisedPlanDetail = null;
-				try {
-					revisedPlanDetail = mapper.readTree(pgObj1.getValue());
-				} catch (JsonMappingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				revisedPlan.setRevisedPlanDetails(revisedPlanDetail);
-			}
-
+			
 			AuditDetails auditDetails = new AuditDetails();
 
 			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("createdby"))

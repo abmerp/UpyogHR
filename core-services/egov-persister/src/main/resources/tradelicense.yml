@@ -1463,7 +1463,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     
-       - query: INSERT INTO public.eg_revised_layout_plan(id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, revisedplandetail) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_revised_layout_plan(id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: RevisedPlan.*
          jsonMaps:    
          
@@ -1502,10 +1502,7 @@ serviceMaps:
           - jsonPath: $.RevisedPlan.*.feesResult
             type: JSON
             dbType: JSONB   
-            
-          - jsonPath: $.RevisedPlan.*.revisedPlanDetails
-            type: JSON
-            dbType: JSONB       
+                
       
  - version: 1.0
    description: update revised layout plan
@@ -1519,7 +1516,7 @@ serviceMaps:
           - jsonPath: $.RevisedPlan.*.applicationNumber
           
           
-       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, revisedplandetail=? WHERE application_number=?;
+       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=?;
          basePath: RevisedPlan.*
          jsonMaps:    
          
@@ -1560,10 +1557,6 @@ serviceMaps:
           - jsonPath: $.RevisedPlan.*.tcpCaseNumber
           
           - jsonPath: $.RevisedPlan.*.tcpDairyNumber    
-          
-          - jsonPath: $.RevisedPlan.*.revisedPlanDetails
-            type: JSON
-            dbType: JSONB  
             
           - jsonPath: $.RevisedPlan.*.applicationNumber
           

@@ -80,7 +80,7 @@ public class ChangeBeneficialRepo {
 //	String getBeneficialDetails="select * from public.eg_tl_change_beneficial where id=:changeBeneficialId";
 //	
 //	
-	
+	String queryApplication="select * from public.eg_tl_change_beneficial";
 	
 	public void save(ChangeBeneficialRequest beneficialRequest) {
 		try {
@@ -115,6 +115,19 @@ public class ChangeBeneficialRepo {
 					.validTo(Long.parseLong(rs.getString("validTo").toString()))
 					.applicationNumber(rs.getString("applicationnumber"))
 					.tradeLicenseDetail(TradeLicenseDetail.builder().licenseFeeCharges(rs.getDouble("licensefeecharges")).build())
+					.build());
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return licenses;
+	}
+	public List<ChangeBeneficial> getchangeInbeneficial() {
+		List<ChangeBeneficial> licenses=null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			      licenses = jdbcTemplate.query(queryApplication, preparedStmtList.toArray(),  (rs, rowNum) ->ChangeBeneficial.builder()					
+					.applicationNumber(rs.getString("application_number"))
+					.licenseNumber(rs.getString("license_number"))
 					.build());
 			}catch (Exception e) {
 			e.printStackTrace();

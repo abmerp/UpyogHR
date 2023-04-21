@@ -52,6 +52,9 @@ public class CompletionCertificateRepo {
 	String querybyApplicationNumber="select * from public.eg_tl_completion_certificate where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 	
+	String queryTlApplicationNumber="select * from public.eg_tl_tradelicense";
+	String queryCompletionApplicationNumber="select * from public.eg_tl_completion_certificate";
+	
 	public void save(CompletionCertificateRequest CompletionCertificate) {
 		try {
 	        producer.push(tlConfiguration.getSaveCompletionCertificateTopic(), CompletionCertificate);
@@ -230,6 +233,35 @@ public class CompletionCertificateRepo {
 			e.printStackTrace();
 		}
 		return completionCertificateList;
+	}
+	
+	//--------all service-----------//
+	public List<TradeLicense> getApplication() {
+		List<TradeLicense> licenses=null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			      licenses = jdbcTemplate.query(queryTlApplicationNumber, preparedStmtList.toArray(),  (rs, rowNum) ->TradeLicense.builder()					
+					.applicationNumber(rs.getString("applicationnumber"))
+					.licenseNumber(rs.getString("licensenumber"))
+					.tcpLoiNumber(rs.getString("tcploinumber"))
+					.build());
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return licenses;
+	}
+	public List<CompletionCertificate> getCompletionApplication() {
+		List<CompletionCertificate> licenses=null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			      licenses = jdbcTemplate.query(queryCompletionApplicationNumber, preparedStmtList.toArray(),  (rs, rowNum) ->CompletionCertificate.builder()					
+					.applicationNumber(rs.getString("application_number"))
+					.licenseNumber(rs.getString("license_number"))
+					.build());
+			}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return licenses;
 	}
 	
 }
