@@ -362,7 +362,6 @@ serviceMaps:
          - jsonPath: compositionOfUrban.*.explainTheReasonForVoilation
          - jsonPath: compositionOfUrban.*.dateOfSaleDeeds
          - jsonPath: compositionOfUrban.*.anyOtherDoc
-         - jsonPath: compositionOfUrban.*.landHoldingOfAbove
        
          
  - version: 1.0
@@ -386,5 +385,4 @@ serviceMaps:
          - jsonPath: compositionOfUrban.*.explainTheReasonForVoilation
          - jsonPath: compositionOfUrban.*.dateOfSaleDeeds
          - jsonPath: compositionOfUrban.*.anyOtherDoc
-         - jsonPath: compositionOfUrban.*.landHoldingOfAbove
          - jsonPath: compositionOfUrban.*.applicationNumber
