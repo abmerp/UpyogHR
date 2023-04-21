@@ -369,7 +369,7 @@ serviceMaps:
    fromTopic: update-compositionofurban
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_composition_of_urban SET is_draft=?, audit_details=?,"nameOfOrginalLandOner"=?, "landHoldingOfAbove"=?, "totalLandSoldInPartDetails"=?, "totalAreaInSqMetter"=?, "explainTheReasonForVoilation"=?, "dateOfSaleDeeds"=?, "anyOtherDoc"=?, where application_status=1 and application_number=?;
+      - query: UPDATE public.eg_tl_composition_of_urban SET is_draft=?, audit_details=?,"nameOfOrginalLandOner"=?, "landHoldingOfAbove"=?, "totalLandSoldInPartDetails"=?, "totalAreaInSqMetter"=?, "explainTheReasonForVoilation"=?, "dateOfSaleDeeds"=?, "anyOtherDoc"=? where application_status=1 and application_number=?;
         basePath: compositionOfUrban.*
         jsonMaps: 
          - jsonPath: compositionOfUrban.*.isDraft
