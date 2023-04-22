@@ -314,7 +314,7 @@
     },
 	 {
       "purposeId": 2,
-      "name": "Commercial Integrated in residential sector",
+      "name": "Integrated Component",
       "purposeCode": "CIRS",
       "caseType_id": 1,
       "description": "Comm. Integrated",
@@ -583,7 +583,7 @@
     },
 	  {
       "purposeId": 94,
-      "name": "Commercial Plotted in residential sector",
+      "name": "Plotted Component",
       "purposeCode": "CPRS",
       "caseType_id": 1,
       "description": "Comm. Plotted",
@@ -2941,7 +2941,7 @@
     },
     {
       "purposeId": 91,
-      "name": "Commercial group",
+      "name": "Commercial Component",
       "purposeCode": "CGRPL",
       "caseType_id": 1,
       "description": "Plotted",
