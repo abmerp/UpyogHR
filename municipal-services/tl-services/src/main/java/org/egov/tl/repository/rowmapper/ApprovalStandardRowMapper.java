@@ -35,9 +35,8 @@ public class ApprovalStandardRowMapper implements ResultSetExtractor<List<Approv
 			ApprovalStandardEntity approvalStandardEntity = new ApprovalStandardEntity();
 			
 			approvalStandardEntity.setLicenseNo(rs.getString("license_no"));
-			approvalStandardEntity.setOtherDocument(rs.getString("other_document"));
-			approvalStandardEntity.setPlan(rs.getString("plan"));
-			approvalStandardEntity.setAmount(rs.getBigDecimal("amount"));
+			approvalStandardEntity.setStandardDrawingDesigns("standarddrawingdesigns");
+			approvalStandardEntity.setAnyOtherDoc("anyotherdoc");	
 			approvalStandardEntity.setApplicationNumber(rs.getString("application_number"));
 			approvalStandardEntity.setAction(rs.getString("action"));
 			approvalStandardEntity.setBusinessService(rs.getString("business_service"));

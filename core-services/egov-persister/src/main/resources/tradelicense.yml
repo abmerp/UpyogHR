@@ -1361,17 +1361,15 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     
-       - query: INSERT INTO public.eg_approval_standard(license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code, additionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_approval_standard(license_no, standarddrawingdesigns, anyotherdoc, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code, additionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
          basePath: ApprovalStandardEntity.*
          jsonMaps:         
                    
           - jsonPath: $.ApprovalStandardEntity.*.licenseNo
           
-          - jsonPath: $.ApprovalStandardEntity.*.plan
+          - jsonPath: $.ApprovalStandardEntity.*.standardDrawingDesigns
           
-          - jsonPath: $.ApprovalStandardEntity.*.otherDocument
-          
-          - jsonPath: $.ApprovalStandardEntity.*.amount
+          - jsonPath: $.ApprovalStandardEntity.*.anyOtherDoc
           
           - jsonPath: $.ApprovalStandardEntity.*.auditDetails.createdBy
 
@@ -1412,16 +1410,14 @@ serviceMaps:
          jsonMaps:
           - jsonPath: $.ApprovalStandardEntity.*.applicationNumber
           
-       - query: UPDATE public.eg_approval_standard SET  plan=?, other_document=?, amount=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, tenantid=?, id=?, action=?, status=?, business_service=?, comment=?, workflow_code=?,  tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, additionaldetails=? WHERE application_number=?;   
+       - query: UPDATE public.eg_approval_standard SET  standarddrawingdesigns=?, anyotherdoc=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, tenantid=?, id=?, action=?, status=?, business_service=?, comment=?, workflow_code=?,  tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, additionaldetails=? WHERE application_number=?;   
          basePath: ApprovalStandardEntity.*
          jsonMaps:         
                    
         
-          - jsonPath: $.ApprovalStandardEntity.*.plan
+          - jsonPath: $.ApprovalStandardEntity.*.standardDrawingDesigns
           
-          - jsonPath: $.ApprovalStandardEntity.*.otherDocument
-          
-          - jsonPath: $.ApprovalStandardEntity.*.amount
+          - jsonPath: $.ApprovalStandardEntity.*.anyOtherDoc
           
           - jsonPath: $.ApprovalStandardEntity.*.auditDetails.createdBy
 

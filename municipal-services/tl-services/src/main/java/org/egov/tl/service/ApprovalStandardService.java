@@ -155,7 +155,7 @@ public class ApprovalStandardService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT license_no, plan, other_document, amount, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, additionaldetails\r\n"
+		String query = "SELECT license_no, standarddrawingdesigns, anyotherdoc, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, additionaldetails\r\n"
 				+ "	FROM public.eg_approval_standard " + " Where ";
 		builder = new StringBuilder(query);
 

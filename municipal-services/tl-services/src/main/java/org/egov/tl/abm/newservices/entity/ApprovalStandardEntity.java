@@ -31,12 +31,12 @@ public class ApprovalStandardEntity {
 
 	@JsonProperty("licenseNo")
 	private String licenseNo;
-	@JsonProperty("plan")
-	private String plan;
-	@JsonProperty("otherDocument")
-	private String otherDocument;
-	@JsonProperty("amount")
-	private BigDecimal amount;
+
+	@JsonProperty("standardDrawingDesigns")
+	private String standardDrawingDesigns;
+	@JsonProperty("anyOtherDoc")
+	private String anyOtherDoc;
+
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
 	@JsonProperty("applicationNumber")
@@ -74,6 +74,7 @@ public class ApprovalStandardEntity {
 
 	@JsonProperty("tcpDairyNumber")
 	private String tcpDairyNumber;
-	
+
 	private JsonNode additionalDetails = null;
+
 }

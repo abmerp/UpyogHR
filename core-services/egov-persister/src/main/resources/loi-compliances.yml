@@ -37,11 +37,9 @@ serviceMaps:
    fromTopic: update-loi-compliances
    isTransaction: true
    queryMaps:
-    - query: UPDATE public.eg_loi_compliances SET  loi_number=?, additional_details=?, created_by=?, created_time=?, last_modify_by=?, last_modified_time=?, business_service=? WHERE tcp_application_number=?; 
+    - query: UPDATE public.eg_loi_compliances SET additional_details=?, created_by=?, created_time=?, last_modify_by=?, last_modified_time=?, business_service=? WHERE tcp_application_number=?; 
       basePath: ComplianceRequest.*
-      jsonMaps:
-
-       - jsonPath: $.ComplianceRequest.*.loiNumber
+      jsonMaps:   
        
        - jsonPath: $.ComplianceRequest.*.additionalDetails
          type: JSON
