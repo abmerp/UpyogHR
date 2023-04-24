@@ -1,0 +1,54 @@
+{
+  "tenantId":"hr",
+  "moduleName":"DocumentList",
+  "DeveloperRegistration":[
+     {
+        "documents":[
+           {
+             "document": "Add Directors Info",
+             "isActive": true
+           },
+           {
+             "document": "Upload Board Resolution",
+             "isActive": true
+           },
+           {
+             "document": "Upload Digital Signature",
+             "isActive": true
+           },
+           {
+             "document": "Balance sheet of last 3 years",
+             "isActive": true
+           },
+           {
+             "document": "Ps-3(Representing Paid-UP capital)",
+             "isActive": true
+           },
+           {
+             "document": "Reserves and surpluses",
+             "isActive": true
+           },
+           {
+             "document": "Fully Convertible Debenture",
+             "isActive": true
+           },
+           {
+             "document": "Any other documents",
+             "isActive": true
+           },
+           {
+             "document": "Articles Of Association",
+             "isActive": true
+           },
+           {
+             "document": "Memorandum Of Association",
+             "isActive": true
+           },
+           {
+             "document": "Others",
+             "isActive": true
+           }
+         ]
+       }
+]
+}

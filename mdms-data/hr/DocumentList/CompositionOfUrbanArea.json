@@ -1,0 +1,18 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "CompositionOfUrbanArea":[
+     {
+       "documents": [
+        {
+          "document": "Date of sale deeds",
+          "isActive": true
+        },
+        {
+          "document": "Any Other Document",
+          "isActive": true
+        }
+       ]
+      }
+]
+}

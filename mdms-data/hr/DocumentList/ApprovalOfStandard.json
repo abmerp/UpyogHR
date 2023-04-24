@@ -1,0 +1,18 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "ApprovalOfStandard":[
+     {
+       "documents":[
+        {
+          "document":"Standard design drawings (autocad generated .pdf )",
+          "isActive": true
+          },
+          {
+            "document":"Any other document",
+            "isActive": true
+            }
+       ]
+  }
+]
+}

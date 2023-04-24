@@ -1,0 +1,18 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "ZoningPlan":[
+     {
+       "documents": [
+        {
+          "document": "Layout Plan (will be uploaded in the prescribed format which will be available on the TCP website)",
+          "isActive": true
+        },
+        {
+          "document": "Any other Document",
+          "isActive": true
+        }
+       ]
+      }
+]
+}

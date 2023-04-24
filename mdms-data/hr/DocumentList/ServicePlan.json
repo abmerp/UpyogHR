@@ -1,0 +1,51 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "ServicePlan":[
+     {
+       "documents": [
+          {
+            "document": "Self-certified drawings from empanelled/certified architects that conform to the standard approved template",
+            "isActive": true
+          },
+          {
+            "document": "Service plan in PDF (OCR Compatible) + GIS format (shapefile as per the tem-plate uploaded on the department web-site)",
+            "isActive": true
+          },
+          {
+            "document": "Service plan in AutoCAD (DXF) file (i)Any amendment suggested by HSVP may be incorporated in drawing accordingly.",
+            "isActive": true
+          },
+          {
+            "document": "Certified copy of the Service plan verified by a third party.",
+            "isActive": true
+          },
+          {
+            "document": "Previously Uploaded layout plan (call/autofetch)",
+            "isActive": true
+          },
+          {
+            "document": "Upload Revised layout plan",
+            "isActive": true
+          },
+          {
+            "document": "Upload Demarcation Plan in AutoCAD (DXF) file.",
+            "isActive": true
+          },
+          {
+            "document": "Upload Demarcation Plan in PDF (OCR Compatible) + GIS format.",
+            "isActive": true
+          },
+          {
+            "document": "Upload Excel of detailed layout structure",
+            "isActive": true
+          },
+          {
+            "document": "Any other relevant document",
+            "isActive": true
+          }
+        ]
+      }
+  
+]
+}

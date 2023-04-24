@@ -1,0 +1,58 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "TransferOfLicence":[
+     {
+       "documents": [
+          {
+            "document": "Affidavit regarding the creation of 3rd party right on the licensed area",
+            "isActive": true
+          },
+          {
+            "document": "The colonizer seeking transfer of the whole license shall submit self-certification along with a certificate of the Chartered Accountant that a 15% profit margin is not exceeded from the project cost at the time of submission of application for transfer of license",
+            "isActive": true
+          },
+          {
+            "document": "A consent letter from the new entity for the proposed change along with a justification",
+            "isActive": true
+          },
+          {
+            "document": "Board resolution of authorized signatory ",
+            "isActive": true
+          },
+          {
+            "document": "No objection certificate from the existing Developer, filed through its authorized signatory, specifically designated for the purpose; as well as from the ‘land owner licensees’, in person (not through GPA/SPA assignees), to the proposed change/assignment.",
+            "isActive": true
+          },
+          {
+            "document": "Documents about the Technical and Financial Capacity of the ‘new entity’ proposed to be inducted as a ‘Developer’ or ‘shareholder(s)’ as per prescribed policy parameters for the grant of a license",
+            "isActive": true
+          },
+          {
+            "document": "An affidavit to pay the balance of administrative charges before final approval",
+            "isActive": true
+          },
+          {
+            "document": "Justification for request",
+            "isActive": true
+          },
+          {
+            "document": "An affidavit to the effect that in case the administrative charges for such cases are fixed in act and rules at a rate higher than that been recovered, the applicant shall be liable to pay the difference as and when demanded by TCP",
+            "isActive": true
+          },
+          {
+            "document": "The status regarding the creation of third-party rights in the colony. In case no third-party rights are claimed to have been created in the colony, an affidavit to the said effect be also submitted by the existing developer",
+            "isActive": true
+          },
+          {
+            "document": "Status regarding registration of project in RERA",
+            "isActive": true
+          },
+          {
+            "document": "Any Other Document",
+            "isActive": true
+          }
+        ]
+      }
+]
+}

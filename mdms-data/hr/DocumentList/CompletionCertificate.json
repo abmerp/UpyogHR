@@ -1,0 +1,42 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "CompletionCertificate":[
+     {
+       "documents":  [
+          {
+            "document": "Applicable in PCC and CC Copy of approved service plan estimate ",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in PCC and CCThe electrical Service plan is approved and verification of service is laid out as per the approval.",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in PCC and CCTransfer of licensed land to the Government agency falling under 18/24 mtr. Road/green belt/sector road.",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in CCOccupation certificate in case of (Group Housing, Commercial, IT Colony)",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in PCC and CC Status of development work along with site photographs and CD/DVD regarding completion of public health services, and internal roads.",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in CCNOC from MOEF",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in PCC and CCNOC from fire safety",
+            "isActive": true
+          },
+          {
+            "document": "Applicable in CCAccess permission from NHAI if the site abuts with NH/Scheduled Road and status regarding construction within green belt along NH/Scheduled road.",
+            "isActive": true
+          }
+        ]
+      }
+]
+}

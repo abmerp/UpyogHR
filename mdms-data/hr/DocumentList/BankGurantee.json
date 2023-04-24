@@ -1,0 +1,26 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "BankGurantee":[
+     {
+       "documents": [
+        {
+          "document": "Upload a Scanned Copy of BG",
+          "isActive": true
+        },
+        {
+          "document": "In the case of EDC Upload\r\nPartial Completion Certificate (For release)\r\n",
+          "isActive": true
+        },
+        {
+          "document": "In the Case of the IDC Full Completion Certificate(For release)",
+          "isActive": true
+        },
+        {
+          "document": "Any Other Document",
+          "isActive": true
+        }
+      ]
+  }
+]
+}

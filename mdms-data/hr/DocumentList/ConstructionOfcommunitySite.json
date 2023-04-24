@@ -1,0 +1,34 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "ConstructionOfcommunitySite":[
+     {
+       "documents":  [
+          {
+            "document": "Copy of Board resolution in favour of authorized signatory, applying for case ",
+            "isActive": true
+          },
+          {
+            "document": "Justification for extension in the period for construction of community site.",
+            "isActive": true
+          },
+          {
+            "document": "Proof of ownership of the community site ",
+            "isActive": true
+          },
+          {
+            "document": "An explanatory note indicating the details of progress made about the construction of such a community site.",
+            "isActive": true
+          },
+          {
+            "document": "In case of licensee/developer, upload renewed license copy",
+            "isActive": true
+          },
+          {
+            "document": "Any other document.",
+            "isActive": true
+          }
+        ]
+      }
+]
+}

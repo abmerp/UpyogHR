@@ -1,0 +1,26 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "RenewalLicence":[
+     {
+       "documents": [
+          {
+            "document": "Within the prescribed time limit",
+            "isActive": true
+          },
+          {
+            "document": "Upload OC Document",
+            "isActive": true
+          },
+          {
+            "document": "Upload Part CC Document *",
+            "isActive": true
+          },
+          {
+            "document": "Status of development works completed at Site.",
+            "isActive": true
+          }
+        ]
+      }
+]
+}

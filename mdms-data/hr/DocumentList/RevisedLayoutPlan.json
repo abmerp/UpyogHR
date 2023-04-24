@@ -1,0 +1,34 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "RevisedLayoutPlan":[
+     {
+       "documents":[
+          {
+            "document": "Copy of Newspaper showing the public Notice (Upload 3 copies mandatory)",
+            "isActive": true
+          },
+          {
+            "document": "Copy of letters forwarded to existing allottees for filing objections  ",
+            "isActive": true
+          },
+          {
+            "document": "Proof of registered post",
+            "isActive": true
+          },
+          {
+            "document": "Screen shot of website reflecting the public notice and layout plan and revised layout plan",
+            "isActive": true
+          },
+          {
+            "document": "Photograph of notice board showing the public notice and layout plan",
+            "isActive": true
+          },
+          {
+            "document": "Any other document",
+            "isActive": true
+          }
+        ]
+      }
+]
+}

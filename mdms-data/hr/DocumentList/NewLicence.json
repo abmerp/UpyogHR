@@ -1,0 +1,130 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "Newlicence":[
+     {
+       "documents":[
+          {
+          "document":"Upload Board resolution",
+          "isActive": true
+          },
+          {
+          "document":"Consent degree certificate of Architect",
+          "isActive": true
+          },
+          {
+          "document":"Consent degree certificate of Engineer",
+          "isActive": true
+          },
+          {
+          "document":"Copy of SPA\/GPA\/Board Resolution",
+          "isActive": true
+          },
+          {
+          "document":"Consent degree certificate of Architect",
+          "isActive": true
+          },
+          {
+          "document":"Consent degree certificate of Engineer",
+          "isActive": true
+          },
+          {
+          "document":"Collaboration document",
+          "isActive": true
+          },
+          {
+          "document":"Copy of spa\/GPA\/ board resolution to sign collaboration agreement on behalf of land owners",
+          "isActive": true
+          },
+          {
+          "document":"Upload SPA\/GPA of authorized signatory on behalf of developer",
+          "isActive": true
+          },
+          {
+          "document":"Upload affidavit",
+          "isActive": true
+          },
+          {
+          "document":"Upload RERA registration",
+          "isActive": true
+          },
+          {
+          "document":"Court orders, if any, affecting land",
+          "isActive": true
+          },
+          {
+          "document":"Any insolvency\/liquidation proceedings against Land Owner(s)\/collaborating developer",
+          "isActive": true
+          },
+          {
+          "document":"Upload copy of Gift Deed\/ Hibbanama",
+          "isActive": true
+          },
+          {
+          "document":"Land Schedule",
+          "isActive": true
+          },
+          {
+          "document":"Copy of Mutation",
+          "isActive": true
+          },
+          {
+          "document":"Copy of Jamabandhi",
+          "isActive": true
+          },
+          {
+          "document":"Details of Lease\/Patta, if any",
+          "isActive": true
+          },
+          {
+          "document":"Copy of Shajra Plan",
+          "isActive": true
+          },
+          {
+          "document":"Add sales deed\/ exchange deed",
+          "isActive": true
+          },
+          {
+          "document":"Layout plan in pdf. (applicable in case of the plotted colony list )",
+          "isActive": true
+          },
+          {
+          "document":"Layout plan in .dxf",
+          "isActive": true
+          },
+          {
+          "document":"Undertaking",
+          "isActive": true
+          },
+          {
+          "document":"Development Plan",
+          "isActive": true
+          },
+          {
+          "document":"Explanatory note",
+          "isActive": true
+          },
+          {
+          "document":"Guide Map",
+          "isActive": true
+          },
+          {
+          "document":"Indemnity Bond",
+          "isActive": true
+          },
+          {
+          "document":"Any other documents",
+          "isActive": true
+          },
+          {
+          "document":"Upload previously approved layout plan",
+          "isActive": true
+          },
+          {
+          "document":"enclose Self-certified Non-Encumbrance Certificate",
+          "isActive": true
+          }
+         ]
+  }
+]
+}

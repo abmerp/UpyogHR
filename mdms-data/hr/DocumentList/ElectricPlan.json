@@ -1,0 +1,27 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "ElectricPlan":[
+  {
+    "documents":[
+       {
+         "document": "Self-certified drawings from empanelled/Certified architect that conform to the standard template as per TCP layout plan site plan.",
+         "isActive": true
+       },
+       {
+         "document": "Electrical plan in PDF (OCR Compatible) + GIS format (shapefile as per the template uploaded on the department website)",
+         "isActive": true
+       },
+       {
+         "document": "Electrical plan in AutoCAD (DXF) file. (i)Any amendment suggested by DHBVN/UHBVN may be incorporate din drawing accordingly.",
+         "isActive": true
+       },
+       {
+         "document": "Certified copy of the Electrical plan duly verified by a empanelled third party electrical engineer",
+         "isActive": true
+       }
+     ]
+  
+}
+ ]
+}

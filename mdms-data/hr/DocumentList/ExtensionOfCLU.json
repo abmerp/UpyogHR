@@ -1,0 +1,34 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "ExtensionOfCLU":[
+     {
+       "documents": [
+          {
+            "document": "Upload BR-III",
+            "isActive": true
+          },
+          {
+            "document": "Upload CLU Permissio Letter (.pdf)",
+            "isActive": true
+          },
+          {
+            "document": "Upload photographs of the building under construction showing the status of construction at the site",
+            "isActive": true
+          },
+          {
+            "document": "Receipt of application if any submitted for taking occupation certificate",
+            "isActive": true
+          },
+          {
+            "document": "Upload the approved Building Plan",
+            "isActive": true
+          },
+          {
+            "document": "Indemnity Bond --- Download Sample (given in output)",
+            "isActive": true
+          }
+        ]
+      }
+]
+}

@@ -1,0 +1,74 @@
+{
+ "tenantId":"hr",
+ "moduleName":"DocumentList",
+ "SurrenderOfLicence":[
+     {
+       "documents": [
+          {
+            "document": "Declaration IDW Works Approved Scanned Copy of Zoning/Layout Plan",
+            "isActive": true
+          },
+          {
+            "document": "License Copy",
+            "isActive": true
+          },
+          {
+            "document": "EDC availed or not e.g. surrounding roads are constructed or not",
+            "isActive": true
+          },
+          {
+            "document": "Area falling under 24m road /service road or sector dividing road and green belt If yes, (These 3 documents Should be asked to upload in compliance after in principle approval)",
+            "isActive": true
+          },
+          {
+            "document": "Gift Deed",
+            "isActive": true
+          },
+          {
+            "document": "Mutation",
+            "isActive": true
+          },
+          {
+            "document": "Jamabandhi",
+            "isActive": true
+          },
+          {
+            "document": "Declaration IDW Works",
+            "isActive": true
+          },
+          {
+            "document": "Revised Layout Plan (same format as uploaded at the time of license application)",
+            "isActive": true
+          },
+          {
+            "document": "EDC availed or not e.g. surrounding roads are constructed or not",
+            "isActive": true
+          },
+          {
+            "document": "Area falling under 24m road /service road or sector dividing road",
+            "isActive": true
+          },
+          {
+            "document": "Area falling under 24m road /service road or sector dividing road and green belt If yes, (These 3 documents Should be asked to upload in compliance after in principle approval)",
+            "isActive": true
+          },
+          {
+            "document": "Gift Deed",
+            "isActive": true
+          },
+          {
+            "document": "Mutation",
+            "isActive": true
+          },
+          {
+            "document": "Jamabandhi",
+            "isActive": true
+          },
+          {
+            "document": "Detailed scheme of relocation",
+            "isActive": true
+          }
+        ]
+      }
+]
+}
