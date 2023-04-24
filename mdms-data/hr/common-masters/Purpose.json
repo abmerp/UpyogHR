@@ -8,7 +8,7 @@
       "purposeCode": "AGH",
       "caseType_id": 1,
       "description": "AFFORDABLE HOUSING PROJECT",
-      "isActive": 0,
+      "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -1292,7 +1292,7 @@
       "purposeCode": "LDEF",
       "caseType_id": 1,
       "description": "Low Density Eco-Friendly Colony(LDEF)",
-      "isActive": 0,
+      "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -1310,6 +1310,8 @@
       "information":"",
       "IDWPerAcreInLakhsForPlottedComponent":20,
       "IDWPerAcreInLakhsForCommercialComponent":50,
+       "minimumPermissible":"",
+	     "maximumPermissible":"100",
       "documents":[
        
             {
@@ -1414,6 +1416,7 @@
               "isActive": true
             }
           ]
+      
     
     },
 	
@@ -1435,7 +1438,8 @@
       "conversionCharges": "",
       "stateInfrastructureDevelopmentCharges": "",
       "information":"",
-      "fars":[{
+      "fars":[
+        {
         "far":"2.50"
       },
       {

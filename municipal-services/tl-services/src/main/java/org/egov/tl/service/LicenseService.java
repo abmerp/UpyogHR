@@ -1099,25 +1099,37 @@ public class LicenseService {
 		for (Map<String, Object> mm : msp) {
 			String code = String.valueOf(mm.get("purposeCode"));
 			String nameRes = String.valueOf(mm.get("name"));
+
 			String minimumPermissibles = String.valueOf(mm.get("minimumPermissible"));
 			String maximunPermissibles = String.valueOf(mm.get("maximumPermissible"));
+			log.info("minimumPermissibles:\t" + minimumPermissibles);
 			// String far = String.valueOf(mm.get("far"));
-			BigDecimal minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
-			BigDecimal maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
-
+			BigDecimal minimumPermissible = null;
+			BigDecimal maximunPermissible = null;
+			if (minimumPermissibles != null && !minimumPermissibles.isEmpty()) {
+				minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
+			}
+			if (maximunPermissibles != null && !maximunPermissibles.isEmpty()) {
+				maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
+			}
 			log.info("code:\t" + code + "\t" + nameRes + "\t" + minimumPermissible);
 			purposeDetailm.setCode(code);
 			purposeDetailm.setName(nameRes);
 			purposeDetailm.setId(code + i);
 			if (purposeDetailm.getArea() == null || purposeDetailm.getArea().isEmpty()) {
+				if (minimumPermissible != null ) {
 				purposeDetailm.setMinPercentage(minimumPermissible.toString());
+				}
+				if (maximunPermissible != null) {
 				purposeDetailm.setArea(totalArea.multiply(maximunPermissible).toString());
+				}
 				totalArea = new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
-				
-		//		totalArea = new BigDecimal(totalArea.setScale(2, BigDecimal.ROUND_UP).stripTrailingZeros().toString());
+
+				// totalArea = new BigDecimal(totalArea.setScale(2,
+				// BigDecimal.ROUND_UP).stripTrailingZeros().toString());
 				totalArea = totalArea.setScale(2, RoundingMode.HALF_UP).stripTrailingZeros();
-				log.info("totalArea"+totalArea);
-				
+				log.info("totalArea" + totalArea);
+
 			}
 
 			List<Map<String, Object>> far = (List<Map<String, Object>>) (mm.get("fars"));
@@ -1136,9 +1148,12 @@ public class LicenseService {
 					String purposeCodes = (String.valueOf(mmm.get("purposeCode")));
 					maximunPermissibles = String.valueOf(mmm.get("maximumPermissible"));
 					minimumPermissibles = String.valueOf(mm.get("minimumPermissible"));
-					minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
-					maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
-					
+					if (minimumPermissibles != null && !minimumPermissibles.isEmpty()) {
+						minimumPermissible = new BigDecimal(minimumPermissibles).divide(rate100);
+					}
+					if (maximunPermissibles != null && !maximunPermissibles.isEmpty()) {
+						maximunPermissible = new BigDecimal(maximunPermissibles).divide(rate100);
+					}
 					log.info("purpose" + purposeCodes);
 					log.info(maximunPermissible + "\t" + minimumPermissible);
 					i++;
