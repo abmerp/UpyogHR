@@ -51,7 +51,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -60,6 +62,7 @@ import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
 import org.egov.common.entity.edcr.ScrutinyDetail;
+import org.egov.common.entity.edcr.SetBack;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -99,17 +102,20 @@ public class Basement extends FeatureProcess {
 
                     for (Floor f : b.getBuilding().getFloors()) {
 
-                        if (f.getNumber() == -1) {
+//                        if (f.getNumber() == -1) {
+                    	// BLK_n_LVL_-1_BSMNT_FOOT_PRINT In this layer, we check Levels FROM BLOCK
+                        	if (b.getSetBacks().get(0).getLevel() < 0) {
 
                             if (f.getHeightFromTheFloorToCeiling() != null
                                     && !f.getHeightFromTheFloorToCeiling().isEmpty()) {
 
                                 minLength = f.getHeightFromTheFloorToCeiling().stream().reduce(BigDecimal::min).get();
 
-                                if (minLength.compareTo(BigDecimal.valueOf(2.4)) >= 0) {
+                                if (minLength.compareTo(BigDecimal.valueOf(2.4)) >= 0 
+                                		&& minLength.compareTo(BigDecimal.valueOf(4.5)) <= 0) {
                                     details.put(RULE_NO, RULE_46_6A);
                                     details.put(DESCRIPTION, BASEMENT_DESCRIPTION_ONE);
-                                    details.put(REQUIRED, ">= 2.4");
+                                    details.put(REQUIRED, ">= 2.4 & <= 4.5");
                                     details.put(PROVIDED, minLength.toString());
                                     details.put(STATUS, Result.Accepted.getResultVal());
                                     scrutinyDetail.getDetail().add(details);
@@ -118,7 +124,7 @@ public class Basement extends FeatureProcess {
                                     details = new HashMap<>();
                                     details.put(RULE_NO, RULE_46_6A);
                                     details.put(DESCRIPTION, BASEMENT_DESCRIPTION_ONE);
-                                    details.put(REQUIRED, ">= 2.4");
+                                    details.put(REQUIRED, ">= 2.4 & <= 4.5");
                                     details.put(PROVIDED, minLength.toString());
                                     details.put(STATUS, Result.Not_Accepted.getResultVal());
                                     scrutinyDetail.getDetail().add(details);
