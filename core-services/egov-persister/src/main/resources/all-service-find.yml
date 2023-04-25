@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: save-document-detail
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_additional_documents( id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);  
+    - query: INSERT INTO public.eg_additional_documents( id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);  
       basePath: AddtionalDocuments.*
       jsonMaps:
 
@@ -32,3 +32,5 @@ serviceMaps:
        - jsonPath: $.AddtionalDocuments.*.auditDetails.lastModifiedTime
 
        - jsonPath: $.AddtionalDocuments.*.businessService
+       
+       - jsonPath: $.AddtionalDocuments.*.type

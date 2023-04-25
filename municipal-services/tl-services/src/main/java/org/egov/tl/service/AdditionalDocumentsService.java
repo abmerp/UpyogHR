@@ -65,11 +65,10 @@ public class AdditionalDocumentsService {
 		String date = formatter.format(localDateTime);
 		List<AdditionalDocuments> allServiceFindList = allServiceFindContract.getAddtionalDocuments();
 		for (AdditionalDocuments allServiceFind : allServiceFindList) {
-			String applicationNumber = allServiceFind.getApplicationNumber();
-			String loiNumber = allServiceFind.getLoiNumber();
-			String licenceNumber = allServiceFind.getLicenceNumber();
-			List<AdditionalDocuments> allServiceFindsearch = search(requestInfo, loiNumber, applicationNumber,
-					licenceNumber);
+//			String applicationNumber = allServiceFind.getApplicationNumber();
+//			String loiNumber = allServiceFind.getLoiNumber();
+//			String licenceNumber = allServiceFind.getLicenceNumber();
+			List<AdditionalDocuments> allServiceFindsearch = search(requestInfo, allServiceFind.getType());
 
 			if (!CollectionUtils.isEmpty(allServiceFindsearch) || allServiceFindsearch.size() > 1) {
 				throw new CustomException("Already Found multiple service numbers",
@@ -98,8 +97,7 @@ public class AdditionalDocumentsService {
 		return allServiceFindList;
 	}
 
-	public List<AdditionalDocuments> search(RequestInfo requestInfo, String loiNumber, String applicationNumber,
-			String licenceNumber) {
+	public List<AdditionalDocuments> search(RequestInfo requestInfo, String type) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -107,33 +105,33 @@ public class AdditionalDocumentsService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service\r\n"
+		String query = "SELECT id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type\r\n"
 				+ "	FROM public.eg_additional_documents " + "WHERE  ";
 
 		builder = new StringBuilder(query);
 
 		List<AdditionalDocuments> Result = null;
-		if (loiNumber != null) {
-			builder.append(" loi_number= :LN");
-			paramMap.put("LN", loiNumber);
-			preparedStatement.add(loiNumber);
-			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
-
-		} else if (applicationNumber != null) {
-			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
-			if (applicationNumberList != null) {
-				builder.append(" application_number in ( :AN )");
-				paramMapList.put("AN", applicationNumberList);
-				preparedStatement.add(applicationNumberList);
-				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, allServiceRowMapper);
-			}
-		} else if (licenceNumber != null) {
-
-			builder.append(" licence_number in ( :LIN )");
-			paramMap.put("LIN", licenceNumber);
-			preparedStatement.add(licenceNumber);
+		if (type != null) {
+			builder.append(" type= :LN");
+			paramMap.put("LN", type);
+			preparedStatement.add(type);
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
 		}
+//		} else if (applicationNumber != null) {
+//			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
+//			if (applicationNumberList != null) {
+//				builder.append(" application_number in ( :AN )");
+//				paramMapList.put("AN", applicationNumberList);
+//				preparedStatement.add(applicationNumberList);
+//				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, allServiceRowMapper);
+//			}
+//		} else if (licenceNumber != null) {
+//
+//			builder.append(" licence_number in ( :LIN )");
+//			paramMap.put("LIN", licenceNumber);
+//			preparedStatement.add(licenceNumber);
+//			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+//		}
 
 		else if ((requestInfo.getUserInfo().getUuid() != null)) {
 			builder.append(" created_by= :CB");

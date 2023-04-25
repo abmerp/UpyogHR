@@ -39,7 +39,7 @@ public class AdditionalDocumentsRowMapper implements ResultSetExtractor<List<Add
 			allServiceFind.setBusinessService(rs.getString("business_service"));
 			allServiceFind.setApplicationNumber(rs.getString("application_number"));
 			allServiceFind.setLicenceNumber(rs.getString("licence_number"));
-
+			allServiceFind.setType(rs.getString("type"));
 			Object additionalDetails = new Gson().fromJson(
 					rs.getString("additional_details").equals("{}") || rs.getString("additional_details").equals("null")
 							? null
