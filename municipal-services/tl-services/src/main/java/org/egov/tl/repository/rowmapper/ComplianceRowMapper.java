@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.egov.tl.web.models.AdditionalDocuments;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.Compliance;
 import org.egov.tl.web.models.ComplianceRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+
 @Component
 public class ComplianceRowMapper implements ResultSetExtractor<List<ComplianceRequest>> {
 
@@ -32,7 +34,6 @@ public class ComplianceRowMapper implements ResultSetExtractor<List<ComplianceRe
 			complianceRequest.setLoiNumber(rs.getString("loi_number"));
 			complianceRequest.setBusinessService(rs.getString("business_service"));
 			complianceRequest.setTcpAapplicationNumber(rs.getString("tcp_application_number"));
-		
 
 			Object additionalDetails = new Gson().fromJson(
 					rs.getString("additional_details").equals("{}") || rs.getString("additional_details").equals("null")
@@ -40,7 +41,8 @@ public class ComplianceRowMapper implements ResultSetExtractor<List<ComplianceRe
 							: rs.getString("additional_details"),
 					Object.class);
 			complianceRequest.setAdditionalDetails((additionalDetails));
-
+			Compliance Compliance = new Compliance();
+			List<Compliance> ComplianceList = new ArrayList<Compliance>();
 			AuditDetails auditDetails = new AuditDetails();
 
 			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("created_by"))
@@ -48,7 +50,14 @@ public class ComplianceRowMapper implements ResultSetExtractor<List<ComplianceRe
 					.lastModifiedTime(rs.getLong("last_modified_time")).build();
 
 			complianceRequest.setAuditDetails(auditDetails_build);
-
+			Compliance.setCompliance(rs.getString("compliance"));
+			Compliance.setCreated_On(rs.getString("created_on"));
+			Compliance.setDesignation(rs.getString("designation"));
+			Compliance.setPartOfLoi(rs.getBoolean("ispartofloi"));
+			Compliance.setUserId(rs.getString("userid"));
+			Compliance.setUserName(rs.getString("username"));
+		//	ComplianceList.add(Compliance);
+			complianceRequest.setCompliance(Compliance);
 			complianceRequestList.add(complianceRequest);
 
 		}

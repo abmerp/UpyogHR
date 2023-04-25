@@ -28,5 +28,5 @@ public class ComplianceRequest {
 	@JsonProperty("additionalDetails")
 	private Object additionalDetails = null;
 	@JsonProperty("Compliance")
-	private List<Compliance> compliance;
+	private Compliance compliance;
 }

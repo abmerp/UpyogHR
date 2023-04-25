@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: save-loi-compliances
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_loi_compliances(id, tcp_application_number, loi_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);     
+    - query: INSERT INTO public.eg_loi_compliances(id, tcp_application_number, loi_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, compliance, ispartofloi, username, userid, designation, created_on) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
       basePath: ComplianceRequest.*
       jsonMaps:
 
@@ -31,13 +31,27 @@ serviceMaps:
 
        - jsonPath: $.ComplianceRequest.*.businessService
        
+       - jsonPath: $.ComplianceRequest.*.Compliance.compliance
+    
+       - jsonPath: $.ComplianceRequest.*.Compliance.isPartOfLoi
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.userName
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.userId
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.designation
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.created_On
+       
+       
+       
  - version: 1.0
    name: loi-compliances
    description: loi compliances
    fromTopic: update-loi-compliances
    isTransaction: true
    queryMaps:
-    - query: UPDATE public.eg_loi_compliances SET additional_details=?, created_by=?, created_time=?, last_modify_by=?, last_modified_time=?, business_service=? WHERE tcp_application_number=?; 
+    - query: UPDATE public.eg_loi_compliances SET additional_details=?, created_by=?, created_time=?, last_modify_by=?, last_modified_time=?, business_service=?, compliance=?, ispartofloi=?, username=?, "userid"=?, designation=?, "created_on"=? WHERE tcp_application_number=?; 
       basePath: ComplianceRequest.*
       jsonMaps:   
        
@@ -54,5 +68,17 @@ serviceMaps:
        - jsonPath: $.ComplianceRequest.*.auditDetails.lastModifiedTime
 
        - jsonPath: $.ComplianceRequest.*.businessService
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.compliance
+    
+       - jsonPath: $.ComplianceRequest.*.Compliance.*.isPartOfLoi
+        
+       - jsonPath: $.ComplianceRequest.*.Compliance.*.userName
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.*.userId
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.*.designation
+       
+       - jsonPath: $.ComplianceRequest.*.Compliance.*.created_On
        
        - jsonPath: $.ComplianceRequest.*.tcpApplicationNumber

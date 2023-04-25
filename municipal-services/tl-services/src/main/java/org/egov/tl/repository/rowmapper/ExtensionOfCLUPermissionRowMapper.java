@@ -48,7 +48,7 @@ public class ExtensionOfCLUPermissionRowMapper implements ResultSetExtractor<Lis
 			extensionOfCLUPermission.setCluDate(rs.getString("clu_date"));
 			extensionOfCLUPermission.setExpiryClu(rs.getString("expiry_clu"));
 			extensionOfCLUPermission.setStageConstruction(rs.getString("stage_construction"));
-			extensionOfCLUPermission.setApplicantName(rs.getString("nature_purpose"));
+			extensionOfCLUPermission.setApplicantName(rs.getString("applicant_name"));
 			extensionOfCLUPermission.setMobile(rs.getString("mobile"));
 			extensionOfCLUPermission.setEmailAddress(rs.getString("email_address"));
 			extensionOfCLUPermission.setAddress(rs.getString("address"));
