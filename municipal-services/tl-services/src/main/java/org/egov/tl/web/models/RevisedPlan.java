@@ -1,16 +1,7 @@
 package org.egov.tl.web.models;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -24,7 +15,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class RevisedPlan {
 	private String id;
 
@@ -58,7 +48,7 @@ public class RevisedPlan {
 	private String workflowCode;
 
 	private JsonNode additionalDetails;
-
+	private JsonNode newAdditionalDetails;
 	private List<String> assignee;
 
 	@JsonProperty("wfDocuments")
@@ -69,6 +59,7 @@ public class RevisedPlan {
 	private JsonNode feesResult;
 	@JsonProperty("ReviseLayoutPlan")
 	private ReviseLayoutPlan ReviseLayoutPlan;
+
 	@JsonProperty("tcpApplicationNumber")
 	private String tcpApplicationNumber;
 

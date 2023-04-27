@@ -14,6 +14,7 @@ import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
+
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.IdGenRepository;
@@ -30,6 +31,7 @@ import org.egov.tl.web.models.ServicePlanRequest;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.Transfer;
 import org.egov.tl.web.models.TransferOfLicence;
 import org.egov.tl.web.models.workflow.Action;
@@ -51,6 +53,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
 
 @Slf4j
 @Service
@@ -83,6 +86,8 @@ public class RevisedPlanServices {
 
 	@Autowired
 	private TLConfiguration config;
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 
 	@Autowired
 	private IdGenRepository idGenRepository;
@@ -98,77 +103,78 @@ public class RevisedPlanServices {
 	@Autowired
 	ServicePlanService servicePlanService;
 
-	public List<RevisedPlan> create(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
+	public RevisedPlan create(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
 
 		String uuid = revisedPlanRequest.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
-		List<RevisedPlan> renewalList = revisedPlanRequest.getRevisedPlan();
+		RevisedPlan revisedPlan = revisedPlanRequest.getRevisedPlan();
 
-//		revisedPlans.setAdditionalDetails(revisedPlanRequest.getRevisedPlan().get(0).getAdditionalDetails());
-//		revisedPlans.setAction(revisedPlanRequest.getRevisedPlan().get(0).getAction());
-//		revisedPlans.setTenantId(revisedPlanRequest.getRevisedPlan().get(0).getTenantId());
-//		revisedPlans.setLicenseNo(revisedPlanRequest.getRevisedPlan().get(0).getLicenseNo());
-//		renewalList.add(revisedPlans);
-		for (RevisedPlan revisedPlan : renewalList) {
+		// for (RevisedPlan revisedPlan : renewalList) {
 
-			List<String> applicationNumbers = null;
-			int count = 1;
-			List<RevisedPlan> searchApprovalPlan = search(requestInfo, revisedPlan.getApplicationNumber(),
-					revisedPlan.getLicenseNo());
-			if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
-				throw new CustomException("Already Found  or multiple revised layout plan applications with LoiNumber.",
-						"Already Found or multiple revised layout plan applications with LoiNumber.");
-			}
+		List<String> applicationNumbers = null;
+		int count = 1;
+		RevisedPlan searchApprovalPlan = search(requestInfo, revisedPlan.getApplicationNumber(),
+				revisedPlan.getLicenseNo());
+		// if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size()
+		// > 1) {
+		if (searchApprovalPlan != null) {
+			throw new CustomException("Already Found  or multiple revised layout plan applications with LoiNumber.",
+					"Already Found or multiple revised layout plan applications with LoiNumber.");
+		}
 
-			revisedPlan.setId(UUID.randomUUID().toString());
-			revisedPlan.setAssignee(
-					Arrays.asList(servicePlanService.assignee("CTP_HR", revisedPlan.getTenantId(), true, requestInfo)));
+		revisedPlan.setId(UUID.randomUUID().toString());
+		revisedPlan.setAssignee(
+				Arrays.asList(servicePlanService.assignee("CTP_HR", revisedPlan.getTenantId(), true, requestInfo)));
 ////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-			applicationNumbers = servicePlanService.getIdList(requestInfo, revisedPlan.getTenantId(),
-					config.getRevisedLayoutPlanName(), config.getRevisedLayoutPlanFormat(), count);
+		applicationNumbers = servicePlanService.getIdList(requestInfo, revisedPlan.getTenantId(),
+				config.getRevisedLayoutPlanName(), config.getRevisedLayoutPlanFormat(), count);
 
-			revisedPlan.setBusinessService(businessService_RLP);
-			revisedPlan.setWorkflowCode(businessService_RLP);
+		revisedPlan.setBusinessService(businessService_RLP);
+		revisedPlan.setWorkflowCode(businessService_RLP);
 
-			revisedPlan.setAuditDetails(auditDetails);
-			revisedPlan.setApplicationNumber(applicationNumbers.get(0));
+		revisedPlan.setAuditDetails(auditDetails);
+		revisedPlan.setApplicationNumber(applicationNumbers.get(0));
 
-			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
-					businessService_RLP);
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
+				businessService_RLP);
 
-			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
-			revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+		revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
-			ReviseLayoutPlan reviseLayoutPlan = revisedPlan.getReviseLayoutPlan();
-			
-			String data = mapper.writeValueAsString(reviseLayoutPlan);
-			JsonNode jsonNode = mapper.readTree(data);
-			revisedPlan.setAdditionalDetails(jsonNode);
-			revisedPlan.setReviseLayoutPlan(null);
-			}
+		ReviseLayoutPlan reviseLayoutPlan = revisedPlan.getReviseLayoutPlan();
 
-		revisedPlanRequest.setRevisedPlan(renewalList);
+		String data = mapper.writeValueAsString(reviseLayoutPlan);
+		JsonNode jsonNode = mapper.readTree(data);
+		revisedPlan.setAdditionalDetails(jsonNode);
+		revisedPlan.setReviseLayoutPlan(null);
+
+		// }
+		RevisedPlan revisedPlans = makePayment(revisedPlan.getLicenseNo(), requestInfo);
+		revisedPlan.setTcpApplicationNumber(revisedPlans.getTcpApplicationNumber());
+		revisedPlan.setTcpCaseNumber(revisedPlans.getTcpCaseNumber());
+		revisedPlan.setTcpDairyNumber(revisedPlans.getTcpDairyNumber());
+		revisedPlanRequest.setRevisedPlan(revisedPlan);
 
 		log.info(revisedTopic);
 
 		producer.push(revisedTopic, revisedPlanRequest);
 
-		return renewalList;
+		return revisedPlan;
 
 	}
 
-	public List<RevisedPlan> search(RequestInfo info, String applicattionNumber, String licenceNumber) {
+	public RevisedPlan search(RequestInfo info, String applicattionNumber, String licenceNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
+		String query = "SELECT id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, tcpapplicationnumber, tcpcasenumber, tcpdairynumber,newadditionaldetails\r\n"
 				+ "	FROM public.eg_revised_layout_plan " + " Where ";
 		builder = new StringBuilder(query);
 
@@ -195,11 +201,16 @@ public class RevisedPlanServices {
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, revisedLayoutPlanRowMapper);
 
 		}
-		return Result;
+
+		if (Result != null && !Result.isEmpty()) {
+			return Result.get(0);
+		} else {
+			return null;
+		}
 
 	}
 
-	public List<RevisedPlan> update(RevisedPlanRequest revisedPlanRequest) {
+	public RevisedPlan update(RevisedPlanRequest revisedPlanRequest) {
 
 		String uuid = revisedPlanRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -207,84 +218,84 @@ public class RevisedPlanServices {
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
 
-		List<RevisedPlan> revisedPlanList = revisedPlanRequest.getRevisedPlan();
+		RevisedPlan revisedPlan = revisedPlanRequest.getRevisedPlan();
 
-		for (RevisedPlan revisedPlan : revisedPlanList) {
+		// for (RevisedPlan revisedPlan : revisedPlanList) {
 
-			if (Objects.isNull(revisedPlanRequest) || Objects.isNull(revisedPlanRequest.getRevisedPlan())) {
-				throw new CustomException("revised layout plan must not be null",
-						"revised layout plan must not be null");
-			}
+		if (Objects.isNull(revisedPlanRequest) || Objects.isNull(revisedPlanRequest.getRevisedPlan())) {
+			throw new CustomException("revised layout plan must not be null", "revised layout plan must not be null");
+		}
 
-			if (StringUtils.isEmpty(revisedPlan.getApplicationNumber())) {
-				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
-			}
+		if (StringUtils.isEmpty(revisedPlan.getApplicationNumber())) {
+			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
+		}
 
-			List<RevisedPlan> revisedLayoutPlanSearch = search(requestInfo, revisedPlan.getApplicationNumber(),
-					revisedPlan.getLicenseNo());
-			if (CollectionUtils.isEmpty(revisedLayoutPlanSearch) || revisedLayoutPlanSearch.size() > 1) {
-				throw new CustomException("Found none or multiple revised plan applications with applicationNumber.",
-						"Found none or multiple revised plan applications with applicationNumber.");
-			}
+		RevisedPlan revisedLayoutPlanSearch = search(requestInfo, revisedPlan.getApplicationNumber(),
+				revisedPlan.getLicenseNo());
+		if (CollectionUtils.isEmpty(Arrays.asList(revisedLayoutPlanSearch))
+				|| Arrays.asList(revisedLayoutPlanSearch).size() > 1) {
+			throw new CustomException("Found none or multiple revised plan applications with applicationNumber.",
+					"Found none or multiple revised plan applications with applicationNumber.");
+		}
 
-			revisedPlan.setBusinessService(revisedPlan.getBusinessService());
-			revisedPlan.setWorkflowCode(revisedPlan.getBusinessService());
+		revisedPlan.setBusinessService(revisedPlan.getBusinessService());
+		revisedPlan.setWorkflowCode(revisedPlan.getBusinessService());
 
-			// EMPLOYEE RUN THE APPLICATION NORMALLY
-			if (!revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
+		// EMPLOYEE RUN THE APPLICATION NORMALLY
+		if (!revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-				String currentStatus = revisedLayoutPlanSearch.get(0).getStatus();
+			String currentStatus = revisedLayoutPlanSearch.getStatus();
 
-				BusinessService workflow = workflowService.getBusinessService(revisedPlan.getTenantId(),
-						revisedPlanRequest.getRequestInfo(), revisedPlan.getBusinessService());
+			BusinessService workflow = workflowService.getBusinessService(revisedPlan.getTenantId(),
+					revisedPlanRequest.getRequestInfo(), revisedPlan.getBusinessService());
 
-				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, revisedPlanRequest, revisedPlan);
+			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, revisedPlanRequest, revisedPlan);
 
-				revisedPlan.setAuditDetails(auditDetails);
+			revisedPlan.setAuditDetails(auditDetails);
 
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan,
-						requestInfo, revisedPlan.getBusinessService());
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
+					revisedPlan.getBusinessService());
 
-				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
-				revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-
-			}
-
-			// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
-			else if ((revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
-
-				String currentStatus = revisedLayoutPlanSearch.get(0).getStatus();
-
-				revisedPlan.setAssignee(Arrays
-						.asList(servicePlanService.assignee("DTP_HQ", revisedPlan.getTenantId(), true, requestInfo)));
-
-				revisedPlan.setAction(CITIZEN_UPDATE_ACTION);
-
-				BusinessService workflow = workflowService.getBusinessService(revisedPlan.getTenantId(),
-						revisedPlanRequest.getRequestInfo(), revisedPlan.getBusinessService());
-
-				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, revisedPlanRequest, revisedPlan);
-
-				revisedPlan.setAuditDetails(auditDetails);
-
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan,
-						requestInfo, revisedPlan.getBusinessService());
-
-				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
-				revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-				revisedPlan.setLicenseNo(revisedPlan.getLicenseNo());
-
-			}
+			revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
 		}
 
-		revisedPlanRequest.setRevisedPlan(revisedPlanList);
+		// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
+		else if ((revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
+
+			String currentStatus = revisedLayoutPlanSearch.getStatus();
+
+			revisedPlan.setAssignee(
+					Arrays.asList(servicePlanService.assignee("DTP_HQ", revisedPlan.getTenantId(), true, requestInfo)));
+
+			revisedPlan.setAction(CITIZEN_UPDATE_ACTION);
+
+			BusinessService workflow = workflowService.getBusinessService(revisedPlan.getTenantId(),
+					revisedPlanRequest.getRequestInfo(), revisedPlan.getBusinessService());
+
+			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, revisedPlanRequest, revisedPlan);
+
+			revisedPlan.setAuditDetails(auditDetails);
+
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
+					revisedPlan.getBusinessService());
+
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+			revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+			revisedPlan.setLicenseNo(revisedPlan.getLicenseNo());
+
+		}
+
+		// }
+
+		revisedPlanRequest.setRevisedPlan(revisedPlan);
 
 		producer.push(revisdUpdateTopic, revisedPlanRequest);
 
-		return revisedPlanList;
+		return revisedPlan;
 
 	}
 
@@ -364,4 +375,34 @@ public class RevisedPlanServices {
 		// set next state as status-
 		revisedPlan.setStatus(nextStateName);
 	}
+
+	public RevisedPlan makePayment(String licenseNumber, RequestInfo requestInfo) throws JsonProcessingException {
+		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
+		List<String> licenseNumberList = new ArrayList<>();
+		licenseNumberList.add(licenseNumber);
+		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
+
+		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
+		log.info("tcpnumbers:\t" + tcpNumbers);
+		String data = null;
+
+		data = mapper.writeValueAsString(tcpNumbers);
+//			
+		JSONObject json = new JSONObject(tcpNumbers);
+
+		json.toString();
+		String application = json.getAsString("TCPApplicationNumber");
+		String caseNumber = json.getAsString("TCPCaseNumber");
+		String dairyNumber = json.getAsString("TCPDairyNumber");
+
+		RevisedPlan revisedPlan = new RevisedPlan();
+
+		revisedPlan.setTcpApplicationNumber(application);
+		revisedPlan.setTcpCaseNumber(caseNumber);
+		revisedPlan.setTcpDairyNumber(dairyNumber);
+
+		return revisedPlan;
+
+	}
+
 }
