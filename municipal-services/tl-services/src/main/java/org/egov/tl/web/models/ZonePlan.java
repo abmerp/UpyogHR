@@ -39,6 +39,8 @@ public class ZonePlan {
 	private AuditDetails auditDetails;
 
 	private JsonNode additionalDetails;
+	
+	private JsonNode newAdditionalDetails;
 
 	private List<String> assignee;
 

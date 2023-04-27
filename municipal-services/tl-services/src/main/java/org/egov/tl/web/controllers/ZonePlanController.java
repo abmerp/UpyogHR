@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
 @RequestMapping("/ZonePlanRequest")
 public class ZonePlanController {
@@ -28,9 +30,9 @@ public class ZonePlanController {
 
 	@PostMapping("/_create")
 	public ResponseEntity<ZonePlanResponse> create(
-			@RequestBody ZonePlanRequest zonePlanRequest) {
+			@RequestBody ZonePlanRequest zonePlanRequest) throws JsonProcessingException {
 
-		List<ZonePlan> zonePlan = zonePlanServices.create(zonePlanRequest);
+		ZonePlan zonePlan = zonePlanServices.create(zonePlanRequest);
 
 		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder()
 				.zonePlan(zonePlan).responseInfo(responseInfoFactory
@@ -44,7 +46,7 @@ public class ZonePlanController {
 	public ResponseEntity<ZonePlanResponse> update(
 			@RequestBody ZonePlanRequest zonePlanRequest) {
 
-		List<ZonePlan> zonePlan = zonePlanServices.update(zonePlanRequest);
+		ZonePlan zonePlan = zonePlanServices.update(zonePlanRequest);
 
 		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder()
 				.zonePlan(zonePlan).responseInfo(responseInfoFactory
@@ -58,7 +60,7 @@ public class ZonePlanController {
 	public ResponseEntity<ZonePlanResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		List<ZonePlan> zonePlan = zonePlanServices.search(requestInfoWrapper.getRequestInfo(),
+		ZonePlan zonePlan = zonePlanServices.search(requestInfoWrapper.getRequestInfo(),
 				licenceNumber,applicationNumber);
 		
 		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder(). zonePlan(zonePlan)

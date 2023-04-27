@@ -20,6 +20,8 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
+import org.egov.tl.web.models.Transfer;
 import org.egov.tl.web.models.ZonePlan;
 import org.egov.tl.web.models.ZonePlanRequest;
 import org.egov.tl.web.models.workflow.Action;
@@ -35,7 +37,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
 
 @Slf4j
 @Service
@@ -71,28 +77,32 @@ public class ZonePlanServices {
 
 	@Autowired
 	private WorkflowService workflowService;
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 	private static final String SENDBACK_STATUS = "SENDBACK_TO_APPLICANT";
 
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
-
+	@Autowired
+	ObjectMapper mapper;
 	@SuppressWarnings("null")
-	public List<ZonePlan> create(ZonePlanRequest zonePlanRequest) {
+	public ZonePlan create(ZonePlanRequest zonePlanRequest) throws JsonProcessingException {
 
 		String uuid = zonePlanRequest.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = zonePlanRequest.getRequestInfo();
-		List<ZonePlan> renewalList = zonePlanRequest.getZonePlan();
+		ZonePlan zonePlan = zonePlanRequest.getZonePlan();
 
-		for (ZonePlan zonePlan : renewalList) {
+//		for (ZonePlan zonePlan : renewalList) {
 
 			List<String> applicationNumbers = null;
 			int count = 1;
-			List<ZonePlan> searchZonePlan = search(requestInfo, zonePlan.getLicenseNo(),
+			ZonePlan searchZonePlan = search(requestInfo, zonePlan.getLicenseNo(),
 					zonePlan.getApplicationNumber());
-			if (!CollectionUtils.isEmpty(searchZonePlan) || searchZonePlan.size() > 1) {
-				throw new CustomException("Already Found  or multiple surender of licence applications with LoiNumber.",
+			//if (!CollectionUtils.isEmpty(searchZonePlan) || searchZonePlan.size() > 1) {
+			if (searchZonePlan!=null) {
+							throw new CustomException("Already Found  or multiple surender of licence applications with LoiNumber.",
 						"Already Found or multiple Service plan applications with LoiNumber.");
 			}
 			zonePlan.setTenantId("hr");
@@ -109,24 +119,27 @@ public class ZonePlanServices {
 
 			zonePlan.setApplicationNumber(applicationNumbers.get(0));
 			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-					zonePlanRequest.getZonePlan().get(0), requestInfo,
+					zonePlanRequest.getZonePlan(), requestInfo,
 					zonePlan.getBusinessService());
 
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 			zonePlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-		}
-		
-//		zonePlanListRequest.setZonePlanList(renewalList);
+//		}
+			ZonePlan zonePlanData = makePayment(zonePlan.getLicenseNo(), requestInfo);
+		zonePlan.setTcpApplicationNumber(zonePlanData.getTcpApplicationNumber());
+		zonePlan.setTcpCaseNumber(zonePlanData.getTcpCaseNumber());
+		zonePlan.setTcpDairyNumber(zonePlanData.getTcpDairyNumber()); 
+		zonePlanRequest.setZonePlan(zonePlan);
 
 		log.info(zoneplanTopic);
 
 		producer.push(zoneplanTopic, zonePlanRequest);
 
-		return renewalList;
+		return zonePlan;
 	}
 
 
-	public List<ZonePlan> update(ZonePlanRequest zonePlanRequest) {
+	public ZonePlan update(ZonePlanRequest zonePlanRequest) {
 
 		String uuid = zonePlanRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -134,9 +147,9 @@ public class ZonePlanServices {
 
 		RequestInfo requestInfo = zonePlanRequest.getRequestInfo();
 
-		List<ZonePlan> zonePlanList = zonePlanRequest.getZonePlan();
+		ZonePlan zonePlan = zonePlanRequest.getZonePlan();
 
-		for (ZonePlan zonePlan : zonePlanList) {
+		//for (ZonePlan zonePlan : zonePlanList) {
 
 			if (Objects.isNull(zonePlanRequest)
 					|| Objects.isNull(zonePlanRequest.getZonePlan())) {
@@ -148,9 +161,9 @@ public class ZonePlanServices {
 				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 			}
 
-			List<ZonePlan> searchZonePlan = search(requestInfo, zonePlan.getLicenseNo(),
+			ZonePlan searchZonePlan = search(requestInfo, zonePlan.getLicenseNo(),
 					zonePlan.getApplicationNumber());
-			if (CollectionUtils.isEmpty(searchZonePlan) || searchZonePlan.size() > 1) {
+			if (CollectionUtils.isEmpty(Arrays.asList(searchZonePlan)) || Arrays.asList(searchZonePlan).size() > 1) {
 				throw new CustomException(
 						"Found none or multiple ZonePlan applications with applicationNumber.",
 						"Found none or multiple ZonePlan applications with applicationNumber.");
@@ -162,7 +175,7 @@ public class ZonePlanServices {
 			// EMPLOYEE RUN THE APPLICATION NORMALLY
 			if (!zonePlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-				String currentStatus = searchZonePlan.get(0).getStatus();
+				String currentStatus = searchZonePlan.getStatus();
 
 				BusinessService workflow = workflowService.getBusinessService(zonePlan.getTenantId(),
 						zonePlanRequest.getRequestInfo(), zonePlan.getBusinessService());
@@ -184,7 +197,7 @@ public class ZonePlanServices {
 			// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
 			else if ((zonePlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
 
-				String currentStatus = searchZonePlan.get(0).getStatus();
+				String currentStatus = searchZonePlan.getStatus();
 
 				zonePlan.setAssignee(Arrays
 						.asList(servicePlanService.assignee("CAO", zonePlan.getTenantId(), true, requestInfo)));
@@ -207,13 +220,13 @@ public class ZonePlanServices {
 				zonePlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
 			}
-		}
+	//	}
 
-		zonePlanRequest.setZonePlan(zonePlanList);
+		zonePlanRequest.setZonePlan(zonePlan);
 
 		producer.push(zoneplanUpdateTopic, zonePlanRequest);
 
-		return zonePlanList;
+		return zonePlan;
 
 	}
 
@@ -243,14 +256,14 @@ public class ZonePlanServices {
 		return tradeLicenseASRequest;
 	}
 
-	public List<ZonePlan> search(RequestInfo info, String licenseNo, String applicationNumber) {
+	public ZonePlan search(RequestInfo info, String licenseNo, String applicationNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, license_no, case_number, layout_plan, anyother_document, amount, application_number, additionaldetails, created_by, \"lastModified_by\", created_time, \"lastModified_time\", tenant_id, businessservice, comment, workflowcode, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
+		String query = "SELECT id, license_no, case_number, layout_plan, anyother_document, amount, application_number, additionaldetails, created_by, \"lastModified_by\", created_time, \"lastModified_time\", tenant_id, businessservice, comment, workflowcode, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails\r\n"
 				+ "	FROM public.eg_zone_plan " + " Where ";
 		builder = new StringBuilder(query);
 
@@ -278,7 +291,12 @@ public class ZonePlanServices {
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, zonePlanRowMapper);
 
 		}
-		return Result;
+
+		if (Result != null && !Result.isEmpty()) {
+			return Result.get(0);
+		} else {
+			return null;
+		}
 
 	}
 
@@ -332,6 +350,33 @@ private boolean usercheck(RequestInfo requestInfo) {
 		// set next state as status-
 		zonePlan.setStatus(nextStateName);
 	}
+	public ZonePlan makePayment(String licenseNumber, RequestInfo requestInfo) throws JsonProcessingException {
+		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
+		List<String> licenseNumberList = new ArrayList<>();
+		licenseNumberList.add(licenseNumber);
+		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
 
+		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
+		log.info("tcpnumbers:\t" + tcpNumbers);
+		String data = null;
+
+		data = mapper.writeValueAsString(tcpNumbers);
+//			
+		JSONObject json = new JSONObject(tcpNumbers);
+
+		json.toString();
+		String application = json.getAsString("TCPApplicationNumber");
+		String caseNumber = json.getAsString("TCPCaseNumber");
+		String dairyNumber = json.getAsString("TCPDairyNumber");
+
+		ZonePlan transfer = new ZonePlan();
+
+		transfer.setTcpApplicationNumber(application);
+		transfer.setTcpCaseNumber(caseNumber);
+		transfer.setTcpDairyNumber(dairyNumber);
+		
+		return transfer;
+
+	}
 
 }

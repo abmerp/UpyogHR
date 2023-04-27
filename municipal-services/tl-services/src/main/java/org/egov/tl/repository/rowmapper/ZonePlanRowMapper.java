@@ -63,6 +63,21 @@ public class ZonePlanRowMapper implements ResultSetExtractor<List<ZonePlan>> {
 				}
 				zonePlan.setAdditionalDetails(additionalDetail);
 			}
+			PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
+
+			if (pgObj1 != null) {
+				JsonNode additionalDetails = null;
+				try {
+					additionalDetails = mapper.readTree(pgObj1.getValue());
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				zonePlan.setNewAdditionalDetails(additionalDetails);
+			}
 
 			AuditDetails auditDetails = new AuditDetails();
 

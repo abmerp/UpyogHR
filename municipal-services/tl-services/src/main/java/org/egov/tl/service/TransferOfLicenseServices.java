@@ -76,8 +76,7 @@ public class TransferOfLicenseServices {
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 	@Autowired
 	private Producer producer;
-	@Autowired
-	private ApprovalStandardRowMapper approvalStandardRowMapper;
+
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

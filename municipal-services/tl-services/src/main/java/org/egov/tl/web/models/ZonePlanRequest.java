@@ -25,6 +25,6 @@ public class ZonePlanRequest {
 	
 	
     @JsonProperty("ZonePlan")
-	private List<ZonePlan> zonePlan;
+	private ZonePlan zonePlan;
 
 }
