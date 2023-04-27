@@ -136,12 +136,12 @@ public class Basement extends FeatureProcess {
 
                                 minLength = f.getHeightOfTheCeilingOfUpperBasement().stream().reduce(BigDecimal::min).get();
 
-                                if (minLength.compareTo(BigDecimal.valueOf(1.2)) >= 0
-                                        && minLength.compareTo(BigDecimal.valueOf(1.5)) < 0) {
+                                if (minLength.compareTo(BigDecimal.valueOf(0.45)) >= 0
+                                        && minLength.compareTo(BigDecimal.valueOf(1.2)) < 0) {
                                     details = new HashMap<>();
                                     details.put(RULE_NO, RULE_46_6C);
                                     details.put(DESCRIPTION, BASEMENT_DESCRIPTION_TWO);
-                                    details.put(REQUIRED, "Between 1.2 to 1.5");
+                                    details.put(REQUIRED, "Between 0.45 to 1.2");
                                     details.put(PROVIDED, minLength.toString());
                                     details.put(STATUS, Result.Accepted.getResultVal());
                                     scrutinyDetail.getDetail().add(details);
@@ -150,7 +150,7 @@ public class Basement extends FeatureProcess {
                                     details = new HashMap<>();
                                     details.put(RULE_NO, RULE_46_6C);
                                     details.put(DESCRIPTION, BASEMENT_DESCRIPTION_TWO);
-                                    details.put(REQUIRED, "Between 1.2 to 1.5");
+                                    details.put(REQUIRED, "Between 0.45 to 1.2");
                                     details.put(PROVIDED, minLength.toString());
                                     details.put(STATUS, Result.Not_Accepted.getResultVal());
                                     scrutinyDetail.getDetail().add(details);

@@ -123,15 +123,16 @@ public class Coverage extends FeatureProcess {
         String expectedResult = StringUtils.EMPTY;
 
         for (Block block : pl.getBlocks()) {
-        	for(Floor floor : block.getBuilding().getFloors())
-        	{
+//        	for(Floor floor : block.getBuilding().getFloors())
+//        	{
             BigDecimal coverageAreaWithoutDeduction = BigDecimal.ZERO;
             BigDecimal coverageDeductionArea = BigDecimal.ZERO;
 
             for (Measurement coverage : block.getCoverage()) {
                 coverageAreaWithoutDeduction = coverageAreaWithoutDeduction.add(coverage.getArea());
             }
-            for (Measurement deduct : floor.getCoverageDeduct()) {
+            for (Measurement deduct : block.getCoverageDeductions()) {
+
                 coverageDeductionArea = coverageDeductionArea.add(deduct.getArea());
             }
             if (block.getBuilding() != null) {
@@ -150,7 +151,7 @@ public class Coverage extends FeatureProcess {
             }
 
         }
-       }
+       
       //  pl.setCoverageArea(totalCoverageArea);
         // use plotBoundaryArea
         if (pl.getPlot() != null && pl.getPlot().getArea().doubleValue() > 0)
