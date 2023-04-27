@@ -27,6 +27,7 @@ public class Transfer {
 	private String araeInAcres;
 
 	private JsonNode additionalDetails = null;
+	private JsonNode newAdditionalDetails = null;
 	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;

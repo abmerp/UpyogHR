@@ -2,6 +2,7 @@ package org.egov.tl.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -14,6 +15,7 @@ import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
+
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.IdGenRepository;
@@ -25,6 +27,7 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.Transfer;
 import org.egov.tl.web.models.TransferOfLicence;
 import org.egov.tl.web.models.TransferOfLicenseRequest;
@@ -95,25 +98,28 @@ public class TransferOfLicenseServices {
 
 	@Autowired
 	ServicePlanService servicePlanService;
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 
-	public List<Transfer> create(TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
+	public Transfer create(TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
 
-		String licenseNumber = transferOfLicenseRequest.getTransfer().get(0).getLicenseNo();
+		String licenseNumber = transferOfLicenseRequest.getTransfer().getLicenseNo();
 
 		String uuid = transferOfLicenseRequest.getRequestInfo().getUserInfo().getUuid();
 
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = transferOfLicenseRequest.getRequestInfo();
-		List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
+	//	List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
 
-		for (Transfer transferRequest : transferList) {
-
+	//	for (Transfer transferRequest : transferList) {
+		Transfer transferRequest = transferOfLicenseRequest.getTransfer();
 			List<String> applicationNumbers = null;
 			int count = 1;
-			List<Transfer> transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
+			Transfer transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
 					transferRequest.getApplicationNumber());
-			if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
+		//	if (!CollectionUtils.isEmpty(Arrays.asList(transferSearch))|| Arrays.asList(transferSearch).size() > 1) 
+			if(transferSearch!=null) {
 				throw new CustomException(
 						"Already Found  or multiple transfer of licence applications with LicenceNumber.",
 						"Already Found or multiple transfer of licence applications with LicenceNumber.");
@@ -142,57 +148,70 @@ public class TransferOfLicenseServices {
 			TransferOfLicence transferOfLicence = transferRequest.getTransferOfLicence();
 			String data = mapper.writeValueAsString(transferOfLicence);
 			JsonNode jsonNode = mapper.readTree(data);
-			// transfers.setTransferOfLicence(transferOfLicence);
+			
 			transferRequest.setAdditionalDetails(jsonNode);
 			transferRequest.setTransferOfLicence(null);
+		
+//			TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
+//			List<String> licenseNumberList;
+//			licenseNumberList.add(licenseNumber);
+//			tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
+//			
+//			Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
 
-		}
-		transferOfLicenseRequest.setTransfer(transferList);
+		//}
+		transferOfLicenseRequest.setTransfer(transferRequest);
 
 		producer.push(transferTopic, transferOfLicenseRequest);
-		return transferList;
+		return transferRequest;
 
 	}
 
-	public List<Transfer> search(RequestInfo requestInfo, String licenseNo, String applicationNumber) {
+	public Transfer search(RequestInfo requestInfo, String licenseNo, String applicationNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber\r\n"
+		String query = "SELECT id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber,newadditionaldetails\r\n"
 				+ "	FROM public.eg_transfer_of_licence_service" + " Where ";
 		builder = new StringBuilder(query);
 
-		List<Transfer> Result = null;
+	List<Transfer> Result = null;
 		if (licenseNo != null) {
 			builder.append(" license_no= :LN");
 			paramMap.put("LN", licenseNo);
 			preparedStatement.add(licenseNo);
-			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, transferRowMapper);
-		} else if (applicationNumber != null) {
+			Result =  namedParameterJdbcTemplate.query(builder.toString(), paramMap, transferRowMapper);
+			} else if (applicationNumber != null) {
 			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
 			log.info("applicationNumberList" + applicationNumberList);
 			if (applicationNumberList != null) {
 				builder.append(" application_number in ( :AN )");
 				paramMapList.put("AN", applicationNumberList);
 				preparedStatement.add(applicationNumberList);
-				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, transferRowMapper);
+				Result =  namedParameterJdbcTemplate.query(builder.toString(), paramMapList, transferRowMapper);
 			}
 
 		} else if ((requestInfo.getUserInfo().getUuid() != null)) {
 			builder.append(" created_by= :CB");
 			paramMap.put("CB", requestInfo.getUserInfo().getUuid());
 			preparedStatement.add(requestInfo.getUserInfo().getUuid());
-			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, transferRowMapper);
+			Result =  namedParameterJdbcTemplate.query(builder.toString(), paramMap, transferRowMapper);
 
 		}
-		return Result;
+	//	Transfer transfer=Result.toString();
+		
+		if(Result!=null&&!Result.isEmpty()) {
+		return Result.get(0);
+		}else {
+			return null;
+		}
 
 	}
 
-	public List<Transfer> Update(TransferOfLicenseRequest transferOfLicenseRequest) {
+	public Transfer Update(TransferOfLicenseRequest transferOfLicenseRequest) {
 
 		String uuid = transferOfLicenseRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -200,10 +219,10 @@ public class TransferOfLicenseServices {
 
 		RequestInfo requestInfo = transferOfLicenseRequest.getRequestInfo();
 
-		List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
+		//List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
 
-		for (Transfer transfer : transferList) {
-
+	//	for (Transfer transfer : transferList) {
+		Transfer transfer = transferOfLicenseRequest.getTransfer();
 			if (Objects.isNull(transferOfLicenseRequest) || Objects.isNull(transferOfLicenseRequest.getTransfer())) {
 				throw new CustomException("transfer of licence must not be null",
 						"transfer of licence must not be null");
@@ -213,9 +232,9 @@ public class TransferOfLicenseServices {
 				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 			}
 
-			List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(),
+			Transfer transferSearch = search(requestInfo, transfer.getLicenseNo(),
 					transfer.getApplicationNumber());
-			if (CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
+			if (CollectionUtils.isEmpty(Arrays.asList(transferSearch))) {
 				throw new CustomException(
 						"Found none or multiple transfer of licence applications with applicationNumber.",
 						"Found none or multiple transfer of licence applications with applicationNumber.");
@@ -227,7 +246,7 @@ public class TransferOfLicenseServices {
 			// EMPLOYEE RUN THE APPLICATION NORMALLY
 			if (!transfer.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-				String currentStatus = transferSearch.get(0).getStatus();
+				String currentStatus = transferSearch.getStatus();
 
 				BusinessService workflow = workflowService.getBusinessService(transfer.getTenantId(),
 						transferOfLicenseRequest.getRequestInfo(), transfer.getBusinessService());
@@ -248,7 +267,7 @@ public class TransferOfLicenseServices {
 			// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
 			else if ((transfer.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
 
-				String currentStatus = transferSearch.get(0).getStatus();
+				String currentStatus = transferSearch.getStatus();
 
 				transfer.setAssignee(
 						Arrays.asList(servicePlanService.assignee("CAO", transfer.getTenantId(), true, requestInfo)));
@@ -270,13 +289,13 @@ public class TransferOfLicenseServices {
 				transfer.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
 			}
-		}
+		//}
 
-		transferOfLicenseRequest.setTransfer(transferList);
+		transferOfLicenseRequest.setTransfer(transfer);
 
 		producer.push(tranferUpdateTopic, transferOfLicenseRequest);
 
-		return transferList;
+		return transfer;
 
 	}
 
@@ -356,4 +375,6 @@ public class TransferOfLicenseServices {
 
 		return tradeLicenseASRequest;
 	}
+
+	
 }

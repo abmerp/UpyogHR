@@ -17,9 +17,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TransferOfLicenseResponse {
-	
-	 private ResponseInfo responseInfo = null;
-		private List<Transfer> transfer;
 
+	private ResponseInfo responseInfo = null;
+	private Transfer transfer;
 
 }

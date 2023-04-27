@@ -23,6 +23,6 @@ public class TransferOfLicenseRequest {
 	private RequestInfo requestInfo;
 
 	@JsonProperty("Transfer")
-	private List<Transfer> transfer;
+	private Transfer transfer;
 
 }

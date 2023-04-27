@@ -7,39 +7,41 @@ serviceMaps:
    fromTopic: save-transfer-of-licence
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_transfer_of_licence_service (id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-      basePath: Transfer.*
+    - query: INSERT INTO public.eg_transfer_of_licence_service (id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, newadditionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      basePath: Transfer
       jsonMaps:
 
-       - jsonPath: $.Transfer.*.id
+       - jsonPath: $.Transfer.id
 
-       - jsonPath: $.Transfer.*.araeInAcres
+       - jsonPath: $.Transfer.araeInAcres
 
-       - jsonPath: $.Transfer.*.licenseNo
+       - jsonPath: $.Transfer.licenseNo
 
-       - jsonPath: $.Transfer.*.applicationNumber
+       - jsonPath: $.Transfer.applicationNumber
 
-       - jsonPath: $.Transfer.*.tenantId
+       - jsonPath: $.Transfer.tenantId
 
-       - jsonPath: $.Transfer.*.action
+       - jsonPath: $.Transfer.action
 
-       - jsonPath: $.Transfer.*.businessService
+       - jsonPath: $.Transfer.businessService
 
-       - jsonPath: $.Transfer.*.additionalDetails
+       - jsonPath: $.Transfer.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.Transfer.*.auditDetails.createdBy
+       - jsonPath: $.Transfer.auditDetails.createdBy
 
-       - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
+       - jsonPath: $.Transfer.auditDetails.lastModifiedBy
 
-       - jsonPath: $.Transfer.*.auditDetails.createdTime
+       - jsonPath: $.Transfer.auditDetails.createdTime
 
-       - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
+       - jsonPath: $.Transfer.auditDetails.lastModifiedTime
 
-       - jsonPath: $.Transfer.*.status
+       - jsonPath: $.Transfer.status
        
-    
+       - jsonPath: $.Transfer.newAdditionalDetails
+         type: JSON
+         dbType: JSONB
          
          
  - version: 1.0
@@ -50,44 +52,44 @@ serviceMaps:
    queryMaps:
    
        - query: INSERT INTO eg_transfer_of_licence_service_audit SELECT * FROM eg_transfer_of_licence_service WHERE application_number = ?;
-         basePath: Transfer.*
+         basePath: Transfer
          jsonMaps:
-          - jsonPath: $.Transfer.*.applicationNumber
+          - jsonPath: $.Transfer.applicationNumber
           
    
        - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=? ;   
-         basePath: Transfer.*
+         basePath: Transfer
          jsonMaps:
 
-          - jsonPath: $.Transfer.*.id
+          - jsonPath: $.Transfer.id
 
-          - jsonPath: $.Transfer.*.araeInAcres
+          - jsonPath: $.Transfer.araeInAcres
        
-          - jsonPath: $.Transfer.*.tenantId
+          - jsonPath: $.Transfer.tenantId
 
-          - jsonPath: $.Transfer.*.action
+          - jsonPath: $.Transfer.action
 
-          - jsonPath: $.Transfer.*.businessService
+          - jsonPath: $.Transfer.businessService
 
-          - jsonPath: $.Transfer.*.additionalDetails
+          - jsonPath: $.Transfer.additionalDetails
             type: JSON
             dbType: JSONB
 
-          - jsonPath: $.Transfer.*.auditDetails.createdBy
+          - jsonPath: $.Transfer.auditDetails.createdBy
 
-          - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
+          - jsonPath: $.Transfer.auditDetails.lastModifiedBy
 
-          - jsonPath: $.Transfer.*.auditDetails.createdTime
+          - jsonPath: $.Transfer.auditDetails.createdTime
   
-          - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
+          - jsonPath: $.Transfer.auditDetails.lastModifiedTime
  
-          - jsonPath: $.Transfer.*.status       
+          - jsonPath: $.Transfer.status       
        
-          - jsonPath: $.Transfer.*.tcpApplicationNumber
+          - jsonPath: $.Transfer.tcpApplicationNumber
           
-          - jsonPath: $.Transfer.*.tcpCaseNumber
+          - jsonPath: $.Transfer.tcpCaseNumber
           
-          - jsonPath: $.Transfer.*.tcpDairyNumber     
+          - jsonPath: $.Transfer.tcpDairyNumber     
         
-          - jsonPath: $.Transfer.*.applicationNumber
+          - jsonPath: $.Transfer.applicationNumber
    

@@ -33,8 +33,9 @@ public class TransferOfLicenseController {
 	public ResponseEntity<TransferOfLicenseResponse> create(
 			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
 
-		List<Transfer> transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
-
+		Transfer transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
+//		List<Transfer> transferList = new ArrayList<>();
+//		transferList.add(transfer);
 		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))
@@ -46,8 +47,9 @@ public class TransferOfLicenseController {
 	@PostMapping("/_update")
 	public ResponseEntity<TransferOfLicenseResponse> update(
 			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) {
-		List<Transfer> transfer = transferOfLicenseServices.Update(transferOfLicenseRequest);
-
+		Transfer transfer = transferOfLicenseServices.Update(transferOfLicenseRequest);
+//		List<Transfer> transferList = new ArrayList<>();
+//		transferList.add(transfer);
 		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))
@@ -61,7 +63,7 @@ public class TransferOfLicenseController {
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
 
-		List<Transfer> transfer = transferOfLicenseServices.search(requestInfoWrapper.getRequestInfo(), licenceNumber,
+		Transfer transfer = transferOfLicenseServices.search(requestInfoWrapper.getRequestInfo(), licenceNumber,
 				applicationNumber);
 
 		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
