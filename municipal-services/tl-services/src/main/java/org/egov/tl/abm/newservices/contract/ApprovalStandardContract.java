@@ -23,6 +23,6 @@ public class ApprovalStandardContract {
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo;
 	@JsonProperty("ApprovalStandardEntity")
-	private List<ApprovalStandardEntity> approvalStandardRequest;
+	private ApprovalStandardEntity approvalStandardRequest;
 
 }

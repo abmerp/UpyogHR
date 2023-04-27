@@ -75,6 +75,7 @@ public class ApprovalStandardEntity {
 	@JsonProperty("tcpDairyNumber")
 	private String tcpDairyNumber;
 
-	private JsonNode additionalDetails = null;
+	private JsonNode additionalDetails;
+	private JsonNode newAdditionalDetails;
 
 }

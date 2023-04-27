@@ -24,6 +24,7 @@ import lombok.Setter;
 public class ApprovalStandardResponse {
 
 	private ResponseInfo responseInfo;
-	private List<ApprovalStandardEntity> approvalStandardResponse;
+	@JsonProperty("ApprovalStandardEntity")
+	private ApprovalStandardEntity approvalStandardRequest;;
 
 }

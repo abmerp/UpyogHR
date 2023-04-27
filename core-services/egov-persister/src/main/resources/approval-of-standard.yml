@@ -1,0 +1,114 @@
+serviceMaps:
+ serviceName: ApprovalOfStandard
+ mappings:
+  - version: 1.0
+    description: create approval of standard 
+    fromTopic: save-approval-of-standard
+    isTransaction: true
+    queryMaps:
+    
+       - query: INSERT INTO public.eg_approval_standard(license_no, standarddrawingdesigns, anyotherdoc, created_by, created_time, last_modified_by, last_modified_time, application_number, tenantid, id, action, status, business_service, comment, workflow_code, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, additionaldetails, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
+         basePath: ApprovalStandardEntity
+         jsonMaps:         
+                   
+          - jsonPath: $.ApprovalStandardEntity.licenseNo
+          
+          - jsonPath: $.ApprovalStandardEntity.standardDrawingDesigns
+          
+          - jsonPath: $.ApprovalStandardEntity.anyOtherDoc
+          
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.createdBy
+
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.createdTime
+
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.lastModifiedTime
+          
+          - jsonPath: $.ApprovalStandardEntity.applicationNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.tenantId
+         
+          - jsonPath: $.ApprovalStandardEntity.id
+          
+          - jsonPath: $.ApprovalStandardEntity.action
+          
+          - jsonPath: $.ApprovalStandardEntity.status
+          
+          - jsonPath: $.ApprovalStandardEntity.businessService
+          
+          - jsonPath: $.ApprovalStandardEntity.comment
+           
+          - jsonPath: $.ApprovalStandardEntity.workflowCode
+          
+          - jsonPath: $.ApprovalStandardEntity.tcpApplicationNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.tcpCaseNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.tcpDairyNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.additionalDetails
+            type: JSON
+            dbType: JSONB
+            
+          - jsonPath: $.ApprovalStandardEntity.newAdditionalDetails
+            type: JSON
+            dbType: JSONB
+        
+  - version: 1.0
+    description: update approval of standard 
+    fromTopic: update-approval-of-standard
+    isTransaction: true
+    queryMaps:
+   
+       - query: INSERT INTO public.eg_approval_standard_audit SELECT * FROM public.eg_approval_standard WHERE application_number = ?;
+         basePath: ApprovalStandardEntity
+         jsonMaps:
+          - jsonPath: $.ApprovalStandardEntity.applicationNumber
+          
+       - query: UPDATE public.eg_approval_standard SET  standarddrawingdesigns=?, anyotherdoc=?, created_by=?, created_time=?, last_modified_by=?, last_modified_time=?, tenantid=?, id=?, action=?, status=?, business_service=?, comment=?, workflow_code=?,  tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, additionaldetails=?,newadditionaldetails=? WHERE application_number=?;   
+         basePath: ApprovalStandardEntity
+         jsonMaps:         
+                   
+        
+          - jsonPath: $.ApprovalStandardEntity.standardDrawingDesigns
+          
+          - jsonPath: $.ApprovalStandardEntity.anyOtherDoc
+          
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.createdBy
+
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.createdTime
+
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.lastModifiedBy
+
+          - jsonPath: $.ApprovalStandardEntity.auditDetails.lastModifiedTime       
+                   
+          - jsonPath: $.ApprovalStandardEntity.tenantId
+         
+          - jsonPath: $.ApprovalStandardEntity.id
+          
+          - jsonPath: $.ApprovalStandardEntity.action
+          
+          - jsonPath: $.ApprovalStandardEntity.status
+          
+          - jsonPath: $.ApprovalStandardEntity.businessService
+          
+          - jsonPath: $.ApprovalStandardEntity.comment
+           
+          - jsonPath: $.ApprovalStandardEntity.workflowCode
+          
+          - jsonPath: $.ApprovalStandardEntity.tcpApplicationNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.tcpCaseNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.tcpDairyNumber
+          
+          - jsonPath: $.ApprovalStandardEntity.additionalDetails
+            type: JSON
+            dbType: JSONB
+            
+          - jsonPath: $.ApprovalStandardEntity.newAdditionalDetails
+            type: JSON
+            dbType: JSONB
+          - jsonPath: $.ApprovalStandardEntity.applicationNumber
+       

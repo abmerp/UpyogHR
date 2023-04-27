@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
 @RequestMapping("_ApprovalStandard")
 public class ApprovalOfStandardController {
@@ -32,29 +34,31 @@ public class ApprovalOfStandardController {
 
 	@PostMapping(value = "_create")
 	public ResponseEntity<ApprovalStandardResponse> createNewService(
-			@RequestBody ApprovalStandardContract approvalStandardContract) {
+			@RequestBody ApprovalStandardContract approvalStandardContract) throws JsonProcessingException {
 
-		List<ApprovalStandardEntity> newApprovalServiceInfo = approvalStandardService
+		ApprovalStandardEntity newApprovalServiceInfo = approvalStandardService
 				.createNewServic(approvalStandardContract);
 
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
-				.approvalStandardResponse(newApprovalServiceInfo).responseInfo(responseInfoFactory
+				.approvalStandardRequest(newApprovalServiceInfo).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@PostMapping("_search")
-	public ResponseEntity<ApprovalStandardResponse> searchApprovalStandard(@RequestBody RequestInfoWrapper requestInfoWrapper,
+	public ResponseEntity<ApprovalStandardResponse> searchApprovalStandard(
+			@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenseNo,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
 
-		List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(requestInfoWrapper.getRequestInfo(),
-				licenseNo, applicationNumber);
+		ApprovalStandardEntity searchApproval = approvalStandardService
+				.searchApprovalStandard(requestInfoWrapper.getRequestInfo(), licenseNo, applicationNumber);
 
 		ApprovalStandardResponse responseSearch = ApprovalStandardResponse.builder()
-				.approvalStandardResponse(searchApproval)
-				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true)).build();
+				.approvalStandardRequest(searchApproval).responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+				.build();
 		return new ResponseEntity<>(responseSearch, HttpStatus.OK);
 	}
 
@@ -62,10 +66,10 @@ public class ApprovalOfStandardController {
 	public ResponseEntity<ApprovalStandardResponse> update(
 			@RequestBody ApprovalStandardContract approvalStandardContract) {
 
-		List<ApprovalStandardEntity> newApprovalServiceInfo = approvalStandardService.Update(approvalStandardContract);
+		ApprovalStandardEntity newApprovalServiceInfo = approvalStandardService.Update(approvalStandardContract);
 
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
-				.approvalStandardResponse(newApprovalServiceInfo).responseInfo(responseInfoFactory
+				.approvalStandardRequest(newApprovalServiceInfo).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(response, HttpStatus.OK);
