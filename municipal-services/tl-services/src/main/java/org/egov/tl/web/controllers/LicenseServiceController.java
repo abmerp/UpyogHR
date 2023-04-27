@@ -206,12 +206,11 @@ public class LicenseServiceController {
 	}
 
 	@PostMapping(value = "/_generateTcpNumbers")
-	public Map<String, Object> generateTcpNumbers(
-			@RequestBody RequestInfoWrapper requestInfoWrapper, @ModelAttribute TradeLicenseSearchCriteria criteria,
-			@RequestParam(required = false) String businessService) {
+	public Map<String, Object> generateTcpNumbers(@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@ModelAttribute TradeLicenseSearchCriteria criteria) {
 
-		Map<String, Object> generateNumbers = generateTcpNumbers.tcpNumbers(criteria, requestInfoWrapper.getRequestInfo(),
-				businessService);
+		Map<String, Object> generateNumbers = generateTcpNumbers.tcpNumbers(criteria,
+				requestInfoWrapper.getRequestInfo());
 
 //		ResponseGenerateNumbers response = ResponseGenerateNumbers.builder().servicePlanRequest(generate).responseInfo(
 //				responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))

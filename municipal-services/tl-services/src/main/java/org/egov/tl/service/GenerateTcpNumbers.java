@@ -71,20 +71,19 @@ public class GenerateTcpNumbers {
 	ElectricPlanService electricPlanService;
 	@Autowired
 	ApprovalStandardService approvalStandardService;
-	private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
+//	private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
+//
+//	private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
+//
+//	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
+//	private static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
+//	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
+//	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
+//	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
+//	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
+//	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
 
-	private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
-
-	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
-	private static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
-	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
-	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
-	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
-	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
-	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
-
-	public Map<String, Object> tcpNumbers(TradeLicenseSearchCriteria criteria, RequestInfo requestInfo,
-			String businessService) {
+	public Map<String, Object> tcpNumbers(TradeLicenseSearchCriteria criteria, RequestInfo requestInfo) {
 		Map<String, Object> rP = new HashMap<>();
 		Map<String, Object> finalResponse = new HashMap<>();
 		ResponseInfo responseInfo = new ResponseInfo();
@@ -213,190 +212,191 @@ public class GenerateTcpNumbers {
 					log.info("application:" + tcpApplicationNmber);
 				}
 
-//				rP.put("TCPApplicationNumber",tcpApplicationNmber);
-//				rP.put("TCPCaseNumber",caseNumber);
-//				rP.put("TCPDairyNumber",dairyNumber);
+				rP.put("TCPApplicationNumber",tcpApplicationNmber);
+				rP.put("TCPCaseNumber",caseNumber);
+				rP.put("TCPDairyNumber",dairyNumber);
 
-				switch (businessService) {
-				case BUSINESSSERVICE_SERVICE_PLAN:
-					ServicePlanContract servicePlanContract = new ServicePlanContract();
-					List<ServicePlanRequest> servicePlanRequestLists = new ArrayList<ServicePlanRequest>();
-					List<ServicePlanRequest> servicePlanRequests = servicePlanService
-							.searchServicePlan(criteria.getLoiNumber(), criteria.getApplicationNumber(), requestInfo);
-					log.info("servicePlanRequest:\t" + servicePlanRequests);
-
-					List<ServicePlanRequest> servicePlanRequestList = servicePlanRequests;
-
-					for (ServicePlanRequest servicePlanRequest : servicePlanRequestList) {
-
-						servicePlanRequest.setTcpApplicationNumber(tcpApplicationNmber);
-						servicePlanRequest.setTcpCaseNumber(caseNumber);
-						servicePlanRequest.setTcpDairyNumber(dairyNumber);
-						servicePlanRequestLists.add(servicePlanRequest);
-						servicePlanContract.setServicePlanRequest(servicePlanRequestLists);
-						servicePlanContract.setRequestInfo(requestInfo);
-
-					}
-					resultServicePlan = servicePlanService.Update(servicePlanContract);
-
-					break;
-
-				case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
-					ServicePlanContract servicePlanContractD = new ServicePlanContract();
-					List<ServicePlanRequest> servicePlanRequestListsD = new ArrayList<ServicePlanRequest>();
-					List<ServicePlanRequest> servicePlanRequestsD = servicePlanService
-							.searchServicePlan(criteria.getLoiNumber(), criteria.getApplicationNumber(), requestInfo);
-					log.info("servicePlanRequest:\t" + servicePlanRequestsD);
-
-					List<ServicePlanRequest> servicePlanRequestListD = servicePlanRequestsD;
-					for (ServicePlanRequest servicePlanRequestD : servicePlanRequestListD) {
-
-						servicePlanRequestD.setTcpApplicationNumber(tcpApplicationNmber);
-						servicePlanRequestD.setTcpCaseNumber(caseNumber);
-						servicePlanRequestD.setTcpDairyNumber(dairyNumber);
-						servicePlanRequestListsD.add(servicePlanRequestD);
-						servicePlanContractD.setServicePlanRequest(servicePlanRequestListsD);
-						servicePlanContractD.setRequestInfo(requestInfo);
-
-					}
-					resultServicePlan = servicePlanService.Update(servicePlanContractD);
-
-					break;
-
-				case BUSINESSSERVICE_ELECTRICAL_PLAN:
-					ElectricPlanContract electricPlanContract = new ElectricPlanContract();
-					List<ElectricPlanRequest> electricPlanRequestLists = new ArrayList<ElectricPlanRequest>();
-					List<ElectricPlanRequest> ElectricPlanRequests = electricPlanService
-							.searchElectricPlan(criteria.getLoiNumber(), criteria.getApplicationNumber(), requestInfo);
-					log.info("ElectricPlanRequests:\t" + ElectricPlanRequests);
-
-					List<ElectricPlanRequest> electricPlanRequestList = ElectricPlanRequests;
-
-					for (ElectricPlanRequest electricPlanRequest : electricPlanRequestList) {
-
-						electricPlanRequest.setTcpApplicationNumber(tcpApplicationNmber);
-						electricPlanRequest.setTcpCaseNumber(caseNumber);
-						electricPlanRequest.setTcpDairyNumber(dairyNumber);
-						electricPlanRequestLists.add(electricPlanRequest);
-						electricPlanContract.setElectricPlanRequest(electricPlanRequestLists);
-						electricPlanContract.setRequestInfo(requestInfo);
-
-					}
-					resultElectricPlan = electricPlanService.Update(electricPlanContract);
-
-					break;
-				case BUSINESSSERVICE_SURRENDOFLICENSE:
-					SurrendOfLicenseRequest surrendOfLicenseRequest = new SurrendOfLicenseRequest();
-					List<SurrendOfLicense> surrendOfLicenseLists = new ArrayList<SurrendOfLicense>();
-					List<SurrendOfLicense> searchSurrendOfLicense = surrendOfLicenseServices.search(requestInfo,
-							lcNumber, criteria.getApplicationNumber());
-					log.info("searchApproval:\t" + searchSurrendOfLicense);
-
-					List<SurrendOfLicense> surrendOfLicenseList = searchSurrendOfLicense;
-
-					for (SurrendOfLicense surrendOfLicense : surrendOfLicenseList) {
-
-						surrendOfLicense.setTcpApplicationNumber(tcpApplicationNmber);
-						surrendOfLicense.setTcpCaseNumber(caseNumber);
-						surrendOfLicense.setTcpDairyNumber(dairyNumber);
-						surrendOfLicenseLists.add(surrendOfLicense);
-						surrendOfLicenseRequest.setSurrendOfLicense(surrendOfLicenseLists);
-						surrendOfLicenseRequest.setRequestInfo(requestInfo);
-
-					}
-					resultSurrenderLicence = surrendOfLicenseServices.update(surrendOfLicenseRequest);
-
-					break;
-				case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
-					ApprovalStandardContract approvalStandardContract = new ApprovalStandardContract();
-					List<ApprovalStandardEntity> approvalStandardRequestLists = new ArrayList<ApprovalStandardEntity>();
-					List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(
-							requestInfo, lcNumber, criteria.getApplicationNumber());
-					log.info("searchApproval:\t" + searchApproval);
-
-					List<ApprovalStandardEntity> approvalStandardRequestList = searchApproval;
-
-					for (ApprovalStandardEntity approvalStandardEntity : approvalStandardRequestList) {
-
-						approvalStandardEntity.setTcpApplicationNumber(tcpApplicationNmber);
-						approvalStandardEntity.setTcpCaseNumber(caseNumber);
-						approvalStandardEntity.setTcpDairyNumber(dairyNumber);
-						approvalStandardRequestLists.add(approvalStandardEntity);
-						approvalStandardContract.setApprovalStandardRequest(approvalStandardRequestLists);
-						approvalStandardContract.setRequestInfo(requestInfo);
-
-					}
-					resultApprovalOfStandard = approvalStandardService.Update(approvalStandardContract);
-
-					break;
-				case BUSINESSSERVICE_REVISED:
-					RevisedPlanRequest revisedPlanRequest = new RevisedPlanRequest();
-					List<RevisedPlan> RevisedPlanLists = new ArrayList<RevisedPlan>();
-				//	String lcNumber = criteria.getLicenseNumbers().get(0).toString();
-					List<RevisedPlan> revisedPlanSearch = revisedPlanServices.search(requestInfo,
-							criteria.getApplicationNumber(), lcNumber);
-					log.info("revisedPlanSearch:\t" + revisedPlanSearch);
-
-					List<RevisedPlan> RevisedPlanList = revisedPlanSearch;
-
-					for (RevisedPlan revisedPlan : RevisedPlanList) {
-
-						revisedPlan.setTcpApplicationNumber(tcpApplicationNmber);
-						revisedPlan.setTcpCaseNumber(caseNumber);
-						revisedPlan.setTcpDairyNumber(dairyNumber);
-						RevisedPlanLists.add(revisedPlan);
-						revisedPlanRequest.setRevisedPlan(RevisedPlanLists);
-						revisedPlanRequest.setRequestInfo(requestInfo);
-
-					}
-					resultRevisedLAyoutPlan = revisedPlanServices.update(revisedPlanRequest);
-
-					break;
-
-				case BUSINESSSERVICE_TRANSFER:
-					TransferOfLicenseRequest transferOfLicenseRequest = new TransferOfLicenseRequest();
-					List<Transfer> transferLists = new ArrayList<Transfer>();
-					
-					List<Transfer> transferSearch = transferOfLicenseServices.search(requestInfo, lcNumber,
-							criteria.getApplicationNumber());
-
-					log.info("transferSearch:\t" + transferSearch);
-
-					List<Transfer> transferList = transferSearch;
-
-					for (Transfer transfer : transferList) {
-
-						transfer.setTcpApplicationNumber(tcpApplicationNmber);
-						transfer.setTcpCaseNumber(caseNumber);
-						transfer.setTcpDairyNumber(dairyNumber);
-						transferLists.add(transfer);
-						transferOfLicenseRequest.setTransfer(transferLists);
-						transferOfLicenseRequest.setRequestInfo(requestInfo);
-
-					}
-					resultTransferOfLicence = transferOfLicenseServices.Update(transferOfLicenseRequest);
-
-					break;
-				}
-				rP.put("servicePlan", resultServicePlan);
-				rP.put("electricPlan", resultElectricPlan);
-				rP.put("approvalOfStandard", resultApprovalOfStandard);
-				rP.put("TransferOfLicence", resultTransferOfLicence);
-				rP.put("SurrenderOfLicence", resultSurrenderLicence);
-				rP.put("RevisedLAyoutPlan", resultRevisedLAyoutPlan);
-
-				finalResponse.put("ResponseInfo", responseInfo);
-				for (Map.Entry e : rP.entrySet()) {
-					if (e.getValue() != null) {
-						finalResponse.put(e.getKey().toString(), e.getValue());
-
-					}
-
-				}
+//				switch (businessService) {
+//				case BUSINESSSERVICE_SERVICE_PLAN:
+//					ServicePlanContract servicePlanContract = new ServicePlanContract();
+//					List<ServicePlanRequest> servicePlanRequestLists = new ArrayList<ServicePlanRequest>();
+//					List<ServicePlanRequest> servicePlanRequests = servicePlanService
+//							.searchServicePlan(criteria.getLoiNumber(), criteria.getApplicationNumber(), requestInfo);
+//					log.info("servicePlanRequest:\t" + servicePlanRequests);
+//
+//					List<ServicePlanRequest> servicePlanRequestList = servicePlanRequests;
+//
+//					for (ServicePlanRequest servicePlanRequest : servicePlanRequestList) {
+//
+//						servicePlanRequest.setTcpApplicationNumber(tcpApplicationNmber);
+//						servicePlanRequest.setTcpCaseNumber(caseNumber);
+//						servicePlanRequest.setTcpDairyNumber(dairyNumber);
+//						servicePlanRequestLists.add(servicePlanRequest);
+//						servicePlanContract.setServicePlanRequest(servicePlanRequestLists);
+//						servicePlanContract.setRequestInfo(requestInfo);
+//
+//					}
+//					resultServicePlan = servicePlanService.Update(servicePlanContract);
+//
+//					break;
+//
+//				case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
+//					ServicePlanContract servicePlanContractD = new ServicePlanContract();
+//					List<ServicePlanRequest> servicePlanRequestListsD = new ArrayList<ServicePlanRequest>();
+//					List<ServicePlanRequest> servicePlanRequestsD = servicePlanService
+//							.searchServicePlan(criteria.getLoiNumber(), criteria.getApplicationNumber(), requestInfo);
+//					log.info("servicePlanRequest:\t" + servicePlanRequestsD);
+//
+//					List<ServicePlanRequest> servicePlanRequestListD = servicePlanRequestsD;
+//					for (ServicePlanRequest servicePlanRequestD : servicePlanRequestListD) {
+//
+//						servicePlanRequestD.setTcpApplicationNumber(tcpApplicationNmber);
+//						servicePlanRequestD.setTcpCaseNumber(caseNumber);
+//						servicePlanRequestD.setTcpDairyNumber(dairyNumber);
+//						servicePlanRequestListsD.add(servicePlanRequestD);
+//						servicePlanContractD.setServicePlanRequest(servicePlanRequestListsD);
+//						servicePlanContractD.setRequestInfo(requestInfo);
+//
+//					}
+//					resultServicePlan = servicePlanService.Update(servicePlanContractD);
+//
+//					break;
+//
+//				case BUSINESSSERVICE_ELECTRICAL_PLAN:
+//					ElectricPlanContract electricPlanContract = new ElectricPlanContract();
+//					List<ElectricPlanRequest> electricPlanRequestLists = new ArrayList<ElectricPlanRequest>();
+//					List<ElectricPlanRequest> ElectricPlanRequests = electricPlanService
+//							.searchElectricPlan(criteria.getLoiNumber(), criteria.getApplicationNumber(), requestInfo);
+//					log.info("ElectricPlanRequests:\t" + ElectricPlanRequests);
+//
+//					List<ElectricPlanRequest> electricPlanRequestList = ElectricPlanRequests;
+//
+//					for (ElectricPlanRequest electricPlanRequest : electricPlanRequestList) {
+//
+//						electricPlanRequest.setTcpApplicationNumber(tcpApplicationNmber);
+//						electricPlanRequest.setTcpCaseNumber(caseNumber);
+//						electricPlanRequest.setTcpDairyNumber(dairyNumber);
+//						electricPlanRequestLists.add(electricPlanRequest);
+//						electricPlanContract.setElectricPlanRequest(electricPlanRequestLists);
+//						electricPlanContract.setRequestInfo(requestInfo);
+//
+//					}
+//					resultElectricPlan = electricPlanService.Update(electricPlanContract);
+//
+//					break;
+//				case BUSINESSSERVICE_SURRENDOFLICENSE:
+//					SurrendOfLicenseRequest surrendOfLicenseRequest = new SurrendOfLicenseRequest();
+//					List<SurrendOfLicense> surrendOfLicenseLists = new ArrayList<SurrendOfLicense>();
+//					List<SurrendOfLicense> searchSurrendOfLicense = surrendOfLicenseServices.search(requestInfo,
+//							lcNumber, criteria.getApplicationNumber());
+//					log.info("searchApproval:\t" + searchSurrendOfLicense);
+//
+//					List<SurrendOfLicense> surrendOfLicenseList = searchSurrendOfLicense;
+//
+//					for (SurrendOfLicense surrendOfLicense : surrendOfLicenseList) {
+//
+//						surrendOfLicense.setTcpApplicationNumber(tcpApplicationNmber);
+//						surrendOfLicense.setTcpCaseNumber(caseNumber);
+//						surrendOfLicense.setTcpDairyNumber(dairyNumber);
+//						surrendOfLicenseLists.add(surrendOfLicense);
+//						surrendOfLicenseRequest.setSurrendOfLicense(surrendOfLicenseLists);
+//						surrendOfLicenseRequest.setRequestInfo(requestInfo);
+//
+//					}
+//					resultSurrenderLicence = surrendOfLicenseServices.update(surrendOfLicenseRequest);
+//
+//					break;
+//				case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
+//					ApprovalStandardContract approvalStandardContract = new ApprovalStandardContract();
+//					List<ApprovalStandardEntity> approvalStandardRequestLists = new ArrayList<ApprovalStandardEntity>();
+//					List<ApprovalStandardEntity> searchApproval = approvalStandardService.searchApprovalStandard(
+//							requestInfo, lcNumber, criteria.getApplicationNumber());
+//					log.info("searchApproval:\t" + searchApproval);
+//
+//					List<ApprovalStandardEntity> approvalStandardRequestList = searchApproval;
+//
+//					for (ApprovalStandardEntity approvalStandardEntity : approvalStandardRequestList) {
+//
+//						approvalStandardEntity.setTcpApplicationNumber(tcpApplicationNmber);
+//						approvalStandardEntity.setTcpCaseNumber(caseNumber);
+//						approvalStandardEntity.setTcpDairyNumber(dairyNumber);
+//						approvalStandardRequestLists.add(approvalStandardEntity);
+//						approvalStandardContract.setApprovalStandardRequest(approvalStandardRequestLists);
+//						approvalStandardContract.setRequestInfo(requestInfo);
+//
+//					}
+//					resultApprovalOfStandard = approvalStandardService.Update(approvalStandardContract);
+//
+//					break;
+//				case BUSINESSSERVICE_REVISED:
+//					RevisedPlanRequest revisedPlanRequest = new RevisedPlanRequest();
+//					List<RevisedPlan> RevisedPlanLists = new ArrayList<RevisedPlan>();
+//				//	String lcNumber = criteria.getLicenseNumbers().get(0).toString();
+//					List<RevisedPlan> revisedPlanSearch = revisedPlanServices.search(requestInfo,
+//							criteria.getApplicationNumber(), lcNumber);
+//					log.info("revisedPlanSearch:\t" + revisedPlanSearch);
+//
+//					List<RevisedPlan> RevisedPlanList = revisedPlanSearch;
+//
+//					for (RevisedPlan revisedPlan : RevisedPlanList) {
+//
+//						revisedPlan.setTcpApplicationNumber(tcpApplicationNmber);
+//						revisedPlan.setTcpCaseNumber(caseNumber);
+//						revisedPlan.setTcpDairyNumber(dairyNumber);
+//						RevisedPlanLists.add(revisedPlan);
+//						revisedPlanRequest.setRevisedPlan(RevisedPlanLists);
+//						revisedPlanRequest.setRequestInfo(requestInfo);
+//
+//					}
+//					resultRevisedLAyoutPlan = revisedPlanServices.update(revisedPlanRequest);
+//
+//					break;
+//
+//				case BUSINESSSERVICE_TRANSFER:
+//					TransferOfLicenseRequest transferOfLicenseRequest = new TransferOfLicenseRequest();
+//					List<Transfer> transferLists = new ArrayList<Transfer>();
+//					
+//					List<Transfer> transferSearch = transferOfLicenseServices.search(requestInfo, lcNumber,
+//							criteria.getApplicationNumber());
+//
+//					log.info("transferSearch:\t" + transferSearch);
+//
+//					List<Transfer> transferList = transferSearch;
+//
+//					for (Transfer transfer : transferList) {
+//
+//						transfer.setTcpApplicationNumber(tcpApplicationNmber);
+//						transfer.setTcpCaseNumber(caseNumber);
+//						transfer.setTcpDairyNumber(dairyNumber);
+//						transferLists.add(transfer);
+//				//	transferOfLicenseRequest.setTransfer(transferLists);
+//						transferOfLicenseRequest.setRequestInfo(requestInfo);
+//
+//					}
+//					resultTransferOfLicence = transferOfLicenseServices.Update(transferOfLicenseRequest);
+//
+//					break;
+//				}
+//				rP.put("servicePlan", resultServicePlan);
+//				rP.put("electricPlan", resultElectricPlan);
+//				rP.put("approvalOfStandard", resultApprovalOfStandard);
+//				rP.put("TransferOfLicence", resultTransferOfLicence);
+//				rP.put("SurrenderOfLicence", resultSurrenderLicence);
+//				rP.put("RevisedLAyoutPlan", resultRevisedLAyoutPlan);
+//
+//				finalResponse.put("ResponseInfo", responseInfo);
+//				for (Map.Entry e : rP.entrySet()) {
+//					if (e.getValue() != null) {
+//						finalResponse.put(e.getKey().toString(), e.getValue());
+//
+//					}
+//
+//				}
 			}
 		}
-		return finalResponse;
+		return rP;
 
 	}
 
-}
+		}
+	
