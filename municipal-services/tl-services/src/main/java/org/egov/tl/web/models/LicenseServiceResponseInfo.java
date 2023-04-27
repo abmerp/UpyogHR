@@ -42,6 +42,9 @@ public class LicenseServiceResponseInfo {
 	@JsonProperty("applicationNumber")
 	private String applicationNumber;
 	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+	
 	@JsonProperty("businessService")
 	private String businessService;
 	

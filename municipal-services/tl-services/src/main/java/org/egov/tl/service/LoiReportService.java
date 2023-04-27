@@ -15,16 +15,21 @@ import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.ApplicantInfo;
 import org.egov.tl.web.models.AppliedLandDetails;
 import org.egov.tl.web.models.CalculatorRequest;
+import org.egov.tl.web.models.Compliance;
+import org.egov.tl.web.models.ComplianceRequest;
 import org.egov.tl.web.models.DetailsAppliedLandPlot;
 import org.egov.tl.web.models.DetailsofAppliedLand;
+import org.egov.tl.web.models.EmployeeResponse;
 import org.egov.tl.web.models.FeesAndCharges;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.LicenseServiceResponseInfo;
+import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.RequestLOIReport;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
@@ -47,6 +52,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.itextpdf.text.BaseColor;
@@ -149,6 +155,12 @@ public class LoiReportService {
 	Double amountIDW=0.0;
 	Double amountEDC=0.0;
 	Double communityFacultyCost=0.0;
+	
+	@Autowired
+	TLConfiguration tLConfiguration;
+	
+	@Autowired
+	ComplianceService complianceService;
 	
 	
 	
@@ -387,7 +399,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -708,7 +720,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you shall intimate their official Email ID and the correspondence on this email ID by     	the Deptt. will be treated receipt of such correspondence.";
@@ -1106,7 +1118,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -1468,7 +1480,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -1832,7 +1844,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/schedule of land.", normal));
 				addEmptyLine(para1, 1);
@@ -2313,7 +2325,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 
 				addEmptyLine(para1, 1);
@@ -2704,7 +2716,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				addEmptyLine(para1, 1);
 //				String note = "Note:- That you will intimate your official “email ID” to the Department and correspondence done by Department on this ID shall be treated as official intimation & legally valid.";
@@ -3080,7 +3092,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 
 				addEmptyLine(para1, 1);
@@ -3516,7 +3528,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/schedule of land.", normal));
 				addEmptyLine(para1, 1);
@@ -4001,7 +4013,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/as above ", normal));
 				addEmptyLine(para1, 1);
@@ -4435,7 +4447,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/as above ", normal));
 				addEmptyLine(para1, 1);
@@ -4853,7 +4865,7 @@ public class LoiReportService {
 //						list.add(new ListItem(cd, normal));
 //					});
 //				}
-				loiTableReportData(list, userId, applicationNumber, requestLOIReport);
+				loiTableReportData(licenseServiceResponceInfo,list, userId, applicationNumber, requestLOIReport);
 				doc.add(list);
 				doc.add(new Paragraph("DA/schedule of land.", normal));
 				addEmptyLine(para1, 1);
@@ -5186,9 +5198,50 @@ public class LoiReportService {
 			return null;
 		}
 	}
+	private String getUserIdByRole(String role, String tenantID, boolean b, RequestInfo requestInfo) {
 
-	public void createLoiReport(String applicationNumber, String userId, RequestLOIReport requestLOIReport,
-			String hqUserId) {
+		StringBuilder uri = new StringBuilder();
+		uri.append(tLConfiguration.getHrmsHost());
+		uri.append(tLConfiguration.getHrmsContextPath());
+		uri.append("?tenantId=" + tenantID);
+		uri.append("&roles=" + role);
+		uri.append("&isActive=" + b);
+
+		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
+
+		EmployeeResponse employeeResponse = null;
+
+		String data = null;
+
+		Object fetchResult = serviceRequestRepository.fetchResult(uri, requestInfoWrapper);
+
+		try {
+			data = mapper.writeValueAsString(fetchResult);
+		} catch (JsonProcessingException e) {
+
+			e.printStackTrace();
+		}
+		ObjectReader reader = mapper.readerFor(new TypeReference<EmployeeResponse>() {
+		});
+
+		try {
+			employeeResponse = reader.readValue(data);
+		} catch (JsonMappingException e) {
+
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+
+			e.printStackTrace();
+		}
+		String id = employeeResponse.getEmployees().get(0).getId();
+
+		return id;
+	}
+	public void createLoiReport(String applicationNumber, String role, RequestLOIReport requestLOIReport) {
+		
+		String userId=getUserIdByRole(role,"hr",true,requestLOIReport.getRequestInfo());
+		String hqUserId=userId;
+		
 	    LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
 				requestLOIReport.getRequestInfo());
 		String purpose = licenseServiceResponceInfo.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose();
@@ -5257,7 +5310,7 @@ public class LoiReportService {
 
 //	private void loiTableReportData(Document doc, String userId, String applicationNumber,
 //			RequestLOIReport requestLOIReport) {
-	private void loiTableReportData(List list, String userId, String applicationNumber,
+	private void loiTableReportData(LicenseServiceResponseInfo licenseServiceResponceInfo,List list, String userId, String applicationNumber,
 			RequestLOIReport requestLOIReport) {
 		try {
 //			float[] columnWidths = { 1, 3,8 };
@@ -5286,8 +5339,24 @@ public class LoiReportService {
 					}
 				 }
 			}
+			try {
+			String tcpApplicationNumber=licenseServiceResponceInfo.getTcpApplicationNumber();
 
-				
+			java.util.List<ComplianceRequest> compliancelist = complianceService.search(requestLOIReport.getRequestInfo(),
+					tcpApplicationNumber);
+			if(compliancelist!=null&&!compliancelist.isEmpty()) {
+				for(ComplianceRequest com:compliancelist) {
+					Compliance compliance=com.getCompliance();
+					if(compliance.isPartOfLoi()) {
+						String strippedHtml = compliance.getCompliance().toString().replaceAll("\\$\\{(?<placeholder>[A-Za-z0-9-_]+)}", "");
+					   list.add(new ListItem(strippedHtml,normal));
+					}
+				}
+			}
+		
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 //			System.out.println("rest2:---" + rest2);
 //			int colIndex = 0;
