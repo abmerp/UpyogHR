@@ -35,7 +35,7 @@ public class RevisedPlanController {
 	@PostMapping("/_create")
 	public ResponseEntity<RevisedPlanResponse> create(@RequestBody RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
 
-		List<RevisedPlan> revisedPlan = revisedPlanServices.create(revisedPlanRequest);
+		RevisedPlan revisedPlan = revisedPlanServices.create(revisedPlanRequest);
 
 		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlan).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(revisedPlanRequest.getRequestInfo(), true))
@@ -47,7 +47,7 @@ public class RevisedPlanController {
 	@PostMapping("/_update")
 	public ResponseEntity<RevisedPlanResponse> update(@RequestBody RevisedPlanRequest revisedPlanRequest) {
 
-		List<RevisedPlan> revisedPlan = revisedPlanServices.update(revisedPlanRequest);
+		RevisedPlan revisedPlan = revisedPlanServices.update(revisedPlanRequest);
 		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlan).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(revisedPlanRequest.getRequestInfo(), true))
 				.build();
@@ -58,7 +58,7 @@ public class RevisedPlanController {
 	public ResponseEntity<RevisedPlanResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		List<RevisedPlan> revisedPlan = revisedPlanServices.search(requestInfoWrapper.getRequestInfo(),
+		RevisedPlan revisedPlan = revisedPlanServices.search(requestInfoWrapper.getRequestInfo(),
 				applicationNumber, licenceNumber);
 
 		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlan).responseInfo(

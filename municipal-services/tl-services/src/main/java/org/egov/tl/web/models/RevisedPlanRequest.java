@@ -25,6 +25,6 @@ public class RevisedPlanRequest {
 	
 	
     @JsonProperty("RevisedPlan")
-	private List<RevisedPlan> revisedPlan;
+	private RevisedPlan revisedPlan;
 
 }

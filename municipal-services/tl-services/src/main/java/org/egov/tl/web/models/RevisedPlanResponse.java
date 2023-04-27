@@ -20,6 +20,6 @@ public class RevisedPlanResponse {
 
 	
 	private ResponseInfo responseInfo = null;
-	private List<RevisedPlan> revisedPlan;
+	private RevisedPlan revisedPlan;
 	
 }
