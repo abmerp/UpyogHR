@@ -7,7 +7,7 @@ serviceMaps:
    fromTopic: save-transfer-of-licence
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_transfer_of_licence_service (id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, newadditionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    - query: INSERT INTO public.eg_transfer_of_licence_service(id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);    
       basePath: Transfer
       jsonMaps:
 
@@ -39,6 +39,12 @@ serviceMaps:
 
        - jsonPath: $.Transfer.status
        
+       - jsonPath: $.Transfer.tcpApplicationNumber
+       
+       - jsonPath: $.Transfer.tcpCaseNumber
+       
+       - jsonPath: $.Transfer.tcpDairyNumber
+       
        - jsonPath: $.Transfer.newAdditionalDetails
          type: JSON
          dbType: JSONB
@@ -57,7 +63,7 @@ serviceMaps:
           - jsonPath: $.Transfer.applicationNumber
           
    
-       - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=? ;   
+       - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, newadditionaldetails=? WHERE application_number=? ;   
          basePath: Transfer
          jsonMaps:
 
@@ -92,4 +98,8 @@ serviceMaps:
           - jsonPath: $.Transfer.tcpDairyNumber     
         
           - jsonPath: $.Transfer.applicationNumber
+          
+          - jsonPath: $.Transfer.newAdditionalDetails
+            type: JSON
+            dbType: JSONB
    
