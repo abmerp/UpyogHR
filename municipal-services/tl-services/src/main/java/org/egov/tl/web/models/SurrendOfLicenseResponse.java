@@ -18,6 +18,6 @@ import lombok.Setter;
 public class SurrendOfLicenseResponse {
 	
 	 private ResponseInfo responseInfo = null;
-		private List<SurrendOfLicense> surrendOfLicense;
+		private SurrendOfLicense surrendOfLicense;
 
 }

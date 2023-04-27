@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
 @RequestMapping("/SurrendOfLicenseRequest")
 public class SurrendOfLicenseController {
@@ -32,9 +34,9 @@ public class SurrendOfLicenseController {
 
 	@PostMapping("/_create")
 	public ResponseEntity<SurrendOfLicenseResponse> create(
-			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) {
+			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) throws JsonProcessingException {
 
-		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.create(surrendOfLicenseRequest);
+		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.create(surrendOfLicenseRequest);
 
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder()
 				.surrendOfLicense(surrendOfLicense).responseInfo(responseInfoFactory
@@ -48,9 +50,9 @@ public class SurrendOfLicenseController {
 	public ResponseEntity<SurrendOfLicenseResponse> update(
 			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) {
 
-		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.update(surrendOfLicenseRequest);
+		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.update(surrendOfLicenseRequest);
 
-//		List<SurrendOfLicense> SurrendOfLicenseList = new ArrayList<>();
+//		SurrendOfLicense SurrendOfLicenseList = new ArrayList<>();
 //		SurrendOfLicenseList.add(surrendOfLicense);
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder()
 				.surrendOfLicense(surrendOfLicense).responseInfo(responseInfoFactory
@@ -64,7 +66,7 @@ public class SurrendOfLicenseController {
 	public ResponseEntity<SurrendOfLicenseResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
+		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
 				licenceNumber,applicationNumber);
 		
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder(). surrendOfLicense(surrendOfLicense)

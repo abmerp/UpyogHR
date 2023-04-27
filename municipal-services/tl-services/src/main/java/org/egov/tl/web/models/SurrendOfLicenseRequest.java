@@ -24,6 +24,6 @@ public class SurrendOfLicenseRequest {
 	
 	
     @JsonProperty("SurrendOfLicense")
-	private List<SurrendOfLicense> surrendOfLicense;
+	private SurrendOfLicense surrendOfLicense;
 
 }

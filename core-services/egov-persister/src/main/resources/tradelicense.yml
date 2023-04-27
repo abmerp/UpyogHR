@@ -1362,72 +1362,84 @@ serviceMaps:
    isTransaction: true
    queryMaps:      
     
-       - query: INSERT INTO public.eg_surrend_of_license( id, license_no, select_type, area_falling_under, third_party_rights, arera_registration, zoning_layout_planfileurl, license_copyfileurl, edca_vailedfileurl, detailed_relocationschemefileurl, gift_deedfileurl, mutationfileurl, jamabandhifileurl, third_partyrights_declarationfileurl, areain_acres, application_number, additionaldetails, created_by, "lastModified_by", created_time, "lastModified_time", workflowcode, status, businessservice, tenant_id, declarationi_dwworksfileurl, revised_layout_planfileurl, availed_edc_file_url, area_falling_underfileurl, area_falling_dividing) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);  
-         basePath: SurrendOfLicense.*
+       - query: INSERT INTO public.eg_surrend_of_license(id, license_no, select_type, area_falling_under, third_party_rights, arera_registration, zoning_layout_planfileurl, license_copyfileurl, edca_vailedfileurl, detailed_relocationschemefileurl, gift_deedfileurl, mutationfileurl, jamabandhifileurl, third_partyrights_declarationfileurl, areain_acres, application_number, additionaldetails, created_by, "lastModified_by", created_time, "lastModified_time", workflowcode, status, businessservice, tenant_id, declarationi_dwworksfileurl, revised_layout_planfileurl, availed_edc_file_url, area_falling_underfileurl, area_falling_dividing, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+         basePath: SurrendOfLicense
          jsonMaps:    
          
-          - jsonPath: $.SurrendOfLicense.*.id     
+          - jsonPath: $.SurrendOfLicense.id     
           
-          - jsonPath: $.SurrendOfLicense.*.licenseNo
+          - jsonPath: $.SurrendOfLicense.licenseNo
           
-          - jsonPath: $.SurrendOfLicense.*.selectType
+          - jsonPath: $.SurrendOfLicense.selectType
           
-          - jsonPath: $.SurrendOfLicense.*.areaFallingUnder      
+          - jsonPath: $.SurrendOfLicense.areaFallingUnder      
                    
-          - jsonPath: $.SurrendOfLicense.*.thirdPartyRights
+          - jsonPath: $.SurrendOfLicense.thirdPartyRights
           
-          - jsonPath: $.SurrendOfLicense.*.areraRegistration
+          - jsonPath: $.SurrendOfLicense.areraRegistration
           
-          - jsonPath: $.SurrendOfLicense.*.zoningLayoutPlanfileUrl 
+          - jsonPath: $.SurrendOfLicense.zoningLayoutPlanfileUrl 
           
-          - jsonPath: $.SurrendOfLicense.*.licenseCopyfileUrl
+          - jsonPath: $.SurrendOfLicense.licenseCopyfileUrl
            
-          - jsonPath: $.SurrendOfLicense.*.edcaVailedfileUrl
+          - jsonPath: $.SurrendOfLicense.edcaVailedfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.detailedRelocationSchemefileUrl
+          - jsonPath: $.SurrendOfLicense.detailedRelocationSchemefileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.giftDeedfileUrl         
+          - jsonPath: $.SurrendOfLicense.giftDeedfileUrl         
 
-          - jsonPath: $.SurrendOfLicense.*.mutationfileUrl
+          - jsonPath: $.SurrendOfLicense.mutationfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.jamabandhifileUrl       
+          - jsonPath: $.SurrendOfLicense.jamabandhifileUrl       
 
-          - jsonPath: $.SurrendOfLicense.*.thirdPartyRightsDeclarationfileUrl
+          - jsonPath: $.SurrendOfLicense.thirdPartyRightsDeclarationfileUrl
 
-          - jsonPath: $.SurrendOfLicense.*.areaInAcres
+          - jsonPath: $.SurrendOfLicense.areaInAcres
 
-          - jsonPath: $.SurrendOfLicense.*.applicationNumber  
+          - jsonPath: $.SurrendOfLicense.applicationNumber  
           
-          - jsonPath: $.SurrendOfLicense.*.additionalDetails
+          - jsonPath: $.SurrendOfLicense.additionalDetails
             type: JSON
             dbType: JSONB
           
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.createdBy
+          - jsonPath: $.SurrendOfLicense.auditDetails.createdBy
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedBy         
+          - jsonPath: $.SurrendOfLicense.auditDetails.lastModifiedBy         
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails. createdTime
+          - jsonPath: $.SurrendOfLicense.auditDetails.createdTime
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedTime
+          - jsonPath: $.SurrendOfLicense.auditDetails.lastModifiedTime
           
-          - jsonPath: $.SurrendOfLicense.*.workflowCode
+          - jsonPath: $.SurrendOfLicense.workflowCode
          
-          - jsonPath: $.SurrendOfLicense.*.status
+          - jsonPath: $.SurrendOfLicense.status
         
-          - jsonPath: $.SurrendOfLicense.*.businessService
+          - jsonPath: $.SurrendOfLicense.businessService
        
-          - jsonPath: $.SurrendOfLicense.*.tenantId  
+          - jsonPath: $.SurrendOfLicense.tenantId  
           
-          - jsonPath: $.SurrendOfLicense.*.declarationIDWWorksfileUrl
+          - jsonPath: $.SurrendOfLicense.declarationIDWWorksfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.revisedLayoutPlanfileUrl
+          - jsonPath: $.SurrendOfLicense.revisedLayoutPlanfileUrl
          
-          - jsonPath: $.SurrendOfLicense.*.availedEdcfileUrl
+          - jsonPath: $.SurrendOfLicense.availedEdcfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.areaFallingUnderfileUrl  
+          - jsonPath: $.SurrendOfLicense.areaFallingUnderfileUrl  
           
-          - jsonPath: $.SurrendOfLicense.*.areaFallingDividing     
-
+          - jsonPath: $.SurrendOfLicense.areaFallingDividing   
+          
+          - jsonPath: $.SurrendOfLicense.tcpApplicationNumber
+          
+          - jsonPath: $.SurrendOfLicense.tcpCaseNumber
+          
+          - jsonPath: $.SurrendOfLicense.tcpDairyNumber 
+          
+          - jsonPath: $.SurrendOfLicense.newAdditionalDetails   
+            type: JSON
+            dbType: JSONB
+            
+            
+            
  - version: 1.0
    description: update surrend of license
    fromTopic: update-surrend-of-license
@@ -1435,79 +1447,85 @@ serviceMaps:
    queryMaps:      
     
        - query: INSERT INTO public.eg_surrend_of_license_audit SELECT * FROM public.eg_surrend_of_license WHERE application_number = ?;
-         basePath: SurrendOfLicense.*
+         basePath: SurrendOfLicense
          jsonMaps:
-          - jsonPath: $.ApprovalStandardEntity.*.applicationNumber
+          - jsonPath: $.SurrendOfLicense.applicationNumber
           
-       - query: UPDATE public.eg_surrend_of_license SET id=?, select_type=?, area_falling_under=?, third_party_rights=?, arera_registration=?, zoning_layout_planfileurl=?, license_copyfileurl=?, edca_vailedfileurl=?, detailed_relocationschemefileurl=?, gift_deedfileurl=?, mutationfileurl=?, jamabandhifileurl=?, third_partyrights_declarationfileurl=?, areain_acres=?, additionaldetails=?, created_by=?, "lastModified_by"=?, created_time=?, "lastModified_time"=?, workflowcode=?, status=?, businessservice=?, tenant_id=?, declarationi_dwworksfileurl=?, revised_layout_planfileurl=?, availed_edc_file_url=?, area_falling_underfileurl=?, area_falling_dividing=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=? WHERE application_number=?;  
-         basePath: SurrendOfLicense.*
+       - query: UPDATE public.eg_surrend_of_license SET id=?, select_type=?, area_falling_under=?, third_party_rights=?, arera_registration=?, zoning_layout_planfileurl=?, license_copyfileurl=?, edca_vailedfileurl=?, detailed_relocationschemefileurl=?, gift_deedfileurl=?, mutationfileurl=?, jamabandhifileurl=?, third_partyrights_declarationfileurl=?, areain_acres=?, additionaldetails=?, created_by=?, "lastModified_by"=?, created_time=?, "lastModified_time"=?, workflowcode=?, status=?, businessservice=?, tenant_id=?, declarationi_dwworksfileurl=?, revised_layout_planfileurl=?, availed_edc_file_url=?, area_falling_underfileurl=?, area_falling_dividing=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, newadditionaldetails=? WHERE application_number=?;  
+         basePath: SurrendOfLicense
          jsonMaps:    
          
-          - jsonPath: $.SurrendOfLicense.*.id 
+          - jsonPath: $.SurrendOfLicense.id 
           
-          - jsonPath: $.SurrendOfLicense.*.selectType
+          - jsonPath: $.SurrendOfLicense.selectType
           
-          - jsonPath: $.SurrendOfLicense.*.areaFallingUnder      
+          - jsonPath: $.SurrendOfLicense.areaFallingUnder      
                    
-          - jsonPath: $.SurrendOfLicense.*.thirdPartyRights
+          - jsonPath: $.SurrendOfLicense.thirdPartyRights
           
-          - jsonPath: $.SurrendOfLicense.*.areraRegistration
+          - jsonPath: $.SurrendOfLicense.areraRegistration
           
-          - jsonPath: $.SurrendOfLicense.*.zoningLayoutPlanfileUrl 
+          - jsonPath: $.SurrendOfLicense.zoningLayoutPlanfileUrl 
           
-          - jsonPath: $.SurrendOfLicense.*.licenseCopyfileUrl
+          - jsonPath: $.SurrendOfLicense.licenseCopyfileUrl
            
-          - jsonPath: $.SurrendOfLicense.*.edcaVailedfileUrl
+          - jsonPath: $.SurrendOfLicense.edcaVailedfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.detailedRelocationSchemefileUrl
+          - jsonPath: $.SurrendOfLicense.detailedRelocationSchemefileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.giftDeedfileUrl         
+          - jsonPath: $.SurrendOfLicense.giftDeedfileUrl         
 
-          - jsonPath: $.SurrendOfLicense.*.mutationfileUrl
+          - jsonPath: $.SurrendOfLicense.mutationfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.jamabandhifileUrl       
+          - jsonPath: $.SurrendOfLicense.jamabandhifileUrl       
 
-          - jsonPath: $.SurrendOfLicense.*.thirdPartyRightsDeclarationfileUrl
+          - jsonPath: $.SurrendOfLicense.thirdPartyRightsDeclarationfileUrl
 
-          - jsonPath: $.SurrendOfLicense.*.areaInAcres 
+          - jsonPath: $.SurrendOfLicense.areaInAcres 
           
-          - jsonPath: $.SurrendOfLicense.*.additionalDetails
+          - jsonPath: $.SurrendOfLicense.additionalDetails
             type: JSON
             dbType: JSONB
           
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.createdBy
+          - jsonPath: $.SurrendOfLicense.auditDetails.createdBy
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedBy         
+          - jsonPath: $.SurrendOfLicense.auditDetails.lastModifiedBy         
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails. createdTime
+          - jsonPath: $.SurrendOfLicense.auditDetails.createdTime
 
-          - jsonPath: $.SurrendOfLicense.*.auditDetails.lastModifiedTime
+          - jsonPath: $.SurrendOfLicense.auditDetails.lastModifiedTime
           
-          - jsonPath: $.SurrendOfLicense.*.workflowCode
+          - jsonPath: $.SurrendOfLicense.workflowCode
          
-          - jsonPath: $.SurrendOfLicense.*.status
+          - jsonPath: $.SurrendOfLicense.status
         
-          - jsonPath: $.SurrendOfLicense.*.businessService
+          - jsonPath: $.SurrendOfLicense.businessService
        
-          - jsonPath: $.SurrendOfLicense.*.tenantId  
+          - jsonPath: $.SurrendOfLicense.tenantId  
           
-          - jsonPath: $.SurrendOfLicense.*.declarationIDWWorksfileUrl
+          - jsonPath: $.SurrendOfLicense.declarationIDWWorksfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.revisedLayoutPlanfileUrl
+          - jsonPath: $.SurrendOfLicense.revisedLayoutPlanfileUrl
          
-          - jsonPath: $.SurrendOfLicense.*.availedEdcfileUrl
+          - jsonPath: $.SurrendOfLicense.availedEdcfileUrl
           
-          - jsonPath: $.SurrendOfLicense.*.areaFallingUnderfileUrl  
+          - jsonPath: $.SurrendOfLicense.areaFallingUnderfileUrl  
           
-          - jsonPath: $.SurrendOfLicense.*.areaFallingDividing   
+          - jsonPath: $.SurrendOfLicense.areaFallingDividing   
           
-          - jsonPath: $.SurrendOfLicense.*.tcpApplicationNumber
+          - jsonPath: $.SurrendOfLicense.tcpApplicationNumber
           
-          - jsonPath: $.SurrendOfLicense.*.tcpCaseNumber
+          - jsonPath: $.SurrendOfLicense.tcpCaseNumber
           
-          - jsonPath: $.SurrendOfLicense.*.tcpDairyNumber
+          - jsonPath: $.SurrendOfLicense.tcpDairyNumber
+          
+          
+          - jsonPath: $.SurrendOfLicense.newAdditionalDetails   
+            type: JSON
+            dbType: JSONB
 
-          - jsonPath: $.SurrendOfLicense.*.applicationNumber  
+          - jsonPath: $.SurrendOfLicense.applicationNumber  
+         
           
  - version: 1.0
    description: create extension of clu permission
