@@ -926,15 +926,15 @@ public class AdditionalFeature extends FeatureProcess {
 
     }
 
-    private void validate4a(Plan pl, ScrutinyDetail scrutinyDetail) {
-        if (pl.getUtility().getSegregationOfWaste() != null && !pl.getUtility().getSegregationOfWaste().isEmpty()) {
-            addDetails(scrutinyDetail, "55-4-a", "Segregation of Waste", "Segregation of waste details",
-                    "Provided segregation of waste details", Result.Accepted.getResultVal());
-        } else {
-            addDetails(scrutinyDetail, "55-4-a", "Segregation of Waste", "Segregation of waste details",
-                    "Not provided segregation of waste details", Result.Not_Accepted.getResultVal());
-        }
-    }
+//    private void validate4a(Plan pl, ScrutinyDetail scrutinyDetail) {
+//        if (pl.getUtility().getSegregationOfWaste() != null && !pl.getUtility().getSegregationOfWaste().isEmpty()) {
+//            addDetails(scrutinyDetail, "55-4-a", "Segregation of Waste", "Segregation of waste details",
+//                    "Provided segregation of waste details", Result.Accepted.getResultVal());
+//        } else {
+//            addDetails(scrutinyDetail, "55-4-a", "Segregation of Waste", "Segregation of waste details",
+//                    "Not provided segregation of waste details", Result.Not_Accepted.getResultVal());
+//        }
+//    }
 
     private void validate2b(Plan pl, ScrutinyDetail scrutinyDetail) {
         if (pl.getUtility().getSolarWaterHeatingSystems() != null
