@@ -66,6 +66,10 @@ public class Employee {
     @SafeHtml
     @Size(max = 1024)
     private String uuid;
+    
+    @SafeHtml
+    @Size(max = 1024)
+    private String id;
 
    
 

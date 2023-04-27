@@ -509,6 +509,7 @@ public class LicenseService {
 					licenseServiceResponseInfo.setTcpLoiNumber(String.valueOf(tradeLicense.getTcpLoiNumber()));
 					licenseServiceResponseInfo.setIdw(String.valueOf(tradeLicense.getTradeLicenseDetail().getIDW()));
 					licenseServiceResponseInfo.setEdc(String.valueOf(tradeLicense.getTradeLicenseDetail().getEDC()));
+					licenseServiceResponseInfo.setTcpApplicationNumber(String.valueOf(tradeLicense.getTcpApplicationNumber()));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}
