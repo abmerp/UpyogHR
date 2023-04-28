@@ -116,9 +116,9 @@ public class LoiReportController {
 	
 
 	@RequestMapping(value = "/loi/report/_create", method = RequestMethod.POST)
-	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response,@RequestParam("role") String role, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
+	public void createLoiReport(@RequestParam("applicationNumber") String applicationNumber,HttpServletResponse response, @RequestBody RequestLOIReport requestLOIReport) throws IOException {
 		
-		loiReportService.createLoiReport(applicationNumber,role, requestLOIReport);
+		loiReportService.createLoiReport(applicationNumber, requestLOIReport);
 		log.info("Loi Report has been generated successfully for ApplicationNumber : "+applicationNumber);
 		String flocation=loireportPath+"loi-report-"+applicationNumber+".pdf";
 		File file = new File(flocation);

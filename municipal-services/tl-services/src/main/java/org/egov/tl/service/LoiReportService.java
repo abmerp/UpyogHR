@@ -40,6 +40,8 @@ import org.egov.tl.web.models.UserSearchCriteria;
 import org.egov.tl.web.models.calculation.CalculationRes;
 import org.egov.tl.web.models.calculation.CalulationCriteria;
 import org.egov.tl.web.models.calculation.FeeAndBillingSlabIds;
+import org.jsoup.HttpStatusException;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -67,9 +69,12 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.RomanList;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.GrayColor;
 import com.itextpdf.text.pdf.PdfDiv;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfDiv.FloatType;
 import com.itextpdf.text.pdf.draw.LineSeparator;
@@ -184,7 +189,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC-", "").split("~")[0]
 						: "N/A") + "-JE (VA)- " + (applicationDate.split("\\s+")[0].split("\\.")[2]);
@@ -516,7 +521,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "-JE (VA)- " + (applicationDate.split("\\s+")[0].split("\\.")[2]);
@@ -838,7 +843,7 @@ public class LoiReportService {
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
 				String far = null;
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "-JE (VA)- " + (applicationDate.split("\\s+")[0].split("\\.")[2]);
@@ -1234,7 +1239,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "-JE (VA)- " + (applicationDate.split("\\s+")[0].split("\\.")[2]);
@@ -1596,7 +1601,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "-JE (VA)- " + (applicationDate.split("\\s+")[0].split("\\.")[2]);
@@ -1960,7 +1965,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "/Asstt.(MS)/22";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
@@ -2446,7 +2451,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "/JE (DS) 2022";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
@@ -2837,7 +2842,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 0);
+				addTitlePage(writer,doc, 0);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "-B-JE (MK) 2019";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
@@ -3209,7 +3214,7 @@ public class LoiReportService {
 				String residentialPercentage = "70";
 				String comericialPercentage = "30";
 
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "/JE(SB) 2023";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
@@ -3645,7 +3650,7 @@ public class LoiReportService {
 				Document doc = new Document(PageSize.A4);
 				PdfWriter writer = PdfWriter.getInstance(doc,new FileOutputStream(myFile+"loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 //				String mm=licenseServiceResponceInfo.getCaseNumber() ;
 //				System.out.println("mm:---------"+mm);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
@@ -4132,7 +4137,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "-A/JE(SB)/-2022";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
@@ -4567,7 +4572,7 @@ public class LoiReportService {
 				PdfWriter writer = PdfWriter.getInstance(doc,
 						new FileOutputStream(myFile + "loi-report-" + applicationNumber + ".pdf"));
 				doc.open();
-				addTitlePage(doc, 1);
+				addTitlePage(writer,doc, 1);
 				memoNumber = "LC- " + (licenseServiceResponceInfo.getCaseNumber() != null
 						? licenseServiceResponceInfo.getCaseNumber().replaceAll("LC", "").split("-")[0]
 						: "N/A") + "/JE(SB) 2023";// + (currentDate.split("\\s+")[0].split("\\.")[2]);
@@ -5098,7 +5103,8 @@ public class LoiReportService {
 
 				applicationDate = ConvertUtil.getCurrentDate(timeZoneName,
 						Long.parseLong(String.valueOf(licenseServiceResponceInfo.getApplicationDate())));
-				loiNumber=licenseServiceResponceInfo.getTcpLoiNumber();
+				String lNumber=licenseServiceResponceInfo.getTcpLoiNumber();
+				loiNumber=lNumber;//!=null?lNumber:"LOI Number will be generate in next steps.";
 				
 				totalArea = licenseDetails.getApplicantPurpose().getTotalArea();
 				AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails()
@@ -5237,9 +5243,8 @@ public class LoiReportService {
 
 		return id;
 	}
-	public void createLoiReport(String applicationNumber, String role, RequestLOIReport requestLOIReport) {
-		
-		String userId=getUserIdByRole(role,"hr",true,requestLOIReport.getRequestInfo());
+	public void createLoiReport(String applicationNumber, RequestLOIReport requestLOIReport) {
+		String userId=getUserIdByRole("DTCP_HR","hr",true,requestLOIReport.getRequestInfo());
 		String hqUserId=userId;
 		
 	    LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
@@ -5344,12 +5349,19 @@ public class LoiReportService {
 
 			java.util.List<ComplianceRequest> compliancelist = complianceService.search(requestLOIReport.getRequestInfo(),
 					tcpApplicationNumber);
+			
+			
 			if(compliancelist!=null&&!compliancelist.isEmpty()) {
 				for(ComplianceRequest com:compliancelist) {
 					Compliance compliance=com.getCompliance();
 					if(compliance.isPartOfLoi()) {
-						String strippedHtml = compliance.getCompliance().toString().replaceAll("\\$\\{(?<placeholder>[A-Za-z0-9-_]+)}", "");
-					   list.add(new ListItem(strippedHtml,normal));
+							try {
+							   org.jsoup.nodes.Document doc404 = Jsoup.parse(compliance.getCompliance());
+							   list.add(new ListItem(doc404.ownText(),normal));
+							} catch (Exception ex) {
+							   ex.printStackTrace();
+							}
+						
 					}
 				}
 			}
@@ -5401,7 +5413,7 @@ public class LoiReportService {
 		}
 	}
 
-	private static void addTitlePage(Document doc, int addressType) throws DocumentException {
+	private void addTitlePage(PdfWriter writer,Document doc, int addressType) throws DocumentException {
 		String dctpFormTitleAddress = "SCO-71-75, 2nd Floor, Sector 17 C, Chandigarh";
 		String dctpFormTitleContacrInfo = "Phone: 0172-2549349 e-mail:tcpharyana7@gmail.com";
 		if (addressType == 1) {
@@ -5440,6 +5452,10 @@ public class LoiReportService {
 		Paragraph preface5 = new Paragraph("(See Rule 10)", smallBold);
 		preface5.setAlignment(Element.ALIGN_CENTER);
 		doc.add(preface5);
+		if (loiNumber==null) {
+			new WatermarkPageEvent().onEndPage(writer, doc);
+		}
+		
 	}
 
 	private UserResponse getUserInfo(String... userId) {
@@ -5478,10 +5494,24 @@ public class LoiReportService {
 			paragraph.add(new Paragraph(" "));
 		}
 	}
+	
+	
 
 
 	/***************************************
 	 * LOI Purpose : Common method end *
 	 ***************************************/
 
+}
+
+class WatermarkPageEvent extends PdfPageEventHelper {
+
+    Font FONT = new Font(Font.FontFamily.HELVETICA, 52, Font.BOLD, new GrayColor(0.85f));
+
+    @Override
+    public void onEndPage(PdfWriter writer, Document document) {
+    		 ColumnText.showTextAligned(writer.getDirectContentUnder(),
+    	                Element.ALIGN_CENTER, new Phrase("Not Approved", FONT),
+    	                297.5f, 421, writer.getPageNumber() % 2 == 1 ? 45 : -45);
+		}
 }
