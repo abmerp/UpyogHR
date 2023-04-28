@@ -229,7 +229,7 @@ public class TransferOfLicenseServices {
 		}
 
 		List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(), transfer.getApplicationNumber());
-		if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
+		if (CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
 			throw new CustomException("Found none or multiple transfer of licence applications with applicationNumber.",
 					"Found none or multiple transfer of licence applications with applicationNumber.");
 		}

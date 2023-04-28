@@ -95,11 +95,13 @@ serviceMaps:
           
           - jsonPath: $.Transfer.tcpCaseNumber
           
-          - jsonPath: $.Transfer.tcpDairyNumber     
-        
-          - jsonPath: $.Transfer.applicationNumber
+          - jsonPath: $.Transfer.tcpDairyNumber 
           
           - jsonPath: $.Transfer.newAdditionalDetails
             type: JSON
-            dbType: JSONB
+            dbType: JSONB    
+        
+          - jsonPath: $.Transfer.applicationNumber
+          
+          
    
