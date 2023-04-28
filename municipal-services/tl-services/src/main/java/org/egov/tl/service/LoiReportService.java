@@ -1,10 +1,14 @@
 package org.egov.tl.service;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.RoundingMode;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -63,20 +67,26 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.RomanList;
 import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.GrayColor;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfDiv;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.PdfDiv.FloatType;
+import com.itextpdf.text.pdf.PdfGState;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import lombok.extern.log4j.Log4j2;
@@ -489,7 +499,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -810,7 +820,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -1208,7 +1218,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -1570,7 +1580,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -1929,7 +1939,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -2415,7 +2425,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (FileNotFoundException e1) {
 				log.error("FileNotFoundException : "+e1.getMessage());
 			} catch (DocumentException e1) {
@@ -2809,7 +2819,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -3180,7 +3190,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -3618,7 +3628,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -4103,7 +4113,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -4538,7 +4548,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -4955,7 +4965,7 @@ public class LoiReportService {
 				}
 
 				doc.close();
-				writer.close();
+				writer.close();  addWaterMarkOnPDF(applicationNumber);
 			} catch (DocumentException e1) {
 				log.error("DocumentException : "+e1.getMessage());
 			} catch (Exception e) {
@@ -5309,7 +5319,9 @@ public class LoiReportService {
 			getLoiReportIntegratedResidentialPlottedColony(applicationNumber, userId, hqUserId, requestLOIReport);
 			break;
 		}
-		log.info("Created LOI Report for Purpose : "+purpose);
+		 
+	 	  
+		  log.info("Created LOI Report for Purpose : "+purpose);
 		
 	}
 
@@ -5452,10 +5464,7 @@ public class LoiReportService {
 		Paragraph preface5 = new Paragraph("(See Rule 10)", smallBold);
 		preface5.setAlignment(Element.ALIGN_CENTER);
 		doc.add(preface5);
-		if (loiNumber==null) {
-			new WatermarkPageEvent().onEndPage(writer, doc);
-		}
-		
+	
 	}
 
 	private UserResponse getUserInfo(String... userId) {
@@ -5495,6 +5504,67 @@ public class LoiReportService {
 		}
 	}
 	
+	private void addWaterMarkOnPDF(String applicationNumber) {
+		
+		if(loiNumber==null) {
+			System.out.println("pdf called");
+			String flocation=loireportPath+"loi-report-"+applicationNumber+".pdf";
+			try {
+			File file=new File(flocation);
+			InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+			
+	        // read existing pdf
+	        PdfReader reader = new PdfReader(inputStream);
+	        PdfStamper stamper = new PdfStamper(reader, new FileOutputStream(flocation));
+	        // text watermark
+	//        Font FONT = new Font(Font.FontFamily.HELVETICA, 34, Font.BOLD, new GrayColor(0.5f));
+	        Font FONT = new Font(Font.FontFamily.HELVETICA, 52, Font.BOLD, GrayColor.GRAY);
+	
+	        Phrase p = new Phrase("Not Approved", FONT);
+	
+	        // image watermark
+	//        Image img = Image.getInstance(new URL("image path"));
+	//        float w = img.getScaledWidth();
+	//        float h = img.getScaledHeight();
+	
+	        // properties
+	        PdfContentByte over;
+	        Rectangle pagesize;
+	        float x, y;
+	
+	        // loop over every page
+	        int n = reader.getNumberOfPages();
+	        for (int i = 1; i <= n; i++) {
+	
+	            // get page size and position
+	            pagesize = reader.getPageSizeWithRotation(i);
+	            x = (pagesize.getLeft() + pagesize.getRight()) / 2;
+	            y = (pagesize.getTop() + pagesize.getBottom()) / 2;
+	            over = stamper.getOverContent(i);
+	            over.saveState();
+	//
+	//            // set transparency
+	            PdfGState state = new PdfGState();
+	            state.setFillOpacity(0.6f);
+	            over.setGState(state);
+	
+	            // add watermark text and image
+	//            if (i % 2 == 1) {
+	                ColumnText.showTextAligned(over, Element.ALIGN_CENTER, p, x, y, 45);
+	//            } else {
+	//                over.addImage(img, w, 0, 0, h, x - (w / 2), y - (h / 2));
+	//            }
+	
+	            over.restoreState();
+	        }
+	        stamper.close();
+	        reader.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+	  }
+		
+	}
 	
 
 
@@ -5504,14 +5574,3 @@ public class LoiReportService {
 
 }
 
-class WatermarkPageEvent extends PdfPageEventHelper {
-
-    Font FONT = new Font(Font.FontFamily.HELVETICA, 52, Font.BOLD, new GrayColor(0.85f));
-
-    @Override
-    public void onEndPage(PdfWriter writer, Document document) {
-    		 ColumnText.showTextAligned(writer.getDirectContentUnder(),
-    	                Element.ALIGN_CENTER, new Phrase("Not Approved", FONT),
-    	                297.5f, 421, writer.getPageNumber() % 2 == 1 ? 45 : -45);
-		}
-}
