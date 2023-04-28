@@ -189,4 +189,16 @@ public class CompletionCertificate{// implements Serializable{
 	@JsonProperty("createdTime")
 	private long createdTime;
 	
+	@JsonProperty("newAdditionalDetails")
+	private JsonNode newAdditionalDetails;
+	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
+	
 }

@@ -17,11 +17,13 @@ import org.egov.tl.web.models.ConstructionOfCommunity;
 import org.egov.tl.web.models.ConstructionOfCommunityRequest;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
+import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -166,6 +168,21 @@ public class ConstructionOfCommunityRepo {
 				}catch (Exception e) {
 				   e.printStackTrace();
 				}
+				PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
+				JsonNode additionalDetails = null;
+				if (pgObj1 != null) {
+
+					try {
+						additionalDetails = mapper.readTree(pgObj1.getValue());
+					} catch (JsonMappingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
 				
 				return ConstructionOfCommunity.builder()
 					.id(rs.getString("id"))
@@ -176,7 +193,6 @@ public class ConstructionOfCommunityRepo {
 					.isDraft(rs.getString("is_draft"))
 					.licenseNumber(rs.getString("license_number"))
 					.createdDate(rs.getTimestamp("created_date"))
-					
 					.appliedBy(rs.getString("applied_by"))
 					.areaInAcers(rs.getString("area_in_acers"))
 					.validUpTo(rs.getString("valid_up_to"))
@@ -191,7 +207,7 @@ public class ConstructionOfCommunityRepo {
 					.explonatoryNotForExtention(rs.getString("explonatory_not_for_extention"))
 					.locationOfApplied(rs.getString("location_of_applied"))
 					.anyOtherDocumentByDirector(rs.getString("any_other_document_by_director"))
-			
+					.newAdditionalDetails(additionalDetails)			
 					.build();
 			});
 			if(constructionOfCommunity!=null&&!constructionOfCommunity.isEmpty()) {

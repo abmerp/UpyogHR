@@ -98,4 +98,6 @@ public class CompositionOfUrban {
 	@JsonProperty("anyOtherDoc")
 	private String anyOtherDoc;
 	
+	private JsonNode newAdditionalDetails;
+	
 }

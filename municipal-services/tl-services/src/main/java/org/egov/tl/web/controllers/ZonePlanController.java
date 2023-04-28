@@ -3,6 +3,7 @@ package org.egov.tl.web.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.egov.tl.abm.newservices.contract.ZonePlanContract;
 import org.egov.tl.service.ZonePlanServices;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.RequestInfoWrapper;
@@ -45,11 +46,11 @@ public class ZonePlanController {
 	}
 
 	@PostMapping("/_update")
-	public ResponseEntity<ZonePlanResponse> update(@RequestBody ZonePlanRequest zonePlanRequest) {
+	public ResponseEntity<ZonePlanResponse> update(@RequestBody ZonePlanContract zonePlanRequest) {
 
-		ZonePlan zonePlan = zonePlanServices.update(zonePlanRequest);
-		List<ZonePlan> zonePlanList = new ArrayList<>();
-		zonePlanList.add(zonePlan);
+		List<ZonePlan> zonePlanList= zonePlanServices.update(zonePlanRequest);
+//		List<ZonePlan> zonePlanList = new ArrayList<>();
+//		zonePlanList.add(zonePlan);
 		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder().zonePlan(zonePlanList)
 				.responseInfo(
 						responseInfoFactory.createResponseInfoFromRequestInfo(zonePlanRequest.getRequestInfo(), true))

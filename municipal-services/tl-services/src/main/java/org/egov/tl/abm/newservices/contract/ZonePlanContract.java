@@ -1,8 +1,9 @@
-package org.egov.tl.web.models;
+package org.egov.tl.abm.newservices.contract;
 
 import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.tl.web.models.ZonePlan;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,19 +19,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ChangeBeneficialResponse {
+public class ZonePlanContract {
 	
-	@JsonProperty("ResponseInfo")
-	private RequestInfo requestInfo = null;
+	@JsonProperty("RequestInfo")
+	private RequestInfo requestInfo;
 	
-	@JsonProperty("changeBeneficial")
-	private List<?> changeBeneficial;
 	
-	@JsonProperty("message")
-	private String message;
-	
-	@JsonProperty("status")
-	private boolean status;
-
+    @JsonProperty("ZonePlan")
+	private List<ZonePlan> zonePlan;
 
 }

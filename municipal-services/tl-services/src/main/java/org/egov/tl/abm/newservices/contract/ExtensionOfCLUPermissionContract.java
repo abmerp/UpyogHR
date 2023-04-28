@@ -1,8 +1,9 @@
-package org.egov.tl.web.models;
+package org.egov.tl.abm.newservices.contract;
 
 import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.tl.web.models.ExtensionOfCLUPermission;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,25 +13,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class ChangeBeneficialResponse {
+public class ExtensionOfCLUPermissionContract {
 	
-	@JsonProperty("ResponseInfo")
-	private RequestInfo requestInfo = null;
+	@JsonProperty("RequestInfo")
+	private RequestInfo requestInfo;
 	
-	@JsonProperty("changeBeneficial")
-	private List<?> changeBeneficial;
 	
-	@JsonProperty("message")
-	private String message;
-	
-	@JsonProperty("status")
-	private boolean status;
-
+    @JsonProperty("ExtensionOfCLUPermission")
+    private List<ExtensionOfCLUPermission> extensionOfCLUPermission;
 
 }

@@ -24,6 +24,6 @@ public class ExtensionOfCLUPermissionRequest {
 	
 	
     @JsonProperty("ExtensionOfCLUPermission")
-	private List<ExtensionOfCLUPermission> ExtensionOfCLUPermission;
+	private ExtensionOfCLUPermission ExtensionOfCLUPermission;
 
 }

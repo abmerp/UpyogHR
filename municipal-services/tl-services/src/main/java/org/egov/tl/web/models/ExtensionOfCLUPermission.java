@@ -99,5 +99,7 @@ public class ExtensionOfCLUPermission {
 
 	@JsonProperty("tcpDairyNumber")
 	private String tcpDairyNumber;
+	
+	private JsonNode newAdditionalDetails;
 
 }

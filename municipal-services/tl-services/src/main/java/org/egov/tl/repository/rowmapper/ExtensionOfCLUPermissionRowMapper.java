@@ -87,7 +87,21 @@ public class ExtensionOfCLUPermissionRowMapper implements ResultSetExtractor<Lis
 				}
 				extensionOfCLUPermission.setAdditionalDetails(additionalDetail);
 			}
+			PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
 
+			if (pgObj1 != null) {
+				JsonNode additionalDetails = null;
+				try {
+					additionalDetails = mapper.readTree(pgObj1.getValue());
+				} catch (JsonMappingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				extensionOfCLUPermission.setNewAdditionalDetails(additionalDetails);
+			}
 			AuditDetails auditDetails = new AuditDetails();
 
 			AuditDetails auditDetails_build = auditDetails.builder().createdBy(rs.getString("created_by"))

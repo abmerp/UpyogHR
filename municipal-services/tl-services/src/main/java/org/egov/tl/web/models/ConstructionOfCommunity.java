@@ -116,5 +116,6 @@ public class ConstructionOfCommunity {
 	@JsonProperty("anyOtherDocumentByDirector")
 	private String anyOtherDocumentByDirector; 
 	
+	private JsonNode newAdditionalDetails;
 	
 }

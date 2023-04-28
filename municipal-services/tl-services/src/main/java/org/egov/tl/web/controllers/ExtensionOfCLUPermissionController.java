@@ -1,15 +1,15 @@
 package org.egov.tl.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.egov.tl.abm.newservices.contract.ExtensionOfCLUPermissionContract;
 import org.egov.tl.service.ExtensionOfCLUPermissionServices;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.ExtensionOfCLUPermission;
 import org.egov.tl.web.models.ExtensionOfCLUPermissionRequest;
 import org.egov.tl.web.models.ExtensionOfCLUPermissionResponse;
 import org.egov.tl.web.models.RequestInfoWrapper;
-import org.egov.tl.web.models.SurrendOfLicense;
-import org.egov.tl.web.models.SurrendOfLicenseRequest;
-import org.egov.tl.web.models.SurrendOfLicenseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @RestController
 @RequestMapping("/ExtensionOfCLUPermissionRequest")
@@ -30,13 +32,14 @@ public class ExtensionOfCLUPermissionController {
 
 	@PostMapping("/_create")
 	public ResponseEntity<ExtensionOfCLUPermissionResponse> create(
-			@RequestBody ExtensionOfCLUPermissionRequest extensionOfCLUPermissionRequest) {
+			@RequestBody ExtensionOfCLUPermissionRequest extensionOfCLUPermissionRequest) throws JsonProcessingException {
 
-		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices
+		ExtensionOfCLUPermission extensionOfCLUPermission = extensionOfCLUPermissionServices
 				.create(extensionOfCLUPermissionRequest);
-
+		List<ExtensionOfCLUPermission> extensionOfCLUPermissionList = new ArrayList<>();
+		extensionOfCLUPermissionList.add(extensionOfCLUPermission);
 		ExtensionOfCLUPermissionResponse extensionOfCLUPermissionResponse = ExtensionOfCLUPermissionResponse.builder()
-				.extensionOfCLUPermission(extensionOfCLUPermission)
+				.extensionOfCLUPermission(extensionOfCLUPermissionList)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(extensionOfCLUPermissionRequest.getRequestInfo(), true))
 				.build();
@@ -46,15 +49,14 @@ public class ExtensionOfCLUPermissionController {
 
 	@PostMapping("/_update")
 	public ResponseEntity<ExtensionOfCLUPermissionResponse> update(
-			@RequestBody ExtensionOfCLUPermissionRequest extensionOfCLUPermissionRequest) {
+			@RequestBody ExtensionOfCLUPermissionContract extensionOfCLUPermissionRequest) {
 
-		List<ExtensionOfCLUPermission> extensionOfCLUPermission = extensionOfCLUPermissionServices
-				.update(extensionOfCLUPermissionRequest);
-
-//		List<SurrendOfLicense> SurrendOfLicenseList = new ArrayList<>();
-//		SurrendOfLicenseList.add(surrendOfLicense);
+		List<ExtensionOfCLUPermission> extensionOfCLUPermissionList = extensionOfCLUPermissionServices
+				.Update(extensionOfCLUPermissionRequest);
+//		List<ExtensionOfCLUPermission> extensionOfCLUPermissionList = new ArrayList<>();
+//		extensionOfCLUPermissionList.add(extensionOfCLUPermission);
 		ExtensionOfCLUPermissionResponse extensionOfCLUPermissionResponse = ExtensionOfCLUPermissionResponse.builder()
-				.extensionOfCLUPermission(extensionOfCLUPermission)
+				.extensionOfCLUPermission(extensionOfCLUPermissionList)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(extensionOfCLUPermissionRequest.getRequestInfo(), true))
 				.build();

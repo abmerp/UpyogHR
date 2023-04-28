@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.map.HashedMap;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
+import org.egov.tl.abm.newservices.contract.ZonePlanContract;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.ZonePlanRowMapper;
@@ -136,7 +137,7 @@ public class ZonePlanServices {
 		return zonePlan;
 	}
 
-	public ZonePlan update(ZonePlanRequest zonePlanRequest) {
+	public List<ZonePlan> update(ZonePlanContract zonePlanRequest) {
 
 		String uuid = zonePlanRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -144,9 +145,9 @@ public class ZonePlanServices {
 
 		RequestInfo requestInfo = zonePlanRequest.getRequestInfo();
 
-		ZonePlan zonePlan = zonePlanRequest.getZonePlan();
+		List<ZonePlan> zonePlanList = zonePlanRequest.getZonePlan();
 
-		// for (ZonePlan zonePlan : zonePlanList) {
+		 for (ZonePlan zonePlan : zonePlanList) {
 
 		if (Objects.isNull(zonePlanRequest) || Objects.isNull(zonePlanRequest.getZonePlan())) {
 			throw new CustomException("ZonePlan must not be null", "ZonePlan must not be null");
@@ -211,13 +212,13 @@ public class ZonePlanServices {
 			zonePlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
 		}
-		// }
+		 }
 
-		zonePlanRequest.setZonePlan(zonePlan);
+		zonePlanRequest.setZonePlan(zonePlanList);
 
 		producer.push(zoneplanUpdateTopic, zonePlanRequest);
 
-		return zonePlan;
+		return zonePlanList;
 
 	}
 
@@ -298,7 +299,7 @@ public class ZonePlanServices {
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			ZonePlanRequest zonePlanRequest, ZonePlan zonePlan) {
+			ZonePlanContract zonePlanRequest, ZonePlan zonePlan) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
