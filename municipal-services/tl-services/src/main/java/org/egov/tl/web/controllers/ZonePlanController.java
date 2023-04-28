@@ -1,5 +1,6 @@
 package org.egov.tl.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.egov.tl.service.ZonePlanServices;
@@ -29,47 +30,46 @@ public class ZonePlanController {
 	private ZonePlanServices zonePlanServices;
 
 	@PostMapping("/_create")
-	public ResponseEntity<ZonePlanResponse> create(
-			@RequestBody ZonePlanRequest zonePlanRequest) throws JsonProcessingException {
+	public ResponseEntity<ZonePlanResponse> create(@RequestBody ZonePlanRequest zonePlanRequest)
+			throws JsonProcessingException {
 
 		ZonePlan zonePlan = zonePlanServices.create(zonePlanRequest);
-
-		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder()
-				.zonePlan(zonePlan).responseInfo(responseInfoFactory
-						.createResponseInfoFromRequestInfo(zonePlanRequest.getRequestInfo(), true))
+		List<ZonePlan> zonePlanList = new ArrayList<>();
+		zonePlanList.add(zonePlan);
+		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder().zonePlan(zonePlanList)
+				.responseInfo(
+						responseInfoFactory.createResponseInfoFromRequestInfo(zonePlanRequest.getRequestInfo(), true))
 				.build();
 
 		return new ResponseEntity<>(zonePlanResponse, HttpStatus.OK);
 	}
 
 	@PostMapping("/_update")
-	public ResponseEntity<ZonePlanResponse> update(
-			@RequestBody ZonePlanRequest zonePlanRequest) {
+	public ResponseEntity<ZonePlanResponse> update(@RequestBody ZonePlanRequest zonePlanRequest) {
 
 		ZonePlan zonePlan = zonePlanServices.update(zonePlanRequest);
-
-		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder()
-				.zonePlan(zonePlan).responseInfo(responseInfoFactory
-						.createResponseInfoFromRequestInfo(zonePlanRequest.getRequestInfo(), true))
+		List<ZonePlan> zonePlanList = new ArrayList<>();
+		zonePlanList.add(zonePlan);
+		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder().zonePlan(zonePlanList)
+				.responseInfo(
+						responseInfoFactory.createResponseInfoFromRequestInfo(zonePlanRequest.getRequestInfo(), true))
 				.build();
 
 		return new ResponseEntity<>(zonePlanResponse, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/_search")
 	public ResponseEntity<ZonePlanResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		ZonePlan zonePlan = zonePlanServices.search(requestInfoWrapper.getRequestInfo(),
-				licenceNumber,applicationNumber);
-		
-		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder(). zonePlan(zonePlan)
-				.responseInfo(responseInfoFactory
-						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+		List<ZonePlan> zonePlan = zonePlanServices.search(requestInfoWrapper.getRequestInfo(), licenceNumber,
+				applicationNumber);
+
+		ZonePlanResponse zonePlanResponse = ZonePlanResponse.builder().zonePlan(zonePlan).responseInfo(
+				responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
 				.build();
-		
+
 		return new ResponseEntity<>(zonePlanResponse, HttpStatus.OK);
 	}
 
-	
 }

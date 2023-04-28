@@ -1,8 +1,9 @@
-package org.egov.tl.web.models;
+package org.egov.tl.abm.newservices.contract;
 
 import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.tl.web.models.SurrendOfLicense;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,12 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SurrendOfLicenseRequest {
-
+public class SurrendOfLicenseContract {
+	
 	@JsonProperty("RequestInfo")
 	private RequestInfo requestInfo;
-
-	@JsonProperty("SurrendOfLicense")
-	private SurrendOfLicense surrendOfLicense;
+	
+	
+    @JsonProperty("SurrendOfLicense")
+	private List<SurrendOfLicense> surrendOfLicense;
 
 }

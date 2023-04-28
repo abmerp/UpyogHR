@@ -20,6 +20,6 @@ import lombok.Setter;
 public class ZonePlanResponse {
 
 	 private ResponseInfo responseInfo = null;
-		private ZonePlan zonePlan;
+		private List<ZonePlan> zonePlan;
 	
 }

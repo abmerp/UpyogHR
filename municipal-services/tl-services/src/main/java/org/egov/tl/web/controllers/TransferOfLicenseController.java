@@ -3,6 +3,7 @@ package org.egov.tl.web.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.egov.tl.abm.newservices.contract.TransferOfLicenseContract;
 import org.egov.tl.service.TransferOfLicenseServices;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.RequestInfoWrapper;
@@ -46,10 +47,10 @@ public class TransferOfLicenseController {
 
 	@PostMapping("/_update")
 	public ResponseEntity<TransferOfLicenseResponse> update(
-			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) {
-		Transfer transfer = transferOfLicenseServices.Update(transferOfLicenseRequest);
-		List<Transfer> transferList = new ArrayList<>();
-		transferList.add(transfer);
+			@RequestBody TransferOfLicenseContract transferOfLicenseRequest) {
+		List<Transfer> transferList = transferOfLicenseServices.Update(transferOfLicenseRequest);
+//		List<Transfer> transferList = new ArrayList<>();
+//		transferList.add(transfer);
 		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transferList)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))

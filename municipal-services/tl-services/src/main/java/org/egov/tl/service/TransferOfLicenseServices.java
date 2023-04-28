@@ -15,6 +15,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
+import org.egov.tl.abm.newservices.contract.TransferOfLicenseContract;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 
 import org.egov.tl.config.TLConfiguration;
@@ -208,7 +209,7 @@ public class TransferOfLicenseServices {
 
 	}
 
-	public Transfer Update(TransferOfLicenseRequest transferOfLicenseRequest) {
+	public List<Transfer> Update(TransferOfLicenseContract transferOfLicenseRequest) {
 
 		String uuid = transferOfLicenseRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -216,10 +217,10 @@ public class TransferOfLicenseServices {
 
 		RequestInfo requestInfo = transferOfLicenseRequest.getRequestInfo();
 
-		// List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
+		 List<Transfer> transferList = transferOfLicenseRequest.getTransfer();
 
-		// for (Transfer transfer : transferList) {
-		Transfer transfer = transferOfLicenseRequest.getTransfer();
+		 for (Transfer transfer : transferList) {
+	//	Transfer transfer = transferOfLicenseRequest.getTransfer();
 		if (Objects.isNull(transferOfLicenseRequest) || Objects.isNull(transferOfLicenseRequest.getTransfer())) {
 			throw new CustomException("transfer of licence must not be null", "transfer of licence must not be null");
 		}
@@ -281,15 +282,15 @@ public class TransferOfLicenseServices {
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 			transfer.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-
+			transferList.add(transfer);
+			}
 		}
-		// }
 
-		transferOfLicenseRequest.setTransfer(transfer);
+		transferOfLicenseRequest.setTransfer(transferList);
 
 		producer.push(tranferUpdateTopic, transferOfLicenseRequest);
 
-		return transfer;
+		return transferList;
 
 	}
 
@@ -304,7 +305,7 @@ public class TransferOfLicenseServices {
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			TransferOfLicenseRequest transferOfLicenseRequest, Transfer transfer) {
+			TransferOfLicenseContract transferOfLicenseRequest, Transfer transfer) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
@@ -394,9 +395,7 @@ public class TransferOfLicenseServices {
 		transfer.setTcpApplicationNumber(application);
 		transfer.setTcpCaseNumber(caseNumber);
 		transfer.setTcpDairyNumber(dairyNumber);
-		// transferLists.add(transfer);
-		// transferOfLicenseRequest.setTransfer(transferLists);
-		// transferOfLicenseRequest.setRequestInfo(requestInfo);
+
 		return transfer;
 
 	}

@@ -3,6 +3,7 @@ package org.egov.tl.web.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.egov.tl.abm.newservices.contract.SurrendOfLicenseContract;
 import org.egov.tl.service.SurrendOfLicenseServices;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.RequestInfoWrapper;
@@ -49,11 +50,11 @@ public class SurrendOfLicenseController {
 
 	@PostMapping("/_update")
 	public ResponseEntity<SurrendOfLicenseResponse> update(
-			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) {
+			@RequestBody SurrendOfLicenseContract surrendOfLicenseRequest) {
 
-		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.update(surrendOfLicenseRequest);
-		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
-		surrendOfLicenseList.add(surrendOfLicense);
+		List<SurrendOfLicense> surrendOfLicenseList = surrendOfLicenseServices.update(surrendOfLicenseRequest);
+//		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
+//		surrendOfLicenseList.add(surrendOfLicense);
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder()
 				.surrendOfLicense(surrendOfLicenseList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(surrendOfLicenseRequest.getRequestInfo(), true))

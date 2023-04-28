@@ -14,6 +14,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
+import org.egov.tl.abm.newservices.contract.ApprovalStandardRequest;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
@@ -200,7 +201,7 @@ public class ApprovalStandardService {
 
 	}
 
-	public ApprovalStandardEntity Update(ApprovalStandardContract approvalStandardContract) {
+	public List<ApprovalStandardEntity> Update(ApprovalStandardRequest approvalStandardContract) {
 
 		String uuid = approvalStandardContract.getRequestInfo().getUserInfo().getUuid();
 
@@ -208,89 +209,88 @@ public class ApprovalStandardService {
 
 		RequestInfo requestInfo = approvalStandardContract.getRequestInfo();
 
-		// List<ApprovalStandardEntity> approvalStandardEntityList =
-		// approvalStandardContract.getApprovalStandardRequest();
+		List<ApprovalStandardEntity> approvalStandardEntityList = approvalStandardContract.getApprovalStandardRequest();
 
-		// for (ApprovalStandardEntity approvalStandardEntity :
-		// approvalStandardEntityList) {
-		ApprovalStandardEntity approvalStandardEntity = approvalStandardContract.getApprovalStandardRequest();
-		if (Objects.isNull(approvalStandardContract)
-				|| Objects.isNull(approvalStandardContract.getApprovalStandardRequest())) {
-			throw new CustomException("approval of standard design must not be null",
-					"approval of standard design must not be null");
+		for (ApprovalStandardEntity approvalStandardEntity : approvalStandardEntityList) {
+			// ApprovalStandardEntity approvalStandardEntity =
+			// approvalStandardContract.getApprovalStandardRequest();
+			if (Objects.isNull(approvalStandardContract)
+					|| Objects.isNull(approvalStandardContract.getApprovalStandardRequest())) {
+				throw new CustomException("approval of standard design must not be null",
+						"approval of standard design must not be null");
+			}
+
+			if (StringUtils.isEmpty(approvalStandardEntity.getApplicationNumber())) {
+				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
+			}
+
+			List<ApprovalStandardEntity> approvalStandardEntitySearch = searchApprovalStandard(requestInfo,
+					approvalStandardEntity.getLicenseNo(), approvalStandardEntity.getApplicationNumber());
+
+			if (CollectionUtils.isEmpty(approvalStandardEntitySearch) || approvalStandardEntitySearch.size() > 1) {
+				throw new CustomException(
+						"Found none or multiple approval of standard applications with applicationNumber.",
+						"Found none or multiple approval of standard applications with applicationNumber.");
+			}
+
+			approvalStandardEntity.setBusinessService(approvalStandardEntity.getBusinessService());
+			approvalStandardEntity.setWorkflowCode(approvalStandardEntity.getBusinessService());
+
+			// EMPLOYEE RUN THE APPLICATION NORMALLY
+			if (!approvalStandardEntity.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
+
+				String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
+
+				BusinessService workflow = workflowService.getBusinessService(approvalStandardEntity.getTenantId(),
+						approvalStandardContract.getRequestInfo(), approvalStandardEntity.getBusinessService());
+
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, approvalStandardContract,
+						approvalStandardEntity);
+
+				approvalStandardEntity.setAuditDetails(auditDetails);
+
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
+						approvalStandardEntity, requestInfo, approvalStandardEntity.getBusinessService());
+
+				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+				approvalStandardEntity.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+
+			}
+
+			// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
+			else if ((approvalStandardEntity.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
+
+				String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
+
+				approvalStandardEntity.setAssignee(Arrays.asList(
+						servicePlanService.assignee("CAO", approvalStandardEntity.getTenantId(), true, requestInfo)));
+
+				approvalStandardEntity.setAction(CITIZEN_UPDATE_ACTION);
+
+				BusinessService workflow = workflowService.getBusinessService(approvalStandardEntity.getTenantId(),
+						approvalStandardContract.getRequestInfo(), approvalStandardEntity.getBusinessService());
+
+				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, approvalStandardContract,
+						approvalStandardEntity);
+
+				approvalStandardEntity.setAuditDetails(auditDetails);
+
+				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
+						approvalStandardEntity, requestInfo, approvalStandardEntity.getBusinessService());
+
+				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+				approvalStandardEntity.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+
+			}
 		}
 
-		if (StringUtils.isEmpty(approvalStandardEntity.getApplicationNumber())) {
-			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
-		}
-
-		List<ApprovalStandardEntity> approvalStandardEntitySearch = searchApprovalStandard(requestInfo,
-				approvalStandardEntity.getLicenseNo(), approvalStandardEntity.getApplicationNumber());
-
-		if (CollectionUtils.isEmpty(approvalStandardEntitySearch) || approvalStandardEntitySearch.size() > 1) {
-			throw new CustomException(
-					"Found none or multiple approval of standard applications with applicationNumber.",
-					"Found none or multiple approval of standard applications with applicationNumber.");
-		}
-
-		approvalStandardEntity.setBusinessService(approvalStandardEntity.getBusinessService());
-		approvalStandardEntity.setWorkflowCode(approvalStandardEntity.getBusinessService());
-
-		// EMPLOYEE RUN THE APPLICATION NORMALLY
-		if (!approvalStandardEntity.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
-
-			String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
-
-			BusinessService workflow = workflowService.getBusinessService(approvalStandardEntity.getTenantId(),
-					approvalStandardContract.getRequestInfo(), approvalStandardEntity.getBusinessService());
-
-			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, approvalStandardContract,
-					approvalStandardEntity);
-
-			approvalStandardEntity.setAuditDetails(auditDetails);
-
-			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(approvalStandardEntity,
-					requestInfo, approvalStandardEntity.getBusinessService());
-
-			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
-			approvalStandardEntity.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-
-		}
-
-		// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
-		else if ((approvalStandardEntity.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
-
-			String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
-
-			approvalStandardEntity.setAssignee(Arrays.asList(
-					servicePlanService.assignee("CAO", approvalStandardEntity.getTenantId(), true, requestInfo)));
-
-			approvalStandardEntity.setAction(CITIZEN_UPDATE_ACTION);
-
-			BusinessService workflow = workflowService.getBusinessService(approvalStandardEntity.getTenantId(),
-					approvalStandardContract.getRequestInfo(), approvalStandardEntity.getBusinessService());
-
-			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, approvalStandardContract,
-					approvalStandardEntity);
-
-			approvalStandardEntity.setAuditDetails(auditDetails);
-
-			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(approvalStandardEntity,
-					requestInfo, approvalStandardEntity.getBusinessService());
-
-			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
-			approvalStandardEntity.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-
-		}
-		// }
-
-		approvalStandardContract.setApprovalStandardRequest(approvalStandardEntity);
+		approvalStandardContract.setApprovalStandardRequest(approvalStandardEntityList);
 
 		producer.push(approvalUpdateTopic, approvalStandardContract);
 
-		return approvalStandardEntity;
+		return approvalStandardEntityList;
 
 	}
 
@@ -305,7 +305,7 @@ public class ApprovalStandardService {
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			ApprovalStandardContract approvalStandardContract, ApprovalStandardEntity approvalStandardEntity) {
+			ApprovalStandardRequest approvalStandardContract, ApprovalStandardEntity approvalStandardEntity) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();

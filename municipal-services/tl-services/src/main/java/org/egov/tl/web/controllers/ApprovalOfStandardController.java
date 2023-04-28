@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
+import org.egov.tl.abm.newservices.contract.ApprovalStandardRequest;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardResponse;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
@@ -67,11 +68,11 @@ public class ApprovalOfStandardController {
 
 	@PostMapping(value = "_update")
 	public ResponseEntity<ApprovalStandardResponse> update(
-			@RequestBody ApprovalStandardContract approvalStandardContract) {
+			@RequestBody ApprovalStandardRequest approvalStandardContract) {
 
-		ApprovalStandardEntity newApprovalServiceInfo = approvalStandardService.Update(approvalStandardContract);
-		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
-		approvalStandardEntityList.add(newApprovalServiceInfo);
+		List<ApprovalStandardEntity> approvalStandardEntityList= approvalStandardService.Update(approvalStandardContract);
+//		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
+//		approvalStandardEntityList.add(newApprovalServiceInfo);
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
 				.approvalStandardRequest(approvalStandardEntityList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
