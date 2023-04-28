@@ -124,9 +124,8 @@ public class TransferOfLicenseServices {
 		int count = 1;
 		List<Transfer> transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
 				transferRequest.getApplicationNumber());
-		// if (!CollectionUtils.isEmpty(Arrays.asList(transferSearch))||
-		// Arrays.asList(transferSearch).size() > 1)
-		if (transferSearch != null) {
+		if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
+
 			throw new CustomException("Already Found  or multiple transfer of licence applications with LicenceNumber.",
 					"Already Found or multiple transfer of licence applications with LicenceNumber.");
 		}
@@ -161,8 +160,8 @@ public class TransferOfLicenseServices {
 		Transfer transferData = makePayment(licenseNumber, requestInfo);
 		transferRequest.setTcpApplicationNumber(transferData.getTcpApplicationNumber());
 		transferRequest.setTcpCaseNumber(transferData.getTcpCaseNumber());
-		transferRequest.setTcpDairyNumber(transferData.getTcpDairyNumber()); 
-		//}
+		transferRequest.setTcpDairyNumber(transferData.getTcpDairyNumber());
+		// }
 		transferOfLicenseRequest.setTransfer(transferRequest);
 
 		producer.push(transferTopic, transferOfLicenseRequest);
@@ -230,7 +229,7 @@ public class TransferOfLicenseServices {
 		}
 
 		List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(), transfer.getApplicationNumber());
-		if (CollectionUtils.isEmpty(Arrays.asList(transferSearch))) {
+		if (!CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
 			throw new CustomException("Found none or multiple transfer of licence applications with applicationNumber.",
 					"Found none or multiple transfer of licence applications with applicationNumber.");
 		}
