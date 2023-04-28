@@ -19,6 +19,6 @@ import lombok.Setter;
 public class TransferOfLicenseResponse {
 
 	private ResponseInfo responseInfo = null;
-	private Transfer transfer;
+	private List<Transfer> transfer;
 
 }

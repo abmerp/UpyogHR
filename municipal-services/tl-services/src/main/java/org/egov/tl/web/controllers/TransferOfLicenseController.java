@@ -34,9 +34,9 @@ public class TransferOfLicenseController {
 			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
 
 		Transfer transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
-//		List<Transfer> transferList = new ArrayList<>();
-//		transferList.add(transfer);
-		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
+		List<Transfer> transferList = new ArrayList<>();
+		transferList.add(transfer);
+		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transferList)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))
 				.build();
@@ -48,9 +48,9 @@ public class TransferOfLicenseController {
 	public ResponseEntity<TransferOfLicenseResponse> update(
 			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) {
 		Transfer transfer = transferOfLicenseServices.Update(transferOfLicenseRequest);
-//		List<Transfer> transferList = new ArrayList<>();
-//		transferList.add(transfer);
-		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
+		List<Transfer> transferList = new ArrayList<>();
+		transferList.add(transfer);
+		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transferList)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))
 				.build();
@@ -63,10 +63,10 @@ public class TransferOfLicenseController {
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
 
-		Transfer transfer = transferOfLicenseServices.search(requestInfoWrapper.getRequestInfo(), licenceNumber,
-				applicationNumber);
+		List<Transfer> transferList = transferOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
+				licenceNumber, applicationNumber);
 
-		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transfer)
+		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transferList)
 				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
 						true))
 				.build();

@@ -37,9 +37,10 @@ public class SurrendOfLicenseController {
 			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) throws JsonProcessingException {
 
 		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.create(surrendOfLicenseRequest);
-
+		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
+		surrendOfLicenseList.add(surrendOfLicense);
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder()
-				.surrendOfLicense(surrendOfLicense).responseInfo(responseInfoFactory
+				.surrendOfLicense(surrendOfLicenseList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(surrendOfLicenseRequest.getRequestInfo(), true))
 				.build();
 
@@ -51,11 +52,10 @@ public class SurrendOfLicenseController {
 			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) {
 
 		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.update(surrendOfLicenseRequest);
-
-//		SurrendOfLicense SurrendOfLicenseList = new ArrayList<>();
-//		SurrendOfLicenseList.add(surrendOfLicense);
+		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
+		surrendOfLicenseList.add(surrendOfLicense);
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder()
-				.surrendOfLicense(surrendOfLicense).responseInfo(responseInfoFactory
+				.surrendOfLicense(surrendOfLicenseList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(surrendOfLicenseRequest.getRequestInfo(), true))
 				.build();
 
@@ -66,7 +66,7 @@ public class SurrendOfLicenseController {
 	public ResponseEntity<SurrendOfLicenseResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
+		List<SurrendOfLicense> surrendOfLicense = surrendOfLicenseServices.search(requestInfoWrapper.getRequestInfo(),
 				licenceNumber,applicationNumber);
 		
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder(). surrendOfLicense(surrendOfLicense)

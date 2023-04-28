@@ -25,6 +25,6 @@ public class ApprovalStandardResponse {
 
 	private ResponseInfo responseInfo;
 	@JsonProperty("ApprovalStandardEntity")
-	private ApprovalStandardEntity approvalStandardRequest;;
+	private List<ApprovalStandardEntity> approvalStandardRequest;;
 
 }

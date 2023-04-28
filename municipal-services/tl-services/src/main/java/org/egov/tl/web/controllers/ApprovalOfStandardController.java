@@ -1,5 +1,6 @@
 package org.egov.tl.web.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
@@ -10,6 +11,7 @@ import org.egov.tl.abm.newservices.entity.NewBankGuarantee;
 import org.egov.tl.service.ApprovalStandardService;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.RequestInfoWrapper;
+import org.egov.tl.web.models.SurrendOfLicense;
 import org.egov.tl.web.models.TradeLicenseResponse;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +40,10 @@ public class ApprovalOfStandardController {
 
 		ApprovalStandardEntity newApprovalServiceInfo = approvalStandardService
 				.createNewServic(approvalStandardContract);
-
+		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
+		approvalStandardEntityList.add(newApprovalServiceInfo);
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
-				.approvalStandardRequest(newApprovalServiceInfo).responseInfo(responseInfoFactory
+				.approvalStandardRequest(approvalStandardEntityList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(response, HttpStatus.OK);
@@ -52,7 +55,7 @@ public class ApprovalOfStandardController {
 			@RequestParam(value = "licenseNo", required = false) String licenseNo,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
 
-		ApprovalStandardEntity searchApproval = approvalStandardService
+		List<ApprovalStandardEntity> searchApproval = approvalStandardService
 				.searchApprovalStandard(requestInfoWrapper.getRequestInfo(), licenseNo, applicationNumber);
 
 		ApprovalStandardResponse responseSearch = ApprovalStandardResponse.builder()
@@ -67,9 +70,10 @@ public class ApprovalOfStandardController {
 			@RequestBody ApprovalStandardContract approvalStandardContract) {
 
 		ApprovalStandardEntity newApprovalServiceInfo = approvalStandardService.Update(approvalStandardContract);
-
+		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
+		approvalStandardEntityList.add(newApprovalServiceInfo);
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
-				.approvalStandardRequest(newApprovalServiceInfo).responseInfo(responseInfoFactory
+				.approvalStandardRequest(approvalStandardEntityList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(response, HttpStatus.OK);

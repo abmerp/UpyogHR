@@ -33,11 +33,13 @@ public class RevisedPlanController {
 	private RevisedPlanServices revisedPlanServices;
 
 	@PostMapping("/_create")
-	public ResponseEntity<RevisedPlanResponse> create(@RequestBody RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
+	public ResponseEntity<RevisedPlanResponse> create(@RequestBody RevisedPlanRequest revisedPlanRequest)
+			throws JsonProcessingException {
 
 		RevisedPlan revisedPlan = revisedPlanServices.create(revisedPlanRequest);
-
-		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlan).responseInfo(
+		List<RevisedPlan> revisedPlanList = new ArrayList<>();
+		revisedPlanList.add(revisedPlan);
+		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlanList).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(revisedPlanRequest.getRequestInfo(), true))
 				.build();
 
@@ -48,7 +50,9 @@ public class RevisedPlanController {
 	public ResponseEntity<RevisedPlanResponse> update(@RequestBody RevisedPlanRequest revisedPlanRequest) {
 
 		RevisedPlan revisedPlan = revisedPlanServices.update(revisedPlanRequest);
-		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlan).responseInfo(
+		List<RevisedPlan> revisedPlanList = new ArrayList<>();
+		revisedPlanList.add(revisedPlan);
+		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlanList).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(revisedPlanRequest.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(revisedPlanResponse, HttpStatus.OK);
@@ -58,8 +62,8 @@ public class RevisedPlanController {
 	public ResponseEntity<RevisedPlanResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(value = "licenseNo", required = false) String licenceNumber,
 			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
-		RevisedPlan revisedPlan = revisedPlanServices.search(requestInfoWrapper.getRequestInfo(),
-				applicationNumber, licenceNumber);
+		List<RevisedPlan> revisedPlan = revisedPlanServices.search(requestInfoWrapper.getRequestInfo(), applicationNumber,
+				licenceNumber);
 
 		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlan).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))

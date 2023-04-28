@@ -116,11 +116,11 @@ public class RevisedPlanServices {
 
 		List<String> applicationNumbers = null;
 		int count = 1;
-		RevisedPlan searchApprovalPlan = search(requestInfo, revisedPlan.getApplicationNumber(),
+		List<RevisedPlan> searchApprovalPlan = search(requestInfo, revisedPlan.getApplicationNumber(),
 				revisedPlan.getLicenseNo());
-		// if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size()
-		// > 1) {
-		if (searchApprovalPlan != null) {
+		 if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size()
+		> 1) {
+	
 			throw new CustomException("Already Found  or multiple revised layout plan applications with LoiNumber.",
 					"Already Found or multiple revised layout plan applications with LoiNumber.");
 		}
@@ -167,7 +167,7 @@ public class RevisedPlanServices {
 
 	}
 
-	public RevisedPlan search(RequestInfo info, String applicattionNumber, String licenceNumber) {
+	public List<RevisedPlan> search(RequestInfo info, String applicattionNumber, String licenceNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
@@ -202,11 +202,7 @@ public class RevisedPlanServices {
 
 		}
 
-		if (Result != null && !Result.isEmpty()) {
-			return Result.get(0);
-		} else {
-			return null;
-		}
+		return Result;
 
 	}
 
@@ -230,7 +226,7 @@ public class RevisedPlanServices {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
 
-		RevisedPlan revisedLayoutPlanSearch = search(requestInfo, revisedPlan.getApplicationNumber(),
+		List<RevisedPlan> revisedLayoutPlanSearch = search(requestInfo, revisedPlan.getApplicationNumber(),
 				revisedPlan.getLicenseNo());
 		if (CollectionUtils.isEmpty(Arrays.asList(revisedLayoutPlanSearch))
 				|| Arrays.asList(revisedLayoutPlanSearch).size() > 1) {
@@ -244,7 +240,7 @@ public class RevisedPlanServices {
 		// EMPLOYEE RUN THE APPLICATION NORMALLY
 		if (!revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-			String currentStatus = revisedLayoutPlanSearch.getStatus();
+			String currentStatus = revisedLayoutPlanSearch.get(0).getStatus();
 
 			BusinessService workflow = workflowService.getBusinessService(revisedPlan.getTenantId(),
 					revisedPlanRequest.getRequestInfo(), revisedPlan.getBusinessService());
@@ -265,7 +261,7 @@ public class RevisedPlanServices {
 		// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
 		else if ((revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
 
-			String currentStatus = revisedLayoutPlanSearch.getStatus();
+			String currentStatus = revisedLayoutPlanSearch.get(0).getStatus();
 
 			revisedPlan.setAssignee(
 					Arrays.asList(servicePlanService.assignee("DTP_HQ", revisedPlan.getTenantId(), true, requestInfo)));

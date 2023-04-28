@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -105,5 +106,8 @@ public class ChangeBeneficial {
 	
 	@JsonProperty("createdTime")
 	private long createdTime;
+	
+	@JsonProperty("newAdditionalDetails")
+	private JsonNode newAdditionalDetails = null;
 	
 }

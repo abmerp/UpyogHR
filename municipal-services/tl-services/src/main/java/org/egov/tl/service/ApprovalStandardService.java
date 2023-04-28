@@ -98,7 +98,8 @@ public class ApprovalStandardService {
 	@Autowired
 	GenerateTcpNumbers generateTcpNumbers;
 
-	public ApprovalStandardEntity createNewServic(ApprovalStandardContract approvalStandardContract) throws JsonProcessingException {
+	public ApprovalStandardEntity createNewServic(ApprovalStandardContract approvalStandardContract)
+			throws JsonProcessingException {
 
 		String licenseNumber = approvalStandardContract.getApprovalStandardRequest().getLicenseNo();
 
@@ -113,11 +114,10 @@ public class ApprovalStandardService {
 		ApprovalStandardEntity approvalStandardRequest = approvalStandardContract.getApprovalStandardRequest();
 		List<String> applicationNumbers = null;
 		int count = 1;
-		ApprovalStandardEntity searchApprovalPlan = searchApprovalStandard(requestInfo,
+		List<ApprovalStandardEntity> searchApprovalPlan = searchApprovalStandard(requestInfo,
 				approvalStandardRequest.getLicenseNo(), approvalStandardRequest.getApplicationNumber());
-		// if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size()
-		// > 1) {
-		if (searchApprovalPlan != null) {
+		if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
+
 			throw new CustomException(
 					"Already Found  or multiple approval of standard design applications with LoiNumber.",
 					"Already Found or multiple approval of standard design applications with LoiNumber.");
@@ -159,7 +159,7 @@ public class ApprovalStandardService {
 
 	}
 
-	public ApprovalStandardEntity searchApprovalStandard(RequestInfo requestInfo, String licenseNumbers,
+	public List<ApprovalStandardEntity> searchApprovalStandard(RequestInfo requestInfo, String licenseNumbers,
 			String applicationNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -195,11 +195,8 @@ public class ApprovalStandardService {
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, approvalStandardRowMapper);
 
 		}
-		if (Result != null && !Result.isEmpty()) {
-			return Result.get(0);
-		} else {
-			return null;
-		}
+
+		return Result;
 
 	}
 
@@ -227,13 +224,12 @@ public class ApprovalStandardService {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
 
-		ApprovalStandardEntity approvalStandardEntitySearch = searchApprovalStandard(requestInfo,
+		List<ApprovalStandardEntity> approvalStandardEntitySearch = searchApprovalStandard(requestInfo,
 				approvalStandardEntity.getLicenseNo(), approvalStandardEntity.getApplicationNumber());
-		// if (CollectionUtils.isEmpty(approvalStandardEntitySearch) ||
-		// approvalStandardEntitySearch.size() > 1) {
-		
-		if (CollectionUtils.isEmpty(Arrays.asList(approvalStandardEntitySearch))) {
-			throw new CustomException("Found none or multiple approval of standard applications with applicationNumber.",
+
+		if (CollectionUtils.isEmpty(approvalStandardEntitySearch) || approvalStandardEntitySearch.size() > 1) {
+			throw new CustomException(
+					"Found none or multiple approval of standard applications with applicationNumber.",
 					"Found none or multiple approval of standard applications with applicationNumber.");
 		}
 
@@ -243,7 +239,7 @@ public class ApprovalStandardService {
 		// EMPLOYEE RUN THE APPLICATION NORMALLY
 		if (!approvalStandardEntity.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-			String currentStatus = approvalStandardEntitySearch.getStatus();
+			String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
 
 			BusinessService workflow = workflowService.getBusinessService(approvalStandardEntity.getTenantId(),
 					approvalStandardContract.getRequestInfo(), approvalStandardEntity.getBusinessService());
@@ -265,7 +261,7 @@ public class ApprovalStandardService {
 		// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
 		else if ((approvalStandardEntity.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
 
-			String currentStatus = approvalStandardEntitySearch.getStatus();
+			String currentStatus = approvalStandardEntitySearch.get(0).getStatus();
 
 			approvalStandardEntity.setAssignee(Arrays.asList(
 					servicePlanService.assignee("CAO", approvalStandardEntity.getTenantId(), true, requestInfo)));

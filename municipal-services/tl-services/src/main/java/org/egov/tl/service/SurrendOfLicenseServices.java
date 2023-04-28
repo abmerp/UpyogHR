@@ -106,11 +106,10 @@ public class SurrendOfLicenseServices {
 
 		List<String> applicationNumbers = null;
 		int count = 1;
-		SurrendOfLicense searchSurrendOfLicense = search(requestInfo, surrendOfLicense.getLicenseNo(),
+		List<SurrendOfLicense> searchSurrendOfLicense = search(requestInfo, surrendOfLicense.getLicenseNo(),
 				surrendOfLicense.getApplicationNumber());
-		// if (!CollectionUtils.isEmpty(searchSurrendOfLicense) ||
-		// searchSurrendOfLicense.size() > 1) {
-		if (searchSurrendOfLicense != null) {
+		if (!CollectionUtils.isEmpty(searchSurrendOfLicense) || searchSurrendOfLicense.size() > 1) {
+
 			throw new CustomException("Already Found  or multiple surender of licence applications with LoiNumber.",
 					"Already Found or multiple Service plan applications with LoiNumber.");
 		}
@@ -156,78 +155,75 @@ public class SurrendOfLicenseServices {
 
 		SurrendOfLicense surrendOfLicense = surrendOfLicenseRequest.getSurrendOfLicense();
 
-	//	for (SurrendOfLicense surrendOfLicense : surrendOfLicenseList) {
+		// for (SurrendOfLicense surrendOfLicense : surrendOfLicenseList) {
 
-			if (Objects.isNull(surrendOfLicenseRequest)
-					|| Objects.isNull(surrendOfLicenseRequest.getSurrendOfLicense())) {
-				throw new CustomException("approval of standard design must not be null",
-						"approval of standard design must not be null");
-			}
+		if (Objects.isNull(surrendOfLicenseRequest) || Objects.isNull(surrendOfLicenseRequest.getSurrendOfLicense())) {
+			throw new CustomException("approval of standard design must not be null",
+					"approval of standard design must not be null");
+		}
 
-			if (StringUtils.isEmpty(surrendOfLicense.getApplicationNumber())) {
-				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
-			}
+		if (StringUtils.isEmpty(surrendOfLicense.getApplicationNumber())) {
+			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
+		}
 
-			SurrendOfLicense searchSurrendOfLicense = search(requestInfo, surrendOfLicense.getLicenseNo(),
-					surrendOfLicense.getApplicationNumber());
-			if (CollectionUtils.isEmpty(Arrays.asList(searchSurrendOfLicense)) || Arrays.asList(searchSurrendOfLicense).size() > 1) {
-				throw new CustomException(
-						"Found none or multiple approval of standard design applications with applicationNumber.",
-						"Found none or multiple approval of standard design applications with applicationNumber.");
-			}
+		List<SurrendOfLicense> searchSurrendOfLicense = search(requestInfo, surrendOfLicense.getLicenseNo(),
+				surrendOfLicense.getApplicationNumber());
+		if (CollectionUtils.isEmpty(searchSurrendOfLicense) || searchSurrendOfLicense.size() > 1) {
+			throw new CustomException(
+					"Found none or multiple approval of standard design applications with applicationNumber.",
+					"Found none or multiple approval of standard design applications with applicationNumber.");
+		}
 
-			surrendOfLicense.setBusinessService(surrendOfLicense.getBusinessService());
-			surrendOfLicense.setWorkflowCode(surrendOfLicense.getBusinessService());
+		surrendOfLicense.setBusinessService(surrendOfLicense.getBusinessService());
+		surrendOfLicense.setWorkflowCode(surrendOfLicense.getBusinessService());
 
-			// EMPLOYEE RUN THE APPLICATION NORMALLY
-			if (!surrendOfLicense.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
+		// EMPLOYEE RUN THE APPLICATION NORMALLY
+		if (!surrendOfLicense.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-				String currentStatus = searchSurrendOfLicense.getStatus();
+			String currentStatus = searchSurrendOfLicense.get(0).getStatus();
 
-				BusinessService workflow = workflowService.getBusinessService(surrendOfLicense.getTenantId(),
-						surrendOfLicenseRequest.getRequestInfo(), surrendOfLicense.getBusinessService());
+			BusinessService workflow = workflowService.getBusinessService(surrendOfLicense.getTenantId(),
+					surrendOfLicenseRequest.getRequestInfo(), surrendOfLicense.getBusinessService());
 
-				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, surrendOfLicenseRequest,
-						surrendOfLicense);
+			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, surrendOfLicenseRequest, surrendOfLicense);
 
-				surrendOfLicense.setAuditDetails(auditDetails);
+			surrendOfLicense.setAuditDetails(auditDetails);
 
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(surrendOfLicense,
-						requestInfo, surrendOfLicense.getBusinessService());
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(surrendOfLicense,
+					requestInfo, surrendOfLicense.getBusinessService());
 
-				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
-				surrendOfLicense.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+			surrendOfLicense.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
-			}
+		}
 
-			// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
-			else if ((surrendOfLicense.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
+		// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
+		else if ((surrendOfLicense.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
 
-				String currentStatus = searchSurrendOfLicense.getStatus();
+			String currentStatus = searchSurrendOfLicense.get(0).getStatus();
 
-				surrendOfLicense.setAssignee(Arrays
-						.asList(servicePlanService.assignee("CAO", surrendOfLicense.getTenantId(), true, requestInfo)));
+			surrendOfLicense.setAssignee(Arrays
+					.asList(servicePlanService.assignee("CAO", surrendOfLicense.getTenantId(), true, requestInfo)));
 
-				surrendOfLicense.setAction(CITIZEN_UPDATE_ACTION);
+			surrendOfLicense.setAction(CITIZEN_UPDATE_ACTION);
 
-				BusinessService workflow = workflowService.getBusinessService(surrendOfLicense.getTenantId(),
-						surrendOfLicenseRequest.getRequestInfo(), surrendOfLicense.getBusinessService());
+			BusinessService workflow = workflowService.getBusinessService(surrendOfLicense.getTenantId(),
+					surrendOfLicenseRequest.getRequestInfo(), surrendOfLicense.getBusinessService());
 
-				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, surrendOfLicenseRequest,
-						surrendOfLicense);
+			validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, surrendOfLicenseRequest, surrendOfLicense);
 
-				surrendOfLicense.setAuditDetails(auditDetails);
+			surrendOfLicense.setAuditDetails(auditDetails);
 
-				TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(surrendOfLicense,
-						requestInfo, surrendOfLicense.getBusinessService());
+			TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(surrendOfLicense,
+					requestInfo, surrendOfLicense.getBusinessService());
 
-				wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
-				surrendOfLicense.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+			surrendOfLicense.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
-			}
-	//	}
+		}
+		// }
 
 		surrendOfLicenseRequest.setSurrendOfLicense(surrendOfLicense);
 
@@ -263,7 +259,7 @@ public class SurrendOfLicenseServices {
 		return tradeLicenseASRequest;
 	}
 
-	public SurrendOfLicense search(RequestInfo info, String licenseNo, String applicationNumber) {
+	public List<SurrendOfLicense> search(RequestInfo info, String licenseNo, String applicationNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
@@ -298,12 +294,7 @@ public class SurrendOfLicenseServices {
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, surrendOfLicenseRowMapper);
 
 		}
-		if (Result != null && !Result.isEmpty()) {
-			return Result.get(0);
-		} else {
-			return null;
-		}
-
+		return Result;
 
 	}
 

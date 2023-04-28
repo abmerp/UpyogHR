@@ -122,7 +122,7 @@ public class TransferOfLicenseServices {
 		Transfer transferRequest = transferOfLicenseRequest.getTransfer();
 		List<String> applicationNumbers = null;
 		int count = 1;
-		Transfer transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
+		List<Transfer> transferSearch = search(requestInfo, transferRequest.getLicenseNo(),
 				transferRequest.getApplicationNumber());
 		// if (!CollectionUtils.isEmpty(Arrays.asList(transferSearch))||
 		// Arrays.asList(transferSearch).size() > 1)
@@ -170,7 +170,7 @@ public class TransferOfLicenseServices {
 
 	}
 
-	public Transfer search(RequestInfo requestInfo, String licenseNo, String applicationNumber) {
+	public List<Transfer> search(RequestInfo requestInfo, String licenseNo, String applicationNumber) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
@@ -204,13 +204,8 @@ public class TransferOfLicenseServices {
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, transferRowMapper);
 
 		}
-		// Transfer transfer=Result.toString();
 
-		if (Result != null && !Result.isEmpty()) {
-			return Result.get(0);
-		} else {
-			return null;
-		}
+		return Result;
 
 	}
 
@@ -234,7 +229,7 @@ public class TransferOfLicenseServices {
 			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 		}
 
-		Transfer transferSearch = search(requestInfo, transfer.getLicenseNo(), transfer.getApplicationNumber());
+		List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(), transfer.getApplicationNumber());
 		if (CollectionUtils.isEmpty(Arrays.asList(transferSearch))) {
 			throw new CustomException("Found none or multiple transfer of licence applications with applicationNumber.",
 					"Found none or multiple transfer of licence applications with applicationNumber.");
@@ -246,7 +241,7 @@ public class TransferOfLicenseServices {
 		// EMPLOYEE RUN THE APPLICATION NORMALLY
 		if (!transfer.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
-			String currentStatus = transferSearch.getStatus();
+			String currentStatus = transferSearch.get(0).getStatus();
 
 			BusinessService workflow = workflowService.getBusinessService(transfer.getTenantId(),
 					transferOfLicenseRequest.getRequestInfo(), transfer.getBusinessService());
@@ -267,7 +262,7 @@ public class TransferOfLicenseServices {
 		// CITIZEN MODIFY THE APPLICATION WHEN EMPLOYEE SENDBACK TO CITIZEN
 		else if ((transfer.getStatus().equalsIgnoreCase(SENDBACK_STATUS)) && usercheck(requestInfo)) {
 
-			String currentStatus = transferSearch.getStatus();
+			String currentStatus = transferSearch.get(0).getStatus();
 
 			transfer.setAssignee(
 					Arrays.asList(servicePlanService.assignee("CAO", transfer.getTenantId(), true, requestInfo)));
