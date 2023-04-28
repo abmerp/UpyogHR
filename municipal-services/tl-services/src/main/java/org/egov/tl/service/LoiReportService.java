@@ -46,6 +46,7 @@ import org.egov.tl.web.models.calculation.CalulationCriteria;
 import org.egov.tl.web.models.calculation.FeeAndBillingSlabIds;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -5368,8 +5369,14 @@ public class LoiReportService {
 					Compliance compliance=com.getCompliance();
 					if(compliance.isPartOfLoi()) {
 							try {
-							   org.jsoup.nodes.Document doc404 = Jsoup.parse(compliance.getCompliance());
-							   list.add(new ListItem(doc404.ownText(),normal));
+							   String comp=compliance.getCompliance();
+							   org.jsoup.nodes.Document html = Jsoup.parse(comp);
+							   Elements elements = html.body().select("*");
+							   StringBuilder text=new StringBuilder(); 
+							   for (org.jsoup.nodes.Element element : elements) {
+								   text.append(element.ownText()+" ");
+							   }
+							   list.add(new ListItem(text.toString(),normal));
 							} catch (Exception ex) {
 							   ex.printStackTrace();
 							}
