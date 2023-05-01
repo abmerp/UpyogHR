@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
 @RequestMapping("/electric/plan")
 public class ElectricPlanController {
@@ -34,13 +36,13 @@ public class ElectricPlanController {
 	private ResponseInfoFactory responseInfoFactory;
 
 	@PostMapping("/_create")
-	public ResponseEntity<ElectricInfoResponse> create(
-			@RequestBody ElectricPlanContract electricPlanContract) {
-		 List<ElectricPlanRequest> createElectricPlan = electricPlanService.create(electricPlanContract);
+	public ResponseEntity<ElectricInfoResponse> create(@RequestBody ElectricPlanContract electricPlanContract)
+			throws JsonProcessingException {
+		List<ElectricPlanRequest> createElectricPlan = electricPlanService.create(electricPlanContract);
 //		List<ElectricPlanRequest> electricPlanList = new ArrayList<>();
 //		electricPlanList.add(createElectricPlan);
-		ElectricInfoResponse electricInfoResponse = ElectricInfoResponse.builder().electricPlanResponse(createElectricPlan)
-				.responseInfo(responseInfoFactory
+		ElectricInfoResponse electricInfoResponse = ElectricInfoResponse.builder()
+				.electricPlanResponse(createElectricPlan).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(electricPlanContract.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(electricInfoResponse, HttpStatus.OK);
@@ -48,9 +50,10 @@ public class ElectricPlanController {
 
 	@PostMapping("/_get")
 	public ResponseEntity<ElectricInfoResponse> getServicePlan(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam(required = false) String loiNumber, @RequestParam(required = false) String applicationNumber) {
+			@RequestParam(required = false) String loiNumber,
+			@RequestParam(required = false) String applicationNumber) {
 		List<ElectricPlanRequest> searchElectricPlan = electricPlanService.searchElectricPlan(loiNumber,
-				applicationNumber , requestInfoWrapper.getRequestInfo());
+				applicationNumber, requestInfoWrapper.getRequestInfo());
 
 		ElectricInfoResponse servicePlanInfoResponse = ElectricInfoResponse.builder()
 				.electricPlanResponse(searchElectricPlan).responseInfo(responseInfoFactory
@@ -62,7 +65,7 @@ public class ElectricPlanController {
 	@PostMapping("/_update")
 	public ResponseEntity<ElectricInfoResponse> UpdateServicePlan(
 			@RequestBody ElectricPlanContract servicePlanContract) {
-		 List<ElectricPlanRequest> updateElectricPlan = electricPlanService.Update(servicePlanContract);
+		List<ElectricPlanRequest> updateElectricPlan = electricPlanService.Update(servicePlanContract);
 //		List<ElectricPlanRequest> servicePlanRequestList = new ArrayList<>();
 //		servicePlanRequestList.add(update);
 		ElectricInfoResponse servicePlanInfoResponse = ElectricInfoResponse.builder()

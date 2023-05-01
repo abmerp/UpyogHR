@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
 @RequestMapping("/serviceplan")
 public class ServicePlanController {
@@ -28,7 +30,7 @@ public class ServicePlanController {
 	
 	@PostMapping("/_create")
 	public ResponseEntity<ServicePlanInfoResponse> createServicePlan(
-			@RequestBody ServicePlanContract servicePlanContract) {
+			@RequestBody ServicePlanContract servicePlanContract) throws JsonProcessingException {
 		List<ServicePlanRequest> servicePlanRequestList = servicePlanService.create(servicePlanContract);
 		ServicePlanInfoResponse servicePlanInfoResponse = ServicePlanInfoResponse.builder()
 				.servicePlanResponse(servicePlanRequestList).responseInfo(responseInfoFactory

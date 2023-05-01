@@ -29,6 +29,8 @@ import org.egov.tl.web.models.ServicePlanRequest;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
+import org.egov.tl.web.models.Transfer;
 import org.egov.tl.web.models.Idgen.IdResponse;
 import org.egov.tl.web.models.workflow.Action;
 import org.egov.tl.web.models.workflow.BusinessService;
@@ -52,6 +54,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 
+import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
+
+@Slf4j
 @Service
 public class ServicePlanService {
 
@@ -70,7 +76,8 @@ public class ServicePlanService {
 
 	@Autowired
 	private WorkflowIntegrator wfIntegrator;
-
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 	@Autowired
 	private TLConfiguration config;
 
@@ -101,7 +108,7 @@ public class ServicePlanService {
 	@Autowired
 	ObjectMapper mapper;
 
-	public List<ServicePlanRequest> create(ServicePlanContract servicePlanContract) {
+	public List<ServicePlanRequest> create(ServicePlanContract servicePlanContract) throws JsonProcessingException {
 
 		String uuid = servicePlanContract.getRequestInfo().getUserInfo().getUuid();
 
@@ -142,13 +149,19 @@ public class ServicePlanService {
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 			servicePlanRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+			ServicePlanRequest servicePlanRequests = makePayment(servicePlanRequest.getLoiNumber(), requestInfo);
+			servicePlanRequest.setTcpApplicationNumber(servicePlanRequests.getTcpApplicationNumber());
+			servicePlanRequest.setTcpCaseNumber(servicePlanRequests.getTcpCaseNumber());
+			servicePlanRequest.setTcpDairyNumber(servicePlanRequests.getTcpDairyNumber());
+
 		}
 
 		servicePlanContract.setServicePlanRequest(servicePlanRequestList);
 
 		producer.push(config.getSPsaveTopic(), servicePlanContract);
+		List<ServicePlanRequest> update = Update(servicePlanContract);
 
-		return servicePlanRequestList;
+		return update;
 
 	}
 
@@ -468,4 +481,35 @@ public class ServicePlanService {
 		// set next state as status-
 		servicePlanRequest.setStatus(nextStateName);
 	}
+
+	public ServicePlanRequest makePayment(String loiNumber, RequestInfo requestInfo) throws JsonProcessingException {
+		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
+//		List<String> licenseNumberList = new ArrayList<>();
+//		licenseNumberList.add(licenseNumber);
+
+//		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
+		tradeLicenseSearchCriteria.setLoiNumber(loiNumber);
+		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
+		log.info("tcpnumbers:\t" + tcpNumbers);
+		String data = null;
+
+		data = mapper.writeValueAsString(tcpNumbers);
+//			
+		JSONObject json = new JSONObject(tcpNumbers);
+
+		json.toString();
+		String application = json.getAsString("TCPApplicationNumber");
+		String caseNumber = json.getAsString("TCPCaseNumber");
+		String dairyNumber = json.getAsString("TCPDairyNumber");
+
+		ServicePlanRequest servicePlanRequest = new ServicePlanRequest();
+
+		servicePlanRequest.setTcpApplicationNumber(application);
+		servicePlanRequest.setTcpCaseNumber(caseNumber);
+		servicePlanRequest.setTcpDairyNumber(dairyNumber);
+
+		return servicePlanRequest;
+
+	}
+
 }

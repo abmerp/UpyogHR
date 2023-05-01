@@ -94,7 +94,7 @@ public class GenerateTcpNumbers {
 		List<SurrendOfLicense> resultSurrenderLicence = null;
 		List<RevisedPlan> resultRevisedLAyoutPlan = null;
 		List<Transfer> resultTransferOfLicence = null;
-		String lcNumber = criteria.getLicenseNumbers().get(0).toString();
+		// String lcNumber = criteria.getLicenseNumbers().get(0).toString();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String date = formatter.format(localDateTime);
@@ -212,9 +212,9 @@ public class GenerateTcpNumbers {
 					log.info("application:" + tcpApplicationNmber);
 				}
 
-				rP.put("TCPApplicationNumber",tcpApplicationNmber);
-				rP.put("TCPCaseNumber",caseNumber);
-				rP.put("TCPDairyNumber",dairyNumber);
+				rP.put("TCPApplicationNumber", tcpApplicationNmber);
+				rP.put("TCPCaseNumber", caseNumber);
+				rP.put("TCPDairyNumber", dairyNumber);
 
 //				switch (businessService) {
 //				case BUSINESSSERVICE_SERVICE_PLAN:
@@ -398,5 +398,4 @@ public class GenerateTcpNumbers {
 
 	}
 
-		}
-	
+}
