@@ -5512,8 +5512,7 @@ public class LoiReportService {
 	}
 	
 	private void addWaterMarkOnPDF(String applicationNumber) {
-		
-		if(loiNumber==null) {
+		if(loiNumber.equals("null")||loiNumber.equals(null)) {
 			System.out.println("pdf called");
 			String flocation=loireportPath+"loi-report-"+applicationNumber+".pdf";
 			try {
