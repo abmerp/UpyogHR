@@ -1507,7 +1507,7 @@ SearchDefinitions:
  
   - name: inboxtlsearchcountExtensionOfCLUPermission
     query:
-      baseQuery: SELECT row_to_json(TotalCount) from (SELECT COUNT(result) from ( select DISTINCT(tl.application_no) as applicationNo  , tl.created_time  as createdtime from eg_extension_of_clu_permission as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_no INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_no GROUP BY wf.businessid) order by tl.created_time  asc ) result) TotalCount
+      baseQuery: SELECT row_to_json(TotalCount) from (SELECT COUNT(result) from ( select DISTINCT(tl.application_no) as applicationNumber  , tl.created_time  as createdtime from eg_extension_of_clu_permission as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_no INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_no GROUP BY wf.businessid) order by tl.created_time  asc ) result) TotalCount
       groupBy: null
       orderBy: null
     searchParams:
@@ -1551,10 +1551,9 @@ SearchDefinitions:
           }
       outJsonPath: $.TotalCount
       responseInfoPath: $.ResponseInfo
-      
   - name: inboxtlsearchExtensionOfCLUPermission
     query:
-      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_no) as applicationNo  , tl.created_time  as createdtime from eg_extension_of_clu_permission as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_no INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_no GROUP BY wf.businessid) order by tl.created_time  asc ) result
+      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_no) as applicationNumber  , tl.created_time  as createdtime from eg_extension_of_clu_permission as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_no INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_no GROUP BY wf.businessid) order by tl.created_time  asc ) result
       groupBy: null
       orderBy: null
     searchParams:
@@ -1600,7 +1599,7 @@ SearchDefinitions:
       responseInfoPath: $.ResponseInfo
   - name: inboxtlsearchdescExtensionOfCLUPermission
     query:
-      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_no) as applicationNo  , tl.createdtime  as createdtime from eg_surrend_of_license as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_no INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_no GROUP BY wf.businessid) order by tl.createdtime   desc ) result
+      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_no) as applicationNumber  , tl.createdtime  as createdtime from eg_extension_of_clu_permission as tl INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_no INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid $where AND pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_no GROUP BY wf.businessid) order by tl.createdtime   desc ) result
       groupBy: null
       orderBy: null
     searchParams:
@@ -1645,5 +1644,3 @@ SearchDefinitions:
       outJsonPath: $.Licenses
       responseInfoPath: $.ResponseInfo
       
- 
-       

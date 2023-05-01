@@ -143,7 +143,7 @@ public class TLInboxFilterService {
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
 
-	private static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENSION_OF_CLU_PERMISSION";
+	private static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENTION_OF_CLU_PERMISSION";
 	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
 	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
 	private static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
