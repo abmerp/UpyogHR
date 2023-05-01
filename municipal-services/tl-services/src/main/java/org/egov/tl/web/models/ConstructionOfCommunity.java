@@ -116,6 +116,16 @@ public class ConstructionOfCommunity {
 	@JsonProperty("anyOtherDocumentByDirector")
 	private String anyOtherDocumentByDirector; 
 	
+	@JsonProperty("newAdditionalDetails")
 	private JsonNode newAdditionalDetails;
+	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 	
 }

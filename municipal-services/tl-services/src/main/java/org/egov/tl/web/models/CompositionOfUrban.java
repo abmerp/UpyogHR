@@ -98,6 +98,16 @@ public class CompositionOfUrban {
 	@JsonProperty("anyOtherDoc")
 	private String anyOtherDoc;
 	
+	@JsonProperty("newAdditionalDetails")
 	private JsonNode newAdditionalDetails;
+	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
 	
 }

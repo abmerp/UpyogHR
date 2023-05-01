@@ -15,6 +15,7 @@ import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardRequest;
+import org.egov.tl.abm.newservices.contract.TransferOfLicenseContract;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
@@ -99,7 +100,7 @@ public class ApprovalStandardService {
 	@Autowired
 	GenerateTcpNumbers generateTcpNumbers;
 
-	public ApprovalStandardEntity createNewServic(ApprovalStandardContract approvalStandardContract)
+	public List<ApprovalStandardEntity> createNewServic(ApprovalStandardContract approvalStandardContract)
 			throws JsonProcessingException {
 
 		String licenseNumber = approvalStandardContract.getApprovalStandardRequest().getLicenseNo();
@@ -124,39 +125,25 @@ public class ApprovalStandardService {
 					"Already Found or multiple approval of standard design applications with LoiNumber.");
 		}
 
-		approvalStandardRequest.setId(UUID.randomUUID().toString());
-		approvalStandardRequest.setAssignee(Arrays.asList(
-				servicePlanService.assignee("CTP_HR", approvalStandardRequest.getTenantId(), true, requestInfo)));
-//			approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 		applicationNumbers = servicePlanService.getIdList(approvalStandardContract.getRequestInfo(),
 				approvalStandardRequest.getTenantId(), config.getApprovalStandardApplicationName(),
 				config.getApprovalStandardformat(), count);
 
-		approvalStandardRequest.setBusinessService(businessService_AS);
-		approvalStandardRequest.setWorkflowCode(businessService_AS);
-
 		approvalStandardRequest.setAuditDetails(auditDetails);
 		approvalStandardRequest.setApplicationNumber(applicationNumbers.get(0));
 
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(approvalStandardRequest,
-				requestInfo, businessService_AS);
-
-		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
-		approvalStandardRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-
 		// }
-		ApprovalStandardEntity approvalStandardEntity = makePayment(licenseNumber, requestInfo);
-		approvalStandardRequest.setTcpApplicationNumber(approvalStandardEntity.getTcpApplicationNumber());
-		approvalStandardRequest.setTcpCaseNumber(approvalStandardEntity.getTcpCaseNumber());
-		approvalStandardRequest.setTcpDairyNumber(approvalStandardEntity.getTcpDairyNumber());
-		approvalStandardContract.setApprovalStandardRequest(approvalStandardRequest);
+//		ApprovalStandardEntity approvalStandardEntity = makePayment(licenseNumber, requestInfo);
+//		approvalStandardRequest.setTcpApplicationNumber(approvalStandardEntity.getTcpApplicationNumber());
+//		approvalStandardRequest.setTcpCaseNumber(approvalStandardEntity.getTcpCaseNumber());
+//		approvalStandardRequest.setTcpDairyNumber(approvalStandardEntity.getTcpDairyNumber());
+//		approvalStandardContract.setApprovalStandardRequest(approvalStandardRequest);
 
 		log.info(approvaltopic);
 
 		producer.push(approvaltopic, approvalStandardContract);
-
-		return approvalStandardRequest;
+		List<ApprovalStandardEntity> approvalStandardEntity = makePayment(approvalStandardContract);
+		return approvalStandardEntity;
 
 	}
 
@@ -371,11 +358,28 @@ public class ApprovalStandardService {
 		return tradeLicenseASRequest;
 	}
 
-	public ApprovalStandardEntity makePayment(String licenseNumber, RequestInfo requestInfo)
+	public List<ApprovalStandardEntity> makePayment(ApprovalStandardContract approvalStandardContract)
 			throws JsonProcessingException {
+
+		RequestInfo requestInfo = approvalStandardContract.getRequestInfo();
+		ApprovalStandardEntity approvalStandardRequest = approvalStandardContract.getApprovalStandardRequest();
+
+		approvalStandardRequest.setId(UUID.randomUUID().toString());
+		approvalStandardRequest.setAssignee(Arrays.asList(
+				servicePlanService.assignee("CTP_HR", approvalStandardRequest.getTenantId(), true, requestInfo)));
+//			approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+
+		approvalStandardRequest.setBusinessService(businessService_AS);
+		approvalStandardRequest.setWorkflowCode(businessService_AS);
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(approvalStandardRequest,
+				requestInfo, businessService_AS);
+
+		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+		approvalStandardRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
 		List<String> licenseNumberList = new ArrayList<>();
-		licenseNumberList.add(licenseNumber);
+		licenseNumberList.add(approvalStandardRequest.getLicenseNo());
 		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
 
 		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
@@ -391,13 +395,18 @@ public class ApprovalStandardService {
 		String caseNumber = json.getAsString("TCPCaseNumber");
 		String dairyNumber = json.getAsString("TCPDairyNumber");
 
-		ApprovalStandardEntity approvalStandardEntity = new ApprovalStandardEntity();
+		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
 
-		approvalStandardEntity.setTcpApplicationNumber(application);
-		approvalStandardEntity.setTcpCaseNumber(caseNumber);
-		approvalStandardEntity.setTcpDairyNumber(dairyNumber);
+		approvalStandardRequest.setTcpApplicationNumber(application);
+		approvalStandardRequest.setTcpCaseNumber(caseNumber);
+		approvalStandardRequest.setTcpDairyNumber(dairyNumber);
+		approvalStandardEntityList.add(approvalStandardRequest);
+		ApprovalStandardRequest approvalStandardRequestList = new ApprovalStandardRequest();
+		approvalStandardRequestList.setApprovalStandardRequest(approvalStandardEntityList);
+		approvalStandardRequestList.setRequestInfo(requestInfo);
+		List<ApprovalStandardEntity> Update = Update(approvalStandardRequestList);
 
-		return approvalStandardEntity;
+		return Update;
 
 	}
 

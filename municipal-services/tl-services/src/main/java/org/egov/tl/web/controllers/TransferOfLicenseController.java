@@ -34,9 +34,9 @@ public class TransferOfLicenseController {
 	public ResponseEntity<TransferOfLicenseResponse> create(
 			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
 
-		Transfer transfer = transferOfLicenseServices.create(transferOfLicenseRequest);
-		List<Transfer> transferList = new ArrayList<>();
-		transferList.add(transfer);
+		List<Transfer> transferList = transferOfLicenseServices.create(transferOfLicenseRequest);
+//		List<Transfer> transferList = new ArrayList<>();
+//		transferList.add(transfer);
 		TransferOfLicenseResponse transferOfLicenseResponse = TransferOfLicenseResponse.builder().transfer(transferList)
 				.responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(transferOfLicenseRequest.getRequestInfo(), true))

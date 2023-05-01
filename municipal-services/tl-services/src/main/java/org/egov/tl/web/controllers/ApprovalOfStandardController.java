@@ -39,10 +39,10 @@ public class ApprovalOfStandardController {
 	public ResponseEntity<ApprovalStandardResponse> createNewService(
 			@RequestBody ApprovalStandardContract approvalStandardContract) throws JsonProcessingException {
 
-		ApprovalStandardEntity newApprovalServiceInfo = approvalStandardService
+		List<ApprovalStandardEntity> approvalStandardEntityList = approvalStandardService
 				.createNewServic(approvalStandardContract);
-		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
-		approvalStandardEntityList.add(newApprovalServiceInfo);
+//		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
+//		approvalStandardEntityList.add(newApprovalServiceInfo);
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
 				.approvalStandardRequest(approvalStandardEntityList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(approvalStandardContract.getRequestInfo(), true))
@@ -70,7 +70,8 @@ public class ApprovalOfStandardController {
 	public ResponseEntity<ApprovalStandardResponse> update(
 			@RequestBody ApprovalStandardRequest approvalStandardContract) {
 
-		List<ApprovalStandardEntity> approvalStandardEntityList= approvalStandardService.Update(approvalStandardContract);
+		List<ApprovalStandardEntity> approvalStandardEntityList = approvalStandardService
+				.Update(approvalStandardContract);
 //		List<ApprovalStandardEntity> approvalStandardEntityList = new ArrayList<>();
 //		approvalStandardEntityList.add(newApprovalServiceInfo);
 		ApprovalStandardResponse response = ApprovalStandardResponse.builder()
