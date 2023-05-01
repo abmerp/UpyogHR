@@ -21,15 +21,15 @@ public class DocumentRowMapper implements ResultSetExtractor<List<DocumentEntity
 
             if(documentEntity == null) {
 
-                Long lastModifiedTime = rs.getLong("lastModifiedTime");
+                Long lastModifiedTime = rs.getLong("lastmodifiedtime");
                 if (rs.wasNull()) {
                     lastModifiedTime = null;
                 }
 
                 AuditDetails auditdetails = AuditDetails.builder()
-                        .createdBy(rs.getString("createdBy"))
-                        .createdTime(rs.getLong("createdTime"))
-                        .lastModifiedBy(rs.getString("lastModifiedBy"))
+                        .createdBy(rs.getString("createdby"))
+                        .createdTime(rs.getLong("createdtime"))
+                        .lastModifiedBy(rs.getString("lastmodifiedby"))
                         .lastModifiedTime(lastModifiedTime)
                         .build();
 
@@ -39,11 +39,11 @@ public class DocumentRowMapper implements ResultSetExtractor<List<DocumentEntity
                         .name(rs.getString("name"))
                         .category(rs.getString("category"))
                         .description(rs.getString("description"))
-                        .filestoreId(rs.getString("filestoreId"))
-                        .documentLink(rs.getString("documentLink"))
+                        .filestoreId(rs.getString("filestoreid"))
+                        .documentLink(rs.getString("documentlink"))
                         .postedBy(rs.getString("postedby"))
                         .fileType(rs.getString("filetype"))
-                        .fileSize(rs.getLong("fileSize"))
+                        .fileSize(rs.getLong("filesize"))
                         .active(rs.getBoolean("active"))
                         .auditDetails(auditdetails)
                         .build();
