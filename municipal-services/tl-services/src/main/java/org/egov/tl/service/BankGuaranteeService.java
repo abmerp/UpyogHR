@@ -432,22 +432,6 @@ public class BankGuaranteeService {
 		newBankGuaranteeRequest.setAuditDetails(auditDetails);
 	}
 	
-	public List<String> getDropDownList(int type, RequestInfo requestInfo) {
-		List<Map<String,Object>> dropList=newBankGuaranteeRepo.getDropDownList();
-		List<String> dropDoneList=new ArrayList<>();
-		if(type==1) {
-			dropDoneList=dropList.stream().filter(bg->bg.get("application_number")!=null).map(bg->bg.get("application_number").toString()).collect(Collectors.toList());
-		}else if(type==2){
-			dropDoneList=dropList.stream().filter(bg->bg.get("loi_number")!=null).map(bg->bg.get("loi_number").toString()).collect(Collectors.toList());
-		}else {
-			dropDoneList=dropList.stream().filter(bg->bg.get("licence_number")!=null).map(bg->bg.get("licence_number").toString()).collect(Collectors.toList());
-		}
-		
-		return dropDoneList;
-		
-	}
-	
-	
 	/*
 	public RenewBankGuarantee createRenewBankGuarantee(RenewBankGuaranteeContract renewBankGuaranteeContract) {
 		// populate audit details-
