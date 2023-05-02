@@ -144,7 +144,7 @@ public class EmployeeService {
 			enrichCreateRequest(employee, requestInfo);
 			createUser(employee, requestInfo);
 			pwdMap.put(employee.getUuid(), employee.getUser().getPassword());
-			employee.getUser().setPassword(null);
+			employee.getUser().setPassword(employee.getUser().getPassword());
 		});
 		hrmsProducer.push(propertiesManager.getSaveEmployeeTopic(), employeeRequest);
 		notificationService.sendNotification(employeeRequest, pwdMap);
@@ -658,7 +658,7 @@ public class EmployeeService {
 		String sso1 = "no";
 		EmployeeRequest employeeRequest = new EmployeeRequest();
 		EmployeeSearchCriteria employeeSearchCriteria = new EmployeeSearchCriteria();
-		if (ssoValue.equalsIgnoreCase(sso1)) {
+		if (ssoValue.equalsIgnoreCase(sso)) {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
