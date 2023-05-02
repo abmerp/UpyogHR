@@ -1,7 +1,9 @@
 package org.egov.tl.abm.repo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.egov.tl.abm.newservices.contract.NewBankGuaranteeContract;
 import org.egov.tl.config.TLConfiguration;
@@ -9,12 +11,16 @@ import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.builder.NewBankGuaranteeQueryBuilder;
 import org.egov.tl.repository.rowmapper.BankGuaranteeAuditRowMapper;
 import org.egov.tl.repository.rowmapper.NewBankGuaranteeRowMapper;
+import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.bankguarantee.BankGuaranteeSearchCriteria;
 //import org.egov.tl.web.models.bankguarantee.BankGuaranteeSearchCriteria;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,4 +69,23 @@ public class NewBankGuaranteeRepo {
 				bankGuaranteeAuditRowMapper);
 		return bankGuaranteeAuditData;
 	}
+	
+	public List<Map<String,Object>> getDropDownList() {
+		List<Map<String,Object>> dropDownList = null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			dropDownList = jdbcTemplate.query("select * from eg_tl_bank_guarantee", preparedStmtList.toArray(),
+					(rs, rowNum) -> {
+						Map<String,Object> lst=new HashMap<>();
+					    lst.put("application_number", rs.getString("application_number"));
+					    lst.put("loi_number", rs.getString("loi_number"));
+					    lst.put("licence_number", rs.getString("licence_number"));
+						return lst;
+					});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dropDownList;
+	}
+	
 }

@@ -156,6 +156,11 @@ public class BankGuaranteeController {
 	}
 	*/
 	
-	
+	@PostMapping("/guarantee/dropdonelist")
+	public ResponseEntity<List<String>> dropdonelist(@RequestBody RequestInfo requestInfo,
+			@RequestParam(value = "type", required = true) int type){
+			List<String> lst = bankGuaranteeService.getDropDownList(type,requestInfo);
+		return new ResponseEntity<>(lst, HttpStatus.OK);
+	}
 	
 }
