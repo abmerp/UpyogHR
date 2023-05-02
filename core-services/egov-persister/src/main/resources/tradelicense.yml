@@ -1767,53 +1767,53 @@ serviceMaps:
    queryMaps:      
     
        - query: UPDATE public.eg_zone_plan SET id=?, license_no=?, case_number=?, layout_plan=?, anyother_document=?, amount=?, additionaldetails=?, created_by=?, "lastModified_by"=?, created_time=?, "lastModified_time"=?, tenant_id=?, businessservice=?, comment=?, workflowcode=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, newadditionaldetails=? WHERE application_number=?;  
-         basePath: ZonePlan
+         basePath: ZonePlan.*
          jsonMaps:   
           
-          - jsonPath: $.ZonePlan.id     
+          - jsonPath: $.ZonePlan.*.id     
           
-          - jsonPath: $.ZonePlan.licenseNo
+          - jsonPath: $.ZonePlan.*.licenseNo
           
-          - jsonPath: $.ZonePlan.caseNumber
+          - jsonPath: $.ZonePlan.*.caseNumber
           
-          - jsonPath: $.ZonePlan.layoutPlan      
+          - jsonPath: $.ZonePlan.*.layoutPlan      
                    
-          - jsonPath: $.ZonePlan.anyotherDocument
+          - jsonPath: $.ZonePlan.*.anyotherDocument
           
-          - jsonPath: $.ZonePlan.amount
+          - jsonPath: $.ZonePlan.*.amount
           
-          - jsonPath: $.ZonePlan.additionalDetails
+          - jsonPath: $.ZonePlan.*.additionalDetails
             type: JSON
             dbType: JSONB
             
-          - jsonPath: $.ZonePlan.auditDetails.createdBy        
+          - jsonPath: $.ZonePlan.*.auditDetails.createdBy        
       
 
-          - jsonPath: $.ZonePlan.auditDetails.lastModifiedBy  
+          - jsonPath: $.ZonePlan.*.auditDetails.lastModifiedBy  
           
-          - jsonPath: $.ZonePlan.auditDetails.createdTime       
+          - jsonPath: $.ZonePlan.*.auditDetails.createdTime       
 
-          - jsonPath: $.ZonePlan.auditDetails.lastModifiedTime
+          - jsonPath: $.ZonePlan.*.auditDetails.lastModifiedTime
           
-          - jsonPath: $.ZonePlan.tenantId
+          - jsonPath: $.ZonePlan.*.tenantId
            
-          - jsonPath: $.ZonePlan.businessService
+          - jsonPath: $.ZonePlan.*.businessService
           
-          - jsonPath: $.ZonePlan.comment
+          - jsonPath: $.ZonePlan.*.comment
           
-          - jsonPath: $.ZonePlan.workflowCode         
+          - jsonPath: $.ZonePlan.*.workflowCode         
 
-          - jsonPath: $.ZonePlan.status  
+          - jsonPath: $.ZonePlan.*.status  
           
-          - jsonPath: $.ZonePlan.tcpApplicationNumber 
+          - jsonPath: $.ZonePlan.*.tcpApplicationNumber 
                   
-          - jsonPath: $.ZonePlan.tcpCaseNumber
+          - jsonPath: $.ZonePlan.*.tcpCaseNumber
           
-          - jsonPath: $.ZonePlan.tcpDairyNumber
+          - jsonPath: $.ZonePlan.*.tcpDairyNumber
 
-          - jsonPath: $.ZonePlan.newAdditionalDetails
+          - jsonPath: $.ZonePlan.*.newAdditionalDetails
             type: JSON
             dbType: JSONB            
  
-          - jsonPath: $.ZonePlan.applicationNumber               
+          - jsonPath: $.ZonePlan.*.applicationNumber               
    

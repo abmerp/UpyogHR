@@ -77,6 +77,36 @@ public class LandUtil {
 		Object result = serviceRequestRepository.fetchResult(getMdmsSearchUrl(), mdmsCriteriaReq);
 		return result;
 	}
+	public Object mDMSCallDistrictCode(RequestInfo requestInfo, String tenantId, String districtCode) {
+		MdmsCriteriaReq mdmsCriteriaReq = getMDMSRequestDistrictCode(requestInfo, tenantId, districtCode);
+		Object result = serviceRequestRepository.fetchResult(getMdmsSearchUrl(), mdmsCriteriaReq);
+		return result;
+	}
+	public MdmsCriteriaReq getMDMSRequestDistrictCode(RequestInfo requestInfo, String tenantId, String districtCode) {
+
+		List<ModuleDetail> moduleRequest = getDistrictCodeRequest(districtCode);
+		List<ModuleDetail> moduleDetails = new LinkedList<>();
+		moduleDetails.addAll(moduleRequest);
+
+		MdmsCriteria mdmsCriteria = MdmsCriteria.builder().moduleDetails(moduleDetails).tenantId(tenantId).build();
+
+		MdmsCriteriaReq mdmsCriteriaReq = MdmsCriteriaReq.builder().mdmsCriteria(mdmsCriteria).requestInfo(requestInfo)
+				.build();
+		return mdmsCriteriaReq;
+	}
+	public List<ModuleDetail> getDistrictCodeRequest(String districtCode) {
+
+		final String filterCode = "$.[?(@.disCode=='" + districtCode + "')]";
+		List<MasterDetail> commonMaster = new ArrayList<>();
+		commonMaster.add(MasterDetail.builder().name("District").filter(filterCode).build());
+
+		ModuleDetail commonMasterMDtl = ModuleDetail.builder().masterDetails(commonMaster)
+				.moduleName(COMMON_MASTERS_MODULE).build();
+
+		return Arrays.asList(commonMasterMDtl);
+
+	}
+
 
 	public void defaultJsonPathConfig() {
 		Configuration.setDefaults(new Configuration.Defaults() {

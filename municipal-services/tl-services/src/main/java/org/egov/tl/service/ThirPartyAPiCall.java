@@ -95,6 +95,10 @@ public class ThirPartyAPiCall {
 	public String plotId;
 	@Value("${tcp.isconfirmed}")
 	public String isConfirmed;
+	@Value("${tcp.UserId}")
+	public String userId;
+	@Value("${tcp.UserLoginId}")
+	public String userLoginId;
 
 	@Autowired
 	public RestTemplate restTemplate;
@@ -106,7 +110,7 @@ public class ThirPartyAPiCall {
 		headers.set("access_key", tcpAccessKey);
 		headers.set("secret_key", tcpSecretKey);
 		headers.setContentType(MediaType.APPLICATION_JSON);
-       
+
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 
@@ -117,11 +121,11 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> generateTransactionNumber(Map<String, Object> request,Map<String, Object> authtoken) {
+	public ResponseEntity<Map> generateTransactionNumber(Map<String, Object> request, Map<String, Object> authtoken) {
 		request.put("CaseTypeId", caseTypeId);
 		request.put("AppTypeId", appTypeId);
 		request.put("ChargesTypeId", chargesTypeId);
-		
+
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 
 		log.info("request info\n" + request);
@@ -133,13 +137,12 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> saveTransactionData(Map<String, Object> request,Map<String, Object> authtoken) {
+	public ResponseEntity<Map> saveTransactionData(Map<String, Object> request, Map<String, Object> authtoken) {
 
 		request.put("CaseTypeId", caseTypeId);
 		request.put("AppTypeId", appTypeId);
 		request.put("ChargesTypeId", chargesTypeId);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
-		
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpSaveTransactionData, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.CREATED) {
@@ -148,15 +151,17 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> generateDiaryNumber(Map<String, Object> request,Map<String, Object> authtoken) {
+	public ResponseEntity<Map> generateDiaryNumber(Map<String, Object> request, Map<String, Object> authtoken) {
 
 		request.put("ApplicationDocId", applicationDocId);
 		request.put("ApplicationId", applicationId);
 		request.put("Flag", flag);
-		//request.put("DevelopmentPlanCode", developmentPlanCode);
-	//	request.put("Remarks", remarks);
-	//	request.put("FileId", fileId);
-	//	request.put("ColonyName", colonyName);
+		request.put("UserId", userId);
+		request.put("UserLoginId", userLoginId);
+		// request.put("DevelopmentPlanCode", developmentPlanCode);
+		// request.put("Remarks", remarks);
+		// request.put("FileId", fileId);
+		// request.put("ColonyName", colonyName);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateDairyNumber, request, Map.class);
@@ -166,14 +171,15 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> generateCaseNumber(Map<String, Object> request,Map<String, Object> authtoken) {
+	public ResponseEntity<Map> generateCaseNumber(Map<String, Object> request, Map<String, Object> authtoken) {
 		request.put("CaseId", caseId);
 		request.put("CaseTypeId", caseTypeId);
 		request.put("CaseNo", caseNumber);
 //		request.put("DevelopmentPlanCode", developmentPlanCode);
 //		request.put("ColonyName", colonyName);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
-		
+		request.put("UserId", userId);
+		request.put("UserLoginId", userLoginId);
 
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateCaseNumber, request, Map.class);
 		if (response.getStatusCode() == HttpStatus.OK) {
@@ -182,24 +188,25 @@ public class ThirPartyAPiCall {
 		return response;
 	}
 
-	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request,Map<String, Object> authtoken) {
+	public ResponseEntity<Map> generateApplicationNumber(Map<String, Object> request, Map<String, Object> authtoken) {
 
-		request.put("CaseId", caseId);
-	    request.put("ApplicationTypeId", applicationTypeId);
-	  //  request.put("ApplicationId", applicationId);
-		//request.put("ApplicationNo", applicationNumber);
-     	request.put("PlotNo", plotNumber);
+		// request.put("CaseId", caseId);
+		request.put("ApplicationTypeId", applicationTypeId);
+		// request.put("ApplicationId", applicationId);
+		// request.put("ApplicationNo", applicationNumber);
+		request.put("PlotNo", plotNumber);
 		request.put("RelatedApplicationId", relatedApplicationId);
 		request.put("IsBpocForResiPlotted", isBpocForResiPlotted);
-	//	request.put("DetailsOfApplication", detailsOfApplication);
+		// request.put("DetailsOfApplication", detailsOfApplication);
 		request.put("PlotId", plotId);
 		request.put("CreatedByRoleId", createdByRoleId);
 		request.put("IsConfirmed", isConfirmed);
 		request.put("TokenId", getAuthToken(authtoken).getBody().get("Value"));
-		
+		request.put("UserId", userId);
+		request.put("UserLoginId", userLoginId);
 		ResponseEntity<Map> response = restTemplate.postForEntity(tcpurl + tcpGenerateApplicationNumber, request,
 				Map.class);
-		
+
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("application Number\n" + response.getBody().get("Value"));
 		}
@@ -214,6 +221,7 @@ public class ThirPartyAPiCall {
 		}
 		return response;
 	}
+
 	public ResponseEntity<Map> getDepartmenAuthToken(Map<String, Object> map) {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -231,15 +239,16 @@ public class ThirPartyAPiCall {
 		}
 		return response;
 	}
-	public ResponseEntity<String> getDispatchNumber(Map<String, Object> request,Map<String, Object> depAuthtoken) {
-		
+
+	public ResponseEntity<String> getDispatchNumber(Map<String, Object> request, Map<String, Object> depAuthtoken) {
+
 		request.put("TokenId", getDepartmenAuthToken(depAuthtoken).getBody().get("Value"));
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(request, headers);
 		ResponseEntity<String> response = restTemplate.postForEntity(tcpurl + deptDispatchNumber, entity, String.class);
-        log.info("response"+response);
+		log.info("response" + response);
 		if (response.getStatusCode() == HttpStatus.OK) {
 			log.info("dispatch Number\n" + response.getBody());
 		}

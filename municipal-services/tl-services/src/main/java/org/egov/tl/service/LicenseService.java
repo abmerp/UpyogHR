@@ -509,7 +509,8 @@ public class LicenseService {
 					licenseServiceResponseInfo.setTcpLoiNumber(String.valueOf(tradeLicense.getTcpLoiNumber()));
 					licenseServiceResponseInfo.setIdw(String.valueOf(tradeLicense.getTradeLicenseDetail().getIDW()));
 					licenseServiceResponseInfo.setEdc(String.valueOf(tradeLicense.getTradeLicenseDetail().getEDC()));
-					licenseServiceResponseInfo.setTcpApplicationNumber(String.valueOf(tradeLicense.getTcpApplicationNumber()));
+					licenseServiceResponseInfo
+							.setTcpApplicationNumber(String.valueOf(tradeLicense.getTcpApplicationNumber()));
 					break;
 					// licenseServiceResponseInfo.setNewServiceInfoData(newServiceInfoData);
 				}
@@ -696,7 +697,8 @@ public class LicenseService {
 						mdmsData = valid.getAttributeValues(mDMSCallPurposeId);
 
 						List<Map<String, Object>> msp = (List) mdmsData.get("Purpose");
-
+						log.info("msp\t" + msp);
+						;
 						int purposeId = 0;
 
 						for (Map<String, Object> mm : msp) {
@@ -705,17 +707,32 @@ public class LicenseService {
 							log.info("purposeId" + purposeId);
 
 						}
+						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallDistrictId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
+								.mDMSCallDistrictCode(info, tradeLicense.getTenantId(),
+										newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 
+						Map<String, List<String>> mdmsDatadistrict;
+						mdmsDatadistrict = valid.getAttributeValues(mDMSCallDistrictId);
+
+						List<Map<String, Object>> mspDistrict = (List) mdmsDatadistrict.get("District");
+						log.info("mspDistrict" + mspDistrict);
+						int distCodeNIC = 0;
+
+						for (Map<String, Object> mmDistrict : mspDistrict) {
+
+							distCodeNIC = Integer.valueOf(String.valueOf(mmDistrict.get("distCodeNIC")));
+							log.info("distCodeNIC" + distCodeNIC);
+
+						}
 						Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 						mapDNo.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", userName);
-						mapDNo.put("UserId", "1265");
-						mapDNo.put("DistrictCode",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
-						mapDNo.put("UserLoginId", "39");
+						//mapDNo.put("UserId", "2");
+						mapDNo.put("DistrictCode", distCodeNIC);
+						//mapDNo.put("UserLoginId", "39");
 						dairyNumber = thirPartyAPiCall.generateDiaryNumber(mapDNo, authtoken).getBody().get("Value")
 								.toString();
 						tradeLicense.setTcpDairyNumber(dairyNumber);
@@ -730,13 +747,12 @@ public class LicenseService {
 						mapCNO.put("DeveloperId", "2");
 						mapCNO.put("PurposeId", purposeId);
 						mapCNO.put("StartDate", date);
-						mapCNO.put("DistrictCode",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
+						mapCNO.put("DistrictCode", distCodeNIC);
 						mapCNO.put("Village",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
-						mapCNO.put("UserId", "2");
-						mapCNO.put("UserLoginId", "39");
+//						mapCNO.put("UserId", "2");
+//						mapCNO.put("UserLoginId", "39");
 						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
 								.toString();
 						tradeLicense.setTcpCaseNumber(caseNumber);
@@ -747,6 +763,7 @@ public class LicenseService {
 						// application number
 						Map<String, Object> mapANo = new HashMap<String, Object>();
 						mapANo.put("DiaryNo", dairyNumber);
+						mapANo.put("CaseId", caseNumber.split("~")[1]);
 						mapANo.put("DiaryDate", date);
 						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
 						mapANo.put("Village",
@@ -756,8 +773,8 @@ public class LicenseService {
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
 						mapANo.put("DateOfHearing", date);
 						mapANo.put("DateForFilingOfReply", date);
-						mapANo.put("UserId", "2");
-						mapANo.put("UserLoginId", "39");
+//						mapANo.put("UserId", "2");
+//						mapANo.put("UserLoginId", "39");
 						tcpApplicationNmber = thirPartyAPiCall.generateApplicationNumber(mapANo, authtoken).getBody()
 								.get("Value").toString();
 						tradeLicense.setTcpApplicationNumber(tcpApplicationNmber);
@@ -1118,11 +1135,11 @@ public class LicenseService {
 			purposeDetailm.setName(nameRes);
 			purposeDetailm.setId(code + i);
 			if (purposeDetailm.getArea() == null || purposeDetailm.getArea().isEmpty()) {
-				if (minimumPermissible != null ) {
-				purposeDetailm.setMinPercentage(minimumPermissible.toString());
+				if (minimumPermissible != null) {
+					purposeDetailm.setMinPercentage(minimumPermissible.toString());
 				}
 				if (maximunPermissible != null) {
-				purposeDetailm.setArea(totalArea.multiply(maximunPermissible).toString());
+					purposeDetailm.setArea(totalArea.multiply(maximunPermissible).toString());
 				}
 				totalArea = new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
 
