@@ -423,6 +423,15 @@ public class TLConfiguration {
 
 	@Value("${persister.compositionofurban.updatePayment}")
 	private String updatePaymentCompositionOfUrbanTopic;
+	
+	// realese bg
+	
+	@Value("${persister.realese.bg.save}")
+	private String saveRealeseBgTopic;
+
+	@Value("${persister.realese.bg.update}")
+	private String updateRealeseBgTopic;
+
 
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber}")
 	private String completionCertificateName;
