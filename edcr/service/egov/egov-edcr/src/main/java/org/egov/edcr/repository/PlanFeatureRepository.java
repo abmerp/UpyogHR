@@ -259,6 +259,9 @@ public class PlanFeatureRepository {
 
         pf = new PlanFeature(MeanOfAccess.class);
         features.add(pf);
+        
+        pf = new PlanFeature(org.egov.edcr.feature.PassageService.class);
+        features.add(pf);
 
         pf = new PlanFeature(BuildingHeight.class);
         features.add(pf);
