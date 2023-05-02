@@ -438,3 +438,75 @@ serviceMaps:
            type: JSON
            dbType: JSONB
          - jsonPath: compositionOfUrban.*.applicationNumber
+         
+ - version: 1.0
+   description: Persists save-realese-bg  service of eg_tl_release_bank_guarantee
+   fromTopic: save-realese-bg
+   isTransaction: true
+   queryMaps: 
+      - query: INSERT INTO public.eg_tl_release_bank_guarantee(id, bank_guarantee_id, any_other_document, any_other_document_description, application_cerficifate, application_cerficifate_description, bank_guarantee_issue_date, bank_guarantee_number, bank_guarantee_replaced_with, bg_amount, claim_expiry_date, completion_certificate, completion_certificate_description, expiry_date, reason_for_replacement, release, audit_details, application_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        basePath: releaseBankGuarantee.*
+        jsonMaps: 
+         - jsonPath: releaseBankGuarantee.*.id
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeId
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocument
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocumentDescription
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifate
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifateDescription
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeIssueDate
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeNumber
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeReplacedWith
+         - jsonPath: releaseBankGuarantee.*.bgAmount
+         - jsonPath: releaseBankGuarantee.*.claimExpiryDate
+         - jsonPath: releaseBankGuarantee.*.completionCertificate
+         - jsonPath: releaseBankGuarantee.*.completionCertificateDescription
+         - jsonPath: releaseBankGuarantee.*.expiryDate
+         - jsonPath: releaseBankGuarantee.*.reasonForReplacement
+         - jsonPath: releaseBankGuarantee.*.release
+         
+         - jsonPath: releaseBankGuarantee.*.audit_details
+           type: JSON
+           dbType: JSONB
+         
+         - jsonPath: releaseBankGuarantee.*.application_status
+         
+         
+ - version: 1.0
+   description: Persists update-realese-bg  service of eg_tl_release_bank_guarantee
+   fromTopic: update-realese-bg
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.eg_tl_release_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_issue_date=?, bank_guarantee_number=?, bank_guarantee_replaced_with=?, bg_amount=?, claim_expiry_date=?, completion_certificate=?, completion_certificate_description=?, expiry_date=?, reason_for_replacement=?, release=?, audit_details=?, application_status=? where id=?
+        basePath: releaseBankGuarantee.*
+        jsonMaps: 
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocument
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocumentDescription
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifate
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifateDescription
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeIssueDate
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeNumber
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeReplacedWith
+         - jsonPath: releaseBankGuarantee.*.bgAmount
+         - jsonPath: releaseBankGuarantee.*.claimExpiryDate
+         - jsonPath: releaseBankGuarantee.*.completionCertificate
+         - jsonPath: releaseBankGuarantee.*.completionCertificateDescription
+         - jsonPath: releaseBankGuarantee.*.expiryDate
+         - jsonPath: releaseBankGuarantee.*.reasonForReplacement
+         - jsonPath: releaseBankGuarantee.*.release
+         
+         - jsonPath: releaseBankGuarantee.*.audit_details
+           type: JSON
+           dbType: JSONB
+         
+         - jsonPath: releaseBankGuarantee.*.application_status
+         - jsonPath: releaseBankGuarantee.*.id
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
