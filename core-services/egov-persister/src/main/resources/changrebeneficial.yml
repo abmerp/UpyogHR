@@ -464,11 +464,11 @@ serviceMaps:
          - jsonPath: releaseBankGuarantee.*.reasonForReplacement
          - jsonPath: releaseBankGuarantee.*.release
          
-         - jsonPath: releaseBankGuarantee.*.audit_details
+         - jsonPath: releaseBankGuarantee.*.auditDetails
            type: JSON
            dbType: JSONB
          
-         - jsonPath: releaseBankGuarantee.*.application_status
+         - jsonPath: releaseBankGuarantee.*.applicationStatus
          
          
  - version: 1.0
@@ -476,7 +476,7 @@ serviceMaps:
    fromTopic: update-realese-bg
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_release_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_issue_date=?, bank_guarantee_number=?, bank_guarantee_replaced_with=?, bg_amount=?, claim_expiry_date=?, completion_certificate=?, completion_certificate_description=?, expiry_date=?, reason_for_replacement=?, release=?, audit_details=?, application_status=? where id=?
+      - query: UPDATE public.eg_tl_release_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_issue_date=?, bank_guarantee_number=?, bank_guarantee_replaced_with=?, bg_amount=?, claim_expiry_date=?, completion_certificate=?, completion_certificate_description=?, expiry_date=?, reason_for_replacement=?, release=?, audit_details=? where id=?
         basePath: releaseBankGuarantee.*
         jsonMaps: 
          - jsonPath: releaseBankGuarantee.*.anyOtherDocument
@@ -494,11 +494,9 @@ serviceMaps:
          - jsonPath: releaseBankGuarantee.*.reasonForReplacement
          - jsonPath: releaseBankGuarantee.*.release
          
-         - jsonPath: releaseBankGuarantee.*.audit_details
+         - jsonPath: releaseBankGuarantee.*.auditDetails
            type: JSON
            dbType: JSONB
-         
-         - jsonPath: releaseBankGuarantee.*.application_status
          - jsonPath: releaseBankGuarantee.*.id
          
          
