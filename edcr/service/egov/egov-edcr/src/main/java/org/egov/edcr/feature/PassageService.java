@@ -66,9 +66,12 @@ import org.springframework.stereotype.Service;
 public class PassageService extends FeatureProcess {
 		private static final String RULE41 = "41";
 		private static final String RULE39_6 = "39(6)";
-		private static final String PASSAGE_STAIR_MINIMUM_WIDTH = "1.2";
-		private static final String RULE39_6_DESCRIPTION = "The minimum passage giving access to stair";
-		private static final String RULE_41_DESCRIPTION = "The minimum width of corridors/ verandhas";
+		private static final String MINIMUM_HEIGHT_DESCRIPTION = "The minimum height of passage";
+		private static final String MINIMUM_HEIGHT_OF_PASSAGE = "2.15";
+//		private static final String PASSAGE_STAIR_MINIMUM_WIDTH = "1.2";
+		private static final String MINIMUM_WIDTH_OF_PASSAGE = "1.25";
+//		private static final String RULE39_6_DESCRIPTION = "The minimum passage giving access to stair";
+		private static final String RULE_41_DESCRIPTION = "The minimum width of corridors / passages";
 		
 	@Override
 	public Plan validate(Plan plan) {
@@ -82,17 +85,19 @@ public class PassageService extends FeatureProcess {
 
 				ScrutinyDetail scrutinyDetail = new ScrutinyDetail();
 				scrutinyDetail.addColumnHeading(1, RULE_NO);
-				scrutinyDetail.addColumnHeading(2, REQUIRED);
-				scrutinyDetail.addColumnHeading(3, PROVIDED);
-				scrutinyDetail.addColumnHeading(4, STATUS);
+				scrutinyDetail.addColumnHeading(2, DESCRIPTION);
+				scrutinyDetail.addColumnHeading(3, REQUIRED);
+				scrutinyDetail.addColumnHeading(4, PROVIDED);
+				scrutinyDetail.addColumnHeading(5, STATUS);
 				scrutinyDetail.setKey("Block_" + block.getNumber() + "_" + "Passage");
 
-				ScrutinyDetail scrutinyDetail1 = new ScrutinyDetail();
-				scrutinyDetail1.addColumnHeading(1, RULE_NO);
-				scrutinyDetail1.addColumnHeading(2, REQUIRED);
-				scrutinyDetail1.addColumnHeading(3, PROVIDED);
-				scrutinyDetail1.addColumnHeading(4, STATUS);
-				scrutinyDetail1.setKey("Block_" + block.getNumber() + "_" + "Passage Stair");
+//				ScrutinyDetail scrutinyDetail1 = new ScrutinyDetail();
+//				scrutinyDetail1.addColumnHeading(1, RULE_NO);
+//				scrutinyDetail1.addColumnHeading(2, DESCRIPTION);
+//				scrutinyDetail1.addColumnHeading(3, REQUIRED);
+//				scrutinyDetail1.addColumnHeading(4, PROVIDED);
+//				scrutinyDetail1.addColumnHeading(5, STATUS);
+//				scrutinyDetail1.setKey("Block_" + block.getNumber() + "_" + "Passage Stair");
 
 				org.egov.common.entity.edcr.Passage passage = block.getBuilding().getPassage();
 
@@ -100,7 +105,8 @@ public class PassageService extends FeatureProcess {
 
 					List<BigDecimal> passagePolylines = passage.getPassageDimensions();
 					List<BigDecimal> passageStairPolylines = passage.getPassageStairDimensions();
-
+					List<BigDecimal> passageHeight = passage.getPassageHeight();
+					
 					if (passagePolylines != null && passagePolylines.size() > 0) {
 
 						BigDecimal minPassagePolyLine = 
@@ -108,31 +114,49 @@ public class PassageService extends FeatureProcess {
 
 						BigDecimal minWidth = Util.roundOffTwoDecimal(minPassagePolyLine);
 						
-						if (minWidth.compareTo(BigDecimal.ONE) >= 0) {
+//						if (minWidth.compareTo(BigDecimal.ONE) >= 0) {
+						if (minWidth.compareTo(Util.roundOffTwoDecimal(BigDecimal.valueOf(1.25))) >= 0) {
 							setReportOutputDetails(plan, RULE41, RULE_41_DESCRIPTION,
-									String.valueOf(1), String.valueOf(minWidth), Result.Accepted.getResultVal(),
+									MINIMUM_WIDTH_OF_PASSAGE, String.valueOf(minWidth), Result.Accepted.getResultVal(),
 									scrutinyDetail);
 						} else {
 							setReportOutputDetails(plan, RULE41, RULE_41_DESCRIPTION,
-									String.valueOf(1), String.valueOf(minWidth), Result.Not_Accepted.getResultVal(),
+									MINIMUM_WIDTH_OF_PASSAGE, String.valueOf(minWidth), Result.Not_Accepted.getResultVal(),
 									scrutinyDetail);
 						}
 					}
 
-					if (passageStairPolylines != null && passageStairPolylines.size() > 0) {
+//					if (passageStairPolylines != null && passageStairPolylines.size() > 0) {
+//
+//						BigDecimal minPassageStairPolyLine = passageStairPolylines.stream().reduce(BigDecimal::min).get();;
+//
+//						BigDecimal minWidth = Util.roundOffTwoDecimal(minPassageStairPolyLine);
+//						
+//						if (minWidth.compareTo(Util.roundOffTwoDecimal(BigDecimal.valueOf(1.25))) >= 0) {
+//							setReportOutputDetails(plan, RULE39_6, RULE39_6_DESCRIPTION,
+//									PASSAGE_STAIR_MINIMUM_WIDTH, String.valueOf(minWidth), Result.Accepted.getResultVal(),
+//									scrutinyDetail1);
+//						} else {
+//							setReportOutputDetails(plan, RULE39_6, RULE39_6_DESCRIPTION,
+//									PASSAGE_STAIR_MINIMUM_WIDTH, String.valueOf(minWidth), Result.Not_Accepted.getResultVal(),
+//									scrutinyDetail1);
+//						}
+//					}
+					
+					if (passageHeight != null && passageHeight.size() > 0) {
 
-						BigDecimal minPassageStairPolyLine = passageStairPolylines.stream().reduce(BigDecimal::min).get();;
+						BigDecimal minPassageHeight = passageHeight.stream().reduce(BigDecimal::min).get();;
 
-						BigDecimal minWidth = Util.roundOffTwoDecimal(minPassageStairPolyLine);
+						BigDecimal minHeight = Util.roundOffTwoDecimal(minPassageHeight);
 						
-						if (minWidth.compareTo(Util.roundOffTwoDecimal(BigDecimal.valueOf(1.2))) >= 0) {
-							setReportOutputDetails(plan, RULE39_6, RULE39_6_DESCRIPTION,
-									PASSAGE_STAIR_MINIMUM_WIDTH, String.valueOf(minWidth), Result.Accepted.getResultVal(),
-									scrutinyDetail1);
+						if (minHeight.compareTo(Util.roundOffTwoDecimal(BigDecimal.valueOf(2.15))) >= 0) {
+							setReportOutputDetails(plan, RULE39_6, MINIMUM_HEIGHT_DESCRIPTION,
+									MINIMUM_HEIGHT_OF_PASSAGE, String.valueOf(minHeight), Result.Accepted.getResultVal(),
+									scrutinyDetail);
 						} else {
-							setReportOutputDetails(plan, RULE39_6, RULE39_6_DESCRIPTION,
-									PASSAGE_STAIR_MINIMUM_WIDTH, String.valueOf(minWidth), Result.Not_Accepted.getResultVal(),
-									scrutinyDetail1);
+							setReportOutputDetails(plan, RULE39_6, MINIMUM_HEIGHT_DESCRIPTION,
+									MINIMUM_HEIGHT_OF_PASSAGE, String.valueOf(minHeight), Result.Not_Accepted.getResultVal(),
+									scrutinyDetail);
 						}
 					}
 
