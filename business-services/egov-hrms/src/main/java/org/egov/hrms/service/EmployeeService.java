@@ -144,7 +144,7 @@ public class EmployeeService {
 			enrichCreateRequest(employee, requestInfo);
 			createUser(employee, requestInfo);
 			pwdMap.put(employee.getUuid(), employee.getUser().getPassword());
-			employee.getUser().setPassword(null);
+			employee.getUser().setPassword(employee.getUser().getPassword());
 		});
 		hrmsProducer.push(propertiesManager.getSaveEmployeeTopic(), employeeRequest);
 		notificationService.sendNotification(employeeRequest, pwdMap);
@@ -607,7 +607,7 @@ public class EmployeeService {
 
 			HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map,
 					headers);
-			String url = "http://103.166.62.118:80";
+			String url = "http://tcp.abm.com:8443";
 			return restTemplate.postForEntity(url + "/user/oauth/token", request, Map.class).getBody();
 
 		} catch (Exception e) {
@@ -658,7 +658,7 @@ public class EmployeeService {
 		String sso1 = "no";
 		EmployeeRequest employeeRequest = new EmployeeRequest();
 		EmployeeSearchCriteria employeeSearchCriteria = new EmployeeSearchCriteria();
-		if (ssoValue.equalsIgnoreCase(sso)) {
+		if (ssoValue.equalsIgnoreCase(sso1)) {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
