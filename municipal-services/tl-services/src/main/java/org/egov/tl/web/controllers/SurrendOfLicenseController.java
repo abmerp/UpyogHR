@@ -37,9 +37,9 @@ public class SurrendOfLicenseController {
 	public ResponseEntity<SurrendOfLicenseResponse> create(
 			@RequestBody SurrendOfLicenseRequest surrendOfLicenseRequest) throws JsonProcessingException {
 
-		SurrendOfLicense surrendOfLicense = surrendOfLicenseServices.create(surrendOfLicenseRequest);
-		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
-		surrendOfLicenseList.add(surrendOfLicense);
+		List<SurrendOfLicense> surrendOfLicenseList = surrendOfLicenseServices.create(surrendOfLicenseRequest);
+//		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
+//		surrendOfLicenseList.add(surrendOfLicense);
 		SurrendOfLicenseResponse surrendOfLicenseResponse = SurrendOfLicenseResponse.builder()
 				.surrendOfLicense(surrendOfLicenseList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(surrendOfLicenseRequest.getRequestInfo(), true))

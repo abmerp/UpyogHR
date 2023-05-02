@@ -42,7 +42,7 @@ public class ExtensionOfCLUPermissionRowMapper implements ResultSetExtractor<Lis
 			extensionOfCLUPermission.setId(rs.getString("id"));
 			extensionOfCLUPermission.setLicenseNo(rs.getString("license_no"));
 			extensionOfCLUPermission.setCaseNo(rs.getString("case_no"));
-			extensionOfCLUPermission.setApplicationNo(rs.getString("application_no"));
+			extensionOfCLUPermission.setApplicationNumber(rs.getString("application_no"));
 			extensionOfCLUPermission.setNaturePurpose(rs.getString("nature_purpose"));
 			extensionOfCLUPermission.setTotalAreaSq(rs.getString("total_area_sq"));
 			extensionOfCLUPermission.setCluDate(rs.getString("clu_date"));

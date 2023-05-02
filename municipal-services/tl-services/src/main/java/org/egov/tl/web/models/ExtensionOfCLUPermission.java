@@ -26,7 +26,7 @@ public class ExtensionOfCLUPermission {
 
 	private String caseNo;
 
-	private String applicationNo;
+	private String applicationNumber;
 
 	private String naturePurpose;
 

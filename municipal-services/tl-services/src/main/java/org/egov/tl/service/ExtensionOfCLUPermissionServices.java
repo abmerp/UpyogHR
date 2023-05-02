@@ -105,7 +105,7 @@ public class ExtensionOfCLUPermissionServices {
 		List<String> applicationNo = null;
 		int count = 1;
 		List<ExtensionOfCLUPermission> searchExtensionOfCLUPermission = search(requestInfo,
-				extensionOfCLUPermission.getLicenseNo(), extensionOfCLUPermission.getApplicationNo());
+				extensionOfCLUPermission.getLicenseNo(), extensionOfCLUPermission.getApplicationNumber());
 		if (!CollectionUtils.isEmpty(searchExtensionOfCLUPermission) || searchExtensionOfCLUPermission.size() > 1) {
 			throw new CustomException(
 					"Already Found  or multiple extension of clu of licence applications with LoiNumber.",
@@ -116,13 +116,13 @@ public class ExtensionOfCLUPermissionServices {
 				servicePlanService.assignee("CTP_HR", extensionOfCLUPermission.getTenantId(), true, requestInfo)));
 //////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 		applicationNo = servicePlanService.getIdList(requestInfo, extensionOfCLUPermission.getTenantId(),
-				config.getSurrenderName(), config.getSurrenderFormat(), count);
+				config.getCluName(), config.getCluFormat(), count);
 		extensionOfCLUPermission.setAction(extensionOfCLUPermission.getAction());
 		extensionOfCLUPermission.setAuditDetails(auditDetails);
 		extensionOfCLUPermission.setBusinessService(BUSINESS_EXTENTION);
 		extensionOfCLUPermission.setWorkflowCode(BUSINESS_EXTENTION);
 
-		extensionOfCLUPermission.setApplicationNo(applicationNo.get(0));
+		extensionOfCLUPermission.setApplicationNumber(applicationNo.get(0));
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
 				extensionOfCLUPermissionRequest.getExtensionOfCLUPermission(), requestInfo,
 				extensionOfCLUPermission.getBusinessService());
@@ -153,7 +153,7 @@ public class ExtensionOfCLUPermissionServices {
 		tradeLicenseAS.setBusinessService(bussinessServicename);
 		tradeLicenseAS.setAction(extensionOfCLUPermission.getAction());
 		tradeLicenseAS.setAssignee(extensionOfCLUPermission.getAssignee());
-		tradeLicenseAS.setApplicationNumber(extensionOfCLUPermission.getApplicationNo());
+		tradeLicenseAS.setApplicationNumber(extensionOfCLUPermission.getApplicationNumber());
 		tradeLicenseAS.setWorkflowCode(bussinessServicename);
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
 		tradeLicenseDetail.setTradeType(bussinessServicename);
@@ -229,12 +229,12 @@ public class ExtensionOfCLUPermissionServices {
 						"transfer of licence must not be null");
 			}
 
-			if (StringUtils.isEmpty(extensionOfCLUPermission.getApplicationNo())) {
+			if (StringUtils.isEmpty(extensionOfCLUPermission.getApplicationNumber())) {
 				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
 			}
 
 			List<ExtensionOfCLUPermission> extensionOfCLUPermissionSearch = search(requestInfo,
-					extensionOfCLUPermission.getLicenseNo(), extensionOfCLUPermission.getApplicationNo());
+					extensionOfCLUPermission.getLicenseNo(), extensionOfCLUPermission.getApplicationNumber());
 			if (CollectionUtils.isEmpty(extensionOfCLUPermissionSearch) || extensionOfCLUPermissionSearch.size() > 1) {
 				throw new CustomException(
 						"Found none or multiple transfer of licence applications with applicationNumber.",

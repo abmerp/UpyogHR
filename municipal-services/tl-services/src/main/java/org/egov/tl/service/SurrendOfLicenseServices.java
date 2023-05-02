@@ -94,7 +94,8 @@ public class SurrendOfLicenseServices {
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 
 	@SuppressWarnings("null")
-	public SurrendOfLicense create(SurrendOfLicenseRequest surrendOfLicenseRequest) throws JsonProcessingException {
+	public List<SurrendOfLicense> create(SurrendOfLicenseRequest surrendOfLicenseRequest)
+			throws JsonProcessingException {
 
 		String uuid = surrendOfLicenseRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -116,34 +117,26 @@ public class SurrendOfLicenseServices {
 		}
 		surrendOfLicense.setTenantId("hr");
 		surrendOfLicense.setId(UUID.randomUUID().toString());
-		surrendOfLicense.setAssignee(Arrays
-				.asList(servicePlanService.assignee("CTP_HR", surrendOfLicense.getTenantId(), true, requestInfo)));
-////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+
 		applicationNumbers = servicePlanService.getIdList(requestInfo, surrendOfLicense.getTenantId(),
 				config.getSurrenderName(), config.getSurrenderFormat(), count);
-		surrendOfLicense.setAction("INITIATE");
+
 		surrendOfLicense.setAuditDetails(auditDetails);
-		surrendOfLicense.setBusinessService(BUSINESS_SURRENDER);
-		surrendOfLicense.setWorkflowCode(BUSINESS_SURRENDER);
 
 		surrendOfLicense.setApplicationNumber(applicationNumbers.get(0));
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
-				surrendOfLicenseRequest.getSurrendOfLicense(), requestInfo, surrendOfLicense.getBusinessService());
 
-		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-		surrendOfLicense.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 		// }
-		SurrendOfLicense surrendOfLicenseData = makePayment(surrendOfLicense.getLicenseNo(), requestInfo);
-		surrendOfLicense.setTcpApplicationNumber(surrendOfLicenseData.getTcpApplicationNumber());
-		surrendOfLicense.setTcpCaseNumber(surrendOfLicenseData.getTcpCaseNumber());
-		surrendOfLicense.setTcpDairyNumber(surrendOfLicenseData.getTcpDairyNumber());
+
+//		surrendOfLicense.setTcpApplicationNumber(surrendOfLicenseData.getTcpApplicationNumber());
+//		surrendOfLicense.setTcpCaseNumber(surrendOfLicenseData.getTcpCaseNumber());
+//		surrendOfLicense.setTcpDairyNumber(surrendOfLicenseData.getTcpDairyNumber());
 		surrendOfLicenseRequest.setSurrendOfLicense(surrendOfLicense);
 
 		log.info(surrendTopic);
 
 		producer.push(surrendTopic, surrendOfLicenseRequest);
-
-		return surrendOfLicense;
+		List<SurrendOfLicense> surrendOfLicenseData = makePayment(surrendOfLicenseRequest);
+		return surrendOfLicenseData;
 	}
 
 	public List<SurrendOfLicense> update(SurrendOfLicenseContract surrendOfLicenseRequest) {
@@ -366,10 +359,26 @@ public class SurrendOfLicenseServices {
 //		return surrendOfLicenseRepo.findById(id).get();
 
 //	} 
-	public SurrendOfLicense makePayment(String licenseNumber, RequestInfo requestInfo) throws JsonProcessingException {
+	public List<SurrendOfLicense> makePayment(SurrendOfLicenseRequest surrendOfLicenseRequest)
+			throws JsonProcessingException {
+
+		RequestInfo requestInfo = surrendOfLicenseRequest.getRequestInfo();
+		SurrendOfLicense surrendOfLicense = surrendOfLicenseRequest.getSurrendOfLicense();
+		surrendOfLicense.setAssignee(Arrays
+				.asList(servicePlanService.assignee("CTP_HR", surrendOfLicense.getTenantId(), true, requestInfo)));
+////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+		surrendOfLicense.setBusinessService(BUSINESS_SURRENDER);
+		surrendOfLicense.setWorkflowCode(BUSINESS_SURRENDER);
+		surrendOfLicense.setAction("INITIATE");
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
+				surrendOfLicenseRequest.getSurrendOfLicense(), requestInfo, surrendOfLicense.getBusinessService());
+
+		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+		surrendOfLicense.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+
 		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
 		List<String> licenseNumberList = new ArrayList<>();
-		licenseNumberList.add(licenseNumber);
+		licenseNumberList.add(surrendOfLicense.getLicenseNo());
 		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
 
 		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
@@ -385,13 +394,18 @@ public class SurrendOfLicenseServices {
 		String caseNumber = json.getAsString("TCPCaseNumber");
 		String dairyNumber = json.getAsString("TCPDairyNumber");
 
-		SurrendOfLicense transfer = new SurrendOfLicense();
+		// SurrendOfLicense surrendOfLicense = new SurrendOfLicense();
 
-		transfer.setTcpApplicationNumber(application);
-		transfer.setTcpCaseNumber(caseNumber);
-		transfer.setTcpDairyNumber(dairyNumber);
-
-		return transfer;
+		surrendOfLicense.setTcpApplicationNumber(application);
+		surrendOfLicense.setTcpCaseNumber(caseNumber);
+		surrendOfLicense.setTcpDairyNumber(dairyNumber);
+		List<SurrendOfLicense> surrendOfLicenseList = new ArrayList<>();
+		surrendOfLicenseList.add(surrendOfLicense);
+		SurrendOfLicenseContract surrendOfLicenseContract = new SurrendOfLicenseContract();
+		surrendOfLicenseContract.setRequestInfo(requestInfo);
+		surrendOfLicenseContract.setSurrendOfLicense(surrendOfLicenseList);
+		List<SurrendOfLicense> update = update(surrendOfLicenseContract);
+		return update;
 
 	}
 

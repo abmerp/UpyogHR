@@ -401,7 +401,7 @@ public class GetServices {
 
 				for (ExtensionOfCLUPermission extensionOfCLUPermission : resultExtensionOfCLUPermission) {
 
-					application = extensionOfCLUPermission.getApplicationNo();
+					application = extensionOfCLUPermission.getApplicationNumber();
 					if (application != null)
 						finalResult.add(application);
 				}

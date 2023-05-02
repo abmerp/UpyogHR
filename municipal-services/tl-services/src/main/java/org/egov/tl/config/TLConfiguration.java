@@ -388,15 +388,15 @@ public class TLConfiguration {
 
 	@Value("${persister.changrebeneficial.updatePayment}")
 	private String updatePaymentChangreBeneficialTopic;
-	
+
 	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber}")
 	private String changeBeneficialApplicationName;
 	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber.format}")
 	private String changeBeneficialApplicationFormat;
 
-	// complition certificate 
-	    
-    @Value("${persister.completioncertificate.save}")
+	// complition certificate
+
+	@Value("${persister.completioncertificate.save}")
 	private String saveCompletionCertificateTopic;
 
 	@Value("${persister.completioncertificate.update}")
@@ -404,20 +404,18 @@ public class TLConfiguration {
 
 	@Value("${persister.completioncertificate.updatePayment}")
 	private String updatePaymentCompletionCertificateTopic;
-	
-	
+
 	// ConstructionOfCommunity
-    
-    @Value("${persister.constructionofcommunity.save}")
+
+	@Value("${persister.constructionofcommunity.save}")
 	private String saveConstructionOfCommunityTopic;
 
 	@Value("${persister.constructionofcommunity.update}")
 	private String updateConstructionOfCommunityTopic;
-	
-	
+
 	// compositionofurban
-    
-    @Value("${persister.compositionofurban.save}")
+
+	@Value("${persister.compositionofurban.save}")
 	private String saveCompositionOfUrbanTopic;
 
 	@Value("${persister.compositionofurban.update}")
@@ -425,27 +423,25 @@ public class TLConfiguration {
 
 	@Value("${persister.compositionofurban.updatePayment}")
 	private String updatePaymentCompositionOfUrbanTopic;
-	
-	
+
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber}")
 	private String completionCertificateName;
-	
+
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber.format}")
 	private String completionCertificateFormat;
-	
+
 	@Value("${egov.idgen.tl.constructionofcommunity.applicationNumber}")
 	private String constructionOfCommunityName;
-	
+
 	@Value("${egov.idgen.tl.constructionofcommunity.applicationNumber.format}")
 	private String constructionOfCommunityFormat;
-	
+
 	@Value("${egov.idgen.tl.compositionofurban.applicationNumber}")
 	private String CompositionOfUrbanName;
-	
+
 	@Value("${egov.idgen.tl.compositionofurban.applicationNumber.format}")
 	private String CompositionOfUrbanFormat;
 
-	
 	// renewal license
 	@Value("${persister.renewallicense.save}")
 	private String saveRenewalLicenseTopic;
@@ -473,11 +469,16 @@ public class TLConfiguration {
 	private String surrenderName;
 	@Value("${egov.idgen.tlSOL.applicationNum.format}")
 	private String surrenderFormat;
-	
+
 	@Value("${egov.idgen.tlZP.applicationNum.name}")
 	private String zonePlanName;
 	@Value("${egov.idgen.tlZP.applicationNum.format}")
 	private String zonePlanFormat;
-	
-	
+
+	@Value("${egov.idgen.tlCLU.applicationNum.name}")
+	private String cluName;
+
+	@Value("${egov.idgen.tlCLU.applicationNum.format}")
+	private String cluFormat;
+
 }

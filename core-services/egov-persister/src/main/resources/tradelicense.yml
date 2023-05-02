@@ -1539,7 +1539,7 @@ serviceMaps:
           
           - jsonPath: $.ExtensionOfCLUPermission.caseNo
           
-          - jsonPath: $.ExtensionOfCLUPermission.applicationNo      
+          - jsonPath: $.ExtensionOfCLUPermission.applicationNumber      
                    
           - jsonPath: $.ExtensionOfCLUPermission.naturePurpose
           
@@ -1701,7 +1701,7 @@ serviceMaps:
           
           - jsonPath: $.ExtensionOfCLUPermission.*.tcpDairyNumber
 
-          - jsonPath: $.ExtensionOfCLUPermission.*.applicationNo       
+          - jsonPath: $.ExtensionOfCLUPermission.*.applicationNumber       
       
  - version: 1.0
    description: create zone plan
