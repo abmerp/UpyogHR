@@ -79,7 +79,7 @@ public class ReleaseBankGuarantee {
 	@JsonProperty("completionCertificateDescription")
 	private String completionCertificateDescription;
 	
-	@JsonProperty("anyOtherDocument ")
+	@JsonProperty("anyOtherDocument")
 	private String anyOtherDocument;
 	
 	@JsonProperty("anyOtherDocumentDescription")
