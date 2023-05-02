@@ -13,6 +13,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
 import org.egov.tl.abm.newservices.contract.ApprovalStandardContract;
+import org.egov.tl.abm.newservices.contract.RevisedPlanContract;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 
 import org.egov.tl.config.TLConfiguration;
@@ -103,7 +104,7 @@ public class RevisedPlanServices {
 	@Autowired
 	ServicePlanService servicePlanService;
 
-	public RevisedPlan create(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
+	public List<RevisedPlan> create(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
 
 		String uuid = revisedPlanRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -118,32 +119,19 @@ public class RevisedPlanServices {
 		int count = 1;
 		List<RevisedPlan> searchApprovalPlan = search(requestInfo, revisedPlan.getApplicationNumber(),
 				revisedPlan.getLicenseNo());
-		 if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size()
-		> 1) {
-	
+		if (!CollectionUtils.isEmpty(searchApprovalPlan) || searchApprovalPlan.size() > 1) {
+
 			throw new CustomException("Already Found  or multiple revised layout plan applications with LoiNumber.",
 					"Already Found or multiple revised layout plan applications with LoiNumber.");
 		}
 
 		revisedPlan.setId(UUID.randomUUID().toString());
-		revisedPlan.setAssignee(
-				Arrays.asList(servicePlanService.assignee("CTP_HR", revisedPlan.getTenantId(), true, requestInfo)));
-////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+
 		applicationNumbers = servicePlanService.getIdList(requestInfo, revisedPlan.getTenantId(),
 				config.getRevisedLayoutPlanName(), config.getRevisedLayoutPlanFormat(), count);
 
-		revisedPlan.setBusinessService(businessService_RLP);
-		revisedPlan.setWorkflowCode(businessService_RLP);
-
 		revisedPlan.setAuditDetails(auditDetails);
 		revisedPlan.setApplicationNumber(applicationNumbers.get(0));
-
-		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
-				businessService_RLP);
-
-		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
-
-		revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 
 		ReviseLayoutPlan reviseLayoutPlan = revisedPlan.getReviseLayoutPlan();
 
@@ -153,17 +141,15 @@ public class RevisedPlanServices {
 		revisedPlan.setReviseLayoutPlan(null);
 
 		// }
-		RevisedPlan revisedPlans = makePayment(revisedPlan.getLicenseNo(), requestInfo);
-		revisedPlan.setTcpApplicationNumber(revisedPlans.getTcpApplicationNumber());
-		revisedPlan.setTcpCaseNumber(revisedPlans.getTcpCaseNumber());
-		revisedPlan.setTcpDairyNumber(revisedPlans.getTcpDairyNumber());
+		
+
 		revisedPlanRequest.setRevisedPlan(revisedPlan);
 
 		log.info(revisedTopic);
 
 		producer.push(revisedTopic, revisedPlanRequest);
-
-		return revisedPlan;
+		List<RevisedPlan> revisedPlans = makePayment(revisedPlanRequest);
+		return revisedPlans;
 
 	}
 
@@ -206,7 +192,7 @@ public class RevisedPlanServices {
 
 	}
 
-	public RevisedPlan update(RevisedPlanRequest revisedPlanRequest) {
+	public List<RevisedPlan> update(RevisedPlanContract revisedPlanRequest) {
 
 		String uuid = revisedPlanRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -214,9 +200,9 @@ public class RevisedPlanServices {
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
 
-		RevisedPlan revisedPlan = revisedPlanRequest.getRevisedPlan();
+		List<RevisedPlan> revisedPlanList = revisedPlanRequest.getRevisedPlan();
 
-		// for (RevisedPlan revisedPlan : revisedPlanList) {
+		 for (RevisedPlan revisedPlan : revisedPlanList) {
 
 		if (Objects.isNull(revisedPlanRequest) || Objects.isNull(revisedPlanRequest.getRevisedPlan())) {
 			throw new CustomException("revised layout plan must not be null", "revised layout plan must not be null");
@@ -285,13 +271,13 @@ public class RevisedPlanServices {
 
 		}
 
-		// }
+		}
 
-		revisedPlanRequest.setRevisedPlan(revisedPlan);
+		revisedPlanRequest.setRevisedPlan(revisedPlanList);
 
 		producer.push(revisdUpdateTopic, revisedPlanRequest);
 
-		return revisedPlan;
+		return revisedPlanList;
 
 	}
 
@@ -332,7 +318,7 @@ public class RevisedPlanServices {
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			RevisedPlanRequest revisedPlanRequest, RevisedPlan revisedPlan) {
+			RevisedPlanContract revisedPlanRequest, RevisedPlan revisedPlan) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
@@ -372,10 +358,24 @@ public class RevisedPlanServices {
 		revisedPlan.setStatus(nextStateName);
 	}
 
-	public RevisedPlan makePayment(String licenseNumber, RequestInfo requestInfo) throws JsonProcessingException {
+	public List<RevisedPlan> makePayment(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
+
+		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
+		RevisedPlan revisedPlan = revisedPlanRequest.getRevisedPlan();
+		revisedPlan.setBusinessService(businessService_RLP);
+		revisedPlan.setWorkflowCode(businessService_RLP);
+		revisedPlan.setAssignee(
+				Arrays.asList(servicePlanService.assignee("CTP_HR", revisedPlan.getTenantId(), true, requestInfo)));
+////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
+				businessService_RLP);
+
+		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+
+		revisedPlan.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
 		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
 		List<String> licenseNumberList = new ArrayList<>();
-		licenseNumberList.add(licenseNumber);
+		licenseNumberList.add(revisedPlan.getLicenseNo());
 		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
 
 		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
@@ -391,13 +391,17 @@ public class RevisedPlanServices {
 		String caseNumber = json.getAsString("TCPCaseNumber");
 		String dairyNumber = json.getAsString("TCPDairyNumber");
 
-		RevisedPlan revisedPlan = new RevisedPlan();
+		List<RevisedPlan> revisedPlanlist = new ArrayList<>();
 
 		revisedPlan.setTcpApplicationNumber(application);
 		revisedPlan.setTcpCaseNumber(caseNumber);
 		revisedPlan.setTcpDairyNumber(dairyNumber);
-
-		return revisedPlan;
+		revisedPlanlist.add(revisedPlan);
+		RevisedPlanContract revisedPlanContract= new RevisedPlanContract();
+		revisedPlanContract.setRequestInfo(requestInfo);	
+		revisedPlanContract.setRevisedPlan(revisedPlanlist);
+		List<RevisedPlan> update = update(revisedPlanContract);
+		return update;
 
 	}
 

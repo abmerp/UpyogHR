@@ -3,6 +3,7 @@ package org.egov.tl.web.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.egov.tl.abm.newservices.contract.RevisedPlanContract;
 import org.egov.tl.service.RevisedPlanServices;
 import org.egov.tl.util.ResponseInfoFactory;
 import org.egov.tl.web.models.RequestInfoWrapper;
@@ -36,9 +37,9 @@ public class RevisedPlanController {
 	public ResponseEntity<RevisedPlanResponse> create(@RequestBody RevisedPlanRequest revisedPlanRequest)
 			throws JsonProcessingException {
 
-		RevisedPlan revisedPlan = revisedPlanServices.create(revisedPlanRequest);
-		List<RevisedPlan> revisedPlanList = new ArrayList<>();
-		revisedPlanList.add(revisedPlan);
+		List<RevisedPlan> revisedPlanList = revisedPlanServices.create(revisedPlanRequest);
+//		List<RevisedPlan> revisedPlanList = new ArrayList<>();
+//		revisedPlanList.add(revisedPlan);
 		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlanList).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(revisedPlanRequest.getRequestInfo(), true))
 				.build();
@@ -47,11 +48,11 @@ public class RevisedPlanController {
 	}
 
 	@PostMapping("/_update")
-	public ResponseEntity<RevisedPlanResponse> update(@RequestBody RevisedPlanRequest revisedPlanRequest) {
+	public ResponseEntity<RevisedPlanResponse> update(@RequestBody RevisedPlanContract revisedPlanRequest) {
 
-		RevisedPlan revisedPlan = revisedPlanServices.update(revisedPlanRequest);
-		List<RevisedPlan> revisedPlanList = new ArrayList<>();
-		revisedPlanList.add(revisedPlan);
+		List<RevisedPlan> revisedPlanList = revisedPlanServices.update(revisedPlanRequest);
+//		List<RevisedPlan> revisedPlanList = new ArrayList<>();
+//		revisedPlanList.add(revisedPlan);
 		RevisedPlanResponse revisedPlanResponse = RevisedPlanResponse.builder().revisedPlan(revisedPlanList).responseInfo(
 				responseInfoFactory.createResponseInfoFromRequestInfo(revisedPlanRequest.getRequestInfo(), true))
 				.build();
