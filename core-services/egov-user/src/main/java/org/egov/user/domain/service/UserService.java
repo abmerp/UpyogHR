@@ -746,6 +746,7 @@ public class UserService {
 				user.setUsername(ssoCitizen.getEmailId());
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setOtpReference("123456");
+				user.setEmailId(ssoCitizen.getEmailId());
 				Object updateUser = getAccess(user, user.getOtpReference());
 
 				String data = null;
@@ -773,6 +774,7 @@ public class UserService {
 				user.setRoles(searchUsers.get(0).getRoles());
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setActive(true);
+				user.setEmailId(ssoCitizen.getEmailId());
 				User updatedUser = updateWithoutOtpValidation(user, requestInfo);
 				log.info("updatedUser" + updatedUser);
 
