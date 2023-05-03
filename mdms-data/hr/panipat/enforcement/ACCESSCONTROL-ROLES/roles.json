@@ -1,6 +1,6 @@
 
 {
-  "tenantId": "DistrictTownPlannerEnforcementPanipat",
+  "tenantId": "DTPEnforcementOfficePanipat",
   "moduleName": "ACCESSCONTROL-ROLES",
   "roles": [
     {

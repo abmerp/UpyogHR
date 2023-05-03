@@ -1,6 +1,6 @@
 
 {
-  "tenantId": "DistrictTownPlannerSirsa",
+  "tenantId": "DTPOfficeSirsa",
   "moduleName": "ACCESSCONTROL-ROLES",
   "roles": [
     {

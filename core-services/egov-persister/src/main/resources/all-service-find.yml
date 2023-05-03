@@ -8,29 +8,29 @@ serviceMaps:
    isTransaction: true
    queryMaps:
     - query: INSERT INTO public.eg_additional_documents( id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);  
-      basePath: AddtionalDocuments.*
+      basePath: AddtionalDocuments
       jsonMaps:
 
-       - jsonPath: $.AddtionalDocuments.*.id
+       - jsonPath: $.AddtionalDocuments.id
 
-       - jsonPath: $.AddtionalDocuments.*.applicationNumber
+       - jsonPath: $.AddtionalDocuments.applicationNumber
 
-       - jsonPath: $.AddtionalDocuments.*.loiNumber
+       - jsonPath: $.AddtionalDocuments.loiNumber
 
-       - jsonPath: $.AddtionalDocuments.*.licenceNumber
+       - jsonPath: $.AddtionalDocuments.licenceNumber
 
-       - jsonPath: $.AddtionalDocuments.*.additionalDetails
+       - jsonPath: $.AddtionalDocuments.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.AddtionalDocuments.*.auditDetails.createdBy
+       - jsonPath: $.AddtionalDocuments.auditDetails.createdBy
 
-       - jsonPath: $.AddtionalDocuments.*.auditDetails.createdTime
+       - jsonPath: $.AddtionalDocuments.auditDetails.createdTime
 
-       - jsonPath: $.AddtionalDocuments.*.auditDetails.lastModifiedBy
+       - jsonPath: $.AddtionalDocuments.auditDetails.lastModifiedBy
        
-       - jsonPath: $.AddtionalDocuments.*.auditDetails.lastModifiedTime
+       - jsonPath: $.AddtionalDocuments.auditDetails.lastModifiedTime
 
-       - jsonPath: $.AddtionalDocuments.*.businessService
+       - jsonPath: $.AddtionalDocuments.businessService
        
-       - jsonPath: $.AddtionalDocuments.*.type
+       - jsonPath: $.AddtionalDocuments.type

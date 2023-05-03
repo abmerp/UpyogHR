@@ -71,9 +71,6 @@ public class CompletionCertificateService {
 	private CompletionCertificateRepo completionCertificateRepo;
 
 	@Autowired
-	private ChangeBeneficialService changeBeneficialService;
-
-	@Autowired
 	private ServicePlanService servicePlanService;
 
 	@Autowired

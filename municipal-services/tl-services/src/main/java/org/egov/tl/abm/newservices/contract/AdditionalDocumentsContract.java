@@ -21,6 +21,6 @@ public class AdditionalDocumentsContract {
 	private RequestInfo requestInfo = null;
 
 	@JsonProperty("AddtionalDocuments")
-	private List<AdditionalDocuments> AddtionalDocuments;
+	private AdditionalDocuments AddtionalDocuments;
 
 }

@@ -1,0 +1,1673 @@
+
+{
+  "tenantId": "UrbanEstates",
+  "moduleName": "ACCESSCONTROL-ROLES",
+  "roles": [
+    {
+      "code": "CITIZEN",
+      "name": "Citizen",
+      "description": "Citizen who can raise complaint"
+    },
+    {
+      "code": "EMPLOYEE",
+      "name": "Employee",
+      "description": "Default role for all employees"
+    },
+    {
+      "code": "SUPERUSER",
+      "name": "Super User",
+      "description": "System Administrator. Can change all master data and has access to all the system screens."
+    },
+    {
+      "code": "GO",
+      "name": "Grievance Officer",
+      "description": "Heads the grivance cell. Also all complaints that cannot be routed based on the rules are routed to Grievance Officer."
+    },
+    {
+      "code": "RO",
+      "name": "Redressal Officer",
+      "description": "Employees that address citizens grievances."
+    },
+    {
+      "code": "GA",
+      "name": "Grivance Administrator",
+      "description": "System Administator for PGR. Can change PGR Master data only."
+    },
+    {
+      "code": "GRO",
+      "name": "Grievance Routing Officer",
+      "description": "Grievance Routing Officer"
+    },
+    {
+      "code": "Asset Administrator",
+      "name": "Asset Administrator",
+      "description": "Asset Administrator"
+    },
+    {
+      "code": "ULB Operator",
+      "name": "ULB Operator",
+      "description": "ULB Operator"
+    },
+    {
+      "code": "EMPLOYEE ADMIN",
+      "name": "EMPLOYEE ADMIN",
+      "description": "EMPLOYEE ADMIN"
+    },
+    {
+      "code": "Property Approver",
+      "name": "Property Approver",
+      "description": "Property Approver"
+    },
+    {
+      "code": "Property Verifier",
+      "name": "Property Verifier",
+      "description": "Property Verifier"
+    },
+    {
+      "code": "AssetReportViewer",
+      "name": "AssetReportViewer",
+      "description": "AssetReportViewer"
+    },
+    {
+      "code": "AssetCreator",
+      "name": "AssetCreator",
+      "description": "AssetCreator"
+    },
+    {
+      "code": "PTIS_MASTER",
+      "name": "PTIS Master",
+      "description": "Who has a access to Property Tax Masters"
+    },
+    {
+      "code": "PTIS_ADMIN",
+      "name": "PTIS Admin",
+      "description": "Who has a access to change tax rates, factor etc"
+    },
+    {
+      "code": "TL_ADMIN",
+      "name": "TL Admin",
+      "description": "Who has a access to Trade License Masters"
+    },
+    {
+      "code": "TL_CREATOR",
+      "name": "TL Creator",
+      "description": "Who has a access to Trade License Services"
+    },
+    {
+      "code": "COLL_OPERATOR",
+      "name": "Collection Operator",
+      "description": "Can Create, Search and Update Receipt"
+    },
+    {
+      "code": "BANK_COLL_OPERATOR",
+      "name": "Bank Collection Operator",
+      "description": "Can Create, Search Receipt"
+    },
+    {
+      "code": "CSC_COLL_OPERATOR",
+      "name": "CSC Collection Operator",
+      "description": "Can Create, Search Receipt"
+    },
+    {
+      "code": "LEGACY_RECEIPT_CREATOR",
+      "name": "Legacy Receipt Creator",
+      "description": "Legacy Receipt Creator"
+    },
+    {
+      "code": "TL_APPROVER",
+      "name": "TL Approver",
+      "description": "Who has a access to Trade License Workflow"
+    },
+    {
+      "code": "COLL_REP_VIEW",
+      "name": "Collection Report Viewer",
+      "description": "Collection Report Viewer can view Reports"
+    },
+    {
+      "code": "testonecode112234324",
+      "name": "test3test2",
+      "description": "test123description"
+    },
+    {
+      "code": "testtwocode11234354",
+      "name": "test4test1",
+      "description": "testcodedescription"
+    },
+    {
+      "code": "testonecode112234324",
+      "name": "test3test21",
+      "description": "test123description"
+    },
+    {
+      "code": "STORE INCHARGE",
+      "name": "Store Incharge",
+      "description": "Incharge of the ULB store"
+    },
+    {
+      "code": "directortestcode112234324",
+      "name": "director123456",
+      "description": "test123description"
+    },
+    {
+      "code": "COMMISSIONER",
+      "name": "Commissioner",
+      "description": "Commissioner"
+    },
+    {
+      "code": "AE_CREATOR",
+      "name": "Abstract Estimate Creator",
+      "description": "Who has a access to create Abstract Estimate"
+    },
+    {
+      "code": "WORKS_FINANCIAL_APPROVER",
+      "name": "Financials Approver",
+      "description": "Who has a access to capture Financial details and budgetary/financial sanction"
+    },
+    {
+      "code": "DE_CREATOR",
+      "name": "Detailed Estimate Creator",
+      "description": "Who has a access to create Detailed Estimate"
+    },
+    {
+      "code": "LOA_CREATOR",
+      "name": "LOA Creator",
+      "description": "Who has a access to create Letter Of Acceptance"
+    },
+    {
+      "code": "WO_CREATOR",
+      "name": "WO Creator",
+      "description": "Who has a access to create Work Order"
+    },
+    {
+      "code": "WORKS_BILL_CREATOR",
+      "name": "Works Bill Creator",
+      "description": "Who has a access to create Contractor Bill"
+    },
+    {
+      "code": "CONTRACTOR_ADVANCE_CREATOR",
+      "name": "Contractor Advance creator",
+      "description": "Who has a access to create Contractor Advance"
+    },
+    {
+      "code": "MB_CREATOR",
+      "name": "MB creator",
+      "description": "Who has a access to create MB"
+    },
+    {
+      "code": "WORKS_APPROVER",
+      "name": "Works Approver",
+      "description": "Who has a access to approve/verify Works objects"
+    },
+    {
+      "code": "WORKS_ADMINISTRATOR",
+      "name": "Works Administrator",
+      "description": "Who has a access to all the transactions, masters and reports"
+    },
+    {
+      "code": "WORKS_MASTER_CREATOR",
+      "name": "Works Master creator",
+      "description": "Who has a access to all the works masters."
+    },
+    {
+      "code": "DGRO",
+      "name": "Department Grievance Routing Officer",
+      "description": "GRO for a sepcific dept who assings the grievances to last mile employees"
+    },
+    {
+      "code": "CSR",
+      "name": "Customer Support Representative",
+      "description": "Employee who files and follows up complaints on behalf of the citizen"
+    },
+    {
+      "code": "PGR-ADMIN",
+      "name": "PGR Administrator",
+      "description": "Admin role that has super access over the system"
+    },
+    {
+      "code": "CEMP",
+      "name": "Counter Employee",
+      "description": "Employee at the counter who performs assessment on behalf of citizen"
+    },
+    {
+      "code": "FEMP",
+      "name": "Field Employee",
+      "description": "Employee on the field"
+    },
+    {
+      "code": "PTADMIN",
+      "name": "ULB Administrator",
+      "description": "Admin role that as access over an ulb"
+    },
+    {
+      "code": "STADMIN",
+      "name": "State Administrator",
+      "description": "Admin role that as access over a state"
+    },
+    {
+      "code": "EGF_BILL_CREATOR",
+      "name": "EGF Bill Creator",
+      "description": "Employee who creates Bills in finance "
+    },
+    {
+      "code": "EGF_BILL_APPROVER",
+      "name": "EGF Bill Approver",
+      "description": "Employee who takes part in  Bills  approval in finance "
+    },
+    {
+      "code": "EGF_VOUCHER_CREATOR",
+      "name": "Finance Voucher Creator",
+      "description": "One who can create a voucher"
+    },
+    {
+      "code": "EGF_VOUCHER_APPROVER",
+      "name": "Finance Voucher Approver",
+      "description": "One who can approve a voucher"
+    },
+    {
+      "code": "EGF_PAYMENT_CREATOR",
+      "name": "Finance Payment Creator",
+      "description": "One who can create a payment"
+    },
+    {
+      "code": "EGF_PAYMENT_APPROVER",
+      "name": "Finance Payment Approver",
+      "description": "One who can approve a payment"
+    },
+    {
+      "code": "EGF_MASTER_ADMIN",
+      "name": "Finance Master Admin",
+      "description": "One who is the administrator for all master data in Finance"
+    },
+    {
+      "code": "EGF_REPORT_VIEW",
+      "name": "Finance Report View",
+      "description": "One who has acess to all financial reports"
+    },
+    {
+      "code": "COLL_RECEIPT_CREATOR",
+      "name": "Collections Receipt Creator",
+      "description": "One who can create and approve a receipt and receipt voucher"
+    },
+    {
+      "code": "COLL_REMIT_TO_BANK",
+      "name": "Collections Remitter",
+      "description": "One who can remit the instruments to bank"
+    },
+    {
+      "code": "SYS_INTEGRATOR_FINANCE",
+      "name": "System Integrator Finance",
+      "description": "Role for allowing system integration of Finance app with rainmaker"
+    },
+    {
+      "code": "SYS_INTEGRATOR_WATER_SEW",
+      "name": "System Integrator W&S",
+      "description": "Role for allowing system integration of Water and Sewerage app with rainmaker"
+    },
+    {
+      "code": "TL_CEMP",
+      "name": "TL Counter Employee",
+      "description": "Counter Employee in Trade License who files TL on behalf of the citizen"
+    },
+    {
+      "code": "TL_APPROVER",
+      "name": "TL Approver",
+      "description": "Approver who verifies and approves the TL application"
+    },
+    {
+      "code": "EMPLOYEE_FINANCE",
+      "name": "Employee Finance",
+      "description": "All Employees who use Finance application"
+    },
+    {
+      "code": "EGF_ADMINISTRATOR",
+      "name": "Finance Adminsitrator",
+      "description": "All Employees who are Finance application administrator"
+    },
+    {
+      "code": "PGR_LME",
+      "name": "PGR Last Mile Employee",
+      "description": "PGR Last mile employee to whom the request can be assigned"
+    },
+    {
+      "code": "TL_FIELD_INSPECTOR",
+      "name": "TL Field Inspector",
+      "description": "Trade license field inspector"
+    },
+    {
+      "code": "TL_DOC_VERIFIER",
+      "name": "TL doc verifier",
+      "description": "Trade license document verifier"
+    },
+    {
+      "code": "PT_APPROVER",
+      "name": "PT Counter Approver",
+      "description": "PT Approver"
+    },
+    {
+      "code": "NOC_CEMP",
+      "name": "NoC counter employee",
+      "description": "Fire NOC Counter Employee"
+    },
+    {
+      "code": "NOC_DOC_VERIFIER",
+      "name": "NoC Doc Verifier",
+      "description": "Fire NOC document verifier"
+    },
+    {
+      "code": "NOC_FIELD_INSPECTOR",
+      "name": "NoC Field Inpector",
+      "description": "Fire NOC  Field Inpector"
+    },
+    {
+      "code": "NOC_APPROVER",
+      "name": "NoC counter Approver",
+      "description": "Fire NOC Approver"
+    },
+    {
+      "code": "BPA_ARCHITECT",
+      "name": "Architect",
+      "description": "Architect"
+    },
+    {
+      "code": "BPA_ENGINEER",
+      "name": "Engineer",
+      "description": "Engineer"
+    },
+    {
+      "code": "BPA_BUILDER",
+      "name": "Builder",
+      "description": "Builder"
+    },
+    {
+      "code": "BPA_DEVELOPER",
+      "name": "Developer",
+      "description": "Developer"
+    },
+    {
+      "code": "BPA_STRUCTURALENGINEER",
+      "name": "Structural Engineer",
+      "description": "Structural Engineer"
+    },
+    {
+      "code": "BPA_TOWNPLANNER",
+      "name": "Town Planner",
+      "description": "Town Planner"
+    },
+    {
+      "code": "BPA_SUPERVISOR",
+      "name": "BPA Supervisor",
+      "description": "Supervisor"
+    },
+    {
+      "code": "ANONYMOUS",
+      "name": "Anonymous User",
+      "description": "Anonymous User to be used in case of no auth"
+    },
+    {
+      "code": "BPAREG_APPROVER",
+      "name": "BPAREG Approver",
+      "description": "Stakeholder workflow Approver"
+    },
+    {
+      "code": "BPAREG_DOC_VERIFIER",
+      "name": "BPAREG doc verifier",
+      "description": "Stakeholder workflow document verifier"
+    },
+    {
+      "code": "BPA_APPROVER",
+      "name": "Services Approver",
+      "description": "Services workflow Approver"
+    },
+    {
+      "code": "BPA_VERIFIER",
+      "name": "Services verifier",
+      "description": "BPA Services workflow document & field inspection verifier"
+    },
+    {
+      "code": "WS_CEMP",
+      "name": "WS Counter Employee",
+      "description": "WS counter employee can take action as citizen"
+    },
+    {
+      "code": "WS_DOC_VERIFIER",
+      "name": "WS Document Verifier",
+      "description": "WS Document Verifier"
+    },
+    {
+      "code": "WS_FIELD_INSPECTOR",
+      "name": "WS Field Inspector",
+      "description": "WS Inspector can take action like verify and forword, send back to do"
+    },
+    {
+      "code": "WS_APPROVER",
+      "name": "WS Approver",
+      "description": "WS Approver can approve the connection application"
+    },
+    {
+      "code": "WS_CLERK",
+      "name": "WS Clerk",
+      "description": "WS Clerk can activate the connection application"
+    },
+    {
+      "code": "SW_CEMP",
+      "name": "SW Counter Employee",
+      "description": "SW counter employee can take action as citizen"
+    },
+    {
+      "code": "SW_DOC_VERIFIER",
+      "name": "SW Document Verifier",
+      "description": "SW Document Verifier"
+    },
+    {
+      "code": "SW_FIELD_INSPECTOR",
+      "name": "SW Field Inspector",
+      "description": "SW Inspector can take action like verify and forword, send back to do"
+    },
+    {
+      "code": "SW_APPROVER",
+      "name": "SW Approver",
+      "description": "SW Approver can approve the connection application"
+    },
+    {
+      "code": "SW_CLERK",
+      "name": "SW Clerk",
+      "description": "SW Clerk can activate the connection application"
+    },
+    {
+      "code": "SYSTEM",
+      "name": "System user",
+      "description": "System user role"
+    },
+    {
+      "code": "BPA_FIELD_INSPECTOR",
+      "name": "Field Inspector",
+      "description": "Service field inspector"
+    },
+    {
+      "code": "BPA_NOC_VERIFIER",
+      "name": "NOC Verifier",
+      "description": "Service NOC verifier"
+    },
+    {
+      "code": "NOC_DEPT_APPROVER",
+      "name": "NOC Department Approver",
+      "description": "NOC application approver"
+    },
+    {
+      "code": "FIRE_NOC_APPROVER",
+      "name": "Fire Noc Department Approver",
+      "description": "Fire Noc application approver"
+    },
+    {
+      "code": "AIRPORT_AUTHORITY_APPROVER",
+      "name": "Airport authority Approver",
+      "description": "Airport authority application approver"
+    },
+    {
+      "code": "CFC",
+      "name": "Citizen Feedback Centre",
+      "description": "Citizen Feedback Centre"
+    },
+    {
+      "code": "FSM_CREATOR_EMP",
+      "name": "FSM Employee Application Creator",
+      "description": "FSM Employee Application Creator"
+    },
+    {
+      "code": "FSM_EDITOR_EMP",
+      "name": "FSM Employee Application Editor",
+      "description": "FSM Employee Application Editor"
+    },
+    {
+      "code": "FSM_VIEW_EMP",
+      "name": "FSM Employee Application Viewer",
+      "description": "FSM Employee Application Viewer"
+    },
+    {
+      "code": "FSM_REPORT_VIEWER",
+      "name": "FSM Employee Report Viewer",
+      "description": "FSM Employee Report Viewer"
+    },
+    {
+      "code": "FSM_DASHBOARD_VIEWER",
+      "name": "FSM Employee Dashboard Viewer",
+      "description": "FSM Employee Dashboard Viewer"
+    },
+    {
+      "code": "FSM_ADMIN",
+      "name": "FSM Administrator",
+      "description": "FSM Administrator"
+    },
+    {
+      "code": "FSM_DSO",
+      "name": "FSM Desluding Operator",
+      "description": "FSM Desluding Operator"
+    },
+    {
+      "code": "FSM_DRIVER",
+      "name": "FSM Driver",
+      "description": "FSM Driver"
+    },
+    {
+      "code": "FSM_EMP_FSTPO",
+      "name": "FSM FSTP Opperator",
+      "description": "FSM FSTP Opperator"
+    },
+    {
+      "code": "FSM_COLLECTOR",
+      "name": "FSM Payment Collector",
+      "description": "FSM  Payment Collector"
+    },
+    {
+      "code": "HRMS_ADMIN",
+      "name": "HRMS Admin",
+      "description": "HRMS Admin"
+    },
+    {
+      "name": "Basic employee roles",
+      "code": "COMMON_EMPLOYEE",
+      "description": "Basic employee roles"
+    },
+    {
+      "name": "National Dashboard Systeme user",
+      "code": "NDA_SYSTEM",
+      "description": "National Dashboard Systeme user"
+    },
+    {
+      "code": "UC_EMP",
+      "name": "Universal Collection Employee",
+      "description": "Universal Miscellaneous Collection Employee"
+    },
+    {
+      "code": "ANONYMUS",
+      "name": "Any User",
+      "description": "Can Transform the Data"
+    },
+    {
+      "code": "PT_CEMP",
+      "name": "pt emp",
+      "description": "Receipt Register Report"
+    },
+    {
+      "code": "PT_COLLECTION_EMP",
+      "name": "ptcollection emp",
+      "description": "PTCollection Register Report"
+    },
+    {
+      "code": "AUTO_ESCALATE",
+      "name": "autoescalation emp",
+      "description": "Auto Escalation Employee"
+    },
+    {
+      "code": "CR_PT",
+      "name": "Property Tax Receipt Cancellator",
+      "description": "Property Tax Receipt Cancelling Employee"
+    },
+    {
+      "code": "NATADMIN",
+      "name": "National Dashboard Administrator",
+      "description": "Admin role that as access over a National"
+    },
+    {
+      "code": "PT_FIELD_INSPECTOR",
+      "name": "PT Field Inspector",
+      "description": "Property Field Inspector"
+    },
+    {
+      "code": "PT_DOC_VERIFIER",
+      "name": "PT Document Inspector",
+      "description": "Property Document Inspector"
+    },
+    {
+      "code": "BND_CEMP",
+      "name": "Birth and Death User",
+      "description": "Birth and Death User"
+    },
+    {
+      "code": "DASHBOARD_REPORT_VIEWER",
+      "name": "Birth and Death Dashboard User",
+      "description": "Birth and Death Dashboard User"
+    },
+    {
+      "code": "BIRTH_APPLICATION_CREATOR",
+      "name": "Birth Application Creator",
+      "description": "Birth User that can only create new applications"
+    },
+    {
+      "code": "DEATH_APPLICATION_CREATOR",
+      "name": "Death Application Creator",
+      "description": "Death User that can only create new applications"
+    },
+    {
+      "code": "BIRTH_APPLICATION_VIEWER",
+      "name": "Birth Application Viewer",
+      "description": "Birth User that can only search and view applications"
+    },
+    {
+      "code": "DEATH_APPLICATION_VIEWER",
+      "name": "Death Application Viewer",
+      "description": "Death User that can only search and view applications"
+    },
+    {
+      "code": "BIRTH_REPORT_VIEWER",
+      "name": "Birth Report Viewer",
+      "description": "Birth and Death User that can view tabular reports"
+    },
+    {
+      "code": "DEATH_REPORT_VIEWER",
+      "name": "Death Report Viewer",
+      "description": "Death User that can view tabular reports"
+    },
+    {
+      "code": "BIRTH_APPLICATION_EDITOR",
+      "name": "Birth Application Editor",
+      "description": "Birth User that can edit existing applications"
+    },
+    {
+      "code": "DEATH_APPLICATION_EDITOR",
+      "name": "DEATH Application Editor",
+      "description": "Death User that can edit existing applications"
+    },
+    {
+      "code": "INTERNAL_MICROSERVICE_ROLE",
+      "name": "Internal Microservice Role",
+      "description": "Internal role for plain access"
+    },
+    {
+      "code": "DEVELOPER",
+      "name": "Developer ",
+      "description": "developer role"
+    },
+    {
+      "code": "DTP_HQ",
+      "name": "District of town planner ",
+      "description": "DTP role"
+    },
+    {
+      "code": "Patwari_HQ",
+      "name": "Patwari Head Quarter",
+      "description": "Patwari  role"
+    },
+    {
+      "code": "ATP_HQ",
+      "name": "Assistant Town Planner Head Quarter",
+      "description": "ATP role"
+    },
+    {
+      "code": "JD_HQ",
+      "name": "Junior Draftsman ",
+      "description": "JD role"
+    },
+    {
+      "code": "SD_HQ",
+      "name": "Senior Draftsman",
+      "description": "SD role"
+    },
+    {
+      "code": "AO_HQ",
+      "name": "Account Officer Head Quarter",
+      "description": "AO role"
+    },
+    {
+      "code": "DDA_HQ",
+      "name": "Deputy District Attorney",
+      "description": "DDA role"
+    },
+    {
+      "code": "DA_HQ",
+      "name": "District Attorney",
+      "description": "DA role"
+    },
+    {
+      "code": "ADA_HQ",
+      "name": "Assistant District Attorney Head Quarter ",
+      "description": "ADA role"
+    },
+    {
+      "code": "AD_HQ",
+      "name": "Assistant Draftsman",
+      "description": "AD role"
+    },
+    {
+      "code": "JE_HQ",
+      "name": "Junior Engineer Head Quarter",
+      "description": "JE role"
+    },
+
+    {
+      "code": "STP_HQ",
+      "name": "Senior Town Planner Head Quarter",
+      "description": "STP role"
+    },
+    {
+      "code": "CTP_HR",
+      "name": "Chief Town Planner Haryana",
+      "description": "CTP HR role"
+    },
+    {
+      "code": "DTCP_HR",
+      "name": "Director of Town and Country Planning",
+      "description": "DTCP HR role"
+    },
+    {
+      "code": "LAO",
+      "name": "Land Acquisition Officer",
+      "description": "LAO role"
+    },
+    {
+      "code": "DTP_FIELD",
+      "name": "District Town Planner Field",
+      "description": "DTP field role"
+    },
+    {
+      "code": "Patwari_FIELD",
+      "name": "Patwari Field",
+      "description": "Patwari Field role"
+    },
+    {
+      "code": "JE_FIELD",
+      "name": "Junior Engineer Field",
+      "description": "Junior Engineer Field role"
+    },
+    {
+      "code": "NAYAB_TEHSILDAR",
+      "name": "Nayab Tehsildar",
+      "description": "Nayab Tehsildar role"
+    },
+    {
+      "code": "JD_FIELD",
+      "name": "Junior Draftsman Field",
+      "description": "JD Field role"
+    },
+    {
+      "code": "SD_FIELD",
+      "name": "Senior Draftsman Field",
+      "description": "SD Field role"
+    },
+    {
+      "code": "ATP_FIELD",
+      "name": "Assistant Town Planner Field",
+      "description": "ATP Field role"
+    },
+    {
+      "code": "STP_Circle",
+      "name": "Senior Town Planner Circle",
+      "description": "STP circle role"
+    },
+    {
+      "code": "ASST_JE_HQ",
+      "name": "Assistant Junior Engineer Head Quarter",
+      "description": "Assistant JE role"
+    },
+    {
+      "code": "CE_HQ",
+      "name": "Civil Engineer Head Quarter",
+      "description": "Civil Engineer JE role"
+    },
+    {
+      "code": "EE_HQ",
+      "name": "Electrical Engineer Head Quarter",
+      "description": "Electrical Engineer JE role"
+    },
+    {
+      "code": "HSVP",
+      "name": "HSVP External Agencies",
+      "description": "HSVP External Agencies For Verification role"
+    },
+    {
+      "code": "GMDA",
+      "name": "GMDA External Agencies",
+      "description": "GMDA External Agencies For Verification role"
+    },
+    {
+      "code": "FMDA",
+      "name": "FMDA External Agencies",
+      "description": "FMDA External Agencies For Verification role"
+    },
+    {
+      "code": "PMDA",
+      "name": "PMDA External Agencies",
+      "description": "PMDA External Agencies For Verification role"
+    },
+    {
+      "code": "SO_HQ",
+      "name": "Section Officer",
+      "description": "Section Officer role"
+    },
+    {
+      "code": "AO_HQ",
+      "name": "Accountant Officer",
+      "description": "Accountant Officer role"
+    },
+    {
+      "code": "CAO_HQ",
+      "name": "Chief Accountant Officer",
+      "description": "Chief Accountant Officer role"
+    },
+    {
+      "code": "PUD",
+      "name": "Electrical Plan Power Utility Department Officer",
+      "description": "Electrical Plan Power Utility Department role"
+    },
+    {
+      "code": "STP Office-Gurugram",
+      "name": "Senior Town Planner Gurugram",
+      "description": "Senior Town Planner Gurugram role"
+    },
+    {
+      "code":"HQ Office",
+      "name":"Head Quarter Office",
+       "description": "Head Quarter Office"
+      },
+      {
+      "code":"DTP Office-Hisar",
+      "name":"District town planer",
+       "description": ""
+      },
+      {
+      "code":"DTPEnforcement Office-Hisar",
+      "name":"District town planer enforcement hisar",
+       "description": "District town planer enforcement hisar role"
+      },
+      {
+      "code":"DTPEnforcement Office-Panipat",
+      "name":"District town planer enforcement panipat",
+       "description": "District town planer enforcement panipat role"
+      },
+      {
+      "code":"DTP Office-Jind",
+      "name":"District town planer jind",
+       "description": "District town planer jind role"
+      },
+      {
+      "code":"DTP Office-Kurukshetra",
+      "name":"District town planer Kurukshetra",
+       "description": "District town planer Kurukshetra"
+      },
+      {
+      "code":"DTP Office-Rewari",
+      "name":"District town planer rewari",
+       "description": "District town planer rewari"
+      },
+      {
+      "code":"DTP Office-Sirsa",
+      "name":"District town planer sirsa",
+       "description": "District town planer sirsa"
+      },
+      {
+      "code":"DTP Office-Sonipat",
+      "name":"District town planer sonipat",
+       "description": "District town planer sonipat"
+      },
+      {
+      "code":"DTP Office-Charkhi Dadri",
+      "name":"District town planer charkhi dadri",
+       "description": "District town planer charkhi dadri"
+      },
+      {
+      "code":"DTPEnforcement Office-Faridabad",
+      "name":"District town planer enforcement faridabad",
+       "description": "District town planer enforcement faridabad"
+      },
+      {
+      "code":"DTPEnforcement Office-Gurugram",
+      "name":"District town planer enforcment gurugram",
+       "description": "District town planer enforcment gurugram"
+      },
+      {
+      "code":"DTP Office-Faridabad",
+      "name":"District town planer faridabad",
+       "description": "District town planer faridabad"
+      },
+      {
+      "code":"STP Office-Faridabad",
+      "name":"Senior town planer faridabad",
+       "description": "Senior town planer faridabad"
+      },
+      {
+      "code":"DTP Office-Fatehabad",
+      "name":"District town planer fatehabad",
+       "description": "District town planer fatehabad"
+      },
+      {
+      "code":"DTP Office-Gurugram",
+      "name":"District town planer gurugram",
+       "description": "District town planer gurugram"
+      },
+      {
+      "code":"DTP Office-Karnal",
+      "name":"District town planer karnal",
+       "description": "District town planer karnal"
+      },
+      {
+      "code":"DTP Office-Kaithal",
+      "name":"District town planer kaithal",
+       "description": "District town planer kaithal"
+      },
+      {
+      "code":"DTP Office-Mewat",
+      "name":"District town planer mewat",
+       "description": "District town planer mewat"
+      },
+      {
+      "code":"DTP Office-Panchkula",
+      "name":"District town planer panchkula",
+       "description": "District town planer panchkula"
+      },
+      {
+      "code":"STP Office-Panchkula",
+      "name":"Senior town planer panchkula",
+       "description": "Senior town planer panchkula"
+      },
+      {
+      "code":"DTP Office-Rohtak",
+      "name":"District town planer rohtak",
+       "description": "District town planer rohtak"
+      },
+      {
+      "code":"STP Office-Rohtak",
+      "name":"Senior town planer rohtak",
+       "description": "Senior town planer rohtak"
+      },
+      {
+      "code":"STP Office-Hisar",
+      "name":"Senior town planer Hisar",
+      "description": "Senior town planer Hisar"
+      },
+      {
+      "code":"DTP Office-Ambala",
+      "name":"District town planer ambala",
+       "description": "District town planer ambala"
+      },
+      {
+      "code":"DTP Office-Panipat",
+      "name":"District town planer panipat",
+       "description": "District town planer panipat"
+      },
+      {
+      "code":"DTP Office-Bhiwani",
+      "name":"District town planer bhiwani",
+       "description": "District town planer bhiwani"
+      },
+      {
+      "code":"DTPEnforcement Office-Yamunanagar",
+      "name":"District town planer enforcement yamunanagar",
+       "description": "District town planer enforcement yamunanagar"
+      },
+      {
+      "code":"STPEnforcement Office HQ",
+      "name":"Senior town planer enforcement head quarter",
+       "description": "Senior town planer enforcement head quarter"
+      },
+      {
+      "code":"DTP Office-Jhajjar",
+      "name":"District town planer jhajjar",
+       "description": "District town planer jhajjar"
+      },
+      {
+      "code":"DTP Office-Mahendragarh",
+      "name":"District town planer mahendragarh",
+       "description": "District town planer mahendragarh"
+      },
+      {
+      "code":"CCPNCR Office",
+      "name":"CCPNCR Office",
+       "description": "CCPNCR Office"
+      },
+      {
+      "code":"DTP Office-Palwal",
+      "name":"District town planer Plawal",
+       "description": "District town planer Plawal"
+      },
+      {
+      "code":"DTP Office-Yamunanagar",
+      "name":"District town planer yamunagar",
+       "description": "District town planer yamunanagar"
+      },
+      {
+      "code":"DTPEnforcement Office-Panchkula",
+      "name":"District town planer enforcement office panchkula",
+       "description": "District town planer enforcement office panchkula"
+      },
+      {
+      "code":"Chairman Tribunal Chandigarh",
+      "name":"Chairman Tribunal Chandigarh",
+       "description": "Chairman Tribunal Chandigarh"
+      },
+      {
+      "code":"DTCP Office",
+      "name":"District town and country planning office",
+       "description": "District town and country planning office"
+      },
+      {
+      "code":"HSIIDC",
+      "name":"HSIIDC",
+       "description": "HSIIDC"
+      },
+      {
+      "code":"GMDA",
+      "name":"Gurugram Metropolitan Development Authority",
+       "description": "Gurugram Metropolitan Development Authority"
+      },
+      {
+      "code":"DULB Panchkula",
+      "name":"DULB Panchkula",
+       "description": "DULB Panchkula"
+      },
+      {
+      "code":"DTPEnforcement Office-Ambala",
+      "name":"District town planer enforcement office ambala",
+       "description": "District town planer enforcement office ambala"
+      },
+      {
+      "code":"DTPEnforcement Office-Karnal",
+      "name":"District town planer enforcement office karnal",
+       "description": "District town planer enforcement office karnal"
+      },
+      {
+      "code":"STPEnforcement Office-Gurugram",
+      "name":"Senior town planer enforcement office gurugram",
+       "description": "Senior town planer enforcement office gurugram"
+      },
+      {
+      "code":"Urban Estates",
+      "name":"Urban Estates",
+       "description": "Urban Estates"
+      },
+      {
+      "code":"LWD",
+      "name":"LWD",
+       "description": "LWD"
+      },
+      {
+      "code":"DTCP Online",
+      "name":"District town and country planning online",
+       "description": "District town and country planning online"
+      },
+      {
+      "code":"SARALTCP Office",
+      "name":"SARALTCP Office",
+       "description": "SARALTCP Office"
+      },
+      {
+      "code":"HSAMB Panchkula",
+      "name":"HSAMB Panchkula",
+       "description": "HSAMB Panchkula"
+      },
+      {
+      "code":"HUDA",
+      "name":"Haryana Urban Development Authority",
+       "description": "Haryana Urban Development Authority"
+      },
+      {
+      "code":"MC Faridabad",
+      "name":"Municipal coummunity faridabad",
+       "description": "Municipal coummunity faridabad"
+      },
+	  {
+      "code":"Draftsman Field",
+      "name":"Draftsman Field",
+       "description": "Draftsman Field"
+      },
+      {
+      "code":"Assistant District Atorney Field",
+      "name":"Assistant District Atorney Field",
+       "description": "Assistant District Atorney Field"
+      },
+	   {
+      "code":"Assistant District Atorney",
+      "name":"Assistant District Atorney",
+       "description": "Assistant District Atorney"
+      },
+	   {
+      "code":"Assistant District Atorney",
+      "name":"Assistant District Atorney",
+       "description": "Assistant District Atorney"
+      },
+	   {
+      "code":"AD Enf",
+      "name":"Assistant District Enf",
+       "description": "Assistant District Enf"
+      },
+	  {
+      "code":"Draftsman Circle",
+      "name":"Draftsman Circle",
+       "description": "Draftsman Circle"
+      },
+	   {
+      "code":"Draftsman",
+      "name":"Draftsman",
+       "description": "Draftsman"
+      },
+	   {
+      "code":"Assistant Draftsman",
+      "name":"Assistant Draftsman",
+       "description": "Assistant Draftsman"
+      },
+	   {
+      "code":"ITADMIN",
+      "name":"IT Administrator",
+       "description": "IT Administrator"
+      },
+	   {
+      "code":"Admin Account",
+      "name":"Admin Account",
+       "description": "Admin Account"
+      },
+	   {
+      "code":"Additional Director",
+      "name":"Additional Director",
+       "description": "Additional Director"
+      },
+	   {
+      "code":"Audit",
+      "name":"Audit",
+       "description": "Audit "
+      },
+	   {
+      "code":"Accounts",
+      "name":"Accounts",
+       "description": "Accounts"
+      },
+	   {
+      "code":"Accounts Officer",
+      "name":"Accounts Officer",
+       "description": "Accounts Officer"
+      },
+	   {
+      "code":"AO",
+      "name":"AO",
+       "description": "AO"
+      },
+	   {
+      "code":"Account Officer",
+      "name":"Account Officer",
+       "description": "Account Officer"
+      },
+	   {
+      "code":"Accounts Circle",
+      "name":"Accounts Circle",
+       "description": "Accounts Circle"
+      }, {
+      "code":"AO Circle",
+      "name":"AO Circle",
+       "description": "AO Circle"
+      }, {
+      "code":"Deputy Superintendent Field",
+      "name":"Deputy Superintendent Field",
+       "description": "Deputy Superintendent Field"
+      },
+	   {
+      "code":"Assistant  Field",
+      "name":"Assistant  Field",
+       "description": "Assistant  Field"
+      },
+	  
+	   {
+      "code":"Assistant Circle",
+      "name":"Assistant Circle",
+       "description": "Assistant Circle"
+      },
+	   {
+      "code":"Assistant",
+      "name":"Assistant",
+       "description": "Assistant"
+      },
+	   {
+      "code":"RECORD KEEPER",
+      "name":"RECORD KEEPER",
+       "description": "RECORD KEEPER"
+      },
+	   {
+      "code":"ATP Field",
+      "name":"Adenosine Triphosphate Field",
+       "description": "Adenosine Triphosphate Field"
+      },
+	   {
+      "code":"ATP",
+      "name":"Adenosine Triphosphate",
+       "description": "Adenosine Triphosphate"
+      },
+	  {
+      "code":"ATP Circle",
+      "name":"Adenosine Triphosphate Circle",
+       "description": "Adenosine Triphosphate Circle"
+      },
+	  {
+      "code":"ATP HQ",
+      "name":"Adenosine Triphosphate HQ",
+       "description": "Adenosine Triphosphate HQ"
+      },
+	  {
+      "code":"JD",
+      "name":"JD",
+       "description": "JD"
+      },
+	  {
+      "code":"CAO",
+      "name":"Chief Administrative Officer",
+       "description": "Chief Administrative Officer"
+      },
+	  {
+      "code":"Deputy Supdt.",
+      "name":"Deputy Superintendent",
+       "description": "Deputy Superintendent"
+      },
+	  {
+      "code":"CTP",
+      "name":"Chief Town Planner",
+       "description": "Chief Town Planner"
+      },
+	  {
+      "code":"Committee Member",
+      "name":"Committee Member",
+       "description": "Committee Member"
+      },
+	  {
+      "code":"Clerk",
+      "name":"Clerk",
+       "description": "Clerk"
+      },
+	  {
+      "code":"Clerk Field",
+      "name":"Clerk Field",
+       "description": "Clerk Field"
+      },
+	  {
+      "code":"DIARIST",
+      "name":"DIARIST",
+       "description": "DIARIST"
+      },
+	  {
+      "code":"Clerk Circle",
+      "name":"Clerk Circle",
+       "description": "Clerk Circle"
+      },
+	   {
+      "code":"Chairman",
+      "name":"Chairman",
+       "description": "Chairman"
+      },
+	   {
+      "code":"District Attorney",
+      "name":"District Attorney",
+       "description": "District Attorney"
+      },
+	   {
+      "code":"DB",
+      "name":"DB",
+       "description": "DB"
+      },
+	   {
+      "code":"DB Circle",
+      "name":"DB Circle",
+       "description": "DB Circle"
+      },
+	   {
+      "code":"Drawing Branch",
+      "name":"Drawing Branch",
+       "description": "Drawing Branch"
+      },
+	   {
+      "code":"Drafts Man",
+      "name":"Drafts Man",
+       "description": "Drafts Man"
+      },
+	   {
+      "code":"DB Field",
+      "name":"DB Field",
+       "description": "DB Field"
+      },
+	   {
+      "code":"Deputy Commissioner",
+      "name":"Deputy Commissioner",
+       "description": "Deputy Commissioner"
+      },
+	   {
+      "code":"Section Officer",
+      "name":"Section Officer",
+       "description": "Section Officer"
+      },
+	   {
+      "code":"Superintendent ",
+      "name":"Superintendent ",
+       "description": "Superintendent "
+      },
+	   {
+      "code":"Data Entry Operator",
+      "name":"Data Entry Operator",
+       "description": "Data Entry Operator"
+      },
+	   {
+      "code":"Software Developer",
+      "name":"Software Developer",
+       "description": "Software Developer"
+      },
+	   {
+      "code":"DIARIST Field",
+      "name":"DIARIST Field",
+       "description": "DIARIST Field"
+      },
+	   {
+      "code":"Planning Assistant Field",
+      "name":"Planning Assistant Field",
+       "description": "Planning Assistant Field"
+      },
+	   {
+      "code":"Diary Clerk",
+      "name":"Diary Clerk",
+       "description": "Diary Clerk"
+      },
+	   {
+      "code":"Diary",
+      "name":"Diary",
+       "description": "Diary"
+      },
+	   {
+      "code":"DISTRICT TOWN PLANNER",
+      "name":"DISTRICT TOWN PLANNER",
+       "description": "DISTRICT TOWN PLANNER"
+      },
+	   {
+      "code":"DIARIST Circle",
+      "name":"DIARIST Circle",
+       "description": "DIARIST Circle"
+      },
+	   {
+      "code":"Development Manager(Appln. System)",
+      "name":"Development Manager(Appln. System)",
+       "description": "Development Manager(Appln. System)"
+      },
+	   {
+      "code":"Development Manager(AS)",
+      "name":"Development Manager(AS)",
+       "description": "Development Manager(AS)"
+      },
+	   {
+      "code":"DGTCP",
+      "name":"DGTCP",
+       "description": "DGTCP"
+      },
+	   {
+      "code":"DTP Field",
+      "name":"District Town Planner Field",
+       "description": "District Town Planner Field"
+      },
+	   {
+      "code":"DTP",
+      "name":"District Town Planner",
+       "description": "District Town Planner"
+      },
+	   {
+      "code":"ADMIN IT",
+      "name":"ADMIN IT",
+       "description": "ADMIN IT"
+      },
+	   {
+      "code":"Deputy Superintendent Circle",
+      "name":"Deputy Superintendent Circle",
+       "description": "Deputy Superintendent Circle"
+      },
+	    {
+      "code":"Deputy Superintendent",
+      "name":"Deputy Superintendent",
+       "description": "Deputy Superintendent"
+      },
+	   {
+      "code":"Peon",
+      "name":"Peon",
+       "description": "Peon"
+      },
+	    {
+      "code":"Guest User",
+      "name":"Guest User",
+       "description": "Guest User"
+      },
+	   {
+      "code":"FIELD INVESTIGATOR",
+      "name":"FIELD INVESTIGATOR",
+       "description": "FIELD INVESTIGATOR"
+      },
+	    {
+      "code":"Ferro Khalasi",
+      "name":"Ferro Khalasi",
+       "description": "Ferro Khalasi"
+      },
+	   {
+      "code":"Security Guard",
+      "name":"Security Guard",
+       "description": "Security Guard"
+      },
+	    {
+      "code":"PMIT",
+      "name":"PMIT",
+       "description": "PMIT"
+      },
+	   {
+      "code":"Sr Draughtsman ",
+      "name":"Sr Draughtsman ",
+       "description": "Sr Draughtsman "
+      },
+	   {
+      "code":"Junior Draftsman Field",
+      "name":"Junior Draftsman Field",
+       "description": "Junior Draftsman Field"
+      },
+	   {
+      "code":"Junior Draftsman Circle",
+      "name":"Junior Draftsman Circle",
+       "description": "Junior Draftsman Circle"
+      },
+	  {
+      "code":"Junior Draftsman",
+      "name":"Junior Draftsman",
+       "description": "Junior Draftsman"
+      },
+	   {
+      "code":"Junior Engineer",
+      "name":"Junior Engineer",
+       "description": "Junior Engineer"
+      },
+	   {
+      "code":"Junior Engineer Circle",
+      "name":"Junior Engineer Circle",
+       "description": "Junior Engineer Circle"
+      },
+	  {
+      "code":"JE",
+      "name":"JE",
+       "description": "JE"
+      },
+	   {
+      "code":"Junior Scale Stenographer",
+      "name":"Junior Scale Stenographer",
+       "description": "Junior Scale Stenographer"
+      },
+	   {
+      "code":"Junior Scale Stenographer Field",
+      "name":"Junior Scale Stenographer Field",
+       "description": "Junior Scale Stenographer Field"
+      },
+	  {
+      "code":"Junior Scale Stenographer Circle",
+      "name":"Junior Scale Stenographer Circle",
+       "description": "Junior Scale Stenographer Circle"
+      },
+	   {
+      "code":"Senior Scale Stenographer",
+      "name":"Senior Scale Stenographer",
+       "description": "Senior Scale Stenographer"
+      },
+	   {
+      "code":"Khalasi",
+      "name":"Khalasi",
+       "description": "Khalasi"
+      },
+	  {
+      "code":"Dy.Supt.",
+      "name":"Dy.Supt.",
+       "description": "Dy.Supt." 	
+      },
+	   {
+      "code":"Government",
+      "name":"Government",
+       "description": "Government"
+      },
+	   {
+      "code":"Nodal Officer",
+      "name":"Nodal Officer",
+       "description": "Nodal Officer"
+      },
+	  {
+      "code":"Naib Tehsildar",
+      "name":"Naib Tehsildar",
+       "description": "Naib Tehsildar"
+      },
+	   {
+      "code":"OFAUSER",
+      "name":"OFAUSER",
+       "description": "OFAUSER"
+      },
+	   {
+      "code":"PA",
+      "name":"PA",
+       "description": "PA"
+      },
+	  {
+      "code":"Personal Assistant Field",
+      "name":"Personal Assistant Field",
+       "description": "Personal Assistant Field"
+      },
+	   {
+      "code":"Personal Assistant",
+      "name":"Personal Assistant",
+       "description": "Personal Assistant"
+      },
+	   {
+      "code":"Planning Assistant Circle",
+      "name":"Planning Assistant Circle",
+       "description": "Planning Assistant Circle"
+      },
+	    {
+      "code":"Planning Assistant",
+      "name":"Planning Assistant",
+       "description": "Planning Assistant"
+      },
+	    {
+      "code":"Private Secretary ",
+      "name":"Private Secretary ",
+       "description": "Private Secretary "
+      },
+	   {
+      "code":"PATWARI Field",
+      "name":"PATWARI Field",
+       "description": "PATWARI Field"
+      },
+	    {
+      "code":"Patwari",
+      "name":"Patwari",
+       "description": "Patwari"
+      },
+	    {
+      "code":"PATWARI Circle",
+      "name":"PATWARI Circle",
+       "description": "PATWARI Circle"
+      },
+	   {
+      "code":"Dy. Supt.",
+      "name":"Dy. Supt.",
+       "description": "Dy. Supt."
+      },
+	    {
+      "code":"SARALUSER",
+      "name":"SARALUSER",
+       "description": "SARALUSER"
+      },
+	    {
+      "code":"Diary Asst.",
+      "name":"Diary Asst.",
+       "description": "Diary Asst."
+      },
+	   {
+      "code":"Senior Draftmans",
+      "name":"Senior Draftmans",
+       "description": "Senior Draftmans"
+      },
+	    {
+      "code":"Draftsman",
+      "name":"Draftsman",
+       "description": "Draftsman"
+      },
+	    {
+      "code":"SO",
+      "name":"superintendent Officer",
+       "description": "superintendent Officer"
+      },
+	   {
+      "code":"Asst. Account",
+      "name":"Asst. Account",
+       "description": "Asst. Account"
+      },
+	    {
+      "code":"Accounts Field",
+      "name":"Accounts Field",
+       "description": "Accounts Field"
+      },
+	    {
+      "code":"Dy. Supdt.",
+      "name":"Dy. Supdt.",
+       "description": "Dy. Supdt."
+      },
+	   {
+      "code":"Section Officer ",
+      "name":"Section Officer ",
+       "description": "Section Officer "
+      },
+	    {
+      "code":"Steno Typist Field",
+      "name":"Steno Typist Field",
+       "description": "Steno Typist Field"
+      },
+	    {
+      "code":"Steno Typist Circle",
+      "name":"Steno Typist Circle",
+       "description": "Steno Typist Circle"
+      },
+	   {
+      "code":"Steno Typist ",
+      "name":"Steno Typist ",
+       "description": "Steno Typist "
+      },
+	    {
+      "code":"STP Circle",
+      "name":"STP Circle",
+       "description": "STP Circle"
+      },
+	    {
+      "code":"STP",
+      "name":"STP",
+       "description": "STP"
+      },
+	    {
+      "code":"Tracer",
+      "name":"Tracer",
+       "description": "Tracer"
+      },
+	    {
+      "code":"Tracer Field",
+      "name":"Tracer Field",
+       "description": "Tracer Field"
+      },
+	    {
+      "code":"ULB Accounts",
+      "name":"ULB Accounts",
+       "description": "ULB Accounts"
+      },
+	    {
+      "code":"Diary Assistant.",
+      "name":"Diary Assistant.",
+       "description": "Diary Assistant."
+      } 
+      
+  ]
+}

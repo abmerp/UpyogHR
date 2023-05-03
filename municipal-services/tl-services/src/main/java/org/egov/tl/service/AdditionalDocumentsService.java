@@ -63,17 +63,17 @@ public class AdditionalDocumentsService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
 		LocalDateTime localDateTime = LocalDateTime.now();
 		String date = formatter.format(localDateTime);
-		List<AdditionalDocuments> allServiceFindList = allServiceFindContract.getAddtionalDocuments();
-		for (AdditionalDocuments allServiceFind : allServiceFindList) {
+		AdditionalDocuments allServiceFind = allServiceFindContract.getAddtionalDocuments();
+//		for (AdditionalDocuments allServiceFind : allServiceFindList) {
 //			String applicationNumber = allServiceFind.getApplicationNumber();
 //			String loiNumber = allServiceFind.getLoiNumber();
 //			String licenceNumber = allServiceFind.getLicenceNumber();
-			List<AdditionalDocuments> allServiceFindsearch = search(requestInfo, allServiceFind.getType());
-
-			if (!CollectionUtils.isEmpty(allServiceFindsearch) || allServiceFindsearch.size() > 1) {
-				throw new CustomException("Already Found multiple service numbers",
-						"Already Found multiple service numbers");
-			}
+//			List<AdditionalDocuments> allServiceFindsearch = search(requestInfo, allServiceFind.getType());
+//
+//			if (!CollectionUtils.isEmpty(allServiceFindsearch) || allServiceFindsearch.size() > 1) {
+//				throw new CustomException("Already Found multiple service numbers",
+//						"Already Found multiple service numbers");
+//			}
 			List<DocumentsDetails> documentsDetails = allServiceFind.getDocumentsDetails();
 			List<DocumentsDetails> documentDetails = new ArrayList<>();
 			for(DocumentsDetails documentsDetail:documentsDetails) {
@@ -89,12 +89,13 @@ public class AdditionalDocumentsService {
 			allServiceFind.setAdditionalDetails(jsonNode);
 			allServiceFind.setDocumentsDetails(null);
 
-		}
-		allServiceFindContract.setAddtionalDocuments(allServiceFindList);
+	//	}
+		allServiceFindContract.setAddtionalDocuments(allServiceFind);
 
 		producer.push(topic, allServiceFindContract);
-
-		return allServiceFindList;
+		List<AdditionalDocuments> additionalDocumentsList = new ArrayList<>();
+		additionalDocumentsList.add(allServiceFind);
+		return additionalDocumentsList;
 	}
 
 	public List<AdditionalDocuments> search(RequestInfo requestInfo, String type) {

@@ -658,7 +658,7 @@ public class EmployeeService {
 		String sso1 = "no";
 		EmployeeRequest employeeRequest = new EmployeeRequest();
 		EmployeeSearchCriteria employeeSearchCriteria = new EmployeeSearchCriteria();
-		if (ssoValue.equalsIgnoreCase(sso)) {
+		if (ssoValue.equalsIgnoreCase(sso1)) {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
