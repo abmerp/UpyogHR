@@ -59,6 +59,7 @@ import org.egov.common.entity.edcr.Block;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
 import org.egov.common.entity.edcr.ScrutinyDetail;
+import org.egov.edcr.utility.Util;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -94,8 +95,8 @@ public class Parapet extends FeatureProcess {
 		for (Block b : pl.getBlocks()) {
 			if(b.getBuilding().getBuildingHeight().compareTo(new BigDecimal(16.5)) <= 0) {
 				if (b.getParapets() != null && !b.getParapets().isEmpty()) {
-					minHeight = b.getParapets().stream().reduce(BigDecimal::min).get();
-					if (minHeight.compareTo(new BigDecimal(1.2)) <= 0) {
+					minHeight = Util.roundOffTwoDecimal(b.getParapets().stream().reduce(BigDecimal::min).get());
+					if (minHeight.compareTo(new BigDecimal(1.21)) < 0) {
 						details.put(REQUIRED, "Height <= 1.2");
 						details.put(PROVIDED, "Height is " + minHeight);
 						details.put(STATUS, Result.Accepted.getResultVal());
