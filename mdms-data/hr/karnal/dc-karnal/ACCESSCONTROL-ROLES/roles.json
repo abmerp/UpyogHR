@@ -2,7 +2,7 @@
 {
   "tenantId": "DCOfficeKarnal",
   "moduleName": "ACCESSCONTROL-ROLES",
-  "roles": [
+   "roles": [
     {
       "code": "CITIZEN",
       "name": "Citizen",
@@ -1220,23 +1220,23 @@
       },
 	   {
       "code":"ATP Field",
-      "name":"Adenosine Triphosphate Field",
-       "description": "Adenosine Triphosphate Field"
+      "name":"Assistant Town Planner Field",
+       "description": "Assistant Town Planner Field"
       },
 	   {
       "code":"ATP",
-      "name":"Adenosine Triphosphate",
-       "description": "Adenosine Triphosphate"
+      "name":"Assistant Town Planner",
+       "description": "Assistant Town Planner"
       },
 	  {
       "code":"ATP Circle",
-      "name":"Adenosine Triphosphate Circle",
-       "description": "Adenosine Triphosphate Circle"
+      "name":"Assistant Town Planner Circle",
+       "description": "Assistant Town Planner Circle"
       },
 	  {
       "code":"ATP HQ",
-      "name":"Adenosine Triphosphate HQ",
-       "description": "Adenosine Triphosphate HQ"
+      "name":"Assistant Town Planner HQ",
+       "description": "Assistant Town Planner HQ"
       },
 	  {
       "code":"JD",
@@ -1329,9 +1329,9 @@
        "description": "Section Officer"
       },
 	   {
-      "code":"Superintendent ",
-      "name":"Superintendent ",
-       "description": "Superintendent "
+      "code":"Superintendent",
+      "name":"Superintendent",
+       "description": "Superintendent"
       },
 	   {
       "code":"Data Entry Operator",
@@ -1554,8 +1554,8 @@
        "description": "Planning Assistant"
       },
 	    {
-      "code":"Private Secretary ",
-      "name":"Private Secretary ",
+      "code":"Private Secretary",
+      "name":"Private Secretary",
        "description": "Private Secretary "
       },
 	   {
@@ -1619,8 +1619,8 @@
        "description": "Dy. Supdt."
       },
 	   {
-      "code":"Section Officer ",
-      "name":"Section Officer ",
+      "code":"Section Officer",
+      "name":"Section Officer",
        "description": "Section Officer "
       },
 	    {
@@ -1634,8 +1634,8 @@
        "description": "Steno Typist Circle"
       },
 	   {
-      "code":"Steno Typist ",
-      "name":"Steno Typist ",
+      "code":"Steno Typist",
+      "name":"Steno Typist",
        "description": "Steno Typist "
       },
 	    {
@@ -1667,7 +1667,43 @@
       "code":"Diary Assistant.",
       "name":"Diary Assistant.",
        "description": "Diary Assistant."
-      } 
+      },
+      {
+        "code":"CTP_IT_M",
+        "name":"CTP IT M",
+        "description": "CTP IT M"
+      },
+	  {
+        "code":"Junior Engineer Field",
+        "name":"unior Engineer Field",
+        "description": "unior Engineer Field"
+      },
+{
+        "code":"DIARIST FIELD",
+        "name":"DIARIST FIELD",
+        "description": "DIARIST FIELD"
+      } ,
+{
+        "code":"District Town Planner",
+        "name":"District Town Planner",
+        "description": "District Town Planner"
+      } ,
+{
+        "code":"PATWARI",
+        "name":"PATWARI",
+        "description": "PATWARI"
+      },	
+{
+        "code":"Junier Engineer",
+        "name":"Junier Engineer",
+        "description": "Junier Engineer"
+      },
+{
+        "code":"Jr Engineer",
+        "name":"Jr Engineer",
+        "description": "Jr Engineer"
+      }	  
+	  
       
   ]
 }
