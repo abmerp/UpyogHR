@@ -731,7 +731,7 @@ public class UserService {
 				user.setMobileNumber(ssoCitizen.getMobileNumber());
 				user.setOtpReference("123456");
 				user.setIdentificationMark(ssoCitizen.getUserId());
-
+				user.setEmailId(ssoCitizen.getEmailId());
 				// User createUser = createUser(user,requestInfo);
 				Object newUser = registerWithLogin(user, requestInfo);
 				log.info("newUser" + newUser);
