@@ -182,8 +182,10 @@ public class CompletionCertificateRepo {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
 						JsonNode additionalDetails = null;
+						
+						try {
+						PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
 						if (pgObj1 != null) {
 
 							try {
@@ -196,6 +198,9 @@ public class CompletionCertificateRepo {
 								e.printStackTrace();
 							}
 
+						}
+						}catch (Exception e) {
+							e.printStackTrace();
 						}
 
 						return CompletionCertificate.builder().id(rs.getString("id"))
