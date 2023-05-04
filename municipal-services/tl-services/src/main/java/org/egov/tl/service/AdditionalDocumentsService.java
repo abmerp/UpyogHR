@@ -98,7 +98,7 @@ public class AdditionalDocumentsService {
 		return additionalDocumentsList;
 	}
 
-	public List<AdditionalDocuments> search(RequestInfo requestInfo, String type) {
+	public List<AdditionalDocuments> search(RequestInfo requestInfo,String serviceName, String type, String licenceNumber) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -106,7 +106,7 @@ public class AdditionalDocumentsService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type\r\n"
+		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type\r\n"
 				+ "	FROM public.eg_additional_documents " + "WHERE  ";
 
 		builder = new StringBuilder(query);

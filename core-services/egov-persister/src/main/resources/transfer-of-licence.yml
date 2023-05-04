@@ -7,45 +7,43 @@ serviceMaps:
    fromTopic: save-transfer-of-licence
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_transfer_of_licence_service(id, area_in_acres, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);    
-      basePath: Transfer
+    - query: INSERT INTO public.eg_transfer_of_licence_service(id, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);    
+      basePath: TransferDao
       jsonMaps:
 
-       - jsonPath: $.Transfer.id
+       - jsonPath: $.TransferDao.id
 
-       - jsonPath: $.Transfer.araeInAcres
+       - jsonPath: $.TransferDao.licenseNo
 
-       - jsonPath: $.Transfer.licenseNo
+       - jsonPath: $.TransferDao.applicationNumber
 
-       - jsonPath: $.Transfer.applicationNumber
+       - jsonPath: $.TransferDao.tenantId
 
-       - jsonPath: $.Transfer.tenantId
+       - jsonPath: $.TransferDao.action
 
-       - jsonPath: $.Transfer.action
+       - jsonPath: $.TransferDao.businessService
 
-       - jsonPath: $.Transfer.businessService
-
-       - jsonPath: $.Transfer.additionalDetails
+       - jsonPath: $.TransferDao.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.Transfer.auditDetails.createdBy
+       - jsonPath: $.TransferDao.auditDetails.createdBy
 
-       - jsonPath: $.Transfer.auditDetails.lastModifiedBy
+       - jsonPath: $.TransferDao.auditDetails.lastModifiedBy
 
-       - jsonPath: $.Transfer.auditDetails.createdTime
+       - jsonPath: $.TransferDao.auditDetails.createdTime
 
-       - jsonPath: $.Transfer.auditDetails.lastModifiedTime
+       - jsonPath: $.TransferDao.auditDetails.lastModifiedTime
 
-       - jsonPath: $.Transfer.status
+       - jsonPath: $.TransferDao.status
        
-       - jsonPath: $.Transfer.tcpApplicationNumber
+       - jsonPath: $.TransferDao.tcpApplicationNumber
        
-       - jsonPath: $.Transfer.tcpCaseNumber
+       - jsonPath: $.TransferDao.tcpCaseNumber
        
-       - jsonPath: $.Transfer.tcpDairyNumber
+       - jsonPath: $.TransferDao.tcpDairyNumber
        
-       - jsonPath: $.Transfer.newAdditionalDetails
+       - jsonPath: $.TransferDao.newAdditionalDetails
          type: JSON
          dbType: JSONB
          
@@ -58,44 +56,44 @@ serviceMaps:
    queryMaps:
          
        - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, newadditionaldetails=? WHERE application_number=? ;   
-         basePath: Transfer.*
+         basePath: TransferDao.*
          jsonMaps:
 
-          - jsonPath: $.Transfer.*.id
+          - jsonPath: $.TransferDao.*.id
 
-          - jsonPath: $.Transfer.*.araeInAcres
+          - jsonPath: $.TransferDao.*.araeInAcres
        
-          - jsonPath: $.Transfer.*.tenantId
+          - jsonPath: $.TransferDao.*.tenantId
 
-          - jsonPath: $.Transfer.*.action
+          - jsonPath: $.TransferDao.*.action
 
-          - jsonPath: $.Transfer.*.businessService
+          - jsonPath: $.TransferDao.*.businessService
 
-          - jsonPath: $.Transfer.*.additionalDetails
+          - jsonPath: $.TransferDao.*.additionalDetails
             type: JSON
             dbType: JSONB
 
-          - jsonPath: $.Transfer.*.auditDetails.createdBy
+          - jsonPath: $.TransferDao.*.auditDetails.createdBy
 
-          - jsonPath: $.Transfer.*.auditDetails.lastModifiedBy
+          - jsonPath: $.TransferDao.*.auditDetails.lastModifiedBy
 
-          - jsonPath: $.Transfer.*.auditDetails.createdTime
+          - jsonPath: $.TransferDao.*.auditDetails.createdTime
   
-          - jsonPath: $.Transfer.*.auditDetails.lastModifiedTime
+          - jsonPath: $.TransferDao.*.auditDetails.lastModifiedTime
  
-          - jsonPath: $.Transfer.*.status       
+          - jsonPath: $.TransferDao.*.status       
        
-          - jsonPath: $.Transfer.*.tcpApplicationNumber
+          - jsonPath: $.TransferDao.*.tcpApplicationNumber
           
-          - jsonPath: $.Transfer.*.tcpCaseNumber
+          - jsonPath: $.TransferDao.*.tcpCaseNumber
           
-          - jsonPath: $.Transfer.*.tcpDairyNumber 
+          - jsonPath: $.TransferDao.*.tcpDairyNumber 
           
-          - jsonPath: $.Transfer.*.newAdditionalDetails
+          - jsonPath: $.TransferDao.*.newAdditionalDetails
             type: JSON
             dbType: JSONB    
         
-          - jsonPath: $.Transfer.*.applicationNumber
+          - jsonPath: $.TransferDao.*.applicationNumber
           
           
    
