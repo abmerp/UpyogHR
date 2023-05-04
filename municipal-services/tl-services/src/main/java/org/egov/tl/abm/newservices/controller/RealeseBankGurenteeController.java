@@ -1,7 +1,7 @@
 package org.egov.tl.abm.newservices.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.abm.newservices.contract.BankGuaranteeSearchContract;
@@ -50,9 +50,9 @@ public class RealeseBankGurenteeController {
 	/********************************** Realese bank gurentee start ******************************/
 	
 	@PostMapping("/guarantee/dropdonelist")
-	public ResponseEntity<List<String>> dropdonelist(@RequestBody RequestInfo requestInfo,
+	public ResponseEntity<List<Map<String,Object>>> dropdonelist(@RequestBody RequestInfo requestInfo,
 			@RequestParam(value = "type", required = true) int type){
-			List<String> lst = realeseBankGurenteeService.getDropDownList(type,requestInfo);
+			List<Map<String,Object>> lst = realeseBankGurenteeService.getDropDownList(type,requestInfo);
 		return new ResponseEntity<>(lst, HttpStatus.OK);
 	}
 	

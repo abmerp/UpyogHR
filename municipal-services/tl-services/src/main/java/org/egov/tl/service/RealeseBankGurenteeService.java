@@ -3,6 +3,7 @@ package org.egov.tl.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -56,6 +57,7 @@ public class RealeseBankGurenteeService {
 		
 		ReleaseBankGuarantee releaseBankGuarantee=realeseBankGurenteeRepo.getReleaseBankGuaranteeByBGNo(bankGuaranteeNumber);
 		if(releaseBankGuarantee!=null) {
+			realeseBankGurenteeRequest.getReleaseBankGuarantee().get(0).setId(releaseBankGuarantee.getId());
 			realeseBankGurenteeResponse=createRealeseBankGurentee(realeseBankGurenteeRequest, releaseBankGuarantee, false);
 		}else {
 			realeseBankGurenteeResponse=createRealeseBankGurentee(realeseBankGurenteeRequest, releaseBankGuarantee, true);
@@ -116,15 +118,30 @@ public class RealeseBankGurenteeService {
 		return realeseBankGurenteeResponse;
 	}
 	
-	public List<String> getDropDownList(int type, RequestInfo requestInfo) {
+	public List<Map<String,Object>> getDropDownList(int type, RequestInfo requestInfo) {
 		List<Map<String,Object>> dropList=realeseBankGurenteeRepo.getDropDownList();
-		List<String> dropDoneList=new ArrayList<>();
+		List<Map<String,Object>> dropDoneList=new ArrayList<>();
 		if(type==1) {
-			dropDoneList=dropList.stream().filter(bg->bg.get("application_number")!=null&&!bg.get("application_number").equals("")).map(bg->bg.get("application_number").toString()).collect(Collectors.toList());
+			dropDoneList=dropList.stream().filter(bg->bg.get("application_number")!=null&&!bg.get("application_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("application_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+			}).collect(Collectors.toList());
 		}else if(type==2){
-			dropDoneList=dropList.stream().filter(bg->bg.get("loi_number")!=null&&!bg.get("loi_number").equals("")).map(bg->bg.get("loi_number").toString()).collect(Collectors.toList());
+			dropDoneList=dropList.stream().filter(bg->bg.get("loi_number")!=null&&!bg.get("loi_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("loi_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+		    }).collect(Collectors.toList());
 		}else {
-			dropDoneList=dropList.stream().filter(bg->bg.get("licence_number")!=null&&!bg.get("licence_number").equals("")).map(bg->bg.get("licence_number").toString()).collect(Collectors.toList());
+			dropDoneList=dropList.stream().filter(bg->bg.get("licence_number")!=null&&!bg.get("licence_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("licence_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+			}).collect(Collectors.toList());
 		}
 		
 		return dropDoneList;

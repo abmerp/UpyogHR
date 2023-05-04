@@ -123,6 +123,7 @@ public class RealeseBankGurenteeRepo {
 			dropDownList = jdbcTemplate.query("select * from eg_tl_bank_guarantee", preparedStmtList.toArray(),
 					(rs, rowNum) -> {
 						Map<String,Object> lst=new HashMap<>();
+						lst.put("id", rs.getString("id"));
 					    lst.put("application_number", rs.getString("application_number"));
 					    lst.put("loi_number", rs.getString("loi_number"));
 					    lst.put("licence_number", rs.getString("licence_number"));
