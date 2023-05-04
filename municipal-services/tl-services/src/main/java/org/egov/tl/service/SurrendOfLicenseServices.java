@@ -285,7 +285,7 @@ public class SurrendOfLicenseServices {
 			}
 
 		} else if ((info.getUserInfo().getUuid() != null)) {
-			builder.append(" createdBy= :CB");
+			builder.append(" created_by= :CB");
 			paramMap.put("CB", info.getUserInfo().getUuid());
 			preparedStatement.add(info.getUserInfo().getUuid());
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, surrendOfLicenseRowMapper);
