@@ -18,10 +18,7 @@ public class DocumentsDetails {
 	private String documentName;
 	@JsonProperty("Date")
 	private String Date;
-	@JsonProperty("userName")
-	private String userName;
-	@JsonProperty("developerName")
-	private String developerName;
+
 	@JsonProperty("document")
 	private String document;
 

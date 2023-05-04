@@ -19,15 +19,14 @@ public class AdditionalDocuments {
 	@JsonProperty("id")
 	private String id;
 
-	@JsonProperty("loiNumber")
-	private String loiNumber;
-
 	@JsonProperty("licenceNumber")
 	private String licenceNumber;
 	@JsonProperty("type")
 	private String type;
-	@JsonProperty("applicationNumber")
-	private String applicationNumber;
+	@JsonProperty("userName")
+	private String userName;
+	@JsonProperty("developerName")
+	private String developerName;
 	@JsonProperty("businessService")
 	private String businessService;
 	@JsonProperty("auditDetails")
