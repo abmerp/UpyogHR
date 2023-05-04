@@ -217,5 +217,16 @@ public class LicenseServiceController {
 //				.build();
 		return generateNumbers;
 	}
+	
+
+	@PostMapping(value = "/search/licenseFees")
+	public ResponseEntity<Map<String, Object>> licenseFees(
+			@Valid @RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("licenseNumber") String licenseNumber) {
+		Map<String,Object> resp = newServiceInfoService.searchLicenseFees(licenseNumber,requestInfoWrapper);
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+	}
+	
+	
 
 }
