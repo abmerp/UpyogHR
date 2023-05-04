@@ -31,7 +31,7 @@ public class TransferRowMapper implements ResultSetExtractor<List<Transfer>> {
 			Transfer transfer = new Transfer();
 
 			transfer.setLicenseNo(rs.getString("license_no"));
-			transfer.setAraeInAcres(rs.getString("area_in_acres"));
+
 			transfer.setApplicationNumber(rs.getString("application_number"));
 			transfer.setAction(rs.getString("action"));
 			transfer.setBusinessService(rs.getString("businessservice"));

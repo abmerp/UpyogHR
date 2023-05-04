@@ -1,99 +1,56 @@
 serviceMaps:
- serviceName: TransferOfLicence
- mappings:
- - version: 1.0
-   name: transfer-of-licence
-   description: transfer of licence
-   fromTopic: save-transfer-of-licence
-   isTransaction: true
-   queryMaps:
-    - query: INSERT INTO public.eg_transfer_of_licence_service(id, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);    
-      basePath: TransferDao
+  serviceName: TransferOfLicence
+  mappings:
+  - version: 1.0
+    name: transfer-of-licence
+    description: transfer of licence
+    fromTopic: save-transfer-of-licence
+    isTransaction: true
+    queryMaps:
+    - query: INSERT INTO public.eg_transfer_of_licence_service(id, license_no, application_number, tenant_id, action, businessservice, additiona_details, created_by, last_modify_by, created_time, last_modified_time, status, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      basePath: $
       jsonMaps:
-
-       - jsonPath: $.TransferDao.id
-
-       - jsonPath: $.TransferDao.licenseNo
-
-       - jsonPath: $.TransferDao.applicationNumber
-
-       - jsonPath: $.TransferDao.tenantId
-
-       - jsonPath: $.TransferDao.action
-
-       - jsonPath: $.TransferDao.businessService
-
-       - jsonPath: $.TransferDao.additionalDetails
-         type: JSON
-         dbType: JSONB
-
-       - jsonPath: $.TransferDao.auditDetails.createdBy
-
-       - jsonPath: $.TransferDao.auditDetails.lastModifiedBy
-
-       - jsonPath: $.TransferDao.auditDetails.createdTime
-
-       - jsonPath: $.TransferDao.auditDetails.lastModifiedTime
-
-       - jsonPath: $.TransferDao.status
-       
-       - jsonPath: $.TransferDao.tcpApplicationNumber
-       
-       - jsonPath: $.TransferDao.tcpCaseNumber
-       
-       - jsonPath: $.TransferDao.tcpDairyNumber
-       
-       - jsonPath: $.TransferDao.newAdditionalDetails
-         type: JSON
-         dbType: JSONB
-         
-         
- - version: 1.0
-   name: transfer-of-licence
-   description: transfer of licence
-   fromTopic: update-transfer-of-licence
-   isTransaction: true
-   queryMaps:
-         
-       - query:   UPDATE public.eg_transfer_of_licence_service SET id=?, area_in_acres=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, created_by=?, last_modify_by=?, created_time=?, last_modified_time=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, newadditionaldetails=? WHERE application_number=? ;   
-         basePath: TransferDao.*
-         jsonMaps:
-
-          - jsonPath: $.TransferDao.*.id
-
-          - jsonPath: $.TransferDao.*.araeInAcres
-       
-          - jsonPath: $.TransferDao.*.tenantId
-
-          - jsonPath: $.TransferDao.*.action
-
-          - jsonPath: $.TransferDao.*.businessService
-
-          - jsonPath: $.TransferDao.*.additionalDetails
-            type: JSON
-            dbType: JSONB
-
-          - jsonPath: $.TransferDao.*.auditDetails.createdBy
-
-          - jsonPath: $.TransferDao.*.auditDetails.lastModifiedBy
-
-          - jsonPath: $.TransferDao.*.auditDetails.createdTime
-  
-          - jsonPath: $.TransferDao.*.auditDetails.lastModifiedTime
- 
-          - jsonPath: $.TransferDao.*.status       
-       
-          - jsonPath: $.TransferDao.*.tcpApplicationNumber
-          
-          - jsonPath: $.TransferDao.*.tcpCaseNumber
-          
-          - jsonPath: $.TransferDao.*.tcpDairyNumber 
-          
-          - jsonPath: $.TransferDao.*.newAdditionalDetails
-            type: JSON
-            dbType: JSONB    
-        
-          - jsonPath: $.TransferDao.*.applicationNumber
-          
-          
-   
+      - jsonPath: $.id
+      - jsonPath: $.licenseNo
+      - jsonPath: $.applicationNumber
+      - jsonPath: $.tenantId
+      - jsonPath: $.action
+      - jsonPath: $.businessService
+      - jsonPath: $.additionalDetails
+        type: JSON
+        dbType: JSONB
+      - jsonPath: $.auditDetails.createdBy
+      - jsonPath: $.auditDetails.lastModifiedBy
+      - jsonPath: $.auditDetails.createdTime
+      - jsonPath: $.auditDetails.lastModifiedTime
+      - jsonPath: $.status
+      - jsonPath: $.tcpApplicationNumber
+      - jsonPath: $.tcpCaseNumber
+      - jsonPath: $.tcpDairyNumber
+      - jsonPath: $.newAdditionalDetails
+        type: JSON
+        dbType: JSONB
+  - version: 1.0
+    name: transfer-of-licence
+    description: transfer of licence
+    fromTopic: update-transfer-of-licence
+    isTransaction: true
+    queryMaps:
+    - query: UPDATE public.eg_transfer_of_licence_service SET id=?,  tenant_id=?, action=?, businessservice=?, additiona_details=?, status=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?, newadditionaldetails=? WHERE application_number=? ;
+      basePath: Transfer
+      jsonMaps:
+      - jsonPath: $.Transfer.id
+      - jsonPath: $.Transfer.tenantId
+      - jsonPath: $.Transfer.action
+      - jsonPath: $.Transfer.businessService
+      - jsonPath: $.Transfer.additionalDetails
+        type: JSON
+        dbType: JSONB
+      - jsonPath: $.Transfer.status
+      - jsonPath: $.Transfer.tcpApplicationNumber
+      - jsonPath: $.Transfer.tcpCaseNumber
+      - jsonPath: $.Transfer.tcpDairyNumber
+      - jsonPath: $.Transfer.newAdditionalDetails
+        type: JSON
+        dbType: JSONB
+      - jsonPath: $.Transfer.applicationNumber

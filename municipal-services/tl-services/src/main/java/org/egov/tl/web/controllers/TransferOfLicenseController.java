@@ -47,7 +47,7 @@ public class TransferOfLicenseController {
 
 	@PostMapping("/_update")
 	public ResponseEntity<TransferOfLicenseResponse> update(
-			@RequestBody TransferOfLicenseContract transferOfLicenseRequest) {
+			@RequestBody TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
 		List<Transfer> transferList = transferOfLicenseServices.Update(transferOfLicenseRequest);
 //		List<Transfer> transferList = new ArrayList<>();
 //		transferList.add(transfer);
