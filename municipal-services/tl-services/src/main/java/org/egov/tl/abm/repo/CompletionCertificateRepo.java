@@ -246,10 +246,11 @@ public class CompletionCertificateRepo {
 								.affidavitNoUnauthorized(rs.getString("affidavit_no_unauthorized"))
 								.complainsDetails(rs.getString("complains_details"))
 								.accessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
-								.tranactionId(rs.getString("transaction_id")).newAdditionalDetails(additionalDetails)
+								.tranactionId(rs.getString("transaction_id"))
+								.newAdditionalDetails(additionalDetails)
 								.tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
 								.tcpCaseNumber(rs.getString("tcpcasenumber"))
-								.tcpDairyNumber(rs.getString("tcpcasenumber"))
+								.tcpDairyNumber(rs.getString("tcpdairyNumber"))
 								.build();
 					});
 			if (completionCertificate != null && !completionCertificate.isEmpty()) {
