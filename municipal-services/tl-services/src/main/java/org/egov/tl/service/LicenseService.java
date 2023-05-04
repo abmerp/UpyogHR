@@ -77,6 +77,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -153,6 +154,10 @@ public class LicenseService {
 	ServicePlanService servicePlanService;
 	@Autowired
 	private TradeUtil tradeUtil;
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 
 	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
 
@@ -1194,5 +1199,27 @@ public class LicenseService {
 		}
 		return purposeDetailm;
 	}
+	
+	public Map<String,Object> searchLicenseFees(String licenseNumber,RequestInfoWrapper requestInfoWrapper) {
+		Map<String,Object> response=new HashMap<>();
+		
+			List<Map<String,Object>> licenseFeesList = null;
+			try {
+				List<Object> preparedStmtList = new ArrayList<>();
+				licenseFeesList = jdbcTemplate.query("select * from license_fees where license_number='"+licenseNumber+"'", preparedStmtList.toArray(),
+						(rs, rowNum) -> {
+							Map<String,Object> lst=new HashMap<>();
+							lst.put("license_number", rs.getString("license_number"));
+						    lst.put("license_date", rs.getDate("license_date"));
+						    lst.put("total_fees", rs.getObject("total_fees"));
+							return lst;
+						});
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			response.put("ResponseInfo",requestInfoWrapper.getRequestInfo());
+			response.put("licenseFeesDetails",licenseFeesList);
+			return response;
+		}
 
 }
