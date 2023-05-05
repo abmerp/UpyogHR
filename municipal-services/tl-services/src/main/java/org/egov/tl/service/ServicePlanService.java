@@ -159,9 +159,8 @@ public class ServicePlanService {
 		servicePlanContract.setServicePlanRequest(servicePlanRequestList);
 
 		producer.push(config.getSPsaveTopic(), servicePlanContract);
-		List<ServicePlanRequest> update = Update(servicePlanContract);
 
-		return update;
+		return servicePlanRequestList;
 
 	}
 
