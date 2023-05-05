@@ -689,7 +689,7 @@ public class EmployeeService {
 				userDetail.setPassword("eGov@4321");
 				userDetail.setTenantId(tenant);
 				roles.setCode(ssoEmployee.getDesignation());
-				roles.setTenantId(ssoEmployee.getOfficeName());
+				roles.setTenantId(tenant);
 				// roles.setCode(ssoEmployee.getOfficeName());
 				// roles.setTenantId(requestInfo.getUserInfo().getTenantId());
 				rolesEmployee.setCode("EMPLOYEE");

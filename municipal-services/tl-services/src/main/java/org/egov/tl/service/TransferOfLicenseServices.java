@@ -287,6 +287,7 @@ public class TransferOfLicenseServices {
 		transferOfLicenseRequest.setTransfer(transfer);
 
 		producer.push(tranferUpdateTopic, transferOfLicenseRequest);
+		transfer.setTransferOfLicence(null);
 		List<Transfer> transferList = new ArrayList<>();
 		transferList.add(transfer);
 		return transferList;

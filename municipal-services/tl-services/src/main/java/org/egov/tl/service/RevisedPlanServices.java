@@ -294,7 +294,7 @@ public class RevisedPlanServices {
 		revisedPlanRequest.setRevisedPlan(revisedPlan);
 
 		producer.push(revisdUpdateTopic, revisedPlanRequest);
-		
+		revisedPlan.setReviseLayoutPlan(null);
 		List<RevisedPlan> revisedPlanList = new ArrayList<>();
 		revisedPlanList.add(revisedPlan);
 		return revisedPlanList;

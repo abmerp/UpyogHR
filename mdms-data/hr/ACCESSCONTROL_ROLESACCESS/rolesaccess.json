@@ -2370,7 +2370,7 @@
       },
       {
         "role":"DTP Field",
-        "applicationStatus":"PENDING_AT_PATWARI_FIELD_SITEVERIF",
+        "applicationStatus":"PENDING_AT_DTP_FIELD_POST_DEPT_SITEVERIF",
          "field": [
 			{
 			 "fields":"NWL_APPLICANT_TOTAL_AREA_LAND_SCHEDULE"
