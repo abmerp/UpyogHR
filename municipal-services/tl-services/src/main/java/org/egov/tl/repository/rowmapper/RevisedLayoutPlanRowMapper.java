@@ -28,7 +28,6 @@ public class RevisedLayoutPlanRowMapper implements ResultSetExtractor<List<Revis
 
 	@Override
 	public List<RevisedPlan> extractData(ResultSet rs) throws SQLException, DataAccessException {
-		// TODO Auto-generated method stub
 
 		List<RevisedPlan> revisedPlanList = new ArrayList<>();
 		while (rs.next()) {

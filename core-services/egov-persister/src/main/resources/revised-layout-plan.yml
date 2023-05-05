@@ -9,14 +9,68 @@ serviceMaps:
     queryMaps:
     
        - query: INSERT INTO public.eg_revised_layout_plan(id, licence_number, application_number, tenantid, action, status, workflowcode, businessservice, additionaldetails, createdby, lastmodifyby, created_time, lastmodifiedtime, feescharges, feesresult, tcpapplicationnumber, tcpcasenumber, tcpdairynumber, newadditionaldetails)VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);   
+         basePath: $
+         jsonMaps:    
+         
+          - jsonPath: $.id     
+          
+          - jsonPath: $.licenseNo
+          
+          - jsonPath: $.applicationNumber
+          
+          - jsonPath: $.tenantId      
+                   
+          - jsonPath: $.action
+          
+          - jsonPath: $.status
+          
+          - jsonPath: $.workflowCode 
+          
+          - jsonPath: $.businessService
+           
+          - jsonPath: $.additionalDetails
+            type: JSON
+            dbType: JSONB
+          
+          - jsonPath: $.auditDetails.createdBy
+
+          - jsonPath: $.auditDetails.lastModifiedBy         
+
+          - jsonPath: $.auditDetails.createdTime
+
+          - jsonPath: $.auditDetails.lastModifiedTime             
+          
+          - jsonPath: $.feesCharges
+            type: JSON
+            dbType: JSONB
+            
+          - jsonPath: $.feesResult
+            type: JSON
+            dbType: JSONB   
+            
+          - jsonPath: $.tcpApplicationNumber
+          
+          - jsonPath: $.tcpCaseNumber
+          
+          - jsonPath: $.tcpDairyNumber
+          
+          - jsonPath: $.newAdditionalDetails 
+            type: JSON
+            dbType: JSONB        
+      
+  - version: 1.0
+    description: update revised layout plan
+    fromTopic: update-revised-layout-plan
+    isTransaction: true
+    queryMaps:
+   
+          
+          
+       - query: UPDATE public.eg_revised_layout_plan SET tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?,newadditionaldetails =? WHERE application_number=? Or id=?;
          basePath: RevisedPlan
          jsonMaps:    
          
-          - jsonPath: $.RevisedPlan.id     
-          
-          - jsonPath: $.RevisedPlan.licenseNo
-          
-          - jsonPath: $.RevisedPlan.applicationNumber
+        
           
           - jsonPath: $.RevisedPlan.tenantId      
                    
@@ -38,7 +92,7 @@ serviceMaps:
 
           - jsonPath: $.RevisedPlan.auditDetails.createdTime
 
-          - jsonPath: $.RevisedPlan.auditDetails.lastModifiedTime             
+          - jsonPath: $.RevisedPlan.auditDetails.lastModifiedTime       
           
           - jsonPath: $.RevisedPlan.feesCharges
             type: JSON
@@ -46,73 +100,21 @@ serviceMaps:
             
           - jsonPath: $.RevisedPlan.feesResult
             type: JSON
-            dbType: JSONB   
+            dbType: JSONB
             
           - jsonPath: $.RevisedPlan.tcpApplicationNumber
           
           - jsonPath: $.RevisedPlan.tcpCaseNumber
           
-          - jsonPath: $.RevisedPlan.tcpDairyNumber
+          - jsonPath: $.RevisedPlan.tcpDairyNumber    
           
           - jsonPath: $.RevisedPlan.newAdditionalDetails 
             type: JSON
-            dbType: JSONB        
-      
-  - version: 1.0
-    description: update revised layout plan
-    fromTopic: update-revised-layout-plan
-    isTransaction: true
-    queryMaps:
-   
-          
-          
-       - query: UPDATE public.eg_revised_layout_plan SET id=?, tenantid=?, action=?, status=?, workflowcode=?, businessservice=?, additionaldetails=?, createdby=?, lastmodifyby=?, created_time=?, lastmodifiedtime=?, feescharges=?, feesresult=?, tcpapplicationnumber=?, tcpcasenumber=?, tcpdairynumber=?,newadditionaldetails =? WHERE application_number=?;
-         basePath: RevisedPlan.*
-         jsonMaps:    
-         
-          - jsonPath: $.RevisedPlan.*.id  
-          
-          - jsonPath: $.RevisedPlan.*.tenantId      
-                   
-          - jsonPath: $.RevisedPlan.*.action
-          
-          - jsonPath: $.RevisedPlan.*.status
-          
-          - jsonPath: $.RevisedPlan.*.workflowCode 
-          
-          - jsonPath: $.RevisedPlan.*.businessService
-           
-          - jsonPath: $.RevisedPlan.*.additionalDetails
-            type: JSON
-            dbType: JSONB
-          
-          - jsonPath: $.RevisedPlan.*.auditDetails.createdBy
-
-          - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedBy         
-
-          - jsonPath: $.RevisedPlan.*.auditDetails.createdTime
-
-          - jsonPath: $.RevisedPlan.*.auditDetails.lastModifiedTime       
-          
-          - jsonPath: $.RevisedPlan.*.feesCharges
-            type: JSON
-            dbType: JSONB
-            
-          - jsonPath: $.RevisedPlan.*.feesResult
-            type: JSON
-            dbType: JSONB
-            
-          - jsonPath: $.RevisedPlan.*.tcpApplicationNumber
-          
-          - jsonPath: $.RevisedPlan.*.tcpCaseNumber
-          
-          - jsonPath: $.RevisedPlan.*.tcpDairyNumber    
-          
-          - jsonPath: $.RevisedPlan.*.newAdditionalDetails 
-            type: JSON
             dbType: JSONB 
             
-          - jsonPath: $.RevisedPlan.*.applicationNumber
+          - jsonPath: $.RevisedPlan.applicationNumber
+          
+          - jsonPath: $.RevisedPlan.id  
           
           
             

@@ -1,12 +1,17 @@
-package org.egov.tl.web.models;
+package org.egov.tl.service.dao;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.Document;
+import org.egov.tl.web.models.ExixtingAreaDetails;
+import org.egov.tl.web.models.ReviseLayoutPlan;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +20,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RevisedPlan {
+public class ReviseLayoutPlanDao {
+
 	private String id;
 
 	private String licenseNo;
@@ -44,10 +50,7 @@ public class RevisedPlan {
 	private List<Document> wfDocuments;
 
 	private JsonNode feesCharges;
-
 	private JsonNode feesResult;
-	@JsonProperty("ReviseLayoutPlan")
-	private ReviseLayoutPlan ReviseLayoutPlan;
 
 	@JsonProperty("tcpApplicationNumber")
 	private String tcpApplicationNumber;

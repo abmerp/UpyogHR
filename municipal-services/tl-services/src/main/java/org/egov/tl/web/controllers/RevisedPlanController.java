@@ -48,7 +48,7 @@ public class RevisedPlanController {
 	}
 
 	@PostMapping("/_update")
-	public ResponseEntity<RevisedPlanResponse> update(@RequestBody RevisedPlanContract revisedPlanRequest) {
+	public ResponseEntity<RevisedPlanResponse> update(@RequestBody RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
 
 		List<RevisedPlan> revisedPlanList = revisedPlanServices.update(revisedPlanRequest);
 //		List<RevisedPlan> revisedPlanList = new ArrayList<>();

@@ -22,6 +22,7 @@ import org.egov.tl.repository.IdGenRepository;
 import org.egov.tl.repository.ServiceRequestRepository;
 import org.egov.tl.repository.rowmapper.ApprovalStandardRowMapper;
 import org.egov.tl.repository.rowmapper.RevisedLayoutPlanRowMapper;
+import org.egov.tl.service.dao.ReviseLayoutPlanDao;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ReviseLayoutPlan;
@@ -134,21 +135,31 @@ public class RevisedPlanServices {
 		revisedPlan.setApplicationNumber(applicationNumbers.get(0));
 
 		ReviseLayoutPlan reviseLayoutPlan = revisedPlan.getReviseLayoutPlan();
-
+		List<RevisedPlan> revisedPlans = makePayment(revisedPlanRequest);
+		ReviseLayoutPlanDao reviseLayoutPlanDao = new ReviseLayoutPlanDao();
 		String data = mapper.writeValueAsString(reviseLayoutPlan);
 		JsonNode jsonNode = mapper.readTree(data);
-		revisedPlan.setAdditionalDetails(jsonNode);
-		revisedPlan.setReviseLayoutPlan(null);
-
-		// }
-		
+		reviseLayoutPlanDao.setAdditionalDetails(jsonNode);
+		reviseLayoutPlanDao.setAction(revisedPlan.getAction());
+		reviseLayoutPlanDao.setApplicationNumber(applicationNumbers.get(0));
+		reviseLayoutPlanDao.setAssignee(revisedPlans.get(0).getAssignee());
+		reviseLayoutPlanDao.setAuditDetails(auditDetails);
+		reviseLayoutPlanDao.setBusinessService(revisedPlans.get(0).getBusinessService());
+		reviseLayoutPlanDao.setId(revisedPlan.getId());
+		reviseLayoutPlanDao.setLicenseNo(revisedPlan.getLicenseNo());
+		reviseLayoutPlanDao.setNewAdditionalDetails(revisedPlan.getNewAdditionalDetails());
+		reviseLayoutPlanDao.setStatus(revisedPlans.get(0).getStatus());
+		reviseLayoutPlanDao.setTenantId(revisedPlan.getTenantId());
+		reviseLayoutPlanDao.setTcpApplicationNumber(revisedPlans.get(0).getTcpApplicationNumber());
+		reviseLayoutPlanDao.setTcpCaseNumber(revisedPlans.get(0).getTcpCaseNumber());
+		reviseLayoutPlanDao.setTcpDairyNumber(revisedPlans.get(0).getTcpDairyNumber());
 
 		revisedPlanRequest.setRevisedPlan(revisedPlan);
 
 		log.info(revisedTopic);
 
-		producer.push(revisedTopic, revisedPlanRequest);
-		List<RevisedPlan> revisedPlans = makePayment(revisedPlanRequest);
+		producer.push(revisedTopic, reviseLayoutPlanDao);
+
 		return revisedPlans;
 
 	}
@@ -192,7 +203,7 @@ public class RevisedPlanServices {
 
 	}
 
-	public List<RevisedPlan> update(RevisedPlanContract revisedPlanRequest) {
+	public List<RevisedPlan> update(RevisedPlanRequest revisedPlanRequest) throws JsonProcessingException {
 
 		String uuid = revisedPlanRequest.getRequestInfo().getUserInfo().getUuid();
 
@@ -200,16 +211,16 @@ public class RevisedPlanServices {
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
 
-		List<RevisedPlan> revisedPlanList = revisedPlanRequest.getRevisedPlan();
+		RevisedPlan revisedPlan = revisedPlanRequest.getRevisedPlan();
 
-		 for (RevisedPlan revisedPlan : revisedPlanList) {
+		// for (RevisedPlan revisedPlan : revisedPlanList) {
 
 		if (Objects.isNull(revisedPlanRequest) || Objects.isNull(revisedPlanRequest.getRevisedPlan())) {
 			throw new CustomException("revised layout plan must not be null", "revised layout plan must not be null");
 		}
-
-		if (StringUtils.isEmpty(revisedPlan.getApplicationNumber())) {
-			throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
+		if (StringUtils.isEmpty(revisedPlan.getId()) && StringUtils.isEmpty(revisedPlan.getApplicationNumber())) {
+			throw new CustomException("ApplicationNumber or Id must not be null",
+					"ApplicationNumber or Id must not be null");
 		}
 
 		List<RevisedPlan> revisedLayoutPlanSearch = search(requestInfo, revisedPlan.getApplicationNumber(),
@@ -222,7 +233,14 @@ public class RevisedPlanServices {
 
 		revisedPlan.setBusinessService(revisedPlan.getBusinessService());
 		revisedPlan.setWorkflowCode(revisedPlan.getBusinessService());
+		if (revisedPlan.getAdditionalDetails() == null || revisedPlan.getAdditionalDetails().isEmpty()) {
+			String data = mapper.writeValueAsString(revisedPlan.getReviseLayoutPlan());
+			JsonNode jsonNode = mapper.readTree(data);
+			revisedPlan.setAdditionalDetails(jsonNode);
 
+		} else {
+			revisedPlan.setAdditionalDetails(revisedPlan.getAdditionalDetails());
+		}
 		// EMPLOYEE RUN THE APPLICATION NORMALLY
 		if (!revisedPlan.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 
@@ -271,12 +289,14 @@ public class RevisedPlanServices {
 
 		}
 
-		}
+		// }
 
-		revisedPlanRequest.setRevisedPlan(revisedPlanList);
+		revisedPlanRequest.setRevisedPlan(revisedPlan);
 
 		producer.push(revisdUpdateTopic, revisedPlanRequest);
-
+		
+		List<RevisedPlan> revisedPlanList = new ArrayList<>();
+		revisedPlanList.add(revisedPlan);
 		return revisedPlanList;
 
 	}
@@ -318,7 +338,7 @@ public class RevisedPlanServices {
 	}
 
 	private void validateUpdateRoleAndActionFromWorkflow(BusinessService workflow, String currentStatus,
-			RevisedPlanContract revisedPlanRequest, RevisedPlan revisedPlan) {
+			RevisedPlanRequest revisedPlanRequest, RevisedPlan revisedPlan) {
 		// validate Action-
 		Optional<State> currentWorkflowStateOptional = workflow.getStates().stream()
 				.filter(state -> state.getState().equals(currentStatus)).findFirst();
@@ -397,11 +417,11 @@ public class RevisedPlanServices {
 		revisedPlan.setTcpCaseNumber(caseNumber);
 		revisedPlan.setTcpDairyNumber(dairyNumber);
 		revisedPlanlist.add(revisedPlan);
-		RevisedPlanContract revisedPlanContract= new RevisedPlanContract();
-		revisedPlanContract.setRequestInfo(requestInfo);	
-		revisedPlanContract.setRevisedPlan(revisedPlanlist);
-		List<RevisedPlan> update = update(revisedPlanContract);
-		return update;
+//		RevisedPlanContract revisedPlanContract= new RevisedPlanContract();
+//		revisedPlanContract.setRequestInfo(requestInfo);	
+//		revisedPlanContract.setRevisedPlan(revisedPlanlist);
+//		List<RevisedPlan> update = update(revisedPlanContract);
+		return revisedPlanlist;
 
 	}
 
