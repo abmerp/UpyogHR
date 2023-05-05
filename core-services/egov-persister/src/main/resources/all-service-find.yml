@@ -7,30 +7,33 @@ serviceMaps:
    fromTopic: save-document-detail
    isTransaction: true
    queryMaps:
-    - query: INSERT INTO public.eg_additional_documents( id, application_number, loi_number, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);  
-      basePath: AddtionalDocuments
+    - query: INSERT INTO public.eg_additional_documents(id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type, username, developername) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      basePath: $
       jsonMaps:
 
-       - jsonPath: $.AddtionalDocuments.id
+       - jsonPath: $.id
 
-       - jsonPath: $.AddtionalDocuments.applicationNumber
+       - jsonPath: $.licenceNumber
 
-       - jsonPath: $.AddtionalDocuments.loiNumber
-
-       - jsonPath: $.AddtionalDocuments.licenceNumber
-
-       - jsonPath: $.AddtionalDocuments.additionalDetails
+       - jsonPath: $.additionalDetails
          type: JSON
          dbType: JSONB
 
-       - jsonPath: $.AddtionalDocuments.auditDetails.createdBy
+       - jsonPath: $.auditDetails.createdBy
 
-       - jsonPath: $.AddtionalDocuments.auditDetails.createdTime
+       - jsonPath: $.auditDetails.createdTime
 
-       - jsonPath: $.AddtionalDocuments.auditDetails.lastModifiedBy
+       - jsonPath: $.auditDetails.lastModifiedBy
        
-       - jsonPath: $.AddtionalDocuments.auditDetails.lastModifiedTime
+       - jsonPath: $.auditDetails.lastModifiedTime
 
-       - jsonPath: $.AddtionalDocuments.businessService
+       - jsonPath: $.businessService
        
-       - jsonPath: $.AddtionalDocuments.type
+       - jsonPath: $.type
+       
+       - jsonPath: $.userName
+       
+       - jsonPath: $.developerName
+
+      
+     

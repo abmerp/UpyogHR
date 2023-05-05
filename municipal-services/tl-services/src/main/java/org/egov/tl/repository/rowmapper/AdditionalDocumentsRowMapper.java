@@ -40,6 +40,10 @@ public class AdditionalDocumentsRowMapper implements ResultSetExtractor<List<Add
 		//	allServiceFind.setApplicationNumber(rs.getString("application_number"));
 			allServiceFind.setLicenceNumber(rs.getString("licence_number"));
 			allServiceFind.setType(rs.getString("type"));
+			allServiceFind.setDeveloperName(rs.getString("developername"));
+			allServiceFind.setUserName(rs.getString("username"));
+			
+			
 			Object additionalDetails = new Gson().fromJson(
 					rs.getString("additional_details").equals("{}") || rs.getString("additional_details").equals("null")
 							? null

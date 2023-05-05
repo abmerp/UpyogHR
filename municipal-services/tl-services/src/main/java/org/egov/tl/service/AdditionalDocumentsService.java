@@ -15,6 +15,7 @@ import org.egov.tl.abm.newservices.contract.AdditionalDocumentsContract;
 import org.egov.tl.abm.newservices.contract.AdditionalDocumentResponse;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.AdditionalDocumentsRowMapper;
+import org.egov.tl.service.dao.AdditionalDocumentsDao;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AdditionalDocuments;
 import org.egov.tl.web.models.AuditDetails;
@@ -74,31 +75,41 @@ public class AdditionalDocumentsService {
 //				throw new CustomException("Already Found multiple service numbers",
 //						"Already Found multiple service numbers");
 //			}
-			List<DocumentsDetails> documentsDetails = allServiceFind.getDocumentsDetails();
-			List<DocumentsDetails> documentDetails = new ArrayList<>();
-			for(DocumentsDetails documentsDetail:documentsDetails) {
-	
-				documentsDetail.setDate(date);
-				documentDetails.add(documentsDetail);
-		//	documentsDetails.add(documentsDetail);
-			}
-			allServiceFind.setId(UUID.randomUUID().toString());
-			allServiceFind.setAuditDetails(auditDetails);
-			String data = mapper.writeValueAsString(documentDetails);
-			JsonNode jsonNode = mapper.readTree(data);
-			allServiceFind.setAdditionalDetails(jsonNode);
-			allServiceFind.setDocumentsDetails(null);
+		List<DocumentsDetails> documentsDetails = allServiceFind.getDocumentsDetails();
+		List<DocumentsDetails> documentDetails = new ArrayList<>();
+		for (DocumentsDetails documentsDetail : documentsDetails) {
 
-	//	}
+			documentsDetail.setDate(date);
+			documentDetails.add(documentsDetail);
+			// documentsDetails.add(documentsDetail);
+		}
+		allServiceFind.setId(UUID.randomUUID().toString());
+		allServiceFind.setAuditDetails(auditDetails);
+		AdditionalDocumentsDao additionalDocumentsDao = new AdditionalDocumentsDao();
+		String data = mapper.writeValueAsString(documentDetails);
+		JsonNode jsonNode = mapper.readTree(data);
+		additionalDocumentsDao.setAdditionalDetails(jsonNode);
+		additionalDocumentsDao.setAuditDetails(auditDetails);
+		additionalDocumentsDao.setBusinessService(allServiceFind.getBusinessService());
+		additionalDocumentsDao.setDeveloperName(allServiceFind.getDeveloperName());
+		additionalDocumentsDao.setId(allServiceFind.getId());
+		additionalDocumentsDao.setLicenceNumber(allServiceFind.getLicenceNumber());
+		additionalDocumentsDao.setDeveloperName(allServiceFind.getDeveloperName());
+		additionalDocumentsDao.setUserName(allServiceFind.getUserName());
+		additionalDocumentsDao.setType(allServiceFind.getType());
+//			allServiceFind.setDocumentsDetails(null);
+
+		// }
 		allServiceFindContract.setAddtionalDocuments(allServiceFind);
 
-		producer.push(topic, allServiceFindContract);
+		producer.push(topic, additionalDocumentsDao);
 		List<AdditionalDocuments> additionalDocumentsList = new ArrayList<>();
 		additionalDocumentsList.add(allServiceFind);
 		return additionalDocumentsList;
 	}
 
-	public List<AdditionalDocuments> search(RequestInfo requestInfo,String serviceName, String type, String licenceNumber) {
+	public List<AdditionalDocuments> search(RequestInfo requestInfo, String serviceName, String type,
+			String licenceNumber) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -106,17 +117,31 @@ public class AdditionalDocumentsService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type\r\n"
+		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type, username, developername\r\n"
 				+ "	FROM public.eg_additional_documents " + "WHERE  ";
 
 		builder = new StringBuilder(query);
 
 		List<AdditionalDocuments> Result = null;
 		if (type != null) {
-			builder.append(" type= :LN");
-			paramMap.put("LN", type);
+			builder.append(" type= :TY");
+			paramMap.put("TY", type);
 			preparedStatement.add(type);
 			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+
+			if (serviceName != null) {
+				builder.append(" AND business_service= :BS");
+				paramMap.put("BS", serviceName);
+				preparedStatement.add(serviceName);
+				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+
+				if (licenceNumber != null) {
+					builder.append(" AND licence_number= :LN");
+					paramMap.put("LN", licenceNumber);
+					preparedStatement.add(licenceNumber);
+					Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+				}
+			}
 		}
 //		} else if (applicationNumber != null) {
 //			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
