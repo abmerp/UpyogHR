@@ -216,20 +216,9 @@ public class TransferOfLicenseServices {
 		if (Objects.isNull(transferOfLicenseRequest) || Objects.isNull(transferOfLicenseRequest.getTransfer())) {
 			throw new CustomException("transfer of licence must not be null", "transfer of licence must not be null");
 		}
-		if (transfer.getId() == null || transfer.getId().isEmpty()) {
-			if (StringUtils.isEmpty(transfer.getApplicationNumber())) {
-				throw new CustomException("ApplicationNumber must not be null", "ApplicationNumber must not be null");
-			}
-		} else {
-			if (StringUtils.isEmpty(transfer.getId())) {
-				throw new CustomException("Id must not be null", "Id must not be null");
-			}
-		}
-
-		List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(), transfer.getApplicationNumber());
-		if (CollectionUtils.isEmpty(transferSearch) || transferSearch.size() > 1) {
-			throw new CustomException("Found none or multiple transfer of licence applications with applicationNumber.",
-					"Found none or multiple transfer of licence applications with applicationNumber.");
+		if (StringUtils.isEmpty(revisedPlan.getId()) && StringUtils.isEmpty(revisedPlan.getApplicationNumber())) {
+			throw new CustomException("ApplicationNumber or Id must not be null",
+					"ApplicationNumber or Id must not be null");
 		}
 
 		transfer.setBusinessService(transfer.getBusinessService());
