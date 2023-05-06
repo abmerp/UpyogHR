@@ -14,14 +14,10 @@
       },
 	  {
          "landId":"3",
-         "land":"Gair",
+         "land":"Gair Mumkin",
          "isActive":"true"
       },
-      {
-         "landId":"4",
-         "land":"Mumkin",
-         "isActive":"true"
-      },
+      
 	  {
          "landId":"5",
          "land":"Others",
