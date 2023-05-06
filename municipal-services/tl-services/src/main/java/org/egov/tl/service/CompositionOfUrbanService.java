@@ -155,8 +155,9 @@ public class CompositionOfUrbanService {
 		List<CompositionOfUrban> compositionOfUrbanDetails = null;
 		
 		if(applicationNumber==null) {
-			compositionOfUrbanResponse = CompositionOfUrbanResponse.builder().compositionOfUrban(null)
-						.requestInfo(requestInfo).message("Application Number can't be null.").status(false).build();
+			compositionOfUrbanDetails=compositionOfUrbanRepo.getAllRecords();
+//			compositionOfUrbanResponse = CompositionOfUrbanResponse.builder().compositionOfUrban(null)
+//						.requestInfo(requestInfo).message("Application Number can't be null.").status(false).build();
 		}else {
 			try {
 				compositionOfUrbanDetails=compositionOfUrbanRepo.getCompositionOfUrbanByApplicationNumberList(applicationNumber);

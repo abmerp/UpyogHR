@@ -114,6 +114,11 @@ public class CompositionOfUrbanRepo {
 		}
 		return compositionOfUrban;
 	}
+	
+	public List<CompositionOfUrban> getAllRecords() {
+		String query = querybyApplicationNumber.split("whare")[0];
+		return getCompositionOfUrbanList(query);
+	}
 
 	public List<CompositionOfUrban> getCompositionOfUrbanByApplicationNumberList(String applicationNumber) {
 		String query = querybyApplicationNumber.replace(":applicationNumber", "'" + applicationNumber + "'");
