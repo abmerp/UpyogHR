@@ -20,7 +20,7 @@ import lombok.Setter;
 public class ChangeBeneficial {
 	
 
-	@JsonIgnore
+	@JsonProperty("id")
 	private String id;
 	
 	@JsonProperty("developerServiceCode")
@@ -109,5 +109,22 @@ public class ChangeBeneficial {
 	
 	@JsonProperty("newAdditionalDetails")
 	private JsonNode newAdditionalDetails = null;
+	
+	@JsonProperty("tenantId")
+	private String tenantId;
+	
+	@JsonProperty("businessService")
+	private String businessService;
+	
+	@JsonProperty("status")
+	private String status;
+	
+	@JsonProperty("action")
+	private String action;
+	
+	@JsonProperty("assignee")
+	private List<String> assignee;
+	
+
 	
 }

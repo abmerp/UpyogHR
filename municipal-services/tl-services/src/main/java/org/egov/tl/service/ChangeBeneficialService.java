@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
@@ -176,7 +177,6 @@ public class ChangeBeneficialService {
 	
 	@Autowired
 	private TradeUtil tradeUtil;
-
 	   
 		
 	String  licenseFee = "0.0";
@@ -257,6 +257,14 @@ public class ChangeBeneficialService {
 						Long time = System.currentTimeMillis();
 						AuditDetails auditDetails=AuditDetails.builder().createdBy(beneficialRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
 						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
+						
+						changebeneficial.setId(UUID.randomUUID().toString());
+						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
+						changebeneficial.setTenantId("hr");
+						changebeneficial.setAction("INITIATE");
+						changebeneficial.setStatus("INITIATE");
+					
+						
 						changebeneficial.setTotalChangeBeneficialCharge(licenseFees);
 						changebeneficial.setAuditDetails(auditDetails);
 						changebeneficial.setCreatedTime(time);
@@ -293,6 +301,33 @@ public class ChangeBeneficialService {
 			}
 			changeBeneficialResponse = ChangeBeneficialResponse.builder()
 					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(requestInfo).message("Records has been inserted Successfully.").status(true).build();
+		return changeBeneficialResponse;
+	}
+	
+	public ChangeBeneficialResponse updateWorkflow(ChangeBeneficialRequest beneficialRequest) {
+		
+		ChangeBeneficial changeBeneficialWorkflow=beneficialRequest.getChangeBeneficial().get(0);
+		ChangeBeneficialResponse changeBeneficialResponse=null;
+		if(changeBeneficialWorkflow.getApplicationNumber()!=null) {
+			ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialDetailsByApplicationNumber(changeBeneficialWorkflow.getApplicationNumber());
+	    	if(changeBeneficialCheck!=null) {
+	    			changeBeneficialCheck.setAction(changeBeneficialWorkflow.getAction());
+	    			changeBeneficialCheck.setStatus(changeBeneficialWorkflow.getStatus());
+	      	}
+	    	
+	    	List<String> assignee=Arrays.asList(servicePlanService.assignee(changeBeneficialWorkflow.getAssignee().get(0), WFTENANTID, true, beneficialRequest.getRequestInfo()));
+			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,changeBeneficialWorkflow.getAction(),assignee,changeBeneficialWorkflow.getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,beneficialRequest.getRequestInfo());
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			beneficialRequest.setChangeBeneficial(Arrays.asList(changeBeneficialCheck));
+			changeBeneficialRepo.updateWorflow(beneficialRequest);
+			
+			changeBeneficialResponse = ChangeBeneficialResponse.builder()
+					.changeBeneficial(beneficialRequest.getChangeBeneficial()).requestInfo(beneficialRequest.getRequestInfo()).message("Workflow has been updated Successfully.").status(true).build();
+		}else {
+			changeBeneficialResponse = ChangeBeneficialResponse.builder()
+					.changeBeneficial(null).requestInfo(null).message("Application number is null").status(false).build();
+			
+		}
 		return changeBeneficialResponse;
 	}
 //	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){

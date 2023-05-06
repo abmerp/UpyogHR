@@ -388,6 +388,9 @@ public class TLConfiguration {
 
 	@Value("${persister.changrebeneficial.updatePayment}")
 	private String updatePaymentChangreBeneficialTopic;
+	
+	@Value("${persister.changrebeneficial.updateworkflow}")
+	private String updateWorkFlowChangreBeneficialTopic;
 
 	@Value("${egov.idgen.tl.changeBeneficial.applicationNumber}")
 	private String changeBeneficialApplicationName;

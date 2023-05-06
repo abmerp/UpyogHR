@@ -34,6 +34,12 @@ public class BeneficialController {
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
+	@PostMapping("_updateworkflow")
+	public ResponseEntity<ChangeBeneficialResponse> updateworkflow(@RequestBody ChangeBeneficialRequest beneficialRequest){
+         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.updateWorkflow(beneficialRequest);   
+       return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
+	}
+	
 	@PostMapping("_pay")
 	public ResponseEntity<ChangeBeneficialResponse> changeBeneficialPay(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam("licenseNumber") String licenseNumber){

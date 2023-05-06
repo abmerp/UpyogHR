@@ -6,10 +6,13 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial("developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details,created_time,application_number,newadditionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial(id,"developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details,created_time,application_number,newadditionaldetails,businessservice,status,action) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
+         - jsonPath: changeBeneficial.*.id
+           type: STRING
+           
          - jsonPath: changeBeneficial.*.developerServiceCode
            type: STRING
       
@@ -83,13 +86,15 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.newAdditionalDetails
            type: JSON
            dbType: JSONB
+          
+         - jsonPath: changeBeneficial.*.businessService
+           type: STRING
            
-         - jsonPath: changeBeneficial.*.tcpApplicationNumber
-         
-         - jsonPath: changeBeneficial.*.tcpCaseNumber
-         
-         - jsonPath: changeBeneficial.*.tcpDairyNumber
+         - jsonPath: changeBeneficial.*.status
+           type: STRING
            
+         - jsonPath: changeBeneficial.*.action
+           type: STRING
            
  - version: 1.0
    description: Persists benefical service of  change_benefical table
@@ -152,6 +157,19 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.licenseNumber
            type: STRING
+           
+ - version: 1.0
+   description: Persists benefical service of  change_benefical table
+   fromTopic: update-updateworkflow-changrebeneficial
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.eg_tl_change_beneficial SET status=?,action=?  where applicationNumber=?   
+        basePath: changeBeneficial.*
+        jsonMaps:       
+         - jsonPath: changeBeneficial.*.status
+         - jsonPath: changeBeneficial.*.action
+         - jsonPath: changeBeneficial.*.applicationNumber
+ 
            
  - version: 1.0
    description: Persists benefical service of  change_benefical table

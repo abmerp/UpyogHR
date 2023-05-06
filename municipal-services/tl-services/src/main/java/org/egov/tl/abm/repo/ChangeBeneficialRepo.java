@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import org.egov.common.contract.request.RequestInfo;
+import org.egov.common.contract.request.Role;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
@@ -60,7 +63,8 @@ public class ChangeBeneficialRepo {
 			+ "where to_timestamp(eg_tl_tradelicense.validfrom / 1000)<CURRENT_TIMESTAMP(0) and CURRENT_TIMESTAMP(0)<to_timestamp(eg_tl_tradelicense.validto / 1000) and eg_tl_tradelicense.licensenumber=:licenseNumber";// and
 																																																							// eg_tl_tradelicense.status!='INITIATED'
 																																																							// //and
-																																																							// eg_user.id=:userId
+//	String getQueryById = "select * from public.eg_tl_change_beneficial where id=:id";
+//																																																					// eg_user.id=:userId
 
 	String queryForGetChangeBeneficial = "select * from public.eg_tl_change_beneficial where license_number=:licenseNumber and application_status IN(1,2,3) order by created_at desc limit 1";
 
@@ -106,6 +110,14 @@ public class ChangeBeneficialRepo {
 		}
 	}
 
+	public void updateWorflow(ChangeBeneficialRequest beneficialRequest) {
+		try {
+			producer.push(tlConfiguration.getUpdateWorkFlowChangreBeneficialTopic(), beneficialRequest);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void updatePaymentDetails(ChangeBeneficialRequest beneficialRequest) {
 		try {
 			producer.push(tlConfiguration.getUpdatePaymentChangreBeneficialTopic(), beneficialRequest);
@@ -348,6 +360,11 @@ public class ChangeBeneficialRepo {
 		String query = getUpdateBeneficialId.replace(":applicationNumber", "'" + applicationNumber + "'");
 		return getChangeBeneficialList(query);
 	}
+	
+//	public List<ChangeBeneficial> getBeneficialDetailsById(String id) {
+//		String query = getQueryById.replace(":id", "'" + id + "'");
+//		return getChangeBeneficialList(query);
+//	}
 
 	private List<ChangeBeneficial> getChangeBeneficialList(String query) {
 		List<ChangeBeneficial> cahngeBeneficialList = null;
@@ -385,7 +402,8 @@ public class ChangeBeneficialRepo {
 						}catch(Exception e) {
 							e.printStackTrace();
 						}
-						return ChangeBeneficial.builder().id(rs.getString("id").toString())
+						return ChangeBeneficial.builder()
+								.id(rs.getString("id").toString())
 								.developerServiceCode(rs.getString("developerServiceCode"))
 								.paidAmount(rs.getString("paid_amount") != null ? rs.getString("paid_amount") : "0.0")
 								.areaInAcres(rs.getString("areaInAcres"))
@@ -402,10 +420,17 @@ public class ChangeBeneficialRepo {
 								.fiancialCapacityCertificate(rs.getString("fiancialCapacityCertificate"))
 								.applicationStatus(rs.getInt("application_status"))
 								.applicationNumber(rs.getString("application_number"))
-								.workFlowCode(rs.getString("workflowcode")).diaryNumber(rs.getString("diary_number"))
-								.auditDetails(auditDetails).isDraft(rs.getString("is_draft"))
+								.workFlowCode(rs.getString("workflowcode"))
+								.diaryNumber(rs.getString("diary_number"))
+								.auditDetails(auditDetails)
+								.isDraft(rs.getString("is_draft"))
 								.tranactionId(rs.getString("transaction_id"))
-								.licenseNumber(rs.getString("license_number")).createdDate(rs.getString("created_at"))
+								.licenseNumber(rs.getString("license_number"))
+								.createdDate(rs.getString("created_at"))
+								.action("action")
+								.tenantId(rs.getString("tenantid"))
+								.businessService(rs.getString("businessservice"))
+								.status("status")
 								.newAdditionalDetails(additionalDetails).build();
 
 					});
@@ -417,7 +442,7 @@ public class ChangeBeneficialRepo {
 		}
 		return cahngeBeneficialList;
 	}
-
+	
 //	
 //	public ChangeBeneficial getChangeBeneficial(String changeBeneficialId) {
 //		ChangeBeneficial changeBeneficial=null;
