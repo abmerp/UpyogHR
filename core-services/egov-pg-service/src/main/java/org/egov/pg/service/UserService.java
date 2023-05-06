@@ -33,11 +33,12 @@ public class UserService {
         List<User> userList = new ArrayList<>();
         Transaction transaction = transactionRequest.getTransaction();
         userList = getUser(transactionRequest.getRequestInfo(), transaction.getUser().getMobileNumber(),
-                transaction.getUser().getTenantId(), transaction.getUser().getName());
+                transaction.getUser().getTenantId(),  transaction.getUser().getEmailId());
         if(CollectionUtils.isEmpty(userList) && appProperties.getIsUserCreationEnable())
             userList = createUser(transactionRequest);
 
         User user = userList.get(0);
+        user.setName(transaction.getUser().getName());
         if (isNull(user) || isNull(user.getUuid()) || isEmpty(user.getName()) || isNull(user.getUserName()) ||
                 isNull(user.getTenantId()) || isNull(user.getMobileNumber()))
             throw new CustomException("INVALID_USER_DETAILS", "User UUID, Name, Username, Mobile Number and Tenant Id are " +
@@ -57,13 +58,14 @@ public class UserService {
      * @param name
      * @return
      */
-    public List<User> getUser(RequestInfo requestInfo, String phoneNo, String tenantId, String name){
+    public List<User> getUser(RequestInfo requestInfo, String phoneNo, String tenantId,  String emailId){
         Map<String, Object> request = new HashMap<>();
         UserResponse userResponse = null;
         request.put("RequestInfo", requestInfo);
-        request.put("name", name);
+    //    request.put("name", name);
         request.put("mobileNumber", phoneNo);
         request.put("type", "CITIZEN");
+   //     request.put("emailId", emailId);
         request.put("tenantid", tenantId.split("\\.")[0]);
         StringBuilder url = new StringBuilder();
         url.append(appProperties.getUserServiceHost()).append(appProperties.getUserServiceSearchPath());
