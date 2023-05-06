@@ -158,8 +158,9 @@ public class ConstructionOfCommunityService {
 		List<ConstructionOfCommunity> ConstructionOfCommunityDetails = null;
 		
 		if(applicationNumber==null&&licenseNumber==null) {
-			constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(null)
-						.requestInfo(requestInfo).message("Application Number or License Number both can't be null.").status(false).build();
+			   ConstructionOfCommunityDetails=constructionOfCommunityRepo.getAllRecords();
+//			constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(null)
+//						.requestInfo(requestInfo).message("Application Number or License Number both can't be null.").status(false).build();
 		}else {
 			try {
 				if(applicationNumber==null) {

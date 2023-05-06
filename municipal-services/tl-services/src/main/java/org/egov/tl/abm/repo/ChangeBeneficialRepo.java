@@ -334,6 +334,11 @@ public class ChangeBeneficialRepo {
 		return cahngeBeneficial;
 	}
 
+	public List<ChangeBeneficial> getAllRecords() {
+		String query = querybyLicenseNumber.split("where")[0];
+		return getChangeBeneficialList(query);
+	}
+	
 	public List<ChangeBeneficial> searcherBeneficialDetailsByLicenceNumberList(String licenseNumber) {
 		String query = querybyLicenseNumber.replace(":licenseNumber", "'" + licenseNumber + "'");
 		return getChangeBeneficialList(query);
@@ -361,9 +366,10 @@ public class ChangeBeneficialRepo {
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
-						PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
 						JsonNode additionalDetails = null;
-						if (pgObj1 != null) {
+						try {
+						PGobject pgObj1 = (PGobject) rs.getObject("newadditionaldetails");
+							if (pgObj1 != null) {
 
 							try {
 								additionalDetails = mapper.readTree(pgObj1.getValue());
@@ -374,7 +380,10 @@ public class ChangeBeneficialRepo {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-
+							
+							}
+						}catch(Exception e) {
+							e.printStackTrace();
 						}
 						return ChangeBeneficial.builder().id(rs.getString("id").toString())
 								.developerServiceCode(rs.getString("developerServiceCode"))

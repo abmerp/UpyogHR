@@ -5115,7 +5115,7 @@ public class LoiReportService {
 				applicationDate = ConvertUtil.getCurrentDate(timeZoneName,
 						Long.parseLong(String.valueOf(licenseServiceResponceInfo.getApplicationDate())));
 				String lNumber=licenseServiceResponceInfo.getTcpLoiNumber();
-				loiNumber=lNumber;//!=null?lNumber:"LOI Number will be generate in next steps.";
+				loiNumber=!(lNumber.equals("null")||lNumber.equals(null))?lNumber:"N/A";
 				
 				totalArea = licenseDetails.getApplicantPurpose().getTotalArea();
 				AppliedLandDetails appliedLandDetails = licenseDetails.getApplicantPurpose().getAppliedLandDetails()
@@ -5512,8 +5512,8 @@ public class LoiReportService {
 	}
 	
 	private void addWaterMarkOnPDF(String applicationNumber) {
-		if(loiNumber.equals("null")||loiNumber.equals(null)) {
-			System.out.println("pdf called");
+		if(loiNumber.equals("N/A")) {
+//			System.out.println("pdf called");
 			String flocation=loireportPath+"loi-report-"+applicationNumber+".pdf";
 			try {
 			File file=new File(flocation);

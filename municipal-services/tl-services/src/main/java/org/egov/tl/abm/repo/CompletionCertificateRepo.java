@@ -154,6 +154,11 @@ public class CompletionCertificateRepo {
 		}
 		return completionCertificate;
 	}
+	
+	public List<CompletionCertificate> getAllRecords() {
+		String query = querybyLicenseNumber.split("where")[0];
+		return getCompletionCertificateList(query);
+	}
 
 	public List<CompletionCertificate> searcherBeneficialDetailsByLicenceNumberList(String licenseNumber) {
 		String query = querybyLicenseNumber.replace(":licenseNumber", "'" + licenseNumber + "'");

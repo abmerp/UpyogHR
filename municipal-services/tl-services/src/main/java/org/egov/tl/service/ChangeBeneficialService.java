@@ -371,8 +371,9 @@ public class ChangeBeneficialService {
 		List<ChangeBeneficial> changeBeneficiaDetails = null;
 		
 		if(applicationNumber==null&&licenseNumber==null) {
-			  changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(null)
-						.requestInfo(requestInfo).message("Application Number and License Number both can't be null.").status(false).build();
+			changeBeneficiaDetails=changeBeneficialRepo.getAllRecords();
+//			  changeBeneficialResponse = ChangeBeneficialResponse.builder().changeBeneficial(changeBeneficialRepo.getAllRecords())
+//						.requestInfo(requestInfo).message("All Record fetch success").status(true).build();
 		}else {
 			try {
 				if(applicationNumber==null) {

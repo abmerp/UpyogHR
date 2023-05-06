@@ -189,9 +189,10 @@ public class CompletionCertificateService {
 		List<CompletionCertificate> CompletionCertificateDetails = null;
 
 		if (applicationNumber == null && licenseNumber == null) {
-			completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(null)
-					.requestInfo(requestInfo).message("Application Number or License Number both can't be null.")
-					.status(false).build();
+			CompletionCertificateDetails=completionCertificateRepo.getAllRecords();
+//			completionCertificateResponse = CompletionCertificateResponse.builder().completionCertificate(null)
+//					.requestInfo(requestInfo).message("Application Number or License Number both can't be null.")
+//					.status(false).build();
 		} else {
 			try {
 				if (applicationNumber == null) {

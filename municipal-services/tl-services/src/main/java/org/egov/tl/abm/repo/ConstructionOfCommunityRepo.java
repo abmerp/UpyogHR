@@ -139,6 +139,11 @@ public class ConstructionOfCommunityRepo {
 	   
 		return constructionOfCommunity;
 	}
+   
+   public List<ConstructionOfCommunity> getAllRecords(){
+ 		String query=querybyLicenseNumber.split("where")[0];
+ 		return getConstructionOfCommunityList(query);
+ 	}
 
    public List<ConstructionOfCommunity> searcherConstructionOfCommunityDetailsByLicenceNumberList(String licenseNumber){
 		String query=querybyLicenseNumber.replace(":licenseNumber", "'"+licenseNumber+"'");
