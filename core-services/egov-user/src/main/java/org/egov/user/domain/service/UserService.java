@@ -746,7 +746,7 @@ public class UserService {
 				user.setUsername(ssoCitizen.getEmailId());
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setOtpReference("123456");
-				user.setEmailId(ssoCitizen.getEmailId());
+		//		user.setEmailId(ssoCitizen.getEmailId());
 				Object updateUser = getAccess(user, user.getOtpReference());
 
 				String data = null;
