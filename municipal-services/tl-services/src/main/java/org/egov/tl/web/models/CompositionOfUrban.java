@@ -110,4 +110,19 @@ public class CompositionOfUrban {
 	@JsonProperty("tcpDairyNumber")
 	private String tcpDairyNumber;
 	
+	@JsonProperty("tenantId")
+	private String tenantId;
+	
+	@JsonProperty("businessService")
+	private String businessService;
+	
+	@JsonProperty("status")
+	private String status;
+	
+	@JsonProperty("action")
+	private String action;
+	
+	@JsonProperty("assignee")
+	private List<String> assignee;
+	
 }

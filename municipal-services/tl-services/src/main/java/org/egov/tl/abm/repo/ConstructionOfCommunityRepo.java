@@ -212,7 +212,11 @@ public class ConstructionOfCommunityRepo {
 					.explonatoryNotForExtention(rs.getString("explonatory_not_for_extention"))
 					.locationOfApplied(rs.getString("location_of_applied"))
 					.anyOtherDocumentByDirector(rs.getString("any_other_document_by_director"))
-					.newAdditionalDetails(additionalDetails)			
+					.newAdditionalDetails(additionalDetails)	
+					.action(rs.getString("action"))
+					.tenantId(rs.getString("tenantid"))
+					.businessService(rs.getString("businessservice"))
+					.status(rs.getString("status"))
 					.build();
 			});
 			if(constructionOfCommunity!=null&&!constructionOfCommunity.isEmpty()) {

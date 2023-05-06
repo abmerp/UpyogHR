@@ -115,6 +115,12 @@ public class ConstructionOfCommunityService {
 						auditDetails=AuditDetails.builder().createdBy(constructionOfCommunityRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
 						construction.setId(UUID.randomUUID().toString());
 						construction.setWorkFlowCode(CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE);
+						
+						construction.setBusinessService(CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE);
+						construction.setTenantId("hr");
+						construction.setAction("INITIATE");
+						construction.setStatus("INITIATE");
+					
 						construction.setApplicationStatus(1);
 						construction.setCreatedDate(new Timestamp(time));
 						construction.setFullPaymentDone(false);

@@ -427,10 +427,10 @@ public class ChangeBeneficialRepo {
 								.tranactionId(rs.getString("transaction_id"))
 								.licenseNumber(rs.getString("license_number"))
 								.createdDate(rs.getString("created_at"))
-								.action("action")
+								.action(rs.getString("action"))
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
-								.status("status")
+								.status(rs.getString("status"))
 								.newAdditionalDetails(additionalDetails).build();
 
 					});

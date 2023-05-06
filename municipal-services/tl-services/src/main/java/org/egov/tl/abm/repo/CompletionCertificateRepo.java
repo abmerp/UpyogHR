@@ -256,6 +256,10 @@ public class CompletionCertificateRepo {
 								.tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
 								.tcpCaseNumber(rs.getString("tcpcasenumber"))
 								.tcpDairyNumber(rs.getString("tcpdairyNumber"))
+								.action(rs.getString("action"))
+								.tenantId(rs.getString("tenantid"))
+								.businessService(rs.getString("businessservice"))
+								.status(rs.getString("status"))
 								.build();
 					});
 			if (completionCertificate != null && !completionCertificate.isEmpty()) {

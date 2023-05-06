@@ -181,7 +181,12 @@ public class CompositionOfUrbanRepo {
 								.totalLandSoldInPartDetails(totalLandSoldInPartDetails)
 								.explainTheReasonForVoilation(rs.getString("explainTheReasonForVoilation"))
 								.dateOfSaleDeeds(rs.getString("dateOfSaleDeeds"))
-								.anyOtherDoc(rs.getString("anyOtherDoc")).newAdditionalDetails(additionalDetails)
+								.anyOtherDoc(rs.getString("anyOtherDoc"))
+								.newAdditionalDetails(additionalDetails)
+								.action(rs.getString("action"))
+								.tenantId(rs.getString("tenantid"))
+								.businessService(rs.getString("businessservice"))
+								.status(rs.getString("status"))
 								.build();
 					});
 			if (compositionOfUrban != null && !compositionOfUrban.isEmpty()) {

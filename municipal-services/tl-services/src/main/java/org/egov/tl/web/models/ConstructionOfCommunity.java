@@ -2,6 +2,7 @@ package org.egov.tl.web.models;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -127,5 +128,20 @@ public class ConstructionOfCommunity {
 
 	@JsonProperty("tcpDairyNumber")
 	private String tcpDairyNumber;
+	
+	@JsonProperty("tenantId")
+	private String tenantId;
+	
+	@JsonProperty("businessService")
+	private String businessService;
+	
+	@JsonProperty("status")
+	private String status;
+	
+	@JsonProperty("action")
+	private String action;
+	
+	@JsonProperty("assignee")
+	private List<String> assignee;
 	
 }

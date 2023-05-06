@@ -111,6 +111,12 @@ public class CompositionOfUrbanService {
 						auditDetails=AuditDetails.builder().createdBy(compositionOfUrbanRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
 						composition.setId(UUID.randomUUID().toString());
 						composition.setWorkFlowCode(COMPOSITION_OF_URBAN_WORKFLOWCODE);
+						
+						composition.setBusinessService(COMPOSITION_OF_URBAN_WORKFLOWCODE);
+						composition.setTenantId("hr");
+						composition.setAction("INITIATE");
+						composition.setStatus("INITIATE");
+						
 						composition.setApplicationStatus(1);
 						composition.setCreatedDate(new Timestamp(time));
 						composition.setFullPaymentDone(false);

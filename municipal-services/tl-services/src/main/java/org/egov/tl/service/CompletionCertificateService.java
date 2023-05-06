@@ -141,6 +141,13 @@ public class CompletionCertificateService {
 								.createdTime(time).build();
 						certificate.setId(UUID.randomUUID().toString());
 						certificate.setWorkFlowCode(COMPLETION_CERTIFICATE_WORKFLOWCODE);
+						
+						certificate.setBusinessService(COMPLETION_CERTIFICATE_WORKFLOWCODE);
+						certificate.setTenantId("hr");
+						certificate.setAction("INITIATE");
+						certificate.setStatus("INITIATE");
+					
+						
 						certificate.setApplicationStatus(1);
 						certificate.setCreatedDate(new Timestamp(time));
 						certificate.setFullPaymentDone(false);
