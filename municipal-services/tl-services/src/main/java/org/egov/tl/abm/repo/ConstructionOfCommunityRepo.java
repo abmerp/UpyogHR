@@ -141,7 +141,7 @@ public class ConstructionOfCommunityRepo {
 	}
    
    public List<ConstructionOfCommunity> getAllRecords(){
- 		String query=querybyLicenseNumber.split("where")[0];
+ 		String query=querybyLicenseNumber.split("where")[0]+"  where action!='FINAL_APPROVAL'";
  		return getConstructionOfCommunityList(query);
  	}
 

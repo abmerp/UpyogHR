@@ -347,7 +347,7 @@ public class ChangeBeneficialRepo {
 	}
 
 	public List<ChangeBeneficial> getAllRecords() {
-		String query = querybyLicenseNumber.split("where")[0];
+		String query = querybyLicenseNumber.split("where")[0]+" where action!='FINAL_APPROVAL'";
 		return getChangeBeneficialList(query);
 	}
 	

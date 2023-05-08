@@ -123,6 +123,7 @@ public class CompositionOfUrbanService {
 						composition.setApplicationNumber(applicationNumberCC);
 						composition.setCreatedTime(time);
 					}else {
+						composition.setId(compositionOfUrban.getId());
 						auditDetails=compositionOfUrban.getAuditDetails();
 						auditDetails.setLastModifiedBy(compositionOfUrbanRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);

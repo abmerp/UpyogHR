@@ -127,6 +127,7 @@ public class ConstructionOfCommunityService {
 						construction.setApplicationNumber(applicationNumberCC);
 						construction.setCreatedTime(time);
 					}else {
+						construction.setId(constructionOfCommunity.getId());
 						auditDetails=constructionOfCommunity.getAuditDetails();
 						auditDetails.setLastModifiedBy(constructionOfCommunityRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);

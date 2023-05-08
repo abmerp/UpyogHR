@@ -116,7 +116,7 @@ public class CompositionOfUrbanRepo {
 	}
 	
 	public List<CompositionOfUrban> getAllRecords() {
-		String query = querybyApplicationNumber.split("whare")[0];
+		String query = querybyApplicationNumber.split("where")[0]+" where action!='FINAL_APPROVAL'";
 		return getCompositionOfUrbanList(query);
 	}
 

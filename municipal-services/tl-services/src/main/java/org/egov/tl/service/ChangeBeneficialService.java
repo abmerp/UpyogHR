@@ -204,6 +204,7 @@ public class ChangeBeneficialService {
 								AuditDetails auditDetails=changeBeneficialCheck.getAuditDetails();
 								auditDetails.setLastModifiedBy(beneficialRequest.getRequestInfo().getUserInfo().getUuid());
 								auditDetails.setLastModifiedTime(time);
+								changebeneficial.setId(changeBeneficialCheck.getId());
 								changebeneficial.setAuditDetails(auditDetails);
 								if(changebeneficial.getIsDraft()==null) {
 									changebeneficial.setIsDraft("0");	

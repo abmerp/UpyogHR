@@ -72,6 +72,9 @@ public class CompletionCertificateService {
 
 	@Autowired
 	private ServicePlanService servicePlanService;
+	
+	@Autowired
+	ChangeBeneficialService changeBeneficialService;
 
 	@Autowired
 	private WorkflowIntegrator workflowIntegrator;
@@ -126,16 +129,16 @@ public class CompletionCertificateService {
 					AuditDetails auditDetails = null;
 					if (isCreate) {
 
-						try {
-							CompletionCertificate completionCertificates = makePayment(certificate.getLicenseNumber(),
-									completionCertificateRequest.getRequestInfo());
-							certificate.setTcpApplicationNumber(completionCertificates.getTcpApplicationNumber());
-							certificate.setTcpCaseNumber(completionCertificates.getTcpCaseNumber());
-							certificate.setTcpDairyNumber(completionCertificates.getTcpDairyNumber());
-						} catch (JsonProcessingException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+//						try {
+//							CompletionCertificate completionCertificates = makePayment(certificate.getLicenseNumber(),
+//									completionCertificateRequest.getRequestInfo());
+//							certificate.setTcpApplicationNumber(completionCertificates.getTcpApplicationNumber());
+//							certificate.setTcpCaseNumber(completionCertificates.getTcpCaseNumber());
+//							certificate.setTcpDairyNumber(completionCertificates.getTcpDairyNumber());
+//						} catch (JsonProcessingException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
 						auditDetails = AuditDetails.builder()
 								.createdBy(completionCertificateRequest.getRequestInfo().getUserInfo().getUuid())
 								.createdTime(time).build();
@@ -154,6 +157,7 @@ public class CompletionCertificateService {
 						certificate.setApplicationNumber(applicationNumberCC);
 						certificate.setCreatedTime(time);
 					} else {
+						certificate.setId(completionCertificateData.getId());
 						auditDetails = completionCertificateData.getAuditDetails();
 						auditDetails.setLastModifiedBy(
 								completionCertificateRequest.getRequestInfo().getUserInfo().getUuid());
@@ -171,10 +175,10 @@ public class CompletionCertificateService {
 		completionCertificateRequest.setCompletionCertificate(completionCertificate);
 
 		if (isCreate) {
-//			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
-//			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
-//			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
-//		    completionCertificateRepo.save(completionCertificateRequest);
+			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
+			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
+			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+		    completionCertificateRepo.save(completionCertificateRequest);
 
 			completionCertificateResponse = CompletionCertificateResponse.builder()
 					.completionCertificate(completionCertificate)

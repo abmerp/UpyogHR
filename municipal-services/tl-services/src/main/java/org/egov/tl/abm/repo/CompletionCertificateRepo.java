@@ -156,7 +156,7 @@ public class CompletionCertificateRepo {
 	}
 	
 	public List<CompletionCertificate> getAllRecords() {
-		String query = querybyLicenseNumber.split("where")[0];
+		String query = querybyLicenseNumber.split("where")[0]+"  where action!='FINAL_APPROVAL'";
 		return getCompletionCertificateList(query);
 	}
 
