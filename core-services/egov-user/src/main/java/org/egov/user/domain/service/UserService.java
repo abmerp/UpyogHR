@@ -718,7 +718,7 @@ public class UserService {
 		String sso1 = "no";
 		User user = new User();
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
-		if (ssoValue.equalsIgnoreCase(sso1)) {
+		if (ssoValue.equalsIgnoreCase(sso)) {
 			userSearchCriteria.setUserName(ssoCitizen.getEmailId());
 			userSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
 			List<User> searchUsers = searchUsers(userSearchCriteria, true, requestInfo);
