@@ -357,7 +357,7 @@
       },
       {
             "role":"JE",
-            "applicationStatus":"WF_NEWTL_PENDING_AT_JE_HQ_PRELIM",
+            "applicationStatus":"PENDING_AT_JE_HQ_PRELIM",
             "field":[
                {
             "fields":"NWL_APPLICANT_DEVELOPER_NAME"
@@ -550,7 +550,7 @@
       },
       {
         "role":"JE_HQ",
-        "applicationStatus":"WF_NEWTL_PENDING_AT_JE_HQ_PRELIM",
+        "applicationStatus":"PENDING_AT_JE_HQ_PRELIM",
         "field":[
            {
         "fields":"NWL_APPLICANT_DEVELOPER_NAME"
