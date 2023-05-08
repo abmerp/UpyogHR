@@ -718,7 +718,7 @@ public class UserService {
 		String sso1 = "no";
 		User user = new User();
 		UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
-		if (ssoValue.equalsIgnoreCase(sso)) {
+		if (ssoValue.equalsIgnoreCase(sso1)) {
 			userSearchCriteria.setUserName(ssoCitizen.getEmailId());
 			userSearchCriteria.setTenantId(requestInfo.getUserInfo().getTenantId());
 			List<User> searchUsers = searchUsers(userSearchCriteria, true, requestInfo);
@@ -746,7 +746,7 @@ public class UserService {
 				user.setUsername(ssoCitizen.getEmailId());
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setOtpReference("123456");
-		//		user.setEmailId(ssoCitizen.getEmailId());
+	//			user.setEmailId(ssoCitizen.getEmailId());
 				Object updateUser = getAccess(user, user.getOtpReference());
 
 				String data = null;
@@ -775,6 +775,7 @@ public class UserService {
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setActive(true);
 				user.setEmailId(ssoCitizen.getEmailId());
+				user.setName(searchUsers.get(0).getName());
 				User updatedUser = updateWithoutOtpValidation(user, requestInfo);
 				log.info("updatedUser" + updatedUser);
 
