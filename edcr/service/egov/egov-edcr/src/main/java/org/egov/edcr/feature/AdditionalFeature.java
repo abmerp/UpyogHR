@@ -894,15 +894,15 @@ public class AdditionalFeature extends FeatureProcess {
 		                        			kitchen_Total_count++;
 		                        		}
 
-		                        		if(kitchen_floor_count > 1) {
+		                        		if(kitchen_floor_count == 1) {
 		                        			addDetailsForDwelling(scrutinyDetail, "55-1-a", "floor "+floor_count, "Floorwise Number of Dwelling Units ",
 		                        					"= 1",
-			                                		String.valueOf(kitchen_floor_count), Result.Not_Accepted.getResultVal());
+			                                		String.valueOf(kitchen_floor_count), Result.Accepted.getResultVal());
 		                        			
 			                                } else {
 			                                	addDetailsForDwelling(scrutinyDetail, "55-1-a", "floor "+floor_count, "Floorwise Number of Dwelling Units", 
 			                                			"= 1",
-				                            			String.valueOf(kitchen_floor_count), Result.Accepted.getResultVal());
+				                            			String.valueOf(kitchen_floor_count), Result.Not_Accepted.getResultVal());
 			                                }
 			                        	}
                                 	

@@ -487,7 +487,8 @@ public class GeneralStair extends FeatureProcess {
 		
 		boolean valid = false;
 		if(!floor.getRegularRooms().isEmpty() && floor.getRegularRooms() != null) {
-			BigDecimal regularRoomHeight = floor.getRegularRooms().get(0).getHeights().get(0).getHeight();
+//			BigDecimal regularRoomHeight = floor.getRegularRooms().get(0).getHeights().get(0).getHeight();
+			BigDecimal regularRoomHeight = floor.getRegularRooms().get(0).getRooms().get(0).getHeight();
 				BigDecimal requiredRiserHt = getRequiredRiserHeight(mostRestrictiveOccupancyType);
 				maxRiserHeight = new BigDecimal(requiredRiserHt.doubleValue());
 				BigDecimal calculatedRiserHt = regularRoomHeight.divide(totalnoOfRises).setScale(2, BigDecimal.ROUND_DOWN);

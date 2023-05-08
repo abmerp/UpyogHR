@@ -85,6 +85,7 @@ public class Kitchen extends FeatureProcess {
 //    public static final BigDecimal MINIMUM_AREA_4_5 = BigDecimal.valueOf(4.5);
     public static final BigDecimal MINIMUM_AREA_5_5 = BigDecimal.valueOf(5.5);
     public static final BigDecimal MINIMUM_AREA_7_5 = BigDecimal.valueOf(7.5);
+    public static final BigDecimal EWS_MINIMUM_AREA_3_8 = BigDecimal.valueOf(3.8);
     public static final BigDecimal MINIMUM_AREA_5 = BigDecimal.valueOf(5);
 
     public static final BigDecimal MINIMUM_WIDTH_1_8 = BigDecimal.valueOf(1.8);
@@ -133,6 +134,7 @@ public class Kitchen extends FeatureProcess {
                             List<BigDecimal> kitchenStoreWidths = new ArrayList<>();
                             List<BigDecimal> kitchenDiningWidths = new ArrayList<>();
                             BigDecimal minimumHeight = BigDecimal.ZERO;
+                            BigDecimal minimumAreaEWS = BigDecimal.ZERO;
                             BigDecimal totalArea = BigDecimal.ZERO;
                             BigDecimal minWidth = BigDecimal.ZERO;
                             String subRule = null;
@@ -202,14 +204,20 @@ public class Kitchen extends FeatureProcess {
                             if (!kitchenAreas.isEmpty()) {
                                 totalArea = kitchenAreas.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
                                 minimumHeight = MINIMUM_AREA_5_5;
+                                
+                                minimumAreaEWS = EWS_MINIMUM_AREA_3_8;
+                                
                                 subRuleDesc = String.format(SUBRULE_41_III_AREA_DESC, KITCHEN);
 
                                 boolean valid = false;
                                 boolean isTypicalRepititiveFloor = false;
                                 Map<String, Object> typicalFloorValues = ProcessHelper.getTypicalFloorValues(block, floor,
                                         isTypicalRepititiveFloor);
-                                buildResult(pl, floor, minimumHeight, subRule, subRuleDesc, totalArea, valid, typicalFloorValues);
-
+                                if (pl.getPlot().getArea().compareTo(new BigDecimal(100)) <= 0) {
+                                    buildResult(pl, floor, minimumAreaEWS, subRule, subRuleDesc, totalArea, valid, typicalFloorValues);
+                                } else {
+                                 buildResult(pl, floor, minimumHeight, subRule, subRuleDesc, totalArea, valid, typicalFloorValues);
+                                } 
                             }
 
                             if (!kitchenWidths.isEmpty()) {

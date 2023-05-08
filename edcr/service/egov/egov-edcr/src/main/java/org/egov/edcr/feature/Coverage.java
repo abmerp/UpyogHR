@@ -77,9 +77,11 @@ public class Coverage extends FeatureProcess {
     private static final String RULE_DESCRIPTION_KEY = "coverage.description";
     private static final String RULE_EXPECTED_KEY = "coverage.expected";
     private static final String RULE_ACTUAL_KEY = "coverage.actual";
+    
    // private static final BigDecimal ThirtyFive = BigDecimal.valueOf(35);
     private static final BigDecimal SIXTYSIX = BigDecimal.valueOf(66);
     private static final BigDecimal SEVENTYFIVE = BigDecimal.valueOf(75);
+    private static final BigDecimal TWENTYFIVEOFMAXCOVERAGE = BigDecimal.valueOf(25);
 //    private static final BigDecimal THIRTYFIVE = BigDecimal.valueOf(35);
 //    private static final BigDecimal FIFTY = BigDecimal.valueOf(50);
 	/*
@@ -119,6 +121,7 @@ public class Coverage extends FeatureProcess {
         validate(pl);
         BigDecimal totalCoverage = BigDecimal.ZERO;
         BigDecimal totalCoverageArea = BigDecimal.ZERO;
+        
         boolean isAccepted = false;
         String expectedResult = StringUtils.EMPTY;
 
@@ -167,13 +170,13 @@ public class Coverage extends FeatureProcess {
       
       //*** Implementation for GROUND COVERAGE as per Haryana
         if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)<=0) {
-       	 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SEVENTYFIVE);
+       	 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SEVENTYFIVE, TWENTYFIVEOFMAXCOVERAGE);
         }
     	
     	if(pl.getPlot().getArea().compareTo(TWOHUNDREDFIFTY)>=0) {
-    		 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SIXTYSIX);
+    		 processCoverage(pl, StringUtils.EMPTY, totalCoverage, SIXTYSIX, TWENTYFIVEOFMAXCOVERAGE);
         }
-    	
+   
 		/*
 		 * if (pl.getPlanInformation().getLandUseZone().equalsIgnoreCase(OccupancyType.
 		 * OCCUPANCY_A4.getOccupancyTypeVal())) { if
@@ -263,7 +266,7 @@ public class Coverage extends FeatureProcess {
 	 * 
 	 * case OCCUPANCY_H: return Eighty; default: return BigDecimal.ZERO; } }
 	 */
-    private void processCoverage(Plan pl, String occupancy, BigDecimal coverage, BigDecimal upperLimit) {
+    private void processCoverage(Plan pl, String occupancy, BigDecimal coverage, BigDecimal upperLimit, BigDecimal lowerLimit) {
         ScrutinyDetail scrutinyDetail = new ScrutinyDetail();
         scrutinyDetail.setKey("Common_Coverage");
         scrutinyDetail.setHeading("Coverage in Percentage");
@@ -277,7 +280,7 @@ public class Coverage extends FeatureProcess {
         String desc = getLocaleMessage(RULE_DESCRIPTION_KEY, upperLimit.toString());
         String actualResult = getLocaleMessage(RULE_ACTUAL_KEY, coverage.toString());
         String expectedResult = getLocaleMessage(RULE_EXPECTED_KEY, upperLimit.toString());
-        if (coverage.doubleValue() <= upperLimit.doubleValue()) {
+        if (coverage.doubleValue() <= upperLimit.doubleValue() && coverage.doubleValue() >= lowerLimit.doubleValue()) {
             Map<String, String> details = new HashMap<>();
             details.put(RULE_NO, RULE_38);
             details.put(DESCRIPTION, desc);

@@ -61,6 +61,7 @@ import org.egov.common.entity.edcr.Floor;
 import org.egov.common.entity.edcr.Plan;
 import org.egov.common.entity.edcr.Result;
 import org.egov.common.entity.edcr.ScrutinyDetail;
+import org.egov.common.entity.edcr.SetBack;
 import org.egov.edcr.utility.DcrConstants;
 import org.egov.edcr.utility.Util;
 import org.springframework.stereotype.Service;
@@ -69,10 +70,15 @@ import org.springframework.stereotype.Service;
 public class Balcony extends FeatureProcess {
     private static final Logger LOG = LogManager.getLogger(Balcony.class);
     private static final String FLOOR = "Floor";
+    private static final String FRONT = "Front";
+    private static final String REAR = "Rear";
+    String balconySide;
     private static final String RULE45_IV = "45-iv";
-    private static final String WIDTH_BALCONY_DESCRIPTION = "Minimum width for balcony %s";
-    private static final BigDecimal ONE_POINTTWO = BigDecimal.valueOf(1.8);
-   // private static final BigDecimal ONE_POINTEIGHT_MAX = BigDecimal.valueOf(1.8);
+    private static final String WIDTH_BALCONY_DESCRIPTION = "Maximum width for %s balcony %s";
+    private static final BigDecimal ONE_POINTEIGHT = BigDecimal.valueOf(1.8);
+//    private static final BigDecimal REARYARDMINIMUM_DISTANCE_1_5 = BigDecimal.valueOf(1.5);
+//	private static final BigDecimal REARYARDMINIMUM_DISTANCE_2 = BigDecimal.valueOf(2);
+//	private static final BigDecimal REARYARDMINIMUM_DISTANCE_3 = BigDecimal.valueOf(3);
 
     @Override
     public Plan validate(Plan plan) {
@@ -93,7 +99,8 @@ public class Balcony extends FeatureProcess {
                 scrutinyDetailLanding.addColumnHeading(6, STATUS);
                 scrutinyDetailLanding.setKey("Block_" + block.getNumber() + "_" + "Balcony");
                 List<Floor> floors = block.getBuilding().getFloors();
-
+//                List<SetBack> setback = block.getSetBacks();
+                
                 for (Floor floor : floors) {
                     boolean isTypicalRepititiveFloor = false;
 
@@ -104,28 +111,67 @@ public class Balcony extends FeatureProcess {
                     if (!balconies.isEmpty()) {
                         for (org.egov.common.entity.edcr.Balcony balcony : balconies) {
                             boolean isAccepted = false;
+//                            BigDecimal halfMinWidth = BigDecimal.valueOf(0);
                             List<BigDecimal> widths = balcony.getWidths();
                             BigDecimal minWidth = widths.isEmpty() ? BigDecimal.ZERO : widths.stream().reduce(BigDecimal::min).get();
                             minWidth = minWidth.setScale(DcrConstants.DECIMALDIGITS_MEASUREMENTS,
                                     DcrConstants.ROUNDMODE_MEASUREMENTS);
-                            if (minWidth.compareTo(ONE_POINTTWO.setScale(DcrConstants.DECIMALDIGITS_MEASUREMENTS,
+                            if (minWidth.compareTo(ONE_POINTEIGHT.setScale(DcrConstants.DECIMALDIGITS_MEASUREMENTS,
                                     DcrConstants.ROUNDMODE_MEASUREMENTS)) <= 0)  {
                                 isAccepted = true;
                             }
+
+//                            boolean isChecked = false;
+//                            if((setback.get(0).getFrontYard().getWidth().compareTo(new BigDecimal(3.6)) >= 0
+//                            		|| setback.get(0).getRearYard().getWidth().compareTo(new BigDecimal(3.6)) >= 0) &&
+//                            		(setback.get(0).getFrontYard().getWidth().compareTo(new BigDecimal(3.6)) >= 0
+//                            		&& setback.get(0).getRearYard().getWidth().compareTo(new BigDecimal(3.6)) >= 0)) {
+//                            	isChecked = true;
+//                            }
+//                            
+//                            boolean isFlag = false;
+//                            if(setback.get(0).getFrontYard().getWidth().compareTo(new BigDecimal(3.6)) < 0) {
+//                            	halfMinWidth = minWidth.divide(new BigDecimal(2));
+//                            	isFlag = true;
+//                            }
+                            
+//                            boolean isFlag2 = false;
+//                            if(setback.get(0).getRearYard().getWidth().compareTo(new BigDecimal(3.6)) < 0) {
+//                            	if (plan.getPlot().getArea().compareTo(BigDecimal.valueOf(75))<0)
+//                            			balcony = rearsetbackwidth - 1.5; 
+//                            	if (plan.getPlot().getArea().compareTo(BigDecimal.valueOf(75)) > 0
+//                        				&& plan.getPlot().getArea().compareTo(BigDecimal.valueOf(150)) <= 0)
+//                            	        balcony = rearsetbackwidth - 2; 
+//                            	if (plan.getPlot().getArea().compareTo(BigDecimal.valueOf(150)) > 0
+//                        				&& plan.getPlot().getArea().compareTo(BigDecimal.valueOf(250)) <= 0)
+//                            			balcony = rearsetbackwidth - 2; 
+//                            	if (plan.getPlot().getArea().compareTo(BigDecimal.valueOf(150)) > 0
+//                            			&& plan.getPlot().getArea().compareTo(BigDecimal.valueOf(250)) <= 0)
+//                            			balcony = rearsetbackwidth - 3; 
+//                            	isFlag2 = true;
+//                            }
 
                             String value = typicalFloorValues.get("typicalFloors") != null
                                     ? (String) typicalFloorValues.get("typicalFloors")
                                     : " floor " + floor.getNumber();
 
+                            
+                            if (balcony.getMeasurements().get(0).getColorCode() == 35) {
+                            	balconySide = FRONT;
+                            } 
+                            if (balcony.getMeasurements().get(0).getColorCode() == 36) {
+                            	balconySide = REAR;
+                            }
+                            
                             if (isAccepted) {
                                 setReportOutputDetailsFloorBalconyWise(plan, RULE45_IV, value,
-                                        String.format(WIDTH_BALCONY_DESCRIPTION, balcony.getNumber()),
-                                        ONE_POINTTWO.toString(),
+                                        String.format(WIDTH_BALCONY_DESCRIPTION, balconySide, balcony.getNumber()),
+                                        ONE_POINTEIGHT.toString(),
                                         String.valueOf(minWidth), Result.Accepted.getResultVal(), scrutinyDetailLanding);
                             } else {
                                 setReportOutputDetailsFloorBalconyWise(plan, RULE45_IV, value,
-                                        String.format(WIDTH_BALCONY_DESCRIPTION, balcony.getNumber()),
-                                        ONE_POINTTWO.toString(),
+                                        String.format(WIDTH_BALCONY_DESCRIPTION, balconySide, balcony.getNumber()),
+                                        ONE_POINTEIGHT.toString(),
                                         String.valueOf(minWidth), Result.Not_Accepted.getResultVal(), scrutinyDetailLanding);
                             }
                         }
@@ -151,7 +197,7 @@ public class Balcony extends FeatureProcess {
         scrutinyDetail.getDetail().add(details);
         pl.getReportOutput().getScrutinyDetails().add(scrutinyDetail);
     }
-
+ 
     @Override
     public Map<String, Date> getAmendments() {
         return new LinkedHashMap<>();
