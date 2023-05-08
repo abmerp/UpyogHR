@@ -775,7 +775,7 @@ public class UserService {
 				user.setTenantId(requestInfo.getUserInfo().getTenantId());
 				user.setActive(true);
 				user.setEmailId(ssoCitizen.getEmailId());
-				user.setName(searchUsers.get(0).getName());
+				user.setName(tokenResponse.getUserRequest().getName());
 				User updatedUser = updateWithoutOtpValidation(user, requestInfo);
 				log.info("updatedUser" + updatedUser);
 
