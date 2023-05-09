@@ -25845,7 +25845,361 @@
          "serviceCode": "",
          "code": "",
          "path": ""
+      },
+      {
+         "id": 2735,
+         "name": "transfer of licence create",
+         "url": "/tl-services/_TransferOfLicenseRequest/_create",
+         "displayName": "transfer of licence create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2736,
+         "name": "transfer of licence search",
+         "url": "/tl-services/_TransferOfLicenseRequest/_search",
+         "displayName": "transfer of licence search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2737,
+         "name": "transfer of licence update",
+         "url": "/tl-services/_TransferOfLicenseRequest/_update",
+         "displayName": "transfer of licence update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2738,
+         "name": "compliance create",
+         "url": "/tl-services/_compliance/_create",
+         "displayName": "compliance create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2739,
+         "name": "additional document create",
+         "url": "/tl-services/_additionalDocuments/_create",
+         "displayName": "additional document create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2740,
+         "name": "extension of cluy create",
+         "url": "/tl-services/ExtensionOfCLUPermissionRequest/_create",
+         "displayName": "extension of cluy create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2741,
+         "name": "surrender of licence create",
+         "url": "/tl-services/SurrendOfLicenseRequest/_create",
+         "displayName": "surrender of licence create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2742,
+         "name": "revised plan create",
+         "url": "/tl-services/revisedPlan/_create",
+         "displayName": "revised plan create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2743,
+         "name": "approval of standard create",
+         "url": "/tl-services/_ApprovalStandard/_create",
+         "displayName": "approval of standard create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2744,
+         "name": "compostion create",
+         "url": "/tl-services/composition/_create",
+         "displayName": "compostion create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2745,
+         "name": "certificate create",
+         "url": "/tl-services/certicifate/_create",
+         "displayName": "certificate create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2746,
+         "name": "construction create",
+         "url": "/tl-services/construction/_create",
+         "displayName": "construction create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2747,
+         "name": "change in beneficial create",
+         "url": "/tl-services/beneficial/_create",
+         "displayName": "change in beneficial create",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2748,
+         "name": "complaince search",
+         "url": "/tl-services/_compliance/_search",
+         "displayName": "complaince search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2749,
+         "name": "additional document search",
+         "url": "/tl-services/_additionalDocuments/_search",
+         "displayName": "additional document search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2750,
+         "name": "extension of clu search",
+         "url": "/tl-services/ExtensionOfCLUPermissionRequest/_search",
+         "displayName": "extension of clu search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2751,
+         "name": "surrender of licence search",
+         "url": "/tl-services/SurrendOfLicenseRequest/_search",
+         "displayName": "surrender of licence search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2752,
+         "name": "revised plan search",
+         "url": "/tl-services/revisedPlan/_search",
+         "displayName": "revised plan search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2753,
+         "name": "approval of standard search",
+         "url": "/tl-services/_ApprovalStandard/_search",
+         "displayName": "approval of standard search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2754,
+         "name": "compostion search",
+         "url": "/tl-services/composition/_get",
+         "displayName": "compostion search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2755,
+         "name": "certificate search",
+         "url": "/tl-services/certicifate/_get",
+         "displayName": "certificate search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2756,
+         "name": "construction search",
+         "url": "/tl-services/construction/_get",
+         "displayName": "construction search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2757,
+         "name": "change in beneficial search",
+         "url": "/tl-services/beneficial/_get",
+         "displayName": "change in beneficial search",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2758,
+         "name": "approval of standard update",
+         "url": "/tl-services/_ApprovalStandard/_update",
+         "displayName": "approval of standard update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2759,
+         "name": "compliance update",
+         "url": "/tl-services/_compliance/_update",
+         "displayName": "compliance update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2760,
+         "name": "extension of clu update",
+         "url": "/tl-services/ExtensionOfCLUPermissionRequest/_update",
+         "displayName": "extension of clu update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2761,
+         "name": "surrender of licence update",
+         "url": "/tl-services/SurrendOfLicenseRequest/_update",
+         "displayName": "surrender of licence update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2762,
+         "name": "revised plan update",
+         "url": "/tl-services/revisedPlan/_update",
+         "displayName": "revised plan update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2763,
+         "name": "composition update",
+         "url": "/tl-services/composition/_update",
+         "displayName": "composition update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2764,
+         "name": "certificate update",
+         "url": "/tl-services/certicifate/_update",
+         "displayName": "certificate update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2765,
+         "name": "construction update",
+         "url": "/tl-services/construction/_update",
+         "displayName": "construction update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
+      },
+      {
+         "id": 2766,
+         "name": "change in beneficial update",
+         "url": "/tl-services/beneficial/_update",
+         "displayName": "change in beneficial update",
+         "orderNumber": 0,
+         "enabled": true,
+         "serviceCode": "",
+         "code": "",
+         "path": ""
       }
+
+
       
 
    ]
