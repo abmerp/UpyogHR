@@ -283,9 +283,9 @@ public class Coverage extends FeatureProcess {
         if (coverage.doubleValue() <= upperLimit.doubleValue() && coverage.doubleValue() >= lowerLimit.doubleValue()) {
             Map<String, String> details = new HashMap<>();
             details.put(RULE_NO, RULE_38);
-            details.put(DESCRIPTION, desc);
+            details.put(DESCRIPTION, "Should be"+" <= "+upperLimit+" & "+" >= "+lowerLimit);
             details.put(OCCUPANCY, occupancy);
-            details.put(PERMISSIBLE, expectedResult);
+            details.put(PERMISSIBLE, "Should be"+" <= "+upperLimit+" & "+" >= "+lowerLimit);
             details.put(PROVIDED, actualResult);
             details.put(STATUS, Result.Accepted.getResultVal());
             scrutinyDetail.getDetail().add(details);
@@ -294,9 +294,9 @@ public class Coverage extends FeatureProcess {
         } else {
             Map<String, String> details = new HashMap<>();
             details.put(RULE_NO, RULE_38);
-            details.put(DESCRIPTION, desc);
+            details.put(DESCRIPTION, "Should be"+" <= "+upperLimit+" & "+" >= "+lowerLimit);
             details.put(OCCUPANCY, occupancy);
-            details.put(PERMISSIBLE, expectedResult);
+            details.put(PERMISSIBLE, "Should be"+" <= "+upperLimit+" & "+" >= "+lowerLimit);
             details.put(PROVIDED, actualResult);
             details.put(STATUS, Result.Not_Accepted.getResultVal());
             scrutinyDetail.getDetail().add(details);
