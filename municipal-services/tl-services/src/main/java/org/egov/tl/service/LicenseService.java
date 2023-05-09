@@ -64,6 +64,7 @@ import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.PurposeDetails;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.ResponseTransaction;
+import org.egov.tl.web.models.Surroundings;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -159,8 +160,8 @@ public class LicenseService {
 	private JdbcTemplate jdbcTemplate;
 	
 
-	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
-
+//	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
+	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP";
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
 			throws JsonProcessingException {
@@ -228,6 +229,7 @@ public class LicenseService {
 							break;
 						}
 						case "LandSchedule": {
+							
 							newData.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
 							break;
 						}
