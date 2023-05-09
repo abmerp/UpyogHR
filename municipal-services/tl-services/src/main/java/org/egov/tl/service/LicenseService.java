@@ -64,7 +64,6 @@ import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.PurposeDetails;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.egov.tl.web.models.ResponseTransaction;
-import org.egov.tl.web.models.Surroundings;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -155,13 +154,13 @@ public class LicenseService {
 	ServicePlanService servicePlanService;
 	@Autowired
 	private TradeUtil tradeUtil;
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
 
-//	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
+	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
 	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP";
+
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
 			throws JsonProcessingException {
@@ -229,7 +228,6 @@ public class LicenseService {
 							break;
 						}
 						case "LandSchedule": {
-							
 							newData.setLandSchedule(newServiceInfo.getLicenseDetails().getLandSchedule());
 							break;
 						}
@@ -1201,27 +1199,28 @@ public class LicenseService {
 		}
 		return purposeDetailm;
 	}
-	
-	public Map<String,Object> searchLicenseFees(String licenseNumber,RequestInfoWrapper requestInfoWrapper) {
-		Map<String,Object> response=new HashMap<>();
-		
-			List<Map<String,Object>> licenseFeesList = null;
-			try {
-				List<Object> preparedStmtList = new ArrayList<>();
-				licenseFeesList = jdbcTemplate.query("select * from license_fees where license_number='"+licenseNumber+"'", preparedStmtList.toArray(),
-						(rs, rowNum) -> {
-							Map<String,Object> lst=new HashMap<>();
-							lst.put("license_number", rs.getString("license_number"));
-						    lst.put("license_date", rs.getDate("license_date"));
-						    lst.put("total_fees", rs.getObject("total_fees"));
-							return lst;
-						});
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			response.put("ResponseInfo",requestInfoWrapper.getRequestInfo());
-			response.put("licenseFeesDetails",licenseFeesList);
-			return response;
+
+	public Map<String, Object> searchLicenseFees(String licenseNumber, RequestInfoWrapper requestInfoWrapper) {
+		Map<String, Object> response = new HashMap<>();
+
+		List<Map<String, Object>> licenseFeesList = null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			licenseFeesList = jdbcTemplate.query(
+					"select * from license_fees where license_number='" + licenseNumber + "'",
+					preparedStmtList.toArray(), (rs, rowNum) -> {
+						Map<String, Object> lst = new HashMap<>();
+						lst.put("license_number", rs.getString("license_number"));
+						lst.put("license_date", rs.getDate("license_date"));
+						lst.put("total_fees", rs.getObject("total_fees"));
+						return lst;
+					});
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		response.put("ResponseInfo", requestInfoWrapper.getRequestInfo());
+		response.put("licenseFeesDetails", licenseFeesList);
+		return response;
+	}
 
 }
