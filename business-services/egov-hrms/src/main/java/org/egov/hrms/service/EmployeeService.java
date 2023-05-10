@@ -659,7 +659,7 @@ public class EmployeeService {
 		EmployeeRequest employeeRequest = new EmployeeRequest();
 		EmployeeSearchCriteria employeeSearchCriteria = new EmployeeSearchCriteria();
 		String tenant = splitTenant(ssoEmployee.getOfficeName());
-		if (ssoValue.equalsIgnoreCase(sso1)) {
+		if (ssoValue.equalsIgnoreCase(sso)) {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
