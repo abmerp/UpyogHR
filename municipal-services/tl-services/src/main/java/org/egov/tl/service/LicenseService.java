@@ -158,8 +158,8 @@ public class LicenseService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	 private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
-	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
+	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
+	 private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
@@ -265,7 +265,7 @@ public class LicenseService {
 				newServiceIn.setCurrentVersion(cv);
 				tradeLicense.getTradeLicenseDetail().setCurrentVersion(cv);
 				tradeLicense.setAction(newServiceInfo.getAction());
-				tradeLicense.setWorkflowCode("NewTL");
+				tradeLicense.setWorkflowCode("NewTL1");
 				switch (tradeLicense.getAction()) {
 				case "INITIATE": {
 					tradeLicense.setStatus("INITIATED");
@@ -383,7 +383,7 @@ public class LicenseService {
 //			tradeLicense.setValidFrom();
 //			tradeLicense.setValidTo();
 //			tradeLicense.setWfDocuments();
-			tradeLicense.setWorkflowCode("NewTL");
+			tradeLicense.setWorkflowCode("NewTL1");
 
 			tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
 			tradeLicenseDetail.setId(String.valueOf(newServiceInfo.getId()));
@@ -392,7 +392,7 @@ public class LicenseService {
 			tradeLicenseDetail.getChannel();
 			tradeLicenseDetail.getOwners();
 			tradeLicenseDetail.getVerificationDocuments();
-			tradeLicenseDetail.setTradeType("NewTL");
+			tradeLicenseDetail.setTradeType("NewTL1");
 			tradeLicenseDetail.setCurrentVersion(newServiceIn.getCurrentVersion());
 
 			String data = mapper.writeValueAsString(newServiceInfoDatas);
@@ -817,7 +817,7 @@ public class LicenseService {
 						 ***********/
 
 						tradeLicense.setAction("PAID");
-						tradeLicense.setWorkflowCode("NewTL");
+						tradeLicense.setWorkflowCode("NewTL1");
 						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 						tradeLicense
 						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(TL_NEW_LANDING_EMPLOYEE_ROLE,
