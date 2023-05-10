@@ -377,11 +377,12 @@ public class TradeUtil {
 	}
 	
 	public String getFirstAssigneeByRole(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+	
 		StringBuilder uri = new StringBuilder();
 		uri.append(config.getHrmsHost());
 		uri.append(config.getHrmsContextPath());
 		uri.append("?tenantId=" + tenantID);
-		uri.append("&codes=" + role);
+		uri.append("&roles=" + role);
 		uri.append("&isActive=" + b);
 		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
 		EmployeeResponse employeeResponse = null;
