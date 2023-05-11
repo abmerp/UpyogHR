@@ -286,17 +286,36 @@ public class BankGuaranteeService {
 						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
 				workflowIntegrator.callWorkFlow(processInstanceRequest);
 			}
-
-
+			if(BG_NEW_ACTION_RELEASE.equals(newBankGuaranteeRequest.getUpdateType())) {
+				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
+				setReleaseRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest);
+				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
+				newBankGuaranteeRepo.update(newBankGuaranteeContract);
+				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
+				updatedData.add(newBankGuarantee);
+			}else{
 			// push to update-
-			newBankGuaranteeRepo.update(newBankGuaranteeContract);
-			NewBankGuarantee newBankGuarantee = newBankGuaranteeRequest.toBuilder();
-			updatedData.add(newBankGuarantee);
+				newBankGuaranteeRepo.update(newBankGuaranteeContract);
+				NewBankGuarantee newBankGuarantee = newBankGuaranteeRequest.toBuilder();
+				updatedData.add(newBankGuarantee);
+			}
 		}
 		return updatedData;
 		
 	}
 	
+	private void setReleaseRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest) {
+		newBankGuaranteeRespondData.setReleaseCertificate(newBankGuaranteeRequest.getReleaseCertificate());
+		newBankGuaranteeRespondData.setBankGuaranteeReplacedWith(newBankGuaranteeRequest.getBankGuaranteeReplacedWith());
+		newBankGuaranteeRespondData.setReasonForReplacement(newBankGuaranteeRequest.getReasonForReplacement());
+		newBankGuaranteeRespondData.setApplicationCerficifate(newBankGuaranteeRequest.getApplicationCerficifate());
+		newBankGuaranteeRespondData.setApplicationCerficifateDescription(newBankGuaranteeRequest.getApplicationCerficifateDescription());
+		newBankGuaranteeRespondData.setCompletionCertificate(newBankGuaranteeRequest.getCompletionCertificate());
+		newBankGuaranteeRespondData.setCompletionCertificateDescription(newBankGuaranteeRequest.getCompletionCertificateDescription());
+		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
+		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
+
+	}
 	
 	public void getKhasraDetails(String loiNumber) {
 		LicenseServiceDao license = licenseService.findByLoiNumber(loiNumber);

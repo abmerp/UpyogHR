@@ -9,6 +9,8 @@ import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -77,6 +79,43 @@ public class NewBankGuaranteeRequest {
 	*/
 	private String businessService;
 	private String workflowCode = businessService;
+	
+	
+	
+	/******************* realese bank gurentee  start**************************/
+	
+	
+	    @JsonProperty("updateType")
+	    private String updateType;
+	
+		@JsonProperty("releaseCertificate")
+		private String releaseCertificate;
+		
+		@JsonProperty("bankGuaranteeReplacedWith")
+		private String bankGuaranteeReplacedWith;
+		
+		@JsonProperty("reasonForReplacement")
+		private String reasonForReplacement;
+
+		@JsonProperty("applicationCerficifate")
+		private String applicationCerficifate;
+		
+		@JsonProperty("applicationCerficifateDescription")
+		private String applicationCerficifateDescription;
+		
+		@JsonProperty("completionCertificate")
+		private String completionCertificate;
+		
+		@JsonProperty("completionCertificateDescription")
+		private String completionCertificateDescription;
+		
+		@JsonProperty("anyOtherDocument")
+		private String anyOtherDocument;
+		
+		@JsonProperty("anyOtherDocumentDescription")
+		private String anyOtherDocumentDescription;
+	
+	/******************* realese bank gurentee  start**************************/
 
 	public NewBankGuaranteeRequest(NewBankGuarantee newBankGuarantee) {
 		this.id = newBankGuarantee.getId();
@@ -110,6 +149,17 @@ public class NewBankGuaranteeRequest {
 		this.indianBankAdvisedCertificate = newBankGuarantee.getIndianBankAdvisedCertificate();
 		this.releaseBankGuarantee = newBankGuarantee.getReleaseBankGuarantee();
 		this.businessService = newBankGuarantee.getBusinessService();
+		
+		this.releaseCertificate=newBankGuarantee.getReleaseCertificate();
+		this.bankGuaranteeReplacedWith=newBankGuarantee.getBankGuaranteeReplacedWith();
+		this.reasonForReplacement=newBankGuarantee.getReasonForReplacement();
+		this.applicationCerficifate=newBankGuarantee.getApplicationCerficifate();
+		this.applicationCerficifateDescription=newBankGuarantee.getApplicationCerficifateDescription();
+		this.completionCertificate=newBankGuarantee.getCompletionCertificate();
+		this.completionCertificateDescription=newBankGuarantee.getCompletionCertificateDescription();
+		this.anyOtherDocument=newBankGuarantee.getAnyOtherDocument();
+		this.anyOtherDocumentDescription=newBankGuarantee.getAnyOtherDocumentDescription();
+		
 		/*
 		this.mortgageKhasraDetails = newBankGuarantee.getMortgageKhasraDetails();
 		this.totalKhasraAreaToMortgage = newBankGuarantee.getTotalKhasraAreaToMortgage();
@@ -156,6 +206,17 @@ public class NewBankGuaranteeRequest {
 				.indianBankAdvisedCertificate(this.indianBankAdvisedCertificate)
 				.releaseBankGuarantee(this.releaseBankGuarantee)
 				.businessService(this.businessService)
+				
+				.releaseCertificate(this.releaseCertificate)
+				.bankGuaranteeReplacedWith(this.bankGuaranteeReplacedWith)
+				.reasonForReplacement(this.reasonForReplacement)
+				.applicationCerficifate(this.applicationCerficifate)
+				.applicationCerficifateDescription(this.applicationCerficifateDescription)
+				.completionCertificate(this.completionCertificate)
+				.completionCertificateDescription(this.completionCertificateDescription)
+				.anyOtherDocument(this.anyOtherDocument)
+				.anyOtherDocumentDescription(this.anyOtherDocumentDescription)
+
 				/*
 				.mortgageKhasraDetails(this.mortgageKhasraDetails)
 				.totalKhasraAreaToMortgage(this.totalKhasraAreaToMortgage)
@@ -166,6 +227,7 @@ public class NewBankGuaranteeRequest {
 				.mortgageLandScheduleAndPlotNumbersDoc(this.mortgageLandScheduleAndPlotNumbersDoc)
 				.mortgageDeedAfterBPApproval(this.mortgageDeedAfterBPApproval)
 				*/
+				
 				.build();
 	}
 }
