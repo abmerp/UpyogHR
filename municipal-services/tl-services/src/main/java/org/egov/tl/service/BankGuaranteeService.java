@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -296,6 +297,7 @@ public class BankGuaranteeService {
 		
 	}
 	
+	
 	public void getKhasraDetails(String loiNumber) {
 		LicenseServiceDao license = licenseService.findByLoiNumber(loiNumber);
 	}
@@ -430,6 +432,36 @@ public class BankGuaranteeService {
 		auditDetails.setCreatedTime(
 				newBankGuaranteeRequest.getAuditDetails().getCreatedTime());
 		newBankGuaranteeRequest.setAuditDetails(auditDetails);
+	}
+	
+	public List<Map<String,Object>> getDropDownList(int type, RequestInfo requestInfo) {
+		List<Map<String,Object>> dropList=newBankGuaranteeRepo.getDropDownList();
+		List<Map<String,Object>> dropDoneList=new ArrayList<>();
+		if(type==1) {
+			dropDoneList=dropList.stream().filter(bg->bg.get("application_number")!=null&&!bg.get("application_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("application_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+			}).collect(Collectors.toList());
+		}else if(type==2){
+			dropDoneList=dropList.stream().filter(bg->bg.get("loi_number")!=null&&!bg.get("loi_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("loi_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+		    }).collect(Collectors.toList());
+		}else {
+			dropDoneList=dropList.stream().filter(bg->bg.get("licence_number")!=null&&!bg.get("licence_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("licence_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+			}).collect(Collectors.toList());
+		}
+		
+		return dropDoneList;
+		
 	}
 	
 	/*

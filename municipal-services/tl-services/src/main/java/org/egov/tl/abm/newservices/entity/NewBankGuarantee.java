@@ -128,4 +128,21 @@ public class NewBankGuarantee {
 	
 	private String businessService;
 	private String workflowCode = businessService;
+	
+	
+
+	
+	/******************* realese bank gurentee  start**************************/
+		private String releaseCertificate;
+		private String bankGuaranteeReplacedWith;
+		private String reasonForReplacement;
+		private String applicationCerficifate;
+		private String applicationCerficifateDescription;
+		private String completionCertificate;
+		private String completionCertificateDescription;
+		private String anyOtherDocument;
+		private String anyOtherDocumentDescription;	
+	
+	/******************* realese bank gurentee  start**************************/
+
 }
