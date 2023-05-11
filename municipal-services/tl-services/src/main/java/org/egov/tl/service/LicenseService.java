@@ -158,8 +158,8 @@ public class LicenseService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	 private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
-	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
+	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
+	 private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
