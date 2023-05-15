@@ -343,6 +343,13 @@ public class TLConfiguration {
 
 	@Value("${persister.bankguarantee.new.update}")
 	private String updateNewBankGuaranteeTopic;
+	
+	
+	@Value("${persister.release.bankguarantee.new.update}")
+	private String updateReleaseNewBankGuaranteeTopic;
+
+	@Value("${persister.extend.bankguarantee.new.update}")
+	private String updateExtendNewBankGuaranteeTopic;
 
 	@Value("${persister.bankguarantee.renew.save}")
 	private String saveRenewBankGuaranteeTopic;

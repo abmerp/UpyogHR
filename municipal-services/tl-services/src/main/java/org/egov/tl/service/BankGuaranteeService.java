@@ -290,7 +290,14 @@ public class BankGuaranteeService {
 				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
 				setReleaseRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest);
 				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
-				newBankGuaranteeRepo.update(newBankGuaranteeContract);
+				newBankGuaranteeRepo.updateRelease(newBankGuaranteeContract);
+				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
+				updatedData.add(newBankGuarantee);
+			}if(BG_NEW_ACTION_EXTEND.equals(newBankGuaranteeRequest.getUpdateType())) {
+				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
+				setExtendRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest);
+				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
+				newBankGuaranteeRepo.updateExtend(newBankGuaranteeContract);
 				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
 				updatedData.add(newBankGuarantee);
 			}else{
@@ -305,13 +312,26 @@ public class BankGuaranteeService {
 	}
 	
 	private void setReleaseRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest) {
-		newBankGuaranteeRespondData.setReleaseCertificate(newBankGuaranteeRequest.getReleaseCertificate());
+		newBankGuaranteeRespondData.setRelease(newBankGuaranteeRequest.getRelease());
 		newBankGuaranteeRespondData.setBankGuaranteeReplacedWith(newBankGuaranteeRequest.getBankGuaranteeReplacedWith());
 		newBankGuaranteeRespondData.setReasonForReplacement(newBankGuaranteeRequest.getReasonForReplacement());
 		newBankGuaranteeRespondData.setApplicationCerficifate(newBankGuaranteeRequest.getApplicationCerficifate());
 		newBankGuaranteeRespondData.setApplicationCerficifateDescription(newBankGuaranteeRequest.getApplicationCerficifateDescription());
 		newBankGuaranteeRespondData.setCompletionCertificate(newBankGuaranteeRequest.getCompletionCertificate());
 		newBankGuaranteeRespondData.setCompletionCertificateDescription(newBankGuaranteeRequest.getCompletionCertificateDescription());
+		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
+		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
+
+	}
+	
+	private void setExtendRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest) {
+			
+		newBankGuaranteeRespondData.setDateOfAmendment(newBankGuaranteeRequest.getDateOfAmendment());
+		newBankGuaranteeRespondData.setAmendmentExpiryDate(newBankGuaranteeRequest.getAmendmentExpiryDate());
+		newBankGuaranteeRespondData.setAmendmentClaimExpiryDate(newBankGuaranteeRequest.getAmendmentClaimExpiryDate());
+		newBankGuaranteeRespondData.setIssuingBank(newBankGuaranteeRequest.getIssuingBank());
+		newBankGuaranteeRespondData.setBankGurenteeCertificate(newBankGuaranteeRequest.getBankGurenteeCertificate());
+		newBankGuaranteeRespondData.setBankGurenteeCertificateDescription(newBankGuaranteeRequest.getBankGurenteeCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
 

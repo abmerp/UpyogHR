@@ -463,65 +463,55 @@ serviceMaps:
            dbType: JSONB
          - jsonPath: compositionOfUrban.*.applicationNumber
          
- - version: 1.0
-   description: Persists save-realese-bg  service of eg_tl_release_bank_guarantee
-   fromTopic: save-realese-bg
-   isTransaction: true
-   queryMaps: 
-      - query: INSERT INTO public.eg_tl_release_bank_guarantee(id, bank_guarantee_id, any_other_document, any_other_document_description, application_cerficifate, application_cerficifate_description, bank_guarantee_issue_date, bank_guarantee_number, bank_guarantee_replaced_with, bg_amount, claim_expiry_date, completion_certificate, completion_certificate_description, expiry_date, reason_for_replacement, release, audit_details, application_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
-        basePath: releaseBankGuarantee.*
-        jsonMaps: 
-         - jsonPath: releaseBankGuarantee.*.id
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeId
-         - jsonPath: releaseBankGuarantee.*.anyOtherDocument
-         - jsonPath: releaseBankGuarantee.*.anyOtherDocumentDescription
-         - jsonPath: releaseBankGuarantee.*.applicationCerficifate
-         - jsonPath: releaseBankGuarantee.*.applicationCerficifateDescription
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeIssueDate
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeNumber
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeReplacedWith
-         - jsonPath: releaseBankGuarantee.*.bgAmount
-         - jsonPath: releaseBankGuarantee.*.claimExpiryDate
-         - jsonPath: releaseBankGuarantee.*.completionCertificate
-         - jsonPath: releaseBankGuarantee.*.completionCertificateDescription
-         - jsonPath: releaseBankGuarantee.*.expiryDate
-         - jsonPath: releaseBankGuarantee.*.reasonForReplacement
-         - jsonPath: releaseBankGuarantee.*.release
-         
-         - jsonPath: releaseBankGuarantee.*.auditDetails
-           type: JSON
-           dbType: JSONB
-         
-         - jsonPath: releaseBankGuarantee.*.applicationStatus
-         
-         
+ 
  - version: 1.0
    description: Persists update-realese-bg  service of eg_tl_release_bank_guarantee
-   fromTopic: update-realese-bg
+   fromTopic: update-release-new-bankguarantee
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_release_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_issue_date=?, bank_guarantee_number=?, bank_guarantee_replaced_with=?, bg_amount=?, claim_expiry_date=?, completion_certificate=?, completion_certificate_description=?, expiry_date=?, reason_for_replacement=?, release=?, audit_details=? where id=?
-        basePath: releaseBankGuarantee.*
+      - query: UPDATE public.save-new-bankguarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_replaced_with=?, completion_certificate=?, completion_certificate_description=?, reason_for_replacement=?, release=? where id=?
+        basePath: NewBankGuaranteeRequest.*
         jsonMaps: 
-         - jsonPath: releaseBankGuarantee.*.anyOtherDocument
-         - jsonPath: releaseBankGuarantee.*.anyOtherDocumentDescription
-         - jsonPath: releaseBankGuarantee.*.applicationCerficifate
-         - jsonPath: releaseBankGuarantee.*.applicationCerficifateDescription
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeIssueDate
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeNumber
-         - jsonPath: releaseBankGuarantee.*.bankGuaranteeReplacedWith
-         - jsonPath: releaseBankGuarantee.*.bgAmount
-         - jsonPath: releaseBankGuarantee.*.claimExpiryDate
-         - jsonPath: releaseBankGuarantee.*.completionCertificate
-         - jsonPath: releaseBankGuarantee.*.completionCertificateDescription
-         - jsonPath: releaseBankGuarantee.*.expiryDate
-         - jsonPath: releaseBankGuarantee.*.reasonForReplacement
-         - jsonPath: releaseBankGuarantee.*.release
+          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
+          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocumentDescription
+          - jsonPath: $.NewBankGuaranteeRequest.*.applicationCerficifate
+          - jsonPath: $.NewBankGuaranteeRequest.*.applicationCerficifateDescription
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankGuaranteeReplacedWith
+          - jsonPath: $.NewBankGuaranteeRequest.*.completionCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.completionCertificateDescription
+          - jsonPath: $.NewBankGuaranteeRequest.*.reasonForReplacement
+          - jsonPath: $.NewBankGuaranteeRequest.*.release
+          - jsonPath: $.NewBankGuaranteeRequest.*.id
          
-         - jsonPath: releaseBankGuarantee.*.auditDetails
-           type: JSON
-           dbType: JSONB
-         - jsonPath: releaseBankGuarantee.*.id
+      - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
+        basePath: NewBankGuaranteeRequest.*
+        jsonMaps:
+         - jsonPath: $.NewBankGuaranteeRequest.*.id
+     
+ - version: 1.0
+   description: Persists update-realese-bg  service of eg_tl_release_bank_guarantee
+   fromTopic: update-extend-new-bankguarantee
+   isTransaction: true
+   queryMaps: 
+      - query: UPDATE public.save-new-bankguarantee SET any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
+        basePath: NewBankGuaranteeRequest.*
+        jsonMaps: 
+          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
+          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocumentDescription
+          - jsonPath: $.NewBankGuaranteeRequest.*.dateOfAmendment
+          - jsonPath: $.NewBankGuaranteeRequest.*.amendmentExpiryDate
+          - jsonPath: $.NewBankGuaranteeRequest.*.amendmentClaimExpiryDate
+          - jsonPath: $.NewBankGuaranteeRequest.*.issuingBank
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankGurenteeCertificate
+          - jsonPath: $.NewBankGuaranteeRequest.*.bankGurenteeCertificateDescription
+          - jsonPath: $.NewBankGuaranteeRequest.*.id
+         
+      - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
+        basePath: NewBankGuaranteeRequest.*
+        jsonMaps:
+         - jsonPath: $.NewBankGuaranteeRequest.*.id
+         
+      
          
          
          
