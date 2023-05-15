@@ -465,11 +465,11 @@ serviceMaps:
          
  
  - version: 1.0
-   description: Persists update-realese-bg  service of eg_tl_release_bank_guarantee
+   description: Persists eg_tl_bank_guarantee  service of eg_tl_bank_guarantee
    fromTopic: update-release-new-bankguarantee
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.save-new-bankguarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_replaced_with=?, completion_certificate=?, completion_certificate_description=?, reason_for_replacement=?, release=? where id=?
+      - query: UPDATE public.eg_tl_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_replaced_with=?, completion_certificate=?, completion_certificate_description=?, reason_for_replacement=?, release=? where id=?
         basePath: NewBankGuaranteeRequest.*
         jsonMaps: 
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
@@ -489,11 +489,11 @@ serviceMaps:
          - jsonPath: $.NewBankGuaranteeRequest.*.id
      
  - version: 1.0
-   description: Persists update-realese-bg  service of eg_tl_release_bank_guarantee
+   description: Persists eg_tl_bank_guarantee  service of eg_tl_bank_guarantee
    fromTopic: update-extend-new-bankguarantee
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.save-new-bankguarantee SET any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
+      - query: UPDATE public.eg_tl_bank_guarantee SET any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
         basePath: NewBankGuaranteeRequest.*
         jsonMaps: 
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument

@@ -293,7 +293,7 @@ public class BankGuaranteeService {
 				newBankGuaranteeRepo.updateRelease(newBankGuaranteeContract);
 				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
 				updatedData.add(newBankGuarantee);
-			}if(BG_NEW_ACTION_EXTEND.equals(newBankGuaranteeRequest.getUpdateType())) {
+			}else if(BG_NEW_ACTION_EXTEND.equals(newBankGuaranteeRequest.getUpdateType())) {
 				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
 				setExtendRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest);
 				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
