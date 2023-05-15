@@ -493,7 +493,7 @@ serviceMaps:
    fromTopic: update-extend-new-bankguarantee
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_bank_guarantee SET any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
+      - query: UPDATE public.eg_tl_bank_guarantee SET any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?,amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
         basePath: NewBankGuaranteeRequest.*
         jsonMaps: 
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
