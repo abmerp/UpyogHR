@@ -11,8 +11,10 @@
            {
               "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
               "name":"Scruitny fees",
-              "type":"radio",
-              "type1":"textarea",
+              "type":[
+               "radio",
+               "textarea"
+              ],
               "disabled":"true",
               "options":[
                  {
