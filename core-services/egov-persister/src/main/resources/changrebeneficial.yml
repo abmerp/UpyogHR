@@ -479,9 +479,11 @@ serviceMaps:
    fromTopic: update-release-new-bankguarantee
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_replaced_with=?, completion_certificate=?, completion_certificate_description=?, reason_for_replacement=?, release=? where id=?
+      - query: UPDATE public.eg_tl_bank_guarantee SET lastmodifiedby=?,lastmodifiedtime=?,any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_replaced_with=?, completion_certificate=?, completion_certificate_description=?, reason_for_replacement=?, release=? where id=?
         basePath: NewBankGuaranteeRequest.*
         jsonMaps: 
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedBy
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedTime
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocumentDescription
           - jsonPath: $.NewBankGuaranteeRequest.*.applicationCerficifate
@@ -503,9 +505,11 @@ serviceMaps:
    fromTopic: update-extend-new-bankguarantee
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_bank_guarantee SET any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?,amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
+      - query: UPDATE public.eg_tl_bank_guarantee SET lastmodifiedby=?,lastmodifiedtime=?,any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?,amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
         basePath: NewBankGuaranteeRequest.*
         jsonMaps: 
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedBy
+          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedTime
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
           - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocumentDescription
           - jsonPath: $.NewBankGuaranteeRequest.*.dateOfAmendment
