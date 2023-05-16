@@ -27,6 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.egov.tl.util.TLConstants.*;
 import static org.egov.tl.util.TLConstants.COMMON_MASTERS_MODULE;
@@ -407,7 +409,7 @@ public class TradeUtil {
 		return uuid;
 	}
 	
-	public String getFirstAssigneeByRoleBG(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+	public List<String> getFirstAssigneeByRoleBG(String role, String tenantID, boolean b, RequestInfo requestInfo) {
 		
 		StringBuilder uri = new StringBuilder();
 		uri.append(config.getHrmsHost());
@@ -434,8 +436,11 @@ public class TradeUtil {
 		} catch (JsonProcessingException ep) {
 			log.error("exception inside method getFirstAssigneeByRole", ep);
 		}
-		String uuid = employeeResponse.getEmployees().get(0).getUuid();
-		return uuid;
+		
+		;
+		
+//		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+		return employeeResponse.getEmployees().stream().map(uuid->uuid.getUuid()).collect(Collectors.toList());
 	}
 	
 
