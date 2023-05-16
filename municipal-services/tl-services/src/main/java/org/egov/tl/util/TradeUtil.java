@@ -437,10 +437,9 @@ public class TradeUtil {
 			log.error("exception inside method getFirstAssigneeByRole", ep);
 		}
 		
-		;
-		
-//		String uuid = employeeResponse.getEmployees().get(0).getUuid();
-		return employeeResponse.getEmployees().stream().map(uuid->uuid.getUuid()).collect(Collectors.toList());
+		List<String> list=employeeResponse.getEmployees().stream().filter(id->id.getId().equals("2965")).map(uuid->uuid.getUuid()).collect(Collectors.toList());
+		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+		return list.isEmpty()?Arrays.asList(uuid):list;
 	}
 	
 
