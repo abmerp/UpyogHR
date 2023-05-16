@@ -148,7 +148,7 @@ public class ConstructionOfCommunityService {
 						construction.setIsDraft("1");
 					}		
 					try {
-						String data = mapper.writeValueAsString(construction);
+						String data = mapper.writeValueAsString(construction.getNewAdditionalDetails());
 						JsonNode jsonNode = mapper.readTree(data);
 						construction.setNewAdditionalDetails(jsonNode);
 					} catch (JsonProcessingException e) {
