@@ -87,7 +87,7 @@ public class BankGuaranteeService {
 	public static final String BG_STATUS_INITIATED = "INITIATED";
 	public static final String BG_ACTION_INITIATE = "INITIATE";
 	public static final String BG_STATUS_PENDING_AT_CAO = "PENDING_AT_CAO";
-	public static final String BG_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
+	public static final String BG_NEW_LANDING_EMPLOYEE_ROLE = "SO_HQ";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -113,7 +113,7 @@ public class BankGuaranteeService {
 				// default set businessservice as BG_NEW as of now-
 				newBankGuaranteeRequest.setBusinessService(BUSINESSSERVICE_BG_NEW);
 				newBankGuaranteeRequest
-						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(BG_NEW_LANDING_EMPLOYEE_ROLE,
+						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,
 								newBankGuaranteeRequest.getTenantId(), true,
 								newBankGuaranteeContract.getRequestInfo())));
 			}

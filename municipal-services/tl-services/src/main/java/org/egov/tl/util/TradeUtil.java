@@ -407,4 +407,37 @@ public class TradeUtil {
 		return uuid;
 	}
 	
+	public String getFirstAssigneeByRoleBG(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+		
+		StringBuilder uri = new StringBuilder();
+		uri.append(config.getHrmsHost());
+		uri.append(config.getHrmsContextPath());
+		uri.append("?tenantId=" + tenantID);
+		uri.append("&role=" + role);
+		uri.append("&isActive=" + b);
+		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
+		EmployeeResponse employeeResponse = null;
+		String data = null;
+		Object fetchResult = serviceRequestRepository.fetchResult(uri, requestInfoWrapper);
+		try {
+			data = mapper.writeValueAsString(fetchResult);
+		} catch (JsonProcessingException e) {
+			log.error("exception inside method getFirstAssigneeByRole", e);
+		}
+		ObjectReader reader = mapper.readerFor(new TypeReference<EmployeeResponse>() {
+		});
+		try {
+			employeeResponse = reader.readValue(data);
+		} catch (JsonMappingException em) {
+
+			log.error("exception inside method getFirstAssigneeByRole", em);
+		} catch (JsonProcessingException ep) {
+			log.error("exception inside method getFirstAssigneeByRole", ep);
+		}
+		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+		return uuid;
+	}
+	
+
+	
 }
