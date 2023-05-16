@@ -11,10 +11,7 @@
            {
               "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
               "name":"Scruitny fees",
-              "type":[
-               "radio",
-               "textarea"
-              ],
+              "type":"radio",
               "disabled":"true",
               "options":[
                  {
@@ -26,10 +23,15 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
+             
            },
            {
               "label":"Whether 25% of the licence fee deposited.",
@@ -47,8 +49,12 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
            },
@@ -103,9 +109,13 @@
                               "value":"no"
                            }
                         ],
-                        "labels":[
-                           
-                        ],
+                        "labels":[{
+                           "label":"",
+                           "name":"remarks",
+                           "type":"textarea",
+                           "disabled":"true"
+                          }
+                          ],
                         "value":""
                      },
                      {
@@ -124,9 +134,13 @@
                             "value":"no"
                          }
                       ],
-                      "labels":[
-                         
-                      ],
+                      "labels":[{
+                        "label":"",
+                        "name":"remarks",
+                        "type":"textarea",
+                        "disabled":"true"
+                       }
+                       ],
                       "value":""
                    
                   },
@@ -146,9 +160,13 @@
                            "value":"no"
                         }
                      ],
-                     "labels":[
-                        
-                     ],
+                     "labels":[{
+                        "label":"",
+                        "name":"remarks",
+                        "type":"textarea",
+                        "disabled":"true"
+                       }
+                       ],
                      "value":""
                   
                  }
@@ -172,8 +190,12 @@
                           "value":"no"
                        }
                     ],
-                    "labels":[
-                       
+                    "labels":[{
+                     "label":"",
+                     "name":"remarks",
+                     "type":"textarea",
+                     "disabled":"true"
+                    }
                     ],
                     "value":""
                  },
@@ -193,8 +215,12 @@
                           "value":"no"
                        }
                     ],
-                    "labels":[
-                       
+                    "labels":[{
+                     "label":"",
+                     "name":"remarks",
+                     "type":"textarea",
+                     "disabled":"true"
+                    }
                     ],
                     "value":""
                  }
@@ -216,8 +242,12 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
            },
@@ -237,8 +267,12 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
            },
@@ -258,8 +292,12 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
            },
@@ -279,8 +317,12 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
            },
@@ -300,8 +342,12 @@
                     "value":"no"
                  }
               ],
-              "labels":[
-                 
+              "labels":[{
+               "label":"",
+               "name":"remarks",
+               "type":"textarea",
+               "disabled":"true"
+              }
               ],
               "value":""
            }
