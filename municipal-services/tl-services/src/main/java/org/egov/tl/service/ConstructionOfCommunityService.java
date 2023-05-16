@@ -27,6 +27,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.log4j.Log4j2;
 
 @Service
@@ -71,6 +75,10 @@ public class ConstructionOfCommunityService {
 	
 	@Autowired
 	private WorkflowIntegrator workflowIntegrator;
+	
+	@Autowired
+	ObjectMapper mapper;
+
 	
 
 	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest){
@@ -138,10 +146,20 @@ public class ConstructionOfCommunityService {
 						construction.setIsDraft("0");	
 					}else {
 						construction.setIsDraft("1");
-					}					
+					}		
+					try {
+						String data = mapper.writeValueAsString(construction);
+						JsonNode jsonNode = mapper.readTree(data);
+						construction.setNewAdditionalDetails(jsonNode);
+					} catch (JsonProcessingException e) {
+						e.printStackTrace();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 					return construction;
+
 				}).collect(Collectors.toList());	
-		constructionOfCommunityRequest.setConstructionOfCommunity(constructionOfCommunityList);
+		        constructionOfCommunityRequest.setConstructionOfCommunity(constructionOfCommunityList);
 		
 		if(isCreate) {
 			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
