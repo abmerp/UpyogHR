@@ -265,9 +265,19 @@ public class BankGuaranteeService {
 	
 	public List<NewBankGuarantee> updateNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
 		List<NewBankGuarantee> updatedData = new ArrayList<>();
+		
+			
 		for(NewBankGuaranteeRequest newBankGuaranteeRequest:newBankGuaranteeContract.getNewBankGuaranteeRequest()) {
 			List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
 					newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+			
+			Long time = System.currentTimeMillis();
+			AuditDetails auditDetails = newBankGuaranteeSearchResult.get(0).getAuditDetails();
+			auditDetails.setLastModifiedBy(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid());
+			auditDetails.setLastModifiedTime(time);
+			newBankGuaranteeRequest.setAuditDetails(auditDetails);
+		
+			
 			String businessService = getBusinessServiceName(newBankGuaranteeRequest);
 			String currentStatus = newBankGuaranteeSearchResult.get(0).getStatus();
 			BusinessService workflow = workflowService.getBusinessService(BUSINESSSERVICE_TENANTID,
