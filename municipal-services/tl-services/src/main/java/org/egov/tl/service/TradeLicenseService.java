@@ -134,11 +134,7 @@ public class TradeLicenseService {
 			break;
 		case businessService_BPA:
 			if (config.getIsExternalWorkFlowEnabled())
-				tradeLicenseRequest.getLicenses().get(0).setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole("dtpaa",
-						tradeLicenseRequest.getRequestInfo().getUserInfo().getTenantId(), true,
-						tradeLicenseRequest.getRequestInfo())));
-				// tradeLicenseRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
-			log.info("tradelicence"+tradeLicenseRequest);
+			
 				wfIntegrator.callWorkFlow(tradeLicenseRequest);
 			break;
 
@@ -461,8 +457,21 @@ public class TradeLicenseService {
 				break;
 
 			case businessService_BPA:
-				endStates = tradeUtil.getBPAEndState(tradeLicenseRequest);
-				wfIntegrator.callWorkFlow(tradeLicenseRequest);
+			//	endStates = tradeUtil.getBPAEndState(tradeLicenseRequest);
+				if (tradeLicenseRequest.getLicenses().get(0).getAction() != null
+						&& !tradeLicenseRequest.getLicenses().get(0).getAction().isEmpty())
+					if (config.getIsExternalWorkFlowEnabled()) {
+						if(tradeLicenseRequest.getLicenses().get(0).getAssignee() == null ||tradeLicenseRequest.getLicenses().get(0).getAssignee().isEmpty()) {
+						tradeLicenseRequest.getLicenses().get(0).setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole("dtpaa",
+								tradeLicenseRequest.getRequestInfo().getUserInfo().getTenantId(), true,
+								tradeLicenseRequest.getRequestInfo())));	
+						}
+					log.info("tradelicence"+tradeLicenseRequest);
+						wfIntegrator.callWorkFlow(tradeLicenseRequest);
+					} else {
+						TLWorkflowService.updateStatus(tradeLicenseRequest);
+					}
+			//	wfIntegrator.callWorkFlow(tradeLicenseRequest);
 				break;
 			}
 			enrichmentService.postStatusEnrichment(tradeLicenseRequest, endStates, mdmsData);
