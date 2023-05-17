@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.egov.land.abm.contract.PerformaContract;
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EmployeeSecurtinyReport;
 import org.egov.land.abm.models.FiledDetails;
@@ -14,6 +15,7 @@ import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.newservices.entity.UserComments;
 import org.egov.land.abm.repo.EgScrutinyRepo;
 import org.egov.land.service.LandEnrichmentService;
+import org.postgresql.jdbc2.ArrayAssistantRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -199,4 +201,37 @@ public class EgScrutinyService {
 		return this.egScrutinyRepo.findByApplicationIdAndUseridOrderByUseridDesc(applicantId, fieldId);
 	}
 
+	public List<EgScrutiny> createAndUpdatePerforma(PerformaContract performaContract) {
+		List<EgScrutiny> egScrutinyList = performaContract.getEgScrutiny();
+		List<EgScrutiny> egScrutinyLists = new ArrayList<>();
+		for (EgScrutiny egScrutiny : egScrutinyList) {
+			boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+
+					egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
+					egScrutiny.getServiceId());
+
+			if (isExist) {
+				EgScrutiny egScrutinys = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
+						egScrutiny.getServiceId());
+				egScrutiny.setComment(egScrutiny.getComment());
+				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
+				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
+				egScrutiny.setFieldValue(egScrutiny.getFieldValue());
+				egScrutiny.setIsLOIPart(egScrutiny.getIsLOIPart());
+				egScrutiny.setTs(new Date());
+				// return egScrutinyRepo.save(egScrutiny);
+			} else {
+				egScrutiny.setTs(new Date());
+				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
+				
+
+			}
+			egScrutinyLists.add(egScrutiny);
+
+		}
+
+		return egScrutinyRepo.saveAll(egScrutinyLists);
+
+	}
 }

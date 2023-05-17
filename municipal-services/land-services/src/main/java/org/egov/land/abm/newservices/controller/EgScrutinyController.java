@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.egov.land.abm.contract.PerformaContract;
 import org.egov.land.abm.models.EgScrutinyEmployeeReportResponse;
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EgScrutinyInfoResponse;
@@ -159,5 +160,19 @@ public class EgScrutinyController {
 
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
 	}
+	@PostMapping("/_performa/_create")
+	public ResponseEntity<EgScrutinyInfoResponse> createPerforma(
+			@RequestBody PerformaContract performaContract,@RequestParam("status")String status) {
+	
+		List<EgScrutiny> egScrutinyList = egScrutinyService.createAndUpdatePerforma(performaContract);
+
+		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutinyList)
+				.responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(performaContract.getRequestInfo(), true))
+				.build();
+
+		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
+	}
+
 	
 }
