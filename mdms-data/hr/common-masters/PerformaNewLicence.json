@@ -38,7 +38,7 @@
               "label":"Whether 25% of the licence fee deposited.",
               "name":"Licence fees",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -64,7 +64,7 @@
               "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
               "name":"Fininacial Position",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -78,11 +78,18 @@
               ],
               "value":"",
               "labels":[
+               {
+                  "label":"",
+                  "name":"remarks",
+                  "type":"textarea",
+                  "disabled":"true",
+                  "placeholder":"Enter Remarks"
+                 },
                  {
                     "label":"a)In case of company- ",
                     "name":"company",
                     "type":"radio",
-                    "type1":"textarea",
+                   
                     "disabled":"true",
                     "options":[
                        {
@@ -95,11 +102,18 @@
                        }
                     ],
                     "labels":[
+                     {
+                        "label":"",
+                        "name":"remarks",
+                        "type":"textarea",
+                        "disabled":"true",
+                        "placeholder":"Enter Remarks"
+                       },
                       {
                         "label":"(i) Form PAS-3.",
                         "name":"form",
                         "type":"radio",
-                        "type1":"textarea",
+                       
                         "disabled":"true",
                         "options":[
                            {
@@ -125,7 +139,7 @@
                       "label":"(ii) Accumulated reserves and surpluses",
                       "name":"Accumulated reserves and surpluses",
                       "type":"radio",
-                      "type1":"textarea",
+                     
                       "disabled":"true",
                       "options":[
                          {
@@ -152,7 +166,7 @@
                      "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
                      "name":"Paid Amount",
                      "type":"radio",
-                     "type1":"textarea",
+                    
                      "disabled":"true",
                      "options":[
                         {
@@ -174,14 +188,8 @@
                        ],
                      "value":""
                   
-                 },
-                 {
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
                  }
+                 
               
                     ],
                     "value":""
@@ -190,7 +198,7 @@
                     "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
                     "name":"llp",
                     "type":"radio",
-                    "type1":"textarea",
+                   
                     "disabled":"true",
                     "options":[
                        {
@@ -216,7 +224,7 @@
                     "label":"c)In case of individual- The income tax returns of last three years.",
                     "name":"individual",
                     "type":"radio",
-                    "type1":"textarea",
+                   
                     "disabled":"true",
                     "options":[
                        {
@@ -237,14 +245,8 @@
                     }
                     ],
                     "value":""
-                 },
-                {
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
                  }
+                
                  
               ]
            },
@@ -252,7 +254,7 @@
               "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
               "name":"applicationundermigration",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -278,7 +280,7 @@
               "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
               "name":"applicationAtAdditionalArea",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -304,7 +306,7 @@
               "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
               "name":"applicationAtAdditionalAreaStatusEDCSIDC",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -330,7 +332,7 @@
               "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
               "name":"applicationUnderMigrationScruitnyFeesForRevisionLayoutplan",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -356,7 +358,7 @@
               "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
               "name":"applicationAtAdditionalAreaScruitnyFeesForRevisionLayoutplan",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -390,7 +392,7 @@
             "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
             "name":"LandOwners",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -416,7 +418,7 @@
             "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
             "name":"jamabandhi",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -443,7 +445,7 @@
             "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
             "name":"Original mutations",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -469,7 +471,7 @@
             "label":"Whether Sale deeds of the applied land submitted.  ",
             "name":"sale deeds",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -494,7 +496,7 @@
          {
             "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
             "name":"shajra plan",
-            "type1":"textarea",
+           
             "type":"radio",
             "disabled":"true",
             "options":[
@@ -520,7 +522,7 @@
          {
             "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
             "name":"khasra number in collaboration agreement",
-            "type1":"textarea",
+           
             "type":"radio",
             "disabled":"true",
             "options":[
@@ -547,7 +549,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
             "name":"khasra number for GPA/SPA",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -573,7 +575,7 @@
           "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
           "name":"application under migration",
           "type":"radio",
-          "type1":"textarea",
+         
           "disabled":"true",
           "options":[
              {
@@ -607,7 +609,7 @@
             "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
             "name":"LandOwners",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -633,7 +635,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
             "name":"khasra number",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -660,7 +662,7 @@
             "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
             "name":"gpa/spa applicant submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -686,7 +688,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
             "name":"khasra number",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -712,7 +714,7 @@
             "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
             "name":"authorized signatory",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -738,7 +740,7 @@
             "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
             "name":"indemnity bond",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -772,7 +774,7 @@
             "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
             "name":"LandOwners",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -798,7 +800,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
             "name":"khasra number",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -825,7 +827,7 @@
             "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
             "name":"gpa/spa applicant submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -851,7 +853,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
             "name":"khasra number",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -877,7 +879,7 @@
             "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
             "name":"authorized signatory",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -903,7 +905,7 @@
             "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
             "name":"indemnity bond",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -937,7 +939,7 @@
             "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
             "name":"guide map",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -963,7 +965,7 @@
             "label":"Whether Survey Map of the proposed colony submitted.",
             "name":"survey map",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -990,7 +992,7 @@
             "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
             "name":"layout plan of colony",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1016,7 +1018,7 @@
             "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
             "name":"DGPS coordinates",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1042,7 +1044,7 @@
             "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
             "name":"NPA",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1068,7 +1070,7 @@
             "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
             "name":"application under part migration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1094,7 +1096,7 @@
             "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
             "name":"scruitny fee submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1120,7 +1122,7 @@
             "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
             "name":"additional area",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1146,7 +1148,7 @@
             "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
             "name":"RERA registration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1172,7 +1174,7 @@
             "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
             "name":"revision layout plan submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1206,7 +1208,7 @@
             "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
             "name":"guide map",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1232,7 +1234,7 @@
             "label":"Whether Survey Map of the proposed colony submitted.",
             "name":"survey map",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1259,7 +1261,7 @@
             "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
             "name":"layout plan of colony",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1285,7 +1287,7 @@
             "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
             "name":"DGPS coordinates",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1311,7 +1313,7 @@
             "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
             "name":"NPA",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1337,7 +1339,7 @@
             "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
             "name":"application under part migration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1363,7 +1365,7 @@
             "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
             "name":"scruitny fee submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1389,7 +1391,7 @@
             "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
             "name":"additional area",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1415,7 +1417,7 @@
             "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
             "name":"RERA registration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1441,7 +1443,7 @@
             "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
             "name":"revision layout plan submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1475,7 +1477,7 @@
             "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
             "name":"guide map",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1501,7 +1503,7 @@
             "label":"Whether Survey Map of the proposed colony submitted.",
             "name":"survey map",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1528,7 +1530,7 @@
             "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
             "name":"layout plan of colony",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1554,7 +1556,7 @@
             "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
             "name":"DGPS coordinates",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1580,7 +1582,7 @@
             "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
             "name":"NPA",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1606,7 +1608,7 @@
             "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
             "name":"application under part migration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1632,7 +1634,7 @@
             "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
             "name":"scruitny fee submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1658,7 +1660,7 @@
             "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
             "name":"additional area",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1684,7 +1686,7 @@
             "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
             "name":"RERA registration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1710,7 +1712,7 @@
             "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
             "name":"revision layout plan submitted",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1744,7 +1746,7 @@
             "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
             "name":"LandOwners",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1770,7 +1772,7 @@
             "label":"Whether 25% of the licence fee deposited.",
             "name":"LicenceFees",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1796,7 +1798,7 @@
             "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
             "name":"OriginalJamabandhi",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1822,7 +1824,7 @@
             "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
             "name":"OriginalMutations",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1848,7 +1850,7 @@
             "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
             "name":"SalesDeed",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1874,7 +1876,7 @@
             "label":"Whether Sale deeds of the applied land submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1900,7 +1902,7 @@
             "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1926,7 +1928,7 @@
             "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1952,7 +1954,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -1978,7 +1980,7 @@
             "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2004,7 +2006,7 @@
             "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2030,7 +2032,7 @@
             "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2056,7 +2058,7 @@
             "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2082,7 +2084,7 @@
             "label":"Whether Survey Map of the proposed colony submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2108,7 +2110,7 @@
             "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2134,7 +2136,7 @@
             "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2160,7 +2162,7 @@
             "label":"Whether Explanatory note submitted explaining the salient features of the proposed colony.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2186,7 +2188,7 @@
             "label":"Whether Memorandum of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2212,7 +2214,7 @@
             "label":"Whether Articles of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2238,7 +2240,7 @@
             "label":"Whether LLP agreement submitted, in case of firm",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2264,7 +2266,7 @@
             "label":"Whether self attested/ notarised degree/ certificate of membership of Architect/ Civil engineer signing the application submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2290,7 +2292,7 @@
             "label":"Whether Non encumbrance certificate of the applied land from the competent authority submitted. ",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2316,7 +2318,7 @@
             "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2342,7 +2344,7 @@
             "label":"In case of colony where there is cap on NPA, whether application received within stipulated period of online window inviting applications.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2368,7 +2370,7 @@
             "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2394,7 +2396,7 @@
             "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2420,7 +2422,7 @@
             "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2446,7 +2448,7 @@
             "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2472,7 +2474,7 @@
             "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2498,7 +2500,7 @@
             "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2524,7 +2526,7 @@
             "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2550,7 +2552,7 @@
             "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2576,7 +2578,7 @@
             "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2602,7 +2604,7 @@
             "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2628,7 +2630,7 @@
             "label":"Whether area norms getting fulfilled as per applicable policy.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2654,7 +2656,7 @@
             "label":"Whether approach norms getting fulfilled as per applicable policy.",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2680,7 +2682,7 @@
             "label":"Whether documents submitted regarding experience to develop the colony by the applicant/developer (uploaded/ auto fetched from license granted database- part of developer registration).",
             "name":"OrignalShajraPlan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2697,7 +2699,7 @@
                   "label":"a)Details of LOI/ licenses already granted.",
                   "name":"company",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -2723,7 +2725,7 @@
                   "label":"b)Details of any other project developed in Real Estate.",
                   "name":"company",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -2749,7 +2751,7 @@
                   "label":"c)In case the applicant wish to utilize the technical capacity of any company/ firm/ LLP etc, then agreement with company and Board resolution of authorised signatory.",
                   "name":"company",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -2775,7 +2777,7 @@
                   "label":"d)If director/partner of applicant company/ firm also director/partner in other company/ firm to whom license granted, then agreement with company/firm and Board resolution of authorised signatory.",
                   "name":"company",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -2810,9 +2812,9 @@
          }, 
          {
             "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
-            "name":"OrignalShajraPlan",
+            "name":"Fininacial Position",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -2824,12 +2826,20 @@
                   "value":"no"
                }
             ],
+            "value":"",
             "labels":[
+             {
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               },
                {
-                  "label":"d)In case of company- ",
+                  "label":"a)In case of company- ",
                   "name":"company",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -2842,11 +2852,18 @@
                      }
                   ],
                   "labels":[
+                   {
+                      "label":"",
+                      "name":"remarks",
+                      "type":"textarea",
+                      "disabled":"true",
+                      "placeholder":"Enter Remarks"
+                     },
                     {
                       "label":"(i) Form PAS-3.",
                       "name":"form",
                       "type":"radio",
-                      "type1":"textarea",
+                     
                       "disabled":"true",
                       "options":[
                          {
@@ -2859,20 +2876,20 @@
                          }
                       ],
                       "labels":[{
-                        "label":"",
-                        "name":"remarks",
-                        "type":"textarea",
-                        "disabled":"true",
-                        "placeholder":"Enter Remarks"
-                       }
-                       ],
+                         "label":"",
+                         "name":"remarks",
+                         "type":"textarea",
+                         "disabled":"true",
+                         "placeholder":"Enter Remarks"
+                        }
+                        ],
                       "value":""
                    },
                    {
                     "label":"(ii) Accumulated reserves and surpluses",
                     "name":"Accumulated reserves and surpluses",
                     "type":"radio",
-                    "type1":"textarea",
+                   
                     "disabled":"true",
                     "options":[
                        {
@@ -2885,13 +2902,13 @@
                        }
                     ],
                     "labels":[{
-                     "label":"",
-                     "name":"remarks",
-                     "type":"textarea",
-                     "disabled":"true",
-                     "placeholder":"Enter Remarks"
-                    }
-                    ],
+                      "label":"",
+                      "name":"remarks",
+                      "type":"textarea",
+                      "disabled":"true",
+                      "placeholder":"Enter Remarks"
+                     }
+                     ],
                     "value":""
                  
                 },
@@ -2899,7 +2916,7 @@
                    "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
                    "name":"Paid Amount",
                    "type":"radio",
-                   "type1":"textarea",
+                  
                    "disabled":"true",
                    "options":[
                       {
@@ -2912,91 +2929,76 @@
                       }
                    ],
                    "labels":[{
-                     "label":"",
-                     "name":"remarks",
-                     "type":"textarea",
-                     "disabled":"true",
-                     "placeholder":"Enter Remarks"
-                    }
-                    ],
+                      "label":"",
+                      "name":"remarks",
+                      "type":"textarea",
+                      "disabled":"true",
+                      "placeholder":"Enter Remarks"
+                     }
+                     ],
                    "value":""
                 
-               },
-              {
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 
-
-                  ],
-                  "value":""
-               },
-               {
-                  "label":"e)In case of LLP- The net worth of the LLP (not of individual person).",
-                  "name":"company",
-                  "type":"radio",
-                  "type1":"textarea",
-                  "disabled":"true",
-                  "options":[
-                     {
-                        "label":"Yes",
-                        "value":"yes"
-                     },
-                     {
-                        "label":"No",
-                        "value":"no"
-                     }
-                  ],
-                  "labels":[{
-                     "label":"",
-                     "name":"remarks",
-                     "type":"textarea",
-                     "disabled":"true",
-                     "placeholder":"Enter Remarks"
-                    }
-                    ],
-                  "value":""
-               },
-               {
-                  "label":"f)In case of individual- The income tax returns of last three years.",
-                  "name":"company",
-                  "type":"radio",
-                  "type1":"textarea",
-                  "disabled":"true",
-                  "options":[
-                     {
-                        "label":"Yes",
-                        "value":"yes"
-                     },
-                     {
-                        "label":"No",
-                        "value":"no"
-                     }
-                  ],
-                  "labels":[{
-                     "label":"",
-                     "name":"remarks",
-                     "type":"textarea",
-                     "disabled":"true",
-                     "placeholder":"Enter Remarks"
-                    }
-                    ],
-                  "value":""
-               },
-              {
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                
+               }
+               
             
-            ],
-            "value":""
+                  ],
+                  "value":""
+               },
+               {
+                  "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+                  "name":"llp",
+                  "type":"radio",
+                 
+                  "disabled":"true",
+                  "options":[
+                     {
+                        "label":"Yes",
+                        "value":"yes"
+                     },
+                     {
+                        "label":"No",
+                        "value":"no"
+                     }
+                  ],
+                  "labels":[{
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
+                  "value":""
+               },
+               {
+                  "label":"c)In case of individual- The income tax returns of last three years.",
+                  "name":"individual",
+                  "type":"radio",
+                 
+                  "disabled":"true",
+                  "options":[
+                     {
+                        "label":"Yes",
+                        "value":"yes"
+                     },
+                     {
+                        "label":"No",
+                        "value":"no"
+                     }
+                  ],
+                  "labels":[{
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
+                  "value":""
+               }
+              
+               
+            ]
          }
 
       ]
@@ -3037,7 +3039,7 @@
             "label":"Whether 25% of the licence fee deposited.",
             "name":"Licence fees",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3063,7 +3065,7 @@
             "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
             "name":"Fininacial Position",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3077,11 +3079,18 @@
             ],
             "value":"",
             "labels":[
+             {
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               },
                {
                   "label":"a)In case of company- ",
                   "name":"company",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -3094,11 +3103,18 @@
                      }
                   ],
                   "labels":[
+                   {
+                      "label":"",
+                      "name":"remarks",
+                      "type":"textarea",
+                      "disabled":"true",
+                      "placeholder":"Enter Remarks"
+                     },
                     {
                       "label":"(i) Form PAS-3.",
                       "name":"form",
                       "type":"radio",
-                      "type1":"textarea",
+                     
                       "disabled":"true",
                       "options":[
                          {
@@ -3124,7 +3140,7 @@
                     "label":"(ii) Accumulated reserves and surpluses",
                     "name":"Accumulated reserves and surpluses",
                     "type":"radio",
-                    "type1":"textarea",
+                   
                     "disabled":"true",
                     "options":[
                        {
@@ -3151,7 +3167,7 @@
                    "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
                    "name":"Paid Amount",
                    "type":"radio",
-                   "type1":"textarea",
+                  
                    "disabled":"true",
                    "options":[
                       {
@@ -3173,15 +3189,9 @@
                      ],
                    "value":""
                 
-               },
-               {
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-
+               }
+               
+            
                   ],
                   "value":""
                },
@@ -3189,7 +3199,7 @@
                   "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
                   "name":"llp",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -3215,7 +3225,7 @@
                   "label":"c)In case of individual- The income tax returns of last three years.",
                   "name":"individual",
                   "type":"radio",
-                  "type1":"textarea",
+                 
                   "disabled":"true",
                   "options":[
                      {
@@ -3236,14 +3246,8 @@
                   }
                   ],
                   "value":""
-               },
-              {
-                "label":"",
-                "name":"remarks",
-                "type":"textarea",
-                "disabled":"true",
-                "placeholder":"Enter Remarks"
                }
+              
                
             ]
          },
@@ -3251,7 +3255,7 @@
             "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
             "name":"applicationundermigration",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3277,7 +3281,7 @@
             "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
             "name":"applicationAtAdditionalArea",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3303,7 +3307,7 @@
             "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
             "name":"applicationAtAdditionalAreaStatusEDCSIDC",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3329,7 +3333,7 @@
             "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
             "name":"applicationUnderMigrationScruitnyFeesForRevisionLayoutplan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3355,7 +3359,7 @@
             "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
             "name":"applicationAtAdditionalAreaScruitnyFeesForRevisionLayoutplan",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -3389,7 +3393,7 @@
          "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
          "name":"LandOwners",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3415,7 +3419,7 @@
          "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
          "name":"jamabandhi",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3442,7 +3446,7 @@
          "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
          "name":"Original mutations",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3468,7 +3472,7 @@
          "label":"Whether Sale deeds of the applied land submitted.  ",
          "name":"sale deeds",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3493,7 +3497,7 @@
       {
          "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
          "name":"shajra plan",
-         "type1":"textarea",
+        
          "type":"radio",
          "disabled":"true",
          "options":[
@@ -3519,7 +3523,7 @@
       {
          "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
          "name":"khasra number in collaboration agreement",
-         "type1":"textarea",
+        
          "type":"radio",
          "disabled":"true",
          "options":[
@@ -3546,7 +3550,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
          "name":"khasra number for GPA/SPA",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3572,7 +3576,7 @@
        "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
        "name":"application under migration",
        "type":"radio",
-       "type1":"textarea",
+      
        "disabled":"true",
        "options":[
           {
@@ -3606,7 +3610,7 @@
          "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
          "name":"LandOwners",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3632,7 +3636,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
          "name":"khasra number",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3659,7 +3663,7 @@
          "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
          "name":"gpa/spa applicant submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3685,7 +3689,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
          "name":"khasra number",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3711,7 +3715,7 @@
          "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
          "name":"authorized signatory",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3737,7 +3741,7 @@
          "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
          "name":"indemnity bond",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3771,7 +3775,7 @@
          "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
          "name":"LandOwners",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3797,7 +3801,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
          "name":"khasra number",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3824,7 +3828,7 @@
          "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
          "name":"gpa/spa applicant submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3850,7 +3854,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
          "name":"khasra number",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3876,7 +3880,7 @@
          "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
          "name":"authorized signatory",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3902,7 +3906,7 @@
          "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
          "name":"indemnity bond",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3936,7 +3940,7 @@
          "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
          "name":"guide map",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3962,7 +3966,7 @@
          "label":"Whether Survey Map of the proposed colony submitted.",
          "name":"survey map",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -3989,7 +3993,7 @@
          "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
          "name":"layout plan of colony",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4015,7 +4019,7 @@
          "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
          "name":"DGPS coordinates",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4041,7 +4045,7 @@
          "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
          "name":"NPA",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4067,7 +4071,7 @@
          "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
          "name":"application under part migration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4093,7 +4097,7 @@
          "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
          "name":"scruitny fee submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4119,7 +4123,7 @@
          "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
          "name":"additional area",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4145,7 +4149,7 @@
          "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
          "name":"RERA registration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4171,7 +4175,7 @@
          "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
          "name":"revision layout plan submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4205,7 +4209,7 @@
          "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
          "name":"guide map",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4231,7 +4235,7 @@
          "label":"Whether Survey Map of the proposed colony submitted.",
          "name":"survey map",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4258,7 +4262,7 @@
          "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
          "name":"layout plan of colony",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4284,7 +4288,7 @@
          "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
          "name":"DGPS coordinates",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4310,7 +4314,7 @@
          "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
          "name":"NPA",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4336,7 +4340,7 @@
          "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
          "name":"application under part migration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4362,7 +4366,7 @@
          "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
          "name":"scruitny fee submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4388,7 +4392,7 @@
          "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
          "name":"additional area",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4414,7 +4418,7 @@
          "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
          "name":"RERA registration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4440,7 +4444,7 @@
          "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
          "name":"revision layout plan submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4474,7 +4478,7 @@
          "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
          "name":"guide map",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4500,7 +4504,7 @@
          "label":"Whether Survey Map of the proposed colony submitted.",
          "name":"survey map",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4527,7 +4531,7 @@
          "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
          "name":"layout plan of colony",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4553,7 +4557,7 @@
          "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
          "name":"DGPS coordinates",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4579,7 +4583,7 @@
          "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
          "name":"NPA",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4605,7 +4609,7 @@
          "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
          "name":"application under part migration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4631,7 +4635,7 @@
          "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
          "name":"scruitny fee submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4657,7 +4661,7 @@
          "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
          "name":"additional area",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4683,7 +4687,7 @@
          "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
          "name":"RERA registration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4709,7 +4713,7 @@
          "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
          "name":"revision layout plan submitted",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4743,7 +4747,7 @@
          "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
          "name":"LandOwners",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4769,7 +4773,7 @@
          "label":"Whether 25% of the licence fee deposited.",
          "name":"LicenceFees",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4795,7 +4799,7 @@
          "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
          "name":"OriginalJamabandhi",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4821,7 +4825,7 @@
          "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
          "name":"OriginalMutations",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4847,7 +4851,7 @@
          "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
          "name":"SalesDeed",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4873,7 +4877,7 @@
          "label":"Whether Sale deeds of the applied land submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4899,7 +4903,7 @@
          "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4925,7 +4929,7 @@
          "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4951,7 +4955,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -4977,7 +4981,7 @@
          "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5003,7 +5007,7 @@
          "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5029,7 +5033,7 @@
          "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5055,7 +5059,7 @@
          "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5081,7 +5085,7 @@
          "label":"Whether Survey Map of the proposed colony submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5107,7 +5111,7 @@
          "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5133,7 +5137,7 @@
          "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5159,7 +5163,7 @@
          "label":"Whether Explanatory note submitted explaining the salient features of the proposed colony.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5185,7 +5189,7 @@
          "label":"Whether Memorandum of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5211,7 +5215,7 @@
          "label":"Whether Articles of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5237,7 +5241,7 @@
          "label":"Whether LLP agreement submitted, in case of firm",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5263,7 +5267,7 @@
          "label":"Whether self attested/ notarised degree/ certificate of membership of Architect/ Civil engineer signing the application submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5289,7 +5293,7 @@
          "label":"Whether Non encumbrance certificate of the applied land from the competent authority submitted. ",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5315,7 +5319,7 @@
          "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5341,7 +5345,7 @@
          "label":"In case of colony where there is cap on NPA, whether application received within stipulated period of online window inviting applications.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5367,7 +5371,7 @@
          "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5393,7 +5397,7 @@
          "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5419,7 +5423,7 @@
          "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5445,7 +5449,7 @@
          "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5471,7 +5475,7 @@
          "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5497,7 +5501,7 @@
          "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5523,7 +5527,7 @@
          "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5549,7 +5553,7 @@
          "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5575,7 +5579,7 @@
          "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5601,7 +5605,7 @@
          "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5627,7 +5631,7 @@
          "label":"Whether area norms getting fulfilled as per applicable policy.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5653,7 +5657,7 @@
          "label":"Whether approach norms getting fulfilled as per applicable policy.",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5679,7 +5683,7 @@
          "label":"Whether documents submitted regarding experience to develop the colony by the applicant/developer (uploaded/ auto fetched from license granted database- part of developer registration).",
          "name":"OrignalShajraPlan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5696,7 +5700,7 @@
                "label":"a)Details of LOI/ licenses already granted.",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -5722,7 +5726,7 @@
                "label":"b)Details of any other project developed in Real Estate.",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -5748,7 +5752,7 @@
                "label":"c)In case the applicant wish to utilize the technical capacity of any company/ firm/ LLP etc, then agreement with company and Board resolution of authorised signatory.",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -5774,7 +5778,7 @@
                "label":"d)If director/partner of applicant company/ firm also director/partner in other company/ firm to whom license granted, then agreement with company/firm and Board resolution of authorised signatory.",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -5809,9 +5813,9 @@
       }, 
       {
          "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
-         "name":"OrignalShajraPlan",
+         "name":"Fininacial Position",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -5823,12 +5827,20 @@
                "value":"no"
             }
          ],
+         "value":"",
          "labels":[
+          {
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            },
             {
-               "label":"d)In case of company- ",
+               "label":"a)In case of company- ",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -5841,11 +5853,18 @@
                   }
                ],
                "labels":[
+                {
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  },
                  {
                    "label":"(i) Form PAS-3.",
                    "name":"form",
                    "type":"radio",
-                   "type1":"textarea",
+                  
                    "disabled":"true",
                    "options":[
                       {
@@ -5858,20 +5877,20 @@
                       }
                    ],
                    "labels":[{
-                     "label":"",
-                     "name":"remarks",
-                     "type":"textarea",
-                     "disabled":"true",
-                     "placeholder":"Enter Remarks"
-                    }
-                    ],
+                      "label":"",
+                      "name":"remarks",
+                      "type":"textarea",
+                      "disabled":"true",
+                      "placeholder":"Enter Remarks"
+                     }
+                     ],
                    "value":""
                 },
                 {
                  "label":"(ii) Accumulated reserves and surpluses",
                  "name":"Accumulated reserves and surpluses",
                  "type":"radio",
-                 "type1":"textarea",
+                
                  "disabled":"true",
                  "options":[
                     {
@@ -5884,13 +5903,13 @@
                     }
                  ],
                  "labels":[{
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 ],
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
                  "value":""
               
              },
@@ -5898,7 +5917,7 @@
                 "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
                 "name":"Paid Amount",
                 "type":"radio",
-                "type1":"textarea",
+               
                 "disabled":"true",
                 "options":[
                    {
@@ -5911,91 +5930,76 @@
                    }
                 ],
                 "labels":[{
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 ],
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
                 "value":""
              
-            },
-           {
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              
-
-               ],
-               "value":""
-            },
-            {
-               "label":"e)In case of LLP- The net worth of the LLP (not of individual person).",
-               "name":"company",
-               "type":"radio",
-               "type1":"textarea",
-               "disabled":"true",
-               "options":[
-                  {
-                     "label":"Yes",
-                     "value":"yes"
-                  },
-                  {
-                     "label":"No",
-                     "value":"no"
-                  }
-               ],
-               "labels":[{
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 ],
-               "value":""
-            },
-            {
-               "label":"f)In case of individual- The income tax returns of last three years.",
-               "name":"company",
-               "type":"radio",
-               "type1":"textarea",
-               "disabled":"true",
-               "options":[
-                  {
-                     "label":"Yes",
-                     "value":"yes"
-                  },
-                  {
-                     "label":"No",
-                     "value":"no"
-                  }
-               ],
-               "labels":[{
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 ],
-               "value":""
-            },
-           {
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-             
+            }
+            
          
-         ],
-         "value":""
+               ],
+               "value":""
+            },
+            {
+               "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+               "name":"llp",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
+               "value":""
+            },
+            {
+               "label":"c)In case of individual- The income tax returns of last three years.",
+               "name":"individual",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
+               "value":""
+            }
+           
+            
+         ]
       }
 
    ]
@@ -6036,7 +6040,7 @@
          "label":"Whether 25% of the licence fee deposited.",
          "name":"Licence fees",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6062,7 +6066,7 @@
          "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
          "name":"Fininacial Position",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6076,11 +6080,18 @@
          ],
          "value":"",
          "labels":[
+          {
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            },
             {
                "label":"a)In case of company- ",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -6093,11 +6104,18 @@
                   }
                ],
                "labels":[
+                {
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  },
                  {
                    "label":"(i) Form PAS-3.",
                    "name":"form",
                    "type":"radio",
-                   "type1":"textarea",
+                  
                    "disabled":"true",
                    "options":[
                       {
@@ -6123,7 +6141,7 @@
                  "label":"(ii) Accumulated reserves and surpluses",
                  "name":"Accumulated reserves and surpluses",
                  "type":"radio",
-                 "type1":"textarea",
+                
                  "disabled":"true",
                  "options":[
                     {
@@ -6150,7 +6168,7 @@
                 "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
                 "name":"Paid Amount",
                 "type":"radio",
-                "type1":"textarea",
+               
                 "disabled":"true",
                 "options":[
                    {
@@ -6172,15 +6190,9 @@
                   ],
                 "value":""
              
-            },
-            {
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-
+            }
+            
+         
                ],
                "value":""
             },
@@ -6188,7 +6200,7 @@
                "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
                "name":"llp",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -6214,7 +6226,7 @@
                "label":"c)In case of individual- The income tax returns of last three years.",
                "name":"individual",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -6235,14 +6247,8 @@
                }
                ],
                "value":""
-            },
-           {
-             "label":"",
-             "name":"remarks",
-             "type":"textarea",
-             "disabled":"true",
-             "placeholder":"Enter Remarks"
             }
+           
             
          ]
       },
@@ -6250,7 +6256,7 @@
          "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
          "name":"applicationundermigration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6276,7 +6282,7 @@
          "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
          "name":"applicationAtAdditionalArea",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6302,7 +6308,7 @@
          "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
          "name":"applicationAtAdditionalAreaStatusEDCSIDC",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6328,7 +6334,7 @@
          "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
          "name":"applicationUnderMigrationScruitnyFeesForRevisionLayoutplan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6354,7 +6360,7 @@
          "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
          "name":"applicationAtAdditionalAreaScruitnyFeesForRevisionLayoutplan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -6388,7 +6394,7 @@
       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6414,7 +6420,7 @@
       "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
       "name":"jamabandhi",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6441,7 +6447,7 @@
       "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
       "name":"Original mutations",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6467,7 +6473,7 @@
       "label":"Whether Sale deeds of the applied land submitted.  ",
       "name":"sale deeds",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6492,7 +6498,7 @@
    {
       "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
       "name":"shajra plan",
-      "type1":"textarea",
+     
       "type":"radio",
       "disabled":"true",
       "options":[
@@ -6518,7 +6524,7 @@
    {
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
       "name":"khasra number in collaboration agreement",
-      "type1":"textarea",
+     
       "type":"radio",
       "disabled":"true",
       "options":[
@@ -6545,7 +6551,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
       "name":"khasra number for GPA/SPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6571,7 +6577,7 @@
     "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
     "name":"application under migration",
     "type":"radio",
-    "type1":"textarea",
+   
     "disabled":"true",
     "options":[
        {
@@ -6605,7 +6611,7 @@
       "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6631,7 +6637,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6658,7 +6664,7 @@
       "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
       "name":"gpa/spa applicant submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6684,7 +6690,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6710,7 +6716,7 @@
       "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
       "name":"authorized signatory",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6736,7 +6742,7 @@
       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
       "name":"indemnity bond",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6770,7 +6776,7 @@
       "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6796,7 +6802,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6823,7 +6829,7 @@
       "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
       "name":"gpa/spa applicant submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6849,7 +6855,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6875,7 +6881,7 @@
       "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
       "name":"authorized signatory",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6901,7 +6907,7 @@
       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
       "name":"indemnity bond",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6935,7 +6941,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"guide map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6961,7 +6967,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"survey map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -6988,7 +6994,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"layout plan of colony",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7014,7 +7020,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"DGPS coordinates",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7040,7 +7046,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"NPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7066,7 +7072,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"application under part migration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7092,7 +7098,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"scruitny fee submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7118,7 +7124,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"additional area",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7144,7 +7150,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
       "name":"RERA registration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7170,7 +7176,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"revision layout plan submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7204,7 +7210,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"guide map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7230,7 +7236,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"survey map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7257,7 +7263,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"layout plan of colony",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7283,7 +7289,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"DGPS coordinates",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7309,7 +7315,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"NPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7335,7 +7341,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"application under part migration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7361,7 +7367,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"scruitny fee submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7387,7 +7393,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"additional area",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7413,7 +7419,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
       "name":"RERA registration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7439,7 +7445,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"revision layout plan submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7473,7 +7479,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"guide map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7499,7 +7505,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"survey map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7526,7 +7532,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"layout plan of colony",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7552,7 +7558,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"DGPS coordinates",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7578,7 +7584,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"NPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7604,7 +7610,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"application under part migration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7630,7 +7636,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"scruitny fee submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7656,7 +7662,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"additional area",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7682,7 +7688,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
       "name":"RERA registration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7708,7 +7714,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"revision layout plan submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7742,7 +7748,7 @@
       "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7768,7 +7774,7 @@
       "label":"Whether 25% of the licence fee deposited.",
       "name":"LicenceFees",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7794,7 +7800,7 @@
       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
       "name":"OriginalJamabandhi",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7820,7 +7826,7 @@
       "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
       "name":"OriginalMutations",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7846,7 +7852,7 @@
       "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
       "name":"SalesDeed",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7872,7 +7878,7 @@
       "label":"Whether Sale deeds of the applied land submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7898,7 +7904,7 @@
       "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7924,7 +7930,7 @@
       "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7950,7 +7956,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -7976,7 +7982,7 @@
       "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8002,7 +8008,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8028,7 +8034,7 @@
       "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8054,7 +8060,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8080,7 +8086,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8106,7 +8112,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8132,7 +8138,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8158,7 +8164,7 @@
       "label":"Whether Explanatory note submitted explaining the salient features of the proposed colony.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8184,7 +8190,7 @@
       "label":"Whether Memorandum of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8210,7 +8216,7 @@
       "label":"Whether Articles of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8236,7 +8242,7 @@
       "label":"Whether LLP agreement submitted, in case of firm",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8262,7 +8268,7 @@
       "label":"Whether self attested/ notarised degree/ certificate of membership of Architect/ Civil engineer signing the application submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8288,7 +8294,7 @@
       "label":"Whether Non encumbrance certificate of the applied land from the competent authority submitted. ",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8314,7 +8320,7 @@
       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8340,7 +8346,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within stipulated period of online window inviting applications.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8366,7 +8372,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8392,7 +8398,7 @@
       "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8418,7 +8424,7 @@
       "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8444,7 +8450,7 @@
       "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8470,7 +8476,7 @@
       "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8496,7 +8502,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8522,7 +8528,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8548,7 +8554,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8574,7 +8580,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8600,7 +8606,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8626,7 +8632,7 @@
       "label":"Whether area norms getting fulfilled as per applicable policy.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8652,7 +8658,7 @@
       "label":"Whether approach norms getting fulfilled as per applicable policy.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8678,7 +8684,7 @@
       "label":"Whether documents submitted regarding experience to develop the colony by the applicant/developer (uploaded/ auto fetched from license granted database- part of developer registration).",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8695,7 +8701,7 @@
             "label":"a)Details of LOI/ licenses already granted.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -8721,7 +8727,7 @@
             "label":"b)Details of any other project developed in Real Estate.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -8747,7 +8753,7 @@
             "label":"c)In case the applicant wish to utilize the technical capacity of any company/ firm/ LLP etc, then agreement with company and Board resolution of authorised signatory.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -8773,7 +8779,7 @@
             "label":"d)If director/partner of applicant company/ firm also director/partner in other company/ firm to whom license granted, then agreement with company/firm and Board resolution of authorised signatory.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -8808,9 +8814,9 @@
    }, 
    {
       "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
-      "name":"OrignalShajraPlan",
+      "name":"Fininacial Position",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -8822,12 +8828,20 @@
             "value":"no"
          }
       ],
+      "value":"",
       "labels":[
+       {
+          "label":"",
+          "name":"remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         },
          {
-            "label":"d)In case of company- ",
+            "label":"a)In case of company- ",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -8840,11 +8854,18 @@
                }
             ],
             "labels":[
+             {
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               },
               {
                 "label":"(i) Form PAS-3.",
                 "name":"form",
                 "type":"radio",
-                "type1":"textarea",
+               
                 "disabled":"true",
                 "options":[
                    {
@@ -8857,20 +8878,20 @@
                    }
                 ],
                 "labels":[{
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 ],
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
                 "value":""
              },
              {
               "label":"(ii) Accumulated reserves and surpluses",
               "name":"Accumulated reserves and surpluses",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -8883,13 +8904,13 @@
                  }
               ],
               "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
               "value":""
            
           },
@@ -8897,7 +8918,7 @@
              "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
              "name":"Paid Amount",
              "type":"radio",
-             "type1":"textarea",
+            
              "disabled":"true",
              "options":[
                 {
@@ -8910,91 +8931,76 @@
                 }
              ],
              "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
              "value":""
           
-         },
-        {
-            "label":"",
-            "name":"remarks",
-            "type":"textarea",
-            "disabled":"true",
-            "placeholder":"Enter Remarks"
-           }
-           
-
-            ],
-            "value":""
-         },
-         {
-            "label":"e)In case of LLP- The net worth of the LLP (not of individual person).",
-            "name":"company",
-            "type":"radio",
-            "type1":"textarea",
-            "disabled":"true",
-            "options":[
-               {
-                  "label":"Yes",
-                  "value":"yes"
-               },
-               {
-                  "label":"No",
-                  "value":"no"
-               }
-            ],
-            "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
-            "value":""
-         },
-         {
-            "label":"f)In case of individual- The income tax returns of last three years.",
-            "name":"company",
-            "type":"radio",
-            "type1":"textarea",
-            "disabled":"true",
-            "options":[
-               {
-                  "label":"Yes",
-                  "value":"yes"
-               },
-               {
-                  "label":"No",
-                  "value":"no"
-               }
-            ],
-            "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
-            "value":""
-         },
-        {
-            "label":"",
-            "name":"remarks",
-            "type":"textarea",
-            "disabled":"true",
-            "placeholder":"Enter Remarks"
-           }
-          
+         }
+         
       
-      ],
-      "value":""
+            ],
+            "value":""
+         },
+         {
+            "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+            "name":"llp",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            }
+            ],
+            "value":""
+         },
+         {
+            "label":"c)In case of individual- The income tax returns of last three years.",
+            "name":"individual",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            }
+            ],
+            "value":""
+         }
+        
+         
+      ]
    }
 
 ]
@@ -9035,7 +9041,7 @@
          "label":"Whether 25% of the licence fee deposited.",
          "name":"Licence fees",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9061,7 +9067,7 @@
          "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
          "name":"Fininacial Position",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9075,11 +9081,18 @@
          ],
          "value":"",
          "labels":[
+          {
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            },
             {
                "label":"a)In case of company- ",
                "name":"company",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -9092,11 +9105,18 @@
                   }
                ],
                "labels":[
+                {
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  },
                  {
                    "label":"(i) Form PAS-3.",
                    "name":"form",
                    "type":"radio",
-                   "type1":"textarea",
+                  
                    "disabled":"true",
                    "options":[
                       {
@@ -9122,7 +9142,7 @@
                  "label":"(ii) Accumulated reserves and surpluses",
                  "name":"Accumulated reserves and surpluses",
                  "type":"radio",
-                 "type1":"textarea",
+                
                  "disabled":"true",
                  "options":[
                     {
@@ -9149,7 +9169,7 @@
                 "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
                 "name":"Paid Amount",
                 "type":"radio",
-                "type1":"textarea",
+               
                 "disabled":"true",
                 "options":[
                    {
@@ -9171,15 +9191,9 @@
                   ],
                 "value":""
              
-            },
-            {
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-
+            }
+            
+         
                ],
                "value":""
             },
@@ -9187,7 +9201,7 @@
                "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
                "name":"llp",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -9213,7 +9227,7 @@
                "label":"c)In case of individual- The income tax returns of last three years.",
                "name":"individual",
                "type":"radio",
-               "type1":"textarea",
+              
                "disabled":"true",
                "options":[
                   {
@@ -9234,14 +9248,8 @@
                }
                ],
                "value":""
-            },
-           {
-             "label":"",
-             "name":"remarks",
-             "type":"textarea",
-             "disabled":"true",
-             "placeholder":"Enter Remarks"
             }
+           
             
          ]
       },
@@ -9249,7 +9257,7 @@
          "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
          "name":"applicationundermigration",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9275,7 +9283,7 @@
          "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
          "name":"applicationAtAdditionalArea",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9301,7 +9309,7 @@
          "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
          "name":"applicationAtAdditionalAreaStatusEDCSIDC",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9327,7 +9335,7 @@
          "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
          "name":"applicationUnderMigrationScruitnyFeesForRevisionLayoutplan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9353,7 +9361,7 @@
          "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
          "name":"applicationAtAdditionalAreaScruitnyFeesForRevisionLayoutplan",
          "type":"radio",
-         "type1":"textarea",
+        
          "disabled":"true",
          "options":[
             {
@@ -9387,7 +9395,7 @@
       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9413,7 +9421,7 @@
       "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
       "name":"jamabandhi",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9440,7 +9448,7 @@
       "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
       "name":"Original mutations",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9466,7 +9474,7 @@
       "label":"Whether Sale deeds of the applied land submitted.  ",
       "name":"sale deeds",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9491,7 +9499,7 @@
    {
       "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
       "name":"shajra plan",
-      "type1":"textarea",
+     
       "type":"radio",
       "disabled":"true",
       "options":[
@@ -9517,7 +9525,7 @@
    {
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
       "name":"khasra number in collaboration agreement",
-      "type1":"textarea",
+     
       "type":"radio",
       "disabled":"true",
       "options":[
@@ -9544,7 +9552,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
       "name":"khasra number for GPA/SPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9570,7 +9578,7 @@
     "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
     "name":"application under migration",
     "type":"radio",
-    "type1":"textarea",
+   
     "disabled":"true",
     "options":[
        {
@@ -9604,7 +9612,7 @@
       "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9630,7 +9638,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9657,7 +9665,7 @@
       "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
       "name":"gpa/spa applicant submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9683,7 +9691,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9709,7 +9717,7 @@
       "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
       "name":"authorized signatory",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9735,7 +9743,7 @@
       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
       "name":"indemnity bond",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9769,7 +9777,7 @@
       "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9795,7 +9803,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9822,7 +9830,7 @@
       "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
       "name":"gpa/spa applicant submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9848,7 +9856,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
       "name":"khasra number",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9874,7 +9882,7 @@
       "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
       "name":"authorized signatory",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9900,7 +9908,7 @@
       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
       "name":"indemnity bond",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9934,7 +9942,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"guide map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9960,7 +9968,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"survey map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -9987,7 +9995,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"layout plan of colony",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10013,7 +10021,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"DGPS coordinates",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10039,7 +10047,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"NPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10065,7 +10073,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"application under part migration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10091,7 +10099,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"scruitny fee submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10117,7 +10125,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"additional area",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10143,7 +10151,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
       "name":"RERA registration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10169,7 +10177,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"revision layout plan submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10203,7 +10211,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"guide map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10229,7 +10237,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"survey map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10256,7 +10264,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"layout plan of colony",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10282,7 +10290,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"DGPS coordinates",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10308,7 +10316,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"NPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10334,7 +10342,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"application under part migration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10360,7 +10368,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"scruitny fee submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10386,7 +10394,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"additional area",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10412,7 +10420,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
       "name":"RERA registration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10438,7 +10446,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"revision layout plan submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10472,7 +10480,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"guide map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10498,7 +10506,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"survey map",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10525,7 +10533,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"layout plan of colony",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10551,7 +10559,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"DGPS coordinates",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10577,7 +10585,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"NPA",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10603,7 +10611,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"application under part migration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10629,7 +10637,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"scruitny fee submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10655,7 +10663,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"additional area",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10681,7 +10689,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration",
       "name":"RERA registration",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10707,7 +10715,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"revision layout plan submitted",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10741,7 +10749,7 @@
       "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
       "name":"LandOwners",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10767,7 +10775,7 @@
       "label":"Whether 25% of the licence fee deposited.",
       "name":"LicenceFees",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10793,7 +10801,7 @@
       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
       "name":"OriginalJamabandhi",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10819,7 +10827,7 @@
       "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
       "name":"OriginalMutations",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10845,7 +10853,7 @@
       "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
       "name":"SalesDeed",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10871,7 +10879,7 @@
       "label":"Whether Sale deeds of the applied land submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10897,7 +10905,7 @@
       "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10923,7 +10931,7 @@
       "label":"Whether registered and irrevocable collaboration agreement by and between land owners/ land owning company and collaborator company of all the land mentioned in schedule of land submitted. ",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10949,7 +10957,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -10975,7 +10983,7 @@
       "label":"Whether GPA/SPA in favour of the developer/ applicant submitted",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11001,7 +11009,7 @@
       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11027,7 +11035,7 @@
       "label":"Whether Board resolution in favour of authorized signatory for applying for licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11053,7 +11061,7 @@
       "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11079,7 +11087,7 @@
       "label":"Whether Survey Map of the proposed colony submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11105,7 +11113,7 @@
       "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11131,7 +11139,7 @@
       "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11157,7 +11165,7 @@
       "label":"Whether Explanatory note submitted explaining the salient features of the proposed colony.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11183,7 +11191,7 @@
       "label":"Whether Memorandum of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11209,7 +11217,7 @@
       "label":"Whether Articles of Association of the developer company and land owning companies having clause regarding real estate development work submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11235,7 +11243,7 @@
       "label":"Whether LLP agreement submitted, in case of firm",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11261,7 +11269,7 @@
       "label":"Whether self attested/ notarised degree/ certificate of membership of Architect/ Civil engineer signing the application submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11287,7 +11295,7 @@
       "label":"Whether Non encumbrance certificate of the applied land from the competent authority submitted. ",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11313,7 +11321,7 @@
       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11339,7 +11347,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within stipulated period of online window inviting applications.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11365,7 +11373,7 @@
       "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11391,7 +11399,7 @@
       "label":"If license application under part migration/ migration, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11417,7 +11425,7 @@
       "label":"If license application for additional area, whether parent license renewed/requisite renewal fee + applicable interest deposited.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11443,7 +11451,7 @@
       "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11469,7 +11477,7 @@
       "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11495,7 +11503,7 @@
       "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11521,7 +11529,7 @@
       "label":"If license application under part migration, whether applicable scrutiny fee submitted for revision of layout plan of balance land of parent license.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11547,7 +11555,7 @@
       "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan submitted.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11573,7 +11581,7 @@
       "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11599,7 +11607,7 @@
       "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11625,7 +11633,7 @@
       "label":"Whether area norms getting fulfilled as per applicable policy.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11651,7 +11659,7 @@
       "label":"Whether approach norms getting fulfilled as per applicable policy.",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11677,7 +11685,7 @@
       "label":"Whether documents submitted regarding experience to develop the colony by the applicant/developer (uploaded/ auto fetched from license granted database- part of developer registration).",
       "name":"OrignalShajraPlan",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11694,7 +11702,7 @@
             "label":"a)Details of LOI/ licenses already granted.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -11720,7 +11728,7 @@
             "label":"b)Details of any other project developed in Real Estate.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -11746,7 +11754,7 @@
             "label":"c)In case the applicant wish to utilize the technical capacity of any company/ firm/ LLP etc, then agreement with company and Board resolution of authorised signatory.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -11772,7 +11780,7 @@
             "label":"d)If director/partner of applicant company/ firm also director/partner in other company/ firm to whom license granted, then agreement with company/firm and Board resolution of authorised signatory.",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -11807,9 +11815,9 @@
    }, 
    {
       "label":"Whether Documents submitted regarding Financial position of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
-      "name":"OrignalShajraPlan",
+      "name":"Fininacial Position",
       "type":"radio",
-      "type1":"textarea",
+     
       "disabled":"true",
       "options":[
          {
@@ -11821,12 +11829,20 @@
             "value":"no"
          }
       ],
+      "value":"",
       "labels":[
+       {
+          "label":"",
+          "name":"remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         },
          {
-            "label":"d)In case of company- ",
+            "label":"a)In case of company- ",
             "name":"company",
             "type":"radio",
-            "type1":"textarea",
+           
             "disabled":"true",
             "options":[
                {
@@ -11839,11 +11855,18 @@
                }
             ],
             "labels":[
+             {
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               },
               {
                 "label":"(i) Form PAS-3.",
                 "name":"form",
                 "type":"radio",
-                "type1":"textarea",
+               
                 "disabled":"true",
                 "options":[
                    {
@@ -11856,20 +11879,20 @@
                    }
                 ],
                 "labels":[{
-                  "label":"",
-                  "name":"remarks",
-                  "type":"textarea",
-                  "disabled":"true",
-                  "placeholder":"Enter Remarks"
-                 }
-                 ],
+                   "label":"",
+                   "name":"remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
                 "value":""
              },
              {
               "label":"(ii) Accumulated reserves and surpluses",
               "name":"Accumulated reserves and surpluses",
               "type":"radio",
-              "type1":"textarea",
+             
               "disabled":"true",
               "options":[
                  {
@@ -11882,13 +11905,13 @@
                  }
               ],
               "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
               "value":""
            
           },
@@ -11896,7 +11919,7 @@
              "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
              "name":"Paid Amount",
              "type":"radio",
-             "type1":"textarea",
+            
              "disabled":"true",
              "options":[
                 {
@@ -11909,91 +11932,76 @@
                 }
              ],
              "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
+                "label":"",
+                "name":"remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
              "value":""
           
-         },
-        {
-            "label":"",
-            "name":"remarks",
-            "type":"textarea",
-            "disabled":"true",
-            "placeholder":"Enter Remarks"
-           }
-           
-
-            ],
-            "value":""
-         },
-         {
-            "label":"e)In case of LLP- The net worth of the LLP (not of individual person).",
-            "name":"company",
-            "type":"radio",
-            "type1":"textarea",
-            "disabled":"true",
-            "options":[
-               {
-                  "label":"Yes",
-                  "value":"yes"
-               },
-               {
-                  "label":"No",
-                  "value":"no"
-               }
-            ],
-            "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
-            "value":""
-         },
-         {
-            "label":"f)In case of individual- The income tax returns of last three years.",
-            "name":"company",
-            "type":"radio",
-            "type1":"textarea",
-            "disabled":"true",
-            "options":[
-               {
-                  "label":"Yes",
-                  "value":"yes"
-               },
-               {
-                  "label":"No",
-                  "value":"no"
-               }
-            ],
-            "labels":[{
-               "label":"",
-               "name":"remarks",
-               "type":"textarea",
-               "disabled":"true",
-               "placeholder":"Enter Remarks"
-              }
-              ],
-            "value":""
-         },
-        {
-            "label":"",
-            "name":"remarks",
-            "type":"textarea",
-            "disabled":"true",
-            "placeholder":"Enter Remarks"
-           }
-          
+         }
+         
       
-      ],
-      "value":""
+            ],
+            "value":""
+         },
+         {
+            "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+            "name":"llp",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            }
+            ],
+            "value":""
+         },
+         {
+            "label":"c)In case of individual- The income tax returns of last three years.",
+            "name":"individual",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+             "label":"",
+             "name":"remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            }
+            ],
+            "value":""
+         }
+        
+         
+      ]
    }
 
 ]
