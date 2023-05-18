@@ -122,6 +122,8 @@ public class LicenseService {
 
 	@Value("${egov.pg-service.path}")
 	private String updatePath;
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Autowired
 	LandUtil landUtil;
 
@@ -159,7 +161,7 @@ public class LicenseService {
 	private JdbcTemplate jdbcTemplate;
 
 	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
-	 private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
+	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
@@ -290,10 +292,9 @@ public class LicenseService {
 				case "PAID": {
 					tradeLicense.setStatus("PAID");
 					// set landing point employee assignee as not visible in any inbox currently-
-					tradeLicense
-							.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(TL_NEW_LANDING_EMPLOYEE_ROLE,
-									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(), true,
-									newServiceInfo.getRequestInfo())));
+					tradeLicense.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(ctpUser,
+							newServiceInfo.getRequestInfo().getUserInfo().getTenantId(), true,
+							newServiceInfo.getRequestInfo())));
 					break;
 				}
 				}
@@ -819,10 +820,8 @@ public class LicenseService {
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
 						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-						tradeLicense
-						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(TL_NEW_LANDING_EMPLOYEE_ROLE,
-								info.getUserInfo().getTenantId(), true,
-								info)));
+						tradeLicense.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(ctpUser,
+								info.getUserInfo().getTenantId(), true, info)));
 
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 
