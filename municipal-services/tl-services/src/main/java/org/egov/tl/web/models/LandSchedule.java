@@ -183,10 +183,12 @@ public class LandSchedule {
 	private String NHSRAccess;
 	private String othersLandFall;
 	private String othersLandFallRemark;
-	private String northSurroundings;
-	private String southSurroundings;
-	private String eastSurroundings;
-	private String westSurroundings;
+//	private String northSurroundings;
+//	private String southSurroundings;
+//	private String eastSurroundings;
+//	private String westSurroundings;
+	@JsonProperty("surroundingsObj")
+	private List<SurroundingsObj> surroundingsObj;
 	private String passingOtherFeature;
 	private String detailsThereof;
 
