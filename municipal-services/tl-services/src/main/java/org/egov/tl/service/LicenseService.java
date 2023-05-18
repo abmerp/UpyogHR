@@ -715,7 +715,7 @@ public class LicenseService {
 						}
 						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallDistrictId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 								.mDMSCallDistrictCode(info, tradeLicense.getTenantId(),
-										newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
+										newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict().getValue());
 
 						Map<String, List<String>> mdmsDatadistrict;
 						mdmsDatadistrict = valid.getAttributeValues(mDMSCallDistrictId);

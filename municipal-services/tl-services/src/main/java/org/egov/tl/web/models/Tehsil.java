@@ -11,8 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class District {
+public class Tehsil {
 	private String value;
 	private String label;
-	private String distCodeTCP;
 }

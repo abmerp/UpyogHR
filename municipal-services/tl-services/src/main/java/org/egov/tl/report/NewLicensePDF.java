@@ -571,19 +571,19 @@ public class NewLicensePDF {
 
 					       
 					        table.addCell("District");
-					        table.addCell(appliedLandDetails.getDistrict());
+					        table.addCell(appliedLandDetails.getDistrict().getLabel());
 					        table.addCell("Potential");
 					        table.addCell(appliedLandDetails.getPotential());
 					        table.addCell("Zone");
 					        table.addCell(appliedLandDetails.getZone());
 					        table.addCell("Development Plan");
-					        table.addCell(appliedLandDetails.getDevelopmentPlan());
+					        table.addCell(appliedLandDetails.getDevelopmentPlan().getLabel());
 					        table.addCell("Sector");
 					        table.addCell(appliedLandDetails.getSector());
 					        table.addCell("Tehsil");
-						    table.addCell(appliedLandDetails.getTehsil());
+						    table.addCell(appliedLandDetails.getTehsil().getLabel());
 					        table.addCell("Revenue Estate");
-					        table.addCell(appliedLandDetails.getRevenueEstate());
+					        table.addCell(appliedLandDetails.getRevenueEstate().getLabel());
 					        table.addCell("Mustil");
 					        table.addCell(appliedLandDetails.getMustil());
 					        table.addCell("Consolidation Type");
@@ -633,7 +633,7 @@ public class NewLicensePDF {
 					        table.addCell("Edit Rectangle No");
 					        table.addCell(appliedLandDetails.getEditRectangleNo());
 					        table.addCell("TypeLand");
-					        table.addCell(appliedLandDetails.getTypeLand());
+					        table.addCell(appliedLandDetails.getTypeLand().getLabel());
 					        table.addCell("RectangleNo");
 					        table.addCell(appliedLandDetails.getRectangleNo());
 					        table.addCell("Non ConsolidationType");
