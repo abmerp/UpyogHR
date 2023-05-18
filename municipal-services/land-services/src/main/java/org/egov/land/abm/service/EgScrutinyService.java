@@ -211,9 +211,9 @@ public class EgScrutinyService {
 					egScrutiny.getServiceId());
 
 			if (isExist) {
-				EgScrutiny egScrutinys = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-						egScrutiny.getServiceId());
+//				EgScrutiny egScrutinys = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+//						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
+//						egScrutiny.getServiceId());
 				egScrutiny.setComment(egScrutiny.getComment());
 				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
