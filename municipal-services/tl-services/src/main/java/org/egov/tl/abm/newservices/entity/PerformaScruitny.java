@@ -15,6 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PerformaScruitny {
+	private String id;
 	private String applicationNumber;
 	private String applicationStatus;
 	private String userName;

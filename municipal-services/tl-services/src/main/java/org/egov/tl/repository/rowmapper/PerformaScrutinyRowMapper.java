@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+
 @Component
 public class PerformaScrutinyRowMapper implements ResultSetExtractor<List<PerformaScruitny>> {
 
@@ -36,15 +37,13 @@ public class PerformaScrutinyRowMapper implements ResultSetExtractor<List<Perfor
 
 			PerformaScruitny performaScruitny = new PerformaScruitny();
 			performaScruitny.setUserId(rs.getString("userid"));
-			
-	
+			performaScruitny.setId(rs.getString("id"));
 			performaScruitny.setApplicationStatus(rs.getString("applicationstatus"));
 			performaScruitny.setApplicationNumber(rs.getString("applicationnumber"));
 			performaScruitny.setDesignation(rs.getString("designation"));
 			performaScruitny.setCreatedOn(rs.getString("created_on"));
 			performaScruitny.setUserName(rs.getString("username"));
-			
-			
+
 			PGobject pgObj = (PGobject) rs.getObject("additionaldetails");
 
 			if (pgObj != null) {
@@ -60,8 +59,6 @@ public class PerformaScrutinyRowMapper implements ResultSetExtractor<List<Perfor
 				}
 				performaScruitny.setAdditionalDetails(additionalDetail);
 			}
-			
-	
 
 			performaScruitnyList.add(performaScruitny);
 
