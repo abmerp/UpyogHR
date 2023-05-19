@@ -2861,7 +2861,7 @@ public class NewLicensePDF {
 						   table.addCell(y.getPotential());
 						  
 						   table.addCell("DevelopmentPlan");
-						   table.addCell(y.getDevelopmentPlan());
+						   table.addCell(y.getDevelopmentPlan().getLabel());
 						  
 						   
 						   table.addCell("LicNumber");
