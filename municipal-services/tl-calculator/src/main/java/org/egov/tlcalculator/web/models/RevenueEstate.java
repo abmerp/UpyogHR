@@ -1,8 +1,4 @@
-package org.egov.tl.web.models;
-
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package org.egov.tlcalculator.web.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,9 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class District {
+public class RevenueEstate {
 	private String value;
 	private String label;
-	private String distCodeTCP;
-	private List<Tenant> applicationTenantId;
 }

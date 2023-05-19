@@ -14,34 +14,34 @@ import lombok.Setter;
 public class AppliedLandDetails {
 
 	@JsonProperty("district")
-	private String district;
-	
+	private District district;
+
 	@JsonProperty("potential")
 	private String potential;
-	
-	@JsonProperty("zone")	
+
+	@JsonProperty("zone")
 	private String zone;
-	
+
 	@JsonProperty("developmentPlan")
-	private String developmentPlan;
-	
-	@JsonProperty("sector")	
+	private DevelopmentPlan developmentPlan;
+
+	@JsonProperty("sector")
 	private String sector;
-	
+
 	private String isChange;
-	
+
 	@JsonProperty("rowid")
 	private String rowid;
 	@JsonProperty("tehsil")
-	private String tehsil;
+	private Tehsil tehsil;
 
 	@JsonProperty("revenueEstate")
-	private String revenueEstate;
+	private RevenueEstate revenueEstate;
 
 	@JsonProperty("mustil")
 	private String mustil;
 
-	@JsonProperty("consolidationType")	
+	@JsonProperty("consolidationType")
 	private String consolidationType;
 
 	@JsonProperty("sarsai")
@@ -55,7 +55,7 @@ public class AppliedLandDetails {
 
 	@JsonProperty("hadbastNo")
 	private String hadbastNo;
-	
+
 	@JsonProperty("bigha")
 	private String bigha;
 
@@ -67,10 +67,9 @@ public class AppliedLandDetails {
 
 	@JsonProperty("landOwner")
 	private String landOwner;
-	
+
 	@JsonProperty("landOwnerRegistry")
 	private String landOwnerRegistry;
-
 
 	@JsonProperty("collaboration")
 	private String collaboration;
@@ -98,21 +97,39 @@ public class AppliedLandDetails {
 
 	@JsonProperty("registeringAuthorityDoc")
 	private String registeringAuthorityDoc;
-	
+
 	@JsonProperty("khewats")
 	private String khewats;
-	
+
 	@JsonProperty("consolidatedTotal")
 	private String consolidatedTotal;
 
 	@JsonProperty("nonConsolidatedTotal")
 	private String nonConsolidatedTotal;
-	
+
 	@JsonProperty("editKhewats")
 	private String editKhewats;
+
 	@JsonProperty("editRectangleNo")
 	private String editRectangleNo;
-	
+
 	@JsonProperty("typeLand")
-	private String typeLand;
+	private TypeLand typeLand;
+
+	@JsonProperty("rectangleNo")
+	private String rectangleNo;
+
+	@JsonProperty("nonConsolidationType")
+	private String nonConsolidationType;
+
+	@JsonProperty("landOwnerSPAGPADoc")
+	private String landOwnerSPAGPADoc;
+
+	@JsonProperty("developerSPAGPADoc")
+	private String developerSPAGPADoc;
+
+	@JsonProperty("collaboratorAgreementDocument")
+	private String collaboratorAgreementDocument;
+	@JsonProperty("acquistionStatus")
+	private String acquistionStatus;
 }

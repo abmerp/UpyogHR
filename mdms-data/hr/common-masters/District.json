@@ -7,6 +7,7 @@
          "distCodeNIC":"0602",
          "distCodeTCP":"AA",
          "disCode":"01",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeAmbala"
@@ -24,6 +25,7 @@
          "distCodeNIC":"0613",
          "distCodeTCP":"BI",
          "disCode":"02",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeBhiwani"
@@ -41,6 +43,7 @@
          "distCodeNIC":"0624",
          "distCodeTCP":"CD",
          "disCode":"22",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeCharkhiDadri"
@@ -55,6 +58,7 @@
          "distCodeNIC":"0619",
          "distCodeTCP":"FD",
          "disCode":"03",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeFaridabad"
@@ -79,6 +83,7 @@
          "distCodeNIC":"0610",
          "distCodeTCP":"FT",
          "disCode":"04",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeFatehabad"
@@ -93,6 +98,7 @@
          "distCodeNIC":"0618",
          "distCodeTCP":"GN",
          "disCode":"05",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeGurugram"
@@ -121,6 +127,7 @@
          "disName":"Hissar",
          "distCodeNIC":"0612",
          "distCodeTCP":"HR",
+         "isActive":"true",
          "disCode":"06",
          "tenantId":[
             {
@@ -140,6 +147,7 @@
       {
          "disName":"Jhajjar",
          "distCodeNIC":"0615",
+         "isActive":"true",
          "distCodeTCP":"JR",
          "disCode":"07",
          "tenantId":[
@@ -156,6 +164,7 @@
          "distCodeNIC":"0609",
          "distCodeTCP":"JD",
          "disCode":"08",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeJind"
@@ -170,6 +179,7 @@
          "distCodeNIC":"0605",
          "distCodeTCP":"KT",
          "disCode":"09",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeKaithal"
@@ -182,6 +192,7 @@
       {
          "disName":"Karnal",
          "distCodeNIC":"0606",
+         "isActive":"true",
          "distCodeTCP":"KL",
          "disCode":"10",
          "tenantId":[
@@ -200,6 +211,7 @@
          "disName":"Kurukshetra",
          "distCodeNIC":"0604",
          "distCodeTCP":"KA",
+         "isActive":"true",
          "disCode":"11",
          "tenantId":[
             {
@@ -215,6 +227,7 @@
          "distCodeNIC":"0616",
          "distCodeTCP":"MH",
          "disCode":"12",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeMahindergarh"
@@ -228,6 +241,7 @@
          "disName":"Mewat",
          "distCodeNIC":"0620",
          "distCodeTCP":"MT",
+         "isActive":"true",
          "disCode":"20",
          "tenantId":[
             {
@@ -243,6 +257,7 @@
          "distCodeNIC":"0621",
          "distCodeTCP":"PL",
          "disCode":"21",
+         "isActive":"true",
          "tenantId":[
             "DTPOfficePalwal",
             "DCOfficePalwal"
@@ -253,6 +268,7 @@
          "distCodeNIC":"0601",
          "distCodeTCP":"PK",
          "disCode":"13",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficePanchkula"
@@ -282,6 +298,7 @@
          "distCodeNIC":"0607",
          "distCodeTCP":"PT",
          "disCode":"14",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficePanipat"
@@ -299,6 +316,7 @@
          "distCodeNIC":"0617",
          "distCodeTCP":"RI",
          "disCode":"15",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeRewari"
@@ -313,6 +331,7 @@
          "distCodeNIC":"0614",
          "distCodeTCP":"RK",
          "disCode":"16",
+         "isActive":"true",
          "tenantId":[
             {
                "tenantIds":"DTPOfficeRohtak"
@@ -329,6 +348,7 @@
          "disName":"Sirsa",
          "distCodeNIC":"0611",
          "distCodeTCP":"SA",
+         "isActive":"true",
          "disCode":"17",
          "tenantId":[
             {
@@ -343,6 +363,7 @@
          "disName":"Sonipat",
          "distCodeNIC":"0608",
          "distCodeTCP":"ST",
+         "isActive":"true",
          "disCode":"18",
          "tenantId":[
             {
@@ -357,6 +378,7 @@
          "disName":"Yamunanagar",
          "distCodeNIC":"0603",
          "distCodeTCP":"YR",
+         "isActive":"true",
          "disCode":"19",
          "tenantId":[
             {
