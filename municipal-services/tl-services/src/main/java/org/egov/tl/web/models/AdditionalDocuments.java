@@ -29,6 +29,8 @@ public class AdditionalDocuments {
 	private String developerName;
 	@JsonProperty("businessService")
 	private String businessService;
+	@JsonProperty("applicationSection")
+	private String applicationSection;
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
 	@JsonProperty("additionalDetails")

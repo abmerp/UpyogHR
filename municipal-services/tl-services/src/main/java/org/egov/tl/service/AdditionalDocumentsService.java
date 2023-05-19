@@ -97,9 +97,8 @@ public class AdditionalDocumentsService {
 		additionalDocumentsDao.setDeveloperName(allServiceFind.getDeveloperName());
 		additionalDocumentsDao.setUserName(allServiceFind.getUserName());
 		additionalDocumentsDao.setType(allServiceFind.getType());
-//			allServiceFind.setDocumentsDetails(null);
+		additionalDocumentsDao.setApplicationSection(allServiceFind.getApplicationSection());
 
-		// }
 		allServiceFindContract.setAddtionalDocuments(allServiceFind);
 
 		producer.push(topic, additionalDocumentsDao);
@@ -109,7 +108,7 @@ public class AdditionalDocumentsService {
 	}
 
 	public List<AdditionalDocuments> search(RequestInfo requestInfo, String serviceName, String type,
-			String licenceNumber) {
+			String licenceNumber,String applicationSection) {
 
 		List<Object> preparedStatement = new ArrayList<>();
 
@@ -117,7 +116,7 @@ public class AdditionalDocumentsService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type, username, developername\r\n"
+		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type, username, developername, applicationsection\r\n"
 				+ "	FROM public.eg_additional_documents " + "WHERE  ";
 
 		builder = new StringBuilder(query);
@@ -140,6 +139,13 @@ public class AdditionalDocumentsService {
 					paramMap.put("LN", licenceNumber);
 					preparedStatement.add(licenceNumber);
 					Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+				
+				if (applicationSection != null) {
+					builder.append(" AND applicationsection= :AS");
+					paramMap.put("AS", applicationSection);
+					preparedStatement.add(applicationSection);
+					Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+				}
 				}
 			}
 		}
