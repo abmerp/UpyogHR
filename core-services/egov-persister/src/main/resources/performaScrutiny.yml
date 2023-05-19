@@ -1,0 +1,29 @@
+serviceMaps:
+ serviceName: PerformaScrutiny
+ mappings:
+  - version: 1.0
+    description: create performa scrutiny 
+    fromTopic: save-performa-scrutiny
+    isTransaction: true
+    queryMaps:
+    
+       - query: INSERT INTO public.eg_performa_scruitny(applicationnumber, applicationstatus, username, userid, designation, created_on, additionaldetails) VALUES (?, ?, ?, ?, ?, ?, ?);
+         basePath: PerformaScruitny
+         jsonMaps:         
+          
+          - jsonPath: $.PerformaScruitny.applicationNumber
+          
+          - jsonPath: $.PerformaScruitny.applicationStatus
+          
+          - jsonPath: $.PerformaScruitny.userName
+          
+          - jsonPath: $.PerformaScruitny.userId
+          
+          - jsonPath: $.PerformaScruitny.designation
+          
+          - jsonPath: $.PerformaScruitny.createdOn
+          
+          - jsonPath: $.PerformaScruitny.additionalDetails
+            type: JSON
+            dbType: JSONB
+          
