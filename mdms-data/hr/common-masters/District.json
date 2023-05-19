@@ -9,10 +9,13 @@
          "disCode":"01",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerAmbala"
+               "tenantIds":"DTPOfficeAmbala"
             },
             {
                "tenantIds":"DCOfficeAmbala"
+            },
+            {
+            "tenantIds":"DTPEnforcementOfficeAmbala"
             }
          ]
       },
@@ -23,10 +26,13 @@
          "disCode":"02",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerBhiwani"
+               "tenantIds":"DTPOfficeBhiwani"
             },
             {
                "tenantIds":"DCOfficeBhiwani"
+            },
+            {
+               "tenantIds":"DTPEnforcementOfficeBhiwani"
             }
          ]
       },
@@ -40,7 +46,7 @@
                "tenantIds":"DTPOfficeCharkhiDadri"
             },
             {
-               "tenantIds":"DCOfficeCharkhi Dadri"
+               "tenantIds":"DCOfficeCharkhiDadri"
             }
          ]
       },
@@ -51,17 +57,21 @@
          "disCode":"03",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerFaridabad"
+               "tenantIds":"DTPOfficeFaridabad"
             },
             {
                "tenantIds":"DCOfficeFaridabad"
             },
             {
-               "tenantIds":"SeniorTownPlannerFaridabad"
+               "tenantIds":"STPOfficeFaridabad"
             },
             {
-               "tenantIds":"DistrictTownPlannerEnforcementFaridabad"
+               "tenantIds":"DTPEnforcementOfficeFaridabad"
+            },
+            {
+               "tenantIds":"MCFaridabad"
             }
+            
          ]
       },
       {
@@ -71,7 +81,7 @@
          "disCode":"04",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerFatehabad"
+               "tenantIds":"DTPOfficeFatehabad"
             },
             {
                "tenantIds":"DCOfficeFatehabad"
@@ -85,16 +95,25 @@
          "disCode":"05",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerGurugram"
+               "tenantIds":"DTPOfficeGurugram"
             },
             {
                "tenantIds":"DCOfficeGurugram"
             },
             {
-               "tenantIds":"SeniorTownPlannerGurugram"
+               "tenantIds":"STPOfficeGurugram"
             },
             {
-               "tenantIds":"DistrictTownPlannerEnforcementGurugram"
+               "tenantIds":"DTPEnforcementOfficeGurugram"
+            },
+            {
+               "tenantIds":"MCGurugram"
+            },
+            {
+               "tenantIds":"STPOfficeGurugram"
+            },
+            {
+               "tenantIds":"STPEnforcementOfficeGurugram"
             }
          ]
       },
@@ -105,13 +124,16 @@
          "disCode":"06",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerHisar"
+               "tenantIds":"DTPOfficeHisar"
             },
             {
                "tenantIds":"DCOfficeHisar"
             },
             {
-               "tenantIds":"SeniorTownPlannerHisar"
+               "tenantIds":"STPOfficeHisar"
+            },
+            {
+               "tenantIds":"DTPEnforcementOfficeHisar"
             }
          ]
       },
@@ -122,7 +144,7 @@
          "disCode":"07",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerJhajjar"
+               "tenantIds":"DTPOfficeJhajjar"
             },
             {
                "tenantIds":"DCOfficeJhajjar"
@@ -136,7 +158,7 @@
          "disCode":"08",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerJind"
+               "tenantIds":"DTPOfficeJind"
             },
             {
                "tenantIds":"DCOfficeJind"
@@ -150,7 +172,7 @@
          "disCode":"09",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerKaithal"
+               "tenantIds":"DTPOfficeKaithal"
             },
             {
                "tenantIds":"DCOfficeKaithal"
@@ -164,10 +186,13 @@
          "disCode":"10",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerKarnal"
+               "tenantIds":"DTPOfficeKarnal"
             },
             {
                "tenantIds":"DCOfficeKarnal"
+            },
+            {
+               "tenantIds":"DTPEnforcementOfficeKarnal"
             }
          ]
       },
@@ -178,7 +203,7 @@
          "disCode":"11",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerKuruksetra"
+               "tenantIds":"DTPOfficeKuruksetra"
             },
             {
                "tenantIds":"DCOfficeKurukshetra"
@@ -192,7 +217,7 @@
          "disCode":"12",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerMahindergarh"
+               "tenantIds":"DTPOfficeMahindergarh"
             },
             {
                "tenantIds":"DCOfficeMahendragarh"
@@ -206,7 +231,7 @@
          "disCode":"20",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerMewat"
+               "tenantIds":"DTPOfficeMewat"
             },
             {
                "tenantIds":"DCOfficeMewat"
@@ -219,7 +244,7 @@
          "distCodeTCP":"PL",
          "disCode":"21",
          "tenantId":[
-            "DistrictTownPlannerPalwal",
+            "DTPOfficePalwal",
             "DCOfficePalwal"
          ]
       },
@@ -230,13 +255,25 @@
          "disCode":"13",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerPanchkula"
+               "tenantIds":"DTPOfficePanchkula"
             },
             {
                "tenantIds":"DCOfficePanchkula"
             },
             {
-               "tenantIds":"SeniorTownPlannerPanchkula"
+               "tenantIds":"STPOfficePanchkula"
+            },
+            {
+               "tenantIds":"DUEPanchkula"
+            },
+            {
+               "tenantIds":"DULBPanchkula"
+            },
+            {
+               "tenantIds":"DTPEnforcementOfficePanchkula"
+            },
+            {
+               "tenantIds":"HSAMBPanchkula"
             }
          ]
       },
@@ -247,10 +284,13 @@
          "disCode":"14",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerPanipat"
+               "tenantIds":"DTPOfficePanipat"
             },
             {
                "tenantIds":"DCOfficePanipat"
+            },
+            {
+               "tenantIds":"DTPEnforcementOfficePanipat"
             }
          ]
       },
@@ -261,7 +301,7 @@
          "disCode":"15",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerRewari"
+               "tenantIds":"DTPOfficeRewari"
             },
             {
                "tenantIds":"DCOfficeRewari"
@@ -275,13 +315,13 @@
          "disCode":"16",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerRohtak"
+               "tenantIds":"DTPOfficeRohtak"
             },
             {
                "tenantIds":"DCOfficeRohtak"
             },
             {
-               "tenantIds":"SeniorTownPlannerRohtak"
+               "tenantIds":"STPOfficeRohtak"
             }
          ]
       },
@@ -292,7 +332,7 @@
          "disCode":"17",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerSirsa"
+               "tenantIds":"DTPOfficeSirsa"
             },
             {
                "tenantIds":"DCOfficeSirsa"
@@ -306,10 +346,10 @@
          "disCode":"18",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerSonipat"
+               "tenantIds":"DTPOfficeSonipat"
             },
             {
-               "tenantIds":"DeputyCommissionerSonipat"
+               "tenantIds":"DCOfficeSonipat"
             }
          ]
       },
@@ -320,10 +360,13 @@
          "disCode":"19",
          "tenantId":[
             {
-               "tenantIds":"DistrictTownPlannerYamunanagar"
+               "tenantIds":"DTPOfficeYamunanagar"
             },
             {
                "tenantIds":"DCOfficeYamunanagar"
+            },
+            {
+               "tenantIds":"DTPEnforcementOfficeYamunanagar"
             }
          ]
       }
