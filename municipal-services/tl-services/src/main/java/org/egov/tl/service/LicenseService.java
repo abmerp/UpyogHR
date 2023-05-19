@@ -733,7 +733,7 @@ public class LicenseService {
 						Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 						mapDNo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", userName);
 						mapDNo.put("DistrictCode", distCodeNIC);
@@ -754,7 +754,7 @@ public class LicenseService {
 						mapCNO.put("StartDate", date);
 						mapCNO.put("DistrictCode", distCodeNIC);
 						mapCNO.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 
 						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
@@ -771,7 +771,7 @@ public class LicenseService {
 						mapANo.put("DiaryDate", date);
 						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
 						mapANo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
 						mapANo.put("PurposeId", purposeId);
 						mapANo.put("NameofOwner",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
