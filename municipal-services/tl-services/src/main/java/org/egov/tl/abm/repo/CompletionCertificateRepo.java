@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -55,7 +56,7 @@ public class CompletionCertificateRepo {
 			+ " order by created_date desc limit 1";
 
 	String querybyApplicationNumber = "select * from public.eg_tl_completion_certificate where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
-			+ " order by created_date desc limit 1";
+			+ " order by created_date desc";
 
 	String queryTlApplicationNumber = "select * from public.eg_tl_tradelicense";
 	String queryCompletionApplicationNumber = "select * from public.eg_tl_completion_certificate";
@@ -166,7 +167,8 @@ public class CompletionCertificateRepo {
 	}
 
 	public List<CompletionCertificate> getBeneficialDetailsByApplicationNumberList(String applicationNumber) {
-		String query = querybyApplicationNumber.replace(":applicationNumber", "'" + applicationNumber + "'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query = querybyApplicationNumber.replace(":applicationNumber",applicationNumber);
 		return getCompletionCertificateList(query);
 	}
 

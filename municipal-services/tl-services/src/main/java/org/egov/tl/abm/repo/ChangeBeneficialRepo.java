@@ -11,6 +11,7 @@ import org.egov.common.contract.request.Role;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -69,7 +70,7 @@ public class ChangeBeneficialRepo {
 	String queryForGetChangeBeneficial = "select * from public.eg_tl_change_beneficial where license_number IN(:licenseNumber) and application_status IN(1,2,3) order by created_at desc limit 1";
 
 	String getUpdateBeneficialId = "select * from public.eg_tl_change_beneficial where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
-			+ " order by created_at desc limit 1";
+			+ " order by created_at desc";
 
 	String querybyLicenseNumber = "select * from public.eg_tl_change_beneficial where license_number IN(:licenseNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_at desc limit 1";
@@ -324,7 +325,8 @@ public class ChangeBeneficialRepo {
 //	}
 
 	public ChangeBeneficial getBeneficialDetailsByApplicationNumber(String applicationNumber) {
-		String query = getUpdateBeneficialId.replace(":applicationNumber", "'" + applicationNumber + "'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query = getUpdateBeneficialId.replace(":applicationNumber",applicationNumber);
 		return formateChangeBeneficialData(query);
 	}
 

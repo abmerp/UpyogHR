@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -49,7 +50,7 @@ public class CompositionOfUrbanRepo {
 	private JdbcTemplate jdbcTemplate;
 
 	String querybyApplicationNumber = "select * from public.eg_tl_composition_of_urban where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
-			+ " order by created_date desc limit 1";
+			+ " order by created_date desc";
 
 	public void save(CompositionOfUrbanRequest compositionOfUrbanRequest) {
 		try {
@@ -121,7 +122,8 @@ public class CompositionOfUrbanRepo {
 	}
 
 	public List<CompositionOfUrban> getCompositionOfUrbanByApplicationNumberList(String applicationNumber) {
-		String query = querybyApplicationNumber.replace(":applicationNumber", "'" + applicationNumber + "'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query = querybyApplicationNumber.replace(":applicationNumber",applicationNumber);
 		return getCompositionOfUrbanList(query);
 	}
 

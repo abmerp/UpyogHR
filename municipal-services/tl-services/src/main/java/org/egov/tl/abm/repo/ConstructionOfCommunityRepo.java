@@ -3,11 +3,13 @@ package org.egov.tl.abm.repo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringJoiner;
 
 import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -55,7 +57,7 @@ public class ConstructionOfCommunityRepo {
 			+ " order by created_date desc limit 1";
 
 	String querybyApplicationNumber="select * from public.eg_tl_construction_Of_community where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
-			+ " order by created_date desc limit 1";
+			+ " order by created_date desc";
 
 	String queryApplicationNumber="select * from public.eg_tl_construction_Of_community";
 	public void save(ConstructionOfCommunityRequest constructionOfCommunityRequest) {
@@ -151,9 +153,12 @@ public class ConstructionOfCommunityRepo {
 	}
 	
 	public List<ConstructionOfCommunity> getConstructionOfCommunityDetailsByApplicationNumberList(String applicationNumber){
-		String query=querybyApplicationNumber.replace(":applicationNumber", "'"+applicationNumber+"'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query=querybyApplicationNumber.replace(":applicationNumber", applicationNumber);
 		return getConstructionOfCommunityList(query);
 	}
+	
+	
 	
 	
 	private List<ConstructionOfCommunity> getConstructionOfCommunityList(String query){
