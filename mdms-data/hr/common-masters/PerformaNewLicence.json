@@ -104,7 +104,7 @@
                     "labels":[
                      {
                         "label":"",
-                        "name":"companyemarks",
+                        "name":"companyRemarks",
                         "type":"textarea",
                         "disabled":"true",
                         "placeholder":"Enter Remarks"
