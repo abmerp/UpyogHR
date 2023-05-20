@@ -195,4 +195,7 @@ public class LandSchedule {
 	private String separatedBy;
 	private String whetherCompactBlock;
 
+	private String shajraPlanOuterBoundary;
+	private String patwariOriginalShajraPlan;
+	private String anyOtherDoc;
 }
