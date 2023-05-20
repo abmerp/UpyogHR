@@ -48,7 +48,7 @@ public class CompositionOfUrbanRepo {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	String querybyApplicationNumber = "select * from public.eg_tl_composition_of_urban where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
+	String querybyApplicationNumber = "select * from public.eg_tl_composition_of_urban where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 
 	public void save(CompositionOfUrbanRequest compositionOfUrbanRequest) {

@@ -51,10 +51,10 @@ public class ConstructionOfCommunityRepo {
 			+ "where eg_tl_tradelicense.licensenumber=:licenseNumber";//and  eg_tl_tradelicense.status!='INITIATED'  //and eg_user.id=:userId
 	
 	
-	String querybyLicenseNumber="select * from public.eg_tl_construction_Of_community where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
+	String querybyLicenseNumber="select * from public.eg_tl_construction_Of_community where license_number IN(:licenseNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 
-	String querybyApplicationNumber="select * from public.eg_tl_construction_Of_community where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
+	String querybyApplicationNumber="select * from public.eg_tl_construction_Of_community where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 
 	String queryApplicationNumber="select * from public.eg_tl_construction_Of_community";
