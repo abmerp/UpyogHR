@@ -66,12 +66,12 @@ public class ChangeBeneficialRepo {
 //	String getQueryById = "select * from public.eg_tl_change_beneficial where id=:id";
 //																																																					// eg_user.id=:userId
 
-	String queryForGetChangeBeneficial = "select * from public.eg_tl_change_beneficial where license_number=:licenseNumber and application_status IN(1,2,3) order by created_at desc limit 1";
+	String queryForGetChangeBeneficial = "select * from public.eg_tl_change_beneficial where license_number IN(:licenseNumber) and application_status IN(1,2,3) order by created_at desc limit 1";
 
-	String getUpdateBeneficialId = "select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
+	String getUpdateBeneficialId = "select * from public.eg_tl_change_beneficial where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_at desc limit 1";
 
-	String querybyLicenseNumber = "select * from public.eg_tl_change_beneficial where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
+	String querybyLicenseNumber = "select * from public.eg_tl_change_beneficial where license_number IN(:licenseNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_at desc limit 1";
 
 //	String getDataQueryBycbApplicationNumber="select * from public.eg_tl_change_beneficial where (cb_application_number=:cbapplicationNumber or application_number=:applicationNumber) and application_status IN(1,2,3) \r\n"
