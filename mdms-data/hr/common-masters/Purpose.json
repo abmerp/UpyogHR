@@ -1869,7 +1869,7 @@
       "purposeCode": "NILP",
       "caseType_id": 1,
       "description": "New Integrated Licencing Policy (NILP) for Residential",
-      "isActive": 0,
+      "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
