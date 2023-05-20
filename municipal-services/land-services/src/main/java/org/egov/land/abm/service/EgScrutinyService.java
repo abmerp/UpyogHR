@@ -121,6 +121,7 @@ public class EgScrutinyService {
 		List<FiledDetails> approvedfiledDetails = null;
 		List<FiledDetails> disApprovedfiledDetails = null;
 		List<FiledDetails> condApprovedfiledDetails = null;
+		List<FiledDetails> performaFieldDetail = null;
 		List<EmployeeSecurtinyReport> securityReportf = new ArrayList<EmployeeSecurtinyReport>();
 
 		for (EgScrutiny egScrutiny2 : egScrutiny) {
@@ -130,6 +131,7 @@ public class EgScrutinyService {
 			approvedfiledDetails = new ArrayList<FiledDetails>();
 			disApprovedfiledDetails = new ArrayList<FiledDetails>();
 			condApprovedfiledDetails = new ArrayList<FiledDetails>();
+			performaFieldDetail = new ArrayList<FiledDetails>();
 			object.setEmployeeName(egScrutiny2.getEmployeeName());
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
@@ -153,6 +155,8 @@ public class EgScrutinyService {
 						disApprovedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
 						condApprovedfiledDetails.add(comments2);
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
+						performaFieldDetail.add(comments2);
 					// egScrutiny.remove(i);
 				}
 				i++;
@@ -173,7 +177,7 @@ public class EgScrutinyService {
 				object.setApprovedfiledDetails(approvedfiledDetails);
 				object.setDisApprovedfiledDetails(disApprovedfiledDetails);
 				object.setCondApprovedfiledDetails(condApprovedfiledDetails);
-
+				object.setPerformaFieldDetail(performaFieldDetail);
 				securityReport.add(object);
 				// securityReportf.addAll(securityReport);
 				log.info("\t" + securityReport.size() + "\t");
