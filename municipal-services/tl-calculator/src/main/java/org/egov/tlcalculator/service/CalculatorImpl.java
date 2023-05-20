@@ -211,7 +211,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_158));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 						(areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_625)
-								.multiply(RATE5)).divide(RATE7));
+								.multiply(RATE5)).divide(RATE7, 0));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -399,7 +399,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 						(areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE460)
-								.multiply(RATE5)).divide(RATE7));
+								.multiply(RATE5)).divide(RATE7, 0));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -575,7 +575,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_125));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 						(areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE460)
-								.multiply(RATE5)).divide(RATE7));
+								.multiply(RATE5)).divide(RATE7, 0));
 				break;
 			case PURPOSE_TODCOMM:
 				feesTypeCalculationDto
@@ -748,8 +748,8 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setExternalDevelopmentChargesCal(arce.multiply(RATE104).multiply(RATE06).multiply(RATE467));
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_80));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-						(areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE320)
-								.multiply(RATE5)).divide(RATE7));
+						areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE320)
+								.multiply(RATE5).divide(RATE7, 0));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -920,7 +920,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 						(areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE90)
-								.multiply(RATE5)).divide(RATE7));
+								.multiply(RATE5)).divide(RATE7, 0));
 
 				break;
 			case PURPOSE_TODCOMM:
@@ -1092,7 +1092,7 @@ public class CalculatorImpl implements Calculator {
 				feesTypeCalculationDto.setConversionChargesCal(RATE2.multiply(areaInSqmtr(arce)).multiply(RATE_20));
 				feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 						(areaInSqmtr(arce).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE90)
-								.multiply(RATE5)).divide(RATE7));
+								.multiply(RATE5)).divide(RATE7, 0));
 
 				break;
 			case PURPOSE_TODCOMM:
