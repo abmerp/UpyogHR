@@ -359,7 +359,8 @@ public class ChangeBeneficialRepo {
 	}
 
 	public List<ChangeBeneficial> getBeneficialDetailsByApplicationNumberList(String applicationNumber) {
-		String query = getUpdateBeneficialId.replace(":applicationNumber", "'" + applicationNumber + "'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query = getUpdateBeneficialId.replace(":applicationNumber",applicationNumber);
 		return getChangeBeneficialList(query);
 	}
 	
