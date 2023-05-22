@@ -203,7 +203,7 @@ public class  TradeLicense   {
         @JsonProperty("auditDetails")
         private AuditDetails auditDetails = null;
 
-        @Size(max=128)
+        @Size(max=200000)
         @SafeHtml
         private String comment;
 

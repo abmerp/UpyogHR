@@ -132,5 +132,8 @@ public class AppliedLandDetails {
 	private String collaboratorAgreementDocument;
 	@JsonProperty("acquistionStatus")
 	private String acquistionStatus;
+	
+	@JsonProperty("min")
+	private Boolean min;
 
 }
