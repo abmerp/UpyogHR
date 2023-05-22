@@ -384,9 +384,9 @@
      },
      {
       "businessService":"NewTL",
-      "role":"PATWARI",
+      "role":"Patwari",
       "active":true,
-      "applicationStatus":"PENDING_AT_PATWARI_HQ_PRELIM ",
+      "applicationStatus":"PENDING_AT_PATWARI_HQ_PRELIM",
       "templates":[
          {
             "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
@@ -1739,7 +1739,7 @@
       "businessService":"NewTL",
       "role":"JE",
       "active":true,
-      "applicationStatus":"PENDING_AT_JE_HQ_PRELIM ",
+      "applicationStatus":"PENDING_AT_JE_HQ_PRELIM",
       "templates":[
          {
             "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
@@ -3385,9 +3385,9 @@
    },
    {
     "businessService":"NewTL",
-    "role":"PATWARI",
+    "role":"Patwari",
     "active":true,
-    "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_PRELIM ",
+    "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_PRELIM",
     "templates":[
       {
          "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
@@ -4740,7 +4740,7 @@
     "businessService":"NewTL",
     "role":"JE",
     "active":true,
-    "applicationStatus":"PENDING_AT_JE_HQ_ROUND2_PRELIM ",
+    "applicationStatus":"PENDING_AT_JE_HQ_ROUND2_PRELIM",
     "templates":[
       {
          "label":"Whether Scrutiny fee @ Rs. 10 per sq.mtr of the applied land in case of plotted colony and @ Rs. 10 per sq.mtr X FAR in case of other than plotted colony deposited.",
@@ -6386,9 +6386,9 @@
 },
 {
  "businessService":"NewTL",
- "role":"PATWARI",
+ "role":"Patwari",
  "active":true,
- "applicationStatus":"PENDING_AT_PATWARI_HQ_SITEVERIF ",
+ "applicationStatus":"PENDING_AT_PATWARI_HQ_SITEVERIF",
  "templates":[
    {
       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
@@ -9387,9 +9387,9 @@
 },
 {
  "businessService":"NewTL",
- "role":"PATWARI",
+ "role":"Patwari",
  "active":true,
- "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_SITEVERIF ",
+ "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_SITEVERIF",
  "templates":[
    {
       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
