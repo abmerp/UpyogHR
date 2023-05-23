@@ -21,8 +21,9 @@ public class AdditionalDocuments {
 
 	@JsonProperty("licenceNumber")
 	private String licenceNumber;
-	@JsonProperty("type")
-	private String type;
+	
+//	@JsonProperty("type")
+//	private String type;
 	@JsonProperty("userName")
 	private String userName;
 	@JsonProperty("developerName")

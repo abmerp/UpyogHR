@@ -96,7 +96,7 @@ public class AdditionalDocumentsService {
 		additionalDocumentsDao.setLicenceNumber(allServiceFind.getLicenceNumber());
 		additionalDocumentsDao.setDeveloperName(allServiceFind.getDeveloperName());
 		additionalDocumentsDao.setUserName(allServiceFind.getUserName());
-		additionalDocumentsDao.setType(allServiceFind.getType());
+	//	additionalDocumentsDao.setType(allServiceFind.getType());
 		additionalDocumentsDao.setApplicationSection(allServiceFind.getApplicationSection());
 
 		allServiceFindContract.setAddtionalDocuments(allServiceFind);
@@ -116,7 +116,7 @@ public class AdditionalDocumentsService {
 		Map<String, List<String>> paramMapList = new HashedMap();
 		StringBuilder builder;
 
-		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, type, username, developername, applicationsection\r\n"
+		String query = "SELECT id, licence_number, additional_details, created_by, created_time, last_modify_by, last_modified_time, business_service, username, developername, applicationsection\r\n"
 				+ "	FROM public.eg_additional_documents " + "WHERE  ";
 
 		builder = new StringBuilder(query);

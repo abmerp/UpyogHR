@@ -40,7 +40,7 @@ public class AdditionalDocumentController {
 
 	@PostMapping("/_search")
 	public ResponseEntity<AdditionalDocumentResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam(required = true) String businessService, @RequestParam(required = true) String type,
+			@RequestParam(required = true) String businessService, @RequestParam(required = false) String type,
 			@RequestParam(required = true) String licenceNumber,
 			@RequestParam(required = true) String applicationSection) {
 		List<AdditionalDocuments> allServiceFindList = allServiceFindservice.search(requestInfoWrapper.getRequestInfo(),
