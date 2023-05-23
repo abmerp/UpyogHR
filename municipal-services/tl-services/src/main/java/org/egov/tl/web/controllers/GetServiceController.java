@@ -3,7 +3,10 @@ package org.egov.tl.web.controllers;
 import java.util.List;
 
 import org.egov.tl.service.GetServices;
+import org.egov.tl.util.ResponseInfoFactory;
+import org.egov.tl.web.models.GetServiceResponse;
 import org.egov.tl.web.models.RequestInfoWrapper;
+import org.egov.tl.web.models.TransferOfLicenseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +22,20 @@ public class GetServiceController {
 
 	@Autowired
 	GetServices getServices;
-
+	@Autowired
+	private ResponseInfoFactory responseInfoFactory;
 	@PostMapping("/_search")
-	public ResponseEntity<List<String>> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
+	public ResponseEntity<GetServiceResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
 			@RequestParam(required = false) String type, @RequestParam(required = false) String businessService) {
 
 		List<String> response = getServices.search(requestInfoWrapper.getRequestInfo(), type, businessService);
 
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		GetServiceResponse transferOfLicenseResponse = GetServiceResponse.builder().applicationNumbers(response)
+				.responseinfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
+				.build();
+
+		return new ResponseEntity<>(transferOfLicenseResponse, HttpStatus.OK);
 	}
 
 }
