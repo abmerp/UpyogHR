@@ -182,8 +182,11 @@ public class ChangeBeneficialService {
 	String  licenseFee = "0.0";
 	private final String JDAMR_DEVELOPER_STATUS="JDAMR";
 	
-	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
+	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest,boolean isScrutiny){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
+		if(isScrutiny) {
+			return updateWorkflow(beneficialRequest);
+		}
 		String licenseNumber=beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber();
 		
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
@@ -196,6 +199,7 @@ public class ChangeBeneficialService {
 	    }else {
 	    	ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
 	    	if(changeBeneficialCheck!=null) {
+	    		
 	    		if(changeBeneficialCheck.getApplicationStatus()==1) {
 	    			
 	    			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()

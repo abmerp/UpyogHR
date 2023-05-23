@@ -81,7 +81,7 @@ public class ConstructionOfCommunityService {
 
 	
 
-	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest){
+	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest,boolean isScunitny){
 		ConstructionOfCommunityResponse constructionOfCommunityResponse = null;
 		String licenseNumber=constructionOfCommunityRequest.getConstructionOfCommunity().get(0).getLicenseNumber();
 		
@@ -95,6 +95,9 @@ public class ConstructionOfCommunityService {
 	    }else {
 	    	ConstructionOfCommunity constructionOfCommunity=constructionOfCommunityRepo.getConstructionOfCommunityByLicenseNumber(licenseNumber);
 	    	if(constructionOfCommunity!=null) {
+	    		if(isScunitny) {
+	    			constructionOfCommunity.setApplicationStatus(1);
+				}
 	    		if(constructionOfCommunity.getApplicationStatus()==1) {
 	    			constructionOfCommunityResponse=createConstructionOfCommunity(constructionOfCommunityRequest,constructionOfCommunity,false);
 	    		}else {
@@ -139,6 +142,13 @@ public class ConstructionOfCommunityService {
 						auditDetails=constructionOfCommunity.getAuditDetails();
 						auditDetails.setLastModifiedBy(constructionOfCommunityRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);
+					
+						construction.setApplicationNumber(constructionOfCommunity.getApplicationNumber());
+						String action=construction.getAction();
+						String status=construction.getStatus();
+						construction.setAction(action!=null?action:"INITIATE");
+						construction.setStatus(status!=null?status:"INITIATE");
+						
 					}
 					construction.setAuditDetails(auditDetails);
 					
@@ -170,6 +180,12 @@ public class ConstructionOfCommunityService {
 		    constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(constructionOfCommunityList)
 					.requestInfo(constructionOfCommunityRequest.getRequestInfo()).message("Records has been inserted successfully.").status(true).build();
 		} else {
+			
+			if(constructionOfCommunityList.get(0).getApplicationNumber()!=null&&constructionOfCommunityList.get(0).getAction()==null&&constructionOfCommunityList.get(0).getStatus()==null) {
+				List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
+				TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,"INITIATE",assignee,constructionOfCommunityList.get(0).getApplicationNumber(),CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,constructionOfCommunityRequest.getRequestInfo());
+				workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+			}
 			constructionOfCommunityRepo.update(constructionOfCommunityRequest);
 			constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(constructionOfCommunityList)
 					.requestInfo(constructionOfCommunityRequest.getRequestInfo()).message("Records has been updated successfully.").status(true).build();

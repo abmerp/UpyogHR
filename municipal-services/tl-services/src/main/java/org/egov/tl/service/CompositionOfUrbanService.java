@@ -77,12 +77,15 @@ public class CompositionOfUrbanService {
 	private WorkflowIntegrator workflowIntegrator;
 	
 
-	public CompositionOfUrbanResponse saveCompositionOfUrban(CompositionOfUrbanRequest compositionOfUrbanRequest){
+	public CompositionOfUrbanResponse saveCompositionOfUrban(CompositionOfUrbanRequest compositionOfUrbanRequest,boolean isScunitny){
 		CompositionOfUrbanResponse compositionOfUrbanResponse = null;
 		String applicationNumber=compositionOfUrbanRequest.getCompositionOfUrban().get(0).getApplicationNumber();
 		
 		CompositionOfUrban compositionOfUrban=compositionOfUrbanRepo.getCompositionOfUrbanByApplicationNumber(applicationNumber!=null?applicationNumber:"0");
 	    	if(compositionOfUrban!=null) {
+	    		if(isScunitny) {
+	    			compositionOfUrban.setApplicationStatus(1);
+	    		}
 	    		if(compositionOfUrban.getApplicationStatus()==1) {
 	    			compositionOfUrbanResponse=createCompositionOfUrban(compositionOfUrbanRequest,compositionOfUrban,false);
 	    		}else {
@@ -128,6 +131,10 @@ public class CompositionOfUrbanService {
 						auditDetails.setLastModifiedBy(compositionOfUrbanRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);
 						composition.setApplicationNumber(compositionOfUrban.getApplicationNumber());
+						String action=composition.getAction();
+						String status=composition.getStatus();
+						composition.setAction(action!=null?action:"INITIATE");
+						composition.setStatus(status!=null?status:"INITIATE");
 					}
 					composition.setAuditDetails(auditDetails);
 					
