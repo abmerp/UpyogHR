@@ -163,7 +163,7 @@ serviceMaps:
    fromTopic: update-updateworkflow-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET status=?,action=?  where applicationNumber=?   
+      - query: UPDATE public.eg_tl_change_beneficial SET status=?,action=?  where application_number=?   
         basePath: changeBeneficial.*
         jsonMaps:       
          - jsonPath: changeBeneficial.*.status
