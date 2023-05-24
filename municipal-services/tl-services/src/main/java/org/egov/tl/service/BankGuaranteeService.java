@@ -113,15 +113,15 @@ public class BankGuaranteeService {
 				// default set businessservice as BG_NEW as of now-
 				newBankGuaranteeRequest.setBusinessService(BUSINESSSERVICE_BG_NEW);
 				newBankGuaranteeRequest
-						.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,
-								newBankGuaranteeRequest.getTenantId(), true,
-								newBankGuaranteeContract.getRequestInfo()));
+						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(BG_NEW_LANDING_EMPLOYEE_ROLE,
+								BUSINESSSERVICE_TENANTID, true,
+								newBankGuaranteeContract.getRequestInfo())));
 			}
 			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
 				// basic create with processinstance-
 				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
-						newBankGuaranteeRequest.getTenantId(), tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+						BUSINESSSERVICE_TENANTID, tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
 						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
 				String applicationNo = idGenIds.get(0);
 				newBankGuaranteeRequest.setApplicationNumber(applicationNo);
@@ -143,7 +143,7 @@ public class BankGuaranteeService {
 				// if this is for creation of entries in table without workflow involvement-
 				// populate applicationNumber from idgen-
 				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
-						newBankGuaranteeRequest.getTenantId(),
+						BUSINESSSERVICE_TENANTID,
 						tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
 						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
 				String applicationNo = idGenIds.get(0);
