@@ -113,7 +113,7 @@ public class BankGuaranteeService {
 				// default set businessservice as BG_NEW as of now-
 				newBankGuaranteeRequest.setBusinessService(BUSINESSSERVICE_BG_NEW);
 				newBankGuaranteeRequest
-						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(BG_NEW_LANDING_EMPLOYEE_ROLE,
+						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,
 								newBankGuaranteeRequest.getTenantId(), true,
 								newBankGuaranteeContract.getRequestInfo())));
 			}
