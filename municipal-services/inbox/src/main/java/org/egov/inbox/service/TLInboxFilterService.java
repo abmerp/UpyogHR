@@ -339,6 +339,14 @@ public class TLInboxFilterService {
 					}
 					break;
 				case BUSINESSSERVICE_BG_NEW:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+					} else {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						log.info("search for application no url" + uri);
+					}
+
 					break;
 				case BUSINESSSERVICE_BG_MORTGAGE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
@@ -531,6 +539,8 @@ public class TLInboxFilterService {
 
 					break;
 				case BUSINESSSERVICE_BG_NEW:
+					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_BG_MORTGAGE:
 
