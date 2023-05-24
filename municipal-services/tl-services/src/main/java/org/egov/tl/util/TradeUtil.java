@@ -415,7 +415,7 @@ public class TradeUtil {
 		uri.append(config.getHrmsHost());
 		uri.append(config.getHrmsContextPath());
 		uri.append("?tenantId=" + tenantID);
-		uri.append("&role=" + role);
+		uri.append("&roles=" + role);
 		uri.append("&isActive=" + b);
 		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
 		EmployeeResponse employeeResponse = null;

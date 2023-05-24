@@ -298,14 +298,14 @@ public class BankGuaranteeService {
 			}
 			if(BG_NEW_ACTION_RELEASE.equals(newBankGuaranteeRequest.getUpdateType())) {
 				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
-				setReleaseRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest);
+				setReleaseRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest,newBankGuaranteeContract.getRequestInfo());
 				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
 				newBankGuaranteeRepo.updateRelease(newBankGuaranteeContract);
 				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
 				updatedData.add(newBankGuarantee);
 			}else if(BG_NEW_ACTION_EXTEND.equals(newBankGuaranteeRequest.getUpdateType())) {
 				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
-				setExtendRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest);
+				setExtendRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest,newBankGuaranteeContract.getRequestInfo());
 				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
 				newBankGuaranteeRepo.updateExtend(newBankGuaranteeContract);
 				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
@@ -321,7 +321,7 @@ public class BankGuaranteeService {
 		
 	}
 	
-	private void setReleaseRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest) {
+	private void setReleaseRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest,RequestInfo requestInfo) {
 		newBankGuaranteeRespondData.setRelease(newBankGuaranteeRequest.getRelease());
 		newBankGuaranteeRespondData.setBankGuaranteeReplacedWith(newBankGuaranteeRequest.getBankGuaranteeReplacedWith());
 		newBankGuaranteeRespondData.setReasonForReplacement(newBankGuaranteeRequest.getReasonForReplacement());
@@ -331,10 +331,21 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setCompletionCertificateDescription(newBankGuaranteeRequest.getCompletionCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
+		
+		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
+		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
+		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
+		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
+		workflowIntegrator.callWorkFlow(processInstanceRequest);
+
 
 	}
 	
-	private void setExtendRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest) {
+	private void setExtendRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest,RequestInfo requestInfo) {
 			
 		newBankGuaranteeRespondData.setDateOfAmendment(newBankGuaranteeRequest.getDateOfAmendment());
 		newBankGuaranteeRespondData.setAmendmentExpiryDate(newBankGuaranteeRequest.getAmendmentExpiryDate());
@@ -344,7 +355,16 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setBankGurenteeCertificateDescription(newBankGuaranteeRequest.getBankGurenteeCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
-
+		
+		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
+		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
+		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
+		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
+		workflowIntegrator.callWorkFlow(processInstanceRequest);
 	}
 	
 	public void getKhasraDetails(String loiNumber) {
