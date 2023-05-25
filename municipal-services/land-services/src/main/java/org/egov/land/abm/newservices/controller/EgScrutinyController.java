@@ -173,6 +173,19 @@ public class EgScrutinyController {
 
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
 	}
+	@PostMapping("/_performa/_update")
+	public ResponseEntity<EgScrutinyInfoResponse> updatePerforma(
+			@RequestBody PerformaContract performaContract) {
+	
+		List<EgScrutiny> egScrutinyList = egScrutinyService.createAndUpdatePerforma(performaContract);
+
+		EgScrutinyInfoResponse egScrutinyInfoResponse = EgScrutinyInfoResponse.builder().egScrutiny(egScrutinyList)
+				.responseInfo(responseInfoFactory
+						.createResponseInfoFromRequestInfo(performaContract.getRequestInfo(), true))
+				.build();
+
+		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
+	}
 
 	
 }
