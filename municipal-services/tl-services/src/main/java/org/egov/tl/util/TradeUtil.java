@@ -436,10 +436,10 @@ public class TradeUtil {
 		} catch (JsonProcessingException ep) {
 			log.error("exception inside method getFirstAssigneeByRole", ep);
 		}
-		
-		List<String> list=employeeResponse.getEmployees().stream().filter(id->id.getId().equals("2965")).map(uuid->uuid.getUuid()).collect(Collectors.toList());
-		String uuid = employeeResponse.getEmployees().get(0).getUuid();
-		return list.isEmpty()?Arrays.asList(uuid):list;
+//		.filter(id->id.getId().equals("2965"))
+		List<String> list=employeeResponse.getEmployees().stream().map(uuid->uuid.getUuid()).collect(Collectors.toList());
+//		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+		return list;//.isEmpty()?Arrays.asList(uuid):list;
 	}
 	
 
