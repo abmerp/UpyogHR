@@ -1,8 +1,7 @@
 package org.egov.tl.web.models;
 
+import java.sql.Time;
 import java.util.List;
-
-import org.egov.tl.web.models.AuditDetails;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,31 +10,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
-public class AdditionalDocuments {
+@NoArgsConstructor
+public class AdditionalDocumentReport {
 	@JsonProperty("id")
 	private String id;
 
 	@JsonProperty("licenceNumber")
 	private String licenceNumber;
-	
-//	@JsonProperty("type")
-//	private String type;
 	@JsonProperty("userName")
 	private String userName;
 	@JsonProperty("developerName")
 	private String developerName;
 	@JsonProperty("businessService")
 	private String businessService;
-
-	@JsonProperty("auditDetails")
-	private AuditDetails auditDetails = null;
-	@JsonProperty("additionalDetails")
-	private Object additionalDetails = null;
-	@JsonProperty("DocumentsDetails")
-	private List<DocumentsDetails> documentsDetails;
-
+	@JsonProperty("applicationSection")
+	private String applicationSection;
+	List<Fileddetail> applicantInfo = null;
+	List<Fileddetail> applicantPurpose = null;
+	List<Fileddetail> landSchedule = null;
+	List<Fileddetail> detailsOfAppliedland = null;
+	List<Fileddetail> feesANdCharges = null;
 }

@@ -13,15 +13,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DocumentsDetails {
-	@JsonProperty("documentName")
+public class Fileddetail {
 	private String documentName;
-	@JsonProperty("Date")
-	private String Date;
-
-	@JsonProperty("document")
 	private String document;
-	@JsonProperty("applicationSection")
+	private String date;
 	private String applicationSection;
-
 }
