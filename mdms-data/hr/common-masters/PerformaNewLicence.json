@@ -7029,7 +7029,85 @@
      }
      ],
     "value":""
- }
+ },
+ {
+   "label":"Whether land is encumbrance free",
+   "name":"encumbranceFree",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"encumbranceFreeRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+},
+{
+   "label":"Whether ownership is in the name of applicant",
+   "name":"ownershipNameOfApplicant",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"ownershipNameOfApplicantRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+},
+{
+   "label":"Whether approach norms fulfill",
+   "name":"approachNormsFulfill",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"approachNormsFulfillRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+}
 ]
 },
 {
@@ -7245,7 +7323,85 @@
         }
         ],
        "value":""
-    }
+    },
+    {
+      "label":"Whether land is encumbrance free",
+      "name":"encumbranceFree",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"encumbranceFreeRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether ownership is in the name of applicant",
+      "name":"ownershipNameOfApplicant",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"ownershipNameOfApplicantRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether approach norms fulfill",
+      "name":"approachNormsFulfill",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"approachNormsFulfillRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   }
    ]
 },
 {
@@ -10246,7 +10402,85 @@
      }
      ],
     "value":""
- }
+ },
+ {
+   "label":"Whether land is encumbrance free",
+   "name":"encumbranceFree",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"encumbranceFreeRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+},
+{
+   "label":"Whether ownership is in the name of applicant",
+   "name":"ownershipNameOfApplicant",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"ownershipNameOfApplicantRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+},
+{
+   "label":"Whether approach norms fulfill",
+   "name":"approachNormsFulfill",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"approachNormsFulfillRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+}
 ]
 },
 {
@@ -10462,7 +10696,85 @@
         }
         ],
        "value":""
-    }
+    },
+    {
+      "label":"Whether land is encumbrance free",
+      "name":"encumbranceFree",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"encumbranceFreeRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether ownership is in the name of applicant",
+      "name":"ownershipNameOfApplicant",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"ownershipNameOfApplicantRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether approach norms fulfill",
+      "name":"approachNormsFulfill",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"approachNormsFulfillRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   }
    ]
 },
 {
