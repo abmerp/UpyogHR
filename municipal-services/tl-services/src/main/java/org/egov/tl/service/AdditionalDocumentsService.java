@@ -122,14 +122,14 @@ public class AdditionalDocumentsService {
 		builder = new StringBuilder(query);
 
 		List<AdditionalDocuments> Result = null;
-		if (type != null) {
-			builder.append(" type= :TY");
-			paramMap.put("TY", type);
-			preparedStatement.add(type);
-			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
+//		if (type != null) {
+//			builder.append(" type= :TY");
+//			paramMap.put("TY", type);
+//			preparedStatement.add(type);
+//			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
 
 			if (serviceName != null) {
-				builder.append(" AND business_service= :BS");
+				builder.append(" business_service= :BS");
 				paramMap.put("BS", serviceName);
 				preparedStatement.add(serviceName);
 				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
@@ -147,7 +147,7 @@ public class AdditionalDocumentsService {
 					Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, allServiceRowMapper);
 				}
 				}
-			}
+			//}
 		}
 //		} else if (applicationNumber != null) {
 //			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
