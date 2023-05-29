@@ -72,27 +72,8 @@ public class CompositionOfUrbanRepo {
 
 		CompositionOfUrban compositionOfUrban = null;
 		try {
-			List<Object> preparedStmtList = new ArrayList<>();
-			List<CompositionOfUrban> compositionOfUrbanList = jdbcTemplate.query(
-					querybyApplicationNumber.replaceAll(":applicationNumber", "'" + applicationNumber + "'"),
-					preparedStmtList.toArray(), (rs, rowNum) -> {
-
-						AuditDetails auditDetails = null;
-						try {
-							AuditDetails audit_details = new Gson().fromJson(rs.getString("audit_details").equals("{}")
-									|| rs.getString("audit_details").equals("null") ? null
-											: rs.getString("audit_details"),
-									AuditDetails.class);
-							System.out.println(audit_details);
-							auditDetails = audit_details;
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-						return CompositionOfUrban.builder().id(rs.getString("id"))
-								.applicationNumber(rs.getString("application_number"))
-								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
-					});
+			String query=querybyApplicationNumber.replaceAll(":applicationNumber", "'" + applicationNumber + "'");
+			List<CompositionOfUrban> compositionOfUrbanList =getCompositionOfUrbanList(query);
 			if (compositionOfUrbanList != null && !compositionOfUrbanList.isEmpty()) {
 				compositionOfUrban = compositionOfUrbanList.get(0);
 			}
