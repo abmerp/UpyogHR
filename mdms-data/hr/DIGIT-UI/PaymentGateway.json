@@ -3,7 +3,7 @@
     "moduleName": "DIGIT-UI",
   "PaymentGateway": [
     {
-      "gateway": "eGRASS",
+      "gateway": "EGRASS",
       "active": true
     },
     {
