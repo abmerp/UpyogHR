@@ -126,6 +126,20 @@ public class ChangeBeneficialRepo {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<String> getApplicationNumber(String tableName,String createdByUUid) {
+		List<String> licenses = null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			String query="select * from "+tableName+" where audit_details ->> 'createdBy'='"+createdByUUid+"'";
+		    System.out.println(query);
+			licenses = jdbcTemplate.query(query, preparedStmtList.toArray(),
+					(rs, rowNum) -> rs.getString("application_number"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return licenses;
+	}
 
 	public List<TradeLicense> getLicenseByLicenseNumber(String applicationNumber, long userId) {
 		List<TradeLicense> licenses = null;
