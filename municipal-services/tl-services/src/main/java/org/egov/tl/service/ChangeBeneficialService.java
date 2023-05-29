@@ -213,6 +213,13 @@ public class ChangeBeneficialService {
 								auditDetails.setLastModifiedTime(time);
 								changebeneficial.setId(changeBeneficialCheck.getId());
 								changebeneficial.setAuditDetails(auditDetails);
+								
+								changebeneficial.setApplicationNumber(changeBeneficialCheck.getApplicationNumber());
+								changebeneficial.setTcpApplicationNumber(changeBeneficialCheck.getTcpApplicationNumber());
+								changebeneficial.setTcpCaseNumber(changeBeneficialCheck.getTcpCaseNumber());
+								changebeneficial.setTcpDairyNumber(changeBeneficialCheck.getTcpDairyNumber());
+								
+								
 								if(changebeneficial.getIsDraft()==null) {
 									changebeneficial.setIsDraft("0");	
 								}else {

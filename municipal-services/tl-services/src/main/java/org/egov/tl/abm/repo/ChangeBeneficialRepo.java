@@ -448,6 +448,11 @@ public class ChangeBeneficialRepo {
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
+								
+								.tcpApplicationNumber(rs.getString("tcp_application_number"))
+								.tcpCaseNumber(rs.getString("tcp_case_number"))
+								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
+								
 								.newAdditionalDetails(additionalDetails).build();
 
 					});

@@ -170,6 +170,11 @@ public class ConstructionOfCommunityService {
 						construction.setAction(action!=null?action:"INITIATE");
 						construction.setStatus(status!=null?status:"INITIATE");
 						
+						construction.setTcpApplicationNumber(constructionOfCommunity.getTcpApplicationNumber());
+						construction.setTcpCaseNumber(constructionOfCommunity.getTcpCaseNumber());
+						construction.setTcpDairyNumber(constructionOfCommunity.getTcpDairyNumber());
+				
+						
 					}
 					construction.setAuditDetails(auditDetails);
 					

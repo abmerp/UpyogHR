@@ -158,6 +158,11 @@ public class CompositionOfUrbanService {
 						String status=composition.getStatus();
 						composition.setAction(action!=null?action:"INITIATE");
 						composition.setStatus(status!=null?status:"INITIATE");
+						
+						composition.setTcpApplicationNumber(compositionOfUrban.getTcpApplicationNumber());
+						composition.setTcpCaseNumber(compositionOfUrban.getTcpCaseNumber());
+						composition.setTcpDairyNumber(compositionOfUrban.getTcpDairyNumber());
+					
 					}
 					composition.setAuditDetails(auditDetails);
 					

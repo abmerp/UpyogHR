@@ -255,13 +255,16 @@ public class CompletionCertificateRepo {
 								.accessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
 								.tranactionId(rs.getString("transaction_id"))
 								.newAdditionalDetails(additionalDetails)
-								.tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
-								.tcpCaseNumber(rs.getString("tcpcasenumber"))
-								.tcpDairyNumber(rs.getString("tcpdairyNumber"))
 								.action(rs.getString("action"))
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
+								
+								.tcpApplicationNumber(rs.getString("tcp_application_number"))
+								.tcpCaseNumber(rs.getString("tcp_case_number"))
+								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
+								
+								
 								.build();
 					});
 			if (completionCertificate != null && !completionCertificate.isEmpty()) {
