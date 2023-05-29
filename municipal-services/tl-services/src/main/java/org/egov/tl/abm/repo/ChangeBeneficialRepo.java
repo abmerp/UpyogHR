@@ -127,7 +127,7 @@ public class ChangeBeneficialRepo {
 		}
 	}
 	
-	public List<String> getApplicationNumber(String tableName,String createdByUUid) {
+	public List<String> getTcpApplicationNumberListByUserUUID(String tableName,String createdByUUid) {
 		List<String> licenses = null;
 		try {
 			List<Object> preparedStmtList = new ArrayList<>();
