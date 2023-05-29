@@ -177,6 +177,9 @@ public class ChangeBeneficialService {
 	
 	@Autowired
 	private TradeUtil tradeUtil;
+	
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 	   
 		
 	String  licenseFee = "0.0";
@@ -274,6 +277,21 @@ public class ChangeBeneficialService {
 						changebeneficial.setAuditDetails(auditDetails);
 						changebeneficial.setCreatedTime(time);
 						changebeneficial.setApplicationNumber(applicationNumberCb);
+						
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, beneficialRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							changebeneficial.setTcpApplicationNumber(tcpApplicationNumber);
+							changebeneficial.setTcpDairyNumber(tcpDairyNumber);
+							changebeneficial.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
+						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -405,7 +423,6 @@ public class ChangeBeneficialService {
 //	}
 	
 	
-	
 	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber,String licenseNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		List<ChangeBeneficial> changeBeneficiaDetails = null;
@@ -418,7 +435,7 @@ public class ChangeBeneficialService {
 			try {
 				if(applicationNumber==null) {
 					changeBeneficiaDetails=changeBeneficialRepo.searcherBeneficialDetailsByLicenceNumberList(licenseNumber);
-				}else {
+				} else {
 					changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumberList(applicationNumber);
 				}
 				
@@ -986,7 +1003,7 @@ public class ChangeBeneficialService {
 										.isFullPaymentDone(false)
 										.tranactionId(tranxId)
 //										.applicationNumber(tcpApplicationNumber)
-										.diaryNumber(dairyNumber)
+										.tcpDairyNumber(dairyNumber)
 										.build();
 							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
 								changeBeneficialPayment=ChangeBeneficial.builder()
