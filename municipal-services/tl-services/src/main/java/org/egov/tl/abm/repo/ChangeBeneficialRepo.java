@@ -236,7 +236,10 @@ public class ChangeBeneficialRepo {
 						return ChangeBeneficial.builder().id(rs.getString("id").toString())
 								.developerServiceCode(rs.getString("developerServiceCode").toString())
 								.applicationNumber(rs.getString("application_number"))
-								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
+								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails)
+								.tcpApplicationNumber(rs.getString("tcp_application_number"))
+								.tcpCaseNumber(rs.getString("tcp_case_number"))
+								.tcpDairyNumber(rs.getString("tcp_dairy_number")).build();
 					});
 			if (changeBeneficial != null && !changeBeneficial.isEmpty()) {
 				cahngeBeneficial = changeBeneficial.get(0);
