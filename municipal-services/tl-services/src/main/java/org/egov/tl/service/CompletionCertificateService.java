@@ -157,6 +157,19 @@ public class CompletionCertificateService {
 						certificate.setAction("INITIATE");
 						certificate.setStatus("INITIATE");
 					
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(certificate.getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, completionCertificateRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							certificate.setTcpApplicationNumber(tcpApplicationNumber);
+							certificate.setTcpDairyNumber(tcpDairyNumber);
+							certificate.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
 						
 						certificate.setApplicationStatus(1);
 						certificate.setCreatedDate(new Timestamp(time));

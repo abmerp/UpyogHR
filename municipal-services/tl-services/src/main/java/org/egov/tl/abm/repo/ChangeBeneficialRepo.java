@@ -134,7 +134,7 @@ public class ChangeBeneficialRepo {
 			String query="select * from "+tableName+" where audit_details ->> 'createdBy'='"+createdByUUid+"'";
 		    System.out.println(query);
 			licenses = jdbcTemplate.query(query, preparedStmtList.toArray(),
-					(rs, rowNum) -> rs.getString("application_number"));
+					(rs, rowNum) -> rs.getString("tcp_application_number"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -438,7 +438,7 @@ public class ChangeBeneficialRepo {
 								.applicationStatus(rs.getInt("application_status"))
 								.applicationNumber(rs.getString("application_number"))
 								.workFlowCode(rs.getString("workflowcode"))
-								.diaryNumber(rs.getString("diary_number"))
+//								.diaryNumber(rs.getString("diary_number"))
 								.auditDetails(auditDetails)
 								.isDraft(rs.getString("is_draft"))
 								.tranactionId(rs.getString("transaction_id"))

@@ -3,6 +3,7 @@ package org.egov.tl.service;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ import org.egov.tl.web.models.ConstructionOfCommunityRequest;
 import org.egov.tl.web.models.ConstructionOfCommunityResponse;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +78,8 @@ public class CompositionOfUrbanService {
 	@Autowired
 	private WorkflowIntegrator workflowIntegrator;
 	
+	@Autowired
+	private GenerateTcpNumbers generateTcpNumbers;
 
 	public CompositionOfUrbanResponse saveCompositionOfUrban(CompositionOfUrbanRequest compositionOfUrbanRequest,boolean isScunitny){
 		CompositionOfUrbanResponse compositionOfUrbanResponse = null;
@@ -111,7 +115,8 @@ public class CompositionOfUrbanService {
 					Long time = System.currentTimeMillis();
 					AuditDetails auditDetails = null;
 					if(isCreate) {
-						auditDetails=AuditDetails.builder().createdBy(compositionOfUrbanRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
+						String userUuid=compositionOfUrbanRequest.getRequestInfo().getUserInfo().getUuid();
+						auditDetails=AuditDetails.builder().createdBy(userUuid).createdTime(time).build();
 						composition.setId(UUID.randomUUID().toString());
 						composition.setWorkFlowCode(COMPOSITION_OF_URBAN_WORKFLOWCODE);
 						
@@ -119,12 +124,30 @@ public class CompositionOfUrbanService {
 						composition.setTenantId("hr");
 						composition.setAction("INITIATE");
 						composition.setStatus("INITIATE");
-						
+					
+						composition.setUserUUID(userUuid);
 						composition.setApplicationStatus(1);
 						composition.setCreatedDate(new Timestamp(time));
 						composition.setFullPaymentDone(false);
 						composition.setApplicationNumber(applicationNumberCC);
 						composition.setCreatedTime(time);
+						
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setApplicationNumber(composition.getApplicationNumber());
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, compositionOfUrbanRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							composition.setTcpApplicationNumber(tcpApplicationNumber);
+							composition.setTcpDairyNumber(tcpDairyNumber);
+							composition.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							e.printStackTrace();
+							// TODO: handle exception
+						}
+						
+						
 					}else {
 						composition.setId(compositionOfUrban.getId());
 						auditDetails=compositionOfUrban.getAuditDetails();

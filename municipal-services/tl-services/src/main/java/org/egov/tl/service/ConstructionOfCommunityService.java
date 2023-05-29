@@ -3,6 +3,7 @@ package org.egov.tl.service;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ import org.egov.tl.web.models.ConstructionOfCommunityRequest;
 import org.egov.tl.web.models.ConstructionOfCommunityResponse;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,6 +80,9 @@ public class ConstructionOfCommunityService {
 	
 	@Autowired
 	ObjectMapper mapper;
+	
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 
 	
 
@@ -131,6 +136,22 @@ public class ConstructionOfCommunityService {
 						construction.setTenantId("hr");
 						construction.setAction("INITIATE");
 						construction.setStatus("INITIATE");
+						
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(construction.getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, constructionOfCommunityRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							construction.setTcpApplicationNumber(tcpApplicationNumber);
+							construction.setTcpDairyNumber(tcpDairyNumber);
+							construction.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							e.printStackTrace();
+							// TODO: handle exception
+						}
+
 					
 						construction.setApplicationStatus(1);
 						construction.setCreatedDate(new Timestamp(time));
