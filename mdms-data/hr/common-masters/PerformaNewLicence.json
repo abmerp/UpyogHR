@@ -7031,8 +7031,8 @@
     "value":""
  },
  {
-   "label":"Whether land is encumbrance free",
-   "name":"encumbranceFree",
+   "label":"Whether LAO report received",
+   "name":"LAOReportReceived",
    "type":"radio",
   
    "disabled":"true",
@@ -7048,7 +7048,7 @@
    ],
    "labels":[{
      "label":"",
-     "name":"encumbranceFreeRemarks",
+     "name":"LAOReportReceivedRemarks",
      "type":"textarea",
      "disabled":"true",
      "placeholder":"Enter Remarks"
@@ -7057,8 +7057,8 @@
    "value":""
 },
 {
-   "label":"Whether ownership is in the name of applicant",
-   "name":"ownershipNameOfApplicant",
+   "label":"Whether DC report received",
+   "name":"DCReportReceivedRemarks",
    "type":"radio",
   
    "disabled":"true",
@@ -7074,7 +7074,7 @@
    ],
    "labels":[{
      "label":"",
-     "name":"ownershipNameOfApplicantRemarks",
+     "name":"DCReportReceivedRemarks",
      "type":"textarea",
      "disabled":"true",
      "placeholder":"Enter Remarks"
@@ -7083,8 +7083,8 @@
    "value":""
 },
 {
-   "label":"Whether approach norms fulfill",
-   "name":"approachNormsFulfill",
+   "label":"Whether DTP report received",
+   "name":"DTPReportReceived",
    "type":"radio",
   
    "disabled":"true",
@@ -7100,7 +7100,33 @@
    ],
    "labels":[{
      "label":"",
-     "name":"approachNormsFulfillRemarks",
+     "name":"DTPReportReceivedRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+},
+{
+   "label":"Whether STP report received",
+   "name":"STPReportReceived",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"STPReportReceivedRemarks",
      "type":"textarea",
      "disabled":"true",
      "placeholder":"Enter Remarks"
@@ -7167,7 +7193,7 @@
            ],
          "value":""
       },
-  
+   
       {
          "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
          "name":"originalMutations",
@@ -7325,8 +7351,8 @@
        "value":""
     },
     {
-      "label":"Whether land is encumbrance free",
-      "name":"encumbranceFree",
+      "label":"Whether LAO report received",
+      "name":"LAOReportReceived",
       "type":"radio",
      
       "disabled":"true",
@@ -7342,7 +7368,7 @@
       ],
       "labels":[{
         "label":"",
-        "name":"encumbranceFreeRemarks",
+        "name":"LAOReportReceivedRemarks",
         "type":"textarea",
         "disabled":"true",
         "placeholder":"Enter Remarks"
@@ -7351,8 +7377,8 @@
       "value":""
    },
    {
-      "label":"Whether ownership is in the name of applicant",
-      "name":"ownershipNameOfApplicant",
+      "label":"Whether DC report received",
+      "name":"DCReportReceivedRemarks",
       "type":"radio",
      
       "disabled":"true",
@@ -7368,7 +7394,7 @@
       ],
       "labels":[{
         "label":"",
-        "name":"ownershipNameOfApplicantRemarks",
+        "name":"DCReportReceivedRemarks",
         "type":"textarea",
         "disabled":"true",
         "placeholder":"Enter Remarks"
@@ -7377,8 +7403,8 @@
       "value":""
    },
    {
-      "label":"Whether approach norms fulfill",
-      "name":"approachNormsFulfill",
+      "label":"Whether DTP report received",
+      "name":"DTPReportReceived",
       "type":"radio",
      
       "disabled":"true",
@@ -7394,7 +7420,33 @@
       ],
       "labels":[{
         "label":"",
-        "name":"approachNormsFulfillRemarks",
+        "name":"DTPReportReceivedRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether STP report received",
+      "name":"STPReportReceived",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"STPReportReceivedRemarks",
         "type":"textarea",
         "disabled":"true",
         "placeholder":"Enter Remarks"
@@ -10404,8 +10456,8 @@
     "value":""
  },
  {
-   "label":"Whether land is encumbrance free",
-   "name":"encumbranceFree",
+   "label":"Whether LAO report received",
+   "name":"LAOReportReceived",
    "type":"radio",
   
    "disabled":"true",
@@ -10421,7 +10473,7 @@
    ],
    "labels":[{
      "label":"",
-     "name":"encumbranceFreeRemarks",
+     "name":"LAOReportReceivedRemarks",
      "type":"textarea",
      "disabled":"true",
      "placeholder":"Enter Remarks"
@@ -10430,8 +10482,8 @@
    "value":""
 },
 {
-   "label":"Whether ownership is in the name of applicant",
-   "name":"ownershipNameOfApplicant",
+   "label":"Whether DC report received",
+   "name":"DCReportReceivedRemarks",
    "type":"radio",
   
    "disabled":"true",
@@ -10447,7 +10499,7 @@
    ],
    "labels":[{
      "label":"",
-     "name":"ownershipNameOfApplicantRemarks",
+     "name":"DCReportReceivedRemarks",
      "type":"textarea",
      "disabled":"true",
      "placeholder":"Enter Remarks"
@@ -10456,8 +10508,8 @@
    "value":""
 },
 {
-   "label":"Whether approach norms fulfill",
-   "name":"approachNormsFulfill",
+   "label":"Whether DTP report received",
+   "name":"DTPReportReceived",
    "type":"radio",
   
    "disabled":"true",
@@ -10473,7 +10525,33 @@
    ],
    "labels":[{
      "label":"",
-     "name":"approachNormsFulfillRemarks",
+     "name":"DTPReportReceivedRemarks",
+     "type":"textarea",
+     "disabled":"true",
+     "placeholder":"Enter Remarks"
+    }
+    ],
+   "value":""
+},
+{
+   "label":"Whether STP report received",
+   "name":"STPReportReceived",
+   "type":"radio",
+  
+   "disabled":"true",
+   "options":[
+      {
+         "label":"Yes",
+         "value":"yes"
+      },
+      {
+         "label":"No",
+         "value":"no"
+      }
+   ],
+   "labels":[{
+     "label":"",
+     "name":"STPReportReceivedRemarks",
      "type":"textarea",
      "disabled":"true",
      "placeholder":"Enter Remarks"
@@ -10540,7 +10618,7 @@
            ],
          "value":""
       },
-  
+   
       {
          "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
          "name":"originalMutations",
@@ -10698,8 +10776,8 @@
        "value":""
     },
     {
-      "label":"Whether land is encumbrance free",
-      "name":"encumbranceFree",
+      "label":"Whether LAO report received",
+      "name":"LAOReportReceived",
       "type":"radio",
      
       "disabled":"true",
@@ -10715,7 +10793,7 @@
       ],
       "labels":[{
         "label":"",
-        "name":"encumbranceFreeRemarks",
+        "name":"LAOReportReceivedRemarks",
         "type":"textarea",
         "disabled":"true",
         "placeholder":"Enter Remarks"
@@ -10724,8 +10802,8 @@
       "value":""
    },
    {
-      "label":"Whether ownership is in the name of applicant",
-      "name":"ownershipNameOfApplicant",
+      "label":"Whether DC report received",
+      "name":"DCReportReceivedRemarks",
       "type":"radio",
      
       "disabled":"true",
@@ -10741,7 +10819,7 @@
       ],
       "labels":[{
         "label":"",
-        "name":"ownershipNameOfApplicantRemarks",
+        "name":"DCReportReceivedRemarks",
         "type":"textarea",
         "disabled":"true",
         "placeholder":"Enter Remarks"
@@ -10750,8 +10828,8 @@
       "value":""
    },
    {
-      "label":"Whether approach norms fulfill",
-      "name":"approachNormsFulfill",
+      "label":"Whether DTP report received",
+      "name":"DTPReportReceived",
       "type":"radio",
      
       "disabled":"true",
@@ -10767,7 +10845,33 @@
       ],
       "labels":[{
         "label":"",
-        "name":"approachNormsFulfillRemarks",
+        "name":"DTPReportReceivedRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether STP report received",
+      "name":"STPReportReceived",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"STPReportReceivedRemarks",
         "type":"textarea",
         "disabled":"true",
         "placeholder":"Enter Remarks"
@@ -13181,6 +13285,300 @@
    }
 
 ]
+},
+{
+   "businessService":"NewTL",
+   "role":"PATWARI Field",
+   "active":true,
+   "applicationStatus":"PENDING_AT_NAIBTEHSILDAR_HQ_ROUND2_SITEVERIF",
+   "templates":[
+      {
+         "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
+         "name":"landOwners",
+         "type":"radio",           
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"landOwnersRemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
+         "name":"jamabandhi",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"jamabandhiRemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+   
+      {
+         "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
+         "name":"originalMutations",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"originalMutationsRemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether Sale deeds of the applied land submitted.  ",
+         "name":"saleDeeds",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"saleDeedsRemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
+         "name":"shajraPlan",
+        
+         "type":"radio",
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"shajraPlanRemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
+         "name":"khasraNumberCollaborationAgreement",
+        
+         "type":"radio",
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"khasraNumberCollaborationAgreementRemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA. ",
+         "name":"khasraNumberForGPA/SPA",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"khasraNumberForGPA/SPARemarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+       "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
+       "name":"applicationUnderMigration",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+         "label":"",
+         "name":"applicationUnderMigrationRemarks",
+         "type":"textarea",
+         "disabled":"true",
+         "placeholder":"Enter Remarks"
+        }
+        ],
+       "value":""
+    },
+    {
+      "label":"Whether land is encumbrance free",
+      "name":"encumbranceFree",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"encumbranceFreeRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether ownership is in the name of applicant",
+      "name":"ownershipNameOfApplicant",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"ownershipNameOfApplicantRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   },
+   {
+      "label":"Whether approach norms fulfill",
+      "name":"approachNormsFulfill",
+      "type":"radio",
+     
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+        "label":"",
+        "name":"approachNormsFulfillRemarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+      "value":""
+   }
+   ]
 }
   ]
 }
