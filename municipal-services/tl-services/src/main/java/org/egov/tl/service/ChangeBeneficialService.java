@@ -280,7 +280,7 @@ public class ChangeBeneficialService {
 						
 						try {
 							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
-							criteria.setLicenseNumbers(Arrays.asList(beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber()));
+							criteria.setLicenseNumbers(Arrays.asList(changebeneficial.getLicenseNumber()));
 							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, beneficialRequest.getRequestInfo());
 							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
 							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
