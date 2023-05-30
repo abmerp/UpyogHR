@@ -160,8 +160,8 @@ public class LandSchedule {
 	private String reraDocUpload;
 	@JsonProperty("reraNonRegistrationDoc")
 	private String reraNonRegistrationDoc;
-	@JsonProperty("LandScheduleDetails")
-	private List<LandScheduleDetails> landScheduleDetails;
+//	@JsonProperty("LandScheduleDetails")
+//	private List<LandScheduleDetails> landScheduleDetails;
 	@JsonProperty("anyOther")
 	private String anyOther;
 	@JsonProperty("anyOtherRemark")

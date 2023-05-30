@@ -769,99 +769,99 @@ public class NewLicensePDF {
 					}
 					
 					
-					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!=null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {
-						
-						 List<LandScheduleDetails> f= licenseDetails.getLandSchedule().getLandScheduleDetails();
-		                   
-						Paragraph lsd = new Paragraph();
-						lsd.add("LandSchedule Details");
-						doc.add(lsd);
-						
-						table = new PdfPTable(9);
-						table.setSpacingBefore(10f);
-						table.setSpacingAfter(10f);
-						table.setWidthPercentage(100f);
-						
-						/**	List value
-						   if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null) {
-								
-								  table.addCell(replaceNullWithNA("LandScheduleDetails");
-								  table.addCell(replaceNullWithNA(licenseDetails.getLandSchedule().getLandScheduleDetails()));
-							      
-							}
-							else {
-								
-								 table.addCell(replaceNullWithNA("LandScheduleDetails");
-								  table.addCell(replaceNullWithNA("NULL");
-								
-							}*/
-							
-						
-						PdfPCell c2 = new PdfPCell(new Phrase("Previous Licensenumber"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Area Of ParentLicence"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Purpose Of ParentLicence"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Validity"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Date"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Area Applied Migration"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Khasra Number"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Area"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-				        
-				        c2 = new PdfPCell(new Phrase("Balance Of ParentLicence"));
-				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c2);
-						
-						for(int j=0;j<f.size();j++) {
-							LandScheduleDetails g =  f.get(j);
-						
-						  table.addCell(replaceNullWithNA(g.getPreviousLicensenumber()));
-						  
-						 
-						  table.addCell(replaceNullWithNA(g.getAreaOfParentLicence()));
-						  
-						
-						  table.addCell(replaceNullWithNA(g.getPurposeOfParentLicence()));
-						  
-						  table.addCell(replaceNullWithNA(g.getValidity()));
-						  
-						  table.addCell(replaceNullWithNA(g.getDate()));
-						  
-						  table.addCell(replaceNullWithNA(g.getAreaAppliedmigration()));
-						  
-						  table.addCell(replaceNullWithNA(g.getKhasraNumber()));
-						  
-						  table.addCell(replaceNullWithNA(g.getArea()));
-						  
-						  table.addCell(replaceNullWithNA(g.getBalanceOfParentLicence()));
-						  
-					
-						
-		                  
-		                   }
-		                   doc.add(table);
-					}
+//					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!=null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {
+//						
+//						 List<LandScheduleDetails> f= licenseDetails.getLandSchedule().getLandScheduleDetails();
+//		                   
+//						Paragraph lsd = new Paragraph();
+//						lsd.add("LandSchedule Details");
+//						doc.add(lsd);
+//						
+//						table = new PdfPTable(9);
+//						table.setSpacingBefore(10f);
+//						table.setSpacingAfter(10f);
+//						table.setWidthPercentage(100f);
+//						
+//						/**	List value
+//						   if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null) {
+//								
+//								  table.addCell(replaceNullWithNA("LandScheduleDetails");
+//								  table.addCell(replaceNullWithNA(licenseDetails.getLandSchedule().getLandScheduleDetails()));
+//							      
+//							}
+//							else {
+//								
+//								 table.addCell(replaceNullWithNA("LandScheduleDetails");
+//								  table.addCell(replaceNullWithNA("NULL");
+//								
+//							}*/
+//							
+//						
+//						PdfPCell c2 = new PdfPCell(new Phrase("Previous Licensenumber"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Area Of ParentLicence"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Purpose Of ParentLicence"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Validity"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Date"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Area Applied Migration"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Khasra Number"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Area"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//				        
+//				        c2 = new PdfPCell(new Phrase("Balance Of ParentLicence"));
+//				        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c2);
+//						
+//						for(int j=0;j<f.size();j++) {
+//							LandScheduleDetails g =  f.get(j);
+//						
+//						  table.addCell(replaceNullWithNA(g.getPreviousLicensenumber()));
+//						  
+//						 
+//						  table.addCell(replaceNullWithNA(g.getAreaOfParentLicence()));
+//						  
+//						
+//						  table.addCell(replaceNullWithNA(g.getPurposeOfParentLicence()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getValidity()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getDate()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getAreaAppliedmigration()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getKhasraNumber()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getArea()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getBalanceOfParentLicence()));
+//						  
+//					
+//						
+//		                  
+//		                   }
+//		                   doc.add(table);
+//					}
 					
                       if(licenseDetails.getLandSchedule()!= null) {
 						
@@ -1251,87 +1251,87 @@ public class NewLicensePDF {
 					
 					
 					
-					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {
-						
-						List<LandScheduleDetails> z= licenseDetails.getLandSchedule().getLandScheduleDetails();
-						
-						System.out.println(z);		                   
-						Paragraph pald1 = new Paragraph();
-						pald1.add("LandSchedule Details");
-						doc.add(pald1);
-						
-						table = new PdfPTable(9);
-						table.setSpacingBefore(10f);
-						table.setSpacingAfter(10f);
-						table.setWidthPercentage(100f);
-						
-						PdfPCell c3 = new PdfPCell(new Phrase("Previous Licensenumber"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("AreaOfParentLicence"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("PurposeOfParentLicence"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-
-				        c3 = new PdfPCell(new Phrase("Validity"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("Date"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("AreaAppliedmigration"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("KhasraNumber"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("Area"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        c3 = new PdfPCell(new Phrase("BalanceOfParentLicence"));
-				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				        table.addCell(c3);
-				        
-				        
-						
-						for(int j=0;j<z.size();j++) {
-							LandScheduleDetails g =  z.get(j);
-						
-						  table.addCell(replaceNullWithNA(g.getPreviousLicensenumber()));
-						  
-						 
-						  table.addCell(replaceNullWithNA(g.getAreaOfParentLicence()));
-						  
-						
-						  table.addCell(replaceNullWithNA(g.getPurposeOfParentLicence()));
-						  
-						  table.addCell(replaceNullWithNA(g.getValidity()));
-						  
-						  table.addCell(replaceNullWithNA(g.getDate()));
-						  
-						  table.addCell(replaceNullWithNA(g.getAreaAppliedmigration()));
-						  
-						  table.addCell(replaceNullWithNA(g.getKhasraNumber()));
-						  
-						  table.addCell(replaceNullWithNA(g.getArea()));
-						  
-						  table.addCell(replaceNullWithNA(g.getBalanceOfParentLicence()));
-						  
-					
-						
-		                  
-		                   }
-		                   doc.add(table);
-					}
+//					if(licenseDetails.getLandSchedule().getLandScheduleDetails()!= null && licenseDetails.getLandSchedule().getLandScheduleDetails().size()>0) {
+//						
+//						List<LandScheduleDetails> z= licenseDetails.getLandSchedule().getLandScheduleDetails();
+//						
+//						System.out.println(z);		                   
+//						Paragraph pald1 = new Paragraph();
+//						pald1.add("LandSchedule Details");
+//						doc.add(pald1);
+//						
+//						table = new PdfPTable(9);
+//						table.setSpacingBefore(10f);
+//						table.setSpacingAfter(10f);
+//						table.setWidthPercentage(100f);
+//						
+//						PdfPCell c3 = new PdfPCell(new Phrase("Previous Licensenumber"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("AreaOfParentLicence"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("PurposeOfParentLicence"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//
+//				        c3 = new PdfPCell(new Phrase("Validity"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("Date"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("AreaAppliedmigration"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("KhasraNumber"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("Area"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        c3 = new PdfPCell(new Phrase("BalanceOfParentLicence"));
+//				        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//				        table.addCell(c3);
+//				        
+//				        
+//						
+//						for(int j=0;j<z.size();j++) {
+//							LandScheduleDetails g =  z.get(j);
+//						
+//						  table.addCell(replaceNullWithNA(g.getPreviousLicensenumber()));
+//						  
+//						 
+//						  table.addCell(replaceNullWithNA(g.getAreaOfParentLicence()));
+//						  
+//						
+//						  table.addCell(replaceNullWithNA(g.getPurposeOfParentLicence()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getValidity()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getDate()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getAreaAppliedmigration()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getKhasraNumber()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getArea()));
+//						  
+//						  table.addCell(replaceNullWithNA(g.getBalanceOfParentLicence()));
+//						  
+//					
+//						
+//		                  
+//		                   }
+//		                   doc.add(table);
+//					}
 					
 					if(licenseDetails.getDetailsofAppliedLand()!= null) {
 	                	
