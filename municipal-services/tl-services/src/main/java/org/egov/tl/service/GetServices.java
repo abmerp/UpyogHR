@@ -180,7 +180,7 @@ public class GetServices {
 		case COMPLETION_CERTIFICATE_WORKFLOWCODE:
 
 			tableName = "public.eg_tl_completion_certificate";
-			finalResult = changeBeneficialRepo.getApplicationNumber(tableName, requestInfo.getUserInfo().getUuid());
+			finalResult = changeBeneficialRepo.getTcpApplicationNumberListByUserUUID(tableName, requestInfo.getUserInfo().getUuid());
 
 			log.info("applicationNumber:" + finalResult);
 
@@ -202,13 +202,13 @@ public class GetServices {
 		case CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE:
 
 			tableName = "public.eg_tl_construction_Of_community";
-			finalResult = changeBeneficialRepo.getApplicationNumber(tableName, requestInfo.getUserInfo().getUuid());
+			finalResult = changeBeneficialRepo.getTcpApplicationNumberListByUserUUID(tableName, requestInfo.getUserInfo().getUuid());
 			log.info("applicationNumber:" + finalResult);
 
 			break;
 		case CHANGE_BENEFICIAL_WORKFLOWCODE:
 			tableName = "public.eg_tl_change_beneficial";
-			finalResult = changeBeneficialRepo.getApplicationNumber(tableName, requestInfo.getUserInfo().getUuid());
+			finalResult = changeBeneficialRepo.getTcpApplicationNumberListByUserUUID(tableName, requestInfo.getUserInfo().getUuid());
 			log.info("applicationNumber:" + finalResult);
 
 			break;
