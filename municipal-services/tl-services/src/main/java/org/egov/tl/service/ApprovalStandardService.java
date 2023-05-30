@@ -61,7 +61,7 @@ public class ApprovalStandardService {
 	@Value("${persister.update.approval.standard.topic}")
 	private String approvalUpdateTopic;
 
-	private static final String businessService_AS = "APPROVAL_OF_STANDARD";
+	// private static final String businessService_AS = "APPROVAL_OF_STANDARD";
 
 	private static final String SENDBACK_STATUS = "SENDBACK_TO_APPLICANT";
 
@@ -369,10 +369,10 @@ public class ApprovalStandardService {
 				servicePlanService.assignee("CTP_HR", approvalStandardRequest.getTenantId(), true, requestInfo)));
 //			approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 
-		approvalStandardRequest.setBusinessService(businessService_AS);
-		approvalStandardRequest.setWorkflowCode(businessService_AS);
+		approvalStandardRequest.setBusinessService(config.getApprovalOfStandardBusinessService());
+		approvalStandardRequest.setWorkflowCode(config.getApprovalOfStandardBusinessService());
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(approvalStandardRequest,
-				requestInfo, businessService_AS);
+				requestInfo, config.getApprovalOfStandardBusinessService());
 
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 

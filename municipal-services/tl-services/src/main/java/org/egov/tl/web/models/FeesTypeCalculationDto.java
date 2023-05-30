@@ -12,7 +12,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-class FeesTypeCalculationDto {
+
+public class FeesTypeCalculationDto {
 
 	private String purpose;
 	private BigDecimal scrutinyFeeChargesCal;

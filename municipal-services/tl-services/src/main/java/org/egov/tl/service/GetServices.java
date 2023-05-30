@@ -6,19 +6,7 @@ import java.util.List;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.abm.newservices.entity.ApprovalStandardEntity;
 import org.egov.tl.abm.repo.ChangeBeneficialRepo;
-import org.egov.tl.abm.repo.CompletionCertificateRepo;
-import org.egov.tl.abm.repo.ConstructionOfCommunityRepo;
 import org.egov.tl.repository.TLRepository;
-import org.egov.tl.repository.rowmapper.ApprovalStandardRowMapper;
-import org.egov.tl.repository.rowmapper.EPRowMapper;
-import org.egov.tl.repository.rowmapper.ExtensionOfCLUPermissionRowMapper;
-import org.egov.tl.repository.rowmapper.RevisedLayoutPlanRowMapper;
-import org.egov.tl.repository.rowmapper.SPRowMapper;
-import org.egov.tl.repository.rowmapper.SurrendOfLicenseRowMapper;
-import org.egov.tl.repository.rowmapper.TransferRowMapper;
-import org.egov.tl.web.models.ChangeBeneficial;
-import org.egov.tl.web.models.CompletionCertificate;
-import org.egov.tl.web.models.ConstructionOfCommunity;
 import org.egov.tl.web.models.ElectricPlanRequest;
 import org.egov.tl.web.models.ExtensionOfCLUPermission;
 import org.egov.tl.web.models.RevisedPlan;
@@ -28,9 +16,9 @@ import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.Transfer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
+import static org.egov.tl.util.TLConstants.*;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -38,8 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GetServices {
 
 	@Autowired
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+	ChangeBeneficialRepo changeBeneficialRepo;
 	@Autowired
 	TLRepository tLRepository;
 	@Autowired
@@ -57,18 +44,6 @@ public class GetServices {
 	@Autowired
 	ExtensionOfCLUPermissionServices extensionOfCLUPermissionServices;
 	private static final String BUSINESS_NEWTL = "NewTL";
-	private static final String BUSINESS_SERVICE_PLAN = "SERVICE_PLAN";
-	private static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENSION_OF_CLU_PERMISSION";
-	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
-	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
-	private static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
-	private static final String BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY = "CONSTRUCTION_OF_COMMUNITY";
-	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
-//	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
-	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
-	private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
-	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
-	private static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
 
 	public List<String> search(RequestInfo requestInfo, String type, String businessService) {
 
@@ -84,9 +59,7 @@ public class GetServices {
 		List<ApprovalStandardEntity> resultApproval = null;
 		List<SurrendOfLicense> resultSurrender = null;
 		List<ExtensionOfCLUPermission> resultExtensionOfCLUPermission = null;
-		List<CompletionCertificate> resultCompletion = null;
-		List<ConstructionOfCommunity> resultConstruction = null;
-		List<ChangeBeneficial> resultChangeinBeneficial = null;
+		String tableName;
 
 		String loiNumber = null;
 		String applicationNumber = null;
@@ -105,7 +78,7 @@ public class GetServices {
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESS_SERVICE_PLAN:
+		case SPNAMEVALUE:
 
 			// builder = new StringBuilder(queryServicePlan);
 
@@ -122,7 +95,7 @@ public class GetServices {
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
+		case SPNAMEVALUE_DEMARCATION:
 
 			List<ServicePlanRequest> servicePlanRequestSearch1 = servicePlanService.searchServicePlan(loiNumber,
 					applicationNumber, requestInfo);
@@ -134,7 +107,7 @@ public class GetServices {
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_REVISED:
+		case businessService_Revised:
 
 //				builder = new StringBuilder(queryRevisedPlan);
 //				resultRevisedPlan = namedParameterJdbcTemplate.query(builder.toString(), revisedLayoutPlanRowMapper);
@@ -148,7 +121,7 @@ public class GetServices {
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_ELECTRICAL_PLAN:
+		case EPNAMEVALUE:
 
 //				builder = new StringBuilder(queryServicePlan);
 //				resultElectricPlan = namedParameterJdbcTemplate.query(builder.toString(), epRowMapper);
@@ -162,7 +135,7 @@ public class GetServices {
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_TRANSFER:
+		case businessService_TRANSFER:
 
 //				builder = new StringBuilder(queryTransfer);
 //				resultTransfer = namedParameterJdbcTemplate.query(builder.toString(), transferRowMapper);
@@ -175,7 +148,7 @@ public class GetServices {
 			}
 			log.info("applicationNumber:" + finalResult);
 			break;
-		case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
+		case ASNAMEVALUE:
 
 //				builder = new StringBuilder(queryAppprovalOfStandard);
 //				resultApproval = namedParameterJdbcTemplate.query(builder.toString(), approvalStandardRowMapper);
@@ -190,7 +163,7 @@ public class GetServices {
 
 			break;
 
-		case BUSINESSSERVICE_SURRENDOFLICENSE:
+		case SURRENDER_OF_LICENSE:
 
 //				builder = new StringBuilder(querySurrenderOfLicence);
 //				resultSurrender = namedParameterJdbcTemplate.query(builder.toString(), surrendOfLicenseRowMapper);
@@ -204,25 +177,18 @@ public class GetServices {
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
+		case COMPLETION_CERTIFICATE_WORKFLOWCODE:
 
-			// resultCompletion = completionCertificateRepo.getCompletionApplication();
+			tableName = "public.eg_tl_completion_certificate";
+			finalResult = changeBeneficialRepo.getApplicationNumber(tableName, requestInfo.getUserInfo().getUuid());
 
-			for (CompletionCertificate completionCertificate : resultCompletion) {
-
-				application = completionCertificate.getApplicationNumber();
-				if (application != null)
-					finalResult.add(application);
-			}
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
-			//
-//				builder = new StringBuilder(queryExtensionClu);
-//				resultExtensionOfCLUPermission = namedParameterJdbcTemplate.query(builder.toString(),
-//						extensionOfCLUPermissionRowMapper);
-			resultExtensionOfCLUPermission = extensionOfCLUPermissionServices.search(requestInfo, applicationNumber, applicationNumber);
+		case EXTENTION_OF_CLU_PERMISSION:
+
+			resultExtensionOfCLUPermission = extensionOfCLUPermissionServices.search(requestInfo, applicationNumber,
+					applicationNumber);
 			for (ExtensionOfCLUPermission extensionOfCLUPermission : resultExtensionOfCLUPermission) {
 
 				application = extensionOfCLUPermission.getApplicationNumber();
@@ -233,26 +199,16 @@ public class GetServices {
 
 			break;
 
-		case BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY:
+		case CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE:
 
-			// resultConstruction = constructionOfCommunityRepo.getApplicationNumber();
-			for (ConstructionOfCommunity constructionOfCommunity : resultConstruction) {
-
-				application = constructionOfCommunity.getApplicationNumber();
-				if (application != null)
-					finalResult.add(application);
-			}
+			tableName = "public.eg_tl_construction_Of_community";
+			finalResult = changeBeneficialRepo.getApplicationNumber(tableName, requestInfo.getUserInfo().getUuid());
 			log.info("applicationNumber:" + finalResult);
 
 			break;
-		case BUSINESSSERVICE_CHANGEBENEFICIAL:
-			// resultChangeinBeneficial = changeBeneficialRepo.getchangeInbeneficial();
-			for (ChangeBeneficial changeBeneficial : resultChangeinBeneficial) {
-
-				application = changeBeneficial.getApplicationNumber();
-				if (application != null)
-					finalResult.add(application);
-			}
+		case CHANGE_BENEFICIAL_WORKFLOWCODE:
+			tableName = "public.eg_tl_change_beneficial";
+			finalResult = changeBeneficialRepo.getApplicationNumber(tableName, requestInfo.getUserInfo().getUuid());
 			log.info("applicationNumber:" + finalResult);
 
 			break;

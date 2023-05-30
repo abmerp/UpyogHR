@@ -50,7 +50,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ExtensionOfCLUPermissionServices {
 
-	private static final String BUSINESS_EXTENTION = "EXTENTION_OF_CLU_PERMISSION";
+	//private static final String BUSINESS_EXTENTION = "EXTENTION_OF_CLU_PERMISSION";
 
 	@Value("${persister.create.extension.of.clu.permission.topic}")
 	private String cluTopic;
@@ -119,8 +119,8 @@ public class ExtensionOfCLUPermissionServices {
 				config.getCluName(), config.getCluFormat(), count);
 		extensionOfCLUPermission.setAction(extensionOfCLUPermission.getAction());
 		extensionOfCLUPermission.setAuditDetails(auditDetails);
-		extensionOfCLUPermission.setBusinessService(BUSINESS_EXTENTION);
-		extensionOfCLUPermission.setWorkflowCode(BUSINESS_EXTENTION);
+		extensionOfCLUPermission.setBusinessService(config.getExtensionOfCluBusinessService());
+		extensionOfCLUPermission.setWorkflowCode(config.getExtensionOfCluBusinessService());
 
 		extensionOfCLUPermission.setApplicationNumber(applicationNo.get(0));
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
