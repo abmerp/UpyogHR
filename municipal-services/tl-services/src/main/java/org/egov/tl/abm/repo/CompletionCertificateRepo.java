@@ -101,27 +101,8 @@ public class CompletionCertificateRepo {
 
 		CompletionCertificate completionCertificate = null;
 		try {
-			List<Object> preparedStmtList = new ArrayList<>();
-			List<CompletionCertificate> completionCertificateList = jdbcTemplate.query(
-					querybyLicenseNumber.replaceAll(":licenseNumber", "'" + licenseNumber + "'"),
-					preparedStmtList.toArray(), (rs, rowNum) -> {
-
-						AuditDetails auditDetails = null;
-						try {
-							AuditDetails audit_details = new Gson().fromJson(rs.getString("audit_details").equals("{}")
-									|| rs.getString("audit_details").equals("null") ? null
-											: rs.getString("audit_details"),
-									AuditDetails.class);
-							System.out.println(audit_details);
-							auditDetails = audit_details;
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-						return CompletionCertificate.builder().id(rs.getString("id"))
-								.applicationNumber(rs.getString("application_number"))
-								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
-					});
+			String query=querybyLicenseNumber.replaceAll(":licenseNumber", "'" + licenseNumber + "'");
+			List<CompletionCertificate> completionCertificateList = getCompletionCertificateList(query);
 			if (completionCertificateList != null && !completionCertificateList.isEmpty()) {
 				completionCertificate = completionCertificateList.get(0);
 			}
@@ -255,13 +236,16 @@ public class CompletionCertificateRepo {
 								.accessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
 								.tranactionId(rs.getString("transaction_id"))
 								.newAdditionalDetails(additionalDetails)
-								.tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
-								.tcpCaseNumber(rs.getString("tcpcasenumber"))
-								.tcpDairyNumber(rs.getString("tcpdairyNumber"))
 								.action(rs.getString("action"))
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
+								
+								.tcpApplicationNumber(rs.getString("tcp_application_number"))
+								.tcpCaseNumber(rs.getString("tcp_case_number"))
+								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
+								
+								
 								.build();
 					});
 			if (completionCertificate != null && !completionCertificate.isEmpty()) {

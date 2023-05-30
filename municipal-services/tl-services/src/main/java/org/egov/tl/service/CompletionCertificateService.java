@@ -157,6 +157,19 @@ public class CompletionCertificateService {
 						certificate.setAction("INITIATE");
 						certificate.setStatus("INITIATE");
 					
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(certificate.getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, completionCertificateRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							certificate.setTcpApplicationNumber(tcpApplicationNumber);
+							certificate.setTcpDairyNumber(tcpDairyNumber);
+							certificate.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
 						
 						certificate.setApplicationStatus(1);
 						certificate.setCreatedDate(new Timestamp(time));
@@ -175,6 +188,10 @@ public class CompletionCertificateService {
 						String status=certificate.getStatus();
 						certificate.setAction(action!=null?action:"INITIATE");
 						certificate.setStatus(status!=null?status:"INITIATE");
+						
+						certificate.setTcpApplicationNumber(completionCertificateData.getTcpApplicationNumber());
+						certificate.setTcpCaseNumber(completionCertificateData.getTcpCaseNumber());
+						certificate.setTcpDairyNumber(completionCertificateData.getTcpDairyNumber());
 					
 					}
 					certificate.setAuditDetails(auditDetails);
@@ -247,36 +264,6 @@ public class CompletionCertificateService {
 		}
 
 		return completionCertificateResponse;
-	}
-
-	public CompletionCertificate makePayment(String licenseNumber, RequestInfo requestInfo)
-			throws JsonProcessingException {
-		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
-		List<String> licenseNumberList = new ArrayList<>();
-		licenseNumberList.add(licenseNumber);
-		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
-
-		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
-		log.info("tcpnumbers:\t" + tcpNumbers);
-		String data = null;
-
-		data = mapper.writeValueAsString(tcpNumbers);
-//			
-		JSONObject json = new JSONObject(tcpNumbers);
-
-		json.toString();
-		String application = json.getAsString("TCPApplicationNumber");
-		String caseNumber = json.getAsString("TCPCaseNumber");
-		String dairyNumber = json.getAsString("TCPDairyNumber");
-
-		CompletionCertificate completionCertificate = new CompletionCertificate();
-
-		completionCertificate.setTcpApplicationNumber(application);
-		completionCertificate.setTcpCaseNumber(caseNumber);
-		completionCertificate.setTcpDairyNumber(dairyNumber);
-
-		return completionCertificate;
-
 	}
 
 }

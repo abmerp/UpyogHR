@@ -127,14 +127,14 @@ public class ChangeBeneficialRepo {
 		}
 	}
 	
-	public List<String> getApplicationNumber(String tableName,String createdByUUid) {
+	public List<String> getTcpApplicationNumberListByUserUUID(String tableName,String createdByUUid) {
 		List<String> licenses = null;
 		try {
 			List<Object> preparedStmtList = new ArrayList<>();
 			String query="select * from "+tableName+" where audit_details ->> 'createdBy'='"+createdByUUid+"'";
 		    System.out.println(query);
 			licenses = jdbcTemplate.query(query, preparedStmtList.toArray(),
-					(rs, rowNum) -> rs.getString("application_number"));
+					(rs, rowNum) -> rs.getString("tcp_application_number"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -216,28 +216,8 @@ public class ChangeBeneficialRepo {
 
 		ChangeBeneficial cahngeBeneficial = null;
 		try {
-			List<Object> preparedStmtList = new ArrayList<>();
-			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(
-					queryForGetChangeBeneficial.replaceAll(":licenseNumber", "'" + licenseNumber + "'"),
-					preparedStmtList.toArray(), (rs, rowNum) -> {
-
-						AuditDetails auditDetails = null;
-						try {
-							AuditDetails audit_details = new Gson().fromJson(rs.getString("audit_details").equals("{}")
-									|| rs.getString("audit_details").equals("null") ? null
-											: rs.getString("audit_details"),
-									AuditDetails.class);
-							System.out.println(audit_details);
-							auditDetails = audit_details;
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-						return ChangeBeneficial.builder().id(rs.getString("id").toString())
-								.developerServiceCode(rs.getString("developerServiceCode").toString())
-								.applicationNumber(rs.getString("application_number"))
-								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
-					});
+			String query=queryForGetChangeBeneficial.replaceAll(":licenseNumber", "'" + licenseNumber + "'");
+			List<ChangeBeneficial> changeBeneficial = getChangeBeneficialList(query);
 			if (changeBeneficial != null && !changeBeneficial.isEmpty()) {
 				cahngeBeneficial = changeBeneficial.get(0);
 			}
@@ -438,7 +418,7 @@ public class ChangeBeneficialRepo {
 								.applicationStatus(rs.getInt("application_status"))
 								.applicationNumber(rs.getString("application_number"))
 								.workFlowCode(rs.getString("workflowcode"))
-								.diaryNumber(rs.getString("diary_number"))
+//								.diaryNumber(rs.getString("diary_number"))
 								.auditDetails(auditDetails)
 								.isDraft(rs.getString("is_draft"))
 								.tranactionId(rs.getString("transaction_id"))
@@ -448,6 +428,11 @@ public class ChangeBeneficialRepo {
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
+								
+								.tcpApplicationNumber(rs.getString("tcp_application_number"))
+								.tcpCaseNumber(rs.getString("tcp_case_number"))
+								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
+								
 								.newAdditionalDetails(additionalDetails).build();
 
 					});
