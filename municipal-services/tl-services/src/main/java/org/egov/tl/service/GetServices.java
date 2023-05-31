@@ -72,8 +72,13 @@ public class GetServices {
 			log.info("tradeLicence" + tradeLicence);
 			for (TradeLicense tradeLicense : tradeLicence) {
 				application = tradeLicense.getTcpApplicationNumber();
-				if (application != null)
+				applicationNumber=tradeLicense.getApplicationNumber();
+				if (application != null && (type == null||type.isEmpty())) {
 					finalResult.add(application);
+				}
+				if(applicationNumber!=null && type!=null) {
+					finalResult.add(applicationNumber);
+				}
 			}
 			log.info("applicationNumber:" + finalResult);
 

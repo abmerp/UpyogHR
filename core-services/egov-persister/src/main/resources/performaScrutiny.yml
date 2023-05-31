@@ -7,7 +7,7 @@ serviceMaps:
     isTransaction: true
     queryMaps:
     
-       - query: INSERT INTO public.eg_performa_scruitny(applicationnumber, applicationstatus, username, userid, designation, created_on, additionaldetails, id) VALUES (?, ?, ?, ?, ?, ?, ?);
+       - query: INSERT INTO public.eg_performa_scruitny(applicationnumber, applicationstatus, username, userid, designation, created_on, additionaldetails, id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
          basePath: PerformaScruitny
          jsonMaps:         
           

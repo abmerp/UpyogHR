@@ -48,10 +48,11 @@ public class PerformaScrutinyController {
 	}
 	@PostMapping("/_search")
 	public ResponseEntity<PerformaScruitnyResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,	
-			@RequestParam(value = "applicationNumber", required = false) String applicationNumber) {
+			@RequestParam(value = "applicationNumber", required = true) String applicationNumber,
+			@RequestParam(value = "userId", required = false) String userId) {
 
 		List<PerformaScruitny> performaScruitnyList = performaScrutinyService.search(requestInfoWrapper.getRequestInfo(),
-				 applicationNumber);
+				 applicationNumber,userId);
 
 		PerformaScruitnyResponse performaScruitnyResponse = PerformaScruitnyResponse.builder()
 				.performaScruitny(performaScruitnyList).responseInfo(responseInfoFactory

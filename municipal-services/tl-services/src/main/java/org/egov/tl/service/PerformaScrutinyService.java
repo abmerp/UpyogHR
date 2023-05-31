@@ -47,7 +47,7 @@ public class PerformaScrutinyService {
 
 	}
 
-	public List<PerformaScruitny> search(RequestInfo requestInfo, String applicationNumber) {
+	public List<PerformaScruitny> search(RequestInfo requestInfo, String applicationNumber, String userId) {
 		List<Object> preparedStatement = new ArrayList<>();
 
 		Map<String, String> paramMap = new HashedMap();
@@ -60,15 +60,19 @@ public class PerformaScrutinyService {
 
 		List<PerformaScruitny> Result = null;
 		if (applicationNumber != null) {
-			List<String> applicationNumberList = Arrays.asList(applicationNumber.split(","));
-			log.info("applicationNumberList" + applicationNumberList);
-			if (applicationNumberList != null) {
-				builder.append(" applicationnumber in ( :AN )");
-				paramMapList.put("AN", applicationNumberList);
-				preparedStatement.add(applicationNumberList);
-				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMapList, performaScrutinyRowMapper);
-			}
 
+			builder.append(" applicationnumber in ( :AN )");
+			paramMap.put("AN", applicationNumber);
+			preparedStatement.add(applicationNumber);
+			Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, performaScrutinyRowMapper);
+
+			if (userId != null) {
+				builder.append(" And userid in ( :A )");
+				paramMap.put("A", userId);
+				preparedStatement.add(userId);
+				Result = namedParameterJdbcTemplate.query(builder.toString(), paramMap, performaScrutinyRowMapper);
+
+			}
 		}
 		return Result;
 
