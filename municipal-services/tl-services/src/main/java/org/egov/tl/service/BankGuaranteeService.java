@@ -90,6 +90,7 @@ public class BankGuaranteeService {
 	public static final String BG_ACTION_INITIATE = "APPLY";
 	public static final String BG_STATUS_PENDING_AT_CAO = "PENDING_AT_CAO";
 	public static final String BG_NEW_LANDING_EMPLOYEE_ROLE = "SO_HQ";
+	public static final String BG_RELEASE_LANDING_EMPLOYEE_ROLE = "CAO_HQ";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -342,7 +343,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
 		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
 		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_RELEASE);
-		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
 		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
 		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
