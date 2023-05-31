@@ -158,11 +158,15 @@ public class WorkflowIntegrator {
 						break;
 				
 					case BankGuaranteeService.BUSINESSSERVICE_BG_NEW:
-					case BUSINESSSERVICE_BG_RELEASE:
 					case BankGuaranteeService.BUSINESSSERVICE_BG_MORTGAGE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 						break;
+					case BUSINESSSERVICE_BG_RELEASE:
+						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+						obj.put(MODULENAMEKEY, "tl-service");
+						break;
+					
 				}
 				obj.put(ACTIONKEY, license.getAction());
 				obj.put(COMMENTKEY, license.getComment());
