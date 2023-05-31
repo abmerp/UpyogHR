@@ -346,7 +346,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
 		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
 		workflowIntegrator.callWorkFlow(processInstanceRequest);
 
 
@@ -371,7 +371,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
 		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRequest, requestInfo);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
 		workflowIntegrator.callWorkFlow(processInstanceRequest);
 	}
 	

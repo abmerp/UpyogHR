@@ -83,12 +83,6 @@ public class WorkflowIntegrator {
 				
 				switch(businessServiceFromMDMS)
 				{
-				
-				case BUSINESSSERVICE_BG_RELEASE:
-					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
-					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
-				break;
-				
 				case ZONE_PLAN:
 					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
@@ -162,7 +156,9 @@ public class WorkflowIntegrator {
 						obj.put(BUSINESSSERVICEKEY, tradeType);
 						obj.put(MODULENAMEKEY, BPAMODULENAMEVALUE);
 						break;
+				
 					case BankGuaranteeService.BUSINESSSERVICE_BG_NEW:
+					case BUSINESSSERVICE_BG_RELEASE:
 					case BankGuaranteeService.BUSINESSSERVICE_BG_MORTGAGE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
