@@ -160,6 +160,8 @@ public class TLInboxFilterService {
 	private static final String BUSINESSSERVICE_NEWTL = "NewTL";
 	private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
+	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	
 
 	private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
 
@@ -339,6 +341,16 @@ public class TLInboxFilterService {
 					}
 					break;
 				case BUSINESSSERVICE_BG_NEW:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+					} else {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						log.info("search for application no url" + uri);
+					}
+
+					break;
+				case BUSINESSSERVICE_BG_RELEASE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
 						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
@@ -542,6 +554,12 @@ public class TLInboxFilterService {
 					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
 					log.info("uri searcher\t" + uri);
 					break;
+				
+				case BUSINESSSERVICE_BG_RELEASE:
+					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					log.info("uri searcher\t" + uri);
+					break;
+					
 				case BUSINESSSERVICE_BG_MORTGAGE:
 
 					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);

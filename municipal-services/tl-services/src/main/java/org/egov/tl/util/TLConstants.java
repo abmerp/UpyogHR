@@ -400,7 +400,9 @@ public class TLConstants {
 	public static final String ASNAMEVALUE = "APPROVAL_OF_STANDARD";
 
 	public static final String ZONE_PLAN = "ZONE_PLAN";
-
+	
+	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	
 	public static final String SURRENDER_OF_LICENSE = "SURREND_OF_LICENSE";
 
 	public static final String TENANTIDKEY = "tenantId";

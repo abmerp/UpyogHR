@@ -83,6 +83,12 @@ public class WorkflowIntegrator {
 				
 				switch(businessServiceFromMDMS)
 				{
+				
+				case BUSINESSSERVICE_BG_RELEASE:
+					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
+					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
+				break;
+				
 				case ZONE_PLAN:
 					obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 					obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);

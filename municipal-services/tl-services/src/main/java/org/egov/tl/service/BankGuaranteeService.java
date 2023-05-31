@@ -75,6 +75,8 @@ public class BankGuaranteeService {
 	
 	public static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	public static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
+	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	
 	public static final String BUSINESSSERVICE_TENANTID = "hr";
 	public static final String BUSINESSSERVICE_BG_RENEW = "BG_RENEW";
 	public static final String BG_NEW_ACTION_EXTEND = "EXTEND";
@@ -105,6 +107,8 @@ public class BankGuaranteeService {
 
 			if (!StringUtils.isEmpty(newBankGuaranteeRequest.getBusinessService())
 					&& newBankGuaranteeRequest.getBusinessService().equalsIgnoreCase(BUSINESSSERVICE_BG_MORTGAGE)) {
+				System.out.println("mortgage:-----------------------------");
+				
 				insertedData.add(mortgageBGService
 						.createBankGuarantee(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo())
 						.toBuilder());
@@ -119,6 +123,7 @@ public class BankGuaranteeService {
 			}
 			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
+				System.out.println("BG_NEW:-----------------------------");
 				// basic create with processinstance-
 				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
 						BUSINESSSERVICE_TENANTID, tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
@@ -333,9 +338,10 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
 		
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
 		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
-		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
+		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
 		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
@@ -356,6 +362,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
 		
+		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_NEW);
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
 		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
