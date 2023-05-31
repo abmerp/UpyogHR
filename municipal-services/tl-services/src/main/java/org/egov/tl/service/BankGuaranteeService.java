@@ -225,6 +225,29 @@ public class BankGuaranteeService {
 		return tradeLicenseRequest;
 	}
 	
+	private TradeLicenseRequest prepareProcessInstanceRequestForBGRelease(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
+		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
+		List<TradeLicense> licenses = new ArrayList<>();
+		TradeLicense tradeLicense = new TradeLicense();
+
+		tradeLicense.setBusinessService(newBankGuaranteeRequest.getBusinessService());
+		tradeLicense.setAction(newBankGuaranteeRequest.getAction());
+		tradeLicense.setAssignee(newBankGuaranteeRequest.getAssignee());
+		tradeLicense.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		tradeLicense.setWorkflowCode(newBankGuaranteeRequest.getWorkflowCode());// workflowname
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(newBankGuaranteeRequest.getBusinessService());
+		tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicense.setComment(newBankGuaranteeRequest.getComment());
+		tradeLicense.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		tradeLicense.setTenantId("hr");
+		
+		licenses.add(tradeLicense);
+		tradeLicenseRequest.setLicenses(licenses);
+		tradeLicenseRequest.setRequestInfo(requestInfo);
+		return tradeLicenseRequest;
+	}
+	
 	private void validateValidityFormat(String validity) {
 		try {
 			if (Objects.nonNull(validity)) {
@@ -346,7 +369,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
 		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForBGRelease(newBankGuaranteeRespondData, requestInfo);
 		workflowIntegrator.callWorkFlow(processInstanceRequest);
 
 
