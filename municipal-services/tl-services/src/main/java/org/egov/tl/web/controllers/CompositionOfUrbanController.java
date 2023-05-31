@@ -23,13 +23,14 @@ public class CompositionOfUrbanController {
 	
 	@PostMapping("_create")
 	public ResponseEntity<CompositionOfUrbanResponse> saveCompositionOfUrban(@RequestBody CompositionOfUrbanRequest CompositionOfUrban){
-		CompositionOfUrbanResponse compositionOfUrbanResponse=compositionOfUrbanService.saveCompositionOfUrban(CompositionOfUrban);
+		CompositionOfUrbanResponse compositionOfUrbanResponse=compositionOfUrbanService.saveCompositionOfUrban(CompositionOfUrban,false);
        return new ResponseEntity<>(compositionOfUrbanResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_update")
-	public ResponseEntity<CompositionOfUrbanResponse> updateCompletionCertificate(@RequestBody CompositionOfUrbanRequest CompositionOfUrban){
-		CompositionOfUrbanResponse compositionOfUrbanResponse=compositionOfUrbanService.saveCompositionOfUrban(CompositionOfUrban);   
+	public ResponseEntity<CompositionOfUrbanResponse> updateCompletionCertificate(@RequestBody CompositionOfUrbanRequest CompositionOfUrban
+			,@RequestParam(value = "isScrutiny", required = false) String isScrutiny){
+		CompositionOfUrbanResponse compositionOfUrbanResponse=compositionOfUrbanService.saveCompositionOfUrban(CompositionOfUrban,isScrutiny!=null&&!isScrutiny.equals("0")?true:false);   
        return new ResponseEntity<>(compositionOfUrbanResponse, HttpStatus.OK);
 	}
 	

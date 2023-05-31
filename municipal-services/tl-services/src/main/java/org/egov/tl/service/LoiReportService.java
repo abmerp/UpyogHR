@@ -5123,7 +5123,7 @@ public class LoiReportService {
 				address = " village-" + appliedLandDetails.getRevenueEstate() + ", sector-"
 						+ appliedLandDetails.getSector() + ",Tehsil-" + appliedLandDetails.getTehsil() + ",district-"
 						+ appliedLandDetails.getDistrict();
-				disticName = appliedLandDetails.getDistrict() != null ? appliedLandDetails.getDistrict() : "";
+				disticName = appliedLandDetails.getDistrict() != null ? appliedLandDetails.getDistrict().getLabel() : "";
 				collaborationCompanyName = appliedLandDetails.getDeveloperCompany() != null
 						? (appliedLandDetails.getDeveloperCompany())
 						: ("N/A");

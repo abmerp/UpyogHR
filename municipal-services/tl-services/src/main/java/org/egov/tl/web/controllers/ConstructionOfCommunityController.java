@@ -25,13 +25,14 @@ public class ConstructionOfCommunityController {
 	
 	@PostMapping("_create")
 	public ResponseEntity<ConstructionOfCommunityResponse> saveConstructionOfCommunity(@RequestBody ConstructionOfCommunityRequest constructionOfCommunity){
-		ConstructionOfCommunityResponse constructionOfCommunityResponse=constructionOfCommunityService.saveConstructionOfCommunity(constructionOfCommunity);
+		ConstructionOfCommunityResponse constructionOfCommunityResponse=constructionOfCommunityService.saveConstructionOfCommunity(constructionOfCommunity,false);
        return new ResponseEntity<>(constructionOfCommunityResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_update")
-	public ResponseEntity<ConstructionOfCommunityResponse> updateCompletionCertificate(@RequestBody ConstructionOfCommunityRequest constructionOfCommunity){
-		ConstructionOfCommunityResponse constructionOfCommunityResponse=constructionOfCommunityService.saveConstructionOfCommunity(constructionOfCommunity);   
+	public ResponseEntity<ConstructionOfCommunityResponse> updateCompletionCertificate(@RequestBody ConstructionOfCommunityRequest constructionOfCommunity
+			,@RequestParam(value = "isScrutiny", required = false) String isScrutiny){
+		ConstructionOfCommunityResponse constructionOfCommunityResponse=constructionOfCommunityService.saveConstructionOfCommunity(constructionOfCommunity,isScrutiny!=null&&!isScrutiny.equals("0")?true:false);   
        return new ResponseEntity<>(constructionOfCommunityResponse, HttpStatus.OK);
 	}
 	

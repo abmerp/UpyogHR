@@ -174,8 +174,8 @@ public class Far extends FeatureProcess {
     public static final String NEW = "NEW";
     public static final String OLD_AREA_ERROR = "road width old area";
     public static final String NEW_AREA_ERROR = "road width new area";
-    public static final String OLD_AREA_ERROR_MSG = "No construction shall be permitted if the road width is less than 2.4m for old area.";
-    public static final String NEW_AREA_ERROR_MSG = "No construction shall be permitted if the road width is less than 6.1m for new area.";
+//    public static final String OLD_AREA_ERROR_MSG = "No construction shall be permitted if the road width is less than 2.4m for old area.";
+//    public static final String NEW_AREA_ERROR_MSG = "No construction shall be permitted if the road width is less than 6.1m for new area.";
 
     @Override
     public Plan validate(Plan pl) {
@@ -906,88 +906,88 @@ public class Far extends FeatureProcess {
         String expectedResult = StringUtils.EMPTY;
         boolean isAccepted = false;
 
-        if (typeOfArea.equalsIgnoreCase(OLD)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
-                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOURFOUR) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) < 0) {
-                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
-                pl.getFarDetails().setPermissableFar(ONE_POINTTWO.doubleValue());
-                expectedResult = "<= 1.2";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) < 0) {
-                isAccepted = far.compareTo(ONE_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(ONE_POINTFIVE.doubleValue());
-                expectedResult = "<= 1.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                isAccepted = far.compareTo(ONE_POINTEIGHT) <= 0;
-                pl.getFarDetails().setPermissableFar(ONE_POINTEIGHT.doubleValue());
-                expectedResult = "<= 1.8";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
-                isAccepted = far.compareTo(TWO) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
-                expectedResult = "<= 2";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) >= 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            }
-
-        }
-
-        if (typeOfArea.equalsIgnoreCase(NEW)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
-                isAccepted = far.compareTo(TWO) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
-                expectedResult = "<= 2";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) < 0) {
-                isAccepted = far.compareTo(THREE) <= 0;
-                pl.getFarDetails().setPermissableFar(THREE.doubleValue());
-                expectedResult = "<= 3";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) < 0) {
-                isAccepted = far.compareTo(THREE_POINTTWOFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(THREE_POINTTWOFIVE.doubleValue());
-                expectedResult = "<= 3.25";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) >= 0) {
-                isAccepted = far.compareTo(THREE_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(THREE_POINTFIVE.doubleValue());
-                expectedResult = "<= 3.5";
-            }
-        	}
+//        if (typeOfArea.equalsIgnoreCase(OLD)) {
+//            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
+//                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOURFOUR) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) < 0) {
+//                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
+//                pl.getFarDetails().setPermissableFar(ONE_POINTTWO.doubleValue());
+//                expectedResult = "<= 1.2";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) < 0) {
+//                isAccepted = far.compareTo(ONE_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(ONE_POINTFIVE.doubleValue());
+//                expectedResult = "<= 1.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                isAccepted = far.compareTo(ONE_POINTEIGHT) <= 0;
+//                pl.getFarDetails().setPermissableFar(ONE_POINTEIGHT.doubleValue());
+//                expectedResult = "<= 1.8";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
+//                isAccepted = far.compareTo(TWO) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
+//                expectedResult = "<= 2";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) >= 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            }
+//
+//        }
+//
+//        if (typeOfArea.equalsIgnoreCase(NEW)) {
+//            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
+//                isAccepted = far.compareTo(TWO) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
+//                expectedResult = "<= 2";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) < 0) {
+//                isAccepted = far.compareTo(THREE) <= 0;
+//                pl.getFarDetails().setPermissableFar(THREE.doubleValue());
+//                expectedResult = "<= 3";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) < 0) {
+//                isAccepted = far.compareTo(THREE_POINTTWOFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(THREE_POINTTWOFIVE.doubleValue());
+//                expectedResult = "<= 3.25";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) >= 0) {
+//                isAccepted = far.compareTo(THREE_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(THREE_POINTFIVE.doubleValue());
+//                expectedResult = "<= 3.5";
+//            }
+//        	}
 
             //*** Implemementayion for FAR as per Haryana 
             
@@ -1104,89 +1104,89 @@ public class Far extends FeatureProcess {
         String expectedResult = StringUtils.EMPTY;
         boolean isAccepted = false;
 
-        if (typeOfArea.equalsIgnoreCase(OLD)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
-                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOURFOUR) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) < 0) {
-                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
-                expectedResult = "<= 1.2";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) < 0) {
-                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
-                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
-                expectedResult = "0";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
-                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
-                expectedResult = "0";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
-                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
-                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
-                expectedResult = "0";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
-                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
-                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
-                expectedResult = "0";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
-                isAccepted = far.compareTo(TWO) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
-                expectedResult = "<= 2";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) >= 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            }
-
-        }
-
-        if (typeOfArea.equalsIgnoreCase(NEW)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
-                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
-                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
-                expectedResult = "0";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
-                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
-                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
-                expectedResult = "0";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
-                isAccepted = far.compareTo(TWO) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
-                expectedResult = "<= 2";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) < 0) {
-                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
-                expectedResult = "<= 2.5";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) >= 0
-                    && roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) < 0) {
-                isAccepted = far.compareTo(THREE) <= 0;
-                pl.getFarDetails().setPermissableFar(THREE.doubleValue());
-                expectedResult = "<= 3";
-            } else if (roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) >= 0) {
-                isAccepted = far.compareTo(THREE_POINTFIVE) <= 0;
-                pl.getFarDetails().setPermissableFar(THREE_POINTFIVE.doubleValue());
-                expectedResult = "<= 3";
-            }
-
-        }
+//        if (typeOfArea.equalsIgnoreCase(OLD)) {
+//            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
+//                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOURFOUR) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) < 0) {
+//                isAccepted = far.compareTo(ONE_POINTTWO) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
+//                expectedResult = "<= 1.2";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_THREE_POINTSIX) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) < 0) {
+//                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
+//                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
+//                expectedResult = "0";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_FOUR_POINTEIGHT) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
+//                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
+//                expectedResult = "0";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
+//                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
+//                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
+//                expectedResult = "0";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
+//                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
+//                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
+//                expectedResult = "0";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
+//                isAccepted = far.compareTo(TWO) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
+//                expectedResult = "<= 2";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) >= 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            }
+//
+//        }
+//
+//        if (typeOfArea.equalsIgnoreCase(NEW)) {
+//            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) < 0) {
+//                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
+//                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
+//                expectedResult = "0";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_NINE_POINTONE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) < 0) {
+//                isAccepted = far.compareTo(BigDecimal.ZERO) >= 0;
+//                pl.getFarDetails().setPermissableFar(BigDecimal.ZERO.doubleValue());
+//                expectedResult = "0";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWELVE_POINTTWO) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) < 0) {
+//                isAccepted = far.compareTo(TWO) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO.doubleValue());
+//                expectedResult = "<= 2";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_EIGHTEEN_POINTTHREE) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYFOUR_POINTFOUR) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) < 0) {
+//                isAccepted = far.compareTo(TWO_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(TWO_POINTFIVE.doubleValue());
+//                expectedResult = "<= 2.5";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_TWENTYSEVEN_POINTFOUR) >= 0
+//                    && roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) < 0) {
+//                isAccepted = far.compareTo(THREE) <= 0;
+//                pl.getFarDetails().setPermissableFar(THREE.doubleValue());
+//                expectedResult = "<= 3";
+//            } else if (roadWidth.compareTo(ROAD_WIDTH_THIRTY_POINTFIVE) >= 0) {
+//                isAccepted = far.compareTo(THREE_POINTFIVE) <= 0;
+//                pl.getFarDetails().setPermissableFar(THREE_POINTFIVE.doubleValue());
+//                expectedResult = "<= 3";
+//            }
+//
+//        }
 
         String occupancyName = occupancyType.getType().getName();
 
@@ -1202,28 +1202,28 @@ public class Far extends FeatureProcess {
         boolean isAccepted = false;
 
         if (typeOfArea.equalsIgnoreCase(OLD)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
-                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-                return;
-            } else {
+//            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
+//                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//                return;
+//            } else {
                 isAccepted = far.compareTo(ONE_POINTFIVE) <= 0;
                 pl.getFarDetails().setPermissableFar(ONE_POINTFIVE.doubleValue());
                 expectedResult = "<=" + ONE_POINTFIVE;
-            }
+//            }
 
         }
 
         if (typeOfArea.equalsIgnoreCase(NEW)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-                return;
-            } else {
+//            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//                return;
+//            } else {
                 isAccepted = far.compareTo(ONE_POINTFIVE) <= 0;
                 pl.getFarDetails().setPermissableFar(ONE_POINTFIVE.doubleValue());
                 expectedResult = "<=" + ONE_POINTFIVE;
-            }
+//            }
 
         }
 
@@ -1257,26 +1257,26 @@ public class Far extends FeatureProcess {
         boolean isAccepted = false;
 
         if (typeOfArea.equalsIgnoreCase(OLD)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
-                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-            } else {
+//            if (roadWidth.compareTo(ROAD_WIDTH_TWO_POINTFOUR) < 0) {
+//                errors.put(OLD_AREA_ERROR, OLD_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//            } else {
                 isAccepted = far.compareTo(POINTFIVE) <= 0;
                 pl.getFarDetails().setPermissableFar(POINTFIVE.doubleValue());
                 expectedResult = "<=" + POINTFIVE;
-            }
+//            }
 
         }
 
         if (typeOfArea.equalsIgnoreCase(NEW)) {
-            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
-                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
-                pl.addErrors(errors);
-            } else {
+//            if (roadWidth.compareTo(ROAD_WIDTH_SIX_POINTONE) < 0) {
+//                errors.put(NEW_AREA_ERROR, NEW_AREA_ERROR_MSG);
+//                pl.addErrors(errors);
+//            } else {
                 isAccepted = far.compareTo(POINTFIVE) <= 0;
                 pl.getFarDetails().setPermissableFar(POINTFIVE.doubleValue());
                 expectedResult = "<=" + POINTFIVE;
-            }
+//            }
 
         }
 

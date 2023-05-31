@@ -3,11 +3,13 @@ package org.egov.tl.abm.repo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringJoiner;
 
 import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -51,11 +53,11 @@ public class ConstructionOfCommunityRepo {
 			+ "where eg_tl_tradelicense.licensenumber=:licenseNumber";//and  eg_tl_tradelicense.status!='INITIATED'  //and eg_user.id=:userId
 	
 	
-	String querybyLicenseNumber="select * from public.eg_tl_construction_Of_community where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
+	String querybyLicenseNumber="select * from public.eg_tl_construction_Of_community where license_number IN(:licenseNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 
-	String querybyApplicationNumber="select * from public.eg_tl_construction_Of_community where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
-			+ " order by created_date desc limit 1";
+	String querybyApplicationNumber="select * from public.eg_tl_construction_Of_community where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
+			+ " order by created_date desc";
 
 	String queryApplicationNumber="select * from public.eg_tl_construction_Of_community";
 	public void save(ConstructionOfCommunityRequest constructionOfCommunityRequest) {
@@ -106,31 +108,11 @@ public class ConstructionOfCommunityRepo {
    public ConstructionOfCommunity getConstructionOfCommunityByLicenseNumber(String licenseNumber) {
 		
 	   ConstructionOfCommunity constructionOfCommunity=null;
-		try {
-		List<Object> preparedStmtList = new ArrayList<>();
-		List<ConstructionOfCommunity> constructionOfCommunityList = jdbcTemplate.query(querybyLicenseNumber.replaceAll(":licenseNumber", "'"+licenseNumber+"'"), preparedStmtList.toArray(),  (rs, rowNum) ->{
-			
-			AuditDetails auditDetails=null;
-			try {
-				AuditDetails audit_details = new Gson().fromJson(
-						rs.getString("audit_details").equals("{}") || rs.getString("audit_details").equals("null")
-								? null
-								: rs.getString("audit_details"),
-								AuditDetails.class);
-				System.out.println(audit_details);
-				auditDetails=audit_details;
-			}catch (Exception e) {
-			   e.printStackTrace();
-			}
-			
-			
-			return ConstructionOfCommunity.builder()
-				.id(rs.getString("id"))
-				.applicationNumber(rs.getString("application_number"))
-				.applicationStatus(rs.getInt("application_status"))
-				.auditDetails(auditDetails)
-				.build();});
-		if(constructionOfCommunityList!=null&&!constructionOfCommunityList.isEmpty()) {
+		
+	   try {
+	   String query=querybyLicenseNumber.replaceAll(":licenseNumber", "'"+licenseNumber+"'");
+	   List<ConstructionOfCommunity> constructionOfCommunityList = getConstructionOfCommunityList(query);
+       if(constructionOfCommunityList!=null&&!constructionOfCommunityList.isEmpty()) {
 			constructionOfCommunity=constructionOfCommunityList.get(0);
 		}
 		}catch (Exception e) {
@@ -151,9 +133,12 @@ public class ConstructionOfCommunityRepo {
 	}
 	
 	public List<ConstructionOfCommunity> getConstructionOfCommunityDetailsByApplicationNumberList(String applicationNumber){
-		String query=querybyApplicationNumber.replace(":applicationNumber", "'"+applicationNumber+"'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query=querybyApplicationNumber.replace(":applicationNumber", applicationNumber);
 		return getConstructionOfCommunityList(query);
 	}
+	
+	
 	
 	
 	private List<ConstructionOfCommunity> getConstructionOfCommunityList(String query){
@@ -217,6 +202,11 @@ public class ConstructionOfCommunityRepo {
 					.tenantId(rs.getString("tenantid"))
 					.businessService(rs.getString("businessservice"))
 					.status(rs.getString("status"))
+					
+					.tcpApplicationNumber(rs.getString("tcp_application_number"))
+					.tcpCaseNumber(rs.getString("tcp_case_number"))
+					.tcpDairyNumber(rs.getString("tcp_dairy_number"))
+					
 					.build();
 			});
 			if(constructionOfCommunity!=null&&!constructionOfCommunity.isEmpty()) {

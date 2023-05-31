@@ -40,6 +40,9 @@ public class CompositionOfUrban {
 	@JsonProperty("id")
 	private String id;
 	
+	@JsonProperty("userUuid")
+	private String userUUID;
+	
 	@JsonProperty("applicationNumber")
 	private String applicationNumber; 
 	

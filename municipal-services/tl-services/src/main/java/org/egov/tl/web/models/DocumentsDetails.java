@@ -21,5 +21,7 @@ public class DocumentsDetails {
 
 	@JsonProperty("document")
 	private String document;
+	@JsonProperty("applicationSection")
+	private String applicationSection;
 
 }

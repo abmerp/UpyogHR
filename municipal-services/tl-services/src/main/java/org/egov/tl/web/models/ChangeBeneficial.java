@@ -92,9 +92,6 @@ public class ChangeBeneficial {
 	@JsonProperty("fiancialCapacityCertificate")
 	private String fiancialCapacityCertificate;
 	
-	@JsonProperty("diaryNumber")
-	private String diaryNumber; 
-	
 	@JsonProperty("tranactionId")
 	private String tranactionId;
 	
@@ -124,6 +121,16 @@ public class ChangeBeneficial {
 	
 	@JsonProperty("assignee")
 	private List<String> assignee;
+	
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber; 
+	
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber; 
+	
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber; 
+	
 	
 
 	

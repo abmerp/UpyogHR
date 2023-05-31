@@ -16,6 +16,9 @@ import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.ChangeBeneficial;
+import org.egov.tl.web.models.ChangeBeneficialRequest;
+import org.egov.tl.web.models.ChangeBeneficialResponse;
 import org.egov.tl.web.models.CompletionCertificate;
 import org.egov.tl.web.models.CompletionCertificateRequest;
 import org.egov.tl.web.models.CompletionCertificateResponse;
@@ -80,7 +83,7 @@ public class CompletionCertificateService {
 	private WorkflowIntegrator workflowIntegrator;
 
 	public CompletionCertificateResponse createCompletionCertificate(
-			CompletionCertificateRequest completionCertificateRequest) {
+			CompletionCertificateRequest completionCertificateRequest,boolean isScunitny) {
 		CompletionCertificateResponse completionCertificateResponse = null;
 		String licenseNumber = completionCertificateRequest.getCompletionCertificate().get(0).getLicenseNumber();
 
@@ -98,6 +101,10 @@ public class CompletionCertificateService {
 			CompletionCertificate CompletionCertificateCheck = completionCertificateRepo
 					.getCompletionCertificateByLicenseNumber(licenseNumber);
 			if (CompletionCertificateCheck != null) {
+				if(isScunitny) {
+					CompletionCertificateCheck.setApplicationStatus(1);
+				}
+				
 				if (CompletionCertificateCheck.getApplicationStatus() == 1) {
 					completionCertificateResponse = createCompletionCertificate(completionCertificateRequest,
 							CompletionCertificateCheck, false);
@@ -150,6 +157,19 @@ public class CompletionCertificateService {
 						certificate.setAction("INITIATE");
 						certificate.setStatus("INITIATE");
 					
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(certificate.getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, completionCertificateRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							certificate.setTcpApplicationNumber(tcpApplicationNumber);
+							certificate.setTcpDairyNumber(tcpDairyNumber);
+							certificate.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
 						
 						certificate.setApplicationStatus(1);
 						certificate.setCreatedDate(new Timestamp(time));
@@ -162,6 +182,17 @@ public class CompletionCertificateService {
 						auditDetails.setLastModifiedBy(
 								completionCertificateRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);
+						
+						certificate.setApplicationNumber(completionCertificateData.getApplicationNumber());
+						String action=certificate.getAction();
+						String status=certificate.getStatus();
+						certificate.setAction(action!=null?action:"INITIATE");
+						certificate.setStatus(status!=null?status:"INITIATE");
+						
+						certificate.setTcpApplicationNumber(completionCertificateData.getTcpApplicationNumber());
+						certificate.setTcpCaseNumber(completionCertificateData.getTcpCaseNumber());
+						certificate.setTcpDairyNumber(completionCertificateData.getTcpDairyNumber());
+					
 					}
 					certificate.setAuditDetails(auditDetails);
 
@@ -185,6 +216,11 @@ public class CompletionCertificateService {
 					.requestInfo(completionCertificateRequest.getRequestInfo())
 					.message("Records has been inserted successfully.").status(true).build();
 		} else {
+			if(completionCertificate.get(0).getApplicationNumber()!=null&&completionCertificate.get(0).getAction()==null&&completionCertificate.get(0).getStatus()==null) {
+				List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
+				TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
+				workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+			}
 			completionCertificateRepo.update(completionCertificateRequest);
 			completionCertificateResponse = CompletionCertificateResponse.builder()
 					.completionCertificate(completionCertificate)
@@ -228,36 +264,6 @@ public class CompletionCertificateService {
 		}
 
 		return completionCertificateResponse;
-	}
-
-	public CompletionCertificate makePayment(String licenseNumber, RequestInfo requestInfo)
-			throws JsonProcessingException {
-		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
-		List<String> licenseNumberList = new ArrayList<>();
-		licenseNumberList.add(licenseNumber);
-		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
-
-		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria, requestInfo);
-		log.info("tcpnumbers:\t" + tcpNumbers);
-		String data = null;
-
-		data = mapper.writeValueAsString(tcpNumbers);
-//			
-		JSONObject json = new JSONObject(tcpNumbers);
-
-		json.toString();
-		String application = json.getAsString("TCPApplicationNumber");
-		String caseNumber = json.getAsString("TCPCaseNumber");
-		String dairyNumber = json.getAsString("TCPDairyNumber");
-
-		CompletionCertificate completionCertificate = new CompletionCertificate();
-
-		completionCertificate.setTcpApplicationNumber(application);
-		completionCertificate.setTcpCaseNumber(caseNumber);
-		completionCertificate.setTcpDairyNumber(dairyNumber);
-
-		return completionCertificate;
-
 	}
 
 }

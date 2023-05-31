@@ -1,8 +1,10 @@
-package org.egov.tl.web.models;
+package org.egov.land.abm.contract;
 
 import java.util.List;
 
 import org.egov.common.contract.request.RequestInfo;
+import org.egov.land.abm.models.EgScrutinyInfoRequest;
+import org.egov.land.abm.newservices.entity.EgScrutiny;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,25 +14,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class RealeseBankGurenteeResponse {
-	
-	@JsonProperty("ResponseInfo")
+public class PerformaContract {
+	@JsonProperty("requestInfo")
 	private RequestInfo requestInfo = null;
-	
-	@JsonProperty("releaseBankGuarantee")
-	private List<?> releaseBankGuarantee;
-	
-	@JsonProperty("message")
-	private String message;
-	
-	@JsonProperty("status")
-	private boolean status;
 
-
+	@JsonProperty("egScrutiny")
+	private List<EgScrutiny> egScrutiny;
 }

@@ -49,6 +49,14 @@ public class NewBankGuaranteeRepo {
 		producer.push(tlConfiguration.getUpdateNewBankGuaranteeTopic(), newBankGuaranteeContract);
 	}
 	
+	public void updateExtend(NewBankGuaranteeContract newBankGuaranteeContract) {
+		producer.push(tlConfiguration.getUpdateExtendNewBankGuaranteeTopic(), newBankGuaranteeContract);
+	}
+	
+	public void updateRelease(NewBankGuaranteeContract newBankGuaranteeContract) {
+		producer.push(tlConfiguration.getUpdateReleaseNewBankGuaranteeTopic(), newBankGuaranteeContract);
+	}
+	
 	public List<NewBankGuaranteeRequest> getNewBankGuaranteeData(
 			BankGuaranteeSearchCriteria bankGuaranteeSearchCriteria) {
 		List<Object> preparedStmtList = new ArrayList<>();

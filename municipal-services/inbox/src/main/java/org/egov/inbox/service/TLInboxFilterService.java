@@ -136,7 +136,12 @@ public class TLInboxFilterService {
 	private String ExtensionOfCLUPermissionSearcherCountEndPoint;
 	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.search.desc.path}")
 	private String ExtensionOfCLUPermissionSearcherDescEndPoint;
-
+	@Value("${egov.searcher.tl.TP.search.path}")
+	private String technicalPrpfessionalSearchPath;
+	@Value("${egov.searcher.tl.TP.count.path}")
+	private String technicalPrpfessionalCountPath;
+	@Value("${egov.searcher.tl.TP.search.desc.path}")
+	private String technicalPrpfessionalSearchDescPath;
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -155,6 +160,8 @@ public class TLInboxFilterService {
 	private static final String BUSINESSSERVICE_NEWTL = "NewTL";
 	private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
+	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	
 
 	private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
 
@@ -162,6 +169,7 @@ public class TLInboxFilterService {
 
 	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
 	private static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
+	private static final String BUSINESSSERVICE_TECHNICAL_PROFESSIONAL = "TECHNICAL_PROFESSIONAL";
 
 	public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria,
 			HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo) {
@@ -241,6 +249,16 @@ public class TLInboxFilterService {
 				// will have different search endpoints
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 				switch (businessService) {
+
+				case BUSINESSSERVICE_TECHNICAL_PROFESSIONAL:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(technicalPrpfessionalSearchDescPath);
+					} else {
+						uri.append(searcherHost).append(technicalPrpfessionalSearchPath);
+						log.info("search for application no url" + uri);
+					}
+					break;
 				case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
@@ -323,6 +341,24 @@ public class TLInboxFilterService {
 					}
 					break;
 				case BUSINESSSERVICE_BG_NEW:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+					} else {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						log.info("search for application no url" + uri);
+					}
+
+					break;
+				case BUSINESSSERVICE_BG_RELEASE:
+					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
+							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+					} else {
+						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						log.info("search for application no url" + uri);
+					}
+
 					break;
 				case BUSINESSSERVICE_BG_MORTGAGE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
@@ -471,6 +507,10 @@ public class TLInboxFilterService {
 				String businessService = criteria.getProcessSearchCriteria().getBusinessService().get(0);
 
 				switch (businessService) {
+				case BUSINESSSERVICE_TECHNICAL_PROFESSIONAL:
+					uri.append(searcherHost).append(technicalPrpfessionalCountPath);
+					log.info("uri searcher\t" + uri);
+					break;
 				case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
 					uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherCountEndPoint);
 					log.info("uri searcher\t" + uri);
@@ -511,7 +551,15 @@ public class TLInboxFilterService {
 
 					break;
 				case BUSINESSSERVICE_BG_NEW:
+					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					log.info("uri searcher\t" + uri);
 					break;
+				
+				case BUSINESSSERVICE_BG_RELEASE:
+					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					log.info("uri searcher\t" + uri);
+					break;
+					
 				case BUSINESSSERVICE_BG_MORTGAGE:
 
 					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);

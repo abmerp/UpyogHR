@@ -27,6 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.egov.tl.util.TLConstants.*;
 import static org.egov.tl.util.TLConstants.COMMON_MASTERS_MODULE;
@@ -405,5 +407,40 @@ public class TradeUtil {
 		String uuid = employeeResponse.getEmployees().get(0).getUuid();
 		return uuid;
 	}
+	
+	public List<String> getFirstAssigneeByRoleBG(String role, String tenantID, boolean b, RequestInfo requestInfo) {
+		
+		StringBuilder uri = new StringBuilder();
+		uri.append(config.getHrmsHost());
+		uri.append(config.getHrmsContextPath());
+		uri.append("?tenantId=" + tenantID);
+		uri.append("&roles=" + role);
+		uri.append("&isActive=" + b);
+		RequestInfoWrapper requestInfoWrapper = RequestInfoWrapper.builder().requestInfo(requestInfo).build();
+		EmployeeResponse employeeResponse = null;
+		String data = null;
+		Object fetchResult = serviceRequestRepository.fetchResult(uri, requestInfoWrapper);
+		try {
+			data = mapper.writeValueAsString(fetchResult);
+		} catch (JsonProcessingException e) {
+			log.error("exception inside method getFirstAssigneeByRole", e);
+		}
+		ObjectReader reader = mapper.readerFor(new TypeReference<EmployeeResponse>() {
+		});
+		try {
+			employeeResponse = reader.readValue(data);
+		} catch (JsonMappingException em) {
+
+			log.error("exception inside method getFirstAssigneeByRole", em);
+		} catch (JsonProcessingException ep) {
+			log.error("exception inside method getFirstAssigneeByRole", ep);
+		}
+//		.filter(id->id.getId().equals("2965"))
+		List<String> list=employeeResponse.getEmployees().stream().map(uuid->uuid.getUuid()).collect(Collectors.toList());
+//		String uuid = employeeResponse.getEmployees().get(0).getUuid();
+		return list;//.isEmpty()?Arrays.asList(uuid):list;
+	}
+	
+
 	
 }

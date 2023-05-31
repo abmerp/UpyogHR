@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
+import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -51,11 +52,11 @@ public class CompletionCertificateRepo {
 																																																							// //and
 																																																							// eg_user.id=:userId
 
-	String querybyLicenseNumber = "select * from public.eg_tl_completion_certificate where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
+	String querybyLicenseNumber = "select * from public.eg_tl_completion_certificate where license_number IN(:licenseNumber) and application_status IN(1,2,3) \r\n"
 			+ " order by created_date desc limit 1";
 
-	String querybyApplicationNumber = "select * from public.eg_tl_completion_certificate where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
-			+ " order by created_date desc limit 1";
+	String querybyApplicationNumber = "select * from public.eg_tl_completion_certificate where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
+			+ " order by created_date desc";
 
 	String queryTlApplicationNumber = "select * from public.eg_tl_tradelicense";
 	String queryCompletionApplicationNumber = "select * from public.eg_tl_completion_certificate";
@@ -100,27 +101,8 @@ public class CompletionCertificateRepo {
 
 		CompletionCertificate completionCertificate = null;
 		try {
-			List<Object> preparedStmtList = new ArrayList<>();
-			List<CompletionCertificate> completionCertificateList = jdbcTemplate.query(
-					querybyLicenseNumber.replaceAll(":licenseNumber", "'" + licenseNumber + "'"),
-					preparedStmtList.toArray(), (rs, rowNum) -> {
-
-						AuditDetails auditDetails = null;
-						try {
-							AuditDetails audit_details = new Gson().fromJson(rs.getString("audit_details").equals("{}")
-									|| rs.getString("audit_details").equals("null") ? null
-											: rs.getString("audit_details"),
-									AuditDetails.class);
-							System.out.println(audit_details);
-							auditDetails = audit_details;
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-
-						return CompletionCertificate.builder().id(rs.getString("id"))
-								.applicationNumber(rs.getString("application_number"))
-								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
-					});
+			String query=querybyLicenseNumber.replaceAll(":licenseNumber", "'" + licenseNumber + "'");
+			List<CompletionCertificate> completionCertificateList = getCompletionCertificateList(query);
 			if (completionCertificateList != null && !completionCertificateList.isEmpty()) {
 				completionCertificate = completionCertificateList.get(0);
 			}
@@ -166,7 +148,8 @@ public class CompletionCertificateRepo {
 	}
 
 	public List<CompletionCertificate> getBeneficialDetailsByApplicationNumberList(String applicationNumber) {
-		String query = querybyApplicationNumber.replace(":applicationNumber", "'" + applicationNumber + "'");
+		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
+		String query = querybyApplicationNumber.replace(":applicationNumber",applicationNumber);
 		return getCompletionCertificateList(query);
 	}
 
@@ -253,13 +236,16 @@ public class CompletionCertificateRepo {
 								.accessPermissionFromNHAI(rs.getString("access_permission_fromnhai"))
 								.tranactionId(rs.getString("transaction_id"))
 								.newAdditionalDetails(additionalDetails)
-								.tcpApplicationNumber(rs.getString("tcpapplicationnumber"))
-								.tcpCaseNumber(rs.getString("tcpcasenumber"))
-								.tcpDairyNumber(rs.getString("tcpdairyNumber"))
 								.action(rs.getString("action"))
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
+								
+								.tcpApplicationNumber(rs.getString("tcp_application_number"))
+								.tcpCaseNumber(rs.getString("tcp_case_number"))
+								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
+								
+								
 								.build();
 					});
 			if (completionCertificate != null && !completionCertificate.isEmpty()) {

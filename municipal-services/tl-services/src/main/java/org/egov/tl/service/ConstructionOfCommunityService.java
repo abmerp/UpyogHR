@@ -3,6 +3,7 @@ package org.egov.tl.service;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,10 +23,15 @@ import org.egov.tl.web.models.ConstructionOfCommunityRequest;
 import org.egov.tl.web.models.ConstructionOfCommunityResponse;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseRequest;
+import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -72,8 +78,15 @@ public class ConstructionOfCommunityService {
 	@Autowired
 	private WorkflowIntegrator workflowIntegrator;
 	
+	@Autowired
+	ObjectMapper mapper;
+	
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 
-	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest){
+	
+
+	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest,boolean isScunitny){
 		ConstructionOfCommunityResponse constructionOfCommunityResponse = null;
 		String licenseNumber=constructionOfCommunityRequest.getConstructionOfCommunity().get(0).getLicenseNumber();
 		
@@ -87,6 +100,9 @@ public class ConstructionOfCommunityService {
 	    }else {
 	    	ConstructionOfCommunity constructionOfCommunity=constructionOfCommunityRepo.getConstructionOfCommunityByLicenseNumber(licenseNumber);
 	    	if(constructionOfCommunity!=null) {
+	    		if(isScunitny) {
+	    			constructionOfCommunity.setApplicationStatus(1);
+				}
 	    		if(constructionOfCommunity.getApplicationStatus()==1) {
 	    			constructionOfCommunityResponse=createConstructionOfCommunity(constructionOfCommunityRequest,constructionOfCommunity,false);
 	    		}else {
@@ -120,6 +136,22 @@ public class ConstructionOfCommunityService {
 						construction.setTenantId("hr");
 						construction.setAction("INITIATE");
 						construction.setStatus("INITIATE");
+						
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(construction.getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, constructionOfCommunityRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							construction.setTcpApplicationNumber(tcpApplicationNumber);
+							construction.setTcpDairyNumber(tcpDairyNumber);
+							construction.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							e.printStackTrace();
+							// TODO: handle exception
+						}
+
 					
 						construction.setApplicationStatus(1);
 						construction.setCreatedDate(new Timestamp(time));
@@ -131,6 +163,18 @@ public class ConstructionOfCommunityService {
 						auditDetails=constructionOfCommunity.getAuditDetails();
 						auditDetails.setLastModifiedBy(constructionOfCommunityRequest.getRequestInfo().getUserInfo().getUuid());
 						auditDetails.setLastModifiedTime(time);
+					
+						construction.setApplicationNumber(constructionOfCommunity.getApplicationNumber());
+						String action=construction.getAction();
+						String status=construction.getStatus();
+						construction.setAction(action!=null?action:"INITIATE");
+						construction.setStatus(status!=null?status:"INITIATE");
+						
+						construction.setTcpApplicationNumber(constructionOfCommunity.getTcpApplicationNumber());
+						construction.setTcpCaseNumber(constructionOfCommunity.getTcpCaseNumber());
+						construction.setTcpDairyNumber(constructionOfCommunity.getTcpDairyNumber());
+				
+						
 					}
 					construction.setAuditDetails(auditDetails);
 					
@@ -138,10 +182,20 @@ public class ConstructionOfCommunityService {
 						construction.setIsDraft("0");	
 					}else {
 						construction.setIsDraft("1");
-					}					
+					}		
+					try {
+						String data = mapper.writeValueAsString(construction.getNewAdditionalDetails());
+						JsonNode jsonNode = mapper.readTree(data);
+						construction.setNewAdditionalDetails(jsonNode);
+					} catch (JsonProcessingException e) {
+						e.printStackTrace();
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 					return construction;
+
 				}).collect(Collectors.toList());	
-		constructionOfCommunityRequest.setConstructionOfCommunity(constructionOfCommunityList);
+		        constructionOfCommunityRequest.setConstructionOfCommunity(constructionOfCommunityList);
 		
 		if(isCreate) {
 			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
@@ -152,6 +206,12 @@ public class ConstructionOfCommunityService {
 		    constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(constructionOfCommunityList)
 					.requestInfo(constructionOfCommunityRequest.getRequestInfo()).message("Records has been inserted successfully.").status(true).build();
 		} else {
+			
+			if(constructionOfCommunityList.get(0).getApplicationNumber()!=null&&constructionOfCommunityList.get(0).getAction()==null&&constructionOfCommunityList.get(0).getStatus()==null) {
+				List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
+				TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,"INITIATE",assignee,constructionOfCommunityList.get(0).getApplicationNumber(),CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,constructionOfCommunityRequest.getRequestInfo());
+				workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
+			}
 			constructionOfCommunityRepo.update(constructionOfCommunityRequest);
 			constructionOfCommunityResponse = ConstructionOfCommunityResponse.builder().constructionOfCommunity(constructionOfCommunityList)
 					.requestInfo(constructionOfCommunityRequest.getRequestInfo()).message("Records has been updated successfully.").status(true).build();

@@ -59,7 +59,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ElectricPlanService {
 
-	private static final String businessService_TL = "ELECTRICAL_PLAN";
+	// private static final String businessService_TL = "ELECTRICAL_PLAN";
 
 	private static final String SENDBACK_STATUS = "EP_SENDBACK_TO_APPLICANT";
 
@@ -256,12 +256,12 @@ public class ElectricPlanService {
 		tradeLicenseEP.setApplicationNumber(electricPlanRequest.getApplicationNumber());
 		tradeLicenseEP.setWorkflowCode(electricPlanRequest.getWorkflowCode());
 		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
-		tradeLicenseDetail.setTradeType(businessService_TL);
+		tradeLicenseDetail.setTradeType(config.getElectricPlanBusinessService());
 		tradeLicenseEP.setTradeLicenseDetail(tradeLicenseDetail);
 		tradeLicenseEP.setComment(electricPlanRequest.getComment());
 		tradeLicenseEP.setWfDocuments(electricPlanRequest.getWfDocuments());
 		tradeLicenseEP.setTenantId(electricPlanRequest.getTenantID());
-		tradeLicenseEP.setBusinessService(businessService_TL);
+		tradeLicenseEP.setBusinessService(config.getElectricPlanBusinessService());
 		tradeLicenseRequest.setRequestInfo(requestInfo);
 		tradeLicenseEPlist.add(tradeLicenseEP);
 		tradeLicenseRequest.setLicenses(tradeLicenseEPlist);
@@ -302,7 +302,7 @@ public class ElectricPlanService {
 			if (!electricPlanRequest.getStatus().equalsIgnoreCase(SENDBACK_STATUS) && !usercheck(requestInfo)) {
 				String currentStatus = searchServicePlan.get(0).getStatus();
 				BusinessService workflow = workflowService.getBusinessService(electricPlanRequest.getTenantID(),
-						electricPlanContract.getRequestInfo(), businessService_TL);
+						electricPlanContract.getRequestInfo(), config.getElectricPlanBusinessService());
 				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract,
 						electricPlanRequest);
 				electricPlanRequest.setAuditDetails(auditDetails);
@@ -319,7 +319,7 @@ public class ElectricPlanService {
 						Arrays.asList(assignee("STP_HQ", electricPlanRequest.getTenantID(), true, requestInfo)));
 				electricPlanRequest.setAction(CITIZEN_UPDATE_ACTION);
 				BusinessService workflow = workflowService.getBusinessService(electricPlanRequest.getTenantID(),
-						electricPlanContract.getRequestInfo(), businessService_TL);
+						electricPlanContract.getRequestInfo(), config.getElectricPlanBusinessService());
 				validateUpdateRoleAndActionFromWorkflow(workflow, currentStatus, electricPlanContract,
 						electricPlanRequest);
 				electricPlanRequest.setAuditDetails(auditDetails);
