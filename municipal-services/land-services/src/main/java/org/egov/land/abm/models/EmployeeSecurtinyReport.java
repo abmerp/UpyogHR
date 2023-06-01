@@ -14,6 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeSecurtinyReport  {
+	private Integer id;
 	private String designation;
 	private String role;
 	private String employeeName;

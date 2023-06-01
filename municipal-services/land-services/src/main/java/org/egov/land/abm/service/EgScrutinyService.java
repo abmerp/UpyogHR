@@ -138,6 +138,7 @@ public class EgScrutinyService {
 			object.setDesignation(egScrutiny2.getDesignation());
 			object.setCreatedOn(egScrutiny2.getCreatedOn());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
+			object.setId(egScrutiny2.getId());
 
 			int i = 0;
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
