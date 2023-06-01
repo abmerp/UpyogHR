@@ -361,6 +361,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
 		
+		newBankGuaranteeRespondData.setApplicationNumber(getReleaseApplicationNumber(requestInfo,true));
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
@@ -385,7 +386,7 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setBankGurenteeCertificateDescription(newBankGuaranteeRequest.getBankGurenteeCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
-		
+		newBankGuaranteeRespondData.setApplicationNumber(getReleaseApplicationNumber(requestInfo,false));
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_NEW);
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
@@ -396,6 +397,23 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
 		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
 		workflowIntegrator.callWorkFlow(processInstanceRequest);
+	}
+	
+	private String getReleaseApplicationNumber(RequestInfo requestInfo,boolean type) {
+		String applicationNumber=null;
+		if(type) {
+			List<String> idGenIds = enrichmentService.getIdList(requestInfo,
+					BUSINESSSERVICE_TENANTID,
+					tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+					tlConfiguration.getReleaseBankGuaranteeApplNoIdGenFormat(), 1);
+			applicationNumber = idGenIds.get(0);
+		}else {
+			List<String> idGenIds = enrichmentService.getIdList(requestInfo,
+					BUSINESSSERVICE_TENANTID, tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+					tlConfiguration.getExtendBankGuaranteeApplNoIdGenFormat(), 1);
+			applicationNumber = idGenIds.get(0);
+		}
+		return applicationNumber;
 	}
 	
 	public void getKhasraDetails(String loiNumber) {

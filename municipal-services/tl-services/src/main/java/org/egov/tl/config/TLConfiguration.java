@@ -341,6 +341,13 @@ public class TLConfiguration {
 	@Value("${egov.idgen.tl.bankguarantee.new.format}")
 	private String newBankGuaranteeApplNoIdGenFormat;
 
+	@Value("${egov.idgen.tl.bankguarantee.release.format}")
+	private String releaseBankGuaranteeApplNoIdGenFormat;
+	
+	@Value("${egov.idgen.tl.bankguarantee.extend.format}")
+	private String extendBankGuaranteeApplNoIdGenFormat;
+	
+	
 	@Value("${persister.bankguarantee.new.update}")
 	private String updateNewBankGuaranteeTopic;
 
