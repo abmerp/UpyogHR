@@ -16,6 +16,8 @@ import org.egov.tl.web.models.bankguarantee.MortgageKhasraDetails;
 import org.egov.tl.web.models.bankguarantee.MortgagePlotDetails;
 import org.egov.tl.web.models.bankguarantee.NewBankGuaranteeRequest;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -128,4 +130,33 @@ public class NewBankGuarantee {
 	
 	private String businessService;
 	private String workflowCode = businessService;
+	
+	
+
+	
+	/******************* realese bank gurentee  start**************************/
+		private String release;
+		private String bankGuaranteeReplacedWith;
+		private String reasonForReplacement;
+		private String applicationCerficifate;
+		private String applicationCerficifateDescription;
+		private String completionCertificate;
+		private String completionCertificateDescription;
+		private String anyOtherDocument;
+		private String anyOtherDocumentDescription;	
+	
+	/******************* realese bank gurentee  start**************************/
+		
+
+	/******************* extend bank gurentee  start**************************/
+		private String dateOfAmendment;
+		private String amendmentExpiryDate;
+		private String amendmentClaimExpiryDate;
+		private String issuingBank;	
+		private String bankGurenteeCertificate;
+		private String bankGurenteeCertificateDescription;
+		
+	/******************* extend bank gurentee  end**************************/
+		
+
 }

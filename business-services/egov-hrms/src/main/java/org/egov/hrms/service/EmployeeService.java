@@ -139,7 +139,7 @@ public class EmployeeService {
 	public EmployeeResponse create(EmployeeRequest employeeRequest) {
 		RequestInfo requestInfo = employeeRequest.getRequestInfo();
 		Map<String, String> pwdMap = new HashMap<>();
-		idGenService.setIds(employeeRequest);
+	//	idGenService.setIds(employeeRequest);
 		employeeRequest.getEmployees().stream().forEach(employee -> {
 			enrichCreateRequest(employee, requestInfo);
 			createUser(employee, requestInfo);
@@ -274,7 +274,7 @@ public class EmployeeService {
 		pwdParams.add(employee.getUser().getMobileNumber());
 		pwdParams.add(employee.getTenantId());
 		pwdParams.add(employee.getUser().getName().toUpperCase());
-		employee.getUser().setPassword(hrmsUtils.generatePassword(pwdParams));
+	//	employee.getUser().setPassword(hrmsUtils.generatePassword(pwdParams));
 		employee.getUser().setUserName(employee.getCode());
 		employee.getUser().setActive(true);
 		employee.getUser().setType(UserType.EMPLOYEE.toString());
@@ -607,8 +607,8 @@ public class EmployeeService {
 
 			HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map,
 					headers);
-			String url = "http://tcp.abm.com:8443";
-			return restTemplate.postForEntity(url + "/user/oauth/token", request, Map.class).getBody();
+		
+			return restTemplate.postForEntity( userHost+ "/user/oauth/token", request, Map.class).getBody();
 
 		} catch (Exception e) {
 			log.error("Error occurred while logging-in via register flow", e);
@@ -658,7 +658,10 @@ public class EmployeeService {
 		String sso1 = "no";
 		EmployeeRequest employeeRequest = new EmployeeRequest();
 		EmployeeSearchCriteria employeeSearchCriteria = new EmployeeSearchCriteria();
-		if (ssoValue.equalsIgnoreCase(sso1)) {
+		String tenant = splitTenant(ssoEmployee.getOfficeName());
+	//	tenant = tenant.replaceAll( "hr",tenant);
+		tenant="hr";
+		if (ssoValue.equalsIgnoreCase(sso)) {
 			List<String> codes = new ArrayList<>();
 			codes.add(ssoEmployee.getUserName());
 			employeeSearchCriteria.setCodes(codes);
@@ -676,8 +679,10 @@ public class EmployeeService {
 			String url = (tcpReturnUrl + contextPath);
 
 			if (searchUsers.getEmployees().size() == 0) {
-				String tenant = splitTenant(ssoEmployee.getOfficeName());
-				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
+			
+				employee.setTenantId(requestInfo.getUserInfo().getTenantId());			
+				//codes.add(ssoEmployee.getUserName());
+				employee.setCode(ssoEmployee.getUserName());
 				// userDetail.setPermanentPincode("123456");
 				// userDetail.setCorrespondencePincode("123456");
 				// userDetail.setRelationship(GuardianRelation.OTHER);
@@ -712,12 +717,15 @@ public class EmployeeService {
 				return ssoEmployeeMap;
 
 			} else {
-
+				userInfo.setId(searchUsers.getEmployees().get(0).getId());
+				userInfo.setUuid(searchUsers.getEmployees().get(0).getUuid());
+				requestInfo.setUserInfo(userInfo);
 				userDetail.setActive(true);
 				userDetail.setUuid(searchUsers.getEmployees().get(0).getUuid());
-				userDetail.setTenantId(requestInfo.getUserInfo().getTenantId());
+				userDetail.setTenantId(tenant);
 				userDetail.setRoles(searchUsers.getEmployees().get(0).getUser().getRoles());
 				userDetail.setPassword("eGov@4321");
+				userDetail.setOtpReference("123456");
 				employee.setIsActive(true);
 				employee.setUuid(searchUsers.getEmployees().get(0).getUuid());
 				employee.setId(searchUsers.getEmployees().get(0).getId());

@@ -9,6 +9,8 @@ import org.egov.tl.service.dao.LicenseServiceDao;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -77,6 +79,66 @@ public class NewBankGuaranteeRequest {
 	*/
 	private String businessService;
 	private String workflowCode = businessService;
+	
+	
+	
+	/******************* realese bank gurentee  start**************************/
+	
+	
+	    @JsonProperty("updateType")
+	    private String updateType;
+	
+		@JsonProperty("release")
+		private String release;
+		
+		@JsonProperty("bankGuaranteeReplacedWith")
+		private String bankGuaranteeReplacedWith;
+		
+		@JsonProperty("reasonForReplacement")
+		private String reasonForReplacement;
+
+		@JsonProperty("applicationCerficifate")
+		private String applicationCerficifate;
+		
+		@JsonProperty("applicationCerficifateDescription")
+		private String applicationCerficifateDescription;
+		
+		@JsonProperty("completionCertificate")
+		private String completionCertificate;
+		
+		@JsonProperty("completionCertificateDescription")
+		private String completionCertificateDescription;
+		
+		@JsonProperty("anyOtherDocument")
+		private String anyOtherDocument;
+		
+		@JsonProperty("anyOtherDocumentDescription")
+		private String anyOtherDocumentDescription;
+		
+	/******************* realese bank gurentee  start**************************/
+	
+	/******************* extend bank gurentee  start**************************/
+		
+		@JsonProperty("dateOfAmendment")
+		private String dateOfAmendment;
+	
+		@JsonProperty("amendmentExpiryDate")
+		private String amendmentExpiryDate;
+	
+		@JsonProperty("amendmentClaimExpiryDate")
+		private String amendmentClaimExpiryDate;
+	
+		@JsonProperty("issuingBank")
+		private String issuingBank;	
+		
+		@JsonProperty("bankGurenteeCertificate")
+		private String bankGurenteeCertificate;
+		
+		@JsonProperty("bankGurenteeCertificateDescription")
+		private String bankGurenteeCertificateDescription;
+		
+	/******************* extend bank gurentee  end**************************/
+		
 
 	public NewBankGuaranteeRequest(NewBankGuarantee newBankGuarantee) {
 		this.id = newBankGuarantee.getId();
@@ -110,6 +172,24 @@ public class NewBankGuaranteeRequest {
 		this.indianBankAdvisedCertificate = newBankGuarantee.getIndianBankAdvisedCertificate();
 		this.releaseBankGuarantee = newBankGuarantee.getReleaseBankGuarantee();
 		this.businessService = newBankGuarantee.getBusinessService();
+		
+		this.release=newBankGuarantee.getRelease();
+		this.bankGuaranteeReplacedWith=newBankGuarantee.getBankGuaranteeReplacedWith();
+		this.reasonForReplacement=newBankGuarantee.getReasonForReplacement();
+		this.applicationCerficifate=newBankGuarantee.getApplicationCerficifate();
+		this.applicationCerficifateDescription=newBankGuarantee.getApplicationCerficifateDescription();
+		this.completionCertificate=newBankGuarantee.getCompletionCertificate();
+		this.completionCertificateDescription=newBankGuarantee.getCompletionCertificateDescription();
+		this.anyOtherDocument=newBankGuarantee.getAnyOtherDocument();
+		this.anyOtherDocumentDescription=newBankGuarantee.getAnyOtherDocumentDescription();
+		
+		this.dateOfAmendment=newBankGuarantee.getDateOfAmendment();
+		this.amendmentExpiryDate=newBankGuarantee.getAmendmentExpiryDate();
+		this.amendmentClaimExpiryDate=newBankGuarantee.getAmendmentClaimExpiryDate();
+		this.issuingBank=newBankGuarantee.getIssuingBank();
+		this.bankGurenteeCertificate=newBankGuarantee.getBankGurenteeCertificate();
+		this.bankGurenteeCertificateDescription=newBankGuarantee.getBankGurenteeCertificateDescription();
+	
 		/*
 		this.mortgageKhasraDetails = newBankGuarantee.getMortgageKhasraDetails();
 		this.totalKhasraAreaToMortgage = newBankGuarantee.getTotalKhasraAreaToMortgage();
@@ -156,6 +236,25 @@ public class NewBankGuaranteeRequest {
 				.indianBankAdvisedCertificate(this.indianBankAdvisedCertificate)
 				.releaseBankGuarantee(this.releaseBankGuarantee)
 				.businessService(this.businessService)
+				
+				.release(this.release)
+				.bankGuaranteeReplacedWith(this.bankGuaranteeReplacedWith)
+				.reasonForReplacement(this.reasonForReplacement)
+				.applicationCerficifate(this.applicationCerficifate)
+				.applicationCerficifateDescription(this.applicationCerficifateDescription)
+				.completionCertificate(this.completionCertificate)
+				.completionCertificateDescription(this.completionCertificateDescription)
+				.anyOtherDocument(this.anyOtherDocument)
+				.anyOtherDocumentDescription(this.anyOtherDocumentDescription)
+				
+				.dateOfAmendment(this.dateOfAmendment)
+				.amendmentExpiryDate(this.amendmentExpiryDate)
+				.amendmentClaimExpiryDate(this.amendmentClaimExpiryDate)
+				.issuingBank(this.issuingBank)
+				.bankGurenteeCertificate(this.bankGurenteeCertificate)
+				.bankGurenteeCertificateDescription(this.bankGurenteeCertificateDescription)
+				
+
 				/*
 				.mortgageKhasraDetails(this.mortgageKhasraDetails)
 				.totalKhasraAreaToMortgage(this.totalKhasraAreaToMortgage)
@@ -166,6 +265,7 @@ public class NewBankGuaranteeRequest {
 				.mortgageLandScheduleAndPlotNumbersDoc(this.mortgageLandScheduleAndPlotNumbersDoc)
 				.mortgageDeedAfterBPApproval(this.mortgageDeedAfterBPApproval)
 				*/
+				
 				.build();
 	}
 }

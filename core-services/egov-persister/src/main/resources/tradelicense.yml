@@ -1091,7 +1091,7 @@ serviceMaps:
    isTransaction: true
    queryMaps:
 
-       - query: UPDATE eg_tl_bank_guarantee SET application_number=?, status=?, loi_number=?, bg_number=?, type_of_bg=?, upload_bg=?, bank_name=?, amount_In_Fig=?, amount_in_words=?, license_Applied=?, validity=?::date,tenantId=?, additionalDetails=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=?, bank_Guarantee_Status=?, licence_Number=?, hardcopy_Submitted=?, full_Certificate=?, partial_Certificate=?, additional_Documents=?, hardcopy_Submitted_Document=?, existing_Bg_Number=?, claim_Period=?, origin_Country=?, tcp_submission_received=?, indian_bank_advised_certificate=?, release_bank_guarantee=?, businessservice=?  WHERE id=?;
+       - query: UPDATE eg_tl_bank_guarantee SET application_number=?, status=?, loi_number=?, bg_number=?, type_of_bg=?, upload_bg=?, bank_name=?, amount_In_Fig=?, amount_in_words=?, license_Applied=?, validity=?::date,tenantId=?, additionalDetails=?, createdby=?, lastmodifiedby=?, createdtime=?, lastmodifiedtime=?, bank_Guarantee_Status=?, licence_Number=?, hardcopy_Submitted=?, full_Certificate=?, partial_Certificate=?, additional_Documents=?, hardcopy_Submitted_Document=?, existing_Bg_Number=?, claim_Period=?, origin_Country=?, tcp_submission_received=?, indian_bank_advised_certificate=?, release_bank_guarantee=?, businessservice=? WHERE id=?;
          basePath: NewBankGuaranteeRequest.*
          jsonMaps:
           - jsonPath: $.NewBankGuaranteeRequest.*.applicationNumber
@@ -1159,7 +1159,7 @@ serviceMaps:
           - jsonPath: $.NewBankGuaranteeRequest.*.releaseBankGuarantee
 
           - jsonPath: $.NewBankGuaranteeRequest.*.businessService
-
+          
           - jsonPath: $.NewBankGuaranteeRequest.*.id
 
 

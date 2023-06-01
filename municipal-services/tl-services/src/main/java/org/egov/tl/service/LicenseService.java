@@ -122,6 +122,8 @@ public class LicenseService {
 
 	@Value("${egov.pg-service.path}")
 	private String updatePath;
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Autowired
 	LandUtil landUtil;
 
@@ -159,7 +161,7 @@ public class LicenseService {
 	private JdbcTemplate jdbcTemplate;
 
 	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP_HR";
-	private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "CTP";
+	// private static final String TL_NEW_LANDING_EMPLOYEE_ROLE = "ctphr";
 
 	@Transactional
 	public LicenseServiceResponseInfo createNewServic(LicenseServiceRequest newServiceInfo)
@@ -290,10 +292,9 @@ public class LicenseService {
 				case "PAID": {
 					tradeLicense.setStatus("PAID");
 					// set landing point employee assignee as not visible in any inbox currently-
-					tradeLicense
-							.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(TL_NEW_LANDING_EMPLOYEE_ROLE,
-									newServiceInfo.getRequestInfo().getUserInfo().getTenantId(), true,
-									newServiceInfo.getRequestInfo())));
+					tradeLicense.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(ctpUser,
+							newServiceInfo.getRequestInfo().getUserInfo().getTenantId(), true,
+							newServiceInfo.getRequestInfo())));
 					break;
 				}
 				}
@@ -714,7 +715,7 @@ public class LicenseService {
 						}
 						LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallDistrictId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 								.mDMSCallDistrictCode(info, tradeLicense.getTenantId(),
-										newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
+										newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict().getValue());
 
 						Map<String, List<String>> mdmsDatadistrict;
 						mdmsDatadistrict = valid.getAttributeValues(mDMSCallDistrictId);
@@ -732,7 +733,7 @@ public class LicenseService {
 						Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 						mapDNo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
 						mapDNo.put("DiaryDate", date);
 						mapDNo.put("ReceivedFrom", userName);
 						mapDNo.put("DistrictCode", distCodeNIC);
@@ -753,7 +754,7 @@ public class LicenseService {
 						mapCNO.put("StartDate", date);
 						mapCNO.put("DistrictCode", distCodeNIC);
 						mapCNO.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
 						mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 
 						caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
@@ -770,7 +771,7 @@ public class LicenseService {
 						mapANo.put("DiaryDate", date);
 						mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
 						mapANo.put("Village",
-								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
+								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
 						mapANo.put("PurposeId", purposeId);
 						mapANo.put("NameofOwner",
 								newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());
@@ -819,8 +820,8 @@ public class LicenseService {
 						tradeLicense.setAction("PAID");
 						tradeLicense.setWorkflowCode("NewTL");
 						// tradeLicense.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-						tradeLicense.setAssignee(Arrays
-								.asList(servicePlanService.assignee("CTP_HR", tradeLicense.getTenantId(), true, info)));
+						tradeLicense.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(ctpUser,
+								info.getUserInfo().getTenantId(), true, info)));
 
 						TradeLicenseRequest tradeLicenseRequests = new TradeLicenseRequest();
 

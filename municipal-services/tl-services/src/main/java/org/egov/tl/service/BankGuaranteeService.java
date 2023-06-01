@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -74,6 +75,8 @@ public class BankGuaranteeService {
 	
 	public static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
 	public static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
+	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	
 	public static final String BUSINESSSERVICE_TENANTID = "hr";
 	public static final String BUSINESSSERVICE_BG_RENEW = "BG_RENEW";
 	public static final String BG_NEW_ACTION_EXTEND = "EXTEND";
@@ -83,10 +86,11 @@ public class BankGuaranteeService {
 	public static final String BG_NEW_ACTION_APPROVE = "APPROVE";
 	public static final String BG_STATUS_RELEASED = "RELEASED";
 	public static final String BG_STATUS_PRE_SUBMIT = "PRE_SUBMIT";
-	public static final String BG_STATUS_INITIATED = "INITIATED";
-	public static final String BG_ACTION_INITIATE = "INITIATE";
+	public static final String BG_STATUS_INITIATED = "APPLIED";
+	public static final String BG_ACTION_INITIATE = "APPLY";
 	public static final String BG_STATUS_PENDING_AT_CAO = "PENDING_AT_CAO";
 	public static final String BG_NEW_LANDING_EMPLOYEE_ROLE = "SO_HQ";
+	public static final String BG_RELEASE_LANDING_EMPLOYEE_ROLE = "CAO_HQ";
 	
 	//@Autowired RenewBankGuaranteeRepo renewBankGuaranteeRepo;	
 	//@Autowired ReleaseBankGuaranteeRepo releaseBankGuaranteeRepo;
@@ -104,6 +108,8 @@ public class BankGuaranteeService {
 
 			if (!StringUtils.isEmpty(newBankGuaranteeRequest.getBusinessService())
 					&& newBankGuaranteeRequest.getBusinessService().equalsIgnoreCase(BUSINESSSERVICE_BG_MORTGAGE)) {
+				System.out.println("mortgage:-----------------------------");
+				
 				insertedData.add(mortgageBGService
 						.createBankGuarantee(newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo())
 						.toBuilder());
@@ -112,15 +118,16 @@ public class BankGuaranteeService {
 				// default set businessservice as BG_NEW as of now-
 				newBankGuaranteeRequest.setBusinessService(BUSINESSSERVICE_BG_NEW);
 				newBankGuaranteeRequest
-						.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(BG_NEW_LANDING_EMPLOYEE_ROLE,
-								newBankGuaranteeRequest.getTenantId(), true,
-								newBankGuaranteeContract.getRequestInfo())));
+						.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,
+								BUSINESSSERVICE_TENANTID, true,
+								newBankGuaranteeContract.getRequestInfo()));
 			}
 			if (StringUtils.isEmpty(newBankGuaranteeRequest.getAction())
 					&& StringUtils.isEmpty(newBankGuaranteeRequest.getId())) {
+				System.out.println("BG_NEW:-----------------------------");
 				// basic create with processinstance-
 				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
-						newBankGuaranteeRequest.getTenantId(), tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+						BUSINESSSERVICE_TENANTID, tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
 						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
 				String applicationNo = idGenIds.get(0);
 				newBankGuaranteeRequest.setApplicationNumber(applicationNo);
@@ -142,7 +149,7 @@ public class BankGuaranteeService {
 				// if this is for creation of entries in table without workflow involvement-
 				// populate applicationNumber from idgen-
 				List<String> idGenIds = enrichmentService.getIdList(newBankGuaranteeContract.getRequestInfo(),
-						newBankGuaranteeRequest.getTenantId(),
+						BUSINESSSERVICE_TENANTID,
 						tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
 						tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
 				String applicationNo = idGenIds.get(0);
@@ -218,6 +225,29 @@ public class BankGuaranteeService {
 		return tradeLicenseRequest;
 	}
 	
+	private TradeLicenseRequest prepareProcessInstanceRequestForBGRelease(NewBankGuaranteeRequest newBankGuaranteeRequest, RequestInfo requestInfo) {
+		TradeLicenseRequest tradeLicenseRequest = new TradeLicenseRequest();
+		List<TradeLicense> licenses = new ArrayList<>();
+		TradeLicense tradeLicense = new TradeLicense();
+
+		tradeLicense.setBusinessService(newBankGuaranteeRequest.getBusinessService());
+		tradeLicense.setAction(newBankGuaranteeRequest.getAction());
+		tradeLicense.setAssignee(newBankGuaranteeRequest.getAssignee());
+		tradeLicense.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		tradeLicense.setWorkflowCode(newBankGuaranteeRequest.getWorkflowCode());// workflowname
+		TradeLicenseDetail tradeLicenseDetail = new TradeLicenseDetail();
+		tradeLicenseDetail.setTradeType(newBankGuaranteeRequest.getBusinessService());
+		tradeLicense.setTradeLicenseDetail(tradeLicenseDetail);
+		tradeLicense.setComment(newBankGuaranteeRequest.getComment());
+		tradeLicense.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		tradeLicense.setTenantId("hr");
+		
+		licenses.add(tradeLicense);
+		tradeLicenseRequest.setLicenses(licenses);
+		tradeLicenseRequest.setRequestInfo(requestInfo);
+		return tradeLicenseRequest;
+	}
+	
 	private void validateValidityFormat(String validity) {
 		try {
 			if (Objects.nonNull(validity)) {
@@ -264,9 +294,19 @@ public class BankGuaranteeService {
 	
 	public List<NewBankGuarantee> updateNewBankGuarantee(NewBankGuaranteeContract newBankGuaranteeContract) {
 		List<NewBankGuarantee> updatedData = new ArrayList<>();
+		
+			
 		for(NewBankGuaranteeRequest newBankGuaranteeRequest:newBankGuaranteeContract.getNewBankGuaranteeRequest()) {
 			List<NewBankGuarantee> newBankGuaranteeSearchResult = validateAndFetchFromDbForUpdate(
 					newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
+			
+			Long time = System.currentTimeMillis();
+			AuditDetails auditDetails = newBankGuaranteeSearchResult.get(0).getAuditDetails();
+			auditDetails.setLastModifiedBy(newBankGuaranteeContract.getRequestInfo().getUserInfo().getUuid());
+			auditDetails.setLastModifiedTime(time);
+			newBankGuaranteeRequest.setAuditDetails(auditDetails);
+		
+			
 			String businessService = getBusinessServiceName(newBankGuaranteeRequest);
 			String currentStatus = newBankGuaranteeSearchResult.get(0).getStatus();
 			BusinessService workflow = workflowService.getBusinessService(BUSINESSSERVICE_TENANTID,
@@ -285,15 +325,95 @@ public class BankGuaranteeService {
 						newBankGuaranteeRequest, newBankGuaranteeContract.getRequestInfo());
 				workflowIntegrator.callWorkFlow(processInstanceRequest);
 			}
-
-
+			if(BG_NEW_ACTION_RELEASE.equals(newBankGuaranteeRequest.getUpdateType())) {
+				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
+				setReleaseRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest,newBankGuaranteeContract.getRequestInfo());
+				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
+				newBankGuaranteeRepo.updateRelease(newBankGuaranteeContract);
+				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
+				updatedData.add(newBankGuarantee);
+			}else if(BG_NEW_ACTION_EXTEND.equals(newBankGuaranteeRequest.getUpdateType())) {
+				NewBankGuaranteeRequest newBankGuaranteeRespondData=new NewBankGuaranteeRequest(newBankGuaranteeSearchResult.get(0));
+				setExtendRequestData(newBankGuaranteeRespondData,newBankGuaranteeRequest,newBankGuaranteeContract.getRequestInfo());
+				newBankGuaranteeContract.setNewBankGuaranteeRequest(Arrays.asList(newBankGuaranteeRespondData)); 
+				newBankGuaranteeRepo.updateExtend(newBankGuaranteeContract);
+				NewBankGuarantee newBankGuarantee = newBankGuaranteeContract.getNewBankGuaranteeRequest().get(0).toBuilder();
+				updatedData.add(newBankGuarantee);
+			}else{
 			// push to update-
-			newBankGuaranteeRepo.update(newBankGuaranteeContract);
-			NewBankGuarantee newBankGuarantee = newBankGuaranteeRequest.toBuilder();
-			updatedData.add(newBankGuarantee);
+				newBankGuaranteeRepo.update(newBankGuaranteeContract);
+				NewBankGuarantee newBankGuarantee = newBankGuaranteeRequest.toBuilder();
+				updatedData.add(newBankGuarantee);
+			}
 		}
 		return updatedData;
 		
+	}
+	
+	private void setReleaseRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest,RequestInfo requestInfo) {
+		newBankGuaranteeRespondData.setRelease(newBankGuaranteeRequest.getRelease());
+		newBankGuaranteeRespondData.setBankGuaranteeReplacedWith(newBankGuaranteeRequest.getBankGuaranteeReplacedWith());
+		newBankGuaranteeRespondData.setReasonForReplacement(newBankGuaranteeRequest.getReasonForReplacement());
+		newBankGuaranteeRespondData.setApplicationCerficifate(newBankGuaranteeRequest.getApplicationCerficifate());
+		newBankGuaranteeRespondData.setApplicationCerficifateDescription(newBankGuaranteeRequest.getApplicationCerficifateDescription());
+		newBankGuaranteeRespondData.setCompletionCertificate(newBankGuaranteeRequest.getCompletionCertificate());
+		newBankGuaranteeRespondData.setCompletionCertificateDescription(newBankGuaranteeRequest.getCompletionCertificateDescription());
+		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
+		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
+		
+		newBankGuaranteeRespondData.setApplicationNumber(getReleaseApplicationNumber(requestInfo,true));
+		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_RELEASE);
+		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
+		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_RELEASE);
+		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
+		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForBGRelease(newBankGuaranteeRespondData, requestInfo);
+		workflowIntegrator.callWorkFlow(processInstanceRequest);
+
+
+	}
+	
+	private void setExtendRequestData(NewBankGuaranteeRequest newBankGuaranteeRespondData,NewBankGuaranteeRequest newBankGuaranteeRequest,RequestInfo requestInfo) {
+			
+		newBankGuaranteeRespondData.setDateOfAmendment(newBankGuaranteeRequest.getDateOfAmendment());
+		newBankGuaranteeRespondData.setAmendmentExpiryDate(newBankGuaranteeRequest.getAmendmentExpiryDate());
+		newBankGuaranteeRespondData.setAmendmentClaimExpiryDate(newBankGuaranteeRequest.getAmendmentClaimExpiryDate());
+		newBankGuaranteeRespondData.setIssuingBank(newBankGuaranteeRequest.getIssuingBank());
+		newBankGuaranteeRespondData.setBankGurenteeCertificate(newBankGuaranteeRequest.getBankGurenteeCertificate());
+		newBankGuaranteeRespondData.setBankGurenteeCertificateDescription(newBankGuaranteeRequest.getBankGurenteeCertificateDescription());
+		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
+		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
+		newBankGuaranteeRespondData.setApplicationNumber(getReleaseApplicationNumber(requestInfo,false));
+		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_NEW);
+		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
+		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
+		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
+		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
+		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
+		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
+		workflowIntegrator.callWorkFlow(processInstanceRequest);
+	}
+	
+	private String getReleaseApplicationNumber(RequestInfo requestInfo,boolean type) {
+		String applicationNumber=null;
+		if(type) {
+			List<String> idGenIds = enrichmentService.getIdList(requestInfo,
+					BUSINESSSERVICE_TENANTID,
+					tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+					tlConfiguration.getReleaseBankGuaranteeApplNoIdGenFormat(), 1);
+			applicationNumber = idGenIds.get(0);
+		}else {
+			List<String> idGenIds = enrichmentService.getIdList(requestInfo,
+					BUSINESSSERVICE_TENANTID, tlConfiguration.getNewBankGuaranteeApplNoIdGenName(),
+					tlConfiguration.getExtendBankGuaranteeApplNoIdGenFormat(), 1);
+			applicationNumber = idGenIds.get(0);
+		}
+		return applicationNumber;
 	}
 	
 	public void getKhasraDetails(String loiNumber) {
@@ -430,6 +550,36 @@ public class BankGuaranteeService {
 		auditDetails.setCreatedTime(
 				newBankGuaranteeRequest.getAuditDetails().getCreatedTime());
 		newBankGuaranteeRequest.setAuditDetails(auditDetails);
+	}
+	
+	public List<Map<String,Object>> getDropDownList(int type, RequestInfo requestInfo) {
+		List<Map<String,Object>> dropList=newBankGuaranteeRepo.getDropDownList();
+		List<Map<String,Object>> dropDoneList=new ArrayList<>();
+		if(type==1) {
+			dropDoneList=dropList.stream().filter(bg->bg.get("application_number")!=null&&!bg.get("application_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("application_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+			}).collect(Collectors.toList());
+		}else if(type==2){
+			dropDoneList=dropList.stream().filter(bg->bg.get("loi_number")!=null&&!bg.get("loi_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("loi_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+		    }).collect(Collectors.toList());
+		}else {
+			dropDoneList=dropList.stream().filter(bg->bg.get("licence_number")!=null&&!bg.get("licence_number").equals("")).map(bg->{
+				Map<String,Object> val=new HashMap();
+				val.put("label", bg.get("licence_number"));
+				val.put("id",bg.get("id"));
+				return val;	
+			}).collect(Collectors.toList());
+		}
+		
+		return dropDoneList;
+		
 	}
 	
 	/*

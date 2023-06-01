@@ -1,5 +1,8 @@
 package org.egov.tl.service;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -13,7 +16,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.map.HashedMap;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
-
+import org.egov.tl.abm.newservices.calculation.TransferOfLicenceCalculation;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.IdGenRepository;
@@ -24,7 +27,7 @@ import org.egov.tl.service.dao.TransferDao;
 
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.web.models.AuditDetails;
-
+import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.TradeLicense;
 import org.egov.tl.web.models.TradeLicenseDetail;
 import org.egov.tl.web.models.TradeLicenseRequest;
@@ -48,9 +51,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 
 import lombok.extern.slf4j.Slf4j;
 import net.minidev.json.JSONObject;
@@ -58,7 +62,8 @@ import net.minidev.json.JSONObject;
 @Slf4j
 @Service
 public class TransferOfLicenseServices {
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Autowired
 	ObjectMapper mapper;
 	@Value("${persister.create.transfer.licence.topic}")
@@ -66,14 +71,14 @@ public class TransferOfLicenseServices {
 
 	@Value("${persister.update.transfer.licence.topic}")
 	private String tranferUpdateTopic;
-	private static final String businessService_TRANSFER = "TRANSFER_OF_LICIENCE";
 
 	private static final String SENDBACK_STATUS = "SEND_BACK_TO_APPLICANT";
 
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
 	@Autowired
 	private Producer producer;
-
+	@Autowired
+	TradeLicenseService tradeLicenseService;
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -103,6 +108,8 @@ public class TransferOfLicenseServices {
 	ServicePlanService servicePlanService;
 	@Autowired
 	GenerateTcpNumbers generateTcpNumbers;
+	@Autowired
+	TransferOfLicenceCalculation transferOfLicenceCalculation;
 
 	public List<Transfer> create(TransferOfLicenseRequest transferOfLicenseRequest) throws JsonProcessingException {
 
@@ -216,8 +223,9 @@ public class TransferOfLicenseServices {
 		if (Objects.isNull(transferOfLicenseRequest) || Objects.isNull(transferOfLicenseRequest.getTransfer())) {
 			throw new CustomException("transfer of licence must not be null", "transfer of licence must not be null");
 		}
-		if(StringUtils.isEmpty(transfer.getId()) &&StringUtils.isEmpty(transfer.getApplicationNumber())){
-			throw new CustomException("ApplicationNumber or Id must not be null", "ApplicationNumber or Id must not be null");
+		if (StringUtils.isEmpty(transfer.getId()) && StringUtils.isEmpty(transfer.getApplicationNumber())) {
+			throw new CustomException("ApplicationNumber or Id must not be null",
+					"ApplicationNumber or Id must not be null");
 		}
 
 		List<Transfer> transferSearch = search(requestInfo, transfer.getLicenseNo(), transfer.getApplicationNumber());
@@ -376,26 +384,29 @@ public class TransferOfLicenseServices {
 		Transfer transferRequest = transferOfLicenseRequest.getTransfer();
 		RequestInfo requestInfo = transferOfLicenseRequest.getRequestInfo();
 		transferRequest.setId(UUID.randomUUID().toString());
-		transferRequest.setAssignee(
-				Arrays.asList(servicePlanService.assignee("CTP_HR", transferRequest.getTenantId(), true, requestInfo)));
+//		transferRequest.setAssignee(
+//				Arrays.asList(servicePlanService.assignee("CTP_HR", transferRequest.getTenantId(), true, requestInfo)));
 //			approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-
-		transferRequest.setBusinessService(businessService_TRANSFER);
-		transferRequest.setWorkflowCode(businessService_TRANSFER);
+		transferRequest.setAssignee(Arrays
+				.asList(tradeUtil.getFirstAssigneeByRole(ctpUser, transferRequest.getTenantId(), true, requestInfo)));
+		transferRequest.setBusinessService(config.getTransferOfLicenceBusinessService());
+		transferRequest.setWorkflowCode(config.getTransferOfLicenceBusinessService());
 		// transferRequest.setAdditionalDetails(null);
 
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(transferRequest, requestInfo,
-				businessService_TRANSFER);
+				config.getTransferOfLicenceBusinessService());
 
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 
 		transferRequest.setStatus(prepareProcessInstanceRequest.getLicenses().get(0).getStatus());
+//payment method start//
 
 		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
 		List<String> licenseNumberList = new ArrayList<>();
 		licenseNumberList.add(transferOfLicenseRequest.getTransfer().getLicenseNo());
 		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
-
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseSearchCriteria,
+				requestInfo);
 		Map<String, Object> tcpNumbers = generateTcpNumbers.tcpNumbers(tradeLicenseSearchCriteria,
 				transferOfLicenseRequest.getRequestInfo());
 		log.info("tcpnumbers:\t" + tcpNumbers);
@@ -410,8 +421,6 @@ public class TransferOfLicenseServices {
 		String caseNumber = json.getAsString("TCPCaseNumber");
 		String dairyNumber = json.getAsString("TCPDairyNumber");
 
-		List<Transfer> transfer = new ArrayList<>();
-
 		transferRequest.setTcpApplicationNumber(application);
 		transferRequest.setTcpCaseNumber(caseNumber);
 		transferRequest.setTcpDairyNumber(dairyNumber);
@@ -421,10 +430,85 @@ public class TransferOfLicenseServices {
 //		transferOfLicenseContract.setTransfer(transferRequest);
 //		transferOfLicenseContract.setRequestInfo(requestInfo);
 //		List<Transfer> Update = Update(transferOfLicenseContract);
+		// Transfer calculation = calculation(transferOfLicenseRequest);
+		Transfer calculation = transferOfLicenceCalculation.calculationAfterApproval(transferOfLicenseRequest);
+		transferRequest.setAdministrativeCharges(calculation.getAdministrativeCharges());
+		transferRequest.setCompostionCharges(calculation.getCompostionCharges());
+		transferRequest.setDeveloperAdministrativeCharges(calculation.getDeveloperAdministrativeCharges());
+		transferRequest.setTotalCharges(calculation.getTotalCharges());
 		List<Transfer> transferList = new ArrayList<>();
 		transferList.add(transferRequest);
 		return transferList;
 
 	}
 
+	public Transfer calculation(TransferOfLicenseRequest transferOfLicenseRequest) {
+		Transfer transferRequest = transferOfLicenseRequest.getTransfer();
+		RequestInfo requestInfo = transferOfLicenseRequest.getRequestInfo();
+		TransferOfLicence transferOfLicence = transferRequest.getTransferOfLicence();
+		String changeOfDeveloper = transferOfLicence.getChangeOfDeveloper();
+		String selectType = transferOfLicence.getSelectType();
+		String changeOfDeveloperNo = "no";
+		String changeOfDeveloperYes = "yes";
+		String selectTypeComplete = "complete";
+		String selectTypePartial = "partial";
+		// payment end
+		TradeLicenseSearchCriteria tradeLicenseSearchCriteria = new TradeLicenseSearchCriteria();
+		List<String> licenseNumberList = new ArrayList<>();
+		licenseNumberList.add(transferOfLicenseRequest.getTransfer().getLicenseNo());
+		tradeLicenseSearchCriteria.setLicenseNumbers(licenseNumberList);
+		List<TradeLicense> tradeLicenses = tradeLicenseService.getLicensesWithOwnerInfo(tradeLicenseSearchCriteria,
+				requestInfo);
+		BigDecimal administrativeCharges = null;
+		BigDecimal developerAdministrativeCharges = null;
+		for (TradeLicense tradeLicense : tradeLicenses) {
+
+			ObjectReader reader = mapper.readerFor(new TypeReference<List<LicenseDetails>>() {
+			});
+
+			List<LicenseDetails> newServiceInfoData = null;
+			try {
+				newServiceInfoData = reader.readValue(tradeLicense.getTradeLicenseDetail().getAdditionalDetail());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			for (LicenseDetails newobj : newServiceInfoData) {
+
+				if (newobj.getVer() == tradeLicense.getTradeLicenseDetail().getCurrentVersion()) {
+					BigDecimal licenceFee = newobj.getFeesAndCharges().getFeesTypeCalculationDto().get(0)
+							.getTotalLicenceFee();
+					if (selectType.equalsIgnoreCase(selectTypeComplete)) {
+
+						administrativeCharges = new BigDecimal(0.1).multiply(licenceFee);
+						administrativeCharges = new BigDecimal(
+								administrativeCharges.setScale(0, BigDecimal.ROUND_UP).toString());
+
+						log.info("administrativeCharges\t" + administrativeCharges);
+					} else if (selectType.equalsIgnoreCase(selectTypePartial)) {
+						administrativeCharges = licenceFee.multiply(new BigDecimal(transferOfLicence.getAreaInAcres()));
+						administrativeCharges = new BigDecimal(
+								administrativeCharges.setScale(0, BigDecimal.ROUND_UP).toString());
+
+					}
+					if (changeOfDeveloper.equalsIgnoreCase(changeOfDeveloperYes)) {
+						developerAdministrativeCharges = new BigDecimal(0.4)
+								.multiply(new BigDecimal(0.25).multiply(licenceFee));
+						developerAdministrativeCharges = new BigDecimal(
+								developerAdministrativeCharges.setScale(0, BigDecimal.ROUND_UP).toString());
+
+					} else if (changeOfDeveloper.equalsIgnoreCase(changeOfDeveloperNo)) {
+						developerAdministrativeCharges = new BigDecimal(0);
+					}
+				}
+			}
+			BigDecimal totalCharges = null;
+			totalCharges = administrativeCharges.add(developerAdministrativeCharges);
+			transferRequest.setAdministrativeCharges(administrativeCharges);
+			transferRequest.setDeveloperAdministrativeCharges(developerAdministrativeCharges);
+			transferRequest.setTotalCharges(totalCharges);
+		}
+		return transferRequest;
+	}
 }

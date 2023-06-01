@@ -38,6 +38,7 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.ChangeBeneficialResponse;
+import org.egov.tl.web.models.CompletionCertificate;
 import org.egov.tl.web.models.Document;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.ResponseTransaction;
@@ -79,7 +80,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class ChangeBeneficialService {
 	
-	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
+	//private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
 	private static final String WFTENANTID = "hr";
 
 	
@@ -177,6 +178,9 @@ public class ChangeBeneficialService {
 	
 	@Autowired
 	private TradeUtil tradeUtil;
+	
+	@Autowired
+	GenerateTcpNumbers generateTcpNumbers;
 	   
 		
 	String  licenseFee = "0.0";
@@ -184,6 +188,15 @@ public class ChangeBeneficialService {
 	
 	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
+		try {
+			ChangeBeneficial changeBeneficials=beneficialRequest.getChangeBeneficial().get(0);
+			if(changeBeneficials.getApplicationNumber()!=null&&changeBeneficials.getAction()!=null&&changeBeneficials.getStatus()!=null){
+				return updateWorkflow(beneficialRequest);
+			}
+		}catch (Exception e) {
+              e.printStackTrace();	
+		}
+		
 		String licenseNumber=beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber();
 		
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());
@@ -196,6 +209,7 @@ public class ChangeBeneficialService {
 	    }else {
 	    	ChangeBeneficial changeBeneficialCheck=changeBeneficialRepo.getBeneficialByLicenseNumber(licenseNumber);
 	    	if(changeBeneficialCheck!=null) {
+	    		
 	    		if(changeBeneficialCheck.getApplicationStatus()==1) {
 	    			
 	    			List<ChangeBeneficial> changeBeneficial = (List<ChangeBeneficial>) beneficialRequest.getChangeBeneficial()
@@ -206,6 +220,13 @@ public class ChangeBeneficialService {
 								auditDetails.setLastModifiedTime(time);
 								changebeneficial.setId(changeBeneficialCheck.getId());
 								changebeneficial.setAuditDetails(auditDetails);
+								
+								changebeneficial.setApplicationNumber(changeBeneficialCheck.getApplicationNumber());
+								changebeneficial.setTcpApplicationNumber(changeBeneficialCheck.getTcpApplicationNumber());
+								changebeneficial.setTcpCaseNumber(changeBeneficialCheck.getTcpCaseNumber());
+								changebeneficial.setTcpDairyNumber(changeBeneficialCheck.getTcpDairyNumber());
+								
+								
 								if(changebeneficial.getIsDraft()==null) {
 									changebeneficial.setIsDraft("0");	
 								}else {
@@ -257,10 +278,9 @@ public class ChangeBeneficialService {
 						String licenseFees=""+tradeLicense.get(0).getTradeLicenseDetail().getLicenseFeeCharges();
 						Long time = System.currentTimeMillis();
 						AuditDetails auditDetails=AuditDetails.builder().createdBy(beneficialRequest.getRequestInfo().getUserInfo().getUuid()).createdTime(time).build();
-						changebeneficial.setWorkFlowCode(CHANGE_BENEFICIAL_WORKFLOWCODE);
-						
+						changebeneficial.setWorkFlowCode(config.getChangeOfBeneficialBusinessService());						
 						changebeneficial.setId(UUID.randomUUID().toString());
-						changebeneficial.setBusinessService(CHANGE_BENEFICIAL_WORKFLOWCODE);
+						changebeneficial.setBusinessService(config.getChangeOfBeneficialBusinessService());
 						changebeneficial.setTenantId("hr");
 						changebeneficial.setAction("INITIATE");
 						changebeneficial.setStatus("INITIATE");
@@ -270,6 +290,21 @@ public class ChangeBeneficialService {
 						changebeneficial.setAuditDetails(auditDetails);
 						changebeneficial.setCreatedTime(time);
 						changebeneficial.setApplicationNumber(applicationNumberCb);
+						
+						try {
+							TradeLicenseSearchCriteria criteria=new TradeLicenseSearchCriteria();
+							criteria.setLicenseNumbers(Arrays.asList(changebeneficial.getLicenseNumber()));
+							Map<String,Object> tcpNumber= generateTcpNumbers.tcpNumbers(criteria, beneficialRequest.getRequestInfo());
+							String tcpApplicationNumber=tcpNumber.get("TCPApplicationNumber").toString();
+							String tcpCaseNumber=tcpNumber.get("TCPCaseNumber").toString();
+							String tcpDairyNumber=tcpNumber.get("TCPDairyNumber").toString();
+							changebeneficial.setTcpApplicationNumber(tcpApplicationNumber);
+							changebeneficial.setTcpDairyNumber(tcpDairyNumber);
+							changebeneficial.setTcpCaseNumber(tcpCaseNumber);
+						}catch (Exception e) {
+							// TODO: handle exception
+						}
+						
 						if(changebeneficial.getIsDraft()==null) {
 							changebeneficial.setIsDraft("0");	
 						}else {
@@ -290,7 +325,7 @@ public class ChangeBeneficialService {
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			
 			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, beneficialRequest.getRequestInfo()));
-			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,changeBeneficial.get(0).getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,beneficialRequest.getRequestInfo());
+			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,config.getChangeOfBeneficialBusinessService(),"INITIATE",assignee,changeBeneficial.get(0).getApplicationNumber(),config.getChangeOfBeneficialBusinessService(),beneficialRequest.getRequestInfo());
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 		
 			
@@ -401,7 +436,6 @@ public class ChangeBeneficialService {
 //	}
 	
 	
-	
 	public ChangeBeneficialResponse getChangeBeneficial(RequestInfo requestInfo,String applicationNumber,String licenseNumber){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
 		List<ChangeBeneficial> changeBeneficiaDetails = null;
@@ -414,7 +448,7 @@ public class ChangeBeneficialService {
 			try {
 				if(applicationNumber==null) {
 					changeBeneficiaDetails=changeBeneficialRepo.searcherBeneficialDetailsByLicenceNumberList(licenseNumber);
-				}else {
+				} else {
 					changeBeneficiaDetails=changeBeneficialRepo.getBeneficialDetailsByApplicationNumberList(applicationNumber);
 				}
 				
@@ -982,7 +1016,7 @@ public class ChangeBeneficialService {
 										.isFullPaymentDone(false)
 										.tranactionId(tranxId)
 //										.applicationNumber(tcpApplicationNumber)
-										.diaryNumber(dairyNumber)
+										.tcpDairyNumber(dairyNumber)
 										.build();
 							}else if(changeBeneficiaDetails.getApplicationStatus()==2) {
 								changeBeneficialPayment=ChangeBeneficial.builder()
@@ -1002,7 +1036,7 @@ public class ChangeBeneficialService {
 						}
 						
 						List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, info));
-						TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,"INITIATE",assignee,changeBeneficiaDetails.getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,info);
+						TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,config.getChangeOfBeneficialBusinessService(),"INITIATE",assignee,changeBeneficiaDetails.getApplicationNumber(),config.getChangeOfBeneficialBusinessService(),info);
 						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 						
 						// -----------------payment----------------------//

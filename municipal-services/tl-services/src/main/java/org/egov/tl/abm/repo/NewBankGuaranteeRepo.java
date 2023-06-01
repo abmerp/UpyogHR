@@ -49,6 +49,14 @@ public class NewBankGuaranteeRepo {
 		producer.push(tlConfiguration.getUpdateNewBankGuaranteeTopic(), newBankGuaranteeContract);
 	}
 	
+	public void updateExtend(NewBankGuaranteeContract newBankGuaranteeContract) {
+		producer.push(tlConfiguration.getUpdateExtendNewBankGuaranteeTopic(), newBankGuaranteeContract);
+	}
+	
+	public void updateRelease(NewBankGuaranteeContract newBankGuaranteeContract) {
+		producer.push(tlConfiguration.getUpdateReleaseNewBankGuaranteeTopic(), newBankGuaranteeContract);
+	}
+	
 	public List<NewBankGuaranteeRequest> getNewBankGuaranteeData(
 			BankGuaranteeSearchCriteria bankGuaranteeSearchCriteria) {
 		List<Object> preparedStmtList = new ArrayList<>();
@@ -68,6 +76,25 @@ public class NewBankGuaranteeRepo {
 		List<NewBankGuaranteeRequest> bankGuaranteeAuditData = jdbcTemplate.query(query, preparedStmtList.toArray(),
 				bankGuaranteeAuditRowMapper);
 		return bankGuaranteeAuditData;
+	}
+	
+	public List<Map<String,Object>> getDropDownList() {
+		List<Map<String,Object>> dropDownList = null;
+		try {
+			List<Object> preparedStmtList = new ArrayList<>();
+			dropDownList = jdbcTemplate.query("select * from eg_tl_bank_guarantee", preparedStmtList.toArray(),
+					(rs, rowNum) -> {
+						Map<String,Object> lst=new HashMap<>();
+						lst.put("id", rs.getString("id"));
+					    lst.put("application_number", rs.getString("application_number"));
+					    lst.put("loi_number", rs.getString("loi_number"));
+					    lst.put("licence_number", rs.getString("licence_number"));
+						return lst;
+					});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dropDownList;
 	}
 	
 }
