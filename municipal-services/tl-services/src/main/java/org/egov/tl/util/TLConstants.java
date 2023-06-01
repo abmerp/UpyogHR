@@ -381,62 +381,6 @@ public class TLConstants {
 
 	public static final String ACTION_STATUS_MANUAL_EXPIRED = "MANUALEXPIRE_MANUALEXPIRED";
 
-	public static final String SPNAMEVALUE = "SERVICE_PLAN";
-
-	public static final String SPNAMEVALUE_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
-
-	public static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
-
-	public static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
-
-	public static final String COMPLETION_CERTIFICATE_WORKFLOWCODE = "COMPLETION_CERTIFICATE";
-
-	public static final String CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE = "CONSTRUCTION_OF_COMMUNITY";
-
-	public static final String COMPOSITION_OF_URBAN_WORKFLOWCODE = "COMPOSITION_OF_URBAN";
-
-	public static final String EXTENTION_OF_CLU_PERMISSION = "EXTENTION_OF_CLU_PERMISSION";
-
-	public static final String ASNAMEVALUE = "APPROVAL_OF_STANDARD";
-
-	public static final String ZONE_PLAN = "ZONE_PLAN";
-	
-	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
-	
-	public static final String SURRENDER_OF_LICENSE = "SURREND_OF_LICENSE";
-
-	public static final String TENANTIDKEY = "tenantId";
-
-	public static final String BUSINESSSERVICEKEY = "businessService";
-
-	public static final String ACTIONKEY = "action";
-
-	public static final String COMMENTKEY = "comment";
-
-	public static final String MODULENAMEKEY = "moduleName";
-
-	public static final String BUSINESSIDKEY = "businessId";
-
-	public static final String DOCUMENTSKEY = "documents";
-
-	public static final String ASSIGNEEKEY = "assignes";
-
-	public static final String UUIDKEY = "uuid";
-
-	public static final String TLMODULENAMEVALUE = "TL";
-
-	public static final String BPAMODULENAMEVALUE = "BPAREG";
-
-	public static final String WORKFLOWREQUESTARRAYKEY = "ProcessInstances";
-
-	public static final String REQUESTINFOKEY = "RequestInfo";
-
-	public static final String PROCESSINSTANCESJOSNKEY = "$.ProcessInstances";
-
-	public static final String BUSINESSIDJOSNKEY = "$.businessId";
-
-	public static final String STATUSJSONKEY = "$.state.applicationStatus";
-
 	public TLConstants() {
 	}
 

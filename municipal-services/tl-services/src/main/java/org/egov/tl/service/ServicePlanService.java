@@ -41,7 +41,6 @@ import org.egov.tracer.model.CustomException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.flywaydb.core.internal.jdbc.RowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Service;
@@ -62,17 +61,16 @@ import net.minidev.json.JSONObject;
 @Service
 public class ServicePlanService {
 
-//	private static final String businessService_TL = "SERVICE_PLAN";
-//
-//	private static final String businessService_TL_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
+	private static final String businessService_TL = "SERVICE_PLAN";
+
+	private static final String businessService_TL_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
 
 	private static final String SENDBACK_STATUS = "SP_SENDBACK_TO_APPLICANT";
 
 	private static final String SENDBACK_STATUS_DEMARCATION = "SPD_SENDBACK_TO_APPLICANT";
 
 	private static final String CITIZEN_UPDATE_ACTION = "FORWARD";
-	@Value("${tcp.employee.ctp}")
-	private String ctpUser;
+
 	@Autowired
 	ServicePlanRepo servicePlanRepo;
 
@@ -132,10 +130,9 @@ public class ServicePlanService {
 
 			servicePlanRequest.setId(UUID.randomUUID().toString());
 
-//			servicePlanRequest.setAssignee(
-//					Arrays.asList(assignee("CTP_HR", servicePlanRequest.getTenantID(), true, requestInfo)));
-			servicePlanRequest.setAssignee(Arrays.asList(
-					tradeUtil.getFirstAssigneeByRole(ctpUser, servicePlanRequest.getTenantID(), true, requestInfo)));
+			servicePlanRequest.setAssignee(
+					Arrays.asList(assignee("CTP_HR", servicePlanRequest.getTenantID(), true, requestInfo)));
+
 			applicationNumbers = getIdList(servicePlanContract.getRequestInfo(), servicePlanRequest.getTenantID(),
 					config.getSPapplicationNumberIdgenNameTL(), config.getSPapplicationNumberIdgenFormatTL(), count);
 
@@ -172,29 +169,29 @@ public class ServicePlanService {
 
 		switch (purpose) {
 		case "RPL":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 		case "DDJAY_APHP":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 		case "CICS":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 		case "CPRS":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 		case "IPA":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 		case "NILPC":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 		case "NILP":
-			result = config.getServicePlanDemarcationBusinessService();
+			result = businessService_TL_DEMARCATION;
 			break;
 
 		default:
-			result = config.getServicePlanBusinessService();
+			result = businessService_TL;
 		}
 		return result;
 	}

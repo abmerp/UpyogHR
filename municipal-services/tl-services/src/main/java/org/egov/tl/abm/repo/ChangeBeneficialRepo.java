@@ -11,7 +11,6 @@ import org.egov.common.contract.request.Role;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
-import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -67,12 +66,12 @@ public class ChangeBeneficialRepo {
 //	String getQueryById = "select * from public.eg_tl_change_beneficial where id=:id";
 //																																																					// eg_user.id=:userId
 
-	String queryForGetChangeBeneficial = "select * from public.eg_tl_change_beneficial where license_number IN(:licenseNumber) and application_status IN(1,2,3) order by created_at desc limit 1";
+	String queryForGetChangeBeneficial = "select * from public.eg_tl_change_beneficial where license_number=:licenseNumber and application_status IN(1,2,3) order by created_at desc limit 1";
 
-	String getUpdateBeneficialId = "select * from public.eg_tl_change_beneficial where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
-			+ " order by created_at desc";
+	String getUpdateBeneficialId = "select * from public.eg_tl_change_beneficial where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
+			+ " order by created_at desc limit 1";
 
-	String querybyLicenseNumber = "select * from public.eg_tl_change_beneficial where license_number IN(:licenseNumber) and application_status IN(1,2,3) \r\n"
+	String querybyLicenseNumber = "select * from public.eg_tl_change_beneficial where license_number=:licenseNumber and application_status IN(1,2,3) \r\n"
 			+ " order by created_at desc limit 1";
 
 //	String getDataQueryBycbApplicationNumber="select * from public.eg_tl_change_beneficial where (cb_application_number=:cbapplicationNumber or application_number=:applicationNumber) and application_status IN(1,2,3) \r\n"
@@ -125,20 +124,6 @@ public class ChangeBeneficialRepo {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public List<String> getTcpApplicationNumberListByUserUUID(String tableName,String createdByUUid) {
-		List<String> licenses = null;
-		try {
-			List<Object> preparedStmtList = new ArrayList<>();
-			String query="select * from "+tableName+" where audit_details ->> 'createdBy'='"+createdByUUid+"'";
-		    System.out.println(query);
-			licenses = jdbcTemplate.query(query, preparedStmtList.toArray(),
-					(rs, rowNum) -> rs.getString("tcp_application_number"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return licenses;
 	}
 
 	public List<TradeLicense> getLicenseByLicenseNumber(String applicationNumber, long userId) {
@@ -216,8 +201,28 @@ public class ChangeBeneficialRepo {
 
 		ChangeBeneficial cahngeBeneficial = null;
 		try {
-			String query=queryForGetChangeBeneficial.replaceAll(":licenseNumber", "'" + licenseNumber + "'");
-			List<ChangeBeneficial> changeBeneficial = getChangeBeneficialList(query);
+			List<Object> preparedStmtList = new ArrayList<>();
+			List<ChangeBeneficial> changeBeneficial = jdbcTemplate.query(
+					queryForGetChangeBeneficial.replaceAll(":licenseNumber", "'" + licenseNumber + "'"),
+					preparedStmtList.toArray(), (rs, rowNum) -> {
+
+						AuditDetails auditDetails = null;
+						try {
+							AuditDetails audit_details = new Gson().fromJson(rs.getString("audit_details").equals("{}")
+									|| rs.getString("audit_details").equals("null") ? null
+											: rs.getString("audit_details"),
+									AuditDetails.class);
+							System.out.println(audit_details);
+							auditDetails = audit_details;
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+						return ChangeBeneficial.builder().id(rs.getString("id").toString())
+								.developerServiceCode(rs.getString("developerServiceCode").toString())
+								.applicationNumber(rs.getString("application_number"))
+								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
+					});
 			if (changeBeneficial != null && !changeBeneficial.isEmpty()) {
 				cahngeBeneficial = changeBeneficial.get(0);
 			}
@@ -319,8 +324,7 @@ public class ChangeBeneficialRepo {
 //	}
 
 	public ChangeBeneficial getBeneficialDetailsByApplicationNumber(String applicationNumber) {
-		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
-		String query = getUpdateBeneficialId.replace(":applicationNumber",applicationNumber);
+		String query = getUpdateBeneficialId.replace(":applicationNumber", "'" + applicationNumber + "'");
 		return formateChangeBeneficialData(query);
 	}
 
@@ -353,8 +357,7 @@ public class ChangeBeneficialRepo {
 	}
 
 	public List<ChangeBeneficial> getBeneficialDetailsByApplicationNumberList(String applicationNumber) {
-		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
-		String query = getUpdateBeneficialId.replace(":applicationNumber",applicationNumber);
+		String query = getUpdateBeneficialId.replace(":applicationNumber", "'" + applicationNumber + "'");
 		return getChangeBeneficialList(query);
 	}
 	
@@ -418,7 +421,7 @@ public class ChangeBeneficialRepo {
 								.applicationStatus(rs.getInt("application_status"))
 								.applicationNumber(rs.getString("application_number"))
 								.workFlowCode(rs.getString("workflowcode"))
-//								.diaryNumber(rs.getString("diary_number"))
+								.diaryNumber(rs.getString("diary_number"))
 								.auditDetails(auditDetails)
 								.isDraft(rs.getString("is_draft"))
 								.tranactionId(rs.getString("transaction_id"))
@@ -428,11 +431,6 @@ public class ChangeBeneficialRepo {
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
-								
-								.tcpApplicationNumber(rs.getString("tcp_application_number"))
-								.tcpCaseNumber(rs.getString("tcp_case_number"))
-								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
-								
 								.newAdditionalDetails(additionalDetails).build();
 
 					});

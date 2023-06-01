@@ -65,9 +65,8 @@ public class RevisedPlanServices {
 
 	@Value("${persister.update.revised.layout.plan.topic}")
 	private String revisdUpdateTopic;
-	@Value("${tcp.employee.ctp}")
-	private String ctpUser;
-	// private static final String businessService_RLP = "REVISED_LAYOUT_PLAN";
+
+	private static final String businessService_RLP = "REVISED_LAYOUT_PLAN";
 
 	private static final String SENDBACK_STATUS = "FORWARD_TO_APPLICANT";
 
@@ -383,16 +382,13 @@ public class RevisedPlanServices {
 
 		RequestInfo requestInfo = revisedPlanRequest.getRequestInfo();
 		RevisedPlan revisedPlan = revisedPlanRequest.getRevisedPlan();
-		revisedPlan.setBusinessService(config.getRevisedLayoutPlanBusinessService());
-		revisedPlan.setWorkflowCode(config.getRevisedLayoutPlanBusinessService());
-//		revisedPlan.setAssignee(
-//				Arrays.asList(servicePlanService.assignee("CTP_HR", revisedPlan.getTenantId(), true, requestInfo)));
+		revisedPlan.setBusinessService(businessService_RLP);
+		revisedPlan.setWorkflowCode(businessService_RLP);
 		revisedPlan.setAssignee(
-				Arrays.asList(tradeUtil.getFirstAssigneeByRole(ctpUser, revisedPlan.getTenantId(), true, requestInfo)));
-
+				Arrays.asList(servicePlanService.assignee("CTP_HR", revisedPlan.getTenantId(), true, requestInfo)));
 ////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(revisedPlan, requestInfo,
-				config.getRevisedLayoutPlanBusinessService());
+				businessService_RLP);
 
 		wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 

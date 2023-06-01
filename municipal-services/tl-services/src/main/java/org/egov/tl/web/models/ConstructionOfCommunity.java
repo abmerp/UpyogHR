@@ -57,14 +57,8 @@ public class ConstructionOfCommunity {
 	@JsonProperty("applicationStatus")
 	private int applicationStatus; //  1- pending,2-partial paied,3-full paied    // new
 	
-	@JsonProperty("outstandingDues")
-	private float outstandingDues;	
-	
-	@JsonProperty("amount")
-	private float amount;	
-	
-	@JsonProperty("licenceRenewd")
-	private String licenceRenewd;	
+	@JsonProperty("paidAmount")
+	private String paidAmount;	
 
 	@JsonProperty("isFullPaymentDone")
 	private boolean isFullPaymentDone;
@@ -150,7 +144,4 @@ public class ConstructionOfCommunity {
 	@JsonProperty("assignee")
 	private List<String> assignee;
 	
-	@JsonProperty("wfDocuments")
-	private List<Document> wfDocuments;
-
 }

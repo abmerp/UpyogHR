@@ -55,7 +55,7 @@ import net.minidev.json.JSONObject;
 @Service
 public class SurrendOfLicenseServices {
 
-	// private static final String BUSINESS_SURRENDER = "SURREND_OF_LICENSE";
+	private static final String BUSINESS_SURRENDER = "SURREND_OF_LICENSE";
 
 	@Value("${persister.create.surrend.of.license.topic}")
 	private String surrendTopic;
@@ -367,8 +367,8 @@ public class SurrendOfLicenseServices {
 		surrendOfLicense.setAssignee(Arrays
 				.asList(servicePlanService.assignee("CTP_HR", surrendOfLicense.getTenantId(), true, requestInfo)));
 ////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-		surrendOfLicense.setBusinessService(config.getSurrenderOfLicenceBusinessService());
-		surrendOfLicense.setWorkflowCode(config.getSurrenderOfLicenceBusinessService());
+		surrendOfLicense.setBusinessService(BUSINESS_SURRENDER);
+		surrendOfLicense.setWorkflowCode(BUSINESS_SURRENDER);
 		surrendOfLicense.setAction("INITIATE");
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(
 				surrendOfLicenseRequest.getSurrendOfLicense(), requestInfo, surrendOfLicense.getBusinessService());

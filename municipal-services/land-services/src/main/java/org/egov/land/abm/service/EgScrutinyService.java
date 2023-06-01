@@ -6,7 +6,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.egov.land.abm.contract.PerformaContract;
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EmployeeSecurtinyReport;
 import org.egov.land.abm.models.FiledDetails;
@@ -15,7 +14,6 @@ import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.newservices.entity.UserComments;
 import org.egov.land.abm.repo.EgScrutinyRepo;
 import org.egov.land.service.LandEnrichmentService;
-import org.postgresql.jdbc2.ArrayAssistantRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,7 +119,6 @@ public class EgScrutinyService {
 		List<FiledDetails> approvedfiledDetails = null;
 		List<FiledDetails> disApprovedfiledDetails = null;
 		List<FiledDetails> condApprovedfiledDetails = null;
-		List<FiledDetails> performaFieldDetail = null;
 		List<EmployeeSecurtinyReport> securityReportf = new ArrayList<EmployeeSecurtinyReport>();
 
 		for (EgScrutiny egScrutiny2 : egScrutiny) {
@@ -131,7 +128,6 @@ public class EgScrutinyService {
 			approvedfiledDetails = new ArrayList<FiledDetails>();
 			disApprovedfiledDetails = new ArrayList<FiledDetails>();
 			condApprovedfiledDetails = new ArrayList<FiledDetails>();
-			performaFieldDetail = new ArrayList<FiledDetails>();
 			object.setEmployeeName(egScrutiny2.getEmployeeName());
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
@@ -155,8 +151,6 @@ public class EgScrutinyService {
 						disApprovedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
 						condApprovedfiledDetails.add(comments2);
-					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
-						performaFieldDetail.add(comments2);
 					// egScrutiny.remove(i);
 				}
 				i++;
@@ -177,7 +171,7 @@ public class EgScrutinyService {
 				object.setApprovedfiledDetails(approvedfiledDetails);
 				object.setDisApprovedfiledDetails(disApprovedfiledDetails);
 				object.setCondApprovedfiledDetails(condApprovedfiledDetails);
-				object.setPerformaFieldDetail(performaFieldDetail);
+
 				securityReport.add(object);
 				// securityReportf.addAll(securityReport);
 				log.info("\t" + securityReport.size() + "\t");
@@ -205,37 +199,4 @@ public class EgScrutinyService {
 		return this.egScrutinyRepo.findByApplicationIdAndUseridOrderByUseridDesc(applicantId, fieldId);
 	}
 
-	public List<EgScrutiny> createAndUpdatePerforma(PerformaContract performaContract) {
-		List<EgScrutiny> egScrutinyList = performaContract.getEgScrutiny();
-		List<EgScrutiny> egScrutinyLists = new ArrayList<>();
-		for (EgScrutiny egScrutiny : egScrutinyList) {
-			boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-
-					egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-					egScrutiny.getServiceId());
-
-			if (isExist) {
-//				EgScrutiny egScrutinys = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-//						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-//						egScrutiny.getServiceId());
-				egScrutiny.setComment(egScrutiny.getComment());
-				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
-				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
-				egScrutiny.setFieldValue(egScrutiny.getFieldValue());
-				egScrutiny.setIsLOIPart(egScrutiny.getIsLOIPart());
-				egScrutiny.setTs(new Date());
-				// return egScrutinyRepo.save(egScrutiny);
-			} else {
-				egScrutiny.setTs(new Date());
-				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
-				
-
-			}
-			egScrutinyLists.add(egScrutiny);
-
-		}
-
-		return egScrutinyRepo.saveAll(egScrutinyLists);
-
-	}
 }

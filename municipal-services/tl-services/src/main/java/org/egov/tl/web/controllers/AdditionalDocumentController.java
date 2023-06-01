@@ -6,8 +6,6 @@ import org.egov.tl.abm.newservices.contract.AdditionalDocumentsContract;
 import org.egov.tl.abm.newservices.contract.AdditionalDocumentResponse;
 import org.egov.tl.service.AdditionalDocumentsService;
 import org.egov.tl.util.ResponseInfoFactory;
-import org.egov.tl.web.models.AdditionalDocumentReport;
-import org.egov.tl.web.models.AdditionalDocumentReportResponse;
 import org.egov.tl.web.models.AdditionalDocuments;
 import org.egov.tl.web.models.RequestInfoWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,31 +37,16 @@ public class AdditionalDocumentController {
 				.build();
 		return new ResponseEntity<>(allServiceResponse, HttpStatus.OK);
 	}
-//
-//	@PostMapping("/_search")
-//	public ResponseEntity<AdditionalDocumentResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
-//			@RequestParam(required = true) String businessService, 
-//			@RequestParam(required = true) String licenceNumber,
-//			@RequestParam(required = false) String applicationSection) {
-//		List<AdditionalDocuments> allServiceFindList = allServiceFindservice.search(requestInfoWrapper.getRequestInfo(),
-//				businessService, licenceNumber, applicationSection);
-//
-//		AdditionalDocumentResponse allServiceResponse = AdditionalDocumentResponse.builder()
-//				.additionalDocuments(allServiceFindList).responseInfo(responseInfoFactory
-//						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
-//				.build();
-//		return new ResponseEntity<>(allServiceResponse, HttpStatus.OK);
-//	}
-	@PostMapping("/_search")
-	public ResponseEntity<AdditionalDocumentReportResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
-			@RequestParam(required = true) String businessService, 
-			@RequestParam(required = true) String licenceNumber,
-			@RequestParam(required = false) String applicationSection) throws JsonProcessingException {
-		List<AdditionalDocumentReport> allServiceFindList = allServiceFindservice.searchSectionData(requestInfoWrapper.getRequestInfo(),
-				businessService, licenceNumber, applicationSection);
 
-		AdditionalDocumentReportResponse allServiceResponse = AdditionalDocumentReportResponse.builder()
-				.additionalDocumentReport(allServiceFindList).responseInfo(responseInfoFactory
+	@PostMapping("/_search")
+	public ResponseEntity<AdditionalDocumentResponse> search(@RequestBody RequestInfoWrapper requestInfoWrapper,
+
+			@RequestParam(required = true) String businessService,@RequestParam(required = true) String type,@RequestParam(required = true) String licenceNumber) {
+		List<AdditionalDocuments> allServiceFindList = allServiceFindservice.search(requestInfoWrapper.getRequestInfo(),businessService,
+				type,licenceNumber);
+
+		AdditionalDocumentResponse allServiceResponse = AdditionalDocumentResponse.builder()
+				.additionalDocuments(allServiceFindList).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
 				.build();
 		return new ResponseEntity<>(allServiceResponse, HttpStatus.OK);

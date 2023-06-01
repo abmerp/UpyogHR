@@ -2,813 +2,71 @@
   "tenantId": "hr",
   "moduleName": "common-masters",
   "tehsil": [
-   {
-      "disCode": "06",
-      "tehCode": "037",
-      "tehName": "Adampur",
-      "distCodeTCP": "HR"
-    },
-	   {
-      "disCode": "08",
-      "tehCode": "052",
-      "tehName": "Alewa",
-      "distCodeTCP": "JD"
-    },
     {
       "disCode": "01",
       "tehCode": "001",
       "tehName": "Ambala",
       "distCodeTCP": "AA"
     },
-	{
-      "disCode": "01",
-      "tehCode": "006",
-      "tehName": "Ambala cantt",
-      "distCodeTCP": "AA"
-    },
-	   {
-      "disCode": "10",
-      "tehCode": "064",
-      "tehName": "Assandh",
-      "distCodeTCP": "KL"
-    },
-	 {
-      "disCode": "12",
-      "tehCode": "077",
-      "tehName": "Ateli",
-      "distCodeTCP": "MH"
-    },
-
-   {
-      "disCode": "11",
-      "tehCode": "073",
-      "tehName": "Babain",
-      "distCodeTCP": "KA"
-    },
-   {
-      "disCode": "22",
-      "tehCode": "013",
-      "tehName": "Badhra",
-      "distCodeTCP": "CD"
-    }, 
-	
-	  {
-      "disCode": "03",
-      "tehCode": "139",
-      "tehName": "Badkhal",
-      "distCodeTCP": "FD"
-    },
-{
-      "disCode": "07",
-      "tehCode": "131",
-      "tehName": "Badli",
-      "distCodeTCP": "JR"
-    },	
-	 {
-      "disCode": "05",
-      "tehCode": "136",
-      "tehName": "Badshahpur",
-      "distCodeTCP": "GN"
-    },{
-      "disCode": "07",
-      "tehCode": "042",
-      "tehName": "Bahadurgarh",
-      "distCodeTCP": "JR"
-    }, 
-	   {
-      "disCode": "02",
-      "tehCode": "113",
-      "tehName": "Bahal",
-      "distCodeTCP": "BI"
-    },  {
-      "disCode": "21",
-      "tehCode": "129",
-      "tehName": "Bahin",
-      "distCodeTCP": "PL"
-    },
-	    {
-      "disCode": "03",
-      "tehCode": "016",
-      "tehName": "Ballabgarh",
-      "distCodeTCP": "FD"
-    },
-	{
-      "disCode": "10",
-      "tehCode": "067",
-      "tehName": "Ballah",
-      "distCodeTCP": "KL"
-    },   {
-      "disCode": "06",
-      "tehCode": "115",
-      "tehName": "Balsamand",
-      "distCodeTCP": "HR"
-    },
-	    {
-      "disCode": "14",
-      "tehCode": "087",
-      "tehName": "Bapoli",
-      "distCodeTCP": "PT"
-    },
-	{
+    {
       "disCode": "01",
       "tehCode": "002",
       "tehName": "Barara",
       "distCodeTCP": "AA"
-    },  
-	    {
-      "disCode": "06",
-      "tehCode": "039",
-      "tehName": "Barwala",
-      "distCodeTCP": "HR"
-    },
-	    {
-      "disCode": "13",
-      "tehCode": "082",
-      "tehName": "Barwala",
-      "distCodeTCP": "PK"
-    },
-	  {
-      "disCode": "06",
-      "tehCode": "041",
-      "tehName": "Bas",
-      "distCodeTCP": "HR"
-    },
-
-    {
-      "disCode": "07",
-      "tehCode": "043",
-      "tehName": "Beri",
-      "distCodeTCP": "JR"
-    },
-	    {
-      "disCode": "15",
-      "tehCode": "091",
-      "tehName": "Bawal",
-      "distCodeTCP": "RI"
-    },
-	{
-      "disCode": "02",
-      "tehCode": "008",
-      "tehName": "Bawani khera",
-      "distCodeTCP": "BI"
-    },
-	  {
-      "disCode": "04",
-      "tehCode": "023",
-      "tehName": "Bhattukalan",
-      "distCodeTCP": "FT"
-    },
-	   {
-      "disCode": "02",
-      "tehCode": "007",
-      "tehName": "Bhiwani",
-      "distCodeTCP": "BI"
-    }, 
-	 {
-      "disCode": "04",
-      "tehCode": "024",
-      "tehName": "Bhuna",
-      "distCodeTCP": "FT"
-    },
-	    {
-      "disCode": "19",
-      "tehCode": "109",
-      "tehName": "Bilaspur",
-      "distCodeTCP": "YR"
     },
     {
-      "disCode": "22",
-      "tehCode": "014",
-      "tehName": "Bondkalan",
-      "distCodeTCP": "CD"
-    },
-	
-    {
-      "disCode": "19",
-      "tehCode": "107",
-      "tehName": "Chhachhrauli",
-      "distCodeTCP": "YR"
-    }, 
-   
-    {
-      "disCode": "17",
-      "tehCode": "097",
-      "tehName": "Dabwali",
-      "distCodeTCP": "SA"
-    },
-    {
-      "disCode": "22",
-      "tehCode": "009",
-      "tehName": "Dadri",
-      "distCodeTCP": "CD"
-    },    {
-      "disCode": "15",
-      "tehCode": "119",
-      "tehName": "Dahina",
-      "distCodeTCP": "RI"
-    },
-	    {
-      "disCode": "09",
-      "tehCode": "058",
-      "tehName": "Dhand",
-      "distCodeTCP": "KT"
-    },
-	  {
-      "disCode": "15",
-      "tehCode": "092",
-      "tehName": "Dharuhera",
-      "distCodeTCP": "RI"
-    },
-	 {
-      "disCode": "03",
-      "tehCode": "140",
-      "tehName": "Dhauj",
-      "distCodeTCP": "FD"
-    },
-	   {
-      "disCode": "03",
-      "tehCode": "141",
-      "tehName": "Dyalpur",
-      "distCodeTCP": "FD"
-    },
- 
-    {
-      "disCode": "17",
-      "tehCode": "098",
-      "tehName": "Ellenabad",
-      "distCodeTCP": "SA"
-    },
- 
- 
-    {
-      "disCode": "03",
-      "tehCode": "015",
-      "tehName": "Faridabad",
-      "distCodeTCP": "FD"
-    },  
-	{
-      "disCode": "05",
-      "tehCode": "034",
-      "tehName": "Farrukhnagar",
-      "distCodeTCP": "GN"
-    }, 
-	{
-      "disCode": "04",
-      "tehCode": "020",
-      "tehName": "Fatehabad",
-      "distCodeTCP": "FT"
-    }, 
-	{
-      "disCode": "09",
-      "tehCode": "057",
-      "tehName": "Fatehpur Pundri",
-      "distCodeTCP": "KT"
-    },  
-	{
-      "disCode": "20",
-      "tehCode": "027",
-      "tehName": "Ferozepur zirka",
-      "distCodeTCP": "MT"
-    },
-   
-  {
-      "disCode": "18",
-      "tehCode": "103",
-      "tehName": "Ganaur",
-      "distCodeTCP": "ST"
-    },
-    {
-      "disCode": "03",
-      "tehCode": "142",
-      "tehName": "Gaunchi",
-      "distCodeTCP": "FD"
-    },
-		   {
-      "disCode": "10",
-      "tehCode": "063",
-      "tehName": "Gharaunda",
-      "distCodeTCP": "KL"
-    },
-	{
-      "disCode": "18",
-      "tehCode": "104",
-      "tehName": "Gohana",
-      "distCodeTCP": "ST"
-    },
-	    {
-      "disCode": "17",
-      "tehCode": "127",
-      "tehName": "Goriwala",
-      "distCodeTCP": "SA"
-    },
-	  {
-      "disCode": "09",
-      "tehCode": "054",
-      "tehName": "Gulha",
-      "distCodeTCP": "KT"
-    }, 
-	{
-      "disCode": "05",
-      "tehCode": "026",
-      "tehName": "Gurgaon",
-      "distCodeTCP": "GN"
-    },  
-  {
-      "disCode": "06",
-      "tehCode": "036",
-      "tehName": "Hansi",
-      "distCodeTCP": "HR"
-    },
- {
-      "disCode": "21",
-      "tehCode": "019",
-      "tehName": "Hathin",
-      "distCodeTCP": "PL"
-    },
-	 {
-      "disCode": "05",
-      "tehCode": "138",
-      "tehName": "Harsaru",
-      "distCodeTCP": "GN"
-    },
-	   {
-      "disCode": "21",
-      "tehCode": "126",
-      "tehName": "Hassanpur",
-      "distCodeTCP": "PL"
-    },
-
-    {
-      "disCode": "06",
-      "tehCode": "035",
-      "tehName": "Hisar",
-      "distCodeTCP": "HR"
-    },
-  
-    {
-      "disCode": "21",
-      "tehCode": "018",
-      "tehName": "Hodal",
-      "distCodeTCP": "PL"
-    },
-
- {
-      "disCode": "10",
-      "tehCode": "062",
-      "tehName": "Indri",
-      "distCodeTCP": "KL"
-    },
-	   {
-      "disCode": "11",
-      "tehCode": "072",
-      "tehName": "Ismailabad",
-      "distCodeTCP": "KA"
-    },
-	  {
-      "disCode": "14",
-      "tehCode": "085",
-      "tehName": "Israna",
-      "distCodeTCP": "PT"
-    },
-    
-   {
-      "disCode": "19",
-      "tehCode": "108",
-      "tehName": "Jagadhri",
-      "distCodeTCP": "YR"
-    },
-	{
-      "disCode": "04",
-      "tehCode": "025",
-      "tehName": "Jakhal",
-      "distCodeTCP": "FT"
-    },
-    {
-      "disCode": "07",
-      "tehCode": "044",
-      "tehName": "Jhajjar",
-      "distCodeTCP": "JR"
-    },
-	  {
-      "disCode": "08",
-      "tehCode": "046",
-      "tehName": "Jind",
-      "distCodeTCP": "JD"
-    },
-	   {
-      "disCode": "08",
-      "tehCode": "049",
-      "tehName": "Julana",
-      "distCodeTCP": "JD"
-    },
- {
-      "disCode": "05",
-      "tehCode": "137",
-      "tehName": "Kadipur",
-      "distCodeTCP": "GN"
-    },
-   {
-      "disCode": "09",
-      "tehCode": "053",
-      "tehName": "Kaithal",
-      "distCodeTCP": "KT"
-    },
- {
-      "disCode": "16",
-      "tehCode": "096",
-      "tehName": "Kalanaur",
-      "distCodeTCP": "RK"
-    },
-	{
-      "disCode": "17",
-      "tehCode": "099",
-      "tehName": "Kalanwali",
-      "distCodeTCP": "SA"
-    },
-    {
-      "disCode": "09",
-      "tehCode": "055",
-      "tehName": "Kalayat",
-      "distCodeTCP": "KT"
-    },  
-
-	  {
-      "disCode": "13",
-      "tehCode": "080",
-      "tehName": "Kalka",
-      "distCodeTCP": "PK"
-    },
-    {
-      "disCode": "12",
-      "tehCode": "078",
-      "tehName": "Kanina",
-      "distCodeTCP": "MH"
-    },
-	   {
-      "disCode": "10",
-      "tehCode": "060",
-      "tehName": "Karnal",
-      "distCodeTCP": "KL"
-    },
-	  {
-      "disCode": "18",
-      "tehCode": "118",
-      "tehName": "Khanpur",
-      "distCodeTCP": "ST"
-    },	 
-   	    {
-      "disCode": "18",
-      "tehCode": "105",
-      "tehName": "Kharkhoda",
-      "distCodeTCP": "ST"
-    },
-	  {
-      "disCode": "06",
-      "tehCode": "130",
-      "tehName": "Kheri Jalab",
-      "distCodeTCP": "HR"
-    },   
-	{
-      "disCode": "19",
-      "tehCode": "134",
-      "tehName": "Khizrabad",
-      "distCodeTCP": "YR"
-    },
-	   {
-      "disCode": "15",
-      "tehCode": "090",
-      "tehName": "Kosli",
-      "distCodeTCP": "RI"
-    },
-    
-	  {
-      "disCode": "04",
-      "tehCode": "124",
-      "tehName": "Kulan",
-      "distCodeTCP": "FT"
-    },
- 
-    {
-      "disCode": "11",
-      "tehCode": "070",
-      "tehName": "Ladwa",
-      "distCodeTCP": "KA"
-    },
-	   {
-      "disCode": "16",
-      "tehCode": "133",
-      "tehName": "Lakhan Majra",
-      "distCodeTCP": "RK"
-    },
-  {
-      "disCode": "02",
-      "tehCode": "010",
-      "tehName": "Loharu",
-      "distCodeTCP": "BI"
-    },
-
-    {
-      "disCode": "12",
-      "tehCode": "075",
-      "tehName": "Mahendragarh",
-      "distCodeTCP": "MH"
-    },
-	    {
-      "disCode": "15",
-      "tehCode": "128",
-      "tehName": "Manethi",
-      "distCodeTCP": "RI"
-    },
-	 {
-      "disCode": "05",
-      "tehCode": "116",
-      "tehName": "Manesar",
-      "distCodeTCP": "GN"
-    },
-	
-    {
-      "disCode": "07",
-      "tehCode": "045",
-      "tehName": "Matanhail",
-      "distCodeTCP": "JR"
-    },
-    {
-      "disCode": "14",
-      "tehCode": "088",
-      "tehName": "Matlauda",
-      "distCodeTCP": "PT"
-    },
-	  {
-      "disCode": "16",
-      "tehCode": "094",
-      "tehName": "Meham",
-      "distCodeTCP": "RK"
-    },
-	
-	  {
-      "disCode": "03",
-      "tehCode": "122",
-      "tehName": "Mohna",
-      "distCodeTCP": "FD"
-    },
-	{
-      "disCode": "13",
-      "tehCode": "083",
-      "tehName": "Morni",
-      "distCodeTCP": "PK"
-    },
-		{
-      "disCode": "01",
-      "tehCode": "005",
-      "tehName": "Mulana",
-      "distCodeTCP": "AA"
-    },
-
-     {
-      "disCode": "20",
-      "tehCode": "033",
-      "tehName": "Nagina",
-      "distCodeTCP": "MT"
-    },
-	   {
-      "disCode": "15",
-      "tehCode": "123",
-      "tehName": "Nahar",
-      "distCodeTCP": "RI"
-    },
-	   {
-      "disCode": "12",
-      "tehCode": "076",
-      "tehName": "Nangal chowdhary",
-      "distCodeTCP": "MH"
-    },
- {
       "disCode": "01",
       "tehCode": "003",
       "tehName": "Naraingarh",
       "distCodeTCP": "AA"
     },
-	    {
-      "disCode": "06",
-      "tehCode": "038",
-      "tehName": "Narnaund",
-      "distCodeTCP": "HR"
-    },
-	   {
-      "disCode": "12",
-      "tehCode": "074",
-      "tehName": "Narnaul",
-      "distCodeTCP": "MH"
-    },
-	    {
-      "disCode": "08",
-      "tehCode": "048",
-      "tehName": "Narwana",
-      "distCodeTCP": "JD"
-    },
-	  {
-      "disCode": "17",
-      "tehCode": "100",
-      "tehName": "Nathusari chopta",
-      "distCodeTCP": "SA"
-    },
-	 {
-      "disCode": "10",
-      "tehCode": "066",
-      "tehName": "Nigdu",
-      "distCodeTCP": "KL"
-    },
     {
-      "disCode": "10",
-      "tehCode": "061",
-      "tehName": "Nilokheri",
-      "distCodeTCP": "KL"
-    },
-  
-    {
-      "disCode": "10",
-      "tehCode": "065",
-      "tehName": "Nising",
-      "distCodeTCP": "KL"
-    },
-	  {
-      "disCode": "20",
-      "tehCode": "030",
-      "tehName": "Nuh",
-      "distCodeTCP": "MT"
-    },
-   
-  {
-      "disCode": "15",
-      "tehCode": "132",
-      "tehName": "Palhawas",
-      "distCodeTCP": "RI"
-    },
-    {
-      "disCode": "21",
-      "tehCode": "017",
-      "tehName": "Palwal",
-      "distCodeTCP": "PL"
-    },
-	  
-  	{
-      "disCode": "13",
-      "tehCode": "079",
-      "tehName": "Panchkula",
-      "distCodeTCP": "PK"
-    },
-     
-    {
-      "disCode": "14",
-      "tehCode": "084",
-      "tehName": "Panipat",
-      "distCodeTCP": "PT"
-    },
-
-	  {
-      "disCode": "05",
-      "tehCode": "029",
-      "tehName": "Pataudi",
-      "distCodeTCP": "GN"
-    },
-	   {
-      "disCode": "11",
-      "tehCode": "068",
-      "tehName": "Pehowa",
-      "distCodeTCP": "KA"
-    },
-    {
-      "disCode": "08",
-      "tehCode": "051",
-      "tehName": "Pilukhera",
-      "distCodeTCP": "JD"
-    },
-    {
-      "disCode": "20",
-      "tehCode": "031",
-      "tehName": "Punhana",
-      "distCodeTCP": "MT"
-    },
-   {
-      "disCode": "19",
-      "tehCode": "110",
-      "tehName": "Radaur",
-      "distCodeTCP": "YR"
-    },  
-	  {
-      "disCode": "18",
-      "tehCode": "121",
-      "tehName": "Rai",
-      "distCodeTCP": "ST"
-    },
-  {
-      "disCode": "13",
-      "tehCode": "081",
-      "tehName": "Raipur rani",
-      "distCodeTCP": "PK"
-    },
-    {
-      "disCode": "09",
-      "tehCode": "056",
-      "tehName": "Rajaund",
-      "distCodeTCP": "KT"
-    },
-	 
-	   {
-      "disCode": "17",
-      "tehCode": "101",
-      "tehName": "Rania",
-      "distCodeTCP": "SA"
-    },
-    {
-      "disCode": "04",
-      "tehCode": "022",
-      "tehName": "Ratia",
-      "distCodeTCP": "FT"
-    },
-     {
-      "disCode": "15",
-      "tehCode": "089",
-      "tehName": "Rewari",
-      "distCodeTCP": "RI"
-    },
- 
-    {
-      "disCode": "16",
-      "tehCode": "093",
-      "tehName": "Rohtak",
-      "distCodeTCP": "RK"
-    },
-
- {
-      "disCode": "19",
-      "tehCode": "111",
-      "tehName": "Sadhaura",
-      "distCodeTCP": "YR"
-    },
-  {
-      "disCode": "08",
-      "tehCode": "047",
-      "tehName": "Safidon",
-      "distCodeTCP": "JD"
-    },
-  {
       "disCode": "01",
       "tehCode": "004",
       "tehName": "Saha",
       "distCodeTCP": "AA"
     },
     {
-      "disCode": "07",
-      "tehCode": "114",
-      "tehName": "Salhawas",
-      "distCodeTCP": "JR"
-    },
-  
-    {
-      "disCode": "14",
-      "tehCode": "086",
-      "tehName": "Samalkha",
-      "distCodeTCP": "PT"
-    },
-
-    {
-      "disCode": "16",
-      "tehCode": "095",
-      "tehName": "Sampla",
-      "distCodeTCP": "RK"
-    },
- 
-      {
-      "disCode": "19",
-      "tehCode": "112",
-      "tehName": "Saraswati Nagar",
-      "distCodeTCP": "YR"
-    },
-   {
-      "disCode": "12",
-      "tehCode": "125",
-      "tehName": "Satnali",
-      "distCodeTCP": "MH"
-    },
-
-    {
-      "disCode": "11",
-      "tehCode": "069",
-      "tehName": "Shahabad",
-      "distCodeTCP": "KA"
+      "disCode": "01",
+      "tehCode": "005",
+      "tehName": "Mulana",
+      "distCodeTCP": "AA"
     },
     {
       "disCode": "01",
-      "tehCode": "117",
-      "tehName": "Shahzadpur",
+      "tehCode": "006",
+      "tehName": "Ambala cantt",
       "distCodeTCP": "AA"
     },
-   {
-      "disCode": "09",
-      "tehCode": "059",
-      "tehName": "Siwan",
-      "distCodeTCP": "KT"
+    {
+      "disCode": "02",
+      "tehCode": "007",
+      "tehName": "Bhiwani",
+      "distCodeTCP": "BI"
+    },
+    {
+      "disCode": "02",
+      "tehCode": "008",
+      "tehName": "Bawani khera",
+      "distCodeTCP": "BI"
+    },
+    {
+      "disCode": "22",
+      "tehCode": "009",
+      "tehName": "Dadri",
+      "distCodeTCP": "CD"
+    },
+    {
+      "disCode": "02",
+      "tehCode": "010",
+      "tehName": "Loharu",
+      "distCodeTCP": "BI"
+    },
+    {
+      "disCode": "02",
+      "tehCode": "011",
+      "tehName": "Tosham",
+      "distCodeTCP": "BI"
     },
     {
       "disCode": "02",
@@ -817,78 +75,784 @@
       "distCodeTCP": "BI"
     },
     {
-      "disCode": "17",
-      "tehCode": "102",
-      "tehName": "Sirsa",
-      "distCodeTCP": "SA"
+      "disCode": "22",
+      "tehCode": "013",
+      "tehName": "Badhra",
+      "distCodeTCP": "CD"
     },
-   
+    {
+      "disCode": "22",
+      "tehCode": "014",
+      "tehName": "Bondkalan",
+      "distCodeTCP": "CD"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "015",
+      "tehName": "Faridabad",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "016",
+      "tehName": "Ballabgarh",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "21",
+      "tehCode": "017",
+      "tehName": "Palwal",
+      "distCodeTCP": "PL"
+    },
+    {
+      "disCode": "21",
+      "tehCode": "018",
+      "tehName": "Hodal",
+      "distCodeTCP": "PL"
+    },
+    {
+      "disCode": "21",
+      "tehCode": "019",
+      "tehName": "Hathin",
+      "distCodeTCP": "PL"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "020",
+      "tehName": "Fatehabad",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "021",
+      "tehName": "Tohana",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "022",
+      "tehName": "Ratia",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "023",
+      "tehName": "Bhattukalan",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "024",
+      "tehName": "Bhuna",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "025",
+      "tehName": "Jakhal",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "05",
+      "tehCode": "026",
+      "tehName": "Gurgaon",
+      "distCodeTCP": "GN"
+    },
+    {
+      "disCode": "20",
+      "tehCode": "027",
+      "tehName": "Ferozepur zirka",
+      "distCodeTCP": "MT"
+    },
     {
       "disCode": "05",
       "tehCode": "028",
       "tehName": "Sohna",
       "distCodeTCP": "GN"
     },
- 
     {
-      "disCode": "18",
-      "tehCode": "106",
-      "tehName": "Sonipat",
-      "distCodeTCP": "ST"
+      "disCode": "05",
+      "tehCode": "029",
+      "tehName": "Pataudi",
+      "distCodeTCP": "GN"
     },
-  
     {
-      "disCode": "11",
-      "tehCode": "071",
-      "tehName": "Thanesar",
-      "distCodeTCP": "KA"
+      "disCode": "20",
+      "tehCode": "030",
+      "tehName": "Nuh",
+      "distCodeTCP": "MT"
     },
- 
+    {
+      "disCode": "20",
+      "tehCode": "031",
+      "tehName": "Punhana",
+      "distCodeTCP": "MT"
+    },
     {
       "disCode": "20",
       "tehCode": "032",
       "tehName": "Tauru",
       "distCodeTCP": "MT"
     },
-	   {
-      "disCode": "03",
-      "tehCode": "120",
-      "tehName": "Tigaon",
-      "distCodeTCP": "FD"
+    {
+      "disCode": "20",
+      "tehCode": "033",
+      "tehName": "Nagina",
+      "distCodeTCP": "MT"
     },
-	  {
-      "disCode": "04",
-      "tehCode": "021",
-      "tehName": "Tohana",
-      "distCodeTCP": "FT"
+    {
+      "disCode": "05",
+      "tehCode": "034",
+      "tehName": "Farrukhnagar",
+      "distCodeTCP": "GN"
     },
-   {
-      "disCode": "02",
-      "tehCode": "011",
-      "tehName": "Tosham",
-      "distCodeTCP": "BI"
+    {
+      "disCode": "06",
+      "tehCode": "035",
+      "tehName": "Hisar",
+      "distCodeTCP": "HR"
     },
-	
-   {
-      "disCode": "08",
-      "tehCode": "050",
-      "tehName": "Uchana",
-      "distCodeTCP": "JD"
+    {
+      "disCode": "06",
+      "tehCode": "036",
+      "tehName": "Hansi",
+      "distCodeTCP": "HR"
     },
-
+    {
+      "disCode": "06",
+      "tehCode": "037",
+      "tehName": "Adampur",
+      "distCodeTCP": "HR"
+    },
+    {
+      "disCode": "06",
+      "tehCode": "038",
+      "tehName": "Narnaund",
+      "distCodeTCP": "HR"
+    },
+    {
+      "disCode": "06",
+      "tehCode": "039",
+      "tehName": "Barwala",
+      "distCodeTCP": "HR"
+    },
     {
       "disCode": "06",
       "tehCode": "040",
       "tehName": "Uklana",
       "distCodeTCP": "HR"
     },
- 
+    {
+      "disCode": "06",
+      "tehCode": "041",
+      "tehName": "Bas",
+      "distCodeTCP": "HR"
+    },
+    {
+      "disCode": "07",
+      "tehCode": "042",
+      "tehName": "Bahadurgarh",
+      "distCodeTCP": "JR"
+    },
+    {
+      "disCode": "07",
+      "tehCode": "043",
+      "tehName": "Beri",
+      "distCodeTCP": "JR"
+    },
+    {
+      "disCode": "07",
+      "tehCode": "044",
+      "tehName": "Jhajjar",
+      "distCodeTCP": "JR"
+    },
+    {
+      "disCode": "07",
+      "tehCode": "045",
+      "tehName": "Matanhail",
+      "distCodeTCP": "JR"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "046",
+      "tehName": "Jind",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "047",
+      "tehName": "Safidon",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "048",
+      "tehName": "Narwana",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "049",
+      "tehName": "Julana",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "050",
+      "tehName": "Uchana",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "051",
+      "tehName": "Pilukhera",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "08",
+      "tehCode": "052",
+      "tehName": "Alewa",
+      "distCodeTCP": "JD"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "053",
+      "tehName": "Kaithal",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "054",
+      "tehName": "Gulha",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "055",
+      "tehName": "Kalayat",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "056",
+      "tehName": "Rajaund",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "057",
+      "tehName": "Fatehpur Pundri",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "058",
+      "tehName": "Dhand",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "09",
+      "tehCode": "059",
+      "tehName": "Siwan",
+      "distCodeTCP": "KT"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "060",
+      "tehName": "Karnal",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "061",
+      "tehName": "Nilokheri",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "062",
+      "tehName": "Indri",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "063",
+      "tehName": "Gharaunda",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "064",
+      "tehName": "Assandh",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "065",
+      "tehName": "Nising",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "066",
+      "tehName": "Nigdu",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "10",
+      "tehCode": "067",
+      "tehName": "Ballah",
+      "distCodeTCP": "KL"
+    },
+    {
+      "disCode": "11",
+      "tehCode": "068",
+      "tehName": "Pehowa",
+      "distCodeTCP": "KA"
+    },
+    {
+      "disCode": "11",
+      "tehCode": "069",
+      "tehName": "Shahabad",
+      "distCodeTCP": "KA"
+    },
+    {
+      "disCode": "11",
+      "tehCode": "070",
+      "tehName": "Ladwa",
+      "distCodeTCP": "KA"
+    },
+    {
+      "disCode": "11",
+      "tehCode": "071",
+      "tehName": "Thanesar",
+      "distCodeTCP": "KA"
+    },
+    {
+      "disCode": "11",
+      "tehCode": "072",
+      "tehName": "Ismailabad",
+      "distCodeTCP": "KA"
+    },
+    {
+      "disCode": "11",
+      "tehCode": "073",
+      "tehName": "Babain",
+      "distCodeTCP": "KA"
+    },
+    {
+      "disCode": "12",
+      "tehCode": "074",
+      "tehName": "Narnaul",
+      "distCodeTCP": "MH"
+    },
+    {
+      "disCode": "12",
+      "tehCode": "075",
+      "tehName": "Mahendragarh",
+      "distCodeTCP": "MH"
+    },
+    {
+      "disCode": "12",
+      "tehCode": "076",
+      "tehName": "Nangal chowdhary",
+      "distCodeTCP": "MH"
+    },
+    {
+      "disCode": "12",
+      "tehCode": "077",
+      "tehName": "Ateli",
+      "distCodeTCP": "MH"
+    },
+    {
+      "disCode": "12",
+      "tehCode": "078",
+      "tehName": "Kanina",
+      "distCodeTCP": "MH"
+    },
+    {
+      "disCode": "13",
+      "tehCode": "079",
+      "tehName": "Panchkula",
+      "distCodeTCP": "PK"
+    },
+    {
+      "disCode": "13",
+      "tehCode": "080",
+      "tehName": "Kalka",
+      "distCodeTCP": "PK"
+    },
+    {
+      "disCode": "13",
+      "tehCode": "081",
+      "tehName": "Raipur rani",
+      "distCodeTCP": "PK"
+    },
+    {
+      "disCode": "13",
+      "tehCode": "082",
+      "tehName": "Barwala",
+      "distCodeTCP": "PK"
+    },
+    {
+      "disCode": "13",
+      "tehCode": "083",
+      "tehName": "Morni",
+      "distCodeTCP": "PK"
+    },
+    {
+      "disCode": "14",
+      "tehCode": "084",
+      "tehName": "Panipat",
+      "distCodeTCP": "PT"
+    },
+    {
+      "disCode": "14",
+      "tehCode": "085",
+      "tehName": "Israna",
+      "distCodeTCP": "PT"
+    },
+    {
+      "disCode": "14",
+      "tehCode": "086",
+      "tehName": "Samalkha",
+      "distCodeTCP": "PT"
+    },
+    {
+      "disCode": "14",
+      "tehCode": "087",
+      "tehName": "Bapoli",
+      "distCodeTCP": "PT"
+    },
+    {
+      "disCode": "14",
+      "tehCode": "088",
+      "tehName": "Matlauda",
+      "distCodeTCP": "PT"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "089",
+      "tehName": "Rewari",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "090",
+      "tehName": "Kosli",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "091",
+      "tehName": "Bawal",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "092",
+      "tehName": "Dharuhera",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "16",
+      "tehCode": "093",
+      "tehName": "Rohtak",
+      "distCodeTCP": "RK"
+    },
+    {
+      "disCode": "16",
+      "tehCode": "094",
+      "tehName": "Meham",
+      "distCodeTCP": "RK"
+    },
+    {
+      "disCode": "16",
+      "tehCode": "095",
+      "tehName": "Sampla",
+      "distCodeTCP": "RK"
+    },
+    {
+      "disCode": "16",
+      "tehCode": "096",
+      "tehName": "Kalanaur",
+      "distCodeTCP": "RK"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "097",
+      "tehName": "Dabwali",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "098",
+      "tehName": "Ellenabad",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "099",
+      "tehName": "Kalanwali",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "100",
+      "tehName": "Nathusari chopta",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "101",
+      "tehName": "Rania",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "102",
+      "tehName": "Sirsa",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "18",
+      "tehCode": "103",
+      "tehName": "Ganaur",
+      "distCodeTCP": "ST"
+    },
+    {
+      "disCode": "18",
+      "tehCode": "104",
+      "tehName": "Gohana",
+      "distCodeTCP": "ST"
+    },
+    {
+      "disCode": "18",
+      "tehCode": "105",
+      "tehName": "Kharkhoda",
+      "distCodeTCP": "ST"
+    },
+    {
+      "disCode": "18",
+      "tehCode": "106",
+      "tehName": "Sonipat",
+      "distCodeTCP": "ST"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "107",
+      "tehName": "Chhachhrauli",
+      "distCodeTCP": "YR"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "108",
+      "tehName": "Jagadhri",
+      "distCodeTCP": "YR"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "109",
+      "tehName": "Bilaspur",
+      "distCodeTCP": "YR"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "110",
+      "tehName": "Radaur",
+      "distCodeTCP": "YR"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "111",
+      "tehName": "Sadhaura",
+      "distCodeTCP": "YR"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "112",
+      "tehName": "Saraswati Nagar",
+      "distCodeTCP": "YR"
+    },
+    {
+      "disCode": "02",
+      "tehCode": "113",
+      "tehName": "Bahal",
+      "distCodeTCP": "BI"
+    },
+    {
+      "disCode": "07",
+      "tehCode": "114",
+      "tehName": "Salhawas",
+      "distCodeTCP": "JR"
+    },
+    {
+      "disCode": "06",
+      "tehCode": "115",
+      "tehName": "Balsamand",
+      "distCodeTCP": "HR"
+    },
+    {
+      "disCode": "05",
+      "tehCode": "116",
+      "tehName": "Manesar",
+      "distCodeTCP": "GN"
+    },
+    {
+      "disCode": "01",
+      "tehCode": "117",
+      "tehName": "Shahzadpur",
+      "distCodeTCP": "AA"
+    },
+    {
+      "disCode": "18",
+      "tehCode": "118",
+      "tehName": "Khanpur",
+      "distCodeTCP": "ST"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "119",
+      "tehName": "Dahina",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "120",
+      "tehName": "Tigaon",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "18",
+      "tehCode": "121",
+      "tehName": "Rai",
+      "distCodeTCP": "ST"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "122",
+      "tehName": "Mohna",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "123",
+      "tehName": "Nahar",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "04",
+      "tehCode": "124",
+      "tehName": "Kulan",
+      "distCodeTCP": "FT"
+    },
+    {
+      "disCode": "12",
+      "tehCode": "125",
+      "tehName": "Satnali",
+      "distCodeTCP": "MH"
+    },
+    {
+      "disCode": "21",
+      "tehCode": "126",
+      "tehName": "Hassanpur",
+      "distCodeTCP": "PL"
+    },
+    {
+      "disCode": "17",
+      "tehCode": "127",
+      "tehName": "Goriwala",
+      "distCodeTCP": "SA"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "128",
+      "tehName": "Manethi",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "21",
+      "tehCode": "129",
+      "tehName": "Bahin",
+      "distCodeTCP": "PL"
+    },
+    {
+      "disCode": "06",
+      "tehCode": "130",
+      "tehName": "Kheri Jalab",
+      "distCodeTCP": "HR"
+    },
+    {
+      "disCode": "07",
+      "tehCode": "131",
+      "tehName": "Badli",
+      "distCodeTCP": "JR"
+    },
+    {
+      "disCode": "15",
+      "tehCode": "132",
+      "tehName": "Palhawas",
+      "distCodeTCP": "RI"
+    },
+    {
+      "disCode": "16",
+      "tehCode": "133",
+      "tehName": "Lakhan Majra",
+      "distCodeTCP": "RK"
+    },
+    {
+      "disCode": "19",
+      "tehCode": "134",
+      "tehName": "Khizrabad",
+      "distCodeTCP": "YR"
+    },
     {
       "disCode": "05",
       "tehCode": "135",
       "tehName": "Wazirabad",
       "distCodeTCP": "GN"
+    },
+    {
+      "disCode": "05",
+      "tehCode": "136",
+      "tehName": "Badshahpur",
+      "distCodeTCP": "GN"
+    },
+    {
+      "disCode": "05",
+      "tehCode": "137",
+      "tehName": "Kadipur",
+      "distCodeTCP": "GN"
+    },
+    {
+      "disCode": "05",
+      "tehCode": "138",
+      "tehName": "Harsaru",
+      "distCodeTCP": "GN"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "139",
+      "tehName": "Badkhal",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "140",
+      "tehName": "Dhauj",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "141",
+      "tehName": "Dyalpur",
+      "distCodeTCP": "FD"
+    },
+    {
+      "disCode": "03",
+      "tehCode": "142",
+      "tehName": "Gaunchi",
+      "distCodeTCP": "FD"
     }
-
   ]
 }

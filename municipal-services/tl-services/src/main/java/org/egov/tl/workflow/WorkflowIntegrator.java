@@ -33,8 +33,59 @@ import static org.egov.tl.util.TLConstants.*;
 @Slf4j
 public class WorkflowIntegrator {
 	
+	private static final String ZONE_PLAN = "ZONE_PLAN";
+	
+	private static final String SURRENDER_OF_LICENSE = "SURREND_OF_LICENSE";
 
+	private static final String TENANTIDKEY = "tenantId";
 
+	private static final String BUSINESSSERVICEKEY = "businessService";
+
+	private static final String ACTIONKEY = "action";
+
+	private static final String COMMENTKEY = "comment";
+
+	private static final String MODULENAMEKEY = "moduleName";
+
+	private static final String BUSINESSIDKEY = "businessId";
+
+	private static final String DOCUMENTSKEY = "documents";
+
+	private static final String ASSIGNEEKEY = "assignes";
+
+	private static final String UUIDKEY = "uuid";
+
+	private static final String TLMODULENAMEVALUE = "TL";
+	
+	private static final String SPNAMEVALUE = "SERVICE_PLAN";
+	
+	private static final String SPNAMEVALUE_DEMARCATION = "SERVICE_PLAN_DEMARCATION";
+	
+	private static final String EPNAMEVALUE = "ELECTRICAL_PLAN";
+	
+	private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
+	
+	private static final String COMPLETION_CERTIFICATE_WORKFLOWCODE = "COMPLETION_CERTIFICATE";
+	
+	private static final String CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE = "CONSTRUCTION_OF_COMMUNITY";
+	
+	private static final String COMPOSITION_OF_URBAN_WORKFLOWCODE = "COMPOSITION_OF_URBAN";
+
+	private static final String EXTENTION_OF_CLU_PERMISSION = "EXTENTION_OF_CLU_PERMISSION";
+
+	private static final String BPAMODULENAMEVALUE = "BPAREG";
+
+	private static final String WORKFLOWREQUESTARRAYKEY = "ProcessInstances";
+
+	private static final String REQUESTINFOKEY = "RequestInfo";
+
+	private static final String PROCESSINSTANCESJOSNKEY = "$.ProcessInstances";
+
+	private static final String BUSINESSIDJOSNKEY = "$.businessId";
+
+	private static final String STATUSJSONKEY = "$.state.applicationStatus";
+	
+	private static final String ASNAMEVALUE = "APPROVAL_OF_STANDARD";
 
 	private RestTemplate rest;
 
@@ -156,17 +207,11 @@ public class WorkflowIntegrator {
 						obj.put(BUSINESSSERVICEKEY, tradeType);
 						obj.put(MODULENAMEKEY, BPAMODULENAMEVALUE);
 						break;
-				
 					case BankGuaranteeService.BUSINESSSERVICE_BG_NEW:
 					case BankGuaranteeService.BUSINESSSERVICE_BG_MORTGAGE:
 						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
 						obj.put(MODULENAMEKEY, TLMODULENAMEVALUE);
 						break;
-					case BUSINESSSERVICE_BG_RELEASE:
-						obj.put(BUSINESSSERVICEKEY, currentLicense.getWorkflowCode());
-						obj.put(MODULENAMEKEY, "tl-service");
-						break;
-					
 				}
 				obj.put(ACTIONKEY, license.getAction());
 				obj.put(COMMENTKEY, license.getComment());

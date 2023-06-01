@@ -6,7 +6,7 @@ serviceMaps:
    fromTopic: save-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_change_beneficial(id,"developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details,created_time,application_number,newadditionaldetails,businessservice,status,action,tcp_application_number, tcp_case_number, tcp_dairy_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      - query: INSERT INTO public.eg_tl_change_beneficial(id,"developerServiceCode", "areaInAcres", "developerId", "noObjectionCertificate", "consentLetter", "justificationCertificate", "thirdPartyRightsCertificate", "jointDevelopmentCertificate", "aministrativeChargeCertificate", "boardResolutionExisting", "boardResolutionNewEntity","shareholdingPatternCertificate","reraRegistrationCertificate","fiancialCapacityCertificate",is_draft,total_change_beneficial_charge,is_full_payment_done,application_status,workflowcode,license_number,audit_details,created_time,application_number,newadditionaldetails,businessservice,status,action) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
         basePath: changeBeneficial.*
         jsonMaps:
         
@@ -95,15 +95,6 @@ serviceMaps:
            
          - jsonPath: changeBeneficial.*.action
            type: STRING
-        
-         - jsonPath: changeBeneficial.*.tcpApplicationNumber
-           type: STRING
-           
-         - jsonPath: changeBeneficial.*.tcpCaseNumber
-           type: STRING
-           
-         - jsonPath: changeBeneficial.*.tcpDairyNumber
-           type: STRING
            
  - version: 1.0
    description: Persists benefical service of  change_benefical table
@@ -163,7 +154,7 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.newAdditionalDetails
            type: JSON
            dbType: JSONB
-         
+           
          - jsonPath: changeBeneficial.*.licenseNumber
            type: STRING
            
@@ -172,7 +163,7 @@ serviceMaps:
    fromTopic: update-updateworkflow-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET status=?,action=?  where application_number=?   
+      - query: UPDATE public.eg_tl_change_beneficial SET status=?,action=?  where applicationNumber=?   
         basePath: changeBeneficial.*
         jsonMaps:       
          - jsonPath: changeBeneficial.*.status
@@ -185,7 +176,7 @@ serviceMaps:
    fromTopic: update-payment-changrebeneficial
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=? where id=? and application_status IN(2,3)
+      - query: UPDATE public.eg_tl_change_beneficial SET paid_amount=?, is_draft=?,application_status=?,is_full_payment_done=?,transaction_id=?, diary_number=? where id=? and application_status IN(2,3)
        
         basePath: changeBeneficial.*
         jsonMaps:       
@@ -204,6 +195,9 @@ serviceMaps:
          - jsonPath: changeBeneficial.*.tranactionId
            type: STRING
            
+         - jsonPath: changeBeneficial.*.diaryNumber
+           type: STRING
+           
          - jsonPath: changeBeneficial.*.id
            type: STRING
                     
@@ -213,7 +207,7 @@ serviceMaps:
    fromTopic: save-completioncertificate
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_completion_certificate(id, access_permission_fromnhai, affidavit_no_unauthorized, application_number, application_status, bg_on_account_till_valid, ca_certificate, ca_certificate_regarding15percentage, complains_details, completion_approval_layout_plan, compliance_of_rules, copy_approval_service_plan, edc_idc_bg_valid, electric_service_plan, handling_over_comunity_site,  iac_aplicable, is_complete_profile_less_then, is_draft, is_full_payment_done, license_number, license_valid_till, noc_from_fair_safety, noc_frommoef,  occupation_certificate, payment_type, status_of_complains_for_rules, status_of_complains_if_any, status_of_development_work, status_ofedcis_fully_paid,status_of_handling_over, status_of_npl_plot, status_of_reading_handling_over, status_ofsidcis_fully_paid, status_of_total_comunity, total_completion_certificate_charge,payment_augmentation_charges, transfer_of_license_certificate, updated_compliance_with_rules, work_flow_code, audit_details,created_time,newadditionaldetails,businessservice,status,action,tcp_application_number, tcp_case_number, tcp_dairy_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);        
+      - query: INSERT INTO public.eg_tl_completion_certificate(id, access_permission_fromnhai, affidavit_no_unauthorized, application_number, application_status, bg_on_account_till_valid, ca_certificate, ca_certificate_regarding15percentage, complains_details, completion_approval_layout_plan, compliance_of_rules, copy_approval_service_plan, edc_idc_bg_valid, electric_service_plan, handling_over_comunity_site,  iac_aplicable, is_complete_profile_less_then, is_draft, is_full_payment_done, license_number, license_valid_till, noc_from_fair_safety, noc_frommoef,  occupation_certificate, payment_type, status_of_complains_for_rules, status_of_complains_if_any, status_of_development_work, status_ofedcis_fully_paid,status_of_handling_over, status_of_npl_plot, status_of_reading_handling_over, status_ofsidcis_fully_paid, status_of_total_comunity, total_completion_certificate_charge,payment_augmentation_charges, transfer_of_license_certificate, updated_compliance_with_rules, work_flow_code, audit_details,created_time,newadditionaldetails,businessservice,status,action) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?);        
         basePath: completionCertificate.*
         jsonMaps: 
          - jsonPath: completionCertificate.*.id
@@ -263,19 +257,21 @@ serviceMaps:
            type: JSON
            dbType: JSONB
           
-         - jsonPath: completionCertificate.*.businessService
-         - jsonPath: completionCertificate.*.status
-         - jsonPath: completionCertificate.*.action
-         - jsonPath: completionCertificate.*.tcpApplicationNumber
-         - jsonPath: completionCertificate.*.tcpCaseNumber
-         - jsonPath: completionCertificate.*.tcpDairyNumber
+         - jsonPath: changeBeneficial.*.businessService
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.status
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.action
+         
            
  - version: 1.0
    description: Persists completioncertificate service of completioncertificate
    fromTopic: update-completioncertificate
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_completion_certificate SET access_permission_fromnhai=?, affidavit_no_unauthorized=?, bg_on_account_till_valid=?, ca_certificate=?,ca_certificate_regarding15percentage=?, complains_details=?, completion_approval_layout_plan=?, compliance_of_rules=?, copy_approval_service_plan=?,edc_idc_bg_valid=?,electric_service_plan=?, handling_over_comunity_site=?,  iac_aplicable=?, is_complete_profile_less_then=?, is_draft=?, license_valid_till=?,noc_from_fair_safety=?, noc_frommoef=?,  occupation_certificate=?, status_of_complains_for_rules=?, status_of_complains_if_any=?, status_of_development_work=?, status_ofedcis_fully_paid=?,status_of_handling_over=?, status_of_npl_plot=?,  status_of_reading_handling_over=?, status_ofsidcis_fully_paid=?, status_of_total_comunity=?, total_completion_certificate_charge=?,payment_augmentation_charges=?,transfer_of_license_certificate=?, updated_compliance_with_rules=?, audit_details=?, newadditionaldetails=?,status=?,action=? where id=?;        
+      - query: UPDATE public.eg_tl_completion_certificate SET access_permission_fromnhai=?, affidavit_no_unauthorized=?, bg_on_account_till_valid=?, ca_certificate=?,ca_certificate_regarding15percentage=?, complains_details=?, completion_approval_layout_plan=?, compliance_of_rules=?, copy_approval_service_plan=?,edc_idc_bg_valid=?,electric_service_plan=?, handling_over_comunity_site=?,  iac_aplicable=?, is_complete_profile_less_then=?, is_draft=?, license_valid_till=?,noc_from_fair_safety=?, noc_frommoef=?,  occupation_certificate=?, status_of_complains_for_rules=?, status_of_complains_if_any=?, status_of_development_work=?, status_ofedcis_fully_paid=?,status_of_handling_over=?, status_of_npl_plot=?,  status_of_reading_handling_over=?, status_ofsidcis_fully_paid=?, status_of_total_comunity=?, total_completion_certificate_charge=?,payment_augmentation_charges=?,transfer_of_license_certificate=?, updated_compliance_with_rules=?, audit_details=?, newadditionaldetails=? where id=?;        
         basePath: completionCertificate.*
         jsonMaps: 
          - jsonPath: completionCertificate.*.accessPermissionFromNHAI
@@ -318,10 +314,7 @@ serviceMaps:
          - jsonPath: completionCertificate.*.newAdditionalDetails
            type: JSON
            dbType: JSONB
-           
-         - jsonPath: completionCertificate.*.status
-         - jsonPath: completionCertificate.*.action
-      
+
          - jsonPath: completionCertificate.*.id
         
  - version: 1.0
@@ -329,7 +322,7 @@ serviceMaps:
    fromTopic: save-constructionofcommunity
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_construction_of_community(id, application_number, application_status, is_draft, is_full_payment_done, license_number, payment_type,total_construction_of_community_charge,work_flow_code, audit_details, created_time, applied_by, area_in_acers, valid_up_to, applyed_for_extention_perioud, type_of_community_site,copy_of_board_resolution, justification_for_extention, proof_of_ownership_of_community, proof_of_online_payment_of_extention, upload_renewal_license_copy, explonatory_not_for_extention, location_of_applied, any_other_document_by_director,newadditionaldetails,businessservice,status,action,amount,outstanding_dues,licence_renewd,tcp_application_number, tcp_case_number, tcp_dairy_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
+      - query: INSERT INTO public.eg_tl_construction_of_community(id, application_number, application_status, is_draft, is_full_payment_done, license_number, payment_type,total_construction_of_community_charge,work_flow_code, audit_details, created_time, applied_by, area_in_acers, valid_up_to, applyed_for_extention_perioud, type_of_community_site,copy_of_board_resolution, justification_for_extention, proof_of_ownership_of_community, proof_of_online_payment_of_extention, upload_renewal_license_copy, explonatory_not_for_extention, location_of_applied, any_other_document_by_director,newadditionaldetails,businessservice,status,action) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
         basePath: constructionOfCommunity.*
         jsonMaps: 
          - jsonPath: constructionOfCommunity.*.id
@@ -363,24 +356,20 @@ serviceMaps:
            type: JSON
            dbType: JSONB
           
-         - jsonPath: constructionOfCommunity.*.businessService
-         - jsonPath: constructionOfCommunity.*.status
-         - jsonPath: constructionOfCommunity.*.action
-         - jsonPath: constructionOfCommunity.*.amount
-         - jsonPath: constructionOfCommunity.*.outstandingDues
-         - jsonPath: constructionOfCommunity.*.licenceRenewd
-         - jsonPath: constructionOfCommunity.*.tcpApplicationNumber
-         - jsonPath: constructionOfCommunity.*.tcpCaseNumber
-         - jsonPath: constructionOfCommunity.*.tcpDairyNumber
-         
-         
+         - jsonPath: changeBeneficial.*.businessService
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.status
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.action
          
  - version: 1.0
    description: Persists construction of community  service of constructionOfCommunity
    fromTopic: update-constructionofcommunity
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_construction_of_community SET is_draft=?, audit_details=?, area_in_acers=?, valid_up_to=?, applyed_for_extention_perioud=?, type_of_community_site=?,copy_of_board_resolution=?, justification_for_extention=?, proof_of_ownership_of_community=?, proof_of_online_payment_of_extention=?, upload_renewal_license_copy=?, explonatory_not_for_extention=?, location_of_applied=?, any_other_document_by_director=?, newadditionaldetails=?,amount=?,outstanding_dues=?,licence_renewd=?,status=?,action=? where id=?;
+      - query: UPDATE public.eg_tl_construction_of_community SET is_draft=?, audit_details=?, area_in_acers=?, valid_up_to=?, applyed_for_extention_perioud=?, type_of_community_site=?,copy_of_board_resolution=?, justification_for_extention=?, proof_of_ownership_of_community=?, proof_of_online_payment_of_extention=?, upload_renewal_license_copy=?, explonatory_not_for_extention=?, location_of_applied=?, any_other_document_by_director=?, newadditionaldetails=? where id=?;
         basePath: constructionOfCommunity.*
         jsonMaps: 
          - jsonPath: constructionOfCommunity.*.isDraft
@@ -403,15 +392,6 @@ serviceMaps:
          - jsonPath: constructionOfCommunity.*.newAdditionalDetails
            type: JSON
            dbType: JSONB
-           
-         - jsonPath: constructionOfCommunity.*.amount
-         - jsonPath: constructionOfCommunity.*.outstandingDues
-         - jsonPath: constructionOfCommunity.*.licenceRenewd
-         
-         - jsonPath: constructionOfCommunity.*.status
-         - jsonPath: constructionOfCommunity.*.action
-         
-         
          - jsonPath: constructionOfCommunity.*.id
          
          
@@ -420,7 +400,7 @@ serviceMaps:
    fromTopic: save-compositionofurban
    isTransaction: true
    queryMaps: 
-      - query: INSERT INTO public.eg_tl_composition_of_urban(id, application_number, application_status, is_draft, is_full_payment_done, payment_type,total_composition_of_urban_charge,work_flow_code, audit_details, created_time,"nameOfOrginalLandOner", "landHoldingOfAbove", "totalLandSoldInPartDetails", "totalAreaInSqMetter", "explainTheReasonForVoilation", "dateOfSaleDeeds", "anyOtherDoc", newadditionaldetails,businessservice,status,action,tcp_application_number, tcp_case_number, tcp_dairy_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
+      - query: INSERT INTO public.eg_tl_composition_of_urban(id, application_number, application_status, is_draft, is_full_payment_done, payment_type,total_composition_of_urban_charge,work_flow_code, audit_details, created_time,"nameOfOrginalLandOner", "landHoldingOfAbove", "totalLandSoldInPartDetails", "totalAreaInSqMetter", "explainTheReasonForVoilation", "dateOfSaleDeeds", "anyOtherDoc", newadditionaldetails,businessservice,status,action) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); 
         basePath: compositionOfUrban.*
         jsonMaps: 
          - jsonPath: compositionOfUrban.*.id
@@ -448,13 +428,13 @@ serviceMaps:
            type: JSON
            dbType: JSONB
           
-         - jsonPath: compositionOfUrban.*.businessService
-         - jsonPath: compositionOfUrban.*.status
-         - jsonPath: compositionOfUrban.*.action
-         
-         - jsonPath: compositionOfUrban.*.tcpApplicationNumber
-         - jsonPath: compositionOfUrban.*.tcpCaseNumber
-         - jsonPath: compositionOfUrban.*.tcpDairyNumber
+         - jsonPath: changeBeneficial.*.businessService
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.status
+           type: STRING
+           
+         - jsonPath: changeBeneficial.*.action
        
          
  - version: 1.0
@@ -462,7 +442,7 @@ serviceMaps:
    fromTopic: update-compositionofurban
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_composition_of_urban SET is_draft=?, audit_details=?,"nameOfOrginalLandOner"=?, "landHoldingOfAbove"=?, "totalLandSoldInPartDetails"=?, "totalAreaInSqMetter"=?, "explainTheReasonForVoilation"=?, "dateOfSaleDeeds"=?, "anyOtherDoc"=?, newadditionaldetails=?,status=?,action=? where id=?;
+      - query: UPDATE public.eg_tl_composition_of_urban SET is_draft=?, audit_details=?,"nameOfOrginalLandOner"=?, "landHoldingOfAbove"=?, "totalLandSoldInPartDetails"=?, "totalAreaInSqMetter"=?, "explainTheReasonForVoilation"=?, "dateOfSaleDeeds"=?, "anyOtherDoc"=?, newadditionaldetails=? where application_status=1 and application_number=?;
         basePath: compositionOfUrban.*
         jsonMaps: 
          - jsonPath: compositionOfUrban.*.isDraft
@@ -481,64 +461,67 @@ serviceMaps:
          - jsonPath: completionCertificate.*.newAdditionalDetails
            type: JSON
            dbType: JSONB
-           
-         - jsonPath: compositionOfUrban.*.status
-         - jsonPath: compositionOfUrban.*.action
-         - jsonPath: compositionOfUrban.*.id
+         - jsonPath: compositionOfUrban.*.applicationNumber
          
- 
  - version: 1.0
-   description: Persists eg_tl_bank_guarantee  service of eg_tl_bank_guarantee
-   fromTopic: update-release-new-bankguarantee
+   description: Persists save-realese-bg  service of eg_tl_release_bank_guarantee
+   fromTopic: save-realese-bg
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_bank_guarantee SET lastmodifiedby=?,lastmodifiedtime=?,any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_replaced_with=?, completion_certificate=?, completion_certificate_description=?, reason_for_replacement=?, release=? where id=?
-        basePath: NewBankGuaranteeRequest.*
+      - query: INSERT INTO public.eg_tl_release_bank_guarantee(id, bank_guarantee_id, any_other_document, any_other_document_description, application_cerficifate, application_cerficifate_description, bank_guarantee_issue_date, bank_guarantee_number, bank_guarantee_replaced_with, bg_amount, claim_expiry_date, completion_certificate, completion_certificate_description, expiry_date, reason_for_replacement, release, audit_details, application_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        basePath: releaseBankGuarantee.*
         jsonMaps: 
-          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedBy
-          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedTime
-          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
-          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocumentDescription
-          - jsonPath: $.NewBankGuaranteeRequest.*.applicationCerficifate
-          - jsonPath: $.NewBankGuaranteeRequest.*.applicationCerficifateDescription
-          - jsonPath: $.NewBankGuaranteeRequest.*.bankGuaranteeReplacedWith
-          - jsonPath: $.NewBankGuaranteeRequest.*.completionCertificate
-          - jsonPath: $.NewBankGuaranteeRequest.*.completionCertificateDescription
-          - jsonPath: $.NewBankGuaranteeRequest.*.reasonForReplacement
-          - jsonPath: $.NewBankGuaranteeRequest.*.release
-          - jsonPath: $.NewBankGuaranteeRequest.*.id
+         - jsonPath: releaseBankGuarantee.*.id
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeId
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocument
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocumentDescription
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifate
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifateDescription
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeIssueDate
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeNumber
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeReplacedWith
+         - jsonPath: releaseBankGuarantee.*.bgAmount
+         - jsonPath: releaseBankGuarantee.*.claimExpiryDate
+         - jsonPath: releaseBankGuarantee.*.completionCertificate
+         - jsonPath: releaseBankGuarantee.*.completionCertificateDescription
+         - jsonPath: releaseBankGuarantee.*.expiryDate
+         - jsonPath: releaseBankGuarantee.*.reasonForReplacement
+         - jsonPath: releaseBankGuarantee.*.release
          
-      - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
-        basePath: NewBankGuaranteeRequest.*
-        jsonMaps:
-         - jsonPath: $.NewBankGuaranteeRequest.*.id
-     
+         - jsonPath: releaseBankGuarantee.*.auditDetails
+           type: JSON
+           dbType: JSONB
+         
+         - jsonPath: releaseBankGuarantee.*.applicationStatus
+         
+         
  - version: 1.0
-   description: Persists eg_tl_bank_guarantee  service of eg_tl_bank_guarantee
-   fromTopic: update-extend-new-bankguarantee
+   description: Persists update-realese-bg  service of eg_tl_release_bank_guarantee
+   fromTopic: update-realese-bg
    isTransaction: true
    queryMaps: 
-      - query: UPDATE public.eg_tl_bank_guarantee SET lastmodifiedby=?,lastmodifiedtime=?,any_other_document=?, any_other_document_description=?, date_of_amendment=?,amendment_expiry_date=?,amendment_claim_expiry_date=?,issuing_bank=?,bank_gurentee_certificate=?,bank_gurentee_certificate_description=? where id=?
-        basePath: NewBankGuaranteeRequest.*
+      - query: UPDATE public.eg_tl_release_bank_guarantee SET any_other_document=?, any_other_document_description=?, application_cerficifate=?, application_cerficifate_description=?, bank_guarantee_issue_date=?, bank_guarantee_number=?, bank_guarantee_replaced_with=?, bg_amount=?, claim_expiry_date=?, completion_certificate=?, completion_certificate_description=?, expiry_date=?, reason_for_replacement=?, release=?, audit_details=? where id=?
+        basePath: releaseBankGuarantee.*
         jsonMaps: 
-          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedBy
-          - jsonPath: $.NewBankGuaranteeRequest.*.auditDetails.lastModifiedTime
-          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocument
-          - jsonPath: $.NewBankGuaranteeRequest.*.anyOtherDocumentDescription
-          - jsonPath: $.NewBankGuaranteeRequest.*.dateOfAmendment
-          - jsonPath: $.NewBankGuaranteeRequest.*.amendmentExpiryDate
-          - jsonPath: $.NewBankGuaranteeRequest.*.amendmentClaimExpiryDate
-          - jsonPath: $.NewBankGuaranteeRequest.*.issuingBank
-          - jsonPath: $.NewBankGuaranteeRequest.*.bankGurenteeCertificate
-          - jsonPath: $.NewBankGuaranteeRequest.*.bankGurenteeCertificateDescription
-          - jsonPath: $.NewBankGuaranteeRequest.*.id
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocument
+         - jsonPath: releaseBankGuarantee.*.anyOtherDocumentDescription
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifate
+         - jsonPath: releaseBankGuarantee.*.applicationCerficifateDescription
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeIssueDate
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeNumber
+         - jsonPath: releaseBankGuarantee.*.bankGuaranteeReplacedWith
+         - jsonPath: releaseBankGuarantee.*.bgAmount
+         - jsonPath: releaseBankGuarantee.*.claimExpiryDate
+         - jsonPath: releaseBankGuarantee.*.completionCertificate
+         - jsonPath: releaseBankGuarantee.*.completionCertificateDescription
+         - jsonPath: releaseBankGuarantee.*.expiryDate
+         - jsonPath: releaseBankGuarantee.*.reasonForReplacement
+         - jsonPath: releaseBankGuarantee.*.release
          
-      - query: INSERT INTO eg_tl_bank_guarantee_auditdetails SELECT * FROM eg_tl_bank_guarantee WHERE id =?;
-        basePath: NewBankGuaranteeRequest.*
-        jsonMaps:
-         - jsonPath: $.NewBankGuaranteeRequest.*.id
-         
-      
+         - jsonPath: releaseBankGuarantee.*.auditDetails
+           type: JSON
+           dbType: JSONB
+         - jsonPath: releaseBankGuarantee.*.id
          
          
          

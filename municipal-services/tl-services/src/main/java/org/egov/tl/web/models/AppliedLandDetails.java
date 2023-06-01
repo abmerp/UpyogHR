@@ -14,7 +14,7 @@ import lombok.Setter;
 public class AppliedLandDetails {
 
 	@JsonProperty("district")
-	private District district;
+	private String district;
 
 	@JsonProperty("potential")
 	private String potential;
@@ -23,7 +23,7 @@ public class AppliedLandDetails {
 	private String zone;
 
 	@JsonProperty("developmentPlan")
-	private DevelopmentPlan developmentPlan;
+	private String developmentPlan;
 
 	@JsonProperty("sector")
 	private String sector;
@@ -33,10 +33,10 @@ public class AppliedLandDetails {
 	@JsonProperty("rowid")
 	private String rowid;
 	@JsonProperty("tehsil")
-	private Tehsil tehsil;
+	private String tehsil;
 
 	@JsonProperty("revenueEstate")
-	private RevenueEstate revenueEstate;
+	private String revenueEstate;
 
 	@JsonProperty("mustil")
 	private String mustil;
@@ -114,7 +114,7 @@ public class AppliedLandDetails {
 	private String editRectangleNo;
 
 	@JsonProperty("typeLand")
-	private TypeLand typeLand;
+	private String typeLand;
 
 	@JsonProperty("rectangleNo")
 	private String rectangleNo;
@@ -127,13 +127,11 @@ public class AppliedLandDetails {
 
 	@JsonProperty("developerSPAGPADoc")
 	private String developerSPAGPADoc;
-
+	
+	
 	@JsonProperty("collaboratorAgreementDocument")
 	private String collaboratorAgreementDocument;
 	@JsonProperty("acquistionStatus")
 	private String acquistionStatus;
-	
-	@JsonProperty("min")
-	private Boolean min;
 
 }

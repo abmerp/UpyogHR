@@ -165,15 +165,6 @@ public class ConvertUtil {
         String IST = df.format(today);
         return IST;
 	}
-    
-    public static String splitAllApplicationNumber(String applicationNumber){
-		StringJoiner sj=new StringJoiner(",");
-		String applicationNumbersList[]=applicationNumber.split(",");
-		for(String apl:applicationNumbersList) {
-			sj.add("'"+apl+"'");
-		}
-		return sj.toString();
-	}
 
 	
 //	public static void main(String[] args) {

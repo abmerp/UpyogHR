@@ -239,20 +239,10 @@ public class TLQueryBuilder {
 				builder.append("  tlunit.tradetype LIKE ? ");
 				preparedStmtList.add(criteria.getTradeType().split("\\.")[0] + "%");
 			}
-//			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
-//					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
-//							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null) {
-//				if (requestInfo.getUserInfo() != null) {
-//					addClauseIfRequired(preparedStmtList, builder);
-//					builder.append("   tl.createdby=  ? ");
-//					preparedStmtList.add(requestInfo.getUserInfo().getUuid());
-//
-//				}
-//			}
 			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
 					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
-							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null &&criteria.getUuid()!=null) {
-				if (requestInfo.getUserInfo().getUuid() != null) {
+							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null) {
+				if (requestInfo.getUserInfo() != null) {
 					addClauseIfRequired(preparedStmtList, builder);
 					builder.append("   tl.createdby=  ? ");
 					preparedStmtList.add(requestInfo.getUserInfo().getUuid());

@@ -344,12 +344,6 @@ public class TLConfiguration {
 	@Value("${persister.bankguarantee.new.update}")
 	private String updateNewBankGuaranteeTopic;
 
-	@Value("${persister.release.bankguarantee.new.update}")
-	private String updateReleaseNewBankGuaranteeTopic;
-
-	@Value("${persister.extend.bankguarantee.new.update}")
-	private String updateExtendNewBankGuaranteeTopic;
-
 	@Value("${persister.bankguarantee.renew.save}")
 	private String saveRenewBankGuaranteeTopic;
 
@@ -394,7 +388,7 @@ public class TLConfiguration {
 
 	@Value("${persister.changrebeneficial.updatePayment}")
 	private String updatePaymentChangreBeneficialTopic;
-
+	
 	@Value("${persister.changrebeneficial.updateworkflow}")
 	private String updateWorkFlowChangreBeneficialTopic;
 
@@ -432,14 +426,15 @@ public class TLConfiguration {
 
 	@Value("${persister.compositionofurban.updatePayment}")
 	private String updatePaymentCompositionOfUrbanTopic;
-
+	
 	// realese bg
-
+	
 	@Value("${persister.realese.bg.save}")
 	private String saveRealeseBgTopic;
 
 	@Value("${persister.realese.bg.update}")
 	private String updateRealeseBgTopic;
+
 
 	@Value("${egov.idgen.tl.completioncertificate.applicationNumber}")
 	private String completionCertificateName;
@@ -497,32 +492,5 @@ public class TLConfiguration {
 
 	@Value("${egov.idgen.tlCLU.applicationNum.format}")
 	private String cluFormat;
-
-	@Value("${business.service.new.licence}")
-	private String newLicenseBusinessService;
-	@Value("${business.service.service.plan}")
-	private String servicePlanBusinessService;
-	@Value("${business.service.extension.of.clu}")
-	private String extensionOfCluBusinessService;
-	@Value("${business.service.surrender.of.licence}")
-	private String surrenderOfLicenceBusinessService;
-	@Value("${business.service.change.of.beneficial}")
-	private String changeOfBeneficialBusinessService;
-	@Value("${business.service.completion.certificate}")
-	private String completionCertificateBusinessService;
-	@Value("${business.service.construction.community}")
-	private String constructionCommunityBusinessService;
-	@Value("${business.service.transfer.licence}")
-	private String transferOfLicenceBusinessService;
-	@Value("${business.service.renewal.licence}")
-	private String renewalOfLicenseBusinessService;
-	@Value("${business.service.revised.layout.plan}")
-	private String revisedLayoutPlanBusinessService;
-	@Value("${business.service.electrical.plan}")
-	private String electricPlanBusinessService;
-	@Value("${business.service.serviceplan.demarcation}")
-	private String servicePlanDemarcationBusinessService;
-	@Value("${business.service.approval.standard}")
-	private String approvalOfStandardBusinessService;
 
 }

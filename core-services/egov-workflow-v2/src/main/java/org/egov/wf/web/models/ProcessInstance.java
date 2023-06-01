@@ -69,7 +69,7 @@ public class ProcessInstance   {
         @JsonProperty("state")
         private State state = null;
 
-        @Size(max=200000)
+        @Size(max=1024)
         @JsonProperty("comment")
         private String comment = null;
 

@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.producer.Producer;
 import org.egov.tl.repository.rowmapper.TLRowMapper;
-import org.egov.tl.util.ConvertUtil;
 import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
@@ -49,8 +48,8 @@ public class CompositionOfUrbanRepo {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	String querybyApplicationNumber = "select * from public.eg_tl_composition_of_urban where application_number IN(:applicationNumber) and application_status IN(1,2,3) \r\n"
-			+ " order by created_date desc";
+	String querybyApplicationNumber = "select * from public.eg_tl_composition_of_urban where application_number=:applicationNumber and application_status IN(1,2,3) \r\n"
+			+ " order by created_date desc limit 1";
 
 	public void save(CompositionOfUrbanRequest compositionOfUrbanRequest) {
 		try {
@@ -72,8 +71,27 @@ public class CompositionOfUrbanRepo {
 
 		CompositionOfUrban compositionOfUrban = null;
 		try {
-			String query=querybyApplicationNumber.replaceAll(":applicationNumber", "'" + applicationNumber + "'");
-			List<CompositionOfUrban> compositionOfUrbanList =getCompositionOfUrbanList(query);
+			List<Object> preparedStmtList = new ArrayList<>();
+			List<CompositionOfUrban> compositionOfUrbanList = jdbcTemplate.query(
+					querybyApplicationNumber.replaceAll(":applicationNumber", "'" + applicationNumber + "'"),
+					preparedStmtList.toArray(), (rs, rowNum) -> {
+
+						AuditDetails auditDetails = null;
+						try {
+							AuditDetails audit_details = new Gson().fromJson(rs.getString("audit_details").equals("{}")
+									|| rs.getString("audit_details").equals("null") ? null
+											: rs.getString("audit_details"),
+									AuditDetails.class);
+							System.out.println(audit_details);
+							auditDetails = audit_details;
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+
+						return CompositionOfUrban.builder().id(rs.getString("id"))
+								.applicationNumber(rs.getString("application_number"))
+								.applicationStatus(rs.getInt("application_status")).auditDetails(auditDetails).build();
+					});
 			if (compositionOfUrbanList != null && !compositionOfUrbanList.isEmpty()) {
 				compositionOfUrban = compositionOfUrbanList.get(0);
 			}
@@ -103,8 +121,7 @@ public class CompositionOfUrbanRepo {
 	}
 
 	public List<CompositionOfUrban> getCompositionOfUrbanByApplicationNumberList(String applicationNumber) {
-		applicationNumber=ConvertUtil.splitAllApplicationNumber(applicationNumber);
-		String query = querybyApplicationNumber.replace(":applicationNumber",applicationNumber);
+		String query = querybyApplicationNumber.replace(":applicationNumber", "'" + applicationNumber + "'");
 		return getCompositionOfUrbanList(query);
 	}
 
@@ -170,11 +187,6 @@ public class CompositionOfUrbanRepo {
 								.tenantId(rs.getString("tenantid"))
 								.businessService(rs.getString("businessservice"))
 								.status(rs.getString("status"))
-								
-								.tcpApplicationNumber(rs.getString("tcp_application_number"))
-								.tcpCaseNumber(rs.getString("tcp_case_number"))
-								.tcpDairyNumber(rs.getString("tcp_dairy_number"))
-								
 								.build();
 					});
 			if (compositionOfUrban != null && !compositionOfUrban.isEmpty()) {

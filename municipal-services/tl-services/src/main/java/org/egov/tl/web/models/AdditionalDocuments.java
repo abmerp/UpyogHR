@@ -21,16 +21,14 @@ public class AdditionalDocuments {
 
 	@JsonProperty("licenceNumber")
 	private String licenceNumber;
-	
-//	@JsonProperty("type")
-//	private String type;
+	@JsonProperty("type")
+	private String type;
 	@JsonProperty("userName")
 	private String userName;
 	@JsonProperty("developerName")
 	private String developerName;
 	@JsonProperty("businessService")
 	private String businessService;
-
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
 	@JsonProperty("additionalDetails")

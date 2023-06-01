@@ -70,14 +70,9 @@ public class ActionValidator {
 				break;
 
 			case businessService_BPA:
-//				if (!ACTION_INITIATE.equalsIgnoreCase(license.getAction())) {
-//					errorMap.put("INVALID ACTION", "Action should be NOWORKFLOW during create");
-//
-//				} else {
-//					if (!TRIGGER_NOWORKFLOW.equalsIgnoreCase(license.getAction())) {
-//						errorMap.put("INVALID ACTION", "Action should be NOWORKFLOW during create");
-//					}
-//				}
+				if (!TRIGGER_NOWORKFLOW.equalsIgnoreCase(license.getAction())) {
+					errorMap.put("INVALID ACTION", "Action should be NOWORKFLOW during create");
+				}
 				break;
 			}
 		});
@@ -107,7 +102,7 @@ public class ActionValidator {
 		// validateRole(request);
 		// validateAction(request);
 		validatePayAction(request);
-		// validateIds(request, businessService);
+		//validateIds(request, businessService);
 	}
 
 	private void validateCancellation(TradeLicenseRequest request, List<TradeLicense> searchResult) {

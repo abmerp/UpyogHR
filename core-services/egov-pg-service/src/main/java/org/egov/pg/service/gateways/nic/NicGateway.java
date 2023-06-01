@@ -34,7 +34,7 @@ import java.time.Month;
 @Slf4j
 public class NicGateway implements Gateway {
 
-	private static final String GATEWAY_NAME = "EGRASS";
+	private static final String GATEWAY_NAME = "NIC";
 	private String DTO;
 	private String STO;
 	private String DDO;

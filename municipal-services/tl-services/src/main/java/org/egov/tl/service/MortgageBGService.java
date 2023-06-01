@@ -49,8 +49,8 @@ public class MortgageBGService {
 				tlConfiguration.getNewBankGuaranteeApplNoIdGenFormat(), 1);
 		newBankGuaranteeRequest.setBusinessService(BankGuaranteeService.BUSINESSSERVICE_BG_MORTGAGE);
 		newBankGuaranteeRequest
-				.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_MORTGAGE_LANDING_EMPLOYEE_ROLE,
-						"hr", true, requestInfo));
+				.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(BG_MORTGAGE_LANDING_EMPLOYEE_ROLE,
+						newBankGuaranteeRequest.getTenantId(), true, requestInfo)));
 		String applicationNo = idGenIds.get(0);
 		newBankGuaranteeRequest.setApplicationNumber(applicationNo);
 		newBankGuaranteeRequest.setId(UUID.randomUUID().toString());

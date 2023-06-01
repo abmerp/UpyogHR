@@ -102,9 +102,6 @@ public class TradeLicenseSearchCriteria {
         
     @JsonProperty("tcpApplicationNumber")
     private String tcpApplicationNumber;
-    
-    @JsonProperty("uuid")
-    private String uuid;
 
     public boolean isEmpty() {
         return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null

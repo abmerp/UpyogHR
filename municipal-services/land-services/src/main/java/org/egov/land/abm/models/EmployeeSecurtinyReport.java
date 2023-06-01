@@ -23,7 +23,6 @@ public class EmployeeSecurtinyReport  {
 	private List<FiledDetails> approvedfiledDetails;
 	private List<FiledDetails> disApprovedfiledDetails;
 	private List<FiledDetails> condApprovedfiledDetails;
-	private List<FiledDetails> performaFieldDetail;
 
 	
 

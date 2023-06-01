@@ -132,7 +132,7 @@ public class GenerateTcpNumbers {
 
 					LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>> mDMSCallDistrictId = (LinkedHashMap<String, LinkedHashMap<String, LinkedHashMap<String, Object>>>) landUtil
 							.mDMSCallDistrictCode(requestInfo, tradeLicense.getTenantId(),
-									newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict().getValue());
+									newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getDistrict());
 
 					Map<String, List<String>> mdmsDatadistrict;
 					mdmsDatadistrict = valid.getAttributeValues(mDMSCallDistrictId);
@@ -150,7 +150,7 @@ public class GenerateTcpNumbers {
 					Map<String, Object> mapDNo = new HashMap<String, Object>();
 
 					mapDNo.put("Village",
-							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
+							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 					mapDNo.put("DiaryDate", date);
 					mapDNo.put("ReceivedFrom", newobj.getApplicantInfo().getAuthorizedDeveloper());
 					mapDNo.put("DistrictCode", distCodeNIC);
@@ -170,8 +170,8 @@ public class GenerateTcpNumbers {
 					mapCNO.put("PurposeId", purposeId);
 					mapCNO.put("StartDate", date);
 					mapCNO.put("DistrictCode", distCodeNIC);
-					mapDNo.put("Village",
-							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
+					mapCNO.put("Village",
+							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 					mapCNO.put("ChallanAmount", newobj.getFeesAndCharges().getPayableNow());
 
 					caseNumber = thirPartyAPiCall.generateCaseNumber(mapCNO, authtoken).getBody().get("Value")
@@ -187,8 +187,8 @@ public class GenerateTcpNumbers {
 					mapANo.put("CaseId", caseNumber.split("~")[1]);
 					mapANo.put("DiaryDate", date);
 					mapANo.put("TotalArea", newobj.getApplicantPurpose().getTotalArea());
-					mapDNo.put("Village",
-							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate().getValue());
+					mapANo.put("Village",
+							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getRevenueEstate());
 					mapANo.put("PurposeId", purposeId);
 					mapANo.put("NameofOwner",
 							newobj.getApplicantPurpose().getAppliedLandDetails().get(0).getLandOwner());

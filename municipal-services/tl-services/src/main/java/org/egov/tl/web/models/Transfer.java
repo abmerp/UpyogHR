@@ -1,7 +1,6 @@
 package org.egov.tl.web.models;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,9 +22,13 @@ public class Transfer {
 
 	private String licenseNo;
 
+	private String selectType;
+
+	private String araeInAcres;
+
 	private JsonNode additionalDetails = null;
 	private JsonNode newAdditionalDetails = null;
-
+	
 	@JsonProperty("auditDetails")
 	private AuditDetails auditDetails = null;
 	@JsonProperty("applicationNumber")
@@ -61,14 +64,5 @@ public class Transfer {
 
 	@JsonProperty("tcpDairyNumber")
 	private String tcpDairyNumber;
-
-	@JsonProperty("administrativeCharges")
-	private BigDecimal administrativeCharges;
-	@JsonProperty("compostionCharges")
-	private BigDecimal compostionCharges;
-	@JsonProperty("developerAdministrativeCharges")
-	private BigDecimal developerAdministrativeCharges;
-	@JsonProperty("totalCharges")
-	private BigDecimal totalCharges;
 
 }
