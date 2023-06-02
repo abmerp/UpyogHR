@@ -90,7 +90,7 @@ public class NewLicensePDF {
 			e.printStackTrace();
 		}
 
-		File file = new File(applicationNumber+".pdf");
+		File file = new File(environment.getProperty("egov.jsontopdf")+applicationNumber+".pdf");
 				if (file.exists()) {
 			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
 			if (mimeType == null) {
@@ -117,7 +117,7 @@ public class NewLicensePDF {
 		img.scaleAbsolute(200, 100);
 		
 		Document doc = new Document(PageSize.A4.rotate());
-		PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(applicationNumber+".pdf"));
+		PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream(environment.getProperty("egov.jsontopdf")+applicationNumber+".pdf"));
 		doc.open();
 	
 		
