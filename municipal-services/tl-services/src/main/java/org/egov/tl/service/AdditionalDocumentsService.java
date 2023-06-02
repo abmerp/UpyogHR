@@ -211,6 +211,7 @@ public class AdditionalDocumentsService {
 						comments2.setDate(documentsDetails.getDate());
 						comments2.setDocumentName(documentsDetails.getDocumentName());
 						comments2.setDocument(documentsDetails.getDocument());
+						comments2.setApplicationSection(documentsDetails.getApplicationSection());
 						if (documentsDetails.getApplicationSection().equalsIgnoreCase("ApplicantInfo"))
 							applicantInfo.add(comments2);
 						else if (documentsDetails.getApplicationSection().equalsIgnoreCase("ApplicantPurpose"))
