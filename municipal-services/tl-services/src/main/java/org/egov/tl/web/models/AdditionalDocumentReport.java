@@ -26,8 +26,7 @@ public class AdditionalDocumentReport {
 	private String developerName;
 	@JsonProperty("businessService")
 	private String businessService;
-	@JsonProperty("applicationSection")
-	private String applicationSection;
+
 	List<Fileddetail> applicantInfo = null;
 	List<Fileddetail> applicantPurpose = null;
 	List<Fileddetail> landSchedule = null;
