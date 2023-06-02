@@ -4,6 +4,7 @@ import com.jayway.jsonpath.JsonPath;
 import lombok.extern.slf4j.Slf4j;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.Role;
+import org.egov.inbox.config.InboxConfiguration;
 import org.egov.inbox.repository.ServiceRequestRepository;
 import org.egov.inbox.util.BpaConstants;
 import org.egov.inbox.web.model.InboxSearchCriteria;
@@ -30,146 +31,15 @@ import static org.egov.inbox.util.TLConstants.*;
 @Service
 public class TLInboxFilterService {
 
-	@Value("${egov.user.host}")
-	private String userHost;
-
-	@Value("${egov.user.search.path}")
-	private String userSearchEndpoint;
-
-	@Value("${egov.searcher.host}")
-	private String searcherHost;
-
-	@Value("${egov.searcher.tl.search.path}")
-	private String tlInboxSearcherEndpoint;
-
-	@Value("${egov.searcher.tl.search.desc.path}")
-	private String tlInboxSearcherDescEndpoint;
-
-	@Value("${egov.searcher.tl.count.path}")
-	private String tlInboxSearcherCountEndpoint;
-
-	@Value("${egov.searcher.tl.bgnew.search.path}")
-	private String newBankGuaranteeSearcherEndpoint;
-
-	@Value("${egov.searcher.tl.bgnew.count.path}")
-	private String newBankGuaranteeSearcherCountEndpoint;
-
-	@Value("${egov.searcher.tl.bgnew.search.desc.path}")
-	private String newBankGuaranteeSearcherDescEndpoint;
-
-	@Value("${egov.searcher.tl.SP.search.path}")
-	private String servicePlanSearcherEndpoint;
-
-	@Value("${egov.searcher.tl.SP.count.path}")
-	private String servicePlanSearcherCountEndpoint;
-
-	@Value("${egov.searcher.tl.SP.search.desc.path}")
-	private String servicePlaneSearcherDescEndpoint;
-
-	@Value("${egov.searcher.tl.EP.search.path}")
-	private String electricPlanSearcherEndpoint;
-
-	@Value("${egov.searcher.tl.EP.count.path}")
-	private String electricPlanSearcherCountEndpoint;
-
-	@Value("${egov.searcher.tl.EP.search.desc.path}")
-	private String electricPlaneSearcherDescEndpoint;
-	@Value("${egov.searcher.tl.AS.search.path}")
-	private String approvalStandardSearcherEndPoint;
-	@Value("${egov.searcher.tl.AS.count.path}")
-	private String approvalStandardSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.AS.search.desc.path}")
-	private String approvalStandardSearcherDescEndPoint;
-	@Value("${egov.searcher.tl.RL.search.path}")
-	private String renewalOfLicenceSearcherEndPoint;
-	@Value("${egov.searcher.tl.RL.count.path}")
-	private String renewalOfLicenceSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.RL.search.desc.path}")
-	private String renewalOfLicenceSearcherDescEndPoint;
-	@Value("${egov.searcher.tl.RLP.search.path}")
-	private String revisedLayoutPlanSearcherEndPoint;
-	@Value("${egov.searcher.tl.RLP.count.path}")
-	private String revisedLayoutPlanSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.RLP.search.desc.path}")
-	private String revisedLayoutPlanSearcherDescEndPoint;
-	@Value("${egov.searcher.tl.TRANSFER.search.path}")
-	private String transferOfLicenceSearcherEndPoint;
-	@Value("${egov.searcher.tl.TRANSFER.count.path}")
-	private String transferOfLicenceSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.TRANSFER.search.desc.path}")
-	private String transferOfLicenceSearcherDescEndPoint;
-
-//	CHANGE OF BENEFICIAL
-	@Value("${egov.searcher.tl.change.beneficial.search.path}")
-	private String changeOfBeneficialSearcherEndPoint;
-	@Value("${egov.searcher.tl.change.beneficial.count.path}")
-	private String changeOfBeneficialSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.change.beneficial.search.desc.path}")
-	private String changeOfBeneficialSearcherDescEndPoint;
-
-//	CHANGE OF BENEFICIAL
-	@Value("${egov.searcher.tl.completion.certificate.search.path}")
-	private String completionCertificateSearcherEndPoint;
-	@Value("${egov.searcher.tl.completion.certificate.count.path}")
-	private String completionCertificateSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.completion.certificate.search.desc.path}")
-	private String completionCertificateSearcherDescEndPoint;
-
-	@Value("${egov.searcher.tl.constructionofcommunity.search.path}")
-	private String constructionOfCommunitySearcherEndPoint;
-	@Value("${egov.searcher.tl.constructionofcommunity.count.path}")
-	private String constructionOfCommunitySearcherCountEndPoint;
-	@Value("${egov.searcher.tl.constructionofcommunity.search.desc.path}")
-	private String constructionOfCommunitySearcherDescEndPoint;
-
-//	SURREND OF LICENSE
-	@Value("${egov.searcher.tl.Surrend.of.license.search.path}")
-	private String SurrendOfLicenseSearcherEndPoint;
-	@Value("${egov.searcher.tl.Surrend.of.license.count.path}")
-	private String SurrendOfLicenseSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.Surrend.of.license.search.desc.path}")
-	private String SurrendOfLicenseSearcherDescEndPoint;
-
-	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.search.path}")
-	private String ExtensionOfCLUPermissionSearcherEndPoint;
-	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.count.path}")
-	private String ExtensionOfCLUPermissionSearcherCountEndPoint;
-	@Value("${egov.searcher.tl.Extension.of.CLU.Permission.search.desc.path}")
-	private String ExtensionOfCLUPermissionSearcherDescEndPoint;
-	@Value("${egov.searcher.tl.TP.search.path}")
-	private String technicalPrpfessionalSearchPath;
-	@Value("${egov.searcher.tl.TP.count.path}")
-	private String technicalPrpfessionalCountPath;
-	@Value("${egov.searcher.tl.TP.search.desc.path}")
-	private String technicalPrpfessionalSearchDescPath;
+	
 	@Autowired
 	private RestTemplate restTemplate;
 
 	@Autowired
 	private ServiceRequestRepository serviceRequestRepository;
-
-	private static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENTION_OF_CLU_PERMISSION";
-	private static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
-	private static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
-	private static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
-	private static final String BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY = "CONSTRUCTION_OF_COMMUNITY";
-
-	private static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
-	private static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
-	private static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
-	private static final String BUSINESSSERVICE_NEWTL = "NewTL";
-	private static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
-	private static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
-	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	@Autowired
+	InboxConfiguration config;
 	
-
-	private static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
-
-	private static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
-
-	private static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
-	private static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
-	private static final String BUSINESSSERVICE_TECHNICAL_PROFESSIONAL = "TECHNICAL_PROFESSIONAL";
 
 	public List<String> fetchApplicationNumbersFromSearcher(InboxSearchCriteria criteria,
 			HashMap<String, String> StatusIdNameMap, RequestInfo requestInfo) {
@@ -253,99 +123,99 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_TECHNICAL_PROFESSIONAL:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(technicalPrpfessionalSearchDescPath);
+						uri.append(config.getSearcherHost()).append(config.getTechnicalPrpfessionalSearchDescPath());
 					} else {
-						uri.append(searcherHost).append(technicalPrpfessionalSearchPath);
+						uri.append(config.getSearcherHost()).append(config.getTechnicalPrpfessionalSearchPath());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getExtensionOfCLUPermissionSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getExtensionOfCLUPermissionSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_SURRENDOFLICENSE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(SurrendOfLicenseSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getSurrendOfLicenseSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(SurrendOfLicenseSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getSurrendOfLicenseSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_CHANGEBENEFICIAL:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(changeOfBeneficialSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getChangeOfBeneficialSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(changeOfBeneficialSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getChangeOfBeneficialSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(completionCertificateSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getCompletionCertificateSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(completionCertificateSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getCompletionCertificateSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(constructionOfCommunitySearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getConstructionOfCommunitySearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(constructionOfCommunitySearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getConstructionOfCommunitySearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_TRANSFER:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(transferOfLicenceSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getTransferOfLicenceSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(transferOfLicenceSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getTransferOfLicenceSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_REVISED:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(revisedLayoutPlanSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getRevisedLayoutPlanSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(revisedLayoutPlanSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getRevisedLayoutPlanSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_RENEWAL:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(renewalOfLicenceSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getRenewalOfLicenceSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(renewalOfLicenceSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getRenewalOfLicenceSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_NEWTL:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(tlInboxSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getTlInboxSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(tlInboxSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getTlInboxSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
 				case BUSINESSSERVICE_BG_NEW:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 
@@ -353,9 +223,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_BG_RELEASE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 
@@ -363,9 +233,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_BG_MORTGAGE:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(newBankGuaranteeSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(newBankGuaranteeSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 
@@ -374,9 +244,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_SERVICE_PLAN:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(servicePlaneSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getServicePlaneSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(servicePlanSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getServicePlanSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 
@@ -385,9 +255,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(servicePlaneSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getServicePlaneSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(servicePlanSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getServicePlanSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 
@@ -396,9 +266,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_ELECTRICAL_PLAN:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(electricPlaneSearcherDescEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getElectricPlaneSearcherDescEndpoint());
 					} else {
-						uri.append(searcherHost).append(electricPlanSearcherEndpoint);
+						uri.append(config.getSearcherHost()).append(config.getElectricPlanSearcherEndpoint());
 						log.info("search for application no url" + uri);
 					}
 
@@ -406,9 +276,9 @@ public class TLInboxFilterService {
 				case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
 					if (moduleSearchCriteria.containsKey(SORT_ORDER_PARAM)
 							&& moduleSearchCriteria.get(SORT_ORDER_PARAM).equals(DESC_PARAM)) {
-						uri.append(searcherHost).append(approvalStandardSearcherDescEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getApprovalStandardSearcherDescEndPoint());
 					} else {
-						uri.append(searcherHost).append(approvalStandardSearcherEndPoint);
+						uri.append(config.getSearcherHost()).append(config.getApprovalStandardSearcherEndPoint());
 						log.info("search for application no url" + uri);
 					}
 					break;
@@ -508,87 +378,87 @@ public class TLInboxFilterService {
 
 				switch (businessService) {
 				case BUSINESSSERVICE_TECHNICAL_PROFESSIONAL:
-					uri.append(searcherHost).append(technicalPrpfessionalCountPath);
+					uri.append(config.getSearcherHost()).append(config.getTechnicalPrpfessionalCountPath());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION:
-					uri.append(searcherHost).append(ExtensionOfCLUPermissionSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getExtensionOfCLUPermissionSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_SURRENDOFLICENSE:
-					uri.append(searcherHost).append(SurrendOfLicenseSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getSurrendOfLicenseSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_CHANGEBENEFICIAL:
-					uri.append(searcherHost).append(changeOfBeneficialSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getChangeOfBeneficialSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_COMPLETION_CERTIFICATE:
-					uri.append(searcherHost).append(completionCertificateSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getCompletionCertificateSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY:
-					uri.append(searcherHost).append(constructionOfCommunitySearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getConstructionOfCommunitySearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_TRANSFER:
-					uri.append(searcherHost).append(transferOfLicenceSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getTransferOfLicenceSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_REVISED:
-					uri.append(searcherHost).append(revisedLayoutPlanSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getRevisedLayoutPlanSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				case BUSINESSSERVICE_RENEWAL:
-					uri.append(searcherHost).append(renewalOfLicenceSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getRenewalOfLicenceSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 
 					break;
 
 				case BUSINESSSERVICE_NEWTL:
-					uri.append(searcherHost).append(tlInboxSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getTlInboxSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 
 					break;
 				case BUSINESSSERVICE_BG_NEW:
-					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				
 				case BUSINESSSERVICE_BG_RELEASE:
-					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 					break;
 					
 				case BUSINESSSERVICE_BG_MORTGAGE:
 
-					uri.append(searcherHost).append(newBankGuaranteeSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getNewBankGuaranteeSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 
 					break;
 
 				case BUSINESSSERVICE_SERVICE_PLAN:
 
-					uri.append(searcherHost).append(servicePlanSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getServicePlanSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 
 					break;
 
 				case BUSINESSSERVICE_SERVICE_PLAN_DEMACATION:
 
-					uri.append(searcherHost).append(servicePlanSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getServicePlanSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 
 					break;
 
 				case BUSINESSSERVICE_ELECTRICAL_PLAN:
 
-					uri.append(searcherHost).append(electricPlanSearcherCountEndpoint);
+					uri.append(config.getSearcherHost()).append(config.getElectricPlanSearcherCountEndpoint());
 					log.info("uri searcher\t" + uri);
 
 					break;
 				case BUSINESSSERVICE_APPROVAL_OF_STANDARD:
-					uri.append(searcherHost).append(approvalStandardSearcherCountEndPoint);
+					uri.append(config.getSearcherHost()).append(config.getApprovalStandardSearcherCountEndPoint());
 					log.info("uri searcher\t" + uri);
 					break;
 				}
@@ -604,7 +474,7 @@ public class TLInboxFilterService {
 
 	private List<String> fetchUserUUID(String mobileNumber, RequestInfo requestInfo, String tenantId) {
 		StringBuilder uri = new StringBuilder();
-		uri.append(userHost).append(userSearchEndpoint);
+		uri.append(config.getUserHost()).append(config.getUserSearchEndpoint());
 		Map<String, Object> userSearchRequest = new HashMap<>();
 		userSearchRequest.put("RequestInfo", requestInfo);
 		userSearchRequest.put("tenantId", tenantId);

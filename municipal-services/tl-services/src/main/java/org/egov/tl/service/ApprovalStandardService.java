@@ -57,7 +57,8 @@ import net.minidev.json.JSONObject;
 public class ApprovalStandardService {
 	@Value("${persister.create.approval.standard.topic}")
 	private String approvaltopic;
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Value("${persister.update.approval.standard.topic}")
 	private String approvalUpdateTopic;
 
@@ -365,10 +366,11 @@ public class ApprovalStandardService {
 		ApprovalStandardEntity approvalStandardRequest = approvalStandardContract.getApprovalStandardRequest();
 
 		approvalStandardRequest.setId(UUID.randomUUID().toString());
-		approvalStandardRequest.setAssignee(Arrays.asList(
-				servicePlanService.assignee("CTP_HR", approvalStandardRequest.getTenantId(), true, requestInfo)));
-//			approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
-
+//		approvalStandardRequest.setAssignee(Arrays.asList(
+//				servicePlanService.assignee("CTP_HR", approvalStandardRequest.getTenantId(), true, requestInfo)));
+////			approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+		approvalStandardRequest.setAssignee(Arrays
+				.asList(tradeUtil.getFirstAssigneeByRole(ctpUser, approvalStandardRequest.getTenantId(), true, requestInfo)));
 		approvalStandardRequest.setBusinessService(config.getApprovalOfStandardBusinessService());
 		approvalStandardRequest.setWorkflowCode(config.getApprovalOfStandardBusinessService());
 		TradeLicenseRequest prepareProcessInstanceRequest = prepareProcessInstanceRequest(approvalStandardRequest,

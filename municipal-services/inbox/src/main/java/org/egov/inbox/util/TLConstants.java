@@ -27,4 +27,21 @@ public class TLConstants {
 	public static final String APPLICATIONSTATUS = "applicationstatus";
 	public static final String COUNT = "count";
 	public static final String STATUSID = "statusid";
+	public static final String BUSINESSSERVICE_EXTENSIONOFCLUPERMISSION = "EXTENTION_OF_CLU_PERMISSION";
+	public static final String BUSINESSSERVICE_SURRENDOFLICENSE = "SURREND_OF_LICENSE";
+	public static final String BUSINESSSERVICE_CHANGEBENEFICIAL = "CHANGE_OF_BENEFICIAL";
+	public static final String BUSINESSSERVICE_COMPLETION_CERTIFICATE = "COMPLETION_CERTIFICATE";
+	public static final String BUSINESSSERVICE_CONSTRUCTION_OF_COMMUNITY = "CONSTRUCTION_OF_COMMUNITY";
+	public static final String BUSINESSSERVICE_TRANSFER = "TRANSFER_OF_LICIENCE";
+	public static final String BUSINESSSERVICE_RENEWAL = "RENWAL_OF_LICENCE";
+	public static final String BUSINESSSERVICE_REVISED = "REVISED_LAYOUT_PLAN";
+	public static final String BUSINESSSERVICE_NEWTL = "NewTL";
+	public static final String BUSINESSSERVICE_BG_NEW = "BG_NEW";
+	public static final String BUSINESSSERVICE_BG_MORTGAGE = "BG_MORTGAGE";
+	public static final String BUSINESSSERVICE_BG_RELEASE = "BG_RELEASE";
+	public static final String BUSINESSSERVICE_SERVICE_PLAN = "SERVICE_PLAN";
+	public static final String BUSINESSSERVICE_ELECTRICAL_PLAN = "ELECTRICAL_PLAN";
+	public static final String BUSINESSSERVICE_SERVICE_PLAN_DEMACATION = "SERVICE_PLAN_DEMARCATION";
+	public static final String BUSINESSSERVICE_APPROVAL_OF_STANDARD = "APPROVAL_OF_STANDARD";
+	public static final String BUSINESSSERVICE_TECHNICAL_PROFESSIONAL = "TECHNICAL_PROFESSIONAL";
 }

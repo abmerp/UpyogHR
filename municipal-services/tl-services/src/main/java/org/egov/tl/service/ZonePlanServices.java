@@ -49,7 +49,8 @@ import net.minidev.json.JSONObject;
 public class ZonePlanServices {
 
 	private static final String BUSINESS_ZONEPLAN = "ZONE_PLAN";
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Value("${persister.create.zone.plan.topic}")
 	private String zoneplanTopic;
 
@@ -107,9 +108,11 @@ public class ZonePlanServices {
 		}
 		zonePlan.setTenantId("hr");
 		zonePlan.setId(UUID.randomUUID().toString());
-		zonePlan.setAssignee(
-				Arrays.asList(servicePlanService.assignee("CTP_HR", zonePlan.getTenantId(), true, requestInfo)));
+//		zonePlan.setAssignee(
+//				Arrays.asList(servicePlanService.assignee("CTP_HR", zonePlan.getTenantId(), true, requestInfo)));
 ////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+		zonePlan.setAssignee(Arrays
+				.asList(tradeUtil.getFirstAssigneeByRole(ctpUser, zonePlan.getTenantId(), true, requestInfo)));
 		applicationNumbers = servicePlanService.getIdList(requestInfo, zonePlan.getTenantId(), config.getZonePlanName(),
 				config.getZonePlanFormat(), count);
 		zonePlan.setAction("INITIATE");

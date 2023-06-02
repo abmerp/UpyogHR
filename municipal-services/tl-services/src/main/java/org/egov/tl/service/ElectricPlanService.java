@@ -41,6 +41,7 @@ import org.egov.tl.workflow.WorkflowIntegrator;
 import org.egov.tl.workflow.WorkflowService;
 import org.egov.tracer.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -58,7 +59,8 @@ import net.minidev.json.JSONObject;
 @Slf4j
 @Service
 public class ElectricPlanService {
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	// private static final String businessService_TL = "ELECTRICAL_PLAN";
 
 	private static final String SENDBACK_STATUS = "EP_SENDBACK_TO_APPLICANT";
@@ -121,9 +123,10 @@ public class ElectricPlanService {
 
 			electricPlanRequest.setId(UUID.randomUUID().toString());
 
-			electricPlanRequest.setAssignee(
-					Arrays.asList(assignee("CTP_HR", electricPlanRequest.getTenantID(), true, requestInfo)));
-
+//			electricPlanRequest.setAssignee(
+//					Arrays.asList(assignee("CTP_HR", electricPlanRequest.getTenantID(), true, requestInfo)));
+			electricPlanRequest.setAssignee(Arrays
+					.asList(tradeUtil.getFirstAssigneeByRole(ctpUser, electricPlanRequest.getTenantID(), true, requestInfo)));
 			applicationNumbers = getIdList(electricPlanContract.getRequestInfo(), electricPlanRequest.getTenantID(),
 					config.getEPapplicationNumberIdgenNameTL(), config.getEPapplicationNumberIdgenFormatTL(), count);
 

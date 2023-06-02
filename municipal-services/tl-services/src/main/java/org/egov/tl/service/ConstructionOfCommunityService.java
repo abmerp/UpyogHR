@@ -26,6 +26,7 @@ import org.egov.tl.web.models.TradeLicenseRequest;
 import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -41,7 +42,8 @@ public class ConstructionOfCommunityService {
 	
 	private static final String CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE = "CONSTRUCTION_OF_COMMUNITY";
 	private static final String WFTENANTID = "hr";
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	
 	
 	@Autowired
@@ -208,7 +210,7 @@ public class ConstructionOfCommunityService {
 		        constructionOfCommunityRequest.setConstructionOfCommunity(constructionOfCommunityList);
 		
 		if(isCreate) {
-			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
+			List<String> assignee=Arrays.asList(servicePlanService.assignee(ctpUser, WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
 			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,"INITIATE",assignee,constructionOfCommunityList.get(0).getApplicationNumber(),CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,constructionOfCommunityRequest.getRequestInfo());
 			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
 			
@@ -218,7 +220,7 @@ public class ConstructionOfCommunityService {
 		} else {
 			
 			if(constructionOfCommunityList.get(0).getApplicationNumber()!=null&&constructionOfCommunityList.get(0).getAction()==null&&constructionOfCommunityList.get(0).getStatus()==null) {
-				List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
+				List<String> assignee=Arrays.asList(servicePlanService.assignee(ctpUser, WFTENANTID, true, constructionOfCommunityRequest.getRequestInfo()));
 				TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,"INITIATE",assignee,constructionOfCommunityList.get(0).getApplicationNumber(),CONSTRUCTION_OF_COMMUNITY_WORKFLOWCODE,constructionOfCommunityRequest.getRequestInfo());
 				workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
 			}

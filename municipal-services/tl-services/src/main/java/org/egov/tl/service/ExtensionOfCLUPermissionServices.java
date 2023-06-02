@@ -51,7 +51,8 @@ import net.minidev.json.JSONObject;
 public class ExtensionOfCLUPermissionServices {
 
 	//private static final String BUSINESS_EXTENTION = "EXTENTION_OF_CLU_PERMISSION";
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Value("${persister.create.extension.of.clu.permission.topic}")
 	private String cluTopic;
 
@@ -112,9 +113,8 @@ public class ExtensionOfCLUPermissionServices {
 					"Already Found or multiple  extension of clu  applications with LoiNumber.");
 		}
 		extensionOfCLUPermission.setId(UUID.randomUUID().toString());
-		extensionOfCLUPermission.setAssignee(Arrays.asList(
-				servicePlanService.assignee("CTP_HR", extensionOfCLUPermission.getTenantId(), true, requestInfo)));
-//////		approvalStandardRequest.setAssignee(Arrays.asList("f9b7acaf-c1fb-4df2-ac10-83b55238a724"));
+		extensionOfCLUPermission.setAssignee(Arrays
+				.asList(tradeUtil.getFirstAssigneeByRole(ctpUser, extensionOfCLUPermission.getTenantId(), true, requestInfo)));
 		applicationNo = servicePlanService.getIdList(requestInfo, extensionOfCLUPermission.getTenantId(),
 				config.getCluName(), config.getCluFormat(), count);
 		extensionOfCLUPermission.setAction(extensionOfCLUPermission.getAction());

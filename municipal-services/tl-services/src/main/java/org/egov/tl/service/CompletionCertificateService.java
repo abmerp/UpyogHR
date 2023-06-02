@@ -28,6 +28,7 @@ import org.egov.tl.web.models.TradeLicenseSearchCriteria;
 import org.egov.tl.web.models.Transfer;
 import org.egov.tl.workflow.WorkflowIntegrator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -43,7 +44,8 @@ public class CompletionCertificateService {
 
 	private static final String COMPLETION_CERTIFICATE_WORKFLOWCODE = "COMPLETION_CERTIFICATE";
 	private static final String WFTENANTID = "hr";
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Autowired
 	ObjectMapper mapper;
 	@Autowired
@@ -214,7 +216,7 @@ public class CompletionCertificateService {
 		completionCertificateRequest.setCompletionCertificate(completionCertificate);
 
 		if (isCreate) {
-			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
+			List<String> assignee=Arrays.asList(servicePlanService.assignee(ctpUser, WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
 			TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
 			workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
 		    completionCertificateRepo.save(completionCertificateRequest);
@@ -225,7 +227,7 @@ public class CompletionCertificateService {
 					.message("Records has been inserted successfully.").status(true).build();
 		} else {
 			if(completionCertificate.get(0).getApplicationNumber()!=null&&completionCertificate.get(0).getAction()==null&&completionCertificate.get(0).getStatus()==null) {
-				List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
+				List<String> assignee=Arrays.asList(servicePlanService.assignee(ctpUser, WFTENANTID, true, completionCertificateRequest.getRequestInfo()));
 				TradeLicenseRequest prepareProcessInstanceRequest=changeBeneficialService.prepareProcessInstanceRequest(WFTENANTID,COMPLETION_CERTIFICATE_WORKFLOWCODE,"INITIATE",assignee,completionCertificate.get(0).getApplicationNumber(),COMPLETION_CERTIFICATE_WORKFLOWCODE,completionCertificateRequest.getRequestInfo());
 				workflowIntegrator.callWorkFlow(prepareProcessInstanceRequest);	
 			}

@@ -82,7 +82,8 @@ public class ChangeBeneficialService {
 	
 	//private static final String CHANGE_BENEFICIAL_WORKFLOWCODE = "CHANGE_OF_BENEFICIAL";
 	private static final String WFTENANTID = "hr";
-
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	
 	@Value("${tcp.payment.host}")
 	private String paymentHost;
@@ -324,7 +325,7 @@ public class ChangeBeneficialService {
 					}).collect(Collectors.toList());
 			beneficialRequest.setChangeBeneficial(changeBeneficial);
 			
-			List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, beneficialRequest.getRequestInfo()));
+			List<String> assignee=Arrays.asList(servicePlanService.assignee(ctpUser, WFTENANTID, true, beneficialRequest.getRequestInfo()));
 			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,config.getChangeOfBeneficialBusinessService(),"INITIATE",assignee,changeBeneficial.get(0).getApplicationNumber(),config.getChangeOfBeneficialBusinessService(),beneficialRequest.getRequestInfo());
 			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 		
@@ -1035,7 +1036,7 @@ public class ChangeBeneficialService {
 							e.printStackTrace();
 						}
 						
-						List<String> assignee=Arrays.asList(servicePlanService.assignee("CTP_HR", WFTENANTID, true, info));
+						List<String> assignee=Arrays.asList(servicePlanService.assignee(ctpUser, WFTENANTID, true, info));
 						TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,config.getChangeOfBeneficialBusinessService(),"INITIATE",assignee,changeBeneficiaDetails.getApplicationNumber(),config.getChangeOfBeneficialBusinessService(),info);
 						wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
 						

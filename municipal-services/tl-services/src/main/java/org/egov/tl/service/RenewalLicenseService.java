@@ -47,7 +47,8 @@ public class RenewalLicenseService {
 	
 	@Autowired
 	ObjectMapper mapper;
-	
+	@Value("${tcp.employee.ctp}")
+	private String ctpUser;
 	@Value("${egov.timeZoneName}")
 	private String timeZoneName;
 	
@@ -125,7 +126,7 @@ public class RenewalLicenseService {
 		
 		RequestInfo requestInfo=renewalLicenseRequest.getRequestInfo();
 		Timestamp currentDate=Timestamp.valueOf(ConvertUtil.getCurrentFullDate(timeZoneName, null));
-		List<String> assignees=java.util.Arrays.asList(servicePlanService.assignee("CTP_HR", "hr", true, renewalLicenseRequest.getRequestInfo()));
+		List<String> assignees=java.util.Arrays.asList(servicePlanService.assignee(ctpUser, "hr", true, renewalLicenseRequest.getRequestInfo()));
 		String renewalLicenceId=UUID.randomUUID().toString();
 		long currentTime=currentDate.getTime();
 		AuditDetails auditDetails=new AuditDetails();
