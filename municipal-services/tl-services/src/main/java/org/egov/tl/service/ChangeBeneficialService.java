@@ -38,6 +38,7 @@ import org.egov.tl.web.models.AuditDetails;
 import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.ChangeBeneficialRequest;
 import org.egov.tl.web.models.ChangeBeneficialResponse;
+import org.egov.tl.web.models.CompletionCertificate;
 import org.egov.tl.web.models.Document;
 import org.egov.tl.web.models.LicenseDetails;
 import org.egov.tl.web.models.ResponseTransaction;
@@ -185,11 +186,17 @@ public class ChangeBeneficialService {
 	String  licenseFee = "0.0";
 	private final String JDAMR_DEVELOPER_STATUS="JDAMR";
 	
-	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest,boolean isScrutiny){
+	public ChangeBeneficialResponse createChangeBeneficial(ChangeBeneficialRequest beneficialRequest){
 		ChangeBeneficialResponse changeBeneficialResponse = null;
-		if(isScrutiny) {
-			return updateWorkflow(beneficialRequest);
+		try {
+			ChangeBeneficial changeBeneficials=beneficialRequest.getChangeBeneficial().get(0);
+			if(changeBeneficials.getApplicationNumber()!=null&&changeBeneficials.getAction()!=null&&changeBeneficials.getStatus()!=null){
+				return updateWorkflow(beneficialRequest);
+			}
+		}catch (Exception e) {
+              e.printStackTrace();	
 		}
+		
 		String licenseNumber=beneficialRequest.getChangeBeneficial().get(0).getLicenseNumber();
 		
 		List<TradeLicense> tradeLicense = changeBeneficialRepo.getLicenseByLicenseNumber(licenseNumber,beneficialRequest.getRequestInfo().getUserInfo().getId());

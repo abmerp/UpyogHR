@@ -86,7 +86,17 @@ public class ConstructionOfCommunityService {
 
 	
 
-	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest,boolean isScunitny){
+	public ConstructionOfCommunityResponse saveConstructionOfCommunity(ConstructionOfCommunityRequest constructionOfCommunityRequest){
+		boolean isScunitny=false;
+		try {
+			ConstructionOfCommunity constructionOfCommunitys=constructionOfCommunityRequest.getConstructionOfCommunity().get(0);
+			if(constructionOfCommunitys.getApplicationNumber()!=null&&constructionOfCommunitys.getAction()!=null&&constructionOfCommunitys.getStatus()!=null){
+				isScunitny=true;
+			}
+		}catch (Exception e) {
+              e.printStackTrace();	
+		}
+		
 		ConstructionOfCommunityResponse constructionOfCommunityResponse = null;
 		String licenseNumber=constructionOfCommunityRequest.getConstructionOfCommunity().get(0).getLicenseNumber();
 		

@@ -17,6 +17,7 @@ import org.egov.tl.util.LandUtil;
 import org.egov.tl.util.TradeUtil;
 import org.egov.tl.validator.LandMDMSValidator;
 import org.egov.tl.web.models.AuditDetails;
+import org.egov.tl.web.models.ChangeBeneficial;
 import org.egov.tl.web.models.CompletionCertificate;
 import org.egov.tl.web.models.CompletionCertificateResponse;
 import org.egov.tl.web.models.CompositionOfUrban;
@@ -81,8 +82,19 @@ public class CompositionOfUrbanService {
 	@Autowired
 	private GenerateTcpNumbers generateTcpNumbers;
 
-	public CompositionOfUrbanResponse saveCompositionOfUrban(CompositionOfUrbanRequest compositionOfUrbanRequest,boolean isScunitny){
+	public CompositionOfUrbanResponse saveCompositionOfUrban(CompositionOfUrbanRequest compositionOfUrbanRequest){
+		boolean isScunitny=false;
 		CompositionOfUrbanResponse compositionOfUrbanResponse = null;
+		
+		try {
+			CompositionOfUrban compositionOfUrbans=compositionOfUrbanRequest.getCompositionOfUrban().get(0);
+			if(compositionOfUrbans.getApplicationNumber()!=null&&compositionOfUrbans.getAction()!=null&&compositionOfUrbans.getStatus()!=null){
+				isScunitny=true;
+			}
+		}catch (Exception e) {
+              e.printStackTrace();	
+		}
+		
 		String applicationNumber=compositionOfUrbanRequest.getCompositionOfUrban().get(0).getApplicationNumber();
 		
 		CompositionOfUrban compositionOfUrban=compositionOfUrbanRepo.getCompositionOfUrbanByApplicationNumber(applicationNumber!=null?applicationNumber:"0");

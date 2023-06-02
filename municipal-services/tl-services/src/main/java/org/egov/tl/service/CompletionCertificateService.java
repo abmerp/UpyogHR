@@ -82,8 +82,16 @@ public class CompletionCertificateService {
 	@Autowired
 	private WorkflowIntegrator workflowIntegrator;
 
-	public CompletionCertificateResponse createCompletionCertificate(
-			CompletionCertificateRequest completionCertificateRequest,boolean isScunitny) {
+	public CompletionCertificateResponse createCompletionCertificate(CompletionCertificateRequest completionCertificateRequest) {
+		boolean isScunitny=false;
+		try {
+			CompletionCertificate completionCertificates=completionCertificateRequest.getCompletionCertificate().get(0);
+			if(completionCertificates.getApplicationNumber()!=null&&completionCertificates.getAction()!=null&&completionCertificates.getStatus()!=null){
+				isScunitny=true;
+			}
+		}catch (Exception e) {
+              e.printStackTrace();	
+		}
 		CompletionCertificateResponse completionCertificateResponse = null;
 		String licenseNumber = completionCertificateRequest.getCompletionCertificate().get(0).getLicenseNumber();
 

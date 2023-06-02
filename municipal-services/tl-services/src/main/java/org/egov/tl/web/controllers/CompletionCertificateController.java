@@ -22,14 +22,13 @@ public class CompletionCertificateController {
 	
 	@PostMapping("_create")
 	public ResponseEntity<CompletionCertificateResponse> saveCompletionCertificate(@RequestBody CompletionCertificateRequest completionRequest){
-		CompletionCertificateResponse completionCertificateResponse=completionCertificateService.createCompletionCertificate(completionRequest,false);
+		CompletionCertificateResponse completionCertificateResponse=completionCertificateService.createCompletionCertificate(completionRequest);
        return new ResponseEntity<>(completionCertificateResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_update")
-	public ResponseEntity<CompletionCertificateResponse> updateCompletionCertificate(@RequestBody CompletionCertificateRequest completionRequest
-			,@RequestParam(value = "isScrutiny", required = false) String isScrutiny){
-		CompletionCertificateResponse completionCertificateResponse=completionCertificateService.createCompletionCertificate(completionRequest,isScrutiny!=null&&!isScrutiny.equals("0")?true:false);   
+	public ResponseEntity<CompletionCertificateResponse> updateCompletionCertificate(@RequestBody CompletionCertificateRequest completionRequest){
+		CompletionCertificateResponse completionCertificateResponse=completionCertificateService.createCompletionCertificate(completionRequest);   
        return new ResponseEntity<>(completionCertificateResponse, HttpStatus.OK);
 	}
 	

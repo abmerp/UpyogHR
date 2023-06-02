@@ -24,14 +24,13 @@ public class BeneficialController {
 	
 	@PostMapping("_create")
 	public ResponseEntity<ChangeBeneficialResponse> changeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest){
-         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest,false);   
+         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
 	@PostMapping("_update")
-	public ResponseEntity<ChangeBeneficialResponse> updateChangeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest
-			,@RequestParam(value = "isScrutiny", required = false) String isScrutiny){
-         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest,isScrutiny!=null&&!isScrutiny.equals("0")?true:false);   
+	public ResponseEntity<ChangeBeneficialResponse> updateChangeBeneficial(@RequestBody ChangeBeneficialRequest beneficialRequest){
+         ChangeBeneficialResponse changeBeneficialResponse=changeBeneficialService.createChangeBeneficial(beneficialRequest);   
        return new ResponseEntity<>(changeBeneficialResponse, HttpStatus.OK);
 	}
 	
