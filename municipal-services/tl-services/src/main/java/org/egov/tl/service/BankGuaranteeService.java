@@ -366,11 +366,25 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
 		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_RELEASE);
 		
+		
+		Long time = System.currentTimeMillis();
+		AuditDetails auditDetails = newBankGuaranteeRequest.getAuditDetails();
+		String userUUID=requestInfo.getUserInfo().getUuid();
+		
 		if(newBankGuaranteeRequest.getAction()!=null&&newBankGuaranteeRequest.getStatus()!=null) {
+			auditDetails.setLastModifiedBy(userUUID);
+			auditDetails.setLastModifiedTime(time);
+			newBankGuaranteeRespondData.setAuditDetails(auditDetails);
+			
 			newBankGuaranteeRespondData.setStatus(newBankGuaranteeRequest.getStatus());
 			newBankGuaranteeRespondData.setAction(newBankGuaranteeRequest.getAction());
 			newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+			
 		}else {
+			auditDetails.setCreatedBy(userUUID);
+			auditDetails.setCreatedTime(time);
+			newBankGuaranteeRespondData.setAuditDetails(auditDetails);
+			
 			String applicationNumber=getReleaseApplicationNumber(requestInfo,true);
 			newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
 			newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
@@ -399,12 +413,25 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
 	
+		Long time = System.currentTimeMillis();
+		AuditDetails auditDetails = newBankGuaranteeRequest.getAuditDetails();
+		String userUUID=requestInfo.getUserInfo().getUuid();
+	
+		
 		
 		if(newBankGuaranteeRequest.getAction()!=null&&newBankGuaranteeRequest.getStatus()!=null) {
+			auditDetails.setLastModifiedBy(userUUID);
+			auditDetails.setLastModifiedTime(time);
+			newBankGuaranteeRespondData.setAuditDetails(auditDetails);
+			
 			newBankGuaranteeRespondData.setStatus(newBankGuaranteeRequest.getStatus());
 			newBankGuaranteeRespondData.setAction(newBankGuaranteeRequest.getAction());
 			newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
 		}else {
+			auditDetails.setCreatedBy(userUUID);
+			auditDetails.setCreatedTime(time);
+			newBankGuaranteeRespondData.setAuditDetails(auditDetails);
+			
 			String applicationNumber=getReleaseApplicationNumber(requestInfo,false);
 			newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
 			newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
