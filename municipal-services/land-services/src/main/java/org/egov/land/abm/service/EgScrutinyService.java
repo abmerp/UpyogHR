@@ -122,6 +122,7 @@ public class EgScrutinyService {
 		List<FiledDetails> disApprovedfiledDetails = null;
 		List<FiledDetails> condApprovedfiledDetails = null;
 		List<FiledDetails> performaFieldDetail = null;
+		List<FiledDetails> notingDetail = null;
 		List<EmployeeSecurtinyReport> securityReportf = new ArrayList<EmployeeSecurtinyReport>();
 
 		for (EgScrutiny egScrutiny2 : egScrutiny) {
@@ -132,6 +133,7 @@ public class EgScrutinyService {
 			disApprovedfiledDetails = new ArrayList<FiledDetails>();
 			condApprovedfiledDetails = new ArrayList<FiledDetails>();
 			performaFieldDetail = new ArrayList<FiledDetails>();
+			notingDetail = new ArrayList<FiledDetails>();
 			object.setEmployeeName(egScrutiny2.getEmployeeName());
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
@@ -158,6 +160,8 @@ public class EgScrutinyService {
 						condApprovedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
 						performaFieldDetail.add(comments2);
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Noting"))
+						notingDetail.add(comments2);
 					// egScrutiny.remove(i);
 				}
 				i++;
@@ -179,6 +183,7 @@ public class EgScrutinyService {
 				object.setDisApprovedfiledDetails(disApprovedfiledDetails);
 				object.setCondApprovedfiledDetails(condApprovedfiledDetails);
 				object.setPerformaFieldDetail(performaFieldDetail);
+				object.setNotingDetail(notingDetail);
 				securityReport.add(object);
 				// securityReportf.addAll(securityReport);
 				log.info("\t" + securityReport.size() + "\t");
@@ -229,7 +234,6 @@ public class EgScrutinyService {
 			} else {
 				egScrutiny.setTs(new Date());
 				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
-				
 
 			}
 			egScrutinyLists.add(egScrutiny);
