@@ -360,12 +360,12 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setCompletionCertificateDescription(newBankGuaranteeRequest.getCompletionCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
-		
-		newBankGuaranteeRespondData.setApplicationNumber(getReleaseApplicationNumber(requestInfo,true));
+		String applicationNumber=getReleaseApplicationNumber(requestInfo,true);
+	
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
-		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
 		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
@@ -386,11 +386,12 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setBankGurenteeCertificateDescription(newBankGuaranteeRequest.getBankGurenteeCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
-		newBankGuaranteeRespondData.setApplicationNumber(getReleaseApplicationNumber(requestInfo,false));
+		
+		String applicationNumber=getReleaseApplicationNumber(requestInfo,false);
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_NEW);
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
-		newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
 		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
 		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
 		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
