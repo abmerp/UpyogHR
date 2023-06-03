@@ -360,18 +360,25 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setCompletionCertificateDescription(newBankGuaranteeRequest.getCompletionCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
-		String applicationNumber=getReleaseApplicationNumber(requestInfo,true);
-	
+		
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
-		newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
 		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_RELEASE);
-		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
-		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
-		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForBGRelease(newBankGuaranteeRespondData, requestInfo);
-		workflowIntegrator.callWorkFlow(processInstanceRequest);
+		
+		if(newBankGuaranteeRequest.getAction()!=null&&newBankGuaranteeRequest.getStatus()!=null) {
+			newBankGuaranteeRespondData.setStatus(newBankGuaranteeRequest.getStatus());
+			newBankGuaranteeRespondData.setAction(newBankGuaranteeRequest.getAction());
+			newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		}else {
+			String applicationNumber=getReleaseApplicationNumber(requestInfo,true);
+			newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
+			newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_RELEASE_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+			newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
+			newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
+			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForBGRelease(newBankGuaranteeRespondData, requestInfo);
+			workflowIntegrator.callWorkFlow(processInstanceRequest);
+		}
 
 
 	}
@@ -387,17 +394,25 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
 		
-		String applicationNumber=getReleaseApplicationNumber(requestInfo,false);
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_NEW);
+		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
-		newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
-		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
-		newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
-		newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
-		newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
-		TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
-		workflowIntegrator.callWorkFlow(processInstanceRequest);
+	
+		
+		if(newBankGuaranteeRequest.getAction()!=null&&newBankGuaranteeRequest.getStatus()!=null) {
+			newBankGuaranteeRespondData.setStatus(newBankGuaranteeRequest.getStatus());
+			newBankGuaranteeRespondData.setAction(newBankGuaranteeRequest.getAction());
+			newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+		}else {
+			String applicationNumber=getReleaseApplicationNumber(requestInfo,false);
+			newBankGuaranteeRespondData.setApplicationNumber(applicationNumber);
+			newBankGuaranteeRespondData.setAssignee(tradeUtil.getFirstAssigneeByRoleBG(BG_NEW_LANDING_EMPLOYEE_ROLE,BUSINESSSERVICE_TENANTID, true,requestInfo));
+			newBankGuaranteeRespondData.setStatus(BG_STATUS_INITIATED);
+			newBankGuaranteeRespondData.setAction(BG_ACTION_INITIATE);
+			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
+			workflowIntegrator.callWorkFlow(processInstanceRequest);
+		}
 	}
 	
 	private String getReleaseApplicationNumber(RequestInfo requestInfo,boolean type) {
