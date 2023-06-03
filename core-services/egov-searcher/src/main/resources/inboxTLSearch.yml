@@ -226,7 +226,7 @@ SearchDefinitions:
       responseInfoPath: $.ResponseInfo
   - name: inboxtlsearchdescBG
     query:
-      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_number) as applicationNumber  , tl.createdtime  as createdtime from eg_tl_bank_guarantee as tl LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number LEFT JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid where pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid) order by tl.createdtime  desc ) result
+      baseQuery: Select row_to_json(result) from ( select DISTINCT(tl.application_number) as applicationNumber  , tl.createdtime  as createdtime from eg_tl_bank_guarantee as tl LEFT JOIN eg_tl_tradelicense ett on tl.loi_number = ett.tcploinumber INNER JOIN eg_wf_processinstance_v2 pi ON pi.businessid = tl.application_number INNER JOIN eg_wf_assignee_v2 assg ON pi.id = assg.processinstanceid where pi.createdtime IN (select max(createdtime) from eg_wf_processinstance_v2 wf where wf.businessid = tl.application_number GROUP BY wf.businessid) order by tl.createdtime  desc ) result
       groupBy: null
       orderBy: null
     searchParams:
