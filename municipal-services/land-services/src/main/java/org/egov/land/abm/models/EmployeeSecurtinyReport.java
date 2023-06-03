@@ -25,6 +25,7 @@ public class EmployeeSecurtinyReport  {
 	private List<FiledDetails> disApprovedfiledDetails;
 	private List<FiledDetails> condApprovedfiledDetails;
 	private List<FiledDetails> performaFieldDetail;
+	private List<FiledDetails> notingDetail;
 
 	
 
