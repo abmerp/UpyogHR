@@ -376,7 +376,7 @@ public class TLQueryBuilder {
 			TradeLicenseSearchCriteria criteria) {
 		int limit = config.getDefaultLimit();
 		int offset = config.getDefaultOffset();
-		String ArrangeData = null;
+		//String ArrangeData = null;
 		String finalQuery = paginationWrapper.replace("{}", query);
 
 		if (criteria.getLimit() != null && criteria.getLimit() <= config.getMaxSearchLimit())
@@ -388,12 +388,12 @@ public class TLQueryBuilder {
 		if (criteria.getOffset() != null)
 			offset = criteria.getOffset();
 		
-		if (criteria.getArrangeData() != null)
-			ArrangeData = criteria.getArrangeData();
+//		if (criteria.getArrangeData() != null)
+//			ArrangeData = criteria.getArrangeData();
 
 		preparedStmtList.add(offset);		
 		preparedStmtList.add(limit + offset);
-		preparedStmtList.add(ArrangeData);
+	//	preparedStmtList.add(ArrangeData);
 		return finalQuery;
 	}
 
