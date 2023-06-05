@@ -173,6 +173,8 @@ public class NewBankGuaranteeRequest {
 		this.releaseBankGuarantee = newBankGuarantee.getReleaseBankGuarantee();
 		this.businessService = newBankGuarantee.getBusinessService();
 		
+		this.updateType=newBankGuarantee.getUploadBg();
+		
 		this.release=newBankGuarantee.getRelease();
 		this.bankGuaranteeReplacedWith=newBankGuarantee.getBankGuaranteeReplacedWith();
 		this.reasonForReplacement=newBankGuarantee.getReasonForReplacement();
@@ -237,6 +239,7 @@ public class NewBankGuaranteeRequest {
 				.releaseBankGuarantee(this.releaseBankGuarantee)
 				.businessService(this.businessService)
 				
+				.updateType(this.updateType)
 				.release(this.release)
 				.bankGuaranteeReplacedWith(this.bankGuaranteeReplacedWith)
 				.reasonForReplacement(this.reasonForReplacement)

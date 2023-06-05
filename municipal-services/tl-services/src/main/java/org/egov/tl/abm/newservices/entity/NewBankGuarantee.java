@@ -135,6 +135,7 @@ public class NewBankGuarantee {
 
 	
 	/******************* realese bank gurentee  start**************************/
+	    private String updateType;
 		private String release;
 		private String bankGuaranteeReplacedWith;
 		private String reasonForReplacement;

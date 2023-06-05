@@ -361,6 +361,8 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
 		
+		newBankGuaranteeRespondData.setUpdateType(newBankGuaranteeRequest.getUpdateType());
+		
 		newBankGuaranteeRespondData.setWfDocuments(newBankGuaranteeRequest.getWfDocuments());
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_RELEASE);
 		newBankGuaranteeRespondData.setComment(newBankGuaranteeRequest.getComment());
@@ -412,6 +414,8 @@ public class BankGuaranteeService {
 		newBankGuaranteeRespondData.setBankGurenteeCertificateDescription(newBankGuaranteeRequest.getBankGurenteeCertificateDescription());
 		newBankGuaranteeRespondData.setAnyOtherDocument(newBankGuaranteeRequest.getAnyOtherDocument());
 		newBankGuaranteeRespondData.setAnyOtherDocumentDescription(newBankGuaranteeRequest.getAnyOtherDocumentDescription());
+		
+		newBankGuaranteeRespondData.setUpdateType(newBankGuaranteeRequest.getUpdateType());
 		
 		newBankGuaranteeRespondData.setWorkflowCode(BUSINESSSERVICE_BG_NEW);
 		newBankGuaranteeRespondData.setBusinessService(BUSINESSSERVICE_BG_NEW);
