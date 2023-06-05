@@ -352,9 +352,10 @@ public class ChangeBeneficialService {
 	    			changeBeneficialCheck.setStatus(changeBeneficialWorkflow.getStatus());
 	      	}
 	    	
-//	    	List<String> assignee=Arrays.asList(servicePlanService.assignee(changeBeneficialWorkflow.getAssignee().get(0), WFTENANTID, true, beneficialRequest.getRequestInfo()));
-//			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,CHANGE_BENEFICIAL_WORKFLOWCODE,changeBeneficialWorkflow.getAction(),assignee,changeBeneficialWorkflow.getApplicationNumber(),CHANGE_BENEFICIAL_WORKFLOWCODE,beneficialRequest.getRequestInfo());
-//			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+	    	List<String> assignee=changeBeneficialWorkflow.getAssignee();
+			TradeLicenseRequest prepareProcessInstanceRequest=prepareProcessInstanceRequest(WFTENANTID,config.getChangeOfBeneficialBusinessService(),changeBeneficialWorkflow.getAction(),assignee,changeBeneficialWorkflow.getApplicationNumber(),config.getChangeOfBeneficialBusinessService(),beneficialRequest.getRequestInfo());
+			wfIntegrator.callWorkFlow(prepareProcessInstanceRequest);
+			
 			beneficialRequest.setChangeBeneficial(Arrays.asList(changeBeneficialCheck));
 			changeBeneficialRepo.updateWorflow(beneficialRequest);
 			
