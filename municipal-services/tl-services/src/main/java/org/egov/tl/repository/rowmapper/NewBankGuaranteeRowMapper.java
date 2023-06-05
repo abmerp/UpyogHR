@@ -76,6 +76,27 @@ public class NewBankGuaranteeRowMapper implements ResultSetExtractor<List<NewBan
 						.partialCertificate(rs.getString("ebnbg_partial_Certificate"))
 						.additionalDocuments(additionalDocuments)
 						.businessService(rs.getString("ebnbg_businessservice"))
+					
+						.updateType(rs.getString("ebnbg_update_type"))
+						.status(rs.getString("ebnbg_status"))
+						
+						
+						.anyOtherDocument(rs.getString("ebnbg_any_other_document"))
+						.anyOtherDocumentDescription(rs.getString("ebnbg_any_other_document_description"))
+						.dateOfAmendment(rs.getString("ebnbg_date_of_amendment"))
+						.amendmentExpiryDate(rs.getString("ebnbg_amendment_expiry_date"))
+						.amendmentClaimExpiryDate(rs.getString("ebnbg_amendment_claim_expiry_date"))
+						.issuingBank(rs.getString("ebnbg_issuing_bank"))
+						.bankGurenteeCertificate(rs.getString("ebnbg_bank_gurentee_certificate"))
+						.bankGurenteeCertificateDescription(rs.getString("ebnbg_bank_gurentee_certificate_description"))
+					
+						.applicationCerficifate(rs.getString("ebnbg_application_cerficifate"))
+						.applicationCerficifateDescription(rs.getString("ebnbg_application_cerficifate_description"))
+						.bankGuaranteeReplacedWith(rs.getString("ebnbg_bank_guarantee_replaced_with"))
+						.completionCertificate(rs.getString("ebnbg_completion_certificate"))
+						.completionCertificateDescription(rs.getString("ebnbg_completion_certificate_description"))
+						.reasonForReplacement(rs.getString("ebnbg_reason_for_replacement"))
+						.release(rs.getString("ebnbg_release"))
 						.build();
 				newBankGuaranteeRequestMap.put(id, currentNewBankGuaranteeRequest);
 			}
