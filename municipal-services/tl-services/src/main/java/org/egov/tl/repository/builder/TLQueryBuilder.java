@@ -70,7 +70,7 @@ public class TLQueryBuilder {
 
 	private final String paginationWrapper = "SELECT * FROM "
 			+ "(SELECT *, DENSE_RANK() OVER (ORDER BY tl_lastModifiedTime DESC , tl_id) offset_ FROM " + "({})"
-			+ " result) result_offset " + "WHERE offset_ > ? AND offset_ <= ?";
+			+ " result) result_offset " + "WHERE offset_ > ? AND offset_ <= ? Order By applicationDate DESC";
 
 	private final String countWrapper = "SELECT COUNT(DISTINCT(tl_id)) FROM ({INTERNAL_QUERY}) as license_count";
 
@@ -242,7 +242,7 @@ public class TLQueryBuilder {
 			if (criteria.getSearchData() != null) {
 				addClauseIfRequired(preparedStmtList, builder);
 				builder.append("  tl.applicationnumber LIKE ? ");
-				preparedStmtList.add("%"+criteria.getSearchData().split("\\.")[0] + "%");
+				preparedStmtList.add("%" + criteria.getSearchData().split("\\.")[0] + "%");
 			}
 //			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
 //					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
@@ -254,9 +254,10 @@ public class TLQueryBuilder {
 //
 //				}
 //			}
-			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
+			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null
 					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
-							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null &&criteria.getUuid()!=null &&criteria.getSearchData()!=null) {
+					&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null
+					&& criteria.getUuid() != null && criteria.getSearchData() != null) {
 				if (requestInfo.getUserInfo().getUuid() != null) {
 					addClauseIfRequired(preparedStmtList, builder);
 					builder.append("   tl.createdby=  ? ");
@@ -376,7 +377,7 @@ public class TLQueryBuilder {
 			TradeLicenseSearchCriteria criteria) {
 		int limit = config.getDefaultLimit();
 		int offset = config.getDefaultOffset();
-		//String ArrangeData = null;
+
 		String finalQuery = paginationWrapper.replace("{}", query);
 
 		if (criteria.getLimit() != null && criteria.getLimit() <= config.getMaxSearchLimit())
@@ -387,13 +388,10 @@ public class TLQueryBuilder {
 
 		if (criteria.getOffset() != null)
 			offset = criteria.getOffset();
-		
-//		if (criteria.getArrangeData() != null)
-//			ArrangeData = criteria.getArrangeData();
 
-		preparedStmtList.add(offset);		
+		preparedStmtList.add(offset);
 		preparedStmtList.add(limit + offset);
-	//	preparedStmtList.add(ArrangeData);
+
 		return finalQuery;
 	}
 

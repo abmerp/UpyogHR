@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.util.List;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,125 +13,121 @@ import java.util.List;
 @Builder
 public class TradeLicenseSearchCriteria {
 
+	@JsonProperty("tenantId")
+	private String tenantId;
 
-    @JsonProperty("tenantId")
-    private String tenantId;
+	@JsonProperty("status")
+	private List<String> status;
 
-    @JsonProperty("status")
-    private List<String> status;
+	@JsonProperty("applicationType")
+	private String applicationType;
 
-    @JsonProperty("applicationType")
-    private String applicationType;
+	@JsonProperty("ids")
+	private List<String> ids;
 
-    @JsonProperty("ids")
-    private List<String> ids;
+	@JsonProperty("applicationNumber")
+	private String applicationNumber;
 
-    @JsonProperty("applicationNumber")
-    private String applicationNumber;
+	@JsonProperty("licenseNumbers")
+	private List<String> licenseNumbers;
 
-    @JsonProperty("licenseNumbers")
-    private List<String> licenseNumbers;
+	@JsonProperty("oldLicenseNumber")
+	private String oldLicenseNumber;
 
-    @JsonProperty("oldLicenseNumber")
-    private String oldLicenseNumber;
+	@JsonProperty("mobileNumber")
+	private String mobileNumber = null;
 
-    @JsonProperty("mobileNumber")
-    private String mobileNumber = null;
+	@JsonIgnore
+	private String accountId;
 
-    @JsonIgnore
-    private String accountId;
+	@JsonProperty("fromDate")
+	private Long fromDate = null;
 
+	@JsonProperty("toDate")
+	private Long toDate = null;
 
-    @JsonProperty("fromDate")
-    private Long fromDate = null;
+	@JsonProperty("businessService")
+	private String businessService = null;
 
-    @JsonProperty("toDate")
-    private Long toDate = null;
+	@JsonProperty("validTo")
+	private Long validTo = null;
 
-    @JsonProperty("businessService")
-    private String businessService = null;
+	@JsonProperty("offset")
+	private Integer offset;
 
-    @JsonProperty("validTo")
-    private Long validTo = null;
+	@JsonProperty("limit")
+	private Integer limit;
 
-    @JsonProperty("offset")
-    private Integer offset;
+	@JsonProperty("locality")
+	private String locality = null;
 
-    @JsonProperty("limit")
-    private Integer limit;
+	@JsonProperty("tradeName")
+	private String tradeName = null;
 
-    @JsonProperty("locality")
-    private String locality = null;
+	@JsonProperty("ownerName")
+	private String ownerName = null;
 
-    @JsonProperty("tradeName")
-    private String tradeName = null;
+	@JsonProperty("issuedFrom")
+	private Long issuedFrom = null;
 
-    @JsonProperty("ownerName")
-    private String ownerName = null;
+	@JsonProperty("issuedTo")
+	private Long issuedTo = null;
 
-    @JsonProperty("issuedFrom")
-    private Long issuedFrom = null;
+	@JsonIgnore
+	private List<String> ownerIds;
 
-    @JsonProperty("issuedTo")
-    private Long issuedTo = null;
+	@JsonProperty("RenewalPending")
+	private Boolean RenewalPending;
 
-    @JsonIgnore
-    private List<String> ownerIds;
-    
-    @JsonProperty("RenewalPending")
-    private Boolean RenewalPending;
-    
-    @JsonProperty("onlyMobileNumber")
-    private Boolean onlyMobileNumber;
-    
-    @JsonProperty("financialYear")
-    private String financialYear;
+	@JsonProperty("onlyMobileNumber")
+	private Boolean onlyMobileNumber;
 
-    @JsonProperty("tradeType")
-    private String tradeType = null;
-    
-    @JsonProperty("loiNumber")
-    private String loiNumber;
-    
-    @JsonProperty("tcpDairyNumber")
-    private String tcpDairyNumber;
-    
-    @JsonProperty("tcpCaseNumber")
-    private String tcpCaseNumber;
-        
-    @JsonProperty("tcpApplicationNumber")
-    private String tcpApplicationNumber;
-    
-    @JsonProperty("uuid")
-    private String uuid;
-    
-    @JsonProperty("searchData")
-    private String searchData;
-    @JsonProperty("arrangeData")
-    private String arrangeData;
+	@JsonProperty("financialYear")
+	private String financialYear;
 
-    public boolean isEmpty() {
-        return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null
-                && this.licenseNumbers == null && this.oldLicenseNumber == null && this.mobileNumber == null &&
-                this.fromDate == null && this.toDate == null && this.ownerIds == null && this.locality == null && this.tradeName == null &&
-                this.ownerName == null && this.issuedFrom == null && this.issuedTo == null && this.tradeType == null
-        );
-    }
+	@JsonProperty("tradeType")
+	private String tradeType = null;
 
-    public boolean tenantIdOnly() {
-        return (this.tenantId != null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null
-                && this.licenseNumbers == null && this.oldLicenseNumber == null && this.mobileNumber == null &&
-                this.fromDate == null && this.toDate == null && this.ownerIds == null && this.locality == null && this.tradeName == null &&
-                this.ownerName == null && this.issuedFrom == null && this.issuedTo == null && this.tradeType == null
-        );
-    }
-    
-    public boolean mobileNumberOnly() {
-    	return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null && this.applicationNumber == null
-                && this.licenseNumbers == null && this.oldLicenseNumber == null && this.mobileNumber != null &&
-                this.fromDate == null && this.toDate == null && this.ownerIds == null && this.locality == null && this.tradeName == null &&
-                this.ownerName == null && this.issuedFrom == null && this.issuedTo == null && this.tradeType == null
-        );
-    }
+	@JsonProperty("loiNumber")
+	private String loiNumber;
+
+	@JsonProperty("tcpDairyNumber")
+	private String tcpDairyNumber;
+
+	@JsonProperty("tcpCaseNumber")
+	private String tcpCaseNumber;
+
+	@JsonProperty("tcpApplicationNumber")
+	private String tcpApplicationNumber;
+
+	@JsonProperty("uuid")
+	private String uuid;
+
+	@JsonProperty("searchData")
+	private String searchData;
+
+	public boolean isEmpty() {
+		return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null
+				&& this.applicationNumber == null && this.licenseNumbers == null && this.oldLicenseNumber == null
+				&& this.mobileNumber == null && this.fromDate == null && this.toDate == null && this.ownerIds == null
+				&& this.locality == null && this.tradeName == null && this.ownerName == null && this.issuedFrom == null
+				&& this.issuedTo == null && this.tradeType == null);
+	}
+
+	public boolean tenantIdOnly() {
+		return (this.tenantId != null && this.status == null && this.applicationType == null && this.ids == null
+				&& this.applicationNumber == null && this.licenseNumbers == null && this.oldLicenseNumber == null
+				&& this.mobileNumber == null && this.fromDate == null && this.toDate == null && this.ownerIds == null
+				&& this.locality == null && this.tradeName == null && this.ownerName == null && this.issuedFrom == null
+				&& this.issuedTo == null && this.tradeType == null);
+	}
+
+	public boolean mobileNumberOnly() {
+		return (this.tenantId == null && this.status == null && this.applicationType == null && this.ids == null
+				&& this.applicationNumber == null && this.licenseNumbers == null && this.oldLicenseNumber == null
+				&& this.mobileNumber != null && this.fromDate == null && this.toDate == null && this.ownerIds == null
+				&& this.locality == null && this.tradeName == null && this.ownerName == null && this.issuedFrom == null
+				&& this.issuedTo == null && this.tradeType == null);
+	}
 
 }
