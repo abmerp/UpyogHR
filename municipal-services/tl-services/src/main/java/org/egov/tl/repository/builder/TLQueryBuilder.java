@@ -239,6 +239,11 @@ public class TLQueryBuilder {
 				builder.append("  tlunit.tradetype LIKE ? ");
 				preparedStmtList.add(criteria.getTradeType().split("\\.")[0] + "%");
 			}
+			if (criteria.getSearchData() != null) {
+				addClauseIfRequired(preparedStmtList, builder);
+				builder.append("  tl.applicationnumber LIKE ? ");
+				preparedStmtList.add("%"+criteria.getSearchData().split("\\.")[0] + "%");
+			}
 //			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
 //					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
 //							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null) {
@@ -251,7 +256,7 @@ public class TLQueryBuilder {
 //			}
 			if (criteria.getLoiNumber() == null && criteria.getApplicationNumber() == null 
 					&& criteria.getTcpApplicationNumber() == null && criteria.getTcpCaseNumber() == null
-							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null &&criteria.getUuid()!=null) {
+							&& criteria.getTcpDairyNumber() == null && criteria.getLicenseNumbers() == null &&criteria.getUuid()!=null &&criteria.getSearchData()!=null) {
 				if (requestInfo.getUserInfo().getUuid() != null) {
 					addClauseIfRequired(preparedStmtList, builder);
 					builder.append("   tl.createdby=  ? ");
@@ -371,6 +376,7 @@ public class TLQueryBuilder {
 			TradeLicenseSearchCriteria criteria) {
 		int limit = config.getDefaultLimit();
 		int offset = config.getDefaultOffset();
+		String ArrangeData = null;
 		String finalQuery = paginationWrapper.replace("{}", query);
 
 		if (criteria.getLimit() != null && criteria.getLimit() <= config.getMaxSearchLimit())
@@ -381,10 +387,13 @@ public class TLQueryBuilder {
 
 		if (criteria.getOffset() != null)
 			offset = criteria.getOffset();
+		
+		if (criteria.getArrangeData() != null)
+			ArrangeData = criteria.getArrangeData();
 
-		preparedStmtList.add(offset);
+		preparedStmtList.add(offset);		
 		preparedStmtList.add(limit + offset);
-
+		preparedStmtList.add(ArrangeData);
 		return finalQuery;
 	}
 
