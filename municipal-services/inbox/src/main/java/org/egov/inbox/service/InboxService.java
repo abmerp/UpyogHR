@@ -466,17 +466,21 @@ public class InboxService {
 						.collect(Collectors.toMap(ProcessInstance::getBusinessId, Function.identity()));
 				if (CollectionUtils.isEmpty(businessKeys)) {
 					businessMap.keySet().forEach(busiessKey -> {
-						Inbox inbox = new Inbox();
-						inbox.setProcessInstance(processInstanceMap.get(busiessKey));
-						inbox.setBusinessObject(toMap((JSONObject) businessMap.get(busiessKey)));
-						inboxes.add(inbox);
+						 if(processInstanceMap.get(busiessKey)!=null) {
+							Inbox inbox = new Inbox();
+							inbox.setProcessInstance(processInstanceMap.get(busiessKey));
+							inbox.setBusinessObject(toMap((JSONObject) businessMap.get(busiessKey)));
+							inboxes.add(inbox);
+						 }
 					});
 				} else {
 					businessKeys.forEach(busiessKey -> {
-						Inbox inbox = new Inbox();
-						inbox.setProcessInstance(processInstanceMap.get(busiessKey));
-						inbox.setBusinessObject(toMap((JSONObject) businessMap.get(busiessKey)));
-						inboxes.add(inbox);
+						 if(processInstanceMap.get(busiessKey)!=null) {
+							Inbox inbox = new Inbox();
+							inbox.setProcessInstance(processInstanceMap.get(busiessKey));
+							inbox.setBusinessObject(toMap((JSONObject) businessMap.get(busiessKey)));
+							inboxes.add(inbox);
+						 }
 					});
 				}
 			}
