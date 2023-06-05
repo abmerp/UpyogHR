@@ -380,6 +380,11 @@ public class BankGuaranteeService {
 			newBankGuaranteeRespondData.setAction(newBankGuaranteeRequest.getAction());
 			newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
 			
+			newBankGuaranteeRespondData.setAssignee(newBankGuaranteeRequest.getAssignee());
+			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
+			workflowIntegrator.callWorkFlow(processInstanceRequest);
+
+			
 		}else {
 			auditDetails.setCreatedBy(userUUID);
 			auditDetails.setCreatedTime(time);
@@ -427,6 +432,11 @@ public class BankGuaranteeService {
 			newBankGuaranteeRespondData.setStatus(newBankGuaranteeRequest.getStatus());
 			newBankGuaranteeRespondData.setAction(newBankGuaranteeRequest.getAction());
 			newBankGuaranteeRespondData.setApplicationNumber(newBankGuaranteeRequest.getApplicationNumber());
+			
+			newBankGuaranteeRespondData.setAssignee(newBankGuaranteeRequest.getAssignee());
+			TradeLicenseRequest processInstanceRequest = prepareProcessInstanceRequestForNewBG(newBankGuaranteeRespondData, requestInfo);
+			workflowIntegrator.callWorkFlow(processInstanceRequest);
+
 		}else {
 			auditDetails.setCreatedBy(userUUID);
 			auditDetails.setCreatedTime(time);
