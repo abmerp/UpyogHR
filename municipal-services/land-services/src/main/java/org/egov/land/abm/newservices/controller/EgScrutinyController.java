@@ -122,7 +122,18 @@ public class EgScrutinyController {
 
 		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
 	}
+	@PostMapping("/_search5")
+	public ResponseEntity<EgScrutinyEmployeeReportResponse> searchEgScrutiny3(@RequestBody RequestInfoWrapper requestInfoWrapper,
+			@RequestParam("applicationNumber") String applicationNumber) {
 
+		List<EmployeeSecurtinyReport> egScrutiny = this.egScrutinyService.search5(applicationNumber);
+		EgScrutinyEmployeeReportResponse egScrutinyInfoResponse = EgScrutinyEmployeeReportResponse.builder().egScrutiny(egScrutiny)
+				.responseInfo(responseInfoFactory.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(),
+						true))
+				.build();
+
+		return new ResponseEntity<>(egScrutinyInfoResponse, HttpStatus.OK);
+	}
 
 
 	@PostMapping("/_getById")

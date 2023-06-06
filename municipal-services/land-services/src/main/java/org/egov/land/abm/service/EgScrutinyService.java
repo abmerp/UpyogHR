@@ -69,7 +69,7 @@ public class EgScrutinyService {
 
 	public List<SecurityReport> search2(String applicationNumber, Integer userId) {
 
-		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplication(applicationNumber);
+		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplicationSearch(applicationNumber);
 		List<SecurityReport> securityReport = new ArrayList<SecurityReport>();
 		SecurityReport object = null;
 		List<UserComments> comments = new ArrayList<UserComments>();
@@ -266,6 +266,90 @@ public class EgScrutinyService {
 		return securityReport;
 
 	}
+
+	public List<EmployeeSecurtinyReport> search5(String applicationNumber) {
+
+		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplication(applicationNumber);
+		List<EmployeeSecurtinyReport> securityReport = new ArrayList<EmployeeSecurtinyReport>();
+		EmployeeSecurtinyReport object = null;
+//		List<FiledDetails> approvedfiledDetails = null;
+//		List<FiledDetails> disApprovedfiledDetails = null;
+//		List<FiledDetails> condApprovedfiledDetails = null;
+		List<FiledDetails> performaFieldDetail = null;
+		List<FiledDetails> notingDetail = null;
+		List<EmployeeSecurtinyReport> securityReportf = new ArrayList<EmployeeSecurtinyReport>();
+
+		for (EgScrutiny egScrutiny2 : egScrutiny) {
+			// securityReport = new ArrayList<EmployeeSecurtinyReport>();
+			object = new EmployeeSecurtinyReport();
+			boolean isExisting = false;
+//			approvedfiledDetails = new ArrayList<FiledDetails>();
+//			disApprovedfiledDetails = new ArrayList<FiledDetails>();
+//			condApprovedfiledDetails = new ArrayList<FiledDetails>();
+			performaFieldDetail = new ArrayList<FiledDetails>();
+			notingDetail = new ArrayList<FiledDetails>();
+			object.setEmployeeName(egScrutiny2.getEmployeeName());
+			object.setUserID(egScrutiny2.getUserid().toString());
+			object.setRole(egScrutiny2.getRole());
+			object.setDesignation(egScrutiny2.getDesignation());
+			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
+			object.setId(egScrutiny2.getId());
+
+			int i = 0;
+			for (EgScrutiny egScrutiny3 : egScrutiny) {
+				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
+						&& egScrutiny3.getUserid().toString().equalsIgnoreCase(object.getUserID())) {
+
+					FiledDetails comments2 = new FiledDetails();
+					comments2.setName(egScrutiny3.getFieldIdL());
+					comments2.setRemarks(egScrutiny3.getComment());
+					comments2.setIsApproved(egScrutiny3.getIsApproved());
+					comments2.setValue(egScrutiny3.getFieldValue());
+//					if (egScrutiny3.getIsApproved().equalsIgnoreCase("In Order"))
+//						approvedfiledDetails.add(comments2);
+//					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
+//						disApprovedfiledDetails.add(comments2);
+//					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
+//						condApprovedfiledDetails.add(comments2);
+
+					if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
+						performaFieldDetail.add(comments2);
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Noting"))
+						notingDetail.add(comments2);
+					// egScrutiny.remove(i);
+				}
+				i++;
+
+			}
+
+			if (securityReport.size() > 0)
+				for (EmployeeSecurtinyReport objecttmp : securityReport) {
+					if ((objecttmp.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
+							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID())
+							&& objecttmp.getEmployeeName().equalsIgnoreCase(object.getEmployeeName()))) {
+						isExisting = true;
+						break;
+					}
+				}
+
+			if (!isExisting) {
+//				object.setApprovedfiledDetails(approvedfiledDetails);
+//				object.setDisApprovedfiledDetails(disApprovedfiledDetails);
+//				object.setCondApprovedfiledDetails(condApprovedfiledDetails);
+				object.setPerformaFieldDetail(performaFieldDetail);
+				object.setNotingDetail(notingDetail);
+				securityReport.add(object);
+				// securityReportf.addAll(securityReport);
+				log.info("\t" + securityReport.size() + "\t");
+
+			}
+		}
+
+		return securityReport;
+
+	}
+
 	public EgScrutiny findById(Integer id) {
 		return this.egScrutinyRepo.findById(id);
 	}
