@@ -199,4 +199,5 @@ public class LandSchedule {
 	private String patwariOriginalShajraPlan;
 	private String anyOtherDoc;
 	private String pocket;
+	private String loanRemark;
 }
