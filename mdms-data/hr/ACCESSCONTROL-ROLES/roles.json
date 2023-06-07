@@ -369,6 +369,11 @@
       "description": "Architect"
     },
     {
+      "code": "BPA_TECHNICAL_PROFESSIONAL",
+      "name": "technical professional",
+      "description": "technical professional"
+    },
+    {
       "code": "BPA_ENGINEER",
       "name": "Engineer",
       "description": "Engineer"
