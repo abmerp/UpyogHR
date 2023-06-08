@@ -1,6 +1,8 @@
 package org.egov.tl.service;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -134,7 +136,7 @@ public class TradeLicenseService {
 			break;
 		case businessService_BPA:
 			if (config.getIsExternalWorkFlowEnabled())
-			
+
 				wfIntegrator.callWorkFlow(tradeLicenseRequest);
 			break;
 
@@ -457,21 +459,23 @@ public class TradeLicenseService {
 				break;
 
 			case businessService_BPA:
-			//	endStates = tradeUtil.getBPAEndState(tradeLicenseRequest);
+				// endStates = tradeUtil.getBPAEndState(tradeLicenseRequest);
 				if (tradeLicenseRequest.getLicenses().get(0).getAction() != null
 						&& !tradeLicenseRequest.getLicenses().get(0).getAction().isEmpty())
 					if (config.getIsExternalWorkFlowEnabled()) {
-						if(tradeLicenseRequest.getLicenses().get(0).getAssignee() == null ||tradeLicenseRequest.getLicenses().get(0).getAssignee().isEmpty()) {
-						tradeLicenseRequest.getLicenses().get(0).setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole("dtpaa",
-								tradeLicenseRequest.getRequestInfo().getUserInfo().getTenantId(), true,
-								tradeLicenseRequest.getRequestInfo())));	
+						if (tradeLicenseRequest.getLicenses().get(0).getAssignee() == null
+								|| tradeLicenseRequest.getLicenses().get(0).getAssignee().isEmpty()) {
+							tradeLicenseRequest.getLicenses().get(0)
+									.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole("dtpaa",
+											tradeLicenseRequest.getRequestInfo().getUserInfo().getTenantId(), true,
+											tradeLicenseRequest.getRequestInfo())));
 						}
-					log.info("tradelicence"+tradeLicenseRequest);
+						log.info("tradelicence" + tradeLicenseRequest);
 						wfIntegrator.callWorkFlow(tradeLicenseRequest);
 					} else {
 						TLWorkflowService.updateStatus(tradeLicenseRequest);
 					}
-			//	wfIntegrator.callWorkFlow(tradeLicenseRequest);
+				// wfIntegrator.callWorkFlow(tradeLicenseRequest);
 				break;
 			}
 			enrichmentService.postStatusEnrichment(tradeLicenseRequest, endStates, mdmsData);
@@ -569,6 +573,36 @@ public class TradeLicenseService {
 		}
 
 		return false;
+	}
+
+	public List<TradeLicense> dateFilter(List<TradeLicense> licenses) {
+		return licenses = licenses.stream().filter(tradelicense -> {
+			Date resultdate = null;
+			String resultStrdate = null;
+			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			Long applicationDate = tradelicense.getApplicationDate();
+			if (applicationDate != null) {
+				try {
+					String currentdate = df.format(applicationDate);
+					Calendar c1 = Calendar.getInstance();
+					c1.setTime(df.parse(currentdate));
+					c1.add(Calendar.DATE, 30);
+					df = new SimpleDateFormat("MM/dd/yyyy");
+					resultdate = new Date(c1.getTimeInMillis());
+
+					resultStrdate = df.format(resultdate);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				if (resultdate.after(new Date()) || resultStrdate.equals(df.format(new Date())))
+					return true;
+				else
+					return false;
+			} else {
+				return false;
+			}
+		}).collect(Collectors.toList());
+
 	}
 
 }

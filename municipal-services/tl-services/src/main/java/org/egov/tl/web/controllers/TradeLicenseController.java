@@ -81,34 +81,8 @@ public class TradeLicenseController {
 
 		int count = tradeLicenseService.countLicenses(criteria, requestInfoWrapper.getRequestInfo(), servicename,
 				headers);
-
-		licenses = licenses.stream().filter(tradelicense -> {
-			Date resultdate = null;
-			String resultStrdate = null;
-			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
-			Long applicationDate = tradelicense.getApplicationDate();
-			if (applicationDate != null) {
-				try {
-					String currentdate = df.format(applicationDate);
-					Calendar c1 = Calendar.getInstance();
-					c1.setTime(df.parse(currentdate));
-					c1.add(Calendar.DATE, 30);
-					df = new SimpleDateFormat("MM/dd/yyyy");
-					resultdate = new Date(c1.getTimeInMillis());
-
-					resultStrdate = df.format(resultdate);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-				if (resultdate.after(new Date()) || resultStrdate.equals(df.format(new Date())))
-					return true;
-				else
-					return false;
-			} else {
-				return false;
-			}
-		}).collect(Collectors.toList());
-
+	 licenses =tradeLicenseService.dateFilter(licenses);
+		
 		TradeLicenseResponse response = TradeLicenseResponse
 				.builder().licenses(licenses).responseInfo(responseInfoFactory
 						.createResponseInfoFromRequestInfo(requestInfoWrapper.getRequestInfo(), true))
