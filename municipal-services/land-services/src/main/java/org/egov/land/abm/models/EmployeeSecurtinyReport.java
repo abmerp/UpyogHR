@@ -2,6 +2,7 @@ package org.egov.land.abm.models;
 
 import java.sql.Time;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class EmployeeSecurtinyReport  {
 	private Time createdOn;
 	private String applicationStatus;
 	private String userID;
+	private Date ts;
 	private List<FiledDetails> approvedfiledDetails;
 	private List<FiledDetails> disApprovedfiledDetails;
 	private List<FiledDetails> condApprovedfiledDetails;

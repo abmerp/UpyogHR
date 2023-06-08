@@ -1,6 +1,9 @@
 package org.egov.land.abm.newservices.entity;
 
 import java.sql.Time;
+import java.util.Date;
+
+import javax.persistence.Column;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,4 +21,5 @@ public class UserComments {
 	private String remarks;
 	private String isApproved;
 	private Time createdOn;
+	private Date ts;
 }

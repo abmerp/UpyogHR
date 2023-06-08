@@ -90,6 +90,7 @@ public class EgScrutinyService {
 					comments2.setCreatedOn(egScrutiny3.getCreatedOn());
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
+					comments2.setTs(egScrutiny3.getTs());
 					comments.add(comments2);
 
 				}
@@ -141,7 +142,7 @@ public class EgScrutinyService {
 			object.setCreatedOn(egScrutiny2.getCreatedOn());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
-
+			object.setTs(egScrutiny2.getTs());
 			int i = 0;
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
@@ -218,7 +219,7 @@ public class EgScrutinyService {
 			object.setDesignation(egScrutiny2.getDesignation());
 			object.setCreatedOn(egScrutiny2.getCreatedOn());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
-
+			object.setTs(egScrutiny2.getTs());
 			int i = 0;
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
@@ -295,7 +296,7 @@ public class EgScrutinyService {
 			object.setCreatedOn(egScrutiny2.getCreatedOn());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
-
+			object.setTs(egScrutiny2.getTs());
 			int i = 0;
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
