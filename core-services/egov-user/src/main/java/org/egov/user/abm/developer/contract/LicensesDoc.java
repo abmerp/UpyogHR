@@ -27,11 +27,15 @@ public class LicensesDoc {
 	private String wfDocuments;
 	private String status;
 	private ApplicationDocuments applicationDocuments;
-	
-	
+
 	private String articlesOfAssociation;
 	private String memorandumOfArticles;
 	private String registeredIrrevocablePaternshipDeed;
 	private String affidavitAndPancard;
 	private String anyOtherDoc;
+
+	private String qualificationCertificate;
+	private String experienceCertificate;
+	private String coaLetter;
+	private String identityProof;
 }
