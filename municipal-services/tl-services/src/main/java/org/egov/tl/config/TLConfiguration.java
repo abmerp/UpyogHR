@@ -531,5 +531,7 @@ public class TLConfiguration {
 	private String servicePlanDemarcationBusinessService;
 	@Value("${business.service.approval.standard}")
 	private String approvalOfStandardBusinessService;
+	@Value("${tcp.workflow.technical.professional}")
+	private String technicalProfessionalBusinessService;
 
 }

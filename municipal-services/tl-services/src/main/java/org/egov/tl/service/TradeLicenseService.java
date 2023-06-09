@@ -460,8 +460,11 @@ public class TradeLicenseService {
 
 			case businessService_BPA:
 				// endStates = tradeUtil.getBPAEndState(tradeLicenseRequest);
-				if (tradeLicenseRequest.getLicenses().get(0).getAction() != null
-						&& !tradeLicenseRequest.getLicenses().get(0).getAction().isEmpty())
+				if (tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail()
+						.getTradeType() == config.getTechnicalProfessionalBusinessService()
+						|| tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeType()
+								.equalsIgnoreCase(config.getTechnicalProfessionalBusinessService())) {//				if (tradeLicenseRequest.getLicenses().get(0).getAction() != null
+//						&& !tradeLicenseRequest.getLicenses().get(0).getAction().isEmpty())
 					if (config.getIsExternalWorkFlowEnabled()) {
 						if (tradeLicenseRequest.getLicenses().get(0).getAssignee() == null
 								|| tradeLicenseRequest.getLicenses().get(0).getAssignee().isEmpty()) {
@@ -472,17 +475,18 @@ public class TradeLicenseService {
 						}
 						log.info("tradelicence" + tradeLicenseRequest);
 						wfIntegrator.callWorkFlow(tradeLicenseRequest);
-					} else {
-						TLWorkflowService.updateStatus(tradeLicenseRequest);
 					}
+				} else {
+					TLWorkflowService.updateStatus(tradeLicenseRequest);
+				}
 				// wfIntegrator.callWorkFlow(tradeLicenseRequest);
 				break;
 			}
 			enrichmentService.postStatusEnrichment(tradeLicenseRequest, endStates, mdmsData);
 			userService.createUser(tradeLicenseRequest, false);
-			if (businessServicefromPath.equalsIgnoreCase(businessService_BPA)) {
-				calculationService.addCalculation(tradeLicenseRequest);
-			}
+//			if (businessServicefromPath.equalsIgnoreCase(businessService_BPA)) {
+//				calculationService.addCalculation(tradeLicenseRequest);
+//			}
 			repository.update(tradeLicenseRequest, idToIsStateUpdatableMap);
 			licenceResponse = tradeLicenseRequest.getLicenses();
 		}
