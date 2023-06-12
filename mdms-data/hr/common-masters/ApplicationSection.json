@@ -9,32 +9,22 @@
     },
     {
       "businessService": "NewTL",
-      "type": "ApplicationPurpose",
+      "type": "ApplicantPurpose",
       "active": true
     },
     {
       "businessService": "NewTL",
       "type": "DetailsOfAppliedLand",
       "active": true
-    },
+    },  
     {
       "businessService": "NewTL",
-      "type": "DeveloperCapacity",
-      "active": true
-    },
-    {
-      "businessService": "NewTL",
-      "type": "FeeAndCharges",
+      "type": "FeesAndCharges",
       "active": true
     },
     {
       "businessService": "NewTL",
       "type": "LandSchedule",
-      "active": true
-    },
-    {
-      "businessService": "NewTL",
-      "type": "LicenceDocumentsDetails",
       "active": true
     }
   ]
