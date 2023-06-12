@@ -270,7 +270,7 @@ public class EgScrutinyService {
 
 	public List<EmployeeSecurtinyReport> search5(String applicationNumber) {
 
-		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplication(applicationNumber);
+		List<EgScrutiny> egScrutiny = this.egScrutinyRepo.findByApplicationSearch5(applicationNumber);
 		List<EmployeeSecurtinyReport> securityReport = new ArrayList<EmployeeSecurtinyReport>();
 		EmployeeSecurtinyReport object = null;
 //		List<FiledDetails> approvedfiledDetails = null;
