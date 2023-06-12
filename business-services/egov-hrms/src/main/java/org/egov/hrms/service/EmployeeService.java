@@ -726,11 +726,12 @@ public class EmployeeService {
 				userDetail.setRoles(searchUsers.getEmployees().get(0).getUser().getRoles());
 				userDetail.setPassword("eGov@4321");
 				userDetail.setOtpReference("123456");
+				userDetail.setName(ssoEmployee.getApplicantName());
 				employee.setIsActive(true);
 				employee.setUuid(searchUsers.getEmployees().get(0).getUuid());
 				employee.setId(searchUsers.getEmployees().get(0).getId());
 				employee.setTenantId(requestInfo.getUserInfo().getTenantId());
-				employee.setCode(searchUsers.getEmployees().get(0).getCode());
+				employee.setCode(searchUsers.getEmployees().get(0).getCode());				
 				employee.setUser(userDetail);
 				employeeList.add(employee);
 
