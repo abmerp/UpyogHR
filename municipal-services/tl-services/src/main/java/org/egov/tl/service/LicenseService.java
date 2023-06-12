@@ -1142,6 +1142,7 @@ public class LicenseService {
 					purposeDetailm.setMinPercentage(minimumPermissible.toString());
 				}
 				if (maximunPermissible != null) {
+					purposeDetailm.setMaxPercentage(maximunPermissible.toString());
 					purposeDetailm.setArea(totalArea.multiply(maximunPermissible).toString());
 				}
 				totalArea = new BigDecimal(totalArea.subtract(new BigDecimal(purposeDetailm.getArea())).toString());
