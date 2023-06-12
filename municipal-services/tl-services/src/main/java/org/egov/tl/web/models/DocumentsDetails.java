@@ -1,5 +1,6 @@
 package org.egov.tl.web.models;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,8 +17,8 @@ import lombok.Setter;
 public class DocumentsDetails {
 	@JsonProperty("documentName")
 	private String documentName;
-	@JsonProperty("Date")
-	private String Date;
+
+	private Long createdDate;
 
 	@JsonProperty("document")
 	private String document;

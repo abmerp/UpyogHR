@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -68,9 +69,9 @@ public class AdditionalDocumentsService {
 		AuditDetails auditDetails = tradeUtil.getAuditDetails(uuid, true);
 
 		RequestInfo requestInfo = allServiceFindContract.getRequestInfo();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
-		LocalDateTime localDateTime = LocalDateTime.now();
-		String date = formatter.format(localDateTime);
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+//		LocalDateTime localDateTime = LocalDateTime.now();
+//		String date = formatter.format(localDateTime);
 		AdditionalDocuments allServiceFind = allServiceFindContract.getAddtionalDocuments();
 //		for (AdditionalDocuments allServiceFind : allServiceFindList) {
 //			String applicationNumber = allServiceFind.getApplicationNumber();
@@ -86,7 +87,7 @@ public class AdditionalDocumentsService {
 		List<DocumentsDetails> documentDetails = new ArrayList<>();
 		for (DocumentsDetails documentsDetail : documentsDetails) {
 
-			documentsDetail.setDate(date);
+			documentsDetail.setCreatedDate(System.currentTimeMillis());
 			documentDetails.add(documentsDetail);
 			// documentsDetails.add(documentsDetail);
 		}
@@ -208,7 +209,7 @@ public class AdditionalDocumentsService {
 					if (applicationSections.equalsIgnoreCase(documentsDetails.getApplicationSection())) {
 
 						Fileddetail comments2 = new Fileddetail();
-						comments2.setDate(documentsDetails.getDate());
+						comments2.setDate(documentsDetails.getCreatedDate());
 						comments2.setDocumentName(documentsDetails.getDocumentName());
 						comments2.setDocument(documentsDetails.getDocument());
 						comments2.setApplicationSection(documentsDetails.getApplicationSection());

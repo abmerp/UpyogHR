@@ -16,6 +16,6 @@ import lombok.Setter;
 public class Fileddetail {
 	private String documentName;
 	private String document;
-	private String date;
+	private Long date;
 	private String applicationSection;
 }
