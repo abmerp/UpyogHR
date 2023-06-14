@@ -381,10 +381,11 @@ public class EgScrutinyService {
 					egScrutiny.getRole(), egScrutiny.getIsApproved());
 			if (egScrutinys != null) {
 				egScrutiny.setComment(egScrutiny.getComment());
-				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
+				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
 				egScrutiny.setFieldValue(egScrutiny.getFieldValue());
 				egScrutiny.setIsLOIPart(egScrutiny.getIsLOIPart());
+				egScrutiny.setId(egScrutinys.getId());
 				egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 				// return egScrutinyRepo.save(egScrutiny);
 			} else {
