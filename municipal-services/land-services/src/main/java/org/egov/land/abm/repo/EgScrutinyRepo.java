@@ -32,7 +32,6 @@ public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long> {
 
 	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.role in(?2) and s.isApproved not in ('Noting','Performa') order by created_on DESC")
 	public List<EgScrutiny> findByApplication_roles(String applicationNumber, List<String> roles);
-
 	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.userid=?2 order by created_on DESC")
 	public List<EgScrutiny> findByApplicationIdAndUserid(String applicantId, Integer userId);
 
@@ -41,9 +40,12 @@ public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long> {
 			Integer userID, Integer serviceId, String applicationStatus, String employeeName, String role,
 			String status);
 
+//	public boolean existsByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId, String fieldId,
+//			Integer userID, Integer serviceId, String applicationStatus, String employeeName, String role,
+//			String status);
+	
 	public boolean existsByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId, String fieldId,
-			Integer userID, Integer serviceId, String applicationStatus, String employeeName, String role,
-			String status);
+			Integer userID, Integer serviceId);
 
 	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.fieldIdL=?2 and s.userid=?3 and s.serviceId=?4")
 	public EgScrutiny isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId, String fieldId,

@@ -31,11 +31,15 @@ public class EgScrutinyService {
 	public EgScrutiny createAndUpdateEgScrutiny(EgScrutinyInfoRequest egScrutinyInfoRequest) {
 
 		EgScrutiny egScrutiny = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
-				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(), egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
-				egScrutinyInfoRequest.getEgScrutiny().getServiceId(),egScrutinyInfoRequest.getEgScrutiny().getApplicationStatus(),egScrutinyInfoRequest.getEgScrutiny().getEmployeeName(),egScrutinyInfoRequest.getEgScrutiny().getRole(),egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
+				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
+				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
+				egScrutinyInfoRequest.getEgScrutiny().getServiceId(),
+				egScrutinyInfoRequest.getEgScrutiny().getApplicationStatus(),
+				egScrutinyInfoRequest.getEgScrutiny().getEmployeeName(),
+				egScrutinyInfoRequest.getEgScrutiny().getRole(), egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 
-		if (egScrutiny!=null) {
-			 egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+		if (egScrutiny != null) {
+			egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
 					egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 					egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(),
 					egScrutinyInfoRequest.getEgScrutiny().getUserid(),
@@ -328,7 +332,7 @@ public class EgScrutinyService {
 					if ((objecttmp.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
 							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID())
 							&& objecttmp.getEmployeeName().equalsIgnoreCase(object.getEmployeeName()))) {
-						
+
 						isExisting = true;
 						break;
 					}
@@ -371,15 +375,11 @@ public class EgScrutinyService {
 		List<EgScrutiny> egScrutinyList = performaContract.getEgScrutiny();
 		List<EgScrutiny> egScrutinyLists = new ArrayList<>();
 		for (EgScrutiny egScrutiny : egScrutinyList) {
-			boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-
+			EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
 					egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-					egScrutiny.getServiceId(),egScrutiny.getApplicationStatus(),egScrutiny.getEmployeeName(),egScrutiny.getRole(),egScrutiny.getIsApproved());
-
-			if (isExist) {
-				EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
-						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-						egScrutiny.getServiceId(),egScrutiny.getApplicationStatus(),egScrutiny.getEmployeeName(),egScrutiny.getRole(),egScrutiny.getIsApproved());
+					egScrutiny.getServiceId(), egScrutiny.getApplicationStatus(), egScrutiny.getEmployeeName(),
+					egScrutiny.getRole(), egScrutiny.getIsApproved());
+			if (egScrutinys != null) {
 				egScrutiny.setComment(egScrutiny.getComment());
 				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
