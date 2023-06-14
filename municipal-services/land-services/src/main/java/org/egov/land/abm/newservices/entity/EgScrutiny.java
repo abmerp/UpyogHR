@@ -69,7 +69,7 @@ public class EgScrutiny implements Serializable {
 	private String documentId;
 
 	@Column(name = "ts")
-	private Date ts;
+	private Time ts;
 
 	@Column(name = "is_final_approval")
 	private boolean isFinalApproval;

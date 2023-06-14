@@ -46,10 +46,10 @@ public class EgScrutinyService {
 			egScrutiny.setIsApproved(egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 			egScrutiny.setFieldValue(egScrutinyInfoRequest.getEgScrutiny().getFieldValue());
 			egScrutiny.setIsLOIPart(egScrutinyInfoRequest.getEgScrutiny().getIsLOIPart());
-			egScrutiny.setTs(new Date());
+			egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 			return egScrutinyRepo.save(egScrutiny);
 		} else {
-			egScrutinyInfoRequest.getEgScrutiny().setTs(new Date());
+			egScrutinyInfoRequest.getEgScrutiny().setTs(new java.sql.Time(new Date().getTime()));
 			egScrutinyInfoRequest.getEgScrutiny().setCreatedOn(new java.sql.Time(new Date().getTime()));
 			return egScrutinyRepo.save(egScrutinyInfoRequest.getEgScrutiny());
 		}
@@ -380,16 +380,16 @@ public class EgScrutinyService {
 			if (isExist) {
 				EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
 						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-						egScrutiny.getServiceId(),egScrutiny.getApplicationStatus());
+						egScrutiny.getServiceId(),egScrutiny.getApplicationStatus(),egScrutiny.getEmployeeName(),egScrutiny.getRole(),egScrutiny.getIsApproved());
 				egScrutiny.setComment(egScrutiny.getComment());
 				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
 				egScrutiny.setFieldValue(egScrutiny.getFieldValue());
 				egScrutiny.setIsLOIPart(egScrutiny.getIsLOIPart());
-				egScrutiny.setTs(new Date());
+				egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 				// return egScrutinyRepo.save(egScrutiny);
 			} else {
-				egScrutiny.setTs(new Date());
+				egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
 
 			}
