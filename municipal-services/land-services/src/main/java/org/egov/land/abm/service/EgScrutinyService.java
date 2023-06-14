@@ -380,7 +380,7 @@ public class EgScrutinyService {
 			if (isExist) {
 				EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
 						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-						egScrutiny.getServiceId());
+						egScrutiny.getServiceId(),egScrutiny.getApplicationStatus());
 				egScrutiny.setComment(egScrutiny.getComment());
 				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
