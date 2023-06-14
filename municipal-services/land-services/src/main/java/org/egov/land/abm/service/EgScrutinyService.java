@@ -329,6 +329,7 @@ public class EgScrutinyService {
 					if ((objecttmp.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
 							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID())
 							&& objecttmp.getEmployeeName().equalsIgnoreCase(object.getEmployeeName()))) {
+						
 						isExisting = true;
 						break;
 					}
@@ -377,9 +378,9 @@ public class EgScrutinyService {
 					egScrutiny.getServiceId());
 
 			if (isExist) {
-//				EgScrutiny egScrutinys = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-//						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-//						egScrutiny.getServiceId());
+				EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
+						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
+						egScrutiny.getServiceId());
 				egScrutiny.setComment(egScrutiny.getComment());
 				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());

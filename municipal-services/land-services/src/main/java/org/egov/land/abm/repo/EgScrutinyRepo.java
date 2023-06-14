@@ -37,6 +37,8 @@ public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long>{
 	@Query(value="select s from EgScrutiny s where s.applicationId=?1 and s.userid=?2 order by created_on DESC")
 	public List<EgScrutiny> findByApplicationIdAndUserid(String applicantId,Integer userId);
 
+	@Query(value="select s from EgScrutiny s where s.applicationId=?1 and s.fieldIdL =?2 and s.userid=?3 and s.serviceId= ?4 order by created_on DESC")
+	public EgScrutiny findByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId,String fieldId,Integer userID,Integer serviceId);
 	
 	public boolean existsByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId,String fieldId,Integer userID,Integer serviceId);
 
