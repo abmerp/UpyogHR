@@ -42,7 +42,8 @@ public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long> {
 			String status);
 
 	public boolean existsByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId, String fieldId,
-			Integer userID, Integer serviceId);
+			Integer userID, Integer serviceId, String applicationStatus, String employeeName, String role,
+			String status);
 
 	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.fieldIdL=?2 and s.userid=?3 and s.serviceId=?4")
 	public EgScrutiny isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(String applicationId, String fieldId,

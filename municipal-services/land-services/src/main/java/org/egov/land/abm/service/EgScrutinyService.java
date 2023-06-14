@@ -30,13 +30,12 @@ public class EgScrutinyService {
 
 	public EgScrutiny createAndUpdateEgScrutiny(EgScrutinyInfoRequest egScrutinyInfoRequest) {
 
-		boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
-				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
-				egScrutinyInfoRequest.getEgScrutiny().getServiceId());
+		EgScrutiny egScrutiny = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
+				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(), egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
+				egScrutinyInfoRequest.getEgScrutiny().getServiceId(),egScrutinyInfoRequest.getEgScrutiny().getApplicationStatus(),egScrutinyInfoRequest.getEgScrutiny().getEmployeeName(),egScrutinyInfoRequest.getEgScrutiny().getRole(),egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 
-		if (isExist) {
-			EgScrutiny egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+		if (egScrutiny!=null) {
+			 egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
 					egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 					egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(),
 					egScrutinyInfoRequest.getEgScrutiny().getUserid(),
@@ -375,7 +374,7 @@ public class EgScrutinyService {
 			boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
 
 					egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-					egScrutiny.getServiceId());
+					egScrutiny.getServiceId(),egScrutiny.getApplicationStatus(),egScrutiny.getEmployeeName(),egScrutiny.getRole(),egScrutiny.getIsApproved());
 
 			if (isExist) {
 				EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
