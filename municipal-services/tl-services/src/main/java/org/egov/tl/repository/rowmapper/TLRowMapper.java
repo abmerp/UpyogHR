@@ -2,8 +2,11 @@ package org.egov.tl.repository.rowmapper;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.egov.tl.web.models.*;
 import org.egov.tracer.model.CustomException;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -50,8 +53,23 @@ public class TLRowMapper  implements ResultSetExtractor<List<TradeLicense>> {
                         .lastModifiedBy(rs.getString("tl_lastModifiedBy"))
                         .lastModifiedTime(lastModifiedTime)
                         .build();
-
+                TradeLicenseDetail tradeLicenseDetailData=null;
+                try {
+	                String additionaldetail=rs.getString("additionaldetail");
+	                JsonNode jsonNode=null;
+                	try {
+                	     JSONObject jsonObject = new JSONObject(additionaldetail);
+                	     jsonNode= mapper.readTree(jsonObject.toString());
+                	}catch (JSONException err){
+                	     err.printStackTrace();
+                	}
+	        		tradeLicenseDetailData=TradeLicenseDetail.builder().additionalDetail(jsonNode).build();
+				} catch (Exception e) {
+					tradeLicenseDetailData=TradeLicenseDetail.builder().build();
+					e.printStackTrace();
+				}
                 currentTradeLicense = TradeLicense.builder().auditDetails(auditdetails)
+                		.tradeLicenseDetail(tradeLicenseDetailData)
                         .licenseNumber(rs.getString("licensenumber"))
                         .licenseType(TradeLicense.LicenseTypeEnum.fromValue(rs.getString("licensetype")))
                         .applicationType(TradeLicense.ApplicationTypeEnum.fromValue(rs.getString( "applicationType")))

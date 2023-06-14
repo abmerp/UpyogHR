@@ -197,8 +197,8 @@ public class TradeLicenseService {
 
 		}
 		List<JsonNode> nodes = new ArrayList<>();
-		JsonNode node = licenses.get(0).getTradeLicenseDetail().getAdditionalDetail()
-				.get(licenses.get(0).getTradeLicenseDetail().getAdditionalDetail().size() - 1);
+		JsonNode node = licenses.get(0).getTradeLicenseDetail().getAdditionalDetail();
+//				.get(licenses.get(0).getTradeLicenseDetail().getAdditionalDetail().size() - 1);
 		nodes.add(node);
 		ObjectMapper mapper = new ObjectMapper();
 		String data = mapper.writeValueAsString(nodes);
