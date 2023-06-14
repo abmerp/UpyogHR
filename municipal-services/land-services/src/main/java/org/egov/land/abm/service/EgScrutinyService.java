@@ -162,7 +162,7 @@ public class EgScrutinyService {
 						disApprovedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
 						condApprovedfiledDetails.add(comments2);
-					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Proforma"))
 						performaFieldDetail.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Noting"))
 						notingDetail.add(comments2);
@@ -317,7 +317,7 @@ public class EgScrutinyService {
 //					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
 //						condApprovedfiledDetails.add(comments2);
 
-					if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
+					if (egScrutiny3.getIsApproved().equalsIgnoreCase("Proforma"))
 						performaFieldDetail.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Noting"))
 						notingDetail.add(comments2);
