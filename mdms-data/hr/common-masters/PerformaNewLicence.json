@@ -2436,6 +2436,275 @@
    },
    {
       "businessService":"NewTL",
+      "role":"Drawing Branch",
+      "active":true,
+      "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_PRELIM",
+      "templates":[
+         {
+            "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+            "name":"data1",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data1Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"Whether Survey Map of the proposed colony submitted.",
+            "name":"data2",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data2Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+     
+         {
+            "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "name":"data3",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data3Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+            "name":"data4",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data4Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+            "name":"data5",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data5Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+            "name":"data6",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data6Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+            "name":"data7",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data7Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+            "name":"data8",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data8Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+            "name":"data9",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data9Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         },
+         {
+            "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+            "name":"data10",
+            "type":"radio",
+           
+            "disabled":"true",
+            "options":[
+               {
+                  "label":"Yes",
+                  "value":"yes"
+               },
+               {
+                  "label":"No",
+                  "value":"no"
+               }
+            ],
+            "labels":[{
+               "label":"",
+               "name":"data10Remarks",
+               "type":"textarea",
+               "disabled":"true",
+               "placeholder":"Enter Remarks"
+              }
+              ],
+            "value":""
+         }
+      ]
+   },
+   {
+      "businessService":"NewTL",
       "role":"JD",
       "active":true,
       "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_PRELIM",
@@ -7022,6 +7291,275 @@
       "value":""
    }
 ]
+},
+{
+   "businessService":"NewTL",
+   "role":"Drawing Branch",
+   "active":true,
+   "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_ROUND2_PRELIM",
+   "templates":[
+      {
+         "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+         "name":"data1",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data1Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether Survey Map of the proposed colony submitted.",
+         "name":"data2",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data2Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+  
+      {
+         "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+         "name":"data3",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data3Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+         "name":"data4",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data4Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+         "name":"data5",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data5Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+         "name":"data6",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data6Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+         "name":"data7",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data7Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+         "name":"data8",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data8Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+         "name":"data9",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data9Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+         "name":"data10",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data10Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      }
+   ]
 },
 {
  "businessService":"NewTL",
@@ -13202,6 +13740,275 @@
 ]
 },
 {
+   "businessService":"NewTL",
+   "role":"Drawing Branch",
+   "active":true,
+   "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_SITEVERIF",
+   "templates":[
+      {
+         "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+         "name":"data1",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data1Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether Survey Map of the proposed colony submitted.",
+         "name":"data2",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data2Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+  
+      {
+         "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+         "name":"data3",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data3Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+         "name":"data4",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data4Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+         "name":"data5",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data5Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+         "name":"data6",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data6Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+         "name":"data7",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data7Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+         "name":"data8",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data8Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+         "name":"data9",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data9Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      },
+      {
+         "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+         "name":"data10",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+            "label":"",
+            "name":"data10Remarks",
+            "type":"textarea",
+            "disabled":"true",
+            "placeholder":"Enter Remarks"
+           }
+           ],
+         "value":""
+      }
+   ]
+},
+{
  "businessService":"NewTL",
  "role":"Senior Draftmans",
  "active":true,
@@ -13739,6 +14546,1082 @@
    }
 ]
 },
+{
+   "businessService":"NewTL",
+   "role":"JD",
+   "active":true,
+   "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_ROUND2_SITEVERIF",
+   "templates":[
+     {
+        "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+        "name":"data1",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data1Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"Whether Survey Map of the proposed colony submitted.",
+        "name":"data2",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data2Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+  
+     {
+        "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+        "name":"data3",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data3Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+        "name":"data4",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+        "name":"data5",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data5Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+        "name":"data6",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data6Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+        "name":"data7",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data7Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+        "name":"data8",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data8Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+        "name":"data9",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data9Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+        "name":"data10",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data10Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     }
+  ]
+  },
+  {
+     "businessService":"NewTL",
+     "role":"Drawing Branch",
+     "active":true,
+     "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_ROUND2_SITEVERIF",
+     "templates":[
+        {
+           "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+           "name":"data1",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data1Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"Whether Survey Map of the proposed colony submitted.",
+           "name":"data2",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data2Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+    
+        {
+           "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+           "name":"data3",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data3Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+           "name":"data4",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data4Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+           "name":"data5",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data5Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+           "name":"data6",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data6Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+           "name":"data7",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data7Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+           "name":"data8",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data8Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+           "name":"data9",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data9Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        },
+        {
+           "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+           "name":"data10",
+           "type":"radio",
+          
+           "disabled":"true",
+           "options":[
+              {
+                 "label":"Yes",
+                 "value":"yes"
+              },
+              {
+                 "label":"No",
+                 "value":"no"
+              }
+           ],
+           "labels":[{
+              "label":"",
+              "name":"data10Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+           "value":""
+        }
+     ]
+  },
+  {
+   "businessService":"NewTL",
+   "role":"Senior Draftmans",
+   "active":true,
+   "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_ROUND2_SITEVERIF",
+   "templates":[
+     {
+        "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+        "name":"data1",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data1Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"Whether Survey Map of the proposed colony submitted.",
+        "name":"data2",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data2Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+  
+     {
+        "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+        "name":"data3",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data3Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+        "name":"data4",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+        "name":"data5",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data5Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+        "name":"data6",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data6Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+        "name":"data7",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data7Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+        "name":"data8",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data8Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+        "name":"data9",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data9Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+        "name":"data10",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data10Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     }
+  ]
+  },
+  {
+   "businessService":"NewTL",
+   "role":"Assistant Draftsman",
+   "active":true,
+   "applicationStatus":"PENDING_AT_DRAFTSMAN_HQ_ROUND2_SITEVERIF",
+   "templates":[
+     {
+        "label":"Whether Guide Map submitted showing the location of the applied land in relation to surrounding geographic features to enable identification of the site",
+        "name":"data1",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data1Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"Whether Survey Map of the proposed colony submitted.",
+        "name":"data2",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data2Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+  
+     {
+        "label":"Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+        "name":"data3",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data3Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"Whether DGPS coordinates of applied site, incorporated in geo referenced shape file submitted (For GIS portal)",
+        "name":"data4",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"In case of colony where there is cap on NPA, whether application received within the prescribed NPA as per seniority list of the sector.",
+        "name":"data5",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data5Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license application under part migration, whether layout plan of balance land of parent license submitted.",
+        "name":"data6",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data6Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license application under part migration, whether applicable scrutiny fee deposited for revision of layout plan of balance land of parent license.",
+        "name":"data7",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data7Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license applied under migration or for additional area, then status of third party rights in parent license.",
+        "name":"data8",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data8Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If third party rights not created, then affidavit regarding non creation of third party rights and non RERA registration submitted.",
+        "name":"data9",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data9Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     },
+     {
+        "label":"If license applied for additional area, whether applicable scrutiny fee for revision of layout plan deposited.",
+        "name":"data10",
+        "type":"radio",
+       
+        "disabled":"true",
+        "options":[
+           {
+              "label":"Yes",
+              "value":"yes"
+           },
+           {
+              "label":"No",
+              "value":"no"
+           }
+        ],
+        "labels":[{
+           "label":"",
+           "name":"data10Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          }
+          ],
+        "value":""
+     }
+  ]
+  },
 {
  "businessService":"NewTL",
  "role":"JE",
@@ -19143,6 +21026,2199 @@
  
 
 ]
+},
+{
+   "businessService":"NewTL",
+   "role":"AO",
+   "active":true,
+   "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+   "templates":[
+      {
+         "label":"Whether Scrutiny fee deposited by the applicant, is in order.",
+         "name":"data1",
+         "type":"radio",
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+          "label":"",
+          "name":"data1Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+         "value":""
+        
+      },
+      {
+         "label":"Whether 25% of the licence fee deposited.",
+         "name":"data2",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+          "label":"",
+          "name":"data2Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+         "value":""
+      },
+      {
+       "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
+       "name":"data3",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data3Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+    },
+      {
+         "label":"Whether Documents submitted regarding Financial capacity of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
+         "name":"data4",
+         "type":"radio",
+        
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "value":"",
+         "labels":[
+          {
+             "label":"",
+             "name":"data4Remarks",
+             "type":"textarea",
+             "disabled":"true",
+             "placeholder":"Enter Remarks"
+            },
+            {
+               "label":"a)In case of company- ",
+               "name":"data5",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[
+                {
+                   "label":"",
+                   "name":"data5Remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  },
+                 {
+                   "label":"(i) Form PAS-3.",
+                   "name":"data6",
+                   "type":"radio",
+                  
+                   "disabled":"true",
+                   "options":[
+                      {
+                         "label":"Yes",
+                         "value":"yes"
+                      },
+                      {
+                         "label":"No",
+                         "value":"no"
+                      }
+                   ],
+                   "labels":[{
+                      "label":"",
+                      "name":"data6Remarks",
+                      "type":"textarea",
+                      "disabled":"true",
+                      "placeholder":"Enter Remarks"
+                     }
+                     ],
+                   "value":""
+                },
+                {
+                 "label":"(ii) Accumulated reserves and surpluses",
+                 "name":"data7",
+                 "type":"radio",
+                
+                 "disabled":"true",
+                 "options":[
+                    {
+                       "label":"Yes",
+                       "value":"yes"
+                    },
+                    {
+                       "label":"No",
+                       "value":"no"
+                    }
+                 ],
+                 "labels":[{
+                   "label":"",
+                   "name":"data7Remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
+                 "value":""
+              
+             },
+             {
+                "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
+                "name":"data8",
+                "type":"radio",
+               
+                "disabled":"true",
+                "options":[
+                   {
+                      "label":"Yes",
+                      "value":"yes"
+                   },
+                   {
+                      "label":"No",
+                      "value":"no"
+                   }
+                ],
+                "labels":[{
+                   "label":"",
+                   "name":"data8Remarks",
+                   "type":"textarea",
+                   "disabled":"true",
+                   "placeholder":"Enter Remarks"
+                  }
+                  ],
+                "value":""
+             
+            }
+            
+         
+               ],
+               "value":""
+            },
+            {
+               "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+               "name":"data9",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                "label":"",
+                "name":"data9Remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
+               "value":""
+            },
+            {
+               "label":"c)In case of individual- The income tax returns of last three years.",
+               "name":"data10",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                "label":"",
+                "name":"data10Remarks",
+                "type":"textarea",
+                "disabled":"true",
+                "placeholder":"Enter Remarks"
+               }
+               ],
+               "value":""
+            }
+           
+            
+         ]
+      }
+   ]
+},
+{
+ "businessService":"NewTL",
+ "role":"Accounts",
+ "active":true,
+ "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether Scrutiny fee deposited by the applicant, is in order.",
+       "name":"data1",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data1Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
+    },
+    {
+       "label":"Whether 25% of the licence fee deposited.",
+       "name":"data2",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data2Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+    },
+    {
+     "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
+     "name":"data3",
+     "type":"radio",
+    
+     "disabled":"true",
+     "options":[
+        {
+           "label":"Yes",
+           "value":"yes"
+        },
+        {
+           "label":"No",
+           "value":"no"
+        }
+     ],
+     "labels":[{
+      "label":"",
+      "name":"data3Remarks",
+      "type":"textarea",
+      "disabled":"true",
+      "placeholder":"Enter Remarks"
+     }
+     ],
+     "value":""
+  },
+    {
+       "label":"Whether Documents submitted regarding Financial capacity of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "value":"",
+       "labels":[
+        {
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          },
+          {
+             "label":"a)In case of company- ",
+             "name":"data5",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[
+              {
+                 "label":"",
+                 "name":"data5Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                },
+               {
+                 "label":"(i) Form PAS-3.",
+                 "name":"data6",
+                 "type":"radio",
+                
+                 "disabled":"true",
+                 "options":[
+                    {
+                       "label":"Yes",
+                       "value":"yes"
+                    },
+                    {
+                       "label":"No",
+                       "value":"no"
+                    }
+                 ],
+                 "labels":[{
+                    "label":"",
+                    "name":"data6Remarks",
+                    "type":"textarea",
+                    "disabled":"true",
+                    "placeholder":"Enter Remarks"
+                   }
+                   ],
+                 "value":""
+              },
+              {
+               "label":"(ii) Accumulated reserves and surpluses",
+               "name":"data7",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                 "label":"",
+                 "name":"data7Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+               "value":""
+            
+           },
+           {
+              "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
+              "name":"data8",
+              "type":"radio",
+             
+              "disabled":"true",
+              "options":[
+                 {
+                    "label":"Yes",
+                    "value":"yes"
+                 },
+                 {
+                    "label":"No",
+                    "value":"no"
+                 }
+              ],
+              "labels":[{
+                 "label":"",
+                 "name":"data8Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+              "value":""
+           
+          }
+          
+       
+             ],
+             "value":""
+          },
+          {
+             "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+             "name":"data9",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data9Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          },
+          {
+             "label":"c)In case of individual- The income tax returns of last three years.",
+             "name":"data10",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data10Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          }
+         
+          
+       ]
+    }
+ ]
+},
+{
+ "businessService":"NewTL",
+ "role":"Accounts Officer",
+ "active":true,
+ "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether Scrutiny fee deposited by the applicant, is in order.",
+       "name":"data1",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data1Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
+    },
+    {
+       "label":"Whether 25% of the licence fee deposited.",
+       "name":"data2",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data2Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+    },
+    {
+     "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
+     "name":"data3",
+     "type":"radio",
+    
+     "disabled":"true",
+     "options":[
+        {
+           "label":"Yes",
+           "value":"yes"
+        },
+        {
+           "label":"No",
+           "value":"no"
+        }
+     ],
+     "labels":[{
+      "label":"",
+      "name":"data3Remarks",
+      "type":"textarea",
+      "disabled":"true",
+      "placeholder":"Enter Remarks"
+     }
+     ],
+     "value":""
+  },
+    {
+       "label":"Whether Documents submitted regarding Financial capacity of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "value":"",
+       "labels":[
+        {
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          },
+          {
+             "label":"a)In case of company- ",
+             "name":"data5",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[
+              {
+                 "label":"",
+                 "name":"data5Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                },
+               {
+                 "label":"(i) Form PAS-3.",
+                 "name":"data6",
+                 "type":"radio",
+                
+                 "disabled":"true",
+                 "options":[
+                    {
+                       "label":"Yes",
+                       "value":"yes"
+                    },
+                    {
+                       "label":"No",
+                       "value":"no"
+                    }
+                 ],
+                 "labels":[{
+                    "label":"",
+                    "name":"data6Remarks",
+                    "type":"textarea",
+                    "disabled":"true",
+                    "placeholder":"Enter Remarks"
+                   }
+                   ],
+                 "value":""
+              },
+              {
+               "label":"(ii) Accumulated reserves and surpluses",
+               "name":"data7",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                 "label":"",
+                 "name":"data7Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+               "value":""
+            
+           },
+           {
+              "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
+              "name":"data8",
+              "type":"radio",
+             
+              "disabled":"true",
+              "options":[
+                 {
+                    "label":"Yes",
+                    "value":"yes"
+                 },
+                 {
+                    "label":"No",
+                    "value":"no"
+                 }
+              ],
+              "labels":[{
+                 "label":"",
+                 "name":"data8Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+              "value":""
+           
+          }
+          
+       
+             ],
+             "value":""
+          },
+          {
+             "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+             "name":"data9",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data9Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          },
+          {
+             "label":"c)In case of individual- The income tax returns of last three years.",
+             "name":"data10",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data10Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          }
+         
+          
+       ]
+    }
+ ]
+},
+{
+ "businessService":"NewTL",
+ "role":"Account Officer",
+ "active":true,
+ "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether Scrutiny fee deposited by the applicant, is in order.",
+       "name":"data1",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data1Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
+    },
+    {
+       "label":"Whether 25% of the licence fee deposited.",
+       "name":"data2",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data2Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+    },
+    {
+     "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
+     "name":"data3",
+     "type":"radio",
+    
+     "disabled":"true",
+     "options":[
+        {
+           "label":"Yes",
+           "value":"yes"
+        },
+        {
+           "label":"No",
+           "value":"no"
+        }
+     ],
+     "labels":[{
+      "label":"",
+      "name":"data3Remarks",
+      "type":"textarea",
+      "disabled":"true",
+      "placeholder":"Enter Remarks"
+     }
+     ],
+     "value":""
+  },
+    {
+       "label":"Whether Documents submitted regarding Financial capacity of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "value":"",
+       "labels":[
+        {
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          },
+          {
+             "label":"a)In case of company- ",
+             "name":"data5",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[
+              {
+                 "label":"",
+                 "name":"data5Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                },
+               {
+                 "label":"(i) Form PAS-3.",
+                 "name":"data6",
+                 "type":"radio",
+                
+                 "disabled":"true",
+                 "options":[
+                    {
+                       "label":"Yes",
+                       "value":"yes"
+                    },
+                    {
+                       "label":"No",
+                       "value":"no"
+                    }
+                 ],
+                 "labels":[{
+                    "label":"",
+                    "name":"data6Remarks",
+                    "type":"textarea",
+                    "disabled":"true",
+                    "placeholder":"Enter Remarks"
+                   }
+                   ],
+                 "value":""
+              },
+              {
+               "label":"(ii) Accumulated reserves and surpluses",
+               "name":"data7",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                 "label":"",
+                 "name":"data7Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+               "value":""
+            
+           },
+           {
+              "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
+              "name":"data8",
+              "type":"radio",
+             
+              "disabled":"true",
+              "options":[
+                 {
+                    "label":"Yes",
+                    "value":"yes"
+                 },
+                 {
+                    "label":"No",
+                    "value":"no"
+                 }
+              ],
+              "labels":[{
+                 "label":"",
+                 "name":"data8Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+              "value":""
+           
+          }
+          
+       
+             ],
+             "value":""
+          },
+          {
+             "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+             "name":"data9",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data9Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          },
+          {
+             "label":"c)In case of individual- The income tax returns of last three years.",
+             "name":"data10",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data10Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          }
+         
+          
+       ]
+    }
+ ]
+},
+
+{
+ "businessService":"NewTL",
+ "role":"CAO",
+ "active":true,
+ "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether Scrutiny fee deposited by the applicant, is in order.",
+       "name":"data1",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data1Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
+    },
+    {
+       "label":"Whether 25% of the licence fee deposited.",
+       "name":"data2",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data2Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+    },
+    {
+     "label":"If license application for additional area,  status of EDC/SIDC dues in parent license.",
+     "name":"data3",
+     "type":"radio",
+    
+     "disabled":"true",
+     "options":[
+        {
+           "label":"Yes",
+           "value":"yes"
+        },
+        {
+           "label":"No",
+           "value":"no"
+        }
+     ],
+     "labels":[{
+      "label":"",
+      "name":"data3Remarks",
+      "type":"textarea",
+      "disabled":"true",
+      "placeholder":"Enter Remarks"
+     }
+     ],
+     "value":""
+  },
+    {
+       "label":"Whether Documents submitted regarding Financial capacity of the applicant/developer (uploaded/ auto fetched from MCA portal database- part of developer registration).",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "value":"",
+       "labels":[
+        {
+           "label":"",
+           "name":"data4Remarks",
+           "type":"textarea",
+           "disabled":"true",
+           "placeholder":"Enter Remarks"
+          },
+          {
+             "label":"a)In case of company- ",
+             "name":"data5",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[
+              {
+                 "label":"",
+                 "name":"data5Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                },
+               {
+                 "label":"(i) Form PAS-3.",
+                 "name":"data6",
+                 "type":"radio",
+                
+                 "disabled":"true",
+                 "options":[
+                    {
+                       "label":"Yes",
+                       "value":"yes"
+                    },
+                    {
+                       "label":"No",
+                       "value":"no"
+                    }
+                 ],
+                 "labels":[{
+                    "label":"",
+                    "name":"data6Remarks",
+                    "type":"textarea",
+                    "disabled":"true",
+                    "placeholder":"Enter Remarks"
+                   }
+                   ],
+                 "value":""
+              },
+              {
+               "label":"(ii) Accumulated reserves and surpluses",
+               "name":"data7",
+               "type":"radio",
+              
+               "disabled":"true",
+               "options":[
+                  {
+                     "label":"Yes",
+                     "value":"yes"
+                  },
+                  {
+                     "label":"No",
+                     "value":"no"
+                  }
+               ],
+               "labels":[{
+                 "label":"",
+                 "name":"data7Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+               "value":""
+            
+           },
+           {
+              "label":"(iii) Paid amount of fully convertible Debentures (into equity shares)",
+              "name":"data8",
+              "type":"radio",
+             
+              "disabled":"true",
+              "options":[
+                 {
+                    "label":"Yes",
+                    "value":"yes"
+                 },
+                 {
+                    "label":"No",
+                    "value":"no"
+                 }
+              ],
+              "labels":[{
+                 "label":"",
+                 "name":"data8Remarks",
+                 "type":"textarea",
+                 "disabled":"true",
+                 "placeholder":"Enter Remarks"
+                }
+                ],
+              "value":""
+           
+          }
+          
+       
+             ],
+             "value":""
+          },
+          {
+             "label":"b)In case of LLP- The net worth of the LLP (not of individual person).",
+             "name":"data9",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data9Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          },
+          {
+             "label":"c)In case of individual- The income tax returns of last three years.",
+             "name":"data10",
+             "type":"radio",
+            
+             "disabled":"true",
+             "options":[
+                {
+                   "label":"Yes",
+                   "value":"yes"
+                },
+                {
+                   "label":"No",
+                   "value":"no"
+                }
+             ],
+             "labels":[{
+              "label":"",
+              "name":"data10Remarks",
+              "type":"textarea",
+              "disabled":"true",
+              "placeholder":"Enter Remarks"
+             }
+             ],
+             "value":""
+          }
+         
+          
+       ]
+    }
+ ]
+},
+{
+ "businessService":"NewTL",
+ "role":"Patwari",
+ "active":true,
+ "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether title of land is clear in term of application.",
+       "name":"data1",
+       "type":"radio",           
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data1Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether site approachable from any existing rasta, if yes, then details thereof.",
+       "name":"data2",
+       "type":"radio",           
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data2Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
+       "name":"data3",
+       "type":"radio",           
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data3Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data4Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+
+    {
+       "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
+       "name":"data5",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data5Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Sale deeds of the applied land submitted.  ",
+       "name":"data6",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data6Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
+       "name":"data7",
+      
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data7Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
+       "name":"data8",
+      
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data8Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether non encumbrance certificate submitted.",
+       "name":"data9",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data9Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    }
+ ]
+},
+{
+ "businessService":"NewTL",
+ "role":"PATWARI",
+ "active":true,
+ "applicationStatus":"PENDING_AT_PATWARI_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether title of land is clear in term of application.",
+       "name":"data1",
+       "type":"radio",           
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data1Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether site approachable from any existing rasta, if yes, then details thereof.",
+       "name":"data2",
+       "type":"radio",           
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data2Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Schedule of Land signed by authorised signatory of Developer/ GPA holder of land owners (notarised) submitted.",
+       "name":"data3",
+       "type":"radio",           
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data3Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Original Jamabandi duly signed by Halka Patwari of all the khasra nos. mentioned in schedule of land submitted.",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data4Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+
+    {
+       "label":"Whether Original Mutations, if any, entered in Jamabandi, duly signed by Halqa Patwari submitted.",
+       "name":"data5",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data5Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Sale deeds of the applied land submitted.  ",
+       "name":"data6",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data6Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Original Shajra Plan duly signed by Halqa Patwari showing approach to the site, any other revenue rata, water course, other’s land/ any other feature submitted.",
+       "name":"data7",
+      
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data7Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"If license application under part migration, whether land schedule of balance land of parent license submitted.",
+       "name":"data8",
+      
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data8Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether non encumbrance certificate submitted.",
+       "name":"data9",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data9Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    }
+ ]
+},
+
+
+{
+ "businessService":"NewTL",
+ "role":"District Attorney",
+ "active":true,
+ "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether registered and irrevocable collaboration agreement executed between land owners/ land owning company and collaborator company of applied land submitted.",
+       "name":"data1",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data1Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
+       "name":"data2",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data2Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+
+    {
+       "label":"GPA/SPA executed in favour of the developer company submitted.",
+       "name":"data3",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data3Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data4Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Board resolution in favour of authorized signatory for submitting application for grant of licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
+       "name":"data5",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data5Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
+       "name":"data6",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data6Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    }
+ ]
+},
+{
+ "businessService":"NewTL",
+ "role":"Assistant District Atorney",
+ "active":true,
+ "applicationStatus":"PENDING_AT_AO_AND_ATTORNEY_HQ_ROUND2_SITEVERIF",
+ "templates":[
+    {
+       "label":"Whether registered and irrevocable collaboration agreement executed between land owners/ land owning company and collaborator company of applied land submitted.",
+       "name":"data1",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data1Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether applied khasra nos. correctly / accurately incorporated in collaboration agreement. ",
+       "name":"data2",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data2Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+
+    {
+       "label":"GPA/SPA executed in favour of the developer company submitted.",
+       "name":"data3",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data3Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether applied khasra nos. correctly / accurately incorporated in GPA/SPA.",
+       "name":"data4",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data4Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Board resolution in favour of authorized signatory for submitting application for grant of licence and related work alongwith signatures of signatory duly verified in the board resolution submitted.",
+       "name":"data5",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data5Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    },
+    {
+       "label":"Whether Indemnity bond indemnifying DTCP from any loss, if occurs due to any dispute on the applied land submitted.",
+       "name":"data6",
+       "type":"radio",
+      
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+          "label":"",
+          "name":"data6Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+       "value":""
+    }
+ ]
 }
   ]
 }
