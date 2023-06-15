@@ -27,7 +27,7 @@ public interface EgScrutinyRepo extends JpaRepository<EgScrutiny, Long> {
 	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.isApproved not in ('Noting','Performa')  order by created_on DESC")
 	public List<EgScrutiny> findByApplicationSearch(String applicationNumber);
 
-	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.isApproved not in ('Not In Order','conditional','In Order')  order by created_on DESC")
+	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.isApproved not in ('Not In Order','conditional','In Order')  order by created_on ASC")
 	public List<EgScrutiny> findByApplicationSearch5(String applicationNumber);
 
 	@Query(value = "select s from EgScrutiny s where s.applicationId=?1 and s.role in(?2) and s.isApproved not in ('Noting','Performa') order by created_on DESC")
