@@ -183,7 +183,8 @@ public class CalculationService {
 					mdmsData);
 			List<TaxHeadEstimate> taxHeadEstimates = estimatesAndSlabs.getEstimates();
 		//	taxHeadEstimates.get(0).setEstimateAmount(scrutinyFee.add(licenseFeeCharges.multiply(new BigDecimal(0.25))));
-			taxHeadEstimates.get(0).setEstimateAmount(results.get(0).getTotalFee());
+		//	taxHeadEstimates.get(0).setEstimateAmount(results.get(0).getTotalFee());
+			taxHeadEstimates.get(0).setEstimateAmount(BigDecimal.ONE);
 			calculation.setTaxHeadEstimates(taxHeadEstimates);
 			// taxHeadEstimates.get(0).setEstimateAmount(result.getTotalFee());
 			calculations.add(calculation);
