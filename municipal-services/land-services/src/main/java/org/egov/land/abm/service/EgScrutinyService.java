@@ -1,9 +1,12 @@
 package org.egov.land.abm.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.egov.land.abm.contract.PerformaContract;
@@ -29,7 +32,7 @@ public class EgScrutinyService {
 	EgScrutinyRepo egScrutinyRepo;
 
 	public EgScrutiny createAndUpdateEgScrutiny(EgScrutinyInfoRequest egScrutinyInfoRequest) {
-
+	
 		EgScrutiny egScrutiny = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
 				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
@@ -53,7 +56,7 @@ public class EgScrutinyService {
 			return egScrutinyRepo.save(egScrutiny);
 		} else {
 			egScrutinyInfoRequest.getEgScrutiny().setTs(new java.sql.Time(new Date().getTime()));
-			egScrutinyInfoRequest.getEgScrutiny().setCreatedOn(new java.sql.Time(new Date().getTime()));
+			egScrutinyInfoRequest.getEgScrutiny().setCreatedOn(new Date());
 			return egScrutinyRepo.save(egScrutinyInfoRequest.getEgScrutiny());
 		}
 
@@ -381,7 +384,7 @@ public class EgScrutinyService {
 					egScrutiny.getRole(), egScrutiny.getIsApproved());
 			if (egScrutinys != null) {
 				egScrutiny.setComment(egScrutiny.getComment());
-				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
+				egScrutiny.setCreatedOn(new Date());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
 				egScrutiny.setFieldValue(egScrutiny.getFieldValue());
 				egScrutiny.setIsLOIPart(egScrutiny.getIsLOIPart());

@@ -43,7 +43,7 @@ public class EgScrutiny implements Serializable {
 	private String comment;
 
 	@Column(name = "created_on")
-	private Time createdOn;
+	private Date createdOn;
 
 	@Column(name = "field_value", length = 1000)
 	private String fieldValue;
@@ -82,4 +82,6 @@ public class EgScrutiny implements Serializable {
 	private String employeeName;
 	@Column(name = "application_status")
 	private String applicationStatus;
+	
+	
 }

@@ -20,6 +20,6 @@ public class UserComments {
 	private String employeeName;
 	private String remarks;
 	private String isApproved;
-	private Time createdOn;
+	private Date createdOn;
 	private Date ts;
 }

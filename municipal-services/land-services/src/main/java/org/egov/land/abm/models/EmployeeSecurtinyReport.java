@@ -19,7 +19,7 @@ public class EmployeeSecurtinyReport  {
 	private String designation;
 	private String role;
 	private String employeeName;
-	private Time createdOn;
+	private Date createdOn;
 	private String applicationStatus;
 	private String userID;
 	private Date ts;
