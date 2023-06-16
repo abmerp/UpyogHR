@@ -488,7 +488,7 @@ public class TradeLicenseService {
 				break;
 			}
 			enrichmentService.postStatusEnrichment(tradeLicenseRequest, endStates, mdmsData);
-			userService.createUser(tradeLicenseRequest, false);
+		//	userService.createUser(tradeLicenseRequest, false);
 //			if (businessServicefromPath.equalsIgnoreCase(businessService_BPA)) {
 //				calculationService.addCalculation(tradeLicenseRequest);
 //			}
