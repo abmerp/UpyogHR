@@ -72,15 +72,15 @@ public class UserService{
                 String businessService = tradeLicense.getBusinessService();
                 if (businessService == null)
                     businessService = businessService_TL;
-                switch (businessService) {
-                    case businessService_BPA:
-                        UserDetailResponse userDetailResponse = searchByUserName(owner.getMobileNumber(), getStateLevelTenant(tradeLicense.getTenantId()));
-                        if (!userDetailResponse.getUser().isEmpty()) {
-                            User user = userDetailResponse.getUser().get(0);
-                            owner = addNotNullFieldsFromOwner(user, owner);
-                        }
-                        break;
-                }
+//                switch (businessService) {
+//                    case businessService_BPA:
+//                        UserDetailResponse userDetailResponse = searchByUserName(owner.getMobileNumber(), getStateLevelTenant(tradeLicense.getTenantId()));
+//                        if (!userDetailResponse.getUser().isEmpty()) {
+//                            User user = userDetailResponse.getUser().get(0);
+//                            owner = addNotNullFieldsFromOwner(user, owner);
+//                        }
+//                        break;
+//                }
                 if (owner.getUuid() == null) {
                     addUserDefaultFields(tradeLicense.getTenantId(), role, owner, businessService);
                     //  UserDetailResponse userDetailResponse = userExists(owner,requestInfo);
@@ -111,7 +111,7 @@ public class UserService{
                             user.addRolesItem(Role.builder().code(rolename).name(rolename).tenantId(tradeLicense.getTenantId()).build());
                         }
                    }
-                    userDetailResponse = userCall( new CreateUserRequest(requestInfo,user),uri);
+  //                  userDetailResponse = userCall( new CreateUserRequest(requestInfo,user),uri);
                     switch (businessService)
                     {
                         case businessService_BPA:

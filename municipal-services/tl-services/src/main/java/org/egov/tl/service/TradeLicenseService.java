@@ -77,6 +77,9 @@ public class TradeLicenseService {
 	@Value("${workflow.bpa.businessServiceCode.fallback_enabled}")
 	private Boolean pickWFServiceNameFromTradeTypeOnly;
 
+	@Value("${tcp.employee.dtp.field}")
+	private String fieldUserName;
+
 	@Autowired
 	public TradeLicenseService(WorkflowIntegrator wfIntegrator, EnrichmentService enrichmentService,
 			UserService userService, TLRepository repository, ActionValidator actionValidator, TLValidator tlValidator,
@@ -460,16 +463,18 @@ public class TradeLicenseService {
 
 			case businessService_BPA:
 				// endStates = tradeUtil.getBPAEndState(tradeLicenseRequest);
-				if (tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail()
-						.getTradeType() == config.getTechnicalProfessionalBusinessService()
+				if (tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeType() == config
+						.getTechnicalProfessionalBusinessService()
 						|| tradeLicenseRequest.getLicenses().get(0).getTradeLicenseDetail().getTradeType()
-								.equalsIgnoreCase(config.getTechnicalProfessionalBusinessService())) {//				if (tradeLicenseRequest.getLicenses().get(0).getAction() != null
+								.equalsIgnoreCase(config.getTechnicalProfessionalBusinessService())) {// if
+																										// (tradeLicenseRequest.getLicenses().get(0).getAction()
+																										// != null
 //						&& !tradeLicenseRequest.getLicenses().get(0).getAction().isEmpty())
 					if (config.getIsExternalWorkFlowEnabled()) {
 						if (tradeLicenseRequest.getLicenses().get(0).getAssignee() == null
 								|| tradeLicenseRequest.getLicenses().get(0).getAssignee().isEmpty()) {
 							tradeLicenseRequest.getLicenses().get(0)
-									.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole("dtpaa",
+									.setAssignee(Arrays.asList(tradeUtil.getFirstAssigneeByRole(fieldUserName,
 											tradeLicenseRequest.getRequestInfo().getUserInfo().getTenantId(), true,
 											tradeLicenseRequest.getRequestInfo())));
 						}
