@@ -5307,6 +5307,32 @@
            
             
          ]
+      },
+      {
+         "label":"Do you Recommend for grant of Licence",
+         "name":"data20",
+         "type":"radio",
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+          "label":"",
+          "name":"data20Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+         "value":""
+        
       }
    ]
 },
@@ -5583,6 +5609,32 @@
          
           
        ]
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -5859,6 +5911,32 @@
          
           
        ]
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -6412,6 +6490,32 @@
          
           
        ]
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -6652,6 +6756,32 @@
          }
          ],
        "value":""
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -6892,6 +7022,32 @@
          }
          ],
        "value":""
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -7133,6 +7289,32 @@
          }
          ],
        "value":""
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -7298,6 +7480,32 @@
          }
          ],
        "value":""
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -7463,6 +7671,32 @@
          }
          ],
        "value":""
+    },
+    {
+       "label":"Do you Recommend for grant of Licence",
+       "name":"data20",
+       "type":"radio",
+       "disabled":"true",
+       "options":[
+          {
+             "label":"Yes",
+             "value":"yes"
+          },
+          {
+             "label":"No",
+             "value":"no"
+          }
+       ],
+       "labels":[{
+        "label":"",
+        "name":"data20Remarks",
+        "type":"textarea",
+        "disabled":"true",
+        "placeholder":"Enter Remarks"
+       }
+       ],
+       "value":""
+      
     }
  ]
 },
@@ -7732,6 +7966,32 @@
         }
         ],
       "value":""
+   },
+   {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
    }
 ]
 },
@@ -8001,6 +8261,32 @@
            }
            ],
          "value":""
+      },
+      {
+         "label":"Do you Recommend for grant of Licence",
+         "name":"data20",
+         "type":"radio",
+         "disabled":"true",
+         "options":[
+            {
+               "label":"Yes",
+               "value":"yes"
+            },
+            {
+               "label":"No",
+               "value":"no"
+            }
+         ],
+         "labels":[{
+          "label":"",
+          "name":"data20Remarks",
+          "type":"textarea",
+          "disabled":"true",
+          "placeholder":"Enter Remarks"
+         }
+         ],
+         "value":""
+        
       }
    ]
 },
@@ -8270,6 +8556,32 @@
         }
         ],
       "value":""
+   },
+   {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
    }
 ]
 },
@@ -8539,6 +8851,32 @@
         }
         ],
       "value":""
+   },
+   {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
    }
 ]
 },
@@ -8807,7 +9145,33 @@
         }
         ],
       "value":""
-   } 
+   } ,
+   {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
+   }
  
 
 ]
@@ -9078,7 +9442,33 @@
         }
         ],
       "value":""
-   } 
+   } ,
+   {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
+   }
  
 
 ]
@@ -9348,7 +9738,33 @@
         }
         ],
       "value":""
-   } 
+   } ,
+   {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
+   }
  
 
 ]
@@ -9618,6 +10034,31 @@
         }
         ],
       "value":""
+   }, {
+      "label":"Do you Recommend for grant of Licence",
+      "name":"data20",
+      "type":"radio",
+      "disabled":"true",
+      "options":[
+         {
+            "label":"Yes",
+            "value":"yes"
+         },
+         {
+            "label":"No",
+            "value":"no"
+         }
+      ],
+      "labels":[{
+       "label":"",
+       "name":"data20Remarks",
+       "type":"textarea",
+       "disabled":"true",
+       "placeholder":"Enter Remarks"
+      }
+      ],
+      "value":""
+     
    } 
  
 
