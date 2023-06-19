@@ -99,6 +99,7 @@ public class EnrichmentService {
 		bpaRequest.getBPA().setId(UUID.randomUUID().toString());
 
 		bpaRequest.getBPA().setAccountId(bpaRequest.getBPA().getAuditDetails().getCreatedBy());
+		bpaRequest.getBPA().setRiskType("LOW");
 		String applicationType = values.get(BPAConstants.APPLICATIONTYPE);
 		if (applicationType.equalsIgnoreCase(BPAConstants.BUILDING_PLAN)) {
 			if (!bpaRequest.getBPA().getRiskType().equalsIgnoreCase(BPAConstants.LOW_RISKTYPE)) {

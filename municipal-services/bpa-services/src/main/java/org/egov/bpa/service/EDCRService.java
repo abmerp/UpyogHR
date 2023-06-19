@@ -173,6 +173,7 @@ public class EDCRService {
 	 */
 	private void validateOCEdcr(List<String> OccupancyTypes, List<Double> plotAreas,List<Double> buildingHeights, 
 			LinkedList<String> applicationType,Map<String, List<String>> masterData, String riskType) {
+		riskType="LOW";
 		if (!CollectionUtils.isEmpty(OccupancyTypes) && !CollectionUtils.isEmpty(plotAreas)
 				&& !CollectionUtils.isEmpty(buildingHeights) && !applicationType.get(0).equalsIgnoreCase(BPAConstants.BUILDING_PLAN_OC)) {
 			Double buildingHeight = Collections.max(buildingHeights);
