@@ -1436,7 +1436,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setEdcFormula(arce + "*" + RATE104 + "*" + RATE05 + "*" + RATE4);
 					feesTypeCalculationDto
 							.setConversionFormula("(" + AREA + "*" + arce + "*" + RATE_30 + "*" + PERCENTAGE1 + ")"
-									+ "(" + "+" + AREA + "*" + arce + "*" + RATE_150 + "*" + PERCENTAGE2 + ")");
+									+ "+" + "(" + AREA + "*" + arce + "*" + RATE_150 + "*" + PERCENTAGE2 + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "*" + arce + "*" + RATE_190 + "*" + stateInfrastructureDevelopmentCharges);
 					break;
@@ -1679,7 +1679,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenceFormula(arce + "*" + RATE);
 					feesTypeCalculationDto.setEdcFormula(arce + "*" + RATE104 + "*" + RATE04 + "*" + RATE4);
 					feesTypeCalculationDto.setConversionFormula("(" + AREA + "*" + arce + "*" + RATE_30 + "*"
-							+ PERCENTAGE1 + "+" + "(" + AREA + "*" + arce + "*" + RATE_150 + "*" + PERCENTAGE2 + ")");
+							+ PERCENTAGE1+")" + "+" + "(" + AREA + "*" + arce + "*" + RATE_150 + "*" + PERCENTAGE2 + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "*" + arce + "*" + RATE_190 + "*" + stateInfrastructureDevelopmentCharges);
 					break;
