@@ -48,7 +48,7 @@ public class EgScrutinyService {
 					egScrutinyInfoRequest.getEgScrutiny().getUserid(),
 					egScrutinyInfoRequest.getEgScrutiny().getServiceId());
 			egScrutiny.setComment(egScrutinyInfoRequest.getEgScrutiny().getComment());
-			egScrutiny.setCreatedOn(egScrutinyInfoRequest.getEgScrutiny().getCreatedOn());
+			egScrutiny.setCreatedOn(new Date());
 			egScrutiny.setIsApproved(egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 			egScrutiny.setFieldValue(egScrutinyInfoRequest.getEgScrutiny().getFieldValue());
 			egScrutiny.setIsLOIPart(egScrutinyInfoRequest.getEgScrutiny().getIsLOIPart());
@@ -93,7 +93,7 @@ public class EgScrutinyService {
 					comments2.setEmployeeName(egScrutiny3.getEmployeeName());
 					comments2.setDesignation(egScrutiny3.getDesignation());
 					comments2.setRole(egScrutiny3.getRole());
-					comments2.setCreatedOn(egScrutiny3.getCreatedOn());
+					comments2.setCreatedOn(new Date());
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
 					comments2.setTs(egScrutiny3.getTs());
@@ -145,7 +145,7 @@ public class EgScrutinyService {
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
-			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setCreatedOn(new Date());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
 			object.setTs(egScrutiny2.getTs());
@@ -223,7 +223,7 @@ public class EgScrutinyService {
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
-			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setCreatedOn(new Date());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setTs(egScrutiny2.getTs());
 			int i = 0;
@@ -299,7 +299,7 @@ public class EgScrutinyService {
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
-			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setCreatedOn(new Date());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
 			object.setTs(egScrutiny2.getTs());
