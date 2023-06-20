@@ -599,7 +599,7 @@ public class LicenseService {
 		params1.put("eg_pg_txnid", Collections.singletonList(txnId));
 
 		// ------------failure----------------//
-		if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
+		if (!status.isEmpty() && status.equalsIgnoreCase("success")) {
 
 			paymentUrl = paymentHost + paymentSuccess + "TL" + "/" + applicationNumber + "/" + "hr";
 			returnPaymentUrl = paymentUrl + "?" + params1;
@@ -609,7 +609,7 @@ public class LicenseService {
 			return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
 
 			// --------------success------------------------//
-		} else if (!status.isEmpty() && status.equalsIgnoreCase("success")) {
+		} else if (!status.isEmpty() && status.equalsIgnoreCase("Failure")) {
 
 			// ------------user search---------------//
 			UserSearchCriteria userSearchCriteria = new UserSearchCriteria();
