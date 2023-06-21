@@ -1,9 +1,12 @@
 package org.egov.land.abm.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.egov.land.abm.contract.PerformaContract;
@@ -29,28 +32,31 @@ public class EgScrutinyService {
 	EgScrutinyRepo egScrutinyRepo;
 
 	public EgScrutiny createAndUpdateEgScrutiny(EgScrutinyInfoRequest egScrutinyInfoRequest) {
-
-		boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+	
+		EgScrutiny egScrutiny = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
 				egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 				egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(), egScrutinyInfoRequest.getEgScrutiny().getUserid(),
-				egScrutinyInfoRequest.getEgScrutiny().getServiceId());
+				egScrutinyInfoRequest.getEgScrutiny().getServiceId(),
+				egScrutinyInfoRequest.getEgScrutiny().getApplicationStatus(),
+				egScrutinyInfoRequest.getEgScrutiny().getEmployeeName(),
+				egScrutinyInfoRequest.getEgScrutiny().getRole(), egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 
-		if (isExist) {
-			EgScrutiny egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
+		if (egScrutiny != null) {
+			egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
 					egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 					egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(),
 					egScrutinyInfoRequest.getEgScrutiny().getUserid(),
 					egScrutinyInfoRequest.getEgScrutiny().getServiceId());
 			egScrutiny.setComment(egScrutinyInfoRequest.getEgScrutiny().getComment());
-			egScrutiny.setCreatedOn(egScrutinyInfoRequest.getEgScrutiny().getCreatedOn());
+			egScrutiny.setCreatedOn(new Date());
 			egScrutiny.setIsApproved(egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
 			egScrutiny.setFieldValue(egScrutinyInfoRequest.getEgScrutiny().getFieldValue());
 			egScrutiny.setIsLOIPart(egScrutinyInfoRequest.getEgScrutiny().getIsLOIPart());
-			egScrutiny.setTs(new Date());
+			egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 			return egScrutinyRepo.save(egScrutiny);
 		} else {
-			egScrutinyInfoRequest.getEgScrutiny().setTs(new Date());
-			egScrutinyInfoRequest.getEgScrutiny().setCreatedOn(new java.sql.Time(new Date().getTime()));
+			egScrutinyInfoRequest.getEgScrutiny().setTs(new java.sql.Time(new Date().getTime()));
+			egScrutinyInfoRequest.getEgScrutiny().setCreatedOn(new Date());
 			return egScrutinyRepo.save(egScrutinyInfoRequest.getEgScrutiny());
 		}
 
@@ -87,7 +93,7 @@ public class EgScrutinyService {
 					comments2.setEmployeeName(egScrutiny3.getEmployeeName());
 					comments2.setDesignation(egScrutiny3.getDesignation());
 					comments2.setRole(egScrutiny3.getRole());
-					comments2.setCreatedOn(egScrutiny3.getCreatedOn());
+					comments2.setCreatedOn(new Date());
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
 					comments2.setTs(egScrutiny3.getTs());
@@ -139,7 +145,7 @@ public class EgScrutinyService {
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
-			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setCreatedOn(new Date());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
 			object.setTs(egScrutiny2.getTs());
@@ -159,7 +165,7 @@ public class EgScrutinyService {
 						disApprovedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
 						condApprovedfiledDetails.add(comments2);
-					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Proforma"))
 						performaFieldDetail.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Noting"))
 						notingDetail.add(comments2);
@@ -217,7 +223,7 @@ public class EgScrutinyService {
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
-			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setCreatedOn(new Date());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setTs(egScrutiny2.getTs());
 			int i = 0;
@@ -293,7 +299,7 @@ public class EgScrutinyService {
 			object.setUserID(egScrutiny2.getUserid().toString());
 			object.setRole(egScrutiny2.getRole());
 			object.setDesignation(egScrutiny2.getDesignation());
-			object.setCreatedOn(egScrutiny2.getCreatedOn());
+			object.setCreatedOn(new Date());
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
 			object.setTs(egScrutiny2.getTs());
@@ -314,7 +320,7 @@ public class EgScrutinyService {
 //					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
 //						condApprovedfiledDetails.add(comments2);
 
-					if (egScrutiny3.getIsApproved().equalsIgnoreCase("Performa"))
+					if (egScrutiny3.getIsApproved().equalsIgnoreCase("Proforma"))
 						performaFieldDetail.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Noting"))
 						notingDetail.add(comments2);
@@ -329,7 +335,7 @@ public class EgScrutinyService {
 					if ((objecttmp.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
 							&& objecttmp.getUserID().equalsIgnoreCase(object.getUserID())
 							&& objecttmp.getEmployeeName().equalsIgnoreCase(object.getEmployeeName()))) {
-						
+
 						isExisting = true;
 						break;
 					}
@@ -372,24 +378,21 @@ public class EgScrutinyService {
 		List<EgScrutiny> egScrutinyList = performaContract.getEgScrutiny();
 		List<EgScrutiny> egScrutinyLists = new ArrayList<>();
 		for (EgScrutiny egScrutiny : egScrutinyList) {
-			boolean isExist = egScrutinyRepo.existsByApplicationIdAndFieldIdLAndUseridAndServiceId(
-
+			EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
 					egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-					egScrutiny.getServiceId());
-
-			if (isExist) {
-				EgScrutiny egScrutinys = egScrutinyRepo.findByApplicationIdAndFieldIdLAndUseridAndServiceId(
-						egScrutiny.getApplicationId(), egScrutiny.getFieldIdL(), egScrutiny.getUserid(),
-						egScrutiny.getServiceId(),egScrutiny.getApplicationStatus());
+					egScrutiny.getServiceId(), egScrutiny.getApplicationStatus(), egScrutiny.getEmployeeName(),
+					egScrutiny.getRole(), egScrutiny.getIsApproved());
+			if (egScrutinys != null) {
 				egScrutiny.setComment(egScrutiny.getComment());
-				egScrutiny.setCreatedOn(egScrutiny.getCreatedOn());
+				egScrutiny.setCreatedOn(new Date());
 				egScrutiny.setIsApproved(egScrutiny.getIsApproved());
 				egScrutiny.setFieldValue(egScrutiny.getFieldValue());
 				egScrutiny.setIsLOIPart(egScrutiny.getIsLOIPart());
-				egScrutiny.setTs(new Date());
+				egScrutiny.setId(egScrutinys.getId());
+				egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 				// return egScrutinyRepo.save(egScrutiny);
 			} else {
-				egScrutiny.setTs(new Date());
+				egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
 				egScrutiny.setCreatedOn(new java.sql.Time(new Date().getTime()));
 
 			}

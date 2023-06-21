@@ -105,12 +105,17 @@ public class FeesCalculation implements Calculator {
 			totalScruitnyFee= new BigDecimal(0);
 			totalLicenceFee= new BigDecimal(0);
 			feesTypeCalculationDto = recursionMethod(info, applicationNo, totalArea, zone, purposeDetail.get(0));
-		
+			
 			log.info("totalFee" + totalFee);
 			feesTypeCalculationDto.setTotalFee(totalFee);
 			feesTypeCalculationDto.setTotalScruitnyFee(totalScruitnyFee);
+			if(purposeDetail.get(0).getCode().equals("AGH")) {	
+				for(FeesTypeCalculationDto feesTypeCalculationDtoDetails:feesTypeCalculationDto.getFeesTypeCalculationDto()) {
+					feesTypeCalculationDtoDetails.setLicenseFeeChargesCal(BigDecimal.ZERO);					
+				}
+			}else {
 			feesTypeCalculationDto.setTotalLicenceFee(totalLicenceFee);
-			
+			}
 			results.add(feesTypeCalculationDto);
 			}
 		}

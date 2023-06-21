@@ -57,7 +57,7 @@ public class UserService{
      * @param request TradeLciense create or update request
      */
 
-    public void createUser(TradeLicenseRequest request,boolean isBPARoleAddRequired){
+  public void createUser(TradeLicenseRequest request,boolean isBPARoleAddRequired){
         List<TradeLicense> licenses = request.getLicenses();
         RequestInfo requestInfo = request.getRequestInfo();
         Role role = getCitizenRole(licenses.get(0).getTenantId());
@@ -123,7 +123,6 @@ public class UserService{
             });
         });
     }
-
     private OwnerInfo addNotNullFieldsFromOwner(User user,OwnerInfo owner)
     {
         OwnerInfo newowner = new OwnerInfo();
