@@ -10,7 +10,7 @@
             <url>http://repo.egovernments.org/nexus/content/groups/public/</url>
         </mirror>
     </mirrors>
-	<localRepository>D:/.m2/repository</localRepository>
+	<localRepository>/opt/.m2/repository</localRepository>
 	<servers>
         <server>
             <id>repo.egovernments.org</id>
