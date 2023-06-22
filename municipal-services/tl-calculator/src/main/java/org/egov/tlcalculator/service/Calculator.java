@@ -59,7 +59,7 @@ public interface Calculator {
 	public BigDecimal RATE06 = new BigDecimal("0.6", precision);
 	public BigDecimal RATE05 = new BigDecimal("0.5", precision);
 	public BigDecimal RATE04 = new BigDecimal("0.4", precision);
-	public BigDecimal RATE467 = new BigDecimal("4.67", precision);
+	public BigDecimal RATE467 = new BigDecimal("4.67");
 	public BigDecimal RATE167 = new BigDecimal("1.67", precision);
 	public BigDecimal RATE334 = new BigDecimal("3.34", precision);
 	public BigDecimal RATE01 = new BigDecimal("0.1", precision);
