@@ -8,7 +8,9 @@ import org.egov.bpa.producer.Producer;
 import org.egov.bpa.repository.querybuilder.BPAQueryBuilder;
 import org.egov.bpa.repository.rowmapper.BPARowMapper;
 import org.egov.bpa.web.model.BPA;
+import org.egov.bpa.web.model.BPADao;
 import org.egov.bpa.web.model.BPARequest;
+import org.egov.bpa.web.model.BPARequestDao;
 import org.egov.bpa.web.model.BPASearchCriteria;
 import org.egov.common.contract.request.RequestInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class BPARepository {
 	 * @param bpaRequest
 	 *            The bpa create request
 	 */
-	public void save(BPARequest bpaRequest) {
+	public void save(BPARequestDao bpaRequest) {
 		producer.push(config.getSaveTopic(), bpaRequest);
 	}
 

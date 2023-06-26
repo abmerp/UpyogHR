@@ -30,6 +30,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 @RestController
 @RequestMapping("/v1/bpa")
 public class BPAController {
@@ -44,7 +47,7 @@ public class BPAController {
 	private ResponseInfoFactory responseInfoFactory;
 
 	@PostMapping(value = "/_create")
-	public ResponseEntity<BPAResponse> create(@Valid @RequestBody BPARequest bpaRequest) {
+	public ResponseEntity<BPAResponse> create(@Valid @RequestBody BPARequest bpaRequest) throws JsonMappingException, JsonProcessingException {
 		bpaUtil.defaultJsonPathConfig();
 		BPA bpa = bpaService.create(bpaRequest);
 		List<BPA> bpas = new ArrayList<BPA>();

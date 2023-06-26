@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import org.egov.bpa.web.model.AuditDetails;
 import org.egov.bpa.web.model.Document;
+import org.egov.bpa.web.model.OwnerDocs;
 import org.egov.common.contract.request.Role;
 import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.validation.annotation.Validated;
@@ -220,6 +221,11 @@ public class OwnerInfo {
 
     @JsonProperty("auditDetails")
     private AuditDetails auditDetails;
+    
+    @JsonProperty("ownerDocs")
+    private OwnerDocs ownerDocs;
+    
+   
 
 
 	/**
@@ -270,7 +276,8 @@ public class OwnerInfo {
 		this.setIdentificationMark(user.getIdentificationMark());
 		this.setPhoto(user.getPhoto());
 		this.setTenantId(user.getTenantId());
-	}
+		this.setOwnerDocs(user.getOwnerDocs());
+		}
 
 	/**
 	 * Populates Owner fields from the given User object
