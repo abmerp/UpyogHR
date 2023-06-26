@@ -60,8 +60,10 @@ public class NewLicensePDF {
 	private static Font catFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC, BaseColor.BLUE);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
+	private static Font blackFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, BaseColor.BLACK);
 
-//    private static String hindifont = "D:\\Bikash_UPYOG\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+	// private static String hindifont =
+	// "D:\\Bikash_UPYOG\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 //	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
 //	private static String hindifont ="D:\\Workspace_27-04-2023\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\\\FreeSans.ttf";
@@ -629,12 +631,16 @@ public class NewLicensePDF {
 
 						if (appliedLandDetails.getConsolidationType() != null) {
 
-							table = new PdfPTable(3);
+							table = new PdfPTable(4);
 							table.setSpacingBefore(10f);
 							table.setSpacingAfter(10f);
 							table.setWidthPercentage(100f);
 
 							PdfPCell c2 = new PdfPCell(new Phrase("VILLAGE"));
+							c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+							table.addCell(c2);
+
+							c2 = new PdfPCell(new Phrase("Rect.NO."));
 							c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 							table.addCell(c2);
 
@@ -651,11 +657,12 @@ public class NewLicensePDF {
 
 								table.addCell((appliedLandDetails.getRevenueEstate().getLabel()));
 
+								table.addCell(appliedLandDetails.getRectangleNo());
+
 								table.addCell((appliedLandDetails.getKhewats()));
 
 								String cellContent = appliedLandDetails.getSarsai() + " - "
-										+ appliedLandDetails.getKanal() + " - " + appliedLandDetails.getMarla() + "  = "
-										+ appliedLandDetails.getConsolidatedTotal();
+										+ appliedLandDetails.getKanal() + " - " + appliedLandDetails.getMarla();
 								table.addCell(cellContent);
 //							    table.addCell((appliedLandDetails.getSarsai()));
 //						        table.addCell((appliedLandDetails.getKanal()));
@@ -666,12 +673,16 @@ public class NewLicensePDF {
 
 						if (appliedLandDetails.getNonConsolidationType() != null) {
 
-							table = new PdfPTable(3);
+							table = new PdfPTable(4);
 							table.setSpacingBefore(10f);
 							table.setSpacingAfter(10f);
 							table.setWidthPercentage(100f);
 
 							PdfPCell c2 = new PdfPCell(new Phrase("VILLAGE"));
+							c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+							table.addCell(c2);
+
+							c2 = new PdfPCell(new Phrase("Rect.NO."));
 							c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 							table.addCell(c2);
 
@@ -688,16 +699,29 @@ public class NewLicensePDF {
 
 								table.addCell((appliedLandDetails.getRevenueEstate().getLabel()));
 
+								table.addCell(appliedLandDetails.getRectangleNo());
+
 								table.addCell((appliedLandDetails.getKhewats()));
 
 								String cellContent = appliedLandDetails.getBigha() + " - "
-										+ appliedLandDetails.getBiswansi() + " - " + appliedLandDetails.getBiswa()
-										+ "  = " + appliedLandDetails.getNonConsolidatedTotal();
+										+ appliedLandDetails.getBiswansi() + " - " + appliedLandDetails.getBiswa();
 								table.addCell(cellContent);
 
 							}
 
 						}
+
+						PdfPCell cell = new PdfPCell();
+						PdfPCell cell1 = new PdfPCell();
+
+						table.addCell("  ");
+						table.addCell("  ");
+
+						cell1.addElement(new Phrase("Total", blackFont2));
+						table.addCell(cell1);
+
+						cell.addElement(new Phrase(licenseDetails.getApplicantPurpose().getTotalArea(), blackFont2));
+						table.addCell(cell);
 
 					}
 					doc.add(table);
