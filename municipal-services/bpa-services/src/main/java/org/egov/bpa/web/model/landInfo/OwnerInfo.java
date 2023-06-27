@@ -222,8 +222,7 @@ public class OwnerInfo {
     @JsonProperty("auditDetails")
     private AuditDetails auditDetails;
     
-    @JsonProperty("ownerDocs")
-    private OwnerDocs ownerDocs;
+   
     
    
 
@@ -276,7 +275,7 @@ public class OwnerInfo {
 		this.setIdentificationMark(user.getIdentificationMark());
 		this.setPhoto(user.getPhoto());
 		this.setTenantId(user.getTenantId());
-		this.setOwnerDocs(user.getOwnerDocs());
+	
 		}
 
 	/**

@@ -9,6 +9,7 @@ import org.egov.bpa.web.model.landInfo.Address;
 import org.egov.bpa.web.model.AuditDetails;
 import org.egov.bpa.web.model.landInfo.Channel;
 import org.egov.bpa.web.model.Document;
+import org.egov.bpa.web.model.OwnerDocs;
 import org.egov.bpa.web.model.landInfo.Institution;
 import org.egov.bpa.web.model.landInfo.OwnerInfo;
 import org.egov.bpa.web.model.landInfo.Source;
@@ -78,6 +79,9 @@ public class LandInfo   {
   @JsonProperty("documents")
   @Valid
   private List<Document> documents = null;
+  
+  @JsonProperty("ownerDocs")
+  private OwnerDocs ownerDocs;
 
   @JsonProperty("unit")
   @Valid
