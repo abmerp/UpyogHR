@@ -98,6 +98,17 @@ public class LandInfo   {
     return this;
   }
 
+  public LandInfo ownerDocs(OwnerDocs ownerDocs) {
+    this.ownerDocs = ownerDocs;
+    return this;
+  }
+  public OwnerDocs getOwnerDocs() {
+	    return ownerDocs;
+	  }
+
+	  public void setOwnerDocs(OwnerDocs ownerDocs) {
+	    this.ownerDocs = ownerDocs;
+	  }
   /**
    * Unique Identifier(UUID) of the land for internal reference.
    * @return id
@@ -342,13 +353,7 @@ public class LandInfo   {
     this.documents = documents;
   }
   
-  public OwnerDocs getOwnerDocs(OwnerDocs ownerDocs) {
-	    return ownerDocs;
-	  }
 
-	  public void setOwnerDocs(OwnerDocs ownerDocs) {
-	    this.ownerDocs = ownerDocs;
-	  }
 
   public LandInfo unit(List<Unit> unit) {
     this.unit = unit;
