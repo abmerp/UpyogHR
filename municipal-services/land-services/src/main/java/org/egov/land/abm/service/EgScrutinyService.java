@@ -163,7 +163,7 @@ public class EgScrutinyService {
 						approvedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
 						disApprovedfiledDetails.add(comments2);
-					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Order With Conditions"))
 						condApprovedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Proforma"))
 						performaFieldDetail.add(comments2);
@@ -240,7 +240,7 @@ public class EgScrutinyService {
 						approvedfiledDetails.add(comments2);
 					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
 						disApprovedfiledDetails.add(comments2);
-					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
+					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Order With Conditions"))
 						condApprovedfiledDetails.add(comments2);
 					// egScrutiny.remove(i);
 				}
@@ -317,7 +317,7 @@ public class EgScrutinyService {
 //						approvedfiledDetails.add(comments2);
 //					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
 //						disApprovedfiledDetails.add(comments2);
-//					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("conditional"))
+//					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Order With Conditions"))
 //						condApprovedfiledDetails.add(comments2);
 
 					if (egScrutiny3.getIsApproved().equalsIgnoreCase("Proforma"))
