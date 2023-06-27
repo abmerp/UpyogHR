@@ -341,6 +341,14 @@ public class LandInfo   {
   public void setDocuments(List<Document> documents) {
     this.documents = documents;
   }
+  
+  public OwnerDocs getOwnerDocs(OwnerDocs ownerDocs) {
+	    return ownerDocs;
+	  }
+
+	  public void setOwnerDocs(OwnerDocs ownerDocs) {
+	    this.ownerDocs = ownerDocs;
+	  }
 
   public LandInfo unit(List<Unit> unit) {
     this.unit = unit;
@@ -432,7 +440,8 @@ public class LandInfo   {
         Objects.equals(this.documents, landInfo.documents) &&
         Objects.equals(this.unit, landInfo.unit) &&
         Objects.equals(this.additionalDetails, landInfo.additionalDetails) &&
-        Objects.equals(this.auditDetails, landInfo.auditDetails);
+        Objects.equals(this.auditDetails, landInfo.auditDetails)&&
+        Objects.equals(this.ownerDocs, landInfo.ownerDocs) ;
   }
 
   @Override
