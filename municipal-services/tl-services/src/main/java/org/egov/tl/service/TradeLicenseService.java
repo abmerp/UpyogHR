@@ -398,8 +398,23 @@ public class TradeLicenseService {
 	 */
 	public List<TradeLicense> update(TradeLicenseRequest tradeLicenseRequest, String businessServicefromPath) {
 		TradeLicense licence = tradeLicenseRequest.getLicenses().get(0);
-		TradeLicense.ApplicationTypeEnum applicationType = licence.getApplicationType();
 		List<TradeLicense> licenceResponse = null;
+		Map<String, Boolean> idToIsStateUpdatableMap = null;
+		if(licence.getAction().equals("WITHDRAWL")) {
+			TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
+			criteria.setApplicationNumber(licence.getApplicationNumber());	
+			List<TradeLicense> licences  = getLicensesWithOwnerInfo(criteria, tradeLicenseRequest.getRequestInfo());
+			List<TradeLicense> licencesList = new ArrayList<>();
+			for(TradeLicense tradeLicense : licences) {
+				tradeLicense.setAction(licence.getAction());
+				licencesList.add(tradeLicense);
+			}
+			
+			tradeLicenseRequest.setLicenses(licencesList);
+			
+		}else {
+		TradeLicense.ApplicationTypeEnum applicationType = licence.getApplicationType();
+	//	List<TradeLicense> licenceResponse = null;
 		if (applicationType != null && (applicationType).toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)
 				&& licence.getAction().equalsIgnoreCase(TLConstants.TL_ACTION_INITIATE)
 				&& (licence.getStatus().equals(TLConstants.STATUS_APPROVED)
@@ -443,7 +458,7 @@ public class TradeLicenseService {
 			}
 			// Map<String, Difference> diffMap =
 			// diffService.getDifference(tradeLicenseRequest, searchResult);
-			Map<String, Boolean> idToIsStateUpdatableMap = util.getIdToIsStateUpdatableMap(businessService, null);
+			 idToIsStateUpdatableMap = util.getIdToIsStateUpdatableMap(businessService, null);
 
 			/*
 			 * call workflow service if it's enable else uses internal workflow process
@@ -492,9 +507,11 @@ public class TradeLicenseService {
 //			if (businessServicefromPath.equalsIgnoreCase(businessService_BPA)) {
 //				calculationService.addCalculation(tradeLicenseRequest);
 //			}
+		}
+		}
 			repository.update(tradeLicenseRequest, idToIsStateUpdatableMap);
 			licenceResponse = tradeLicenseRequest.getLicenses();
-		}
+		
 		return licenceResponse;
 
 	}
@@ -613,5 +630,5 @@ public class TradeLicenseService {
 		}).collect(Collectors.toList());
 
 	}
-
+	
 }
