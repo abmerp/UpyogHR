@@ -311,15 +311,15 @@
    
       "purposes":[
         {
+          "purposeCode":"CIRS",
+          "minimumPermissible":"0",
+          "maximumPermissible":"100"
+        },
+        {
           "purposeCode":"CPRS",
 		      "minimumPermissible":"0",
           "maximumPermissible":"100"
-        },
-          {
-            "purposeCode":"CIRS",
-            "minimumPermissible":"0",
-			      "maximumPermissible":"100"
-          }
+        }        
          
       ],
       "documents":[
