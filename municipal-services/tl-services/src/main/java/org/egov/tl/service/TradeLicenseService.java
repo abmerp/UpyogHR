@@ -400,11 +400,12 @@ public class TradeLicenseService {
 		TradeLicense licence = tradeLicenseRequest.getLicenses().get(0);
 		List<TradeLicense> licenceResponse = null;
 		Map<String, Boolean> idToIsStateUpdatableMap = null;
+		TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
+		criteria.setApplicationNumber(licence.getApplicationNumber());	
+		List<TradeLicense> licences  = getLicensesWithOwnerInfo(criteria, tradeLicenseRequest.getRequestInfo());
+		List<TradeLicense> licencesList = new ArrayList<>();
 		if(licence.getAction().equals("WITHDRAWL")) {
-			TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
-			criteria.setApplicationNumber(licence.getApplicationNumber());	
-			List<TradeLicense> licences  = getLicensesWithOwnerInfo(criteria, tradeLicenseRequest.getRequestInfo());
-			List<TradeLicense> licencesList = new ArrayList<>();
+			
 			for(TradeLicense tradeLicense : licences) {
 				tradeLicense.setAction(licence.getAction());
 				licencesList.add(tradeLicense);
@@ -413,6 +414,12 @@ public class TradeLicenseService {
 			tradeLicenseRequest.setLicenses(licencesList);
 			
 		}else {
+			
+			if (licence.getAction().equals(licences.get(0).getAction())) {
+				throw new CustomException("Action is already done,pending from other department",
+						"Action is already done,pending from other department");
+			
+			}
 		TradeLicense.ApplicationTypeEnum applicationType = licence.getApplicationType();
 	//	List<TradeLicense> licenceResponse = null;
 		if (applicationType != null && (applicationType).toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)
