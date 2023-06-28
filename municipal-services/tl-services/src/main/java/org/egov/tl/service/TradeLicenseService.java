@@ -415,11 +415,7 @@ public class TradeLicenseService {
 			
 		}else {
 			
-			if (licence.getAction().equals(licences.get(0).getAction())) {
-				throw new CustomException("Action is already done,pending from other department",
-						"Action is already done,pending from other department");
-			
-			}
+
 		TradeLicense.ApplicationTypeEnum applicationType = licence.getApplicationType();
 	//	List<TradeLicense> licenceResponse = null;
 		if (applicationType != null && (applicationType).toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)
