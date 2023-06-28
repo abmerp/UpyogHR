@@ -864,12 +864,6 @@ public class LoiReportService {
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
 				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
-				loiNumberParagraph.setIndentationLeft(leftMarg);
-				loiNumberParagraph.setSpacingBefore(15f);
-				doc.add(loiNumberParagraph);
-				
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -886,6 +880,14 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
+				
+				Paragraph loiNumberParagraph = new Paragraph(
+						"LOI Number : " + loiNumber);
+				loiNumberParagraph.setIndentationLeft(leftMarg);
+				loiNumberParagraph.setSpacingBefore(15f);
+				doc.add(loiNumberParagraph);
+				
+				
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -1984,13 +1986,7 @@ public class LoiReportService {
 				Paragraph preface1 = new Paragraph();
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
-				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
-				loiNumberParagraph.setIndentationLeft(leftMarg);
-				loiNumberParagraph.setSpacingBefore(15f);
-				doc.add(loiNumberParagraph);
-				
+			
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -2008,6 +2004,13 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
+				
+				Paragraph loiNumberParagraph = new Paragraph(
+						"LOI Number : " + loiNumber);
+				loiNumberParagraph.setIndentationLeft(leftMarg);
+				loiNumberParagraph.setSpacingBefore(15f);
+				doc.add(loiNumberParagraph);
+				
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -2471,12 +2474,6 @@ public class LoiReportService {
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
 				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
-				loiNumberParagraph.setIndentationLeft(leftMarg);
-				loiNumberParagraph.setSpacingBefore(15f);
-				doc.add(loiNumberParagraph);
-				
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -2492,6 +2489,13 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
+				
+				Paragraph loiNumberParagraph = new Paragraph(
+						"LOI Number : " + loiNumber);
+				loiNumberParagraph.setIndentationLeft(leftMarg);
+				loiNumberParagraph.setSpacingBefore(15f);
+				doc.add(loiNumberParagraph);
+				
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
@@ -3235,12 +3239,6 @@ public class LoiReportService {
 				preface1.add(new Paragraph("To", smallBold));
 				doc.add(preface1);
 				
-				Paragraph loiNumberParagraph = new Paragraph(
-						"LOI Number : " + loiNumber);
-				loiNumberParagraph.setIndentationLeft(leftMarg);
-				loiNumberParagraph.setSpacingBefore(15f);
-				doc.add(loiNumberParagraph);
-				
 				addEmptyLine(preface1, 2);
 				Paragraph preface2 = new Paragraph();
 				preface2.setIndentationLeft(leftMarg);
@@ -3257,6 +3255,14 @@ public class LoiReportService {
 					e.printStackTrace();
 				}
 				doc.add(preface2);
+			
+				Paragraph loiNumberParagraph = new Paragraph(
+						"LOI Number : " + loiNumber);
+				loiNumberParagraph.setIndentationLeft(leftMarg);
+				loiNumberParagraph.setSpacingBefore(15f);
+				doc.add(loiNumberParagraph);
+				
+			
 				Paragraph paragraph = new Paragraph("Memo No. " + memoNumber
 						+ "/ 		                                    Dated: " + currentDate.split("\\s+")[0]);
 				paragraph.setIndentationLeft(leftMarg);
