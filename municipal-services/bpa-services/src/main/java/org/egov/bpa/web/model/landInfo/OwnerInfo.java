@@ -115,8 +115,8 @@ public class OwnerInfo {
 
     @Size(max=128)
 	@SafeHtml
-    @JsonProperty("emailId")
-    private String emailId;
+    @JsonProperty("email")
+    private String email;
 
     @Size(max=50)
 	@SafeHtml
@@ -253,7 +253,7 @@ public class OwnerInfo {
 		this.setName(user.getName());
 		this.setGender(user.getGender());
 		this.setMobileNumber(user.getMobileNumber());
-		this.setEmailId(user.getEmailId());
+		this.setEmail(user.getEmail());
 		this.setAltContactNumber(user.getAltContactNumber());
 		this.setPan(user.getPan());
 		this.setAadhaarNumber(user.getAadhaarNumber());
@@ -348,7 +348,7 @@ public class OwnerInfo {
          commonUser.setName(this.getName());
          commonUser.setType(this.getType());
          commonUser.setMobileNumber(this.getMobileNumber());
-         commonUser.setEmailId(this.getEmailId());
+         commonUser.setEmailId(this.getEmail());
 //         commonUser.setRoles((List<org.egov.common.contract.request.Role>)this.getRoles());
          commonUser.setTenantId(this.getTenantId());
          commonUser.setUuid(this.getUuid());

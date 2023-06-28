@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.egov.bpa.web.model.AuditDetails;
 import org.egov.bpa.web.model.BPA;
 import org.egov.bpa.web.model.Document;
+import org.egov.bpa.web.model.Workflow;
 import org.postgresql.util.PGobject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -31,6 +32,7 @@ public class BPARowMapper implements ResultSetExtractor<List<BPA>> {
 
 	/**
 	 * extract the data from the resultset and prepare the BPA Object
+	 * 
 	 * @see org.springframework.jdbc.core.ResultSetExtractor#extractData(java.sql.ResultSet)
 	 */
 	@SuppressWarnings("rawtypes")
@@ -45,6 +47,7 @@ public class BPARowMapper implements ResultSetExtractor<List<BPA>> {
 			String approvalNo = rs.getString("approvalNo");
 			BPA currentbpa = buildingMap.get(id);
 			String tenantId = rs.getString("bpa_tenantId");
+
 			if (currentbpa == null) {
 				Long lastModifiedTime = rs.getLong("bpa_lastModifiedTime");
 				if (rs.wasNull()) {
@@ -54,26 +57,20 @@ public class BPARowMapper implements ResultSetExtractor<List<BPA>> {
 				Object additionalDetails = new Gson().fromJson(rs.getString("additionalDetails").equals("{}")
 						|| rs.getString("additionalDetails").equals("null") ? null : rs.getString("additionalDetails"),
 						Object.class);
-				
+
 				AuditDetails auditdetails = AuditDetails.builder().createdBy(rs.getString("bpa_createdBy"))
 						.createdTime(rs.getLong("bpa_createdTime")).lastModifiedBy(rs.getString("bpa_lastModifiedBy"))
 						.lastModifiedTime(lastModifiedTime).build();
-
-
-				currentbpa = BPA.builder()
-						.auditDetails(auditdetails)
-						.applicationNo(applicationNo)
-						.status(rs.getString("status"))
-						.tenantId(tenantId)
-						.approvalNo(approvalNo)
-						.edcrNumber(rs.getString("edcrnumber"))
-						.approvalDate(rs.getLong("approvalDate"))
-						.accountId(rs.getString("accountId"))
-						.landId(rs.getString("landId"))
-						.applicationDate(rs.getLong("applicationDate"))
-						.id(id)
-						.additionalDetails(additionalDetails)
+				Workflow workflow = new Workflow();				
+				String action = rs.getString("action");
+				workflow.setAction(action);
+				currentbpa = BPA.builder().auditDetails(auditdetails).applicationNo(applicationNo)
+						.status(rs.getString("status")).tenantId(tenantId).approvalNo(approvalNo)
+						.edcrNumber(rs.getString("edcrnumber")).approvalDate(rs.getLong("approvalDate"))
+						.accountId(rs.getString("accountId")).landId(rs.getString("landId"))
+						.applicationDate(rs.getLong("applicationDate")).id(id).additionalDetails(additionalDetails)
 						.businessService(rs.getString("businessService"))
+						.workflow(workflow)
 						.build();
 
 				buildingMap.put(id, currentbpa);
@@ -88,6 +85,7 @@ public class BPARowMapper implements ResultSetExtractor<List<BPA>> {
 
 	/**
 	 * add child objects to the BPA fro the results set
+	 * 
 	 * @param rs
 	 * @param bpa
 	 * @throws SQLException
@@ -106,25 +104,23 @@ public class BPARowMapper implements ResultSetExtractor<List<BPA>> {
 			try {
 				additionalDetail = mapper.readTree(pgObj.getValue());
 			} catch (IOException e) {
-				log.error("Failed to parse additionalDetails",e);
+				log.error("Failed to parse additionalDetails", e);
 			}
 			bpa.setAdditionalDetails(additionalDetail);
 		}
 
-
 		String documentId = rs.getString("bpa_doc_id");
 		Object docDetails = null;
-		if(rs.getString("doc_details") != null) {
-			docDetails = new Gson().fromJson(rs.getString("doc_details").equals("{}")
-					|| rs.getString("doc_details").equals("null") ? null : rs.getString("doc_details"),
+		if (rs.getString("doc_details") != null) {
+			docDetails = new Gson().fromJson(
+					rs.getString("doc_details").equals("{}") || rs.getString("doc_details").equals("null") ? null
+							: rs.getString("doc_details"),
 					Object.class);
 		}
-		
+
 		if (documentId != null) {
 			Document document = Document.builder().documentType(rs.getString("bpa_doc_documenttype"))
-					.fileStoreId(rs.getString("bpa_doc_filestore"))
-					.id(documentId)
-					.additionalDetails(docDetails)
+					.fileStoreId(rs.getString("bpa_doc_filestore")).id(documentId).additionalDetails(docDetails)
 					.documentUid(rs.getString("documentUid")).build();
 			bpa.addDocumentsItem(document);
 		}

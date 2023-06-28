@@ -255,10 +255,10 @@ public class BPAValidator {
 	public void validateUpdate(BPARequest bpaRequest, List<BPA> searchResult, Object mdmsData, String currentState, Map<String, String> edcrResponse) {
 
 		BPA bpa = bpaRequest.getBPA();
-		validateApplicationDocuments(bpaRequest, mdmsData, currentState, edcrResponse);
+		//validateApplicationDocuments(bpaRequest, mdmsData, currentState, edcrResponse);
 		validateAllIds(searchResult, bpa);
 		mdmsValidator.validateMdmsData(bpaRequest, mdmsData);
-		validateDuplicateDocuments(bpaRequest);
+		//validateDuplicateDocuments(bpaRequest);
 		setFieldsFromSearch(bpaRequest, searchResult, mdmsData);
 
 	}
