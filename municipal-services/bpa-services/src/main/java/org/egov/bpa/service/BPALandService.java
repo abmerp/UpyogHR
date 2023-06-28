@@ -57,6 +57,7 @@ public class BPALandService {
 
 		landInfo = (ArrayList<LandInfo>) responseMap.get("LandInfo");
 		LandInfo landData = mapper.convertValue(landInfo.get(0), LandInfo.class);
+		landData.getOwners().get(0).setEmail(bpaRequest.getBPA().getLandInfo().getOwners().get(0).getEmail());
 		landData.setOwnerDocs(bpaRequest.getBPA().getLandInfo().getOwnerDocs());
 		bpaRequest.getBPA().setLandInfo(landData);
 		bpaRequest.getBPA().setLandId(landData.getId());
