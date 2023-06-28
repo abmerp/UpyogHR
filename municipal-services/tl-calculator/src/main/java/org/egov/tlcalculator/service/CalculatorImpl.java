@@ -175,7 +175,7 @@ public class CalculatorImpl implements Calculator {
 
 				case PURPOSE_RGP:
 					feesTypeCalculationDto
-							.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));
+							.setScrutinyFeeChargesCal(areaInSqmtr(arce).multiply(scrutinyFeeCharges).multiply(RATE10));					
 					feesTypeCalculationDto.setLicenseFeeChargesCal(arce.multiply(RATE40).multiply(PERCENTAGE0995));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(arce.multiply(RATE104).multiply(RATE4));
 					feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(arce).multiply(RATE_158));
@@ -185,13 +185,13 @@ public class CalculatorImpl implements Calculator {
 							.setScrutinyFormula(AREA + "(arce to sq. mt)" + "*" + arce + "(total applied Area in arce)"
 									+ "*" + RATE10 + "(Rate)" + "*" + scrutinyFeeCharges + "(FAR)");
 					feesTypeCalculationDto
-							.setLicenceFormula(arce + "(total applied Area in arce)" + "*" + RATE25 + "(Rate)");
+							.setLicenceFormula(arce + "(total applied Area in arce)" + "*" + RATE40 + "(Rate)"+"*"+PERCENTAGE0995+"(Multiplier)");
 					feesTypeCalculationDto.setEdcFormula(arce + "(total applied Area in arce)" + "*" + RATE104
-							+ "(Rate)" + "*" + RATE167 + "(Rate)");
+							+ "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(AREA + "(arce to sq. mt)" + "*" + arce
-							+ "(total applied Area in arce)" + "*" + RATE_100 + "(Rate)");
+							+ "(total applied Area in arce)" + "*" + RATE_158 + "(Rate)");
 					feesTypeCalculationDto.setStateInfraFormula(
-							AREA + "(arce to sq. mt)" + "*" + arce + "(total applied Area in arce)" + "*" + RATE_250
+							AREA + "(arce to sq. mt)" + "*" + arce + "(total applied Area in arce)" + "*" + RATE_625
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
 
 					break;
@@ -578,7 +578,7 @@ public class CalculatorImpl implements Calculator {
 							.setScrutinyFormula(AREA + "(arce to sq. mt)" + "*" + arce + "(total applied Area in arce)"
 									+ "*" + RATE10 + "(Rate)" + "*" + scrutinyFeeCharges + "(FAR)");
 					feesTypeCalculationDto
-							.setLicenceFormula(arce + "(total applied Area in arce)" + "*" + RATE25 + "(Rate)");
+							.setLicenceFormula(arce + "(total applied Area in arce)" + "*" + RATE40 + "(Rate)"+"*"+PERCENTAGE0995+"(Multiplier)");
 					feesTypeCalculationDto.setEdcFormula(arce + "(total applied Area in arce)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE09 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(AREA + "(arce to sq. mt)" + "*" + arce
@@ -1284,7 +1284,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setScrutinyFormula(AREA + "(arce to sq. mt)" + "*" + arce + "(total applied Area in arce)"
 									+ "*" + RATE10 + "(Rate)" + "*" + scrutinyFeeCharges + "(FAR)");
-					feesTypeCalculationDto.setLicenceFormula(arce + "(total applied Area in arce)" + "*" + RATE_80
+					feesTypeCalculationDto.setLicenceFormula(arce + "(total applied Area in arce)" + "*" + RATE95
 							+ "(Rate)" + "*" + PERCENTAGE0995 + "(Multiplier)");
 					feesTypeCalculationDto.setEdcFormula(arce + "(total applied Area in arce)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE06 + "(Rate)" + "*" + RATE4 + "(Rate)");

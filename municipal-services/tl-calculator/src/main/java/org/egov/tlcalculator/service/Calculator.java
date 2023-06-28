@@ -4,20 +4,20 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 public interface Calculator {
-	int setPrecisionYouWant = 2;
+	int setPrecisionYouWant = 3;
 	MathContext precision = new MathContext(setPrecisionYouWant);
 	public BigDecimal AREA = new BigDecimal("4047");
-	public BigDecimal PERCENTAGE1 = new BigDecimal("0.96", precision);
-	public BigDecimal PERCENTAGE2 = new BigDecimal("0.04", precision);
-	public BigDecimal PERCENTAGE0995 = new BigDecimal("0.995", precision);
-	public BigDecimal PERCENTAGE5 = new BigDecimal("0.005", precision);
-	public BigDecimal PERCENTAGE25 = new BigDecimal("2.5", precision);
-	public BigDecimal PERCENTAGE125 = new BigDecimal("1.25", precision);
-	public BigDecimal PERCENTAGE175 = new BigDecimal("1.75", precision);
-	public BigDecimal PERCENTAGE075 = new BigDecimal("0.75", precision);
-	public BigDecimal RATE2 = new BigDecimal("2", precision);
-	public BigDecimal RATE5 = new BigDecimal("5", precision);
-	public BigDecimal RATE7 = new BigDecimal("7", precision);
+	public BigDecimal PERCENTAGE1 = new BigDecimal("0.96");
+	public BigDecimal PERCENTAGE2 = new BigDecimal("0.04");
+	public BigDecimal PERCENTAGE0995 = new BigDecimal("0.995");
+	public BigDecimal PERCENTAGE5 = new BigDecimal("0.005");
+	public BigDecimal PERCENTAGE25 = new BigDecimal("2.5");
+	public BigDecimal PERCENTAGE125 = new BigDecimal("1.25");
+	public BigDecimal PERCENTAGE175 = new BigDecimal("1.75");
+	public BigDecimal PERCENTAGE075 = new BigDecimal("0.75");
+	public BigDecimal RATE2 = new BigDecimal("2");
+	public BigDecimal RATE5 = new BigDecimal("5");
+	public BigDecimal RATE7 = new BigDecimal("7");
 	public BigDecimal RATE100000 = new BigDecimal("100000");
 	public BigDecimal RATE10000 = new BigDecimal("10000");
 	public BigDecimal RATE = new BigDecimal("1250000");
@@ -54,16 +54,16 @@ public interface Calculator {
 	public BigDecimal RATE_30 = new BigDecimal("30");
 
 	public BigDecimal RATE104 = new BigDecimal("10410000");
-	public BigDecimal RATE09 = new BigDecimal("0.9", precision);
-	public BigDecimal RATE07 = new BigDecimal("0.7", precision);
-	public BigDecimal RATE06 = new BigDecimal("0.6", precision);
-	public BigDecimal RATE05 = new BigDecimal("0.5", precision);
-	public BigDecimal RATE04 = new BigDecimal("0.4", precision);
+	public BigDecimal RATE09 = new BigDecimal("0.9");
+	public BigDecimal RATE07 = new BigDecimal("0.7");
+	public BigDecimal RATE06 = new BigDecimal("0.6");
+	public BigDecimal RATE05 = new BigDecimal("0.5");
+	public BigDecimal RATE04 = new BigDecimal("0.4");
 	public BigDecimal RATE467 = new BigDecimal("4.67");
-	public BigDecimal RATE167 = new BigDecimal("1.67", precision);
-	public BigDecimal RATE334 = new BigDecimal("3.34", precision);
-	public BigDecimal RATE01 = new BigDecimal("0.1", precision);
-	public BigDecimal RATE4 = new BigDecimal("4", precision);
+	public BigDecimal RATE167 = new BigDecimal("1.67");
+	public BigDecimal RATE334 = new BigDecimal("3.34");
+	public BigDecimal RATE01 = new BigDecimal("0.1");
+	public BigDecimal RATE4 = new BigDecimal("4");
 
 	public BigDecimal RATE500 = new BigDecimal("500");
 	public BigDecimal RATE_250 = new BigDecimal("250");
