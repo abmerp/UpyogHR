@@ -50,7 +50,7 @@ public class LoiReportController {
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
 				requestLOIReport.getRequestInfo());
 		String lNumber = licenseServiceResponceInfo.getTcpLoiNumber();
-		boolean isGenerateLoi = !(lNumber.equals("null") || lNumber.equals(null)) ? true : false;
+		boolean isGenerateLoi = (lNumber.equals("null") || lNumber.equals(null)) ? true : false;
 		if(isGenerateLoi) {
 			loiReportService.createLoiReport(applicationNumber, licenseServiceResponceInfo, requestLOIReport);
 			log.info("Loi Report has been generated successfully for ApplicationNumber : " + applicationNumber);
