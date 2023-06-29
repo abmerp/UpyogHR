@@ -408,6 +408,7 @@ public class TradeLicenseService {
 			
 			for(TradeLicense tradeLicense : licences) {
 				tradeLicense.setAction(licence.getAction());
+				tradeLicense.setStatus(licence.getStatus());
 				licencesList.add(tradeLicense);
 			}
 			
