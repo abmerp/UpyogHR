@@ -5260,12 +5260,10 @@ public class LoiReportService {
 
 		return id;
 	}
-	public void createLoiReport(String applicationNumber, RequestLOIReport requestLOIReport) {
+	public void createLoiReport(String applicationNumber,LicenseServiceResponseInfo licenseServiceResponceInfo, RequestLOIReport requestLOIReport) {
 		String userId=getUserIdByRole("DTCP_HR","hr",true,requestLOIReport.getRequestInfo());
 		String hqUserId=userId;
 		
-	    LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
-				requestLOIReport.getRequestInfo());
 		String purpose = licenseServiceResponceInfo.getNewServiceInfoData().get(0).getApplicantPurpose().getPurpose();
 		log.info("LOI Report creation method called for Purpose : "+purpose);
 		
