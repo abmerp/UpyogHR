@@ -157,9 +157,10 @@ public class EgScrutinyController {
 			@RequestParam("applicationId") String applicationId,
 			@RequestParam("fieldId") String fieldId,
 			@RequestParam("userId") Integer userId,
-			@RequestParam("serviceId") Integer serviceId) {
+			@RequestParam("serviceId") Integer serviceId,
+			@RequestParam("applicationStatus") String applicationStatus) {
 		
-		EgScrutiny egScrutiny = this.egScrutinyService.findByApplicationIdAndField_d(applicationId, fieldId, userId, serviceId);
+		EgScrutiny egScrutiny = this.egScrutinyService.findByApplicationIdAndField_d(applicationId, fieldId, userId, serviceId,applicationStatus);
 		List<EgScrutiny> egScrutinyList = new ArrayList<>();
 		egScrutinyList.add(egScrutiny);
 

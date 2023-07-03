@@ -46,7 +46,8 @@ public class EgScrutinyService {
 					egScrutinyInfoRequest.getEgScrutiny().getApplicationId(),
 					egScrutinyInfoRequest.getEgScrutiny().getFieldIdL(),
 					egScrutinyInfoRequest.getEgScrutiny().getUserid(),
-					egScrutinyInfoRequest.getEgScrutiny().getServiceId());
+					egScrutinyInfoRequest.getEgScrutiny().getServiceId(),
+					egScrutinyInfoRequest.getEgScrutiny().getApplicationStatus());
 			egScrutiny.setComment(egScrutinyInfoRequest.getEgScrutiny().getComment());
 			egScrutiny.setCreatedOn(new Date());
 			egScrutiny.setIsApproved(egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
@@ -363,10 +364,10 @@ public class EgScrutinyService {
 	}
 
 	public EgScrutiny findByApplicationIdAndField_d(String applicationId, String fieldId, Integer userId,
-			Integer serviceId) {
+			Integer serviceId, String applicationStatus) {
 
 		return this.egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(applicationId, fieldId,
-				userId, serviceId);
+				userId, serviceId,applicationStatus);
 
 	}
 
