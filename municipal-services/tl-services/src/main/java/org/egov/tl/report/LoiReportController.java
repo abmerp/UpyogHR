@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+
 import lombok.extern.log4j.Log4j2;
 
 @RestController
@@ -54,12 +57,18 @@ public class LoiReportController {
 		String lNumber = licenseServiceResponceInfo.getTcpLoiNumber();
 		boolean isGenerateLoi = (lNumber.equals("null") || lNumber.equals(null)) ? true : false;
 		if(isGenerateLoi) {
-			loiReportService.createLoiReport(applicationNumber, licenseServiceResponceInfo, requestLOIReport);
 			log.info("Loi Report has been generated successfully for ApplicationNumber : " + applicationNumber);
 		}else {
 			if(!file.exists()) {
 				loiReportService.createLoiReport(applicationNumber, licenseServiceResponceInfo, requestLOIReport);
-				log.info("Loi Report has been generated after loi generate successfully for ApplicationNumber : " + applicationNumber);
+				log.info("Your pdf has deleted from db now has been created new Loi Report for ApplicationNumber : " + applicationNumber);
+			}else {
+				  PdfReader pdfReader = new PdfReader(flocation);
+				  String pageContent =PdfTextExtractor.getTextFromPage(pdfReader,1);
+				  if(pageContent.contains("LOI Number : N/A")){
+						loiReportService.createLoiReport(applicationNumber, licenseServiceResponceInfo, requestLOIReport);
+						log.info("Your final Loi Report has been generated successfully for ApplicationNumber : " + applicationNumber);
+				  }
 			}
 		}
 		if (file.exists()) {
