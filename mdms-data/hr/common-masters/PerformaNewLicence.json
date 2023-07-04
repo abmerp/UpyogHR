@@ -50683,6 +50683,2386 @@
           "value": ""
         }
       ]
+    },
+    {
+      "businessService": "NewTL",
+      "role": "Drawing Branch",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DEPARTMENT_HQ_SITEVERIF",
+      "templates": [
+        {
+          "label": "Location of site viz Development Plan (Zone & Sector) ",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of publication of Development Plan",
+          "name": "data2",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data2Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of approval of road circulation of relevant sector",
+          "name": "data3",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data3Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Net Planned Area of Sector",
+          "name": "data4",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data4Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": " a)Permissible Limit for grant of licence (20% in case of GH, 3.5% in case of Commercial, 30 acres in case of AGH, 40% in case of DDJAY",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area/detail for which licences already stands granted",
+          "name": "data6",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data6Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Area/ detail of pending applications",
+          "name": "data7",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data7Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Area available for grant of licence within permissible limit",
+          "name": "data8",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data8Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "e) Balance area available after grant of present licence ",
+          "name": "data9",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data9Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "a) Total applied area of site verified by revenue officials ",
+          "name": "data10",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data10Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area falling within alignment of sector dividing road, green belt or service road proposed within green belt",
+          "name": "data11",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data11Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Benefit to be given towards Net Planned Area",
+          "name": "data12",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data12Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Net Planned Area of the scheme/colony",
+          "name": "data13",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data13Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Whether applied land is situated in a compact block?",
+          "name": "data14",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data14Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Area if any falling within proposed External Development Works site of the sector. ",
+          "name": "data15",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data15Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "In case of TOD, area falling within (a) 500mn distance (b) 500-800m distance",
+          "name": "data16",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data16Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Comments on Layout Plan (in plotted colonies) ",
+          "name": "data17",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data17Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Do you Recommend for grant of Licence",
+          "name": "data20",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "businessService": "NewTL",
+      "role": "JD",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DEPARTMENT_HQ_SITEVERIF",
+      "templates": [
+        {
+          "label": "Location of site viz Development Plan (Zone & Sector) ",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of publication of Development Plan",
+          "name": "data2",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data2Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of approval of road circulation of relevant sector",
+          "name": "data3",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data3Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Net Planned Area of Sector",
+          "name": "data4",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data4Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": " a)Permissible Limit for grant of licence (20% in case of GH, 3.5% in case of Commercial, 30 acres in case of AGH, 40% in case of DDJAY",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area/detail for which licences already stands granted",
+          "name": "data6",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data6Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Area/ detail of pending applications",
+          "name": "data7",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data7Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Area available for grant of licence within permissible limit",
+          "name": "data8",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data8Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "e) Balance area available after grant of present licence ",
+          "name": "data9",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data9Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "a) Total applied area of site verified by revenue officials ",
+          "name": "data10",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data10Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area falling within alignment of sector dividing road, green belt or service road proposed within green belt",
+          "name": "data11",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data11Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Benefit to be given towards Net Planned Area",
+          "name": "data12",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data12Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Net Planned Area of the scheme/colony",
+          "name": "data13",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data13Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Whether applied land is situated in a compact block?",
+          "name": "data14",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data14Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Area if any falling within proposed External Development Works site of the sector. ",
+          "name": "data15",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data15Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "In case of TOD, area falling within (a) 500mn distance (b) 500-800m distance",
+          "name": "data16",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data16Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Comments on Layout Plan (in plotted colonies) ",
+          "name": "data17",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data17Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Do you Recommend for grant of Licence",
+          "name": "data20",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "businessService": "NewTL",
+      "role": "Junior Draftsman",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DEPARTMENT_HQ_SITEVERIF",
+      "templates": [
+        {
+          "label": "Location of site viz Development Plan (Zone & Sector) ",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of publication of Development Plan",
+          "name": "data2",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data2Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of approval of road circulation of relevant sector",
+          "name": "data3",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data3Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Net Planned Area of Sector",
+          "name": "data4",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data4Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": " a)Permissible Limit for grant of licence (20% in case of GH, 3.5% in case of Commercial, 30 acres in case of AGH, 40% in case of DDJAY",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area/detail for which licences already stands granted",
+          "name": "data6",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data6Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Area/ detail of pending applications",
+          "name": "data7",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data7Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Area available for grant of licence within permissible limit",
+          "name": "data8",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data8Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "e) Balance area available after grant of present licence ",
+          "name": "data9",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data9Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "a) Total applied area of site verified by revenue officials ",
+          "name": "data10",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data10Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area falling within alignment of sector dividing road, green belt or service road proposed within green belt",
+          "name": "data11",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data11Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Benefit to be given towards Net Planned Area",
+          "name": "data12",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data12Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Net Planned Area of the scheme/colony",
+          "name": "data13",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data13Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Whether applied land is situated in a compact block?",
+          "name": "data14",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data14Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Area if any falling within proposed External Development Works site of the sector. ",
+          "name": "data15",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data15Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "In case of TOD, area falling within (a) 500mn distance (b) 500-800m distance",
+          "name": "data16",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data16Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Comments on Layout Plan (in plotted colonies) ",
+          "name": "data17",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data17Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Do you Recommend for grant of Licence",
+          "name": "data20",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "businessService": "NewTL",
+      "role": "Senior Draftmans",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DEPARTMENT_HQ_SITEVERIF",
+      "templates": [
+        {
+          "label": "Location of site viz Development Plan (Zone & Sector) ",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of publication of Development Plan",
+          "name": "data2",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data2Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of approval of road circulation of relevant sector",
+          "name": "data3",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data3Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Net Planned Area of Sector",
+          "name": "data4",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data4Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": " a)Permissible Limit for grant of licence (20% in case of GH, 3.5% in case of Commercial, 30 acres in case of AGH, 40% in case of DDJAY",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area/detail for which licences already stands granted",
+          "name": "data6",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data6Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Area/ detail of pending applications",
+          "name": "data7",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data7Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Area available for grant of licence within permissible limit",
+          "name": "data8",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data8Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "e) Balance area available after grant of present licence ",
+          "name": "data9",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data9Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "a) Total applied area of site verified by revenue officials ",
+          "name": "data10",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data10Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area falling within alignment of sector dividing road, green belt or service road proposed within green belt",
+          "name": "data11",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data11Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Benefit to be given towards Net Planned Area",
+          "name": "data12",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data12Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Net Planned Area of the scheme/colony",
+          "name": "data13",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data13Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Whether applied land is situated in a compact block?",
+          "name": "data14",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data14Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Area if any falling within proposed External Development Works site of the sector. ",
+          "name": "data15",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data15Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "In case of TOD, area falling within (a) 500mn distance (b) 500-800m distance",
+          "name": "data16",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data16Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Comments on Layout Plan (in plotted colonies) ",
+          "name": "data17",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data17Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Do you Recommend for grant of Licence",
+          "name": "data20",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+      ]
+    },
+    {
+      "businessService": "NewTL",
+      "role": "Assistant Draftsman",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DEPARTMENT_HQ_SITEVERIF",
+      "templates": [
+        {
+          "label": "Location of site viz Development Plan (Zone & Sector) ",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of publication of Development Plan",
+          "name": "data2",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data2Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Status of approval of road circulation of relevant sector",
+          "name": "data3",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data3Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Net Planned Area of Sector",
+          "name": "data4",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data4Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": " a)Permissible Limit for grant of licence (20% in case of GH, 3.5% in case of Commercial, 30 acres in case of AGH, 40% in case of DDJAY",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area/detail for which licences already stands granted",
+          "name": "data6",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data6Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Area/ detail of pending applications",
+          "name": "data7",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data7Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Area available for grant of licence within permissible limit",
+          "name": "data8",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data8Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "e) Balance area available after grant of present licence ",
+          "name": "data9",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data9Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "a) Total applied area of site verified by revenue officials ",
+          "name": "data10",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data10Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "b) Area falling within alignment of sector dividing road, green belt or service road proposed within green belt",
+          "name": "data11",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data11Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "c) Benefit to be given towards Net Planned Area",
+          "name": "data12",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data12Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "d) Net Planned Area of the scheme/colony",
+          "name": "data13",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data13Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Whether applied land is situated in a compact block?",
+          "name": "data14",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data14Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Area if any falling within proposed External Development Works site of the sector. ",
+          "name": "data15",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data15Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "In case of TOD, area falling within (a) 500mn distance (b) 500-800m distance",
+          "name": "data16",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data16Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Comments on Layout Plan (in plotted colonies) ",
+          "name": "data17",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data17Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "Do you Recommend for grant of Licence",
+          "name": "data20",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+      ]
     }
   ]
 }
