@@ -118,8 +118,8 @@ public class BPAService {
 	 * 
 	 * @param bpaRequest
 	 * @return
-	 * @throws JsonProcessingException 
-	 * @throws JsonMappingException 
+	 * @throws JsonProcessingException
+	 * @throws JsonMappingException
 	 */
 	public BPA create(BPARequest bpaRequest) throws JsonMappingException, JsonProcessingException {
 		RequestInfo requestInfo = bpaRequest.getRequestInfo();
@@ -148,19 +148,19 @@ public class BPAService {
 		BPADao bpaDao = new BPADao();
 		String data = mapper.writeValueAsString(bpaRequest.getBPA().getLandInfo());
 		JsonNode jsonNode = mapper.readTree(data);
-		bpaDao.setAdditionalDetails(jsonNode);		
+		bpaDao.setAdditionalDetails(jsonNode);
 		bpaDao.setTenantId(bpaRequest.getBPA().getTenantId());
 		bpaDao.setAuditDetails(bpaRequest.getBPA().getAuditDetails());
 		bpaDao.setId(bpaRequest.getBPA().getId());
 		bpaDao.setBusinessService(bpaRequest.getBPA().getBusinessService());
 		bpaDao.setApprovalDate(bpaRequest.getBPA().getApprovalDate());
 		bpaDao.setStatus(bpaRequest.getBPA().getStatus());
-		//bpaDao.setTenantId(tenantId);
+		// bpaDao.setTenantId(tenantId);
 		bpaDao.setEdcrNumber(bpaRequest.getBPA().getEdcrNumber());
 		bpaDao.setAccountId(bpaRequest.getBPA().getAccountId());
 		bpaDao.setLandId(bpaRequest.getBPA().getLandId());
-		bpaDao.setApplicationNo(bpaRequest.getBPA().getApplicationNo());	
-	//	String action = bpaRequest.getBPA().getWorkflow().getAction();
+		bpaDao.setApplicationNo(bpaRequest.getBPA().getApplicationNo());
+		// String action = bpaRequest.getBPA().getWorkflow().getAction();
 		bpaDao.setWorkflow(bpaRequest.getBPA().getWorkflow());
 		BPARequestDao bPARequestDao = new BPARequestDao();
 		bPARequestDao.setRequestInfo(requestInfo);
@@ -406,9 +406,10 @@ public class BPAService {
 	 * 
 	 * @param bpaRequest The update Request
 	 * @return Updated bpa
+	 * @throws JsonProcessingException
 	 */
 	@SuppressWarnings("unchecked")
-	public BPA update(BPARequest bpaRequest) {
+	public BPA update(BPARequest bpaRequest) throws JsonProcessingException {
 		RequestInfo requestInfo = bpaRequest.getRequestInfo();
 		String tenantId = bpaRequest.getBPA().getTenantId().split("\\.")[0];
 		Object mdmsData = util.mDMSCall(requestInfo, tenantId);
@@ -494,8 +495,27 @@ public class BPAService {
 		 * getStatus())) { enrichmentService.skipPayment(bpaRequest);
 		 * enrichmentService.postStatusEnrichment(bpaRequest); }
 		 */
-
-		repository.update(bpaRequest, workflowService.isStateUpdatable(bpa.getStatus(), businessService));
+		BPADao bpaDao = new BPADao();
+		String data = mapper.writeValueAsString(bpaRequest.getBPA().getLandInfo());
+		JsonNode jsonNode = mapper.readTree(data);
+		bpaDao.setAdditionalDetails(jsonNode);
+		bpaDao.setTenantId(bpaRequest.getBPA().getTenantId());
+		bpaDao.setAuditDetails(bpaRequest.getBPA().getAuditDetails());
+		bpaDao.setId(bpaRequest.getBPA().getId());
+		bpaDao.setBusinessService(bpaRequest.getBPA().getBusinessService());
+		bpaDao.setApprovalDate(bpaRequest.getBPA().getApprovalDate());
+		bpaDao.setStatus(bpaRequest.getBPA().getStatus());
+		// bpaDao.setTenantId(tenantId);
+		bpaDao.setEdcrNumber(bpaRequest.getBPA().getEdcrNumber());
+		bpaDao.setAccountId(bpaRequest.getBPA().getAccountId());
+		bpaDao.setLandId(bpaRequest.getBPA().getLandId());
+		bpaDao.setApplicationNo(bpaRequest.getBPA().getApplicationNo());
+		// String action = bpaRequest.getBPA().getWorkflow().getAction();
+		bpaDao.setWorkflow(bpaRequest.getBPA().getWorkflow());
+		BPARequestDao bPARequestDao = new BPARequestDao();
+		bPARequestDao.setRequestInfo(requestInfo);
+		bPARequestDao.setBPA(bpaDao);
+		repository.updateDao(bPARequestDao, workflowService.isStateUpdatable(bpa.getStatus(), businessService));
 		return bpaRequest.getBPA();
 
 	}

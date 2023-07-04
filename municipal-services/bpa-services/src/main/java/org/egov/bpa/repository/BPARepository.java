@@ -70,6 +70,26 @@ public class BPARepository {
 			producer.push(config.getUpdateWorkflowTopic(), new BPARequest(requestInfo, bpaForStatusUpdate));
 
 	}
+	public void updateDao(BPARequestDao bpaRequestDao, boolean isStateUpdatable) {
+		RequestInfo requestInfo = bpaRequestDao.getRequestInfo();
+
+		BPADao bpaForStatusUpdate = null;
+		BPADao bpaForUpdate = null;
+
+		BPADao bpa = bpaRequestDao.getBPA();
+
+		if (isStateUpdatable) {
+			bpaForUpdate = bpa;
+		} else {
+			bpaForStatusUpdate = bpa;
+		}
+		if (bpaForUpdate != null)
+			producer.push(config.getUpdateTopic(), new BPARequestDao(requestInfo, bpaForUpdate));
+
+		if (bpaForStatusUpdate != null)
+			producer.push(config.getUpdateWorkflowTopic(), new BPARequestDao(requestInfo, bpaForStatusUpdate));
+
+	}
 
 	/**
 	 * BPA search in database

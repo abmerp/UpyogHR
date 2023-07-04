@@ -59,7 +59,7 @@ public class BPAController {
 	}
 
 	@PostMapping(value = "/_update")
-	public ResponseEntity<BPAResponse> update(@Valid @RequestBody BPARequest bpaRequest) {
+	public ResponseEntity<BPAResponse> update(@Valid @RequestBody BPARequest bpaRequest) throws JsonProcessingException {
 		BPA bpa = bpaService.update(bpaRequest);
 		List<BPA> bpas = new ArrayList<BPA>();
 		bpas.add(bpa);
