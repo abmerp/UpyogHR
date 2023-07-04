@@ -401,24 +401,20 @@ public class TradeLicenseService {
 		List<TradeLicense> licenceResponse = null;
 		Map<String, Boolean> idToIsStateUpdatableMap = null;
 		TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
-		criteria.setApplicationNumber(licence.getApplicationNumber());	
-		List<TradeLicense> licences  = getLicensesWithOwnerInfo(criteria, tradeLicenseRequest.getRequestInfo());
+		criteria.setApplicationNumber(licence.getApplicationNumber());
+		List<TradeLicense> licences = getLicensesWithOwnerInfo(criteria, tradeLicenseRequest.getRequestInfo());
 		List<TradeLicense> licencesList = new ArrayList<>();
-		if(licence.getAction().equals("WITHDRAWL")) {
-			
-			for(TradeLicense tradeLicense : licences) {
+		if (licence.getAction().equals("WITHDRAWL")) {
+			for (TradeLicense tradeLicense : licences) {
 				tradeLicense.setAction(licence.getAction());
-				tradeLicense.setStatus(licence.getStatus());
+				// tradeLicense.setStatus(licence.getStatus());
 				licencesList.add(tradeLicense);
 			}
-			
-			tradeLicenseRequest.setLicenses(licencesList);
-			
-		}else {
-			
 
+			tradeLicenseRequest.setLicenses(licencesList);
+		}
 		TradeLicense.ApplicationTypeEnum applicationType = licence.getApplicationType();
-	//	List<TradeLicense> licenceResponse = null;
+		// List<TradeLicense> licenceResponse = null;
 		if (applicationType != null && (applicationType).toString().equals(TLConstants.APPLICATION_TYPE_RENEWAL)
 				&& licence.getAction().equalsIgnoreCase(TLConstants.TL_ACTION_INITIATE)
 				&& (licence.getStatus().equals(TLConstants.STATUS_APPROVED)
@@ -462,7 +458,7 @@ public class TradeLicenseService {
 			}
 			// Map<String, Difference> diffMap =
 			// diffService.getDifference(tradeLicenseRequest, searchResult);
-			 idToIsStateUpdatableMap = util.getIdToIsStateUpdatableMap(businessService, null);
+			idToIsStateUpdatableMap = util.getIdToIsStateUpdatableMap(businessService, null);
 
 			/*
 			 * call workflow service if it's enable else uses internal workflow process
@@ -507,15 +503,15 @@ public class TradeLicenseService {
 				break;
 			}
 			enrichmentService.postStatusEnrichment(tradeLicenseRequest, endStates, mdmsData);
-		//	userService.createUser(tradeLicenseRequest, false);
+			// userService.createUser(tradeLicenseRequest, false);
 //			if (businessServicefromPath.equalsIgnoreCase(businessService_BPA)) {
 //				calculationService.addCalculation(tradeLicenseRequest);
 //			}
 		}
-		}
-			repository.update(tradeLicenseRequest, idToIsStateUpdatableMap);
-			licenceResponse = tradeLicenseRequest.getLicenses();
-		
+
+		repository.update(tradeLicenseRequest, idToIsStateUpdatableMap);
+		licenceResponse = tradeLicenseRequest.getLicenses();
+
 		return licenceResponse;
 
 	}
@@ -634,5 +630,26 @@ public class TradeLicenseService {
 		}).collect(Collectors.toList());
 
 	}
-	
+
+//	public List<TradeLicense> updateWithdrawAction(TradeLicenseRequest tradeLicenseRequest,
+//			String businessServicefromPath) {
+//		TradeLicense licence = tradeLicenseRequest.getLicenses().get(0);
+//		TradeLicenseSearchCriteria criteria = new TradeLicenseSearchCriteria();
+//		criteria.setApplicationNumber(licence.getApplicationNumber());
+//		List<TradeLicense> licences = getLicensesWithOwnerInfo(criteria, tradeLicenseRequest.getRequestInfo());
+//		List<TradeLicense> licencesList = new ArrayList<>();
+//
+//		for (TradeLicense tradeLicense : licences) {
+//			tradeLicense.setAction(licence.getAction());
+//			// tradeLicense.setStatus(licence.getStatus());
+//			licencesList.add(tradeLicense);
+//		}
+//
+//		tradeLicenseRequest.setLicenses(licencesList);
+//
+//		List<TradeLicense> update = update(tradeLicenseRequest, businessServicefromPath);
+//		log.info("update" + update);
+//		return update;
+//
+//	}
 }
