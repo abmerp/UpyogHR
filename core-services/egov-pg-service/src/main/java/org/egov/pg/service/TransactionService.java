@@ -160,11 +160,11 @@ public class TransactionService {
 //        }
           
 		// Check if transaction is successful, amount matches etc
-//		if (validator.shouldGenerateReceipt(currentTxnStatus, newTxn)) {
-//			TransactionRequest request = TransactionRequest.builder().requestInfo(requestInfo).transaction(newTxn)
-//					.build();
-//			paymentsService.registerPayment(request);
-//		}
+		if (validator.shouldGenerateReceipt(currentTxnStatus, newTxn)) {
+			TransactionRequest request = TransactionRequest.builder().requestInfo(requestInfo).transaction(newTxn)
+					.build();
+			paymentsService.registerPayment(request);
+		}
 		 String grnStatus = requestParams.get(new String("grnStatus"));
 		TransactionDump dump = TransactionDump.builder().txnId(currentTxnStatus.getTxnId())
 				.txnResponse(newTxn.getResponseJson()).auditDetails(newTxn.getAuditDetails())
