@@ -143,28 +143,32 @@ public class TransactionService {
 
 		} else {
 			String transactionStatus = requestParams.get(new String("txnStatus"));
+			
 			if(transactionStatus.equals("Success")) {
 			currentTxnStatus.setTxnStatus(TxnStatusEnum.SUCCESS);
+			
 			}else {
 				currentTxnStatus.setTxnStatus(TxnStatusEnum.FAILURE);	
 			}
 			newTxn= currentTxnStatus;
 		}
+		
   //         newTxn = gatewayService.getLiveStatus(currentTxnStatus, requestParams);
 //
 //            // Enrich the new transaction status before persisting
            enrichmentService.enrichUpdateTransaction(new TransactionRequest(requestInfo, currentTxnStatus), newTxn);
 //        }
-
+          
 		// Check if transaction is successful, amount matches etc
-		if (validator.shouldGenerateReceipt(currentTxnStatus, newTxn)) {
-			TransactionRequest request = TransactionRequest.builder().requestInfo(requestInfo).transaction(newTxn)
-					.build();
-			paymentsService.registerPayment(request);
-		}
-
+//		if (validator.shouldGenerateReceipt(currentTxnStatus, newTxn)) {
+//			TransactionRequest request = TransactionRequest.builder().requestInfo(requestInfo).transaction(newTxn)
+//					.build();
+//			paymentsService.registerPayment(request);
+//		}
+		 String grnStatus = requestParams.get(new String("grnStatus"));
 		TransactionDump dump = TransactionDump.builder().txnId(currentTxnStatus.getTxnId())
-				.txnResponse(newTxn.getResponseJson()).auditDetails(newTxn.getAuditDetails()).build();
+				.txnResponse(newTxn.getResponseJson()).auditDetails(newTxn.getAuditDetails())
+				.grnStatus(grnStatus).build();
 
 		producer.push(appProperties.getUpdateTxnTopic(),
 				new org.egov.pg.models.TransactionRequest(requestInfo, newTxn));

@@ -21,6 +21,9 @@ public class TransactionDump {
 
     @JsonProperty("auditDetails")
     private AuditDetails auditDetails;
+    
+    @JsonProperty("grnStatus")
+    private String grnStatus;
 
 
 }

@@ -838,6 +838,7 @@ public class LicenseService {
 						url1.append(updatePath);
 						url1.append("?txnId=" + transactionId);
 						url1.append("&txnStatus=" + status);
+						url1.append("&grnStatus="+grn);	
 						Object paymentUpdate = serviceRequestRepository.fetchResult(url1, rP);
 						log.info("paymentUpdate\t" + paymentUpdate);
 						// -------------------payment update end-----------//

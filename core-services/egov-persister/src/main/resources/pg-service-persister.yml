@@ -132,7 +132,7 @@ serviceMaps:
     isTransaction: true
     queryMaps:
 
-    - query: UPDATE eg_pg_transactions_dump SET txn_response=?, last_modified_by=?, last_modified_time=? where txn_id=? ;
+    - query: UPDATE eg_pg_transactions_dump SET txn_response=?, last_modified_by=?, last_modified_time=?, grnstatus=? where txn_id=? ;
       basePath: TransactionDump
       jsonMaps:
 
@@ -143,5 +143,7 @@ serviceMaps:
       - jsonPath: $.TransactionDump.auditDetails.lastModifiedBy
 
       - jsonPath: $.TransactionDump.auditDetails.lastModifiedTime
+      
+      - jsonPath: $.TransactionDump.grnStatus
 
       - jsonPath: $.TransactionDump.txnId
