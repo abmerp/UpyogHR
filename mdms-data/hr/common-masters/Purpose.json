@@ -4,7 +4,7 @@
   "Purpose": [
      {
       "purposeId": 74,
-      "name": "AFFORDABLE HOUSING PROJECT",
+      "name": "Affordable Group Housing (AGH)",
       "purposeCode": "AGH",
       "caseType_id": 1,
       "description": "AFFORDABLE HOUSING PROJECT",
@@ -436,7 +436,7 @@
       "purposeCode": "CICS",
       "caseType_id": 1,
       "description": "Comm. Integrated",
-      "isActive": 1,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -463,7 +463,7 @@
       "purposeCode": "CPCS",
       "caseType_id":0,
       "description": "Comm. Plotted",
-      "isActive": false,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -1017,7 +1017,7 @@
     },
 		 {
       "purposeId": 2,
-      "name": "Integrated Component",
+      "name": "Commercial Integrated",
       "purposeCode": "CIRS",
       "caseType_id": 1,
       "description": "Comm. Integrated",
@@ -1568,11 +1568,156 @@
 	
     {
       "purposeId": 84,
-      "name": "Mixed Land Use (Commercial/Residential) in commercial zone",
+      "name": "Mixed Land Use in Comm Zone",
       "purposeCode": "MLU-CZ",
       "caseType_id": 1,
       "description": "Mixed Land use in Comm Zone with Minority Resi Use",
-      "isActive": 0,
+      "isActive": 1,
+      "edcPercentage": 25,
+      "idwPercentage": 25,
+      "plotTypeId": 2,
+      "isDisableForNewEntry": null,
+      "disableRemarks": null,
+      "scrutinyFeeCharges": "",
+      "licenseFeeCharges": "",
+      "externalDevelopmentCharges": "",
+      "conversionCharges": "",
+      "stateInfrastructureDevelopmentCharges": "",
+      "information":"",
+      "fars":[
+        {
+        "far":"2.50"
+      },
+      {
+        "far":"1.75" 
+      },      
+      {
+        "value3":"3.50" 
+      }
+    ],
+      "purposes":[
+        {
+          "purposeCode":"CPRS",
+          "maximumPermissible":"70"
+        },
+          {
+            "purposeCode":"RPL",
+            "maximumPermissible":"30"
+          }
+         
+      ],
+      "documents":[
+       
+            {
+              "documentName": "Copy of SPA/GPA/Board Resolution",
+              "isActive": true
+            },
+            {
+              "documentName": "Consent degree certificate of Architect",
+              "isActive": true
+            },
+            {
+              "documentName": "Consent degree certificate of Engineer",
+              "isActive": true
+            },
+            {
+              "documentName": "Collaboration document",
+              "isActive": true
+            },
+            {
+              "documentName": "Copy of spa/GPA/ board resolution to sign collaboration agreement on behalf of land owners",
+              "isActive": true
+            },
+            {
+              "documentName": "Upload SPA/GPA of authorized signatory on behalf of developer",
+              "isActive": true
+            },
+            {
+              "documentName": "Upload affidavit",
+              "isActive": true
+            },
+            {
+              "documentName": "Upload RERA registration",
+              "isActive": true
+            },
+            {
+              "documentName": "Court orders, if any, affecting land",
+              "isActive": true
+            },
+            {
+              "documentName": "Any insolvency/liquidation proceedings against Land Owner(s)/collaborating developer",
+              "isActive": true
+            },
+            {
+              "documentName": "Upload copy of Gift Deed/ Hibbanama",
+              "isActive": true
+            },
+            {
+              "documentName": "Land Schedule",
+              "isActive": true
+            },
+            {
+              "documentName": "Copy of Mutation",
+              "isActive": true
+            },
+            {
+              "documentName": "Copy of Jamabandhi",
+              "isActive": true
+            },
+            {
+              "documentName": "Details of Lease/Patta, if any",
+              "isActive": false
+            },
+            {
+              "documentName": "Copy of Shajra Plan",
+              "isActive": true
+            },
+            {
+              "documentName": "Add sales deed/ exchange deed",
+              "isActive": true
+            },
+          
+            {
+              "documentName": "Undertaking",
+              "isActive": true
+            },
+            {
+              "documentName": "Development Plan",
+              "isActive": true
+            },
+            {
+              "documentName": "Explanatory falsete",
+              "isActive": true
+            },
+            {
+              "documentName": "Guide Map",
+              "isActive": true
+            },
+            {
+              "documentName": "Indemnity Bond",
+              "isActive": true
+            },
+            {
+              "documentName": "Any other documents",
+              "isActive": false
+            },
+            {
+              "documentName": "Upload previously approved layout plan",
+              "isActive": true
+            },
+            {
+              "documentName": "enclose Self-certified falsen-Encumbrance Certificate",
+              "isActive": true
+            }
+          ]
+    },
+    {
+      "purposeId": 98,
+      "name": "Mixed Land Use in Resi Zone",
+      "purposeCode": "MLU-CZ",
+      "caseType_id": 1,
+      "description": "Mixed Land use in Resi Zone",
+      "isActive": 1,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -2011,7 +2156,7 @@
     },
 	{
       "purposeId": 94,
-      "name": "Plotted Component",
+      "name": "Commercial Plotted Colony",
       "purposeCode": "CPRS",
       "caseType_id": 1,
       "description": "Comm. Plotted",
@@ -2595,7 +2740,7 @@
       "purposeCode": "RHP",
       "caseType_id": 1,
       "description": "Retirement Housing Project",
-      "isActive": 0,
+      "isActive": 1,
       "edcPercentage": null,
       "idwPercentage": null,
       "plotTypeId": 2,
@@ -2729,7 +2874,7 @@
  
     {
       "purposeId": 91,
-      "name": "Transit Oriented Development (TOD)-Comm",
+      "name": "Transit Oriented Development  (TOD)",
       "purposeCode": "TODCOMM",
       "caseType_id": 1,
       "description": "Transit Oriented Development (TOD)-Comm",
@@ -2879,7 +3024,7 @@
       "purposeCode": "TODIT",
       "caseType_id": 1,
       "description": "Transit Oriented Development (TOD)-IT",
-      "isActive": 1,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
@@ -3252,7 +3397,7 @@
       "purposeCode": "TODGH",
       "caseType_id": 1,
       "description": "Transit Oriented Development (TOD)-RGH",
-      "isActive": 1,
+      "isActive": 0,
       "edcPercentage": 25,
       "idwPercentage": 25,
       "plotTypeId": 2,
