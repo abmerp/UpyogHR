@@ -52691,6 +52691,32 @@
             }
           ],
           "value": ""
+        },
+        {
+          "label": "I have read all the policies after examining the application.",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
         }
       ]
     },
@@ -53161,6 +53187,32 @@
             {
               "label": "",
               "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "I have read all the policies after examining the application.",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
               "type": "textarea",
               "disabled": "true",
               "placeholder": "Enter Remarks"
@@ -53643,6 +53695,32 @@
             }
           ],
           "value": ""
+        },
+        {
+          "label": "I have read all the policies after examining the application.",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
         }
       ]
     },
@@ -54119,6 +54197,32 @@
             }
           ],
           "value": ""
+        },
+        {
+          "label": "I have read all the policies after examining the application.",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
         }
       ]
     },
@@ -54589,6 +54693,32 @@
             {
               "label": "",
               "name": "data20Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        },
+        {
+          "label": "I have read all the policies after examining the application.",
+          "name": "data5",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data5Remarks",
               "type": "textarea",
               "disabled": "true",
               "placeholder": "Enter Remarks"
