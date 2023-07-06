@@ -14,6 +14,9 @@ public class DetailsofAppliedLand {
 	@JsonProperty("dgpsDetails")
 	private List<List<GISDeatils>> dgps;
 	
+	@JsonProperty("dgpsFileStoreId")
+	private String dgpsFileStoreId;
+	
 	@JsonProperty("DetailsAppliedLandPlot")
 	private DetailsAppliedLandPlot detailsAppliedLandPlot;
 	
