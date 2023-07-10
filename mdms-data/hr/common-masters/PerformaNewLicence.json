@@ -6,7 +6,7 @@
       "businessService": "NewTL",
       "role": "AO",
       "active": true,
-      "applicationStatus": "PENDING_AT_AO_AND_ATTORNEY_HQ_PRELIM",
+      "applicationStatus": "PENDING_AT_AO_AND_ATTORNEY_HQ_PRELIM",    
       "templates": [
         {
           "label": "Whether Scrutiny fee deposited by the applicant, is in order.",
@@ -309,7 +309,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -647,7 +647,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -985,7 +985,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -1323,7 +1323,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -1661,7 +1661,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -1999,7 +1999,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -2337,7 +2337,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -2675,7 +2675,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -3013,7 +3013,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -3351,7 +3351,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -3689,7 +3689,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -4027,7 +4027,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -4365,7 +4365,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -4703,7 +4703,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -5041,7 +5041,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -5379,7 +5379,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -5717,7 +5717,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -6055,7 +6055,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -6393,7 +6393,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -6731,7 +6731,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -7069,7 +7069,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -7407,7 +7407,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -7745,7 +7745,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -8083,7 +8083,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -8421,7 +8421,7 @@
           ]
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -8729,7 +8729,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -9037,7 +9037,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -9345,7 +9345,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -9653,7 +9653,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -9961,7 +9961,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -10269,7 +10269,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -10577,7 +10577,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -10885,7 +10885,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -11193,7 +11193,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -11501,7 +11501,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -11809,7 +11809,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -12117,7 +12117,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -12425,7 +12425,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -12733,7 +12733,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -13041,7 +13041,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -13379,7 +13379,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -13717,7 +13717,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -14055,7 +14055,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -14393,7 +14393,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -14731,7 +14731,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -15069,7 +15069,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -15317,7 +15317,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -15535,7 +15535,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -15753,7 +15753,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -15971,7 +15971,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -16189,7 +16189,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -16407,7 +16407,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -16625,7 +16625,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -16843,7 +16843,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -17061,7 +17061,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -17279,7 +17279,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -17377,7 +17377,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -17617,7 +17617,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -17715,7 +17715,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -17955,7 +17955,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -18053,7 +18053,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -18293,7 +18293,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -18391,7 +18391,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -18631,7 +18631,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -18729,7 +18729,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -18969,7 +18969,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -19067,7 +19067,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -19307,7 +19307,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -19405,7 +19405,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -19645,7 +19645,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -19743,7 +19743,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -19983,7 +19983,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -20081,7 +20081,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -20321,7 +20321,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -20419,7 +20419,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -20659,7 +20659,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -20757,7 +20757,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -20997,7 +20997,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -21095,7 +21095,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -21335,7 +21335,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -21433,7 +21433,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -21673,7 +21673,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -21771,7 +21771,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -22011,7 +22011,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -22109,7 +22109,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -22349,7 +22349,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -22447,7 +22447,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -22687,7 +22687,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -22785,7 +22785,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -23025,7 +23025,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -23123,7 +23123,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -23363,7 +23363,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -23461,7 +23461,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -23701,7 +23701,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -23799,7 +23799,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -24039,7 +24039,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -24137,7 +24137,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -24377,7 +24377,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -24475,7 +24475,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -24715,7 +24715,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -24813,7 +24813,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -25053,7 +25053,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -25151,7 +25151,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -25391,7 +25391,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -25489,7 +25489,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -25729,7 +25729,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -25827,7 +25827,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -26067,7 +26067,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -26165,7 +26165,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -26405,7 +26405,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -26503,7 +26503,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -26743,7 +26743,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -26841,7 +26841,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -27081,7 +27081,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -27179,7 +27179,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -27419,7 +27419,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -27517,7 +27517,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -27757,7 +27757,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -27855,7 +27855,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -28095,7 +28095,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -28193,7 +28193,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -28433,7 +28433,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -28531,7 +28531,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -28771,7 +28771,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -28869,7 +28869,7 @@
           "value": ""
         },
         {
-          "label": "Whether Layout plan of the colony (in the case of plotted colony) submitted showing the existing and proposed means of access to the colony, the width of streets, sizes and types of plots, sites reserved for open spaces, community buildings, schools etc. with area under each and in order.",
+            "label": "Whether layout plan of the colony submitted showing and Prima-facie comments on the layout plan submitted in case of plotted colony",
           "name": "data3",
           "type": "radio",
           "disabled": "true",
@@ -29109,7 +29109,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -29477,7 +29477,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -29845,7 +29845,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -30213,7 +30213,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -30581,7 +30581,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -30949,7 +30949,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -31317,7 +31317,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -31685,7 +31685,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -32053,7 +32053,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -32421,7 +32421,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -32789,7 +32789,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -33157,7 +33157,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -33525,7 +33525,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -33893,7 +33893,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -34261,7 +34261,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -34629,7 +34629,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -34997,7 +34997,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -35365,7 +35365,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -35733,7 +35733,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -36101,7 +36101,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -36469,7 +36469,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -36837,7 +36837,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -37205,7 +37205,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -37573,7 +37573,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -37941,7 +37941,7 @@
           "value": ""
         },
         {
-          "label": "Do you Recommend for grant of Licence",
+          "label": "Do you recommend for site report",
           "name": "data20",
           "type": "radio",
           "disabled": "true",
@@ -75835,6 +75835,1033 @@
           "value": ""
         }
       ]
-    }
+    },
+    {"businessService": "NewTL",
+      "role": "ATP",
+      "active": true,
+      "applicationStatus": "PENDING_AT_ATP_HQ_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "ATP HQ",
+      "active": true,
+      "applicationStatus": "PENDING_AT_ATP_HQ_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "ATP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "ATP HQ",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "ATP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_STP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "ATP HQ",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_STP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "ATP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_CTP_HR",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "ATP HQ",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_CTP_HR",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+				{"businessService": "NewTL",
+      "role": "ATP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "ATP HQ",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "DTP",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DTP_HQ_POST_HQ_VERIF_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "DISTRICT TOWN PLANNER",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DTP_HQ_POST_HQ_VERIF_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "District Town Planner",
+      "active": true,
+      "applicationStatus": "PENDING_AT_DTP_HQ_POST_HQ_VERIF_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "DTP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_STP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "DISTRICT TOWN PLANNER",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_STP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "District Town Planner",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_STP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "DTP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_CTP_HR",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "DISTRICT TOWN PLANNER",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_CTP_HR",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "District Town Planner",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_CTP_HR",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "DTP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "DISTRICT TOWN PLANNER",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "District Town Planner",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "CTP",
+      "active": true,
+      "applicationStatus": "PENDING_AT_CTP_HR_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		{"businessService": "NewTL",
+      "role": "CTP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+		
+		{"businessService": "NewTL",
+      "role": "STP",
+      "active": true,
+      "applicationStatus": "PENDING_AT_STP_HQ_PRELIM",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "STP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_FROM_CTP_HR",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		},
+			{"businessService": "NewTL",
+      "role": "STP",
+      "active": true,
+      "applicationStatus": "SENDBACK_TO_DEPARTMENT_PRELIM_FROM_DTCP",    
+      "templates": [
+        {
+          "label": "Do you recommend for site report",
+          "name": "data1",
+          "type": "radio",
+          "disabled": "true",
+          "options": [
+            {
+              "label": "Yes",
+              "value": "yes"
+            },
+            {
+              "label": "No",
+              "value": "no"
+            },
+            {
+              "label": "Not Applicable (NA)",
+              "value": "not applicable (NA)"
+            }
+          ],
+          "labels": [
+            {
+              "label": "",
+              "name": "data1Remarks",
+              "type": "textarea",
+              "disabled": "true",
+              "placeholder": "Enter Remarks"
+            }
+          ],
+          "value": ""
+        }
+		
+		]
+		}
   ]
 }
