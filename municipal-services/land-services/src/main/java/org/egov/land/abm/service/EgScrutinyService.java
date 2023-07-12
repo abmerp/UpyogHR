@@ -13,6 +13,7 @@ import org.egov.land.abm.contract.PerformaContract;
 import org.egov.land.abm.models.EgScrutinyInfoRequest;
 import org.egov.land.abm.models.EmployeeSecurtinyReport;
 import org.egov.land.abm.models.FiledDetails;
+import org.egov.land.abm.newservices.entity.Document;
 import org.egov.land.abm.newservices.entity.EgScrutiny;
 import org.egov.land.abm.newservices.entity.SecurityReport;
 import org.egov.land.abm.newservices.entity.UserComments;
@@ -39,7 +40,8 @@ public class EgScrutinyService {
 				egScrutinyInfoRequest.getEgScrutiny().getServiceId(),
 				egScrutinyInfoRequest.getEgScrutiny().getApplicationStatus(),
 				egScrutinyInfoRequest.getEgScrutiny().getEmployeeName(),
-				egScrutinyInfoRequest.getEgScrutiny().getRole(), egScrutinyInfoRequest.getEgScrutiny().getIsApproved());
+				egScrutinyInfoRequest.getEgScrutiny().getRole(), egScrutinyInfoRequest.getEgScrutiny().getIsApproved()
+				);
 
 		if (egScrutiny != null) {
 			egScrutiny = egScrutinyRepo.isExistsByApplicationIdAndFieldIdLAndUseridAndServiceId(
@@ -54,6 +56,9 @@ public class EgScrutinyService {
 			egScrutiny.setFieldValue(egScrutinyInfoRequest.getEgScrutiny().getFieldValue());
 			egScrutiny.setIsLOIPart(egScrutinyInfoRequest.getEgScrutiny().getIsLOIPart());
 			egScrutiny.setTs(new java.sql.Time(new Date().getTime()));
+			Document doc=new Document();
+			doc.setAnyOtherdoc(egScrutinyInfoRequest.getEgScrutiny().getDocumentId().getAnyOtherdoc());
+			egScrutiny.setDocumentId(doc);
 			return egScrutinyRepo.save(egScrutiny);
 		} else {
 			egScrutinyInfoRequest.getEgScrutiny().setTs(new java.sql.Time(new Date().getTime()));

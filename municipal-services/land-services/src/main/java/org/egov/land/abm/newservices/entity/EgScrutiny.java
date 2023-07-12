@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -65,8 +67,10 @@ public class EgScrutiny implements Serializable {
 	@Column(name = "IsLOIPart")
 	private Boolean isLOIPart;
 
-	@Column(name = "document_id")
-	private String documentId;
+	@Type(type = "jsonb")
+	@Column(columnDefinition = "jsonb")
+	// @Column(name = "document_id")
+	private Document documentId;
 
 	@Column(name = "ts")
 	private Time ts;
@@ -82,6 +86,5 @@ public class EgScrutiny implements Serializable {
 	private String employeeName;
 	@Column(name = "application_status")
 	private String applicationStatus;
-	
-	
+
 }
