@@ -14,4 +14,5 @@ public class FiledDetails {
 	private String value;
 	private String remarks;
 	private String isApproved;
+	private String docId;
 }

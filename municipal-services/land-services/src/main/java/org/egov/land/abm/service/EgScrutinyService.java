@@ -309,6 +309,7 @@ public class EgScrutinyService {
 			object.setApplicationStatus(egScrutiny2.getApplicationStatus());
 			object.setId(egScrutiny2.getId());
 			object.setTs(egScrutiny2.getTs());
+			
 			int i = 0;
 			for (EgScrutiny egScrutiny3 : egScrutiny) {
 				if (egScrutiny3.getApplicationStatus().equalsIgnoreCase(object.getApplicationStatus())
@@ -319,6 +320,7 @@ public class EgScrutinyService {
 					comments2.setRemarks(egScrutiny3.getComment());
 					comments2.setIsApproved(egScrutiny3.getIsApproved());
 					comments2.setValue(egScrutiny3.getFieldValue());
+					comments2.setDocId(egScrutiny3.getDocumentId().getAnyOtherdoc());
 //					if (egScrutiny3.getIsApproved().equalsIgnoreCase("In Order"))
 //						approvedfiledDetails.add(comments2);
 //					else if (egScrutiny3.getIsApproved().equalsIgnoreCase("Not In Order"))
