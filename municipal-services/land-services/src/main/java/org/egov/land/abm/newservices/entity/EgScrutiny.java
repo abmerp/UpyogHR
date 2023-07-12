@@ -66,7 +66,7 @@ public class EgScrutiny implements Serializable {
 	private Boolean isLOIPart;
 
 	@Column(name = "document_id")
-	private Document documentId;
+	private String documentId;
 
 	@Column(name = "ts")
 	private Time ts;
