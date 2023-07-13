@@ -125,8 +125,7 @@ public class NewLicensePDF {
 			throws MalformedURLException, IOException, DocumentException {
 
 		// boolean flag = true;
-		Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
-		Anchor anchor = new Anchor("Click Here to view document", link);
+		
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
 				requestInfo);
 		String tenantId = "hr";
@@ -964,12 +963,13 @@ public class NewLicensePDF {
 
 						table.addCell("Encumburance Doc");
 						if (licenseDetails.getLandSchedule().getEncumburanceDoc() != null) {
-							String  fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburanceDoc(),
+							String fileStore1 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburanceDoc(),
 									tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore1);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor2 = new Anchor("Click Here to view document", link);
+							anchor2.setReference(fileStore1);
+							table.addCell(anchor2);
 						} else {
 							table.addCell("");
 						}
@@ -982,12 +982,13 @@ public class NewLicensePDF {
 
 						table.addCell("Litigation Doc");
 						if (licenseDetails.getLandSchedule().getLitigationDoc() != null) {
-							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getLitigationDoc(),
+							String fileStore2 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getLitigationDoc(),
 									tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore2);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor1 = new Anchor("Click Here to view document", link);
+							anchor1.setReference(fileStore2);
+							table.addCell(anchor1);
 						} else {
 							table.addCell("");
 						}
@@ -1000,12 +1001,13 @@ public class NewLicensePDF {
 
 						table.addCell("Court Doc");
 						if (licenseDetails.getLandSchedule().getCourtDoc() != null) {
-							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getCourtDoc(),
+							String fileStore3 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getCourtDoc(),
 									tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore3);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor3 = new Anchor("Click Here to view document", link);
+							anchor3.setReference(fileStore3);
+							table.addCell(anchor3);
 						} else {
 							table.addCell("");
 						}
@@ -1018,12 +1020,13 @@ public class NewLicensePDF {
 
 						table.addCell("Insolvency Doc");
 						if (licenseDetails.getLandSchedule().getInsolvencyDoc() != null) {
-							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getInsolvencyDoc(),
+							String fileStore4 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getInsolvencyDoc(),
 									tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore4);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor4 = new Anchor("Click Here to view document", link);
+							anchor4.setReference(fileStore4);
+							table.addCell(anchor4);
 						} else {
 							table.addCell("");
 						}
@@ -1050,12 +1053,13 @@ public class NewLicensePDF {
 
 						table.addCell("AppliedLandDoc");
 						if (licenseDetails.getLandSchedule().getAppliedLandDoc() != null) {
-							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getAppliedLandDoc(),
+							String fileStore5 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getAppliedLandDoc(),
 									tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore5);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor5 = new Anchor("Click Here to view document", link);
+							anchor5.setReference(fileStore5);
+							table.addCell(anchor5);
 						} else {
 							table.addCell("");
 						}
@@ -1207,12 +1211,13 @@ public class NewLicensePDF {
 
 						table.addCell("GiftDeedHibbanama");
 						if (licenseDetails.getLandSchedule().getGiftDeedHibbanama() != null) {
-							String fileStore = fileStoreMethod
+							String fileStore6 = fileStoreMethod
 									.fileStore(licenseDetails.getLandSchedule().getGiftDeedHibbanama(), tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore6);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor6 = new Anchor("Click Here to view document", link);
+							anchor6.setReference(fileStore6);
+							table.addCell(anchor6);
 						} else {
 							table.addCell("");
 						}
@@ -1264,12 +1269,13 @@ public class NewLicensePDF {
 
 						table.addCell("Available Existing ApproachDoc");
 						if (licenseDetails.getLandSchedule().getAvailableExistingApproachDoc() != null) {
-							String fileStore = fileStoreMethod.fileStore(
+							String fileStore7 = fileStoreMethod.fileStore(
 									licenseDetails.getLandSchedule().getAvailableExistingApproachDoc(), tenantId);
-							log.info("fileStore:" + fileStore);
-
-							anchor.setReference(fileStore);
-							table.addCell(anchor);
+							log.info("fileStore:" + fileStore7);
+							Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+							Anchor anchor7 = new Anchor("Click Here to view document", link);
+							anchor7.setReference(fileStore7);
+							table.addCell(anchor7);
 						} else {
 							table.addCell("");
 						}
@@ -1301,24 +1307,26 @@ public class NewLicensePDF {
 
 							table.addCell("LandSchedule");
 							if (licenseDetails.getLandSchedule().getLandSchedule() != null) {
-								String fileStore = fileStoreMethod
+								String fileStore8 = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getLandSchedule(), tenantId);
-								log.info("fileStore:" + fileStore);
-
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore8);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor8 = new Anchor("Click Here to view document", link);
+								anchor8.setReference(fileStore8);
+								table.addCell(anchor8);
 							} else {
 								table.addCell("");
 							}
 
 							table.addCell("Mutation");
 							if (licenseDetails.getLandSchedule().getMutation() != null) {
-								String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getMutation(),
+								String fileStore9 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getMutation(),
 										tenantId);
-								log.info("fileStore:" + fileStore);
-
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore9);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor9 = new Anchor("Click Here to view document", link);
+								anchor9.setReference(fileStore9);
+								table.addCell(anchor9);
 							} else {
 								table.addCell("");
 							}
@@ -1326,33 +1334,39 @@ public class NewLicensePDF {
 							table.addCell("Jambandhi");
 
 							if (licenseDetails.getLandSchedule().getJambandhi() != null) {
-								String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getJambandhi(),
+								String fileStore10 = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getJambandhi(),
 										tenantId);
-								log.info("fileStore:" + fileStore);
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore10);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor10 = new Anchor("Click Here to view document", link);
+								anchor10.setReference(fileStore10); 
+								table.addCell(anchor10);
 							} else {
 								table.addCell("");
 							}
 
 							table.addCell("Details Of Lease");
 							if (licenseDetails.getLandSchedule().getDetailsOfLease() != null) {
-								String fileStore = fileStoreMethod
+								String fileStore11 = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getDetailsOfLease(), tenantId);
-								log.info("fileStore:" + fileStore);
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore11);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor11 = new Anchor("Click Here to view document", link);
+								anchor11.setReference(fileStore11);
+								table.addCell(anchor11);
 							} else {
 								table.addCell("");
 							}
 
 							table.addCell("Add Sales Deed");
 							if (licenseDetails.getLandSchedule().getAddSalesDeed() != null) {
-								String fileStore = fileStoreMethod
+								String fileStore12 = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getAddSalesDeed(), tenantId);
-								log.info("fileStore:" + fileStore);
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore12);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor12 = new Anchor("Click Here to view document", link);
+								anchor12.setReference(fileStore12);
+								table.addCell(anchor12);
 							} else {
 								table.addCell("");
 							}
@@ -1362,24 +1376,26 @@ public class NewLicensePDF {
 
 							table.addCell("Copy of SpaBoard");
 							if (licenseDetails.getLandSchedule().getCopyofSpaBoard() != null) {
-								String fileStore = fileStoreMethod
+								String fileStore13 = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getCopyofSpaBoard(), tenantId);
-								log.info("fileStore:" + fileStore);
-
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore13);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor13 = new Anchor("Click Here to view document", link);
+								anchor13.setReference(fileStore13);
+								table.addCell(anchor13);
 							} else {
 								table.addCell("");
 							}
 
 							table.addCell("Copy Of ShajraPlan");
 							if (licenseDetails.getLandSchedule().getCopyOfShajraPlan() != null) {
-								String fileStore = fileStoreMethod
+								String fileStore14 = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getCopyOfShajraPlan(), tenantId);
-								log.info("fileStore:" + fileStore);
-
-								anchor.setReference(fileStore);
-								table.addCell(anchor);
+								log.info("fileStore:" + fileStore14);
+								Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+								Anchor anchor14 = new Anchor("Click Here to view document", link);
+								anchor14.setReference(fileStore14);
+								table.addCell(anchor14);
 							} else {
 								table.addCell("");
 							}
@@ -1699,12 +1715,13 @@ public class NewLicensePDF {
 								table.addCell("Layout PlanPdf");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getLayoutPlanPdf() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore15 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getLayoutPlanPdf(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore15);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor15 = new Anchor("Click Here to view document", link);
+									anchor15.setReference(fileStore15);
+									table.addCell(anchor15);
 								} else {
 									table.addCell("");
 								}
@@ -1712,12 +1729,13 @@ public class NewLicensePDF {
 								table.addCell("Layout PlanDxf");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getLayoutPlanDxf() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore16 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getLayoutPlanDxf(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore16);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor16 = new Anchor("Click Here to view document", link);
+									anchor16.setReference(fileStore16);
+									table.addCell(anchor16);
 								} else {
 									table.addCell("");
 								}
@@ -1725,12 +1743,13 @@ public class NewLicensePDF {
 								table.addCell("Undertaking");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getUndertaking() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore17 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getUndertaking(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore17);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor17 = new Anchor("Click Here to view document", link);
+									anchor17.setReference(fileStore17);
+									table.addCell(anchor17);
 								} else {
 									table.addCell("");
 								}
@@ -1738,12 +1757,13 @@ public class NewLicensePDF {
 								table.addCell("DevelopmentPlan");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getDevelopmentPlan() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore18 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getDevelopmentPlan(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore18);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor18 = new Anchor("Click Here to view document", link);
+									anchor18.setReference(fileStore18);
+									table.addCell(anchor18);
 								} else {
 									table.addCell("");
 								}
@@ -1751,12 +1771,13 @@ public class NewLicensePDF {
 								table.addCell("SectoralPlan");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getSectoralPlan() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore19 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getSectoralPlan(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore19);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor19 = new Anchor("Click Here to view document", link);
+									anchor19.setReference(fileStore19);
+									table.addCell(anchor19);
 								} else {
 									table.addCell("");
 								}
@@ -1764,12 +1785,13 @@ public class NewLicensePDF {
 								table.addCell("Explanatory Note");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getExplanatoryNote() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore20 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getExplanatoryNote(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore20);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor20 = new Anchor("Click Here to view document", link);
+									anchor20.setReference(fileStore20);
+									table.addCell(anchor20);
 								} else {
 									table.addCell("");
 								}
@@ -1777,12 +1799,13 @@ public class NewLicensePDF {
 								table.addCell("GuideMap");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getGuideMap() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore21 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getGuideMap(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore21);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor21 = new Anchor("Click Here to view document", link);
+									anchor21.setReference(fileStore21);
+									table.addCell(anchor21);
 								} else {
 									table.addCell("");
 								}
@@ -1790,12 +1813,13 @@ public class NewLicensePDF {
 								table.addCell("Idemnity BondDoc");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getIdemnityBondDoc() != null) {
-									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore22 = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getIdemnityBondDoc(), tenantId);
-									log.info("fileStore:" + fileStore);
-
-									anchor.setReference(fileStore);
-									table.addCell(anchor);
+									log.info("fileStore:" + fileStore22);
+									Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+									Anchor anchor22 = new Anchor("Click Here to view document", link);
+									anchor22.setReference(fileStore22);
+									table.addCell(anchor22);
 								} else {
 									table.addCell("");
 								}

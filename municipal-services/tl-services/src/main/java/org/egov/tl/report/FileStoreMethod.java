@@ -87,7 +87,7 @@ public class FileStoreMethod {
 				gh = doc1.get("fileStoreIds").get(0).get("url").asText();
 
 			} else {
-				System.out.println("API call failed with response code: " + responseCode);
+				log.info("API call failed with response code: " + responseCode);
 			}
 
 			connection.disconnect();
