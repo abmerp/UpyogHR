@@ -38,8 +38,8 @@ public class FileStoreMethod {
 	public String fileStore(String id, String tenantId) throws DocumentException {
 		String r = null;
 		String apiResponse = null;
-        String gh = null;
-        Document doc = new Document(PageSize.A4.rotate());
+		String gh = null;
+		Document doc = new Document(PageSize.A4.rotate());
 		StringBuilder fileStoreUrl = new StringBuilder(fileStoreHost);
 		fileStoreUrl.append(fileStoreContextPath);
 		fileStoreUrl.append("?tenantId=" + tenantId);
@@ -65,7 +65,7 @@ public class FileStoreMethod {
 				reader.close();
 
 				apiResponse = response.toString();
-				System.out.println(apiResponse);
+//				System.out.println(apiResponse);
 
 				@SuppressWarnings("deprecation")
 				JsonParser parser = new JsonParser();
@@ -77,41 +77,15 @@ public class FileStoreMethod {
 						.getAsString();
 
 				log.info("URL: " + r);
-//                   
-//                   Link link = new Link("Click here to access the document", PdfAction.createURI(ORIGINAL_LINK));
-//                   link.setFontColor(DeviceGray.BLACK);
 
-				// String hyperlink = "<a href=\"" + r + "\">" + r + "</a>";
-				String hyperlink = "<html><a href=\"" + r + "\">" + r +" style"+"="+"color:red"+ "</a></html>";
+				String hyperlink = "<html><a href=\"" + r + "\">" + r + "</a></html>";
 				log.info("Hyperlink: " + hyperlink);
 
-  //                 Anchor anchor = new Anchor("Click Here");
-//                   Anchor anchor1 = new Anchor("Click Here1");
-//                   Anchor anchor2 = new Anchor("Click Here2");
-//                   
-//                  
- //                  anchor.setReference(r);
-//                   anchor1.setReference(r);
-//                   anchor2.setReference(r);
-//                   Paragraph g = new Paragraph();
-//                   Paragraph g1 = new Paragraph();
-//                  g.add(anchor1);
-//                  g1.add(anchor2);
-//                 doc.add(anchor);
-//                  doc.add(g);
-//                  doc.add(g1 );
-//                 ObjectMapper objectMapper = new ObjectMapper();
-//                   JsonNode doc1 = objectMapper.readTree(apiResponse);
-//                   
-//                   String gh = doc1.get("fileStoreIds").get(0).get("url").asText();
-//                   
-//                
-//                   System.out.println(gh);
-				 ObjectMapper objectMapper = new ObjectMapper();
-               JsonNode doc1 = objectMapper.readTree(apiResponse);
-               
-                gh = doc1.get("fileStoreIds").get(0).get("url").asText();
-                
+				ObjectMapper objectMapper = new ObjectMapper();
+				JsonNode doc1 = objectMapper.readTree(apiResponse);
+
+				gh = doc1.get("fileStoreIds").get(0).get("url").asText();
+
 			} else {
 				System.out.println("API call failed with response code: " + responseCode);
 			}
@@ -124,20 +98,5 @@ public class FileStoreMethod {
 		return gh;
 
 	}
-//	public static void main(String[] args) throws FileNotFoundException, DocumentException {
-//
-//	    Document document = new Document(PageSize.A4); 
-//	    PdfWriter.getInstance(document, new FileOutputStream("test3.pdf"));
-//	    
-//	    //Open the document before adding any content
-//	    document.open();
-//	    
-//	    Font myFonColor = FontFactory.getFont(FontFactory.TIMES_ROMAN, 24, BaseColor.ORANGE);
-//	    Paragraph paragraph = new Paragraph("BE THE CODER", myFonColor);
-//	    document.add(paragraph);
-//	    
-//	    //Close the document
-//	    document.close();
-//	  }
 
 }

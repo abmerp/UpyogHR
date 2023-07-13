@@ -77,10 +77,10 @@ public class NewLicensePDF {
 	private static Font blackFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, BaseColor.BLACK);
 
 //    private static String hindifont = "D:\\Bikash_UPYOG\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
-//	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
-	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
+	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+//	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
 //	private static String hindifont ="D:\\Workspace_27-04-2023\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\\\FreeSans.ttf";
-	String fileStore = null;
+
 	@Autowired
 	BPANotificationUtil bPANotificationUtil;
 	@Autowired
@@ -964,7 +964,7 @@ public class NewLicensePDF {
 
 						table.addCell("Encumburance Doc");
 						if (licenseDetails.getLandSchedule().getEncumburanceDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburanceDoc(),
+							String  fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburanceDoc(),
 									tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -982,7 +982,7 @@ public class NewLicensePDF {
 
 						table.addCell("Litigation Doc");
 						if (licenseDetails.getLandSchedule().getLitigationDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getLitigationDoc(),
+							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getLitigationDoc(),
 									tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -1000,7 +1000,7 @@ public class NewLicensePDF {
 
 						table.addCell("Court Doc");
 						if (licenseDetails.getLandSchedule().getCourtDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getCourtDoc(),
+							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getCourtDoc(),
 									tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -1018,7 +1018,7 @@ public class NewLicensePDF {
 
 						table.addCell("Insolvency Doc");
 						if (licenseDetails.getLandSchedule().getInsolvencyDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getInsolvencyDoc(),
+							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getInsolvencyDoc(),
 									tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -1050,7 +1050,7 @@ public class NewLicensePDF {
 
 						table.addCell("AppliedLandDoc");
 						if (licenseDetails.getLandSchedule().getAppliedLandDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getAppliedLandDoc(),
+							String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getAppliedLandDoc(),
 									tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -1207,7 +1207,7 @@ public class NewLicensePDF {
 
 						table.addCell("GiftDeedHibbanama");
 						if (licenseDetails.getLandSchedule().getGiftDeedHibbanama() != null) {
-							fileStore = fileStoreMethod
+							String fileStore = fileStoreMethod
 									.fileStore(licenseDetails.getLandSchedule().getGiftDeedHibbanama(), tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -1264,7 +1264,7 @@ public class NewLicensePDF {
 
 						table.addCell("Available Existing ApproachDoc");
 						if (licenseDetails.getLandSchedule().getAvailableExistingApproachDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(
+							String fileStore = fileStoreMethod.fileStore(
 									licenseDetails.getLandSchedule().getAvailableExistingApproachDoc(), tenantId);
 							log.info("fileStore:" + fileStore);
 
@@ -1301,7 +1301,7 @@ public class NewLicensePDF {
 
 							table.addCell("LandSchedule");
 							if (licenseDetails.getLandSchedule().getLandSchedule() != null) {
-								fileStore = fileStoreMethod
+								String fileStore = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getLandSchedule(), tenantId);
 								log.info("fileStore:" + fileStore);
 
@@ -1313,7 +1313,7 @@ public class NewLicensePDF {
 
 							table.addCell("Mutation");
 							if (licenseDetails.getLandSchedule().getMutation() != null) {
-								fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getMutation(),
+								String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getMutation(),
 										tenantId);
 								log.info("fileStore:" + fileStore);
 
@@ -1326,7 +1326,7 @@ public class NewLicensePDF {
 							table.addCell("Jambandhi");
 
 							if (licenseDetails.getLandSchedule().getJambandhi() != null) {
-								fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getJambandhi(),
+								String fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getJambandhi(),
 										tenantId);
 								log.info("fileStore:" + fileStore);
 								anchor.setReference(fileStore);
@@ -1337,7 +1337,7 @@ public class NewLicensePDF {
 
 							table.addCell("Details Of Lease");
 							if (licenseDetails.getLandSchedule().getDetailsOfLease() != null) {
-								fileStore = fileStoreMethod
+								String fileStore = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getDetailsOfLease(), tenantId);
 								log.info("fileStore:" + fileStore);
 								anchor.setReference(fileStore);
@@ -1348,7 +1348,7 @@ public class NewLicensePDF {
 
 							table.addCell("Add Sales Deed");
 							if (licenseDetails.getLandSchedule().getAddSalesDeed() != null) {
-								fileStore = fileStoreMethod
+								String fileStore = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getAddSalesDeed(), tenantId);
 								log.info("fileStore:" + fileStore);
 								anchor.setReference(fileStore);
@@ -1362,7 +1362,7 @@ public class NewLicensePDF {
 
 							table.addCell("Copy of SpaBoard");
 							if (licenseDetails.getLandSchedule().getCopyofSpaBoard() != null) {
-								fileStore = fileStoreMethod
+								String fileStore = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getCopyofSpaBoard(), tenantId);
 								log.info("fileStore:" + fileStore);
 
@@ -1374,7 +1374,7 @@ public class NewLicensePDF {
 
 							table.addCell("Copy Of ShajraPlan");
 							if (licenseDetails.getLandSchedule().getCopyOfShajraPlan() != null) {
-								fileStore = fileStoreMethod
+								String fileStore = fileStoreMethod
 										.fileStore(licenseDetails.getLandSchedule().getCopyOfShajraPlan(), tenantId);
 								log.info("fileStore:" + fileStore);
 
@@ -1699,7 +1699,7 @@ public class NewLicensePDF {
 								table.addCell("Layout PlanPdf");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getLayoutPlanPdf() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getLayoutPlanPdf(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1712,7 +1712,7 @@ public class NewLicensePDF {
 								table.addCell("Layout PlanDxf");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getLayoutPlanDxf() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getLayoutPlanDxf(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1725,7 +1725,7 @@ public class NewLicensePDF {
 								table.addCell("Undertaking");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getUndertaking() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getUndertaking(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1738,7 +1738,7 @@ public class NewLicensePDF {
 								table.addCell("DevelopmentPlan");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getDevelopmentPlan() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getDevelopmentPlan(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1751,7 +1751,7 @@ public class NewLicensePDF {
 								table.addCell("SectoralPlan");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getSectoralPlan() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getSectoralPlan(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1764,7 +1764,7 @@ public class NewLicensePDF {
 								table.addCell("Explanatory Note");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getExplanatoryNote() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getExplanatoryNote(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1777,7 +1777,7 @@ public class NewLicensePDF {
 								table.addCell("GuideMap");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getGuideMap() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getGuideMap(), tenantId);
 									log.info("fileStore:" + fileStore);
 
@@ -1790,7 +1790,7 @@ public class NewLicensePDF {
 								table.addCell("Idemnity BondDoc");
 								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
 										.getIdemnityBondDoc() != null) {
-									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+									String fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
 											.getDetailsAppliedLandPlot().getIdemnityBondDoc(), tenantId);
 									log.info("fileStore:" + fileStore);
 

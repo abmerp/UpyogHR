@@ -338,8 +338,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE4));
 
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_100))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_1260)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1260)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
 					feesTypeCalculationDto
@@ -351,10 +350,8 @@ public class CalculatorImpl implements Calculator {
 							acre + "(total applied Area in acre)" + "*" + RATE104 + "(Rate)" + "*" + RATE4 + "(Rate)");
 
 					feesTypeCalculationDto.setConversionFormula(
-							"(" + PERCENTAGE1 + "(Multiplier)" + "*" + AREA + "(acre to sq. mt)" + "*" + acre
-									+ "(total applied Area in acre)" + "*" + RATE_100 + "(Rate)" + ")" + "+" + "("
-									+ AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ PERCENTAGE2 + "(Multiplier)" + "*" + RATE_1260 + "(Rate)" + ")");
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1260 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(AREA + "(acre to sq. mt)" + "*" + RATE_1000 + "(Rate)"
 							+ "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
 
@@ -367,8 +364,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE4));
 
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_100))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_1260)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1260)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							AREA.multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
 					feesTypeCalculationDto
@@ -380,10 +376,8 @@ public class CalculatorImpl implements Calculator {
 							acre + "(total applied Area in acre)" + "*" + RATE104 + "(Rate)" + "*" + RATE4 + "(Rate)");
 
 					feesTypeCalculationDto.setConversionFormula(
-							"(" + PERCENTAGE1 + "(Multiplier)" + "*" + AREA + "(acre to sq. mt)" + "*" + acre
-									+ "(total applied Area in acre)" + "*" + RATE_100 + "(Rate)" + ")" + "+" + "("
-									+ AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ PERCENTAGE2 + "(Multiplier)" + "*" + RATE_1260 + "(Rate)" + ")");
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1260 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(AREA + "(acre to sq. mt)" + "*" + RATE_1000 + "(Rate)"
 							+ "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
 					break;
@@ -394,9 +388,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE1.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE467));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_100))
-									.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_158))
-									.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_1260)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1260)));
 
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
@@ -407,12 +399,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE1 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + PART1 + "(Multiplier)" + "*" + AREA
-							+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_100
-							+ "(Rate)" + ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + PART2 + "(Multiplier)" + "*" + RATE_158 + "(Rate)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + PART3 + "(Multiplier)" + "*" + RATE_1260 + "(Rate)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1260 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_1000
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -425,9 +414,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE1.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE467));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_100))
-									.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_158))
-									.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_1260)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1260)));
 
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_1000));
@@ -438,12 +425,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE1 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + PART1 + "(Multiplier)" + "*" + AREA
-							+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_100
-							+ "(Rate)" + ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + PART2 + "(Multiplier)" + "*" + RATE_158 + "(Rate)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + PART3 + "(Multiplier)" + "*" + RATE_1260 + "(Rate)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1260 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_1000
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -711,8 +695,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE09).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_80))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_1050)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -724,9 +707,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE09 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ PERCENTAGE1 + "(Multiplier)" + "*" + RATE_80 + "(Rate)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ PERCENTAGE2 + "(Multiplier)" + "*" + RATE_1050 + "(Rate)" + ")");
+									+ RATE_1260 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
 							+ "(total applied Area in acre)" + "*" + RATE_750 + "(Rate)" + "*"
 							+ stateInfrastructureDevelopmentCharges + "(FAR)" + ")" + "/" + RATE7 + "(Rate)");
@@ -734,41 +715,38 @@ public class CalculatorImpl implements Calculator {
 					break;
 				case PURPOSE_CPRS:
 					feesTypeCalculationDto
-							.setScrutinyFeeChargesCal(areaInSqmtr(acre).multiply(scrutinyFeeCharges).multiply(RATE10));
-					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE235.multiply(acre));
-					feesTypeCalculationDto
-							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE09).multiply(RATE4));
-					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_80))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_1050)));
-					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
-							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
-					feesTypeCalculationDto
-							.setScrutinyFormula(AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-									+ "*" + RATE10 + "(Rate)" + "*" + scrutinyFeeCharges + "(FAR)");
-					feesTypeCalculationDto
-							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE235 + "(Rate)");
-					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
-							+ "(Rate)" + "*" + RATE09 + "(Rate)" + "*" + RATE4 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula(
-							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ PERCENTAGE1 + "(Multiplier)" + "*" + RATE_80 + "(Rate)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ PERCENTAGE2 + "(Multiplier)" + "*" + RATE_1050 + "(Rate)" + ")");
-					feesTypeCalculationDto.setStateInfraFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_750 + "(Rate)" + "*"
-							+ stateInfrastructureDevelopmentCharges + "(FAR)" + ")" + "/" + RATE7 + "(Rate)");
+					.setScrutinyFeeChargesCal(areaInSqmtr(acre).multiply(scrutinyFeeCharges).multiply(RATE10));
+			feesTypeCalculationDto.setLicenseFeeChargesCal(RATE235.multiply(acre));
+			feesTypeCalculationDto
+					.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE09).multiply(RATE4));
+			feesTypeCalculationDto
+					.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
+			feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
+					areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
+			feesTypeCalculationDto
+					.setScrutinyFormula(AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
+							+ "*" + RATE10 + "(Rate)" + "*" + scrutinyFeeCharges + "(FAR)");
+			feesTypeCalculationDto
+					.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE235 + "(Rate)");
+			feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
+					+ "(Rate)" + "*" + RATE09 + "(Rate)" + "*" + RATE4 + "(Rate)");
+			feesTypeCalculationDto.setConversionFormula(
+					"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+							+ RATE_1050 + "(Rate)" + ")");
+			feesTypeCalculationDto.setStateInfraFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
+					+ "(total applied Area in acre)" + "*" + RATE_750 + "(Rate)" + "*"
+					+ stateInfrastructureDevelopmentCharges + "(FAR)" + ")" + "/" + RATE7 + "(Rate)");
 
-					break;
+			break;
+					
 				case PURPOSE_CICS:
 					feesTypeCalculationDto
 							.setScrutinyFeeChargesCal(areaInSqmtr(acre).multiply(scrutinyFeeCharges).multiply(RATE10));
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE270.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE09).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_80))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_125))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_1050)));
+					feesTypeCalculationDto
+					.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -778,12 +756,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE270 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE09 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + PART1 + "(Multiplier)" + "*" + RATE_80 + ")" + "+"
-							+ "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-							+ PART2 + "(Multiplier)" + "*" + RATE_125 + "(Rate)" + ")" + "+" + "(" + AREA
-							+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + PART3
-							+ "(Multiplier)" + "*" + RATE_1050 + "(Rate)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1050 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
 							+ "(total applied Area in acre)" + "*" + RATE_750 + "(Rate)" + "*"
 							+ stateInfrastructureDevelopmentCharges + "(FAR)" + ")" + "/" + RATE7 + "(Rate)");
@@ -795,9 +770,8 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE270.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE09).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_80))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_125))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_1050)));
+					feesTypeCalculationDto
+					.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -807,12 +781,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE270 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE09 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + PART1 + "(Multiplier)" + "*" + RATE_80 + ")" + "+"
-							+ "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-							+ PART2 + "(Multiplier)" + "*" + RATE_125 + "(Rate)" + ")" + "+" + "(" + AREA
-							+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + PART3
-							+ "(Multiplier)" + "*" + RATE_1050 + "(Rate)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1050 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
 							+ "(total applied Area in acre)" + "*" + RATE_750 + "(Rate)" + "*"
 							+ stateInfrastructureDevelopmentCharges + "(FAR)" + ")" + "/" + RATE7 + "(Rate)");
@@ -1064,8 +1035,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE07).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_80))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_1050)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -1077,9 +1047,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE07 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_80 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_1050
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_1050 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_750
 									+ "(Rate)" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1091,8 +1059,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE07).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_80))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_1050)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -1104,9 +1071,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE07 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_80 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_1050
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_1050 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_750
 									+ "(Rate)" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1118,9 +1083,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE210.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE07).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_80))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_125))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_1050)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -1130,12 +1093,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE210 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE07 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_80 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_125 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA
-							+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_1050
-							+ "(Rate)" + "*" + PART3 + "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1050 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_750
 									+ "(Rate)" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1147,9 +1107,7 @@ public class CalculatorImpl implements Calculator {
 
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE07).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_80))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_125))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_1050)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_1050)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_750));
 					feesTypeCalculationDto
@@ -1159,12 +1117,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE210 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE07 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_80 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_125 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA
-							+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_1050
-							+ "(Rate)" + "*" + PART3 + "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_1050 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_750
 									+ "(Rate)" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1409,8 +1364,7 @@ public class CalculatorImpl implements Calculator {
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE06).multiply(RATE4));
 
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_50))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_600)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_600)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 					feesTypeCalculationDto
@@ -1422,9 +1376,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE06 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_50 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_600
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_600 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_500
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1438,8 +1390,7 @@ public class CalculatorImpl implements Calculator {
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE06).multiply(RATE4));
 
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_50))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_600)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_600)));
 
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
@@ -1452,9 +1403,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE06 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_50 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_600
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_600 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_500
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1465,9 +1414,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE95.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE06).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_50))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_80))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_600)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_600)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 					feesTypeCalculationDto
@@ -1477,12 +1424,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE95 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE06 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_50 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_80 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA + "*"
-							+ acre + "(total applied Area in acre)" + "*" + RATE_600 + "(Rate)" + "*" + PART3
-							+ "(Multiplier)" + "(");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_600 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_500
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1493,9 +1437,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE95.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE06).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_50))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_80))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_600)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_600)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_500));
 					feesTypeCalculationDto
@@ -1505,12 +1447,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE95 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE06 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_50 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_80 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA + "*"
-							+ acre + "(total applied Area in acre)" + "*" + RATE_600 + "(Rate)" + "*" + PART3
-							+ "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_600 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_500
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1745,8 +1684,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE05).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_30))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_150)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_150)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -1758,9 +1696,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE05 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_30 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_150
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1773,8 +1709,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE05).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_30))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_150)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_150)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -1786,9 +1721,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE05 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_30 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_150
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1802,9 +1735,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE19.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE05).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_30))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_20))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_150)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_150)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -1814,12 +1745,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE19 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE05 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_30 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_20 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA + "*"
-							+ acre + "(total applied Area in acre)" + "*" + RATE_150 + "(Rate)" + "*" + PART3
-							+ "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -1830,9 +1758,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE19.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE05).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_30))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_20))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_150)));
+					feesTypeCalculationDto.setConversionChargesCal(areaInSqmtr(acre).multiply(RATE_150));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -1842,12 +1768,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE19 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE05 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_30 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_20 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA + "*"
-							+ acre + "(total applied Area in acre)" + "*" + RATE_150 + "(Rate)" + "*" + PART3
-							+ "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -2084,8 +2007,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE04).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_30))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_150)));
+							.setConversionChargesCal(areaInSqmtr(acre).multiply(RATE_150));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -2097,9 +2019,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE04 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_30 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_150
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -2111,8 +2031,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto
 							.setExternalDevelopmentChargesCal(acre.multiply(RATE104).multiply(RATE04).multiply(RATE4));
 					feesTypeCalculationDto
-							.setConversionChargesCal((areaInSqmtr(acre).multiply(PERCENTAGE1).multiply(RATE_30))
-									.add(areaInSqmtr(acre).multiply(PERCENTAGE2).multiply(RATE_150)));
+							.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_150)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -2124,9 +2043,7 @@ public class CalculatorImpl implements Calculator {
 							+ "(Rate)" + "*" + RATE04 + "(Rate)" + "*" + RATE4 + "(Rate)");
 					feesTypeCalculationDto.setConversionFormula(
 							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
-									+ RATE_30 + "(Rate)" + "*" + PERCENTAGE1 + "(Multiplier)" + ")" + "+" + "(" + AREA
-									+ "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_150
-									+ "(Rate)" + "*" + PERCENTAGE2 + "(Multiplier)" + ")");
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -2139,9 +2056,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE19.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE04).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_30))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_20))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_150)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_150)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -2151,12 +2066,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE19 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE04 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_30 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_20 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA + "*"
-							+ acre + "(total applied Area in acre)" + "*" + RATE_150 + "(Rate)" + "*" + PART3
-							+ "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
@@ -2167,9 +2079,7 @@ public class CalculatorImpl implements Calculator {
 					feesTypeCalculationDto.setLicenseFeeChargesCal(RATE19.multiply(acre));
 					feesTypeCalculationDto.setExternalDevelopmentChargesCal(
 							acre.multiply(RATE104).multiply(RATE04).multiply(RATE467));
-					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(PART1).multiply(RATE_30))
-							.add(areaInSqmtr(acre).multiply(PART2).multiply(RATE_20))
-							.add(areaInSqmtr(acre).multiply(PART3).multiply(RATE_150)));
+					feesTypeCalculationDto.setConversionChargesCal((areaInSqmtr(acre).multiply(RATE_150)));
 					feesTypeCalculationDto.setStateInfrastructureDevelopmentChargesCal(
 							areaInSqmtr(acre).multiply(stateInfrastructureDevelopmentCharges).multiply(RATE_190));
 					feesTypeCalculationDto
@@ -2179,12 +2089,9 @@ public class CalculatorImpl implements Calculator {
 							.setLicenceFormula(acre + "(total applied Area in acre)" + "*" + RATE19 + "(Rate)");
 					feesTypeCalculationDto.setEdcFormula(acre + "(total applied Area in acre)" + "*" + RATE104
 							+ "(Rate)" + "*" + RATE04 + "(Rate)" + "*" + RATE467 + "(Rate)");
-					feesTypeCalculationDto.setConversionFormula("(" + AREA + "(acre to sq. mt)" + "*" + acre
-							+ "(total applied Area in acre)" + "*" + RATE_30 + "(Rate)" + "*" + PART1 + "(Multiplier)"
-							+ ")" + "+" + "(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)"
-							+ "*" + RATE_20 + "(Rate)" + "*" + PART2 + "(Multiplier)" + ")" + "+" + "(" + AREA + "*"
-							+ acre + "(total applied Area in acre)" + "*" + RATE_150 + "(Rate)" + "*" + PART3
-							+ "(Multiplier)" + ")");
+					feesTypeCalculationDto.setConversionFormula(
+							"(" + AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*"
+									+ RATE_150 + "(Rate)" + ")");
 					feesTypeCalculationDto.setStateInfraFormula(
 							AREA + "(acre to sq. mt)" + "*" + acre + "(total applied Area in acre)" + "*" + RATE_190
 									+ "(Rate)" + "*" + stateInfrastructureDevelopmentCharges + "(FAR)");
