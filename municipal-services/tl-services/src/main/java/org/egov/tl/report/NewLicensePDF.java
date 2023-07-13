@@ -11,6 +11,11 @@ import java.net.URLConnection;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.tl.config.TLConfiguration;
 import org.egov.tl.service.LicenseService;
@@ -26,6 +31,7 @@ import org.egov.tl.web.models.LicenseServiceResponseInfo;
 import org.egov.tl.web.models.PurposeDetails;
 import org.egov.tl.web.models.ShareholdingPattens;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
@@ -36,11 +42,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
@@ -50,24 +58,29 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class NewLicensePDF {
 
+	@Value("${egov.filestore.host}")
+	private String fileStoreHost;
+	@Value("${egov.filestore.context.path}")
+	private String fileStoreContextPath;
+	@Autowired
+	FileStoreMethod fileStoreMethod;
 	private static Font catFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLDITALIC, BaseColor.BLUE);
 	private static Font blackFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLDITALIC, BaseColor.BLACK);
 	private static Font blackFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
 	private static Font blackFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, BaseColor.BLACK);
 
-	// private static String hindifont =
-	// "D:\\Bikash_UPYOG\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
-//	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
-	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
+//    private static String hindifont = "D:\\Bikash_UPYOG\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+//	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
 //	private static String hindifont ="D:\\Workspace_27-04-2023\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\\\FreeSans.ttf";
-
+	String fileStore = null;
 	@Autowired
 	BPANotificationUtil bPANotificationUtil;
 	@Autowired
@@ -85,6 +98,7 @@ public class NewLicensePDF {
 	public void jsonToPdf(@ModelAttribute("RequestInfo") RequestInfo requestInfo, HttpServletRequest request,
 			HttpServletResponse response, @RequestParam("applicationNumber") String applicationNumber)
 			throws IOException {
+		
 
 		try {
 			createNewLicensePDF(requestInfo, applicationNumber);
@@ -111,9 +125,11 @@ public class NewLicensePDF {
 			throws MalformedURLException, IOException, DocumentException {
 
 		// boolean flag = true;
+		Font link = FontFactory.getFont("Arial", 12, new BaseColor(0, 0, 255));
+		Anchor anchor = new Anchor("Click Here to view document", link);
 		LicenseServiceResponseInfo licenseServiceResponceInfo = licenseService.getNewServicesInfoById(applicationNumber,
 				requestInfo);
-
+		String tenantId = "hr";
 		Image img = Image.getInstance("govt.jpg");
 		img.scaleAbsolute(200, 100);
 
@@ -947,7 +963,11 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getEncumburanceOther()));
 
 						table.addCell("Encumburance Doc");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getEncumburanceDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburance(),
+									"hr");
+						}
+						table.addCell("");
 
 						table.addCell("Litigation");
 						table.addCell((licenseDetails.getLandSchedule().getLitigation()));
@@ -956,7 +976,11 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getLitigationRemark()));
 
 						table.addCell("Litigation Doc");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getEncumburanceDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburance(),
+									"hr");
+						}
+						table.addCell("");
 
 						table.addCell("Court");
 						table.addCell((licenseDetails.getLandSchedule().getCourt()));
@@ -965,7 +989,16 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getCourtyCaseNo()));
 
 						table.addCell("Court Doc");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getCourtDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getCourtDoc(),
+									tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
+						}
 
 						table.addCell("Insolvency");
 						table.addCell((licenseDetails.getLandSchedule().getInsolvency()));
@@ -974,7 +1007,16 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getInsolvencyRemark()));
 
 						table.addCell("Insolvency Doc");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getInsolvencyDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getInsolvencyDoc(),
+									tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
+						}
 
 						doc.add(table);
 
@@ -997,7 +1039,16 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getAppliedLand()));
 
 						table.addCell("AppliedLandDoc");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getAppliedLandDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getAppliedLandDoc(),
+									tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
+						}
 
 						table.addCell("Revenue Rasta");
 						table.addCell((licenseDetails.getLandSchedule().getRevenueRasta()));
@@ -1145,7 +1196,16 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getApplicantHasDonated()));
 
 						table.addCell("GiftDeedHibbanama");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getGiftDeedHibbanama() != null) {
+							fileStore = fileStoreMethod
+									.fileStore(licenseDetails.getLandSchedule().getGiftDeedHibbanama(), tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
+						}
 
 						table.addCell("Adjoining OthersLand");
 						table.addCell((licenseDetails.getLandSchedule().getAdjoiningOthersLand()));
@@ -1193,7 +1253,16 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getAvailableExistingApproach()));
 
 						table.addCell("Available Existing ApproachDoc");
-						table.addCell("ATTACHED");
+						if (licenseDetails.getLandSchedule().getAvailableExistingApproachDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(
+									licenseDetails.getLandSchedule().getAvailableExistingApproachDoc(), tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
+						}
 
 						table.addCell("Whether Acquired For InternalCirculation");
 						table.addCell((licenseDetails.getLandSchedule().getWhetherAcquiredForInternalCirculation()));
@@ -1221,28 +1290,89 @@ public class NewLicensePDF {
 						if (licenseDetails.getLandSchedule().getLandSchedule() != null) {
 
 							table.addCell("LandSchedule");
-							table.addCell("ATTACHED");
+							if (licenseDetails.getLandSchedule().getLandSchedule() != null) {
+								fileStore = fileStoreMethod
+										.fileStore(licenseDetails.getLandSchedule().getLandSchedule(), tenantId);
+								log.info("fileStore:" + fileStore);
+
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
 							table.addCell("Mutation");
-							table.addCell("ATTACHED");
+							if (licenseDetails.getLandSchedule().getMutation() != null) {
+								fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getMutation(),
+										tenantId);
+								log.info("fileStore:" + fileStore);
+
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
 							table.addCell("Jambandhi");
-							table.addCell("ATTACHED");
+
+							if (licenseDetails.getLandSchedule().getJambandhi() != null) {
+								fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getJambandhi(),
+										tenantId);
+								log.info("fileStore:" + fileStore);
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
 							table.addCell("Details Of Lease");
-							table.addCell("ATTACHED");
+							if (licenseDetails.getLandSchedule().getDetailsOfLease() != null) {
+								fileStore = fileStoreMethod
+										.fileStore(licenseDetails.getLandSchedule().getDetailsOfLease(), tenantId);
+								log.info("fileStore:" + fileStore);
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
-							table.addCell("Add SalesDeed");
-							table.addCell("ATTACHED");
+							table.addCell("Add Sales Deed");
+							if (licenseDetails.getLandSchedule().getAddSalesDeed() != null) {
+								fileStore = fileStoreMethod
+										.fileStore(licenseDetails.getLandSchedule().getAddSalesDeed(), tenantId);
+								log.info("fileStore:" + fileStore);
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
 							table.addCell("Revised LandSchedule");
 							table.addCell((licenseDetails.getLandSchedule().getRevisedLandSchedule()));
 
 							table.addCell("Copy of SpaBoard");
-							table.addCell("ATTACHED");
+							if (licenseDetails.getLandSchedule().getCopyofSpaBoard() != null) {
+								fileStore = fileStoreMethod
+										.fileStore(licenseDetails.getLandSchedule().getCopyofSpaBoard(), tenantId);
+								log.info("fileStore:" + fileStore);
+
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
 							table.addCell("Copy Of ShajraPlan");
-							table.addCell("ATTACHED");
+							if (licenseDetails.getLandSchedule().getCopyOfShajraPlan() != null) {
+								fileStore = fileStoreMethod
+										.fileStore(licenseDetails.getLandSchedule().getCopyOfShajraPlan(), tenantId);
+								log.info("fileStore:" + fileStore);
+
+								anchor.setReference(fileStore);
+								table.addCell(anchor);
+							} else {
+								table.addCell("");
+							}
 
 							table.addCell("Proposed LayoutPlan");
 							table.addCell((licenseDetails.getLandSchedule().getProposedLayoutPlan()));
@@ -1557,28 +1687,108 @@ public class NewLicensePDF {
 									.getLayoutPlanPdf() != null) {
 
 								table.addCell("Layout PlanPdf");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getLayoutPlanPdf() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getLayoutPlanPdf(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("Layout PlanDxf");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getLayoutPlanDxf() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getLayoutPlanDxf(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("Undertaking");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getUndertaking() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getUndertaking(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("DevelopmentPlan");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getDevelopmentPlan() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getDevelopmentPlan(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("SectoralPlan");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getSectoralPlan() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getSectoralPlan(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("Explanatory Note");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getExplanatoryNote() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getExplanatoryNote(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("GuideMap");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getGuideMap() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getGuideMap(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								table.addCell("Idemnity BondDoc");
-								table.addCell("ATTACHED");
+								if (licenseDetails.getDetailsofAppliedLand().getDetailsAppliedLandPlot()
+										.getIdemnityBondDoc() != null) {
+									fileStore = fileStoreMethod.fileStore(licenseDetails.getDetailsofAppliedLand()
+											.getDetailsAppliedLandPlot().getIdemnityBondDoc(), tenantId);
+									log.info("fileStore:" + fileStore);
+
+									anchor.setReference(fileStore);
+									table.addCell(anchor);
+								} else {
+									table.addCell("");
+								}
 
 								doc.add(table);
 
@@ -1660,7 +1870,21 @@ public class NewLicensePDF {
 						}
 
 					}
-
+					// String apiUrl =
+					// "http://103.166.62.118:80/filestore/v1/files/url?tenantId=hr&fileStoreIds=ced5305a-ed6f-47f4-8dc6-1b5668b5bc73";
+//					String file = fileStoreMethod.fileStore("ced5305a-ed6f-47f4-8dc6-1b5668b5bc73", "hr");
+//                Anchor anchor = new Anchor("Click Here");
+//                  anchor.setReference("ced5305a-ed6f-47f4-8dc6-1b5668b5bc73");
+////               
+//                 doc.add(anchor);
+////               
+//                ObjectMapper objectMapper = new ObjectMapper();
+//                  JsonNode doc1 = objectMapper.readTree(file);
+//                  
+//                  String gh = doc1.get("fileStoreIds").get(0).get("url").asText();
+//                  
+//               
+//                  System.out.println(gh);
 					doc.close();
 					writer.close();
 				}
