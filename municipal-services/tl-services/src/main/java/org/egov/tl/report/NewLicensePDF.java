@@ -77,7 +77,7 @@ public class NewLicensePDF {
 	private static Font blackFont2 = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, BaseColor.BLACK);
 
 //    private static String hindifont = "D:\\Bikash_UPYOG\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
-	//private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
+//	private static String hindifont = "D:\\upyog code\\UPYOG1\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\FreeSans.ttf";
 	private static String hindifont = "/opt/UPYOG/municipal-services/tl-services/src/main/resources/font/FreeSans.ttf";
 //	private static String hindifont ="D:\\Workspace_27-04-2023\\UPYOG\\municipal-services\\tl-services\\src\\main\\resources\\font\\\\FreeSans.ttf";
 	String fileStore = null;
@@ -964,10 +964,15 @@ public class NewLicensePDF {
 
 						table.addCell("Encumburance Doc");
 						if (licenseDetails.getLandSchedule().getEncumburanceDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburance(),
-									"hr");
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburanceDoc(),
+									tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
 						}
-						table.addCell("");
 
 						table.addCell("Litigation");
 						table.addCell((licenseDetails.getLandSchedule().getLitigation()));
@@ -976,11 +981,16 @@ public class NewLicensePDF {
 						table.addCell((licenseDetails.getLandSchedule().getLitigationRemark()));
 
 						table.addCell("Litigation Doc");
-						if (licenseDetails.getLandSchedule().getEncumburanceDoc() != null) {
-							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getEncumburance(),
-									"hr");
+						if (licenseDetails.getLandSchedule().getLitigationDoc() != null) {
+							fileStore = fileStoreMethod.fileStore(licenseDetails.getLandSchedule().getLitigationDoc(),
+									tenantId);
+							log.info("fileStore:" + fileStore);
+
+							anchor.setReference(fileStore);
+							table.addCell(anchor);
+						} else {
+							table.addCell("");
 						}
-						table.addCell("");
 
 						table.addCell("Court");
 						table.addCell((licenseDetails.getLandSchedule().getCourt()));
